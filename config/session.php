@@ -72,8 +72,9 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION', null),
-
+    'driver' => 'database', // Debes mantener 'database' como el driver
+    'connection' => 'pgsql', // Aquí se configura la conexión a la base de datos PostgreSQL
+    'table' => 'sessions',
     /*
     |--------------------------------------------------------------------------
     | Session Database Table
