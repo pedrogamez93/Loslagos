@@ -57,7 +57,7 @@ class IntroduccionController extends Controller{
 
             $introduccion->save();
     
-            return ('introducciones.index');
+            return redirect('/introducciones');
         }
     }
 
