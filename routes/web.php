@@ -31,4 +31,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/categorias', 'App\Http\Controllers\CategoriesController@index');
+Route::get('/gobiernoregional/introduccion', 'App\Http\Controllers\CategoriesController@index');

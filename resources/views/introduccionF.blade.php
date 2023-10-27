@@ -49,7 +49,7 @@
         <div class="container content-breadc">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Home / Gobierno Regional</p>
+                    <p>Home / Gobierno Regional / introducción</p>
                 </div>
             </div>
         </div>   
