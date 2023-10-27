@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::resource('introducciones', IntroduccionController::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

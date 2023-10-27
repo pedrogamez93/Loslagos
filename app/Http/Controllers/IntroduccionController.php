@@ -51,7 +51,7 @@ class IntroduccionController extends Controller{
             $introduccion->bajada = $request->input('bajada');
             
             if ($request->hasFile('img')) {
-                $imagePath = $request->file('img')->store('public/images');
+                $imagePath = $request->file('img')->store('images', 'public');
                 $introduccion->img = $imagePath;
             }
 
