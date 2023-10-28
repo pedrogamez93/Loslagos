@@ -78,6 +78,11 @@
         line-height: 60.51px;
         color: #FFFFFF;
     }
+    .cat{
+        margin-top: -5rem;
+        background-color: #FFFFFF;
+        border-radius: 100px 0 0 0;
+    }
     /*lista categorias*/
     .lista-categorias {
         width: 100%;
@@ -173,8 +178,8 @@
         </div>
 
         <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
-        <div class="container content-breadc pt-5 pb-3">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
+        <div class="container content-breadc pt-4 pb-3">
+            <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
                     <p class="style-bread">Home / Gobierno Regional /<span style="font-Weight: 700;">acerca</span></p>
                 </div>

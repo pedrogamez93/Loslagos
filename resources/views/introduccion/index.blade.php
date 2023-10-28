@@ -39,7 +39,7 @@
     <div class="container first-form pt-2 pb-2">
         <div class="row">
             <div class="col-md-12">
-                <h2>Introducción Gobierno Regional</h2>
+                <h2>Acerca Gobierno Regional</h2>
             </div>
         </div>
         <form id="formulario-edicion" action="{{ route('introducciones.store') }}" method="post" enctype="multipart/form-data">
