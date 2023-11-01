@@ -188,7 +188,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread">Home / Gobierno Regional / Acerca / <span style="font-Weight: 700;">Qué es el Gobierno Regional</span></p>
+                    <p class="style-bread">Home / Gobierno Regional / Acerca / <span style="font-Weight: 700;">Misión Gobierno Regional</span></p>
                 </div>
             </div>
         </div>   
@@ -238,9 +238,9 @@
                     <div class="container int">
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $introduccion->tag_comentario }}</p>
-                                <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
-                                <p class="style-down pt-2 pb-2">{{ $introduccion->bajada }}</p>
+                                <p class="style-tag pt-4 pb-4">{{ $mision->tag_comentario }}</p>
+                                <p class="title-cat pt-2 pb-2">{{ $mision->titulo }}</p>
+                                <p class="style-down pt-2 pb-2">{{ $mision->bajada }}</p>
                             </div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                     <div class="container img">
                         <div class="row">
                             <div class="col-md-12" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/' . $introduccion->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
+                                <img src="{{ asset('storage/' . $mision->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
                             </div>
                         </div>
                     </div>

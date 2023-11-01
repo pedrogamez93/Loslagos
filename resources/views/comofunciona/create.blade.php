@@ -40,10 +40,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Acerca del Gobierno Regional </h1>
-                <h2>Qué es el Gobierno Regional</h2>
+                <h2>Cómo Funciona el Gobieno Regional</h2>
             </div>
         </div>
-        <form id="formulario-edicion" action="{{ url('/introducciones') }}" method="post" enctype="multipart/form-data">
+        <form id="formulario-creacion" action="{{ url('/comofuncionagrs') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="formulario" value="formulario1">
             <div class="form-group">

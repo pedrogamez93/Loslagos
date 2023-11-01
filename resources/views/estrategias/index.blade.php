@@ -13,7 +13,7 @@
         border: 1px solid #CCCCCC;
         border-radius: 10px;       
     }
-    .first-form{
+    .first-form, .second-form{
         border: 1px solid #CCCCCC;
         border-radius: 10px;
     }
@@ -40,22 +40,21 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Acerca del Gobierno Regional </h1>
-                <h2>Qué es el Gobierno Regional</h2>
+                <h2>Estrategia Regional de desarrollo</h2>
             </div>
         </div>
-        <form id="formulario-edicion" action="{{ url('/introducciones') }}" method="post" enctype="multipart/form-data">
+        <form id="formulario-creacion" action="{{ route('estrategias.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="formulario" value="formulario1">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6 tag-comentario">
                         <div class="input-group mb-3">
-                            <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="" disabled>
+                            <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $estrategias->tag_comentario }}" disabled>
                         </div>
                     </div>
                     <div class="col-md-6 title">
                         <div class="input-group mb-3">
-                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" disabled>
+                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $estrategias->titulo }}" disabled>
                         </div>
                     </div>
                 </div>
@@ -63,17 +62,35 @@
                     <div class="col-md-12 pb-3">
                         <div id="text">
                             <div class="form-floating">
-                                <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled></textarea>
+                                <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled>{{ $estrategias->bajada }}</textarea>
                                 <label class="style-label" for="floatingTextarea2 style-label">Bajada de la introducción</label>
                             </div>
                         </div>
                     </div>
                 </div>
-            <div class="form-group">
-                <div class="col-md-12 pt-3 pb-3">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
-                            <input class="form-control" type="file" name="img" id="img" accept="image/*" disabled>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 pt-3 pb-3">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
+                                <input class="form-control" type="file" name="img" id="img" accept="image/*" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pt-3 pb-3">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label style-label">Imagen actual:</label>
+                                    @if ($estrategias->img)
+                                        <img src="{{ asset('storage/' . $estrategias->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
+                                    @else
+                                        <p>No hay imagen disponible.</p>
+                                    @endif
+                            </div>
+                        </div>
+                        <div class="col-md-12 enlace">
+                            <div class="input-group mb-3">
+                                <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace boton" value="{{ $estrategias->enlace }}" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +99,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
         // Cuando se haga clic en el botón "Editar"
@@ -91,6 +107,7 @@
             $("#tag_comentario").prop("disabled", false);
             $("#titulo").prop("disabled", false);
             $("#bajada").prop("disabled", false);
+            $("#enlace").prop("disabled", false);
             $("#img").prop("disabled", false);
         });
     });

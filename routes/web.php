@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IntroduccionController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ComofuncionaGrController;
+use App\Http\Controllers\EstrategiasController;
+use App\Http\Controllers\InversionesPublicController;
+use App\Http\Controllers\MisionGobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +25,14 @@ Route::get('/', function () {
 
 Route::resource('introducciones', IntroduccionController::class);
 
+Route::resource('comofuncionagrs', ComofuncionaGrController::class);
+
+Route::resource('estrategias', EstrategiasController::class);
+
+Route::resource('inversiones', InversionesPublicController::class);
+
+Route::resource('mision', MisionGobController::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -32,3 +44,11 @@ Route::middleware([
 });
 
 Route::get('/gobiernoregional/acerca', 'App\Http\Controllers\CategoriesController@index');
+
+Route::get('/gobiernoregional/comofunciona', 'App\Http\Controllers\CategoriesController@comofuncionaGrIndex');
+
+Route::get('/gobiernoregional/estrategiasregionales', 'App\Http\Controllers\CategoriesController@estrategiaregGrIndex');
+
+Route::get('/gobiernoregional/inversionespublicas', 'App\Http\Controllers\CategoriesController@inversionespublicasGrIndex');
+
+Route::get('/gobiernoregional/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');

@@ -40,10 +40,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Acerca del Gobierno Regional </h1>
-                <h2>Qué es el Gobierno Regional</h2>
+                <h2>Misión Gobierno Regional</h2>
             </div>
         </div>
-        <form id="formulario-edicion" action="{{ url('/introducciones') }}" method="post" enctype="multipart/form-data">
+        <form id="formulario-creacion" action="{{ url('/mision') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="formulario" value="formulario1">
             <div class="form-group">
@@ -76,6 +76,11 @@
                             <input class="form-control" type="file" name="img" id="img" accept="image/*" disabled>
                     </div>
                 </div>
+                <div class="col-md-12 enlace">
+                    <div class="input-group mb-3">
+                        <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace boton" disabled>
+                     </div>
+                </div>
             </div>
             <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
             <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
@@ -92,6 +97,7 @@
             $("#titulo").prop("disabled", false);
             $("#bajada").prop("disabled", false);
             $("#img").prop("disabled", false);
+            $("#enlace").prop("disabled", false);
         });
     });
 </script>
