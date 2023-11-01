@@ -45,10 +45,10 @@ Route::middleware([
 
 Route::get('/gobiernoregional/acerca', 'App\Http\Controllers\CategoriesController@index');
 
-Route::get('/gobiernoregional/comofunciona', 'App\Http\Controllers\CategoriesController@comofuncionaGrIndex');
+Route::get('/gobiernoregional/acerca/comofunciona', 'App\Http\Controllers\CategoriesController@comofuncionaGrIndex');
 
-Route::get('/gobiernoregional/estrategiasregionales', 'App\Http\Controllers\CategoriesController@estrategiaregGrIndex');
+Route::get('/gobiernoregional/acerca/estrategiaregional', 'App\Http\Controllers\CategoriesController@estrategiaregGrIndex');
 
-Route::get('/gobiernoregional/inversionespublicas', 'App\Http\Controllers\CategoriesController@inversionespublicasGrIndex');
+Route::get('/gobiernoregional/acerca/inversionpublica', 'App\Http\Controllers\CategoriesController@inversionespublicasGrIndex');
 
-Route::get('/gobiernoregional/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
+Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
