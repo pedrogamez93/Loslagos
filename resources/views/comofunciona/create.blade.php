@@ -30,6 +30,32 @@
     }
 </style>
 
+<!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
+<button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#menuGobiernoRegional" aria-expanded="false" aria-controls="menuGobiernoRegional">
+    Gobierno Regional
+</button>
+
+<!-- Define el menú desplegable -->
+<div class="collapse" id="menuGobiernoRegional">
+    <ul>
+        <li>
+            <a href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
+        </li>
+        <li>
+            <a href="{{ url('/comofuncionagrs') }}">Como Funciona</a>
+        </li>
+        <li>
+            <a href="{{ url('/estrategias') }}">Estrategias</a>
+        </li>
+        <li>
+            <a href="{{ url('/inversiones') }}">Inversiones</a>
+        </li>
+        <li>
+            <a href="{{ url('/mision') }}">Mision</a>
+        </li>
+    </ul>
+</div>
+
 <div class="container principal mt-4 mb-4 pt-3 pb-3">
     <div class="row">
         <div class="col-md-12">
