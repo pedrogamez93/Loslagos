@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <div class="row">
                     <div class="col-md-12">
                         <div class="logo pt-4 pb-4">
@@ -44,13 +43,3 @@
                         </div>
                     </div>
                 </div>
-=======
-<nav>
-    <ul>
-        <li><a href="">Dashboard</a></li>
-        <li><a href="">Productos</a></li>
-        <li><a href="">Órdenes</a></li>
-        <!-- Otros elementos del menú -->
-    </ul>
-</nav>
->>>>>>> Stashed changes

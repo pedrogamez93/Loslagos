@@ -4,18 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IntroduccionRegionLagos;
-<<<<<<< Updated upstream
 
 class IntroduccionRegionLagosController extends Controller
 {
     //
-=======
-use App\Models\AntecedentesRegion;
-use App\Models\CargoRegionLagos;
-class IntroduccionRegionLagosController extends Controller
-{
-    // Inicio Introduccion
->>>>>>> Stashed changes
     public function index()
     {
         $articulo = IntroduccionRegionLagos::all();
@@ -31,11 +23,6 @@ class IntroduccionRegionLagosController extends Controller
             return view('IntroduccionRegionLagos.create');
         }
     }
-<<<<<<< Updated upstream
-    
-
-=======
->>>>>>> Stashed changes
     public function create()
     {
         return view('create');
@@ -58,42 +45,13 @@ class IntroduccionRegionLagosController extends Controller
     
         return redirect(route('IntroduccionRegionLagos.index'))->with('success', 'Artículo creado con éxito');
     }
-<<<<<<< Updated upstream
     public function show(IntroduccionRegionLagos $articulo)
     {
         
         return view('show', compact('articulo'));
     }
-    
-        public function edit($id)
-        {
-            $articulo = IntroduccionRegionLagos::find($id);
-            return view('edit', compact('articulo'));
-        }
-    
-        public function update(Request $request, $id)
-        {
-            $data = $request->validate([
-                'titulo' => 'required',
-                'subtitulo' => 'required',
-                'descripcion' => 'required',
-                'imagen' => 'image|max:2048',
-            ]);
-        
-            $articulo = IntroduccionRegionLagos::find($id);
-        
-            if ($articulo) {
-                if ($request->hasFile('imagen')) {
-                    $imagenPath = $request->file('imagen')->store('images', 'public');
-                    $data['imagen'] = $imagenPath;
-                }
-                $articulo->update($data);
-                return redirect()->route('IntroduccionRegionLagos.index')->with('success', 'Artículo actualizado con éxito');
-            } else {
-                return redirect()->route('IntroduccionRegionLagos.index')->with('error', 'Artículo no encontrado');
-            }
-        }
-=======
+
+
     public function edit($id)
     {
         $Introduccion = IntroduccionRegionLagos::find($id);
@@ -267,5 +225,5 @@ public function updateCargos(Request $request, $id)
     }
 } 
     // Fin Cargo
->>>>>>> Stashed changes
+
 }
