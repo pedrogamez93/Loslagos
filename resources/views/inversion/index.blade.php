@@ -28,101 +28,137 @@
     font-size: 16px;
     font-weight: 700;
     }
+    .style-col-menu{
+        background-color: #0c1e35;
+    }
+    button.btn.btn-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: unset;
+    font-weight: 700;
+    }
+    li.style-li{
+        list-style: none;
+        padding-bottom: 10px;
+    }
+    a.style-a-menu{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;   
+    }
 </style>
-<!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
-<button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#menuGobiernoRegional" aria-expanded="false" aria-controls="menuGobiernoRegional">
-    Gobierno Regional
-</button>
-
-<!-- Define el menú desplegable -->
-<div class="collapse" id="menuGobiernoRegional">
-    <ul>
-        <li>
-            <a href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
-        </li>
-        <li>
-            <a href="{{ url('/comofuncionagrs') }}">Como Funciona</a>
-        </li>
-        <li>
-            <a href="{{ url('/estrategias') }}">Estrategias</a>
-        </li>
-        <li>
-            <a href="{{ url('/inversiones') }}">Inversiones</a>
-        </li>
-        <li>
-            <a href="{{ url('/mision') }}">Mision</a>
-        </li>
-    </ul>
-</div>
-<div class="container principal mt-4 mb-4 pt-3 pb-3">
+<div class="container-fluid body">
     <div class="row">
-        <div class="col-md-12">
-            <h1>Formulario de Edición Gobierno Regional</h1>
-        </div>
-    </div>
-    <div class="container first-form pt-2 pb-2">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Acerca del Gobierno Regional </h1>
-                <h2>Inversión Pública en la Región</h2>
-            </div>
-        </div>
-        <form id="formulario-creacion" action="{{ route('inversiones.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
+        <div class="col-md-2 style-col-menu">
+            <div class="container menu">
                 <div class="row">
-                    <div class="col-md-6 tag-comentario">
-                        <div class="input-group mb-3">
-                            <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $inversiones->tag_comentario }}" disabled>
+                    <div class="col-md-12">
+                        <div class="logo pt-4 pb-4">
+                            <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
                         </div>
-                    </div>
-                    <div class="col-md-6 title">
-                        <div class="input-group mb-3">
-                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $inversiones->titulo }}" disabled>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12 pb-3">
-                        <div id="text">
-                            <div class="form-floating">
-                                <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled>{{ $inversiones->bajada }}</textarea>
-                                <label class="style-label" for="floatingTextarea2 style-label">Bajada de la introducción</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6 pt-3 pb-3">
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
-                                <input class="form-control" type="file" name="img" id="img" accept="image/*" disabled>
-                            </div>
-                        </div>
-                        <div class="col-md-6 pt-3 pb-3">
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label style-label">Imagen actual:</label>
-                                    @if ($inversiones->img)
-                                        <img src="{{ asset('storage/' . $inversiones->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
-                                    @else
-                                        <p>No hay imagen disponible.</p>
-                                    @endif
-                            </div>
-                        </div>
-                        <div class="col-md-12 enlace">
-                            <div class="input-group mb-3">
-                                <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace boton" value="{{ $inversiones->enlace }}" disabled>
-                            </div>
+                        <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#menuGobiernoRegional" aria-expanded="false" aria-controls="menuGobiernoRegional">
+                            Gobierno Regional
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse" id="menuGobiernoRegional">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/comofuncionagrs') }}">Como Funciona</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/estrategias') }}">Estrategias</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/inversiones') }}">Inversiones</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/mision') }}">Mision</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
-            <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
-        </form>
+        </div>
+        <div class="col-md-10">
+            <div class="container principal mt-4 mb-4 pt-3 pb-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Formulario de Edición Gobierno Regional</h1>
+                    </div>
+                </div>
+                <div class="container first-form pt-2 pb-2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Acerca del Gobierno Regional </h1>
+                            <h2>Inversión Pública en la Región</h2>
+                        </div>
+                    </div>
+                    <form id="formulario-creacion" action="{{ route('inversiones.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6 tag-comentario">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $inversiones->tag_comentario }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $inversiones->titulo }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 pb-3">
+                                    <div id="text">
+                                        <div class="form-floating">
+                                            <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled>{{ $inversiones->bajada }}</textarea>
+                                            <label class="style-label" for="floatingTextarea2 style-label">Bajada de la introducción</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 pt-3 pb-3">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
+                                            <input class="form-control" type="file" name="img" id="img" accept="image/*" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pt-3 pb-3">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label style-label">Imagen actual:</label>
+                                                @if ($inversiones->img)
+                                                    <img src="{{ asset('storage/' . $inversiones->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
+                                                @else
+                                                    <p>No hay imagen disponible.</p>
+                                                @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 enlace">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace boton" value="{{ $inversiones->enlace }}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
+                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         // Cuando se haga clic en el botón "Editar"
