@@ -141,6 +141,29 @@
         background-color: #00548F;
         color:#FFFFFF;
     }
+    h1.mititulo{
+        font-family: 'Inter';
+        font-Weight: 700;
+        font-Size: 30px;
+        color: #565656;
+    }
+    p.mi-style-onep{
+        font-family: 'Inter';
+        font-Weight: 700;
+        font-Size: 16px;
+        color: #565656;
+        padding-bottom: 2%;
+    }
+    p.mi-style-onet{
+        font-family: 'Inter';
+        font-Weight: 500;
+        font-Size: 16px;
+        color: #565656;
+        padding-bottom: 2%;
+    }
+    .contenido-ley{
+        border: 1px solid #F59120;
+    }
     footer{
         height:535px;
         background-color: #389144;
@@ -188,7 +211,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread">Home / Gobierno Regional / Acerca / <span style="font-Weight: 700;">Cómo Funciona</span></p>
+                    <p class="style-bread">Home / Gobierno Regional / <span style="font-Weight: 700;">Ley Gobierno Regional</span></p>
                 </div>
             </div>
         </div>   
@@ -232,56 +255,57 @@
                 </ul>
             </div>
         </div>
-        <div class="container mt-5 mb-5">
+        <div class="container titulo">
             <div class="row">
-                <div class="col-md-6" style="padding: 0 0 0 5rem;">
-                    <div class="container int">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $comofunciona->tag_comentario }}</p>
-                                <p class="title-cat pt-2 pb-2">{{ $comofunciona->titulo }}</p>
-                                <p class="style-down pt-2 pb-2">{{ $comofunciona->bajada }}</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-12" style="padding: 0 0 0 5rem;">
+                    <h1 class="mititulo">Ley</h1>
                 </div>
+            </div>
+        </div>
+        <div class="container contenido-ley mt-5 mb-5" style="padding: 25px; width: 1360px;">
+            <div class="row">    
+                <div class="col-md-6" style="padding: 0 0 0 5rem;">
+                    <p class="mi-style-onep">Tipo de Norma:</p>
 
-                <div class="col-md-6"  style="position: relative;">
-                    <div class="container img">
-                        <div class="row">
-                            <div class="col-md-12" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/' . $comofunciona->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container enlaces" style="position:absolute; top: 8rem;">
-                        <div class="row" style="padding-top: 2rem; row-gap: 2rem;">
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/comofunciona"><p>Cómo Funciona el Gobieno Regional</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/estrategiaregional"><p>Estrategia Regional de desarrollo</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/inversionpublica"><p>Inversión Pública en la Región</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/misiongobierno"><p>Misión</p></a>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="mi-style-onet">{{ $ley->tipo_norma }}</p>
+
+                    <p class="mi-style-onep">Fecha publicación:</p>
+
+                    <p class="mi-style-onet">{{ $ley->fecha_publicacion }}</p>
+
+                    <p class="mi-style-onep">Fecha promulgación:</p>
+
+                    <p class="mi-style-onet">{{ $ley->fecha_promulgacion }}</p>
+
+                    <p class="mi-style-onep" >Organismo:</p>
+
+                    <p class="mi-style-onet">{{ $ley->organismo }}</p>
+
+                </div>
+                <div class="col-md-6">
+
+                    <p class="mi-style-onep">Título:</p>
+
+                    <p class="mi-style-onet">{{ $ley->titulo }}</p>
+
+                    <p class="mi-style-onep">Tipo de Versión:</p>
+
+                    <p class="mi-style-onet">{{ $ley->tipo_version }}</p>
+
+                    <p class="mi-style-onep">Inicio de Vigencia:</p>
+
+                    <p class="mi-style-onet">{{ $ley->inicio_vigencia }}</p>
+
+                    <p class="mi-style-onep">Url:</p>
+
+                    <p class="mi-style-onet"><a style="color:#00548F; font-Weight:600;" href="{{ $ley->url }}">{{ $ley->url }}</a></p>
+
+                    @if ($ley->enlacedoc)
+                        <a href="{{ asset('storage/' . $ley->enlacedoc) }}" target="_blank">Ver PDF actual</a>
+                    @else
+                        <p>No hay documento PDF disponible.</p>
+                    @endif
+
                 </div>
             </div>
         </div>      

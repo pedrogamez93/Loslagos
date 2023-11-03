@@ -218,7 +218,7 @@
                 </div>
                 <ul id="categorylist">
                     <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
-                    <li><a routerLink="/result/Torres del Paine" title="Categoría:tags">Ley</a></li>
+                    <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
                     <li><a routerLink="/result/Lagos" title="Categoría:tags">Organigrama</a></li>
                     <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
                     <li><a routerLink="/result/Cocina" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>

@@ -8,6 +8,7 @@ use App\Models\ComofuncionaGr;
 use App\Models\EstrategiaReg;
 use App\Models\InversionPublicas;
 use App\Models\MisionGob;
+use App\Models\Ley;
 
 
 class CategoriesController extends Controller{
@@ -45,6 +46,13 @@ class CategoriesController extends Controller{
         $mision = MisionGob::latest()->first();
 
         return view('acerca.misiongobierno', ['mision' => $mision]);
+    }
+
+    public function leygobiernoregIndex(){
+
+        $ley = Ley::latest()->first();
+
+        return view('leygobiernoregional', ['ley' => $ley]);
     }
 
 }

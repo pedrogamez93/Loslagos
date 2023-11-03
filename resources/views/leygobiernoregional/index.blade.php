@@ -55,41 +55,7 @@
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="logo pt-4 pb-4">
-                            <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                        </div>
-                        <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#menuGobiernoRegional" aria-expanded="false" aria-controls="menuGobiernoRegional">
-                            Gobierno Regional
-                        </button>
-
-                        <!-- Define el menú desplegable -->
-                        <div class="collapse" id="menuGobiernoRegional">
-                            <ul>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/comofuncionagrs') }}">Como Funciona</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/estrategias') }}">Estrategias</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/inversiones') }}">Inversiones</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/mision') }}">Mision</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/ley') }}">Ley</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            @include('layouts.menu')
             </div>
         </div>
         <div class="col-md-10">
@@ -112,32 +78,32 @@
                             <div class="row">
                                 <div class="col-md-12 tipo-norma">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="tipo_norma" name="tipo_norma" class="form-control" placeholder="Tipo de norma" value="" disabled>
+                                        <input type="text" id="tipo_norma" name="tipo_norma" class="form-control" placeholder="Tipo de norma" value="{{ $ley->tipo_norma }}" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                <p>Fecha Publicación:<input type="text" id="fecha_publicacion_datepicker"></p>
+                                <p>Fecha Publicación:<input type="text" name="fecha_publicacion" id="fecha_publicacion_datepicker" value="{{ $ley->fecha_publicacion }}"></p>
                                 </div>
                                 <div class="col-md-6">
-                                <p>Fecha Promulgación:<input type="text" id="fecha_promulgacion_datepicker"></p>
+                                <p>Fecha Promulgación:<input type="text" name="fecha_promulgacion" id="fecha_promulgacion_datepicker" value="{{ $ley->fecha_promulgacion }}"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 pb-3">
                                     <div class="input-group mb-3">
-                                            <input type="text" id="organismo" name="organismo" class="form-control" placeholder="Organismo" value="" disabled>
+                                            <input type="text" id="organismo" name="organismo" class="form-control" placeholder="Organismo" value="{{ $ley->organismo }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12 pb-3">
                                     <div class="input-group mb-3">
-                                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" value="" disabled>
+                                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" value="{{ $ley->titulo }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12 pb-3">
                                     <div class="input-group mb-3">
-                                            <input type="text" id="tipo_version" name="tipo_version" class="form-control" placeholder="Tipo Version" value="" disabled>
+                                            <input type="text" id="tipo_version" name="tipo_version" class="form-control" placeholder="Tipo Version" value="{{ $ley->tipo_version }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -145,19 +111,31 @@
                                 <div class="row">
                                     <div class="col-md-6 pt-3 pb-3">
                                         <div class="input-group mb-3">
-                                            <p>Fecha de Vigencia:<input type="text" id="fecha_vigencia_datepicker"></p>
+                                            <p>Fecha de Vigencia:<input type="text" name="inicio_vigencia" id="fecha_vigencia_datepicker" value="{{ $ley->inicio_vigencia }}"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6 pt-3 pb-3">
                                         <div class="input-group mb-3">
-                                            <input type="text" id="Url" name="Url" class="form-control" placeholder="Url" value="" disabled>
+                                            <input type="text" id="Url" name="url" class="form-control" placeholder="Url" value="{{ $ley->url }}" disabled>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 enlace">
-                                        <div class="mb-3">
-                                            <label for="formFile" class="form-label style-label">Selecciona un documento PDF para la sección</label>
+                                    <div class="row">
+                                        <div class="col-md-6 enlace">
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label style-label">Selecciona un documento PDF para la sección</label>
                                                 <input class="form-control" type="file" name="enlacedoc" id="enlacedoc" accept=".pdf" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="currentPdf" class="form-label style-label">Documento PDF actual:</label>
+                                                @if ($ley->enlacedoc)
+                                                    <a href="{{ asset('storage/' . $ley->enlacedoc) }}" target="_blank">Ver PDF actual</a>
+                                                @else
+                                                    <p>No hay documento PDF disponible.</p>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -192,8 +170,14 @@
 
 <script>
   $( function() {
-    $( "#fecha_publicacion_datepicker" ).datepicker();
-    $( "#fecha_promulgacion_datepicker" ).datepicker();
-    $( "#fecha_vigencia_datepicker" ).datepicker();
+    $("#fecha_publicacion_datepicker").datepicker({
+      dateFormat: "dd-mm-yy" // Por ejemplo, muestra la fecha en formato dd/mm/yy
+    });
+    $("#fecha_promulgacion_datepicker").datepicker({
+      dateFormat: "dd-mm-yy" // Por ejemplo, muestra la fecha en formato dd/mm/yy
+    });
+    $("#fecha_vigencia_datepicker").datepicker({
+      dateFormat: "dd-mm-yy" // Por ejemplo, muestra la fecha en formato dd/mm/yy
+    });
   } );
 </script>

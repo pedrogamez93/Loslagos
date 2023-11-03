@@ -26,6 +26,9 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/mision') }}">Mision</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/leygobiernoregional') }}">Ley</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
