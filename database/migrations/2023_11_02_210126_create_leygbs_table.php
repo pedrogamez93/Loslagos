@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIntroduccionRegionLagosTable extends Migration
+class CreateLeygbsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateIntroduccionRegionLagosTable extends Migration
      */
     public function up()
     {
-        Schema::create('IntroduccionRegionLagos', function (Blueprint $table) {
+        Schema::create('leygbs', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_norma');
+            $table->date('fecha_publicacion');
+            $table->date('fecha_promulgacion');
+            $table->string('organismo');
             $table->string('titulo');
-            $table->string('subtitulo');
-            $table->text('descripcion');
-            $table->string('imagen')->nullable();
+            $table->string('tipo_version');
+            $table->date('inicio_vigencia');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateIntroduccionRegionLagosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('introduccion_region_lagos');
+        Schema::dropIfExists('leygbs');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ComofuncionaGrController;
 use App\Http\Controllers\EstrategiasController;
 use App\Http\Controllers\InversionesPublicController;
 use App\Http\Controllers\MisionGobController;
+use App\Http\Controllers\LeygbsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::resource('estrategias', EstrategiasController::class);
 Route::resource('inversiones', InversionesPublicController::class);
 
 Route::resource('mision', MisionGobController::class);
+
+Route::resource('leygobiernoregional', LeygbsController::class);
 
 Route::middleware([
     'auth:sanctum',
