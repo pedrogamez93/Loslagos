@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IntroduccionRegionLagos;
+use App\Models\AntecedentesRegion;
 
 class IntroduccionRegionLagosController extends Controller
 {

@@ -39,6 +39,12 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('IntroduccionRegionLagos.index') }}">Introducción</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('AntecedentesRegionLagos.indexAntecedentes') }}">Información de la Región</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('AntecedentesRegionLagos.indexAntecedentes') }}">Autoridades</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
