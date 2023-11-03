@@ -93,14 +93,20 @@
                                 </div>
                             </div>
                         <div class="form-group">
-                            <label for="imagen">Imagen Actual:</label>
-                            <img src="{{ asset('storage/' . $articulo->imagen) }}" alt="Imagen Actual">
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12 pt-3 pb-3">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label style-label">Selecciona una imagen para cambiarla</label>
-                                        <input class="form-control" type="file" name="imagen" id="img" accept="image/*" >
+                            <div class="row">
+                                <div class="col-md-6 pt-3 pb-3">
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label style-label">Selecciona una imagen para cambiarla</label>
+                                            <input class="form-control" type="file" name="imagen" id="img" accept="image/*" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pt-3 pb-3">
+                                    <div class="form-group">
+                                    <div class="col-md-12 pb-3">
+                                        <label for="imagen" class="form-label style-label">Imagen Actual:</label>
+                                    </div>
+                                        <img src="{{ asset('storage/' . $articulo->imagen) }}" alt="Imagen Actual" width="250">
+                                    </div>
                                 </div>
                             </div>
                         </div>
