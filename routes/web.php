@@ -9,12 +9,10 @@ use App\Http\Controllers\EstrategiasController;
 use App\Http\Controllers\InversionesPublicController;
 use App\Http\Controllers\MisionGobController;
 use App\Http\Controllers\LeygbsController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
-=======
+
 use Illuminate\Support\Facades\Auth;
->>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
