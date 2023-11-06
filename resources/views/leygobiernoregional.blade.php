@@ -164,6 +164,13 @@
     .contenido-ley{
         border: 1px solid #F59120;
     }
+    a.final-btn{
+        padding: 10px 20px;
+        border-Radius: 100px;
+        background-color: #F59120;
+        color: #FFFFFF;
+        font-Weight: 700;
+    }
     footer{
         height:535px;
         background-color: #389144;
@@ -242,7 +249,7 @@
                 <ul id="categorylist">
                     <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
                     <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
-                    <li><a routerLink="/result/Lagos" title="Categoría:tags">Organigrama</a></li>
+                    <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
                     <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
                     <li><a routerLink="/result/Cocina" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
                     <li><a routerLink="/result/Glaciares" title="Categoría:tags">Trámites Digitales</a></li>
@@ -298,10 +305,10 @@
 
                     <p class="mi-style-onep">Url:</p>
 
-                    <p class="mi-style-onet"><a style="color:#00548F; font-Weight:600;" href="{{ $ley->url }}">{{ $ley->url }}</a></p>
+                    <p class="mi-style-onet pb-4"><a style="color:#00548F; font-Weight:600;" href="{{ $ley->url }}">{{ $ley->url }}</a></p>
 
                     @if ($ley->enlacedoc)
-                        <a href="{{ asset('storage/' . $ley->enlacedoc) }}" target="_blank">Ver PDF actual</a>
+                        <a class="final-btn" href="{{ asset( $ley->enlacedoc) }}" target="_blank">Descarga Ley / PDF</a>
                     @else
                         <p>No hay documento PDF disponible.</p>
                     @endif

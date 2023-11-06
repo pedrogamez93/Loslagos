@@ -131,7 +131,7 @@
                                             <div class="mb-3">
                                                 <label for="currentPdf" class="form-label style-label">Documento PDF actual:</label>
                                                 @if ($ley->enlacedoc)
-                                                    <a href="{{ asset('storage/' . $ley->enlacedoc) }}" target="_blank">Ver PDF actual</a>
+                                                    <a href="{{ asset( $ley->enlacedoc) }}" target="_blank">Ver PDF actual</a>
                                                 @else
                                                     <p>No hay documento PDF disponible.</p>
                                                 @endif

@@ -9,6 +9,7 @@ use App\Models\EstrategiaReg;
 use App\Models\InversionPublicas;
 use App\Models\MisionGob;
 use App\Models\Ley;
+use App\Models\Organigramas;
 
 
 class CategoriesController extends Controller{
@@ -53,6 +54,13 @@ class CategoriesController extends Controller{
         $ley = Ley::latest()->first();
 
         return view('leygobiernoregional', ['ley' => $ley]);
+    }
+
+    public function organigramaIndex(){
+
+        $organigrama = Organigramas::latest()->first();
+
+        return view('organigrama', ['organigrama' => $organigrama]);
     }
 
 }

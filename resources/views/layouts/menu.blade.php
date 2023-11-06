@@ -29,6 +29,21 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/leygobiernoregional') }}">Ley</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/organigrama') }}">Organigrama</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/documentosgestion') }}">Documentos de Gestión</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/tramitesdigitales') }}">Trámites Digitales</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/tramitesdigitales') }}">Asamblea Climatica</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->

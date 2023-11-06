@@ -8,7 +8,8 @@ use App\Http\Controllers\EstrategiasController;
 use App\Http\Controllers\InversionesPublicController;
 use App\Http\Controllers\MisionGobController;
 use App\Http\Controllers\LeygbsController;
-
+use App\Http\Controllers\OrganigramaController;
+use App\Http\Controllers\DptoGestionPersonasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,10 @@ Route::resource('mision', MisionGobController::class);
 
 Route::resource('leygobiernoregional', LeygbsController::class);
 
+Route::resource('organigrama', OrganigramaController::class);
+
+Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -57,6 +62,8 @@ Route::get('/gobiernoregional/acerca/inversionpublica', 'App\Http\Controllers\Ca
 Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
 
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
+
+Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
