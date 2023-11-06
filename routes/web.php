@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\IntroduccionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ComofuncionaGrController;
@@ -8,8 +9,12 @@ use App\Http\Controllers\EstrategiasController;
 use App\Http\Controllers\InversionesPublicController;
 use App\Http\Controllers\MisionGobController;
 use App\Http\Controllers\LeygbsController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
+=======
+use Illuminate\Support\Facades\Auth;
+>>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +27,7 @@ use App\Http\Controllers\DptoGestionPersonasController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
 
 Route::resource('introducciones', IntroduccionController::class);
@@ -50,6 +55,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/gobiernoregional/acerca', 'App\Http\Controllers\CategoriesController@index');
 
