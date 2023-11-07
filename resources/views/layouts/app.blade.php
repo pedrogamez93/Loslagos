@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -75,67 +73,8 @@
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
-=======
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        @livewireStyles
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}"></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
->>>>>>> afa832e9321155c74ea3260647cf021f08cfefe9
-        </div>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-  </div>
-</nav>
 
 
   
