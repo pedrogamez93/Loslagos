@@ -10,7 +10,8 @@ use App\Models\InversionPublicas;
 use App\Models\MisionGob;
 use App\Models\Ley;
 use App\Models\Organigramas;
-
+use App\Models\DptoGestionPersonas;
+use App\Models\DocGestionPersonas;
 
 class CategoriesController extends Controller{
     
@@ -61,6 +62,20 @@ class CategoriesController extends Controller{
         $organigrama = Organigramas::latest()->first();
 
         return view('organigrama', ['organigrama' => $organigrama]);
+    }
+
+    public function dptogestionpersonasIndex(){
+
+        $ultimoDepartamento = DptoGestionPersonas::latest()->first();
+        $documentosUltimoDepartamento = $ultimoDepartamento ? $ultimoDepartamento->documentos : collect();
+        $documentosTodos = DocGestionPersonas::all(); // Obtener todos los documentos
+    
+        return view('dptogestionpersonas', [
+            'departamento' => $ultimoDepartamento,
+            'documentosUltimoDepartamento' => $documentosUltimoDepartamento,
+            'documentosTodos' => $documentosTodos,
+        ]);
+
     }
 
 }
