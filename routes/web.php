@@ -29,6 +29,7 @@ Auth::routes();
 
 Route::resource('/', HomeController::class);
 
+/*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
 
 Route::resource('comofuncionagrs', ComofuncionaGrController::class);
@@ -60,7 +61,7 @@ Route::middleware([
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+/*RUTAS VIEWS FRONT*/
 Route::get('/gobiernoregional/acerca', 'App\Http\Controllers\CategoriesController@index');
 
 Route::get('/gobiernoregional/acerca/comofunciona', 'App\Http\Controllers\CategoriesController@comofuncionaGrIndex');
@@ -74,6 +75,8 @@ Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\Cate
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
 
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
+
+Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

@@ -251,7 +251,7 @@
                     <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
                     <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
                     <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
-                    <li><a routerLink="/result/Cocina" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
+                    <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
                     <li><a routerLink="/result/Glaciares" title="Categoría:tags">Trámites Digitales</a></li>
                     <li><a routerLink="/result/Nieve" title="Categoría:tags">Asamblea Climatica</a></li>
                     <li><a routerLink="/result/Carretera Austral" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>

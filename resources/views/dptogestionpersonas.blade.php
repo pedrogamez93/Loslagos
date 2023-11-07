@@ -134,12 +134,28 @@
     #categoriasToggle {
         display: none;
     }
-    .enlaces{
-        Width: 392px !important;
-        Height: 292px!important;
-        border-radius: 10px;
-        background-color: #00548F;
-        color:#FFFFFF;
+    h1.mititulo{
+        font-family: 'Inter';
+        font-Weight: 700;
+        font-Size: 30px;
+        color: #565656;
+    }
+    p.title-doc{
+        font-family: 'Inter';
+        font-Weight: 600;
+        font-Style: italic;
+        font-Size: 30px;
+        color: #F59120;
+    }
+    p.p-down, .mi-span{
+        font-family: 'Inter';
+        font-Weight: 500;
+        font-Size: 16px;
+        Line-height: 19.36px;
+        color: #565656;
+    }
+    li.mi-list {
+    margin-bottom: 15px;
     }
     footer{
         height:535px;
@@ -188,7 +204,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread">Home / Gobierno Regional / Acerca / <span style="font-Weight: 700;">Inversión Pública en la Región</span></p>
+                    <p class="style-bread">Home / Gobierno Regional / <span style="font-Weight: 700;">Gestión y Desarrollo de Personas</span></p>
                 </div>
             </div>
         </div>   
@@ -220,7 +236,7 @@
                     <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
                     <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
                     <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
-                    <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
+                    <li><a href=""title="Categoría:tags">Documentos de Gestión</a></li>
                     <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
                     <li><a routerLink="/result/Glaciares" title="Categoría:tags">Trámites Digitales</a></li>
                     <li><a routerLink="/result/Nieve" title="Categoría:tags">Asamblea Climatica</a></li>
@@ -232,59 +248,33 @@
                 </ul>
             </div>
         </div>
-        <div class="container mt-5 mb-5">
+        <div class="container content mt-5 mb-5">
             <div class="row">
-                <div class="col-md-6" style="padding: 0 0 0 5rem;">
-                    <div class="container int">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $inversiones->tag_comentario }}</p>
-                                <p class="title-cat pt-2 pb-2">{{ $inversiones->titulo }}</p>
-                                <p class="style-down pt-2 pb-2">{{ $inversiones->bajada }}</p>
-                            </div>
-                        </div>
+                <div class="col-md-8" style="padding: 0 0 0 5rem;">
+                    <div class="bajada">
+                        <h1 class="mititulo pb-4">{{ $departamento->titulo }}</h1>
+                        <p class="p-down">{{ $departamento->bajada }}</p>
                     </div>
                 </div>
-
-                <div class="col-md-6" style="position: relative;">
-                    <div class="container img">
-                        <div class="row">
-                            <div class="col-md-12" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/' . $inversiones->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container enlaces" style="position:absolute; top: 8rem;">
-                        <div class="row" style="padding-top: 2rem; row-gap: 2rem;">
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/comofunciona"><p>Cómo Funciona el Gobieno Regional</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/estrategiaregional"><p>Estrategia Regional de desarrollo</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/inversionpublica"><p>Inversión Pública en la Región</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10">
-                                <a href="/gobiernoregional/acerca/misiongobierno"><p>Misión</p></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-4" style="border-left: 2px solid #F59120;">
+                    <p class="title-doc pb-4">Documentos</p>
+                    @if (count($documentosTodos) > 0)
+                        <ul>
+                            @foreach ($documentosTodos as $documento)
+                                <li class="mi-list">
+                                    <a href="{{ asset('documentos/dptogestionpersonas/' . $documento->ruta) }}" target="_blank">
+                                        <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
+                                        <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre }}</span>
+                                    </a>
+                                </li>
+                             @endforeach
+                        </ul>
+                        @else
+                        <p>No hay documentos disponibles en todos los departamentos.</p>
+                    @endif
                 </div>
             </div>
-        </div>      
+        </div>
     </main>
 
     <footer>
