@@ -11,7 +11,7 @@ use App\Http\Controllers\MisionGobController;
 use App\Http\Controllers\LeygbsController;
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +23,11 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |sdsdsd
 */
+Auth::routes();
 
-Route::get('/', function () {
-    return view('home.home');
-});
+ 
+
+Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
@@ -56,9 +57,9 @@ Route::middleware([
 });
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*RUTAS VIEWS FRONT*/
 Route::get('/gobiernoregional/acerca', 'App\Http\Controllers\CategoriesController@index');
@@ -99,6 +100,6 @@ Route::put('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLag
 Route::get('/CargoRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showCargos')->name('CargoRegionLagos.showCargo');
 Route::delete('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyCargos')->name('CargoRegionLagos.destroyCargo');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
