@@ -12,6 +12,8 @@ use App\Http\Controllers\LeygbsController;
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
+//use App\Http\Controllers\TramitesDigitalesDocsController;
+use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,16 @@ Route::resource('organigrama', OrganigramaController::class);
 
 Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 
+// Rutas para los trámites
+Route::resource('tramites', TramitesDigitalesController::class);
+
+//Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
+Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
+
+//Route::put('/tramites/{tramite}/edit', [TramitesDigitalesController::class, 'edit'])->name('tramites.update');
+
+Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -55,8 +67,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
-
 
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -77,6 +87,8 @@ Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\Catego
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
 Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
+
+Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

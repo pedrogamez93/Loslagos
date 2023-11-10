@@ -238,7 +238,7 @@
                     <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
                     <li><a href=""title="Categoría:tags">Documentos de Gestión</a></li>
                     <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
-                    <li><a routerLink="/result/Glaciares" title="Categoría:tags">Trámites Digitales</a></li>
+                    <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
                     <li><a routerLink="/result/Nieve" title="Categoría:tags">Asamblea Climatica</a></li>
                     <li><a routerLink="/result/Carretera Austral" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
                     <li><a routerLink="/result/La Serena" title="Categoría:tags">Política Personas Mayores</a></li>

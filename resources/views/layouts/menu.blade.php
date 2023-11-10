@@ -38,9 +38,19 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
                                 </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/tramitesdigitales') }}">Trámites Digitales</a>
-                                </li>
+                                <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Trámites Digitales</a>
+                                        <ul class="submenu">
+                                            <li class="style-li" style="padding-top: 5px;">
+                                                <a class="style-a-menu" href="{{ url('/tramites') }}">Todos los Trámites</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/tramites/create') }}">Nuevo Trámite</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/tramitesdigitales') }}">Asamblea Climatica</a>
                                 </li>
@@ -67,3 +77,20 @@
                         </div>
                     </div>
                 </div>
+<style>
+    .submenu {
+        display: none;
+    }
+
+    .style-li.active .submenu {
+        display: block;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $('.style-li a').click(function(){
+            $(this).parent('.style-li').toggleClass('active').siblings().removeClass('active');
+        });
+    });
+</script>

@@ -12,6 +12,8 @@ use App\Models\Ley;
 use App\Models\Organigramas;
 use App\Models\DptoGestionPersonas;
 use App\Models\DocGestionPersonas;
+use App\Models\TramitesDigitales;
+use App\Models\TramitesDigitalesDocs;
 
 class CategoriesController extends Controller{
     
@@ -74,8 +76,16 @@ class CategoriesController extends Controller{
             'departamento' => $ultimoDepartamento,
             'documentosUltimoDepartamento' => $documentosUltimoDepartamento,
             'documentosTodos' => $documentosTodos,
-        ]);
+        ]);   
 
+    }
+
+    public function tramitesdigitalesIndex() {
+        // Obtén todos los trámites
+        $tramites = TramitesDigitales::all();
+    
+        // Pasa la información a la vista
+        return view('tramitesdigitales', ['tramites' => $tramites]);
     }
 
 }
