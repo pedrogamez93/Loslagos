@@ -18,77 +18,65 @@ class TramitesDigitalesController extends Controller{
         return view('tramites.create');
     }
 
-public function store(Request $request)
-{
-    $request->validate([
-        'titulo' => 'required|string|max:255',
-        'tags' => 'string',
-        'descripcion' => 'string',
-        'fecha_apertura' => 'date',
-        'fecha_cierre' => 'date',
-        'icono' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'nombre_btn' => 'string',
-        'url' => 'string',
-        'url_single' => 'string',
-        'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx|max:2048',
-        'nombre_documento.*' => 'string',
-        'ruta_comprimido.*' => 'nullable|mimes:zip|max:2048',
-        'nombre_comprimido.*' => 'string',
-    ]);
-
-    // Crear el trámite incluso si algunos campos están vacíos
-    $nuevoTramite = TramitesDigitales::create([
-        'titulo' => $request->input('titulo'),
-        'tags' => $request->input('tags'),
-        'descripcion' => $request->input('descripcion'),
-        'fecha_apertura' => $request->input('fecha_apertura'),
-        'fecha_cierre' => $request->input('fecha_cierre'),
-        'nombre_btn' => $request->input('nombre_btn'),
-        'url' => $request->input('url'),
-        'url_single' => $request->input('url_single'),
-    ]);
-
-    if ($request->hasFile('icono')) {
-        $iconoPath = $request->file('icono')->store('iconos');
-        $nuevoTramite->update(['icono' => $iconoPath]);
-    }
-
-    $documentos = $request->file('ruta_documento');
-    $nombresDocumentos = $request->input('nombre_documento');
+    public function store(Request $request)
+    {
+        ini_set('post_max_size', '1024M');
+        // Validar los campos del formulario
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'tags' => 'nullable|string',
+            'descripcion' => 'nullable|string',
+            'fecha_apertura' => 'nullable|date',
+            'fecha_cierre' => 'nullable|date',
+            'icono' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nombre_btn' => 'nullable|string',
+            'url' => 'nullable|string',
+            'url_single' => 'nullable|string',
+            'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:4048',
+            'nombre_documento.*' => 'nullable|string',
+        ]);
     
-    if ($documentos) {
-        foreach ($documentos as $key => $documento) {
-            $nombreDocumento = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
-            $rutaDocumento = $documento->storeAs('public/documentostramites/individual', $nombreDocumento . '.' . $documento->getClientOriginalExtension());
+        // Crear el trámite incluso si algunos campos están vacíos
+        $nuevoTramite = TramitesDigitales::create([
+            'titulo' => $request->input('titulo'),
+            'tags' => $request->input('tags'),
+            'descripcion' => $request->input('descripcion'),
+            'fecha_apertura' => $request->input('fecha_apertura'),
+            'fecha_cierre' => $request->input('fecha_cierre'),
+            'nombre_btn' => $request->input('nombre_btn'),
+            'url' => $request->input('url'),
+            'url_single' => $request->input('url_single'),
+        ]);
     
-            // Almacena en la base de datos para documentos individuales
-            TramitesDigitalesDocs::create([
-                'tramite_id' => $nuevoTramite->id,
-                'nombre_documento' => $nombreDocumento,
-                'ruta_documento' => $rutaDocumento,
-            ]);
+        // Procesar el icono si está presente
+        if ($request->hasFile('icono')) {
+            $iconoPath = $request->file('icono')->store('iconos');
+            $nuevoTramite->update(['icono' => $iconoPath]);
         }
-    }
     
-    // Procesar documentos comprimidos
-    $comprimidos = $request->file('ruta_comprimido');
+        try {
+            // Procesar documentos (individuales y comprimidos)
+            $documentos = $request->file('ruta_documento');
+            $nombresDocumentos = $request->input('nombre_documento') ?? [];
     
-    if ($comprimidos) {
-        foreach ($comprimidos as $key => $comprimido) {
-            $nombreComprimido = $request->input('nombre_comprimido')[$key] ?? 'comprimido_' . ($key + 1);
-            $rutaComprimido = $comprimido->storeAs('public/documentostramites/comprimido', $nombreComprimido . '.' . $comprimido->getClientOriginalExtension());
+            foreach ($documentos ?? [] as $key => $documento) {
+                $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
+                $rutaDocumento = $documento->store('documentostramites');
     
-            // Almacena en la base de datos para documentos comprimidos
-            TramitesDigitalesDocs::create([
-                'tramite_id' => $nuevoTramite->id,
-                'nombre_documento' => $nombreComprimido,
-                'ruta_documento' => $rutaComprimido,
-            ]);
+                // Almacena en la base de datos
+                TramitesDigitalesDocs::create([
+                    'tramite_id' => $nuevoTramite->id,
+                    'nombre_documento' => $nombreDocumento,
+                    'ruta_documento' => $rutaDocumento,
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+            \Log::error('Error al procesar documentos: ' . $e->getMessage());
         }
+    
+        return redirect()->route('tramites.index');
     }
-
-    return redirect()->route('tramites.index');
-}
 
     public function edit($id)
     {
@@ -110,8 +98,6 @@ public function store(Request $request)
             'url_single' => 'string',
             'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx|max:2048',
             'nombre_documento.*' => 'string',
-            'ruta_comprimido.*' => 'nullable|mimes:zip|max:2048',
-            'nombre_comprimido.*' => 'string',
         ]);
 
         $tramites = TramitesDigitales::findOrFail($id);
@@ -136,8 +122,8 @@ public function store(Request $request)
     }
 
     public function show($id){
-        $tramite = TramitesDigitales::findOrFail($id);
-        return view('tramites.show', compact('tramite'));
+        $tramites = TramitesDigitales::findOrFail($id);
+        return view('tramites.show', compact('tramites'));
     }
 
     public function destroy($id)

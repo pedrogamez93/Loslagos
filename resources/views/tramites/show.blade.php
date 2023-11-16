@@ -68,21 +68,21 @@
                      <!-- Formulario para la edicion del tramite -->
                         <!-- Campos para el nuevo trámite -->
                         <label class="style-label" for="tags">Tags o Comentario:</label>
-                        <input class="form-control mt-2 mb-4" type="text" name="tags" value="{{ $tramite->tags }}">
+                        <input class="form-control mt-2 mb-4" type="text" name="tags" value="{{ $tramites->tags }}">
 
                         <label class="style-label required" for="titulo">Título:</label>
-                        <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $tramite->titulo }}">
+                        <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $tramites->titulo }}">
                        
                         <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                        <textarea class="form-control mt-2 mt-5" id="editor" name="descripcion" value="">{!! $tramite->descripcion !!}</textarea>
+                        <textarea class="form-control mt-2 mt-5" id="editor" name="descripcion" value="">{!! $tramites->descripcion !!}</textarea>
 
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <p class="style-label">Fecha Apertura:<input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura_datepicker" value="{{ $tramite->fecha_apertura }}"></p>
+                                <p class="style-label">Fecha Apertura:<input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura_datepicker" value="{{ $tramites->fecha_apertura }}"></p>
                             </div>
 
                             <div class="col-md-6">
-                                <p class="style-label">Fecha Cierre:<input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre_datepicker" value="{{ $tramite->fecha_cierre }}"></p>
+                                <p class="style-label">Fecha Cierre:<input class="form-control" type="text" name="fecha_cierre" id="fecha_cierre_datepicker" value="{{ $tramites->fecha_cierre }}"></p>
                             </div>
                         </div>
 
@@ -90,9 +90,9 @@
                             <label for="icono" class="style-label">Icono:</label>
                             <input type="file" class="form-control mt-2 mb-4" name="icono">
                             
-                            @if($tramite->icono)
+                            @if($tramites->icono)
                                 <p>Icono actual:</p>
-                                <img src="{{ $tramite->icono }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
+                                <img src="{{ $tramites->icono }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
                             @else
                                 <p>No hay icono actual.</p>
                             @endif
@@ -102,49 +102,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">Nombre del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn" placeholder="Nombre del botón externo" value="{{ $tramite['nombre_btn'] ?? '' }}">
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn" placeholder="Nombre del botón externo" value="{{ $tramites['nombre_btn'] ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">URL del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del botón externo" value="{{ $tramite['url'] ?? '' }}">
+                                    <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del botón externo" value="{{ $tramites['url'] ?? '' }}">
                                 </div>
                             </div>
                                 <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
                         </div>
 
                             <h3 class="mi-h3 mt-4">Documentos Adjuntos</h3>
-                                @foreach ($tramite->documentos as $documento)
+                                @foreach ($tramites->documentos as $documento)
                                     <p>Nombre del Documento: {{ $documento->nombre_documento }}</p>
                                     <p>Ruta del Documento: {{ $documento->ruta_documento }}</p>
                                     <!-- Agrega más detalles del documento según tu estructura de datos -->
                                 @endforeach
-
-                            <!-- Campos para documentos individuales -->
-                                <div class="documentos-container mt-3">
-                                    <div class="documentos-input">
-                                        <label class="style-label" for="documentos_individuales">Documentos Individuales:</label>
-                                        <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx" multiple>
-                                        <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombre del Documento" multiple>
-                                    </div>
-                                    <!-- Botón para agregar más documentos individuales -->
-                                    <button type="button" class="btn btn-primary agregar-documento-individual">Agregar Más</button>
-                                </div>
-
-                            <!-- Campos para archivos comprimidos -->
-                            <div class="documentos-container-comprimido mt-4">
-                                <div class="documentos-input-comprimido">
-                                    <label class="style-label" for="archivos_comprimidos">Archivos Comprimidos:</label>
-                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_comprimido[]" accept=".zip" multiple>
-                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_comprimido[]" placeholder="Nombre del Archivo Comprimido" multiple value="{{ $documento['nombre_comprimido'][0] ?? '' }}">
-                                </div>
-                                <!-- Botón para agregar más archivos comprimidos -->
-                                <button type="button" class="btn btn-primary agregar-archivo-comprimido">Agregar Más</button>
-                            </div>
-
+                                
                             <div class="container open-other-site mt-4">
                                 <div class="row"> 
                                     <label class="style-label" for="url">URL por si quieres abrir otro sitio:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url_single" placeholder="URL por si quieres abrir otro sitio" value="{{ $tramite['url_single'] ?? '' }}">
+                                    <input class="form-control mt-2 mb-4" type="text" name="url_single" placeholder="URL por si quieres abrir otro sitio" value="{{ $tramites['url_single'] ?? '' }}">
                                 </div>
                             </div>
                     <div class="container mt-3 mb-4">

@@ -115,48 +115,32 @@
                                 <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
                         </div>
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 class="mi-h3 mt-4">Documentos Adjuntos</h3>
+                        <div class="form-group mt-4">
+                            <label class="style-label mb-2" for="bajada">Documentos</label>
+                            <div class="container form-control">                            
+                                <div class="row">
                                     @foreach ($tramite->documentos as $documento)
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label class="style-label mb-2" for="text">Nombre del Documento:</label>
-                                                <p class="form-control">{{ $documento->nombre_documento }}</p>
-                                            </div>
-                                            <div class="col-md-6" style="align-self: center; margin-top: 16px;">
-                                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                                                <!-- Agrega más detalles del documento según tu estructura de datos -->
-                                            </div>
+                                        <div class="col-md-6">
+                                            <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-danger mt-2">Eliminar</button>
                                         </div>
                                     @endforeach
-                                    <button type="button" class="btn btn-primary">Agregar mas documentos</button>
                                 </div>
                             </div>
                         </div>
 
-                            <!-- Campos para documentos individuales 
-                                <div class="documentos-container mt-3">
-                                    <div class="documentos-input">
-                                        <label class="style-label" for="documentos_individuales">Documentos Individuales:</label>
-                                        <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx" multiple>
-                                        <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombre del Documento" multiple>
-                                    </div>
-                                     Botón para agregar más documentos individuales 
-                                    <button type="button" class="btn btn-primary agregar-documento-individual">Agregar Más</button>
-                                </div>
+                        <div class="documentos-container mt-3">
+                            <div id="documentos-original" class="documentos-input" style="display: none;">
+                                <label class="style-label" for="documentos">Documentos:</label>
+                                <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
+                                <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple>
+                            </div>
+                        </div>
 
-                             Campos para archivos comprimidos 
-                            <div class="documentos-container-comprimido mt-4">
-                                <div class="documentos-input-comprimido">
-                                    <label class="style-label" for="archivos_comprimidos">Archivos Comprimidos:</label>
-                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_comprimido[]" accept=".zip" multiple>
-                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_comprimido[]" placeholder="Nombre del Archivo Comprimido" multiple value="{{ $documento['nombre_comprimido'][0] ?? '' }}">
-                                </div>
-                                 Botón para agregar más archivos comprimidos 
-                                <button type="button" class="btn btn-primary agregar-archivo-comprimido">Agregar Más</button>
-                            </div> -->
+                        <!-- Botón para agregar más documentos -->
+                        <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
 
                             <div class="container open-other-site mt-4">
                                 <div class="row"> 
@@ -174,7 +158,33 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Contador para asignar identificadores únicos
+        var contador = 1;
 
+        // Agregar más documentos
+        $(".agregar-documento").click(function() {
+            var documentosContainer = $(".documentos-container");
+            var original = documentosContainer.find("#documentos-original");
+            var nuevoDocumentoInput = original.clone(); // Clona el conjunto de campos original
+
+            // Asigna un nuevo identificador único a los campos clonados
+            var nuevoId = 'documentos-clonados-' + contador;
+            nuevoDocumentoInput.attr('id', nuevoId);
+            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
+            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
+
+            // Incrementa el contador
+            contador++;
+
+            // Muestra los campos clonados con una animación
+            nuevoDocumentoInput.hide().appendTo(documentosContainer).slideDown(300);
+
+            // Puedes ajustar el valor de 300 según tu preferencia para la duración de la animación
+        });
+    });
+</script>
 <script>
   $( function() {
     $("#fecha_apertura_datepicker").datepicker({

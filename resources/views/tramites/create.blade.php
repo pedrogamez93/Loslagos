@@ -145,58 +145,32 @@ input:required {
                             <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
                         </div>
 
-                        <div class="container pregunta-doc-individual mt-4">
-                            <label class="style-label mb-2">Deseas agregar Documentos?</label>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox12">Si</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox21" value="option2" checked>
-                                        <label class="form-check-label" for="inlineCheckbox21">No</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <!-- Campos para documentos individuales -->
-                            <div class="documentos-container mt-3">
-                                <div class="documentos-input">
-                                    <label class="style-label" for="documentos_individuales">Documentos Individuales:</label>
-                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx" multiple>
-                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombre del Documento" multiple>
-                                </div>
-                                <!-- Botón para agregar más documentos individuales -->
-                                <button type="button" class="btn btn-primary agregar-documento-individual">Agregar Más</button>
-                            </div>
+                        <div class="container pregunta-doc mt-4">
+                          <label class="style-label mb-2">Deseas agregar Documentos?</label>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="option1">
+                                      <label class="form-check-label" for="inlineCheckbox12">Si</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox21" value="option2" checked>
+                                      <label class="form-check-label" for="inlineCheckbox21">No</label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
-                            <div class="container pregunta-doc-comprimido mt-4">
-                                <label class="style-label mb-2">Deseas agregar algun archivo comprimido?</label>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="option1">
-                                            <label class="form-check-label" for="inlineCheckbox13">Si</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox23" value="option2" checked>
-                                            <label class="form-check-label" for="inlineCheckbox23">No</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Campos para archivos comprimidos -->
-                            <div class="documentos-container-comprimido mt-4">
-                                <div class="documentos-input-comprimido">
-                                    <label class="style-label" for="archivos_comprimidos">Archivos Comprimidos:</label>
-                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_comprimido[]" accept=".zip" multiple>
-                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_comprimido[]" placeholder="Nombre del Archivo Comprimido" multiple>
-                                </div>
-                                <!-- Botón para agregar más archivos comprimidos -->
-                                <button type="button" class="btn btn-primary agregar-archivo-comprimido">Agregar Más</button>
-                            </div>
+                      <!-- Campos para documentos-->
+                      <div class="documentos-container mt-3">
+                          <div class="documentos-input">
+                              <label class="style-label" for="documentos">Documentos:</label>
+                              <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
+                              <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple>
+                          </div>
+                          <!-- Botón para agregar más documentos -->
+                          <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
+                      </div>
 
                             <div class="container pregunta-other-site mt-4">
                                 <label class="style-label mb-2">Deseas redireccionar este tramite a otro sitio externo de manera directa?</label>
@@ -232,31 +206,24 @@ input:required {
 <script>
     $(document).ready(function() {
         // Agregar más documentos
-        $(".agregar-documento-individual").click(function() {
+        $(".agregar-documento").click(function() {
             var documentosContainer = $(".documentos-container");
-            var nuevosCampos = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
+            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
 
             // Limpia los valores en los campos clonados
-            nuevosCampos.find("input[type='file']").val('');
-            nuevosCampos.find("input[type='text']").val('');
+            nuevoDocumentoInput.find("input[type='file']").val('');
+            nuevoDocumentoInput.find("input[type='text']").val('');
+
+            // Genera un nuevo nombre único para cada campo clonado
+            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
+            nuevoDocumentoInput.find("input[type='file']").attr('id', 'ruta_documento_' + nuevoId);
+            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[]');
+            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
+            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
 
             // Agrega los campos clonados al contenedor
-            documentosContainer.append(nuevosCampos);
+            documentosContainer.append(nuevoDocumentoInput);
         });
-
-        // Agregar más documentos comprimido
-        $(".agregar-archivo-comprimido").click(function() {
-            var documentosContainerComprimido = $(".documentos-container-comprimido");
-            var nuevosCampos = documentosContainerComprimido.find(".documentos-input-comprimido:first").clone(); // Clona el primer conjunto de campos
-
-            // Limpia los valores en los campos clonados
-            nuevosCampos.find("input[type='file']").val('');
-            nuevosCampos.find("input[type='text']").val('');
-
-            // Agrega los campos clonados al contenedor
-            documentosContainerComprimido.append(nuevosCampos);
-        });  
-
     });
 </script>
 

@@ -13,8 +13,6 @@ class TramitesDigitalesDocs extends Model
         'tramite_id',
         'nombre_documento',
         'ruta_documento',
-        'nombre_comprimido',
-        'ruta_comprimido',
     ];
 
     public function tramite(){
