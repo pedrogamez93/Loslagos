@@ -164,6 +164,20 @@
     .contenido-ley{
         border: 1px solid #F59120;
     }
+    .card {
+    border: none !important;
+}
+h5.card-title{
+    font-family: 'Inter';
+    font-Weight: 700;
+    font-Size: 20px;
+    Line-height: 24.2px;
+    color: #565656;
+}
+    img.img-fluid.icon-style {
+    width: 90px;
+    height: 75px;
+}
     a.final-btn{
         padding: 10px 20px;
         border-Radius: 100px;
@@ -265,22 +279,34 @@
         <div class="container titulo">
             <div class="row">
                 <div class="col-md-12" style="padding: 0 0 0 5rem;">
-                    <h1 class="mititulo">Trámites Digitales</h1>
+                    <h1 class="mititulo mt-4 mb-2">Trámites Digitales</h1>
 
-                    <div class="ve-tramites mt-4">
-                        <h1>Listado de Trámites</h1>
-                        @if(count($tramites) > 0)
-                            <ul>
-                                @foreach($tramites as $tramite)
-                                    <li>
-                                        {{ $tramite->titulo }}
-                                        <a href="{{ route('tramites.show', $tramite->id) }}" class="btn btn-primary">Ver Trámite</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <p>No hay trámites disponibles.</p>
-                        @endif
+                    <div class="ve-tramites">
+                        <h1 class="style-h1 mt-2 mb-5">It is a long will be distracted by the readable content of a page...</h1>
+                        <div class="row">
+                            @forelse($tramites as $index => $tramite)
+                            <div class="col-md-3 mb-4">
+                                @if(isset($tramite->url_single))
+                                    <a href="{{ $tramite->url_single }}" class="card-link">
+                                @else
+                                    <a href="{{ route('tramites.show', $tramite->id) }}" class="card-link">
+                                @endif
+                                    <div class="card">
+                                        <img src="{{ asset('storage/' . $tramite->icono) }}" alt="" class="img-fluid icon-style">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $tramite->titulo }}</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                                @if(($index + 1) % 4 == 0)
+                                    </div>
+                                    <div class="row">
+                                @endif
+                            @empty
+                                <p>No hay trámites disponibles.</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
