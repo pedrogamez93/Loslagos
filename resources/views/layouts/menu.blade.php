@@ -52,7 +52,7 @@
                                     </li>
                                 </ul>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/tramitesdigitales') }}">Asamblea Climatica</a>
+                                    <a class="style-a-menu" href="{{ url('/asambleaclimatica') }}">Asamblea Climatica</a>
                                 </li>
                             </ul>
                         </div>
