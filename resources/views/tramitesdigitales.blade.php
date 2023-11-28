@@ -256,25 +256,7 @@ h5.card-title{
             </div>
         </div>
         <div class="container set pb-4">
-            <div class="lista-categorias">
-                <div id="categoriasToggle">
-                    <span id="backToggle" class="responsiveCategorias">Categorías</span>
-                </div>
-                <ul id="categorylist">
-                    <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
-                    <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
-                    <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
-                    <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
-                    <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
-                    <li><a href="/gobiernoregional/tramitesdigitales" title="Categoría:tags">Trámites Digitales</a></li>
-                    <li><a href="/gobiernoregional/asambleaclimatica" title="Categoría:tags">Asamblea Climatica</a></li>
-                    <li><a routerLink="/result/Carretera Austral" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
-                    <li><a routerLink="/result/La Serena" title="Categoría:tags">Política Personas Mayores</a></li>
-                    <li><a routerLink="/result/Animales" title="Categoría:tags">Planificación Institucional</a></li>
-                    <li><a routerLink="/result/Ballenas" title="Categoría:tags">Concurso Público</a></li>
-                    <li><a routerLink="/result/Ballenas" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
-                </ul>
-            </div>
+            include('layouts.listacategorias')
         </div>
         <div class="container titulo">
             <div class="row">
