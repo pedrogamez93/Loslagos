@@ -47,6 +47,11 @@
         color: #FFFFFF;
     }
 
+    #categorylist li a.active {
+    background-color: #64C69F;
+    color: #FFFFFF;
+}
+
     #categoriasToggle {
         display: none;
     }    
@@ -70,3 +75,22 @@
         <li><a routerLink="/result/Ballenas" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
     </ul>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtenemos la URL actual
+        var currentUrl = window.location.href;
+
+        // Seleccionamos todos los enlaces dentro de #categorylist
+        var links = document.querySelectorAll("#categorylist li a");
+
+        // Iteramos sobre los enlaces
+        links.forEach(function (link) {
+            // Verificamos si la URL actual coincide con la href del enlace
+            if (currentUrl.includes(link.getAttribute("href"))) {
+                // Agregamos la clase activa
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
