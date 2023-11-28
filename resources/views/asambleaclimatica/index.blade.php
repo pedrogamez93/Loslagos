@@ -120,14 +120,14 @@
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
-                                               
-                                                    <div class="col-md-6">
-                                                        <p class="form-control mt-2"></p>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button type="button" class="btn btn-danger mt-2">Eliminar</button>
-                                                    </div>
-                                              
+                                               @foreach($documentos as $documento)
+                                                <div class="col-md-6">
+                                                    <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <!--  <button type="button" class="btn btn-danger mt-2">Eliminar</button>-->
+                                                </div>
+                                                @endforeach   
                                             </div>
                                             <div class="documentos-container mt-3">
                                                 <div id="documentos-original" class="documentos-input" style="display: none;">
@@ -137,14 +137,28 @@
                                                 </div>
                                             </div>
                                             <!-- Botón para agregar más documentos -->
-                                            <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
+                                            <!--<button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="container form-control mt-4">
+                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
+                            <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn }}" disabled>
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="nombre_btn">Nombre Boton:</label>
+                                    <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn }}" disabled>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="url_btn">Url Boton:</label>
+                                    <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn }}" disabled>
+                                </div>
+                            </div>
+                        </div>
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
-                        <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
+                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
                     </form>
                 </div>
             </div>

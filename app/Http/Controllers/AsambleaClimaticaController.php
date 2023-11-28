@@ -42,6 +42,9 @@ class AsambleaClimaticaController extends Controller
             'titulo_six' => 'nullable|string',
             'descripcion_six' => 'nullable|string',
             'titulo_seccion_two' => 'nullable|string',
+            'titulo_seccion_btn' => 'nullable|string',
+            'nombre_btn' => 'nullable|string',
+            'url_btn' => 'nullable|string',
         ]);
 
         // Crear el trámite incluso si algunos campos están vacíos
@@ -59,6 +62,9 @@ class AsambleaClimaticaController extends Controller
                     'titulo_six' => $request->input('titulo_six'),
                     'descripcion_six' => $request->input('descripcion_six'),
                     'titulo_seccion_two' => $request->input('titulo_seccion_two'),
+                    'titulo_seccion_btn' => $request->input('titulo_seccion_btn'),
+                    'nombre_btn' => $request->input('nombre_btn'),
+                    'url_btn' => $request->input('url_btn'),
             ]);
 
             try {
@@ -96,6 +102,13 @@ class AsambleaClimaticaController extends Controller
         // Lógica para obtener los datos de la asamblea con el ID proporcionado
         $asamblea = AsambleaClimatica::findOrFail($id);
     
+        if ($asamblea) {
+            $documentos = $asamblea->documentos;
+            return view('asambleaclimatica.edit', compact('asamblea', 'documentos'));
+        } else {
+            return view('asambleaclimatica.edit')->with('message', 'No hay asambleas disponibles.');
+        }
+
         // Pasa los datos a la vista de edición
         return view('asambleaclimatica.edit', compact('asamblea'));
     }
@@ -118,6 +131,9 @@ class AsambleaClimaticaController extends Controller
             'titulo_six' => 'nullable|string',
             'descripcion_six' => 'nullable|string',
             'titulo_seccion_two' => 'nullable|string',
+            'titulo_seccion_btn' => 'nullable|string',
+            'nombre_btn' => 'nullable|string',
+            'url_btn' => 'nullable|string',
         ]);
     
         // Lógica para actualizar los datos en la base de datos
@@ -136,6 +152,9 @@ class AsambleaClimaticaController extends Controller
             'titulo_six' => $request->input('titulo_six'),
             'descripcion_six' => $request->input('descripcion_six'),
             'titulo_seccion_two' => $request->input('titulo_seccion_two'),
+            'titulo_seccion_btn' => $request->input('titulo_seccion_btn'),
+            'nombre_btn' => $request->input('nombre_btn'),
+            'url_btn' => $request->input('url_btn'),
         ]);
     
         // Redirecciona a la vista index

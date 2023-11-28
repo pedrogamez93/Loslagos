@@ -253,7 +253,7 @@
                     <li><a routerLink="/result/Bosque nativo"title="Categoría:tags">Documentos de Gestión</a></li>
                     <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
                     <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
-                    <li><a href="/gobiernoregional/asambleaclimatica" title="Categoría:tags">Asamblea Climatica</a></li>
+                    <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climatica</a></li>
                     <li><a routerLink="/result/Carretera Austral" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
                     <li><a routerLink="/result/La Serena" title="Categoría:tags">Política Personas Mayores</a></li>
                     <li><a routerLink="/result/Animales" title="Categoría:tags">Planificación Institucional</a></li>
@@ -265,11 +265,14 @@
         <div class="container titulo">
             <div class="row">
                 <div class="col-md-12" style="padding: 0 0 0 5rem;">
-                    <h1 class="mititulo">{{ $organigrama->titulo }}</h1>
+                    <h1 class="mititulo"></h1>
+                    @foreach ($asamblea->documentos as $documento)
+                        {{-- Aquí puedes acceder a las propiedades del documento --}}
+                        <p>Nombre del Documento: {{ $documento['nombre_documento'] }}</p>
+                        <p>Ruta del Documento: {{ $documento['ruta_documento'] }}</p>
+                        {{-- ... --}}
+                    @endforeach
 
-                    <div class="mi-img pt-4 pb-5">
-                    <img src="{{ asset('storage/' . $organigrama->img) }}" alt="Imagen actual" style="">
-                    </div>
                 </div>
             </div>
         </div>      
@@ -289,3 +292,4 @@
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
+

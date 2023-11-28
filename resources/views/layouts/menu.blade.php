@@ -9,7 +9,7 @@
                         </button>
 
                         <!-- Define el menú desplegable -->
-                        <div class="collapse" id="menuGobiernoRegional">
+                        <div class="collapse show" id="menuGobiernoRegional">
                             <ul>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
@@ -62,7 +62,7 @@
                         </button>
 
                         <!-- Define el menú desplegable -->
-                        <div class="collapse" id="IntroduccionRegionLagos">
+                        <div class="collapse show" id="IntroduccionRegionLagos">
                             <ul>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('IntroduccionRegionLagos.index') }}">Introducción</a>
@@ -85,12 +85,53 @@
     .style-li.active .submenu {
         display: block;
     }
+    .style-li.active .style-a-menu {
+        color: red;
+    }
 </style>
 
 <script>
-    $(document).ready(function(){
-        $('.style-li a').click(function(){
-            $(this).parent('.style-li').toggleClass('active').siblings().removeClass('active');
+    $(document).ready(function() {
+        // Ocultar todos los submenús al principio
+        $('.submenu').hide();
+
+        // Obtener la URL actual
+        var currentUrl = window.location.href;
+
+        // Recorrer cada enlace del menú para verificar la coincidencia con la URL
+        $('.style-a-menu').each(function() {
+            var menuItemUrl = $(this).attr('href');
+
+            if (currentUrl.indexOf(menuItemUrl) !== -1) {
+                // Activar el elemento que coincide con la URL
+                $(this).closest('.style-li').addClass('active').parents('.submenu').show();
+            }
+        });
+
+        // Manejar clics en los elementos del menú
+        $('.style-li a').click(function(e) {
+            // Desactivar todos los elementos del menú
+            $('.style-li').removeClass('active');
+
+            // Ocultar todos los submenús
+            $('.submenu').slideUp();
+
+            // Activar el elemento clicado
+            $(this).parent('.style-li').addClass('active');
+
+            // Desplegar el submenú si es un submenú
+            if ($(this).siblings('.submenu').length > 0) {
+                $(this).siblings('.submenu').slideDown();
+            }
+        });
+
+        // Manejar clics en los botones del menú principal
+        $('[data-bs-toggle="collapse"]').click(function() {
+            // Ocultar todos los submenús
+            $('.submenu').slideUp();
+
+            // Desactivar todos los elementos del menú
+            $('.style-li').removeClass('active');
         });
     });
 </script>

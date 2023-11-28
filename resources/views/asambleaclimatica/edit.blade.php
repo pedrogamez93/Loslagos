@@ -121,14 +121,14 @@
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
-                                               
+                                                @foreach($documentos as $documento)
                                                     <div class="col-md-6">
-                                                        <p class="form-control mt-2"></p>
+                                                        <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <button type="button" class="btn btn-danger mt-2">Eliminar</button>
                                                     </div>
-                                              
+                                                @endforeach   
                                             </div>
                                             <div class="documentos-container mt-3">
                                                 <div id="documentos-original" class="documentos-input" style="display: none;">
@@ -144,6 +144,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="container form-control mt-4">
+                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
+                            <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn }}" disabled>
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="nombre_btn">Nombre Boton:</label>
+                                    <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn }}" disabled>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="url_btn">Url Boton:</label>
+                                    <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn }}" disabled>
+                                </div>
+                            </div>
+                        </div>
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
                         <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
                     </form>
@@ -154,41 +168,54 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        // Contador para asignar identificadores únicos
-        var contador = 1;
+$(document).ready(function() {
+    // Contador para asignar identificadores únicos
+    var contador = 1;
 
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container");
-            var original = documentosContainer.find("#documentos-original");
-            var nuevoDocumentoInput = original.clone(); // Clona el conjunto de campos original
+    // Función para clonar el conjunto de campos original
+    function clonarDocumentoInput() {
+        var documentosContainer = $(".documentos-container");
+        var original = documentosContainer.find("#documentos-original");
+        var nuevoDocumentoInput = original.clone();
 
-            // Asigna un nuevo identificador único a los campos clonados
-            var nuevoId = 'documentos-clonados-' + contador;
-            nuevoDocumentoInput.attr('id', nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
+        // Asigna un nuevo identificador único a los campos clonados
+        var nuevoId = 'documentos-clonados-' + contador;
+        nuevoDocumentoInput.attr('id', nuevoId);
+        nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
+        nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
 
-            // Incrementa el contador
-            contador++;
+        // Incrementa el contador
+        contador++;
 
-            // Muestra los campos clonados con una animación
-            nuevoDocumentoInput.hide().appendTo(documentosContainer).slideDown(300);
+        return nuevoDocumentoInput;
+    }
 
-            // Puedes ajustar el valor de 300 según tu preferencia para la duración de la animación
+    // Agregar más documentos
+    $(".agregar-documento").click(function() {
+        var nuevoDocumentoInput = clonarDocumentoInput();
+
+        // Muestra los campos clonados con una animación
+        nuevoDocumentoInput.hide().appendTo(".documentos-container").slideDown(300);
+    });
+
+    // Habilitar/deshabilitar campos al hacer clic en "Editar Asamblea"
+    $("#boton-editar").click(function() {
+        var formEdicion = $("form#formulario-edicion");
+
+        // Habilita/deshabilita todos los campos excepto los botones
+        formEdicion.find(':input:not(:button)').prop('disabled', function(i, val) {
+            return !val;
         });
 
-        // Habilitar/deshabilitar campos al hacer clic en "Editar Asamblea"
-        $("#boton-editar").click(function() {
-            $("form#formulario-edicion :input:not(:button)").prop("disabled", function(i, val) {
-                return !val;
-            });
-
-            // Habilitar/deshabilitar el botón "Guardar"
-            $("form#formulario-edicion button[type='submit']").prop("disabled", function(i, val) {
-                return !val;
-            });
+        // Habilitar/deshabilitar el botón "Guardar"
+        formEdicion.find('button[type="submit"]').prop('disabled', function(i, val) {
+            return !val;
         });
     });
+
+    // Habilitar el formulario justo antes de enviar
+    $("form#formulario-edicion").submit(function () {
+        $(this).find(":input").prop("disabled", false);
+    });
+});
 </script>

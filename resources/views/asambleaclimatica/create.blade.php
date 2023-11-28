@@ -160,7 +160,20 @@ input:required {
                           <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
                       </div>
 
-
+                      <div class="container form-control mt-4">
+                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
+                            <input class="form-control" type="text" name="titulo_seccion_btn">
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="nombre_btn">Nombre Boton:</label>
+                                    <input class="form-control" type="text" name="nombre_btn">
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="style-label" for="url_btn">Url Boton:</label>
+                                    <input class="form-control" type="text" name="url_btn">
+                                </div>
+                            </div>
+                        </div>
 
                       <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
                     </form>

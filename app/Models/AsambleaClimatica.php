@@ -25,6 +25,9 @@ class AsambleaClimatica extends Model
         'titulo_six',
         'descripcion_six',
         'titulo_seccion_two',
+        'titulo_seccion_btn',
+        'nombre_btn',
+        'url_btn',
     ];
 
     public function documentos()

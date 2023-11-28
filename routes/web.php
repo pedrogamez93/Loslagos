@@ -49,7 +49,7 @@ Route::resource('organigrama', OrganigramaController::class);
 
 Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 
-Route::resource('asambleaclimatica', AsambleaClimaticaController::class)->except(['edit']);
+Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
 
 // Rutas para los trámites
 Route::resource('tramites', TramitesDigitalesController::class);
@@ -92,6 +92,8 @@ Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesCont
 Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
 
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
+
+Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

@@ -14,6 +14,8 @@ use App\Models\DptoGestionPersonas;
 use App\Models\DocGestionPersonas;
 use App\Models\TramitesDigitales;
 use App\Models\TramitesDigitalesDocs;
+use App\Models\AsambleaClimatica;
+use App\Models\AsambleaClimaticaDocs;
 
 class CategoriesController extends Controller{
     
@@ -86,6 +88,14 @@ class CategoriesController extends Controller{
     
         // Pasa la información a la vista
         return view('tramitesdigitales', ['tramites' => $tramites]);
+    }
+
+    public function asambleaclimaticaIndex() {
+        // Obtener el último registro de AsambleaClimatica con documentos relacionados
+        $asamblea = AsambleaClimatica::with('documentos')->latest()->first();
+    
+        // Pasa la información a la vista
+        return view('asambleaclimatica', ['asamblea' => $asamblea]);
     }
 
 }
