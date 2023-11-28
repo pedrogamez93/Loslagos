@@ -1,0 +1,62 @@
+h1{
+    text-align: center;
+}
+
+#banner {
+    background-color: #D9D9D9 !important; /* Color gris */
+}
+
+#thumbnail-slider .carousel-control-prev,
+#thumbnail-slider .carousel-control-next {
+  background-color: #555; /* Color gris para los controles */
+  position: absolute;
+  top: calc(50% - 15px); /* Centrar verticalmente */
+  bottom: auto; /* Eliminar espacio por debajo */
+  height: 30px; /* Altura de los controles */
+}
+
+#thumbnail-slider .carousel-control-prev-icon,
+#thumbnail-slider .carousel-control-next-icon {
+  background-color: #fff; /* Color blanco para los íconos de los controles */
+}
+
+#thumbnail-slider .carousel-indicators button {
+    width: 10px; /* Ancho del botón */
+    height: 10px; /* Altura del botón */
+    border-radius: 50%; /* Hacer el botón redondo */
+  }
+.carousel-indicators{
+    position: relative !important;
+}
+
+.carousel-indicators [data-bs-target]{
+    background-color: grey;
+}
+
+.headercontent{
+    place-content: center;
+}
+
+.colinputbuscador{
+    align-self: center;
+}
+
+#inputbucador{
+    width: 727px;
+    height: 80px;
+    top: 1vh;
+    left: 1vw;
+    border-radius: 100px !important;
+
+
+}
+
+.TitulocarouselTD{
+    /*font-family: Inter;*/
+font-size: 20px;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+
+}
