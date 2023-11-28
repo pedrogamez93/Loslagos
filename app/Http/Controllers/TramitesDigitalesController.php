@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\TramitesDigitales;
 use App\Models\TramitesDigitalesDocs;
-use Illuminate\Http\Request;
+
 
 class TramitesDigitalesController extends Controller{
 
