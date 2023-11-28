@@ -15,25 +15,25 @@
     
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
-<main class="px-3">
+<main class="px-3" class="headercontent">
     <div class="row">
-        <div class="col">
+        <div class="col colinputbuscador" >
             <div class="input-group rounded">
             <div class="position-absolute mt-2">
                     <span class="" style="background-color: transparent; border: none; ">
-                        <i class="bi bi-search"></i>
+                        <!-- <i class="bi bi-search"></i> -->
                     </span>
                 </div>
-                <input type="text" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
+                <input type="text" id="inputbucador" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button>
+              <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->
                 </div>
             </div>
         </div>
         <div class="col">
-    <div class="d-flex ">
-        <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" style="margin-right: 5px;height: 350px;margin-top: 30px;">
-        <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" style="height: 380px;">
+    <div class="d-flex " style="margin-left: -4vw;">
+        <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" style="margin-right: 5px;height: 380px;margin-top: 30px;">
+        <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" style="height: 420px;">
     </div>
 </div>
 
@@ -46,26 +46,84 @@
 </div>
   </div>
 <!--seccion de sala de prensa y tramite -->
+<div class="container">
   <div class="" style="width: 100%;
     padding: 50px;
     margin: 0px;
-    border-radius: 35px 0px 0px 0px !important;
+    /* border-radius: 35px 35px 0px 0px !important; */
     background-color: white;
-    position: absolute;
-    margin-top: -5vh;">
-    <div  class="d-flex justify-content-between">
-        <h3 style="">Sala de prensa</h3>
-        <div>
-                <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;">
-                Galeria Fotografica
-                </button >
-                <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;"> 
-                    Videos
-                </button>
+   
+    /* margin-top: -5vh;*/"> 
+            <div  class="d-flex justify-content-between">
+                         <h3 style="">Sala de prensa</h3>
+                         <div>
+                                 <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;">
+                                    Galeria Fotografica
+                                 </button >
+                                 <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;"> 
+                                        Videos
+                                 </button>
+                        </div>
+
+            </div>
+    
+            
+            <div class=" mt-5 pb-5">
+  <div id="thumbnail-slider" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- Primer Slide -->
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 1">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 2">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 3">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 4">
+          </div>
         </div>
+      </div>
+
+      <!-- Segundo Slide -->
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 5">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 6">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 7">
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 8">
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div  class="d-flex justify-content-between">
+    <!-- Miniaturas -->
+    <div class="carousel-indicators pt-5">
+      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+   
+        </div>
+</div>
+
+    <div class="row" style="justify-content: center;">
+    <button class="btn btn-primary w-10" style="width:10rem;"> Ver todos </button>
+    </div>
+  </div>
+<div class="container">
+    <div  class=" d-flex justify-content-between">
         <h3 style="">Tramites Digitales</h3>
         <div>
                 <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;">
@@ -77,6 +135,71 @@
         </div>
     </div>
     
+
+    <div id="thumbnail-slider" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- Primer Slide -->
+      <div class="carousel-item active pt-5">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
+            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
+              <p class="TitulocarouselTD pt-3"> lorem ipsu</p>
+               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
+              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
+               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
+              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
+               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segundo Slide -->
+      <div class="carousel-item pt-5">
+      <div class="row">
+          <div class="col-md-3 ">
+            <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
+            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
+            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
+            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+          <div class="col-md-3">
+            <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
+            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Miniaturas -->
+    <div class="carousel-indicators pt-5">
+      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+   
+  </div>
+
   </div>
 
 
@@ -110,5 +233,5 @@
     </div>
 </div>
 
-
+</div>
 @endsection
