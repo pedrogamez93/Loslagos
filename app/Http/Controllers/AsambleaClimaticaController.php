@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+
+
 
 class AsambleaClimaticaController extends Controller
 {
