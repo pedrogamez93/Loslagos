@@ -256,7 +256,7 @@ h5.card-title{
             </div>
         </div>
         <div class="container set pb-4">
-            include('layouts.listacategorias')
+            @include('layouts.listacategorias')
         </div>
         <div class="container titulo">
             <div class="row">
