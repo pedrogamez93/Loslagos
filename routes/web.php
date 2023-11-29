@@ -12,6 +12,9 @@ use App\Http\Controllers\LeygbsController;
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AsambleaClimaticaController;
+//use App\Http\Controllers\TramitesDigitalesDocsController;
+use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------

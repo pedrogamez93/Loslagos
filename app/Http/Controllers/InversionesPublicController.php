@@ -49,7 +49,7 @@ class InversionesPublicController extends Controller
 
             $inversiones->save();
     
-            return redirect('/inversion');
+            return redirect('/inversiones');
         }
     }
 
