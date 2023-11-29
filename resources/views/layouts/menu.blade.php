@@ -61,8 +61,15 @@
                                     <a class="style-a-menu" href="{{ route('AntecedentesRegionLagos.indexAntecedentes') }}">Información de la Región</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('AntecedentesRegionLagos.indexAntecedentes') }}">Autoridades</a>
+                                    <a class="style-a-menu" href="{{ route('AutoridadesRegionLagos.indexAutoridades') }}">Autoridades</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Estadísticas</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Dinámica Económica</a>
+                                </li>
+                                   
                             </ul>
                         </div>
                     </div>

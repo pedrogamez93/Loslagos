@@ -55,27 +55,41 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Autoridades</h1>
-                <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
+                <h1>Listado de Estadística</h1>
+                <a href="{{ route('EstadisticasRegionLagos.createEstadisticas') }}" class="btn btn-primary">Crear Estadística</a>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
+                            <th>Provincia</th>
+                            <th>Comuna</th>
+                            <th>
+                                Población Urbana
+                                <p><b>Hombres</b> - <b>Mujeres</b></p>
+                            </th>
+                            <th>
+                                Población Rural
+                                <p><b>Hombres</b> - <b>Mujeres</b></p>
+                            </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($articulo as $art)
                         <tr>
-                            <td>{{ $art->nombre }}</td>
-                            <td>{{ $art->cargo }}</td>
+                            <td>{{ $art->provincia }}</td>
+                            <td>{{ $art->comuna }}</td>
+                            <td>
+                                {{ $art->p_urbana_hombre }} - {{ $art->p_urbana_mujeres }}
+                            </td>
+                            <td>
+                                {{ $art->p_rural_hombre }} - {{ $art->p_rural_mujeres }}
+                            </td>
                             <td>
                                 <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('AutoridadesRegionLagos.editAutoridades', $art->id) }}" class="btn btn-warning">Editar</a>
+                                <a href="{{ route('EstadisticasRegionLagos.editEstadisticas', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
-                                <form method="POST" action="{{ route('AutoridadesRegionLagos.destroyAutoridades', $art->id) }}"  style="display: inline;">
+                                <form method="POST" action="{{ route('EstadisticasRegionLagos.destroyEstadisticas', $art->id) }}"  style="display: inline;">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
