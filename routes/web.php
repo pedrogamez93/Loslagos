@@ -30,7 +30,7 @@ Auth::routes();
 
  
 
-Route::resource('/', HomeController::class);
+Route::get('/', [HomeController::class, 'index']);
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
@@ -133,5 +133,9 @@ Route::put('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRe
 Route::get('/EstadisticasRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showEstadisticas')->name('EstadisticasRegionLagos.showEstadisticas');
 Route::delete('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyEstadisticas')->name('EstadisticasRegionLagos.destroyEstadisticas');
 
+//frond region los lagos
+Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
+Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAntecedentesregion')->name('antecedentesregion.index');;
+Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

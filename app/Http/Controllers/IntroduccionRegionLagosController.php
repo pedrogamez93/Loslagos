@@ -393,4 +393,41 @@ public function updateEstadisticas(Request $request, $id)
 
     // Fin Estadistica
 
+
+
+    // frond de region los lagos
+    public function indexRegionlagosIntro()
+    {
+        $articulo = IntroduccionRegionLagos::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $introduccion  = IntroduccionRegionLagos::find($id);
+            return view('regionlagos.introduccion', compact('introduccion'));
+            
+        } else {
+            // La consulta no devolvió ningún registro
+            return view('IntroduccionRegionLagos.create');
+        }
+    }
+    public function indexRegionlagosAntecedentesregion()
+    {
+        $articulo = AntecedentesRegion::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $introduccion  = AntecedentesRegion::find($id);
+            return view('regionlagos.antecedentesregion', compact('introduccion'));
+            
+        } 
+    }
+    public function indexRegionlagosprovincias($titulo)
+    {
+        $provincia = AntecedentesRegion::where('nombreseccion', $titulo)->first();
+
+        return view('regionlagos.provincia', compact('provincia')); 
+    }
+    
 }
