@@ -28,9 +28,9 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
- 
-
 Route::get('/', [HomeController::class, 'index']);
+
+//Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
