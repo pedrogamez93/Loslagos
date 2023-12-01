@@ -120,14 +120,18 @@
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
-                                               @foreach($documentos ?? '' as $documento)
+                                            @if($documentos->count() > 0)
+                                               @foreach($documentos as $documento)
                                                 <div class="col-md-6">
                                                     <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
                                                 </div>
                                                 <div class="col-md-6">
                                                   <!--  <button type="button" class="btn btn-danger mt-2">Eliminar</button>-->
                                                 </div>
-                                                @endforeach   
+                                                @endforeach  
+                                                @else
+                                                <!-- Mensaje o contenido alternativo cuando no hay documentos -->
+                                            @endif 
                                             </div>
                                             <div class="documentos-container mt-3">
                                                 <div id="documentos-original" class="documentos-input" style="display: none;">
