@@ -120,7 +120,7 @@
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
-                                               @foreach($documentos as $documento)
+                                               @foreach($documentos ?? '' as $documento)
                                                 <div class="col-md-6">
                                                     <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
                                                 </div>
