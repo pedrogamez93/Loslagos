@@ -76,7 +76,7 @@
                         @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
-                            <input class="form-control mt-2" type="text" name="titulo_one" value="{{ $asamblea->titulo_one }}" disabled>
+                            <input class="form-control mt-2" type="text" name="titulo_one" value="{{ $asamblea->titulo_one ?? '' }}" disabled>
                            
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="" name="descripcion_one" disabled>{{ $asamblea->descripcion_one }}</textarea>
