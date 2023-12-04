@@ -197,13 +197,19 @@
             <div class="row">
                 <div class="col-md-12" style="padding: 0 0 0 5rem;">
                     <h1 class="mititulo"></h1>
-                    @foreach ($asamblea->documentos as $documento)
-                        {{-- Aquí puedes acceder a las propiedades del documento --}}
-                        <p>Nombre del Documento: {{ $documento['nombre_documento'] }}</p>
-                        <p>Ruta del Documento: {{ $documento['ruta_documento'] }}</p>
-                        {{-- ... --}}
-                    @endforeach
-
+                    {{-- Verifica si $asamblea no es nulo antes de intentar acceder a sus propiedades --}}
+                        @if($asamblea && $asamblea->documentos)
+                            {{-- Itera sobre los documentos solo si $asamblea y $asamblea->documentos no son nulos --}}
+                            @foreach ($asamblea->documentos as $documento)
+                                {{-- Aquí puedes acceder a las propiedades del documento --}}
+                                <p>Nombre del Documento: {{ $documento['nombre_documento'] }}</p>
+                                <p>Ruta del Documento: {{ $documento['ruta_documento'] }}</p>
+                                {{-- ... --}}
+                            @endforeach
+                        @else
+                            {{-- Maneja el caso en que $asamblea o $asamblea->documentos sea nulo --}}
+                            <p>No hay documentos disponibles</p>
+                        @endif
                 </div>
             </div>
         </div>      
