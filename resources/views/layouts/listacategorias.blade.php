@@ -25,11 +25,10 @@
     }
 
     #categorylist li a {
+        background-color: #FFFFFF;
+        border: 1px solid #FFFFFF;
         box-sizing: border-box;
         font-family: 'Inter';
-        background: none repeat scroll 0 0 #E5E8ED;;
-        border: 1px solid #E5E8ED;
-        border-radius: 8px;
         color: #565656;
         display: block;
         font-size: 16px;
@@ -43,13 +42,19 @@
     }
 
     #categorylist li a:hover{
-        background-color: #64C69F;
-        color: #FFFFFF;
+        color: #00548F;
+        border-radius: 100px;
+        border: 1px solid #00548F;
+        font-weight: 700;
+        background-color: #FFFFFF;
     }
 
     #categorylist li a.active {
-    background-color: #64C69F;
-    color: #FFFFFF;
+        color: #00548F;
+        border-radius: 100px;
+        border: 1px solid #00548F;
+        font-weight: 700;
+        background-color: #FFFFFF;
 }
 
     #categoriasToggle {

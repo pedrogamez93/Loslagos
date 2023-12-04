@@ -167,7 +167,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread">Home / Gobierno Regional / <span style="font-Weight: 700;">Asamblea Climatica</span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/asambleaclimatica">Asamblea Climatica</a></span></p>
                 </div>
             </div>
         </div>   
@@ -176,7 +176,7 @@
                 <div class="col-md-12">
                     <p class="one-title pb-4">Gobierno Regional</p>
 
-                    <p style="Width:623px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                 </div>
             </div>
         </div>   
