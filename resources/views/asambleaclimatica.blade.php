@@ -190,9 +190,6 @@
                 </div>
             </div>
         </div>
-        <?php
-        phpinfo();
-        ?>
         <div class="container set pb-4">
             @include('layouts.listacategorias')
         </div>
