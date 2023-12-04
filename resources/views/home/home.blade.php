@@ -8,11 +8,7 @@
 @endpush
 
   <div class="d-flex h-300 text-center " style="height: 700px; background-color: #389144;">
-   
-
-    
-
-    
+  
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
 <main class="px-3" class="headercontent">
@@ -204,15 +200,13 @@
 
 
 <!--Banner-->
-  <div class="col-md-12" style="height: 100%; margin-top: 12vw; background-color:#D9D9D980" id="banner">
-        <div class="h-200 p-5 bg-body-tertiary border rounded-3"  id="banner">
-          <h2>Add borders</h2>
-          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
-        </div>
-      </div>
- </div>
+<article class=" ">
+    
+    <h2>Add borders 123</h2>
+    <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+    <button class="btn btn-outline-secondary" type="button">Example button</button>
 
+</article>
 <!--Cuadro dentro del banner-->
 <div class="row">
     <div class="col-md-4" style="height: 100%; margin-top: 12vw; background-color:#D9D9D980" id="banner">
