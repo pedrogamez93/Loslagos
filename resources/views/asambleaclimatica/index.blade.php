@@ -76,43 +76,43 @@
                         @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
-                            <input class="form-control mt-2" type="text" name="titulo_one" value="{{ $asamblea->titulo_one }}" disabled>
+                            <input class="form-control mt-2" type="text" name="titulo_one" value="{{ $asamblea->titulo_one ?? '' }}" disabled>
                            
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_one" disabled>{{ $asamblea->descripcion_one }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_one" disabled>{{ $asamblea->descripcion_one ?? '' }}</textarea>
 
                             <label class="style-label" for="titulotwo">Título:</label>
-                            <input class="form-control mt-2" type="text" name="titulo_two" value="{{ $asamblea->titulo_two }}" disabled>
+                            <input class="form-control mt-2" type="text" name="titulo_two" value="{{ $asamblea->titulo_two ?? '' }}" disabled>
 
                             <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_two" disabled>{{ $asamblea->descripcion_two }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_two" disabled>{{ $asamblea->descripcion_two ?? '' }}</textarea>
                             
                             <label class="style-label" for="titulotree">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_tree" value="{{ $asamblea->titulo_tree }}" disabled>
+                            <input class="form-control mt-2 mb-4" type="text" name="titulo_tree" value="{{ $asamblea->titulo_tree ?? '' }}" disabled>
                             
                             <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_tree" disabled>{{ $asamblea->descripcion_tree }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_tree" disabled>{{ $asamblea->descripcion_tree ?? '' }}</textarea>
 
                             <label class="style-label" for="titulofour">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_four" value="{{ $asamblea->titulo_four }}" disabled>
+                            <input class="form-control mt-2 mb-4" type="text" name="titulo_four" value="{{ $asamblea->titulo_four ?? '' }}" disabled>
                             
                             <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_four" disabled>{{ $asamblea->descripcion_four }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_four" disabled>{{ $asamblea->descripcion_four ?? '' }}</textarea>
 
                             <label class="style-label" for="titulofive">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_five" value="{{ $asamblea->titulo_five }}" disabled>
+                            <input class="form-control mt-2 mb-4" type="text" name="titulo_five" value="{{ $asamblea->titulo_five ?? '' }}" disabled>
                         
                             <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_five" disabled>{{ $asamblea->descripcion_five }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_five" disabled>{{ $asamblea->descripcion_five ?? '' }}</textarea>
 
                             <label class="style-label" for="titulosix">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_six" value="{{ $asamblea->titulo_six }}" disabled>
+                            <input class="form-control mt-2 mb-4" type="text" name="titulo_six" value="{{ $asamblea->titulo_six ?? '' }}" disabled>
                             
                             <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_six" disabled>{{ $asamblea->descripcion_six }}</textarea>
+                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion_six" disabled>{{ $asamblea->descripcion_six ?? '' }}</textarea>
 
                             <label class="style-label" for="tituloseccion">Título Sección documentos:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion_two" value="{{ $asamblea->titulo_seccion_two }}" disabled>
+                            <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion_two" value="{{ $asamblea->titulo_seccion_two ?? '' }}" disabled>
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
@@ -120,14 +120,18 @@
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
+                                            @if($documentos->count() > 0)
                                                @foreach($documentos as $documento)
                                                 <div class="col-md-6">
-                                                    <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
+                                                    <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
                                                 </div>
                                                 <div class="col-md-6">
                                                   <!--  <button type="button" class="btn btn-danger mt-2">Eliminar</button>-->
                                                 </div>
-                                                @endforeach   
+                                                @endforeach  
+                                                @else
+                                                <!-- Mensaje o contenido alternativo cuando no hay documentos -->
+                                            @endif 
                                             </div>
                                             <div class="documentos-container mt-3">
                                                 <div id="documentos-original" class="documentos-input" style="display: none;">
@@ -145,15 +149,15 @@
                         </div>
                         <div class="container form-control mt-4">
                             <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
-                            <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn }}" disabled>
+                            <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn ?? '' }}" disabled>
                             <div class="row mt-3">
                                 <div class="col-md-6 mb-4">
                                     <label class="style-label" for="nombre_btn">Nombre Boton:</label>
-                                    <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn }}" disabled>
+                                    <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn  ?? ''}}" disabled>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="style-label" for="url_btn">Url Boton:</label>
-                                    <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn }}" disabled>
+                                    <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn ?? '' }}" disabled>
                                 </div>
                             </div>
                         </div>

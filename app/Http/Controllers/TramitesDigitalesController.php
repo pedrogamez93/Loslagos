@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TramitesDigitales;
 use App\Models\TramitesDigitalesDocs;
+use Carbon\Carbon;
 
 
 class TramitesDigitalesController extends Controller{
@@ -36,13 +37,22 @@ class TramitesDigitalesController extends Controller{
             'nombre_documento.*' => 'nullable|string',
         ]);
     
+        // Procesar fechas
+        $fechaApertura = $request->input('fecha_apertura')
+            ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_apertura'))->toDateString()
+            : null;
+    
+        $fechaCierre = $request->input('fecha_cierre')
+            ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_cierre'))->toDateString()
+            : null;
+    
         // Crear el trámite incluso si algunos campos están vacíos
         $nuevoTramite = TramitesDigitales::create([
             'titulo' => $request->input('titulo'),
             'tags' => $request->input('tags'),
             'descripcion' => $request->input('descripcion'),
-            'fecha_apertura' => $request->input('fecha_apertura'),
-            'fecha_cierre' => $request->input('fecha_cierre'),
+            'fecha_apertura' => $fechaApertura,
+            'fecha_cierre' => $fechaCierre,
             'nombre_btn' => $request->input('nombre_btn'),
             'url' => $request->input('url'),
             'url_single' => $request->input('url_single'),

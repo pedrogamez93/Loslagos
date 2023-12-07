@@ -56,26 +56,26 @@
         <div class="col-md-10">
             <div class="container">
                 <h1>Listado de Autoridades</h1>
-                <a href="{{ route('AntecedentesRegionLagos.createAntecedentes') }}" class="btn btn-primary">Crear Artículo</a>
+                <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Título</th>
-                            <th>Subtítulo</th>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($articulo as $arti)
+                        @foreach($articulo as $art)
                         <tr>
-                            <td>{{ $arti->nombreseccion }}</td>
-                            <td>{{ $arti->subtitulo }}</td>
+                            <td>{{ $art->nombre }}</td>
+                            <td>{{ $art->cargo }}</td>
                             <td>
-                                <a href="{{ route('AntecedentesRegionLagos.showAntecedentes', $arti->id) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('AntecedentesRegionLagos.editAntecedentes', $arti->id) }}" class="btn btn-warning">Editar</a>
+                                <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
+                                <a href="{{ route('AutoridadesRegionLagos.editAutoridades', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
-                                <form method="POST" action="{{ route('AntecedentesRegionLagos.destroyAntecedentes', $arti->id) }}"  style="display: inline;">
+                                <form method="POST" action="{{ route('AutoridadesRegionLagos.destroyAutoridades', $art->id) }}"  style="display: inline;">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Eliminar</button>

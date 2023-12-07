@@ -337,7 +337,7 @@ h5.card-title{
                                     <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del botón externo" value="{{ $tramites['url'] ?? '' }}">
                                 </div>
                             </div>
-                                <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
+                              <!--   <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button> -->
                         </div>
 
                             <h3 class="mi-h3 mt-4">Documentos Adjuntos</h3>
@@ -354,7 +354,7 @@ h5.card-title{
                                 </div>
                             </div>
                     <div class="container mt-3 mb-4">
-                        <a href="{{ route('tramites.index') }}" class="btn btn-secondary">Volver</a>
+                        <a href="/gobiernoregional/tramitesdigitales" class="btn btn-secondary">Volver</a>
                     </div>
                 </div>
             </div>

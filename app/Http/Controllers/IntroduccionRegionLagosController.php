@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IntroduccionRegionLagos;
 use App\Models\AntecedentesRegion;
+use App\Models\Autoridades;
+use App\Models\Estadisticas;
 
 class IntroduccionRegionLagosController extends Controller
 {
@@ -226,5 +228,206 @@ public function updateCargos(Request $request, $id)
     }
 } 
     // Fin Cargo
+    // Fin Autoridades
+    public function indexAutoridades()
+    {
+        $articulo = Autoridades::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            return view('IntroduccionRegionLagos.Autoridades.show', compact('articulo'));
+        } else {
+            // La consulta no devolvió ningún registro
+            return view('IntroduccionRegionLagos.Autoridades.create');
+        }
+    }
+    public function storeAutoridades(Request $request)
+    {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'lugar_fecha_nacimiento' => 'required',
+            'actividad_profesion' => 'required',
+            'partido_politico' => 'required',
+            'cargo' => 'required',
+            'institucion' => 'required',
+            'direccion' => 'required',
+            'fono' => 'required',
+            'fax' => 'required',
+            'Email' => 'required',
+            'region' => 'required',
+            'provincia' => 'required',
+            'comuna' => 'required',
+            'web' => 'required',
+            'biografia' => 'required',
+            'foto' => 'image|max:2048',
+        ]);
+    
+        if ($request->hasFile('foto')) {
+            $imagenPath = $request->file('foto')->store('images', 'public');
+            $data['foto'] = $imagenPath;
+        }
+    
+        Autoridades::create($data);
+    
+        return redirect(route('AutoridadesRegionLagos.indexAutoridades'))->with('success', 'Artículo creado con éxito');
+    }
+    public function editAutoridades($id)
+    {
+        $articulo = Autoridades::find($id);
+        return view('IntroduccionRegionLagos.Autoridades.edit', compact('articulo'));
+    }
+    public function destroyAutoridades ($id)
+{
+    $articulo = Autoridades::find($id);
 
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateAutoridades(Request $request, $id)
+{
+    $data = $request->validate([
+        'nombre' => 'required',
+            'lugar_fecha_nacimiento' => 'required',
+            'actividad_profesion' => 'required',
+            'partido_politico' => 'required',
+            'cargo' => 'required',
+            'institucion' => 'required',
+            'direccion' => 'required',
+            'fono' => 'required',
+            'fax' => 'required',
+            'Email' => 'required',
+            'region' => 'required',
+            'provincia' => 'required',
+            'comuna' => 'required',
+            'web' => 'required',
+            'biografia' => 'required',
+            'foto' => 'image|max:2048',
+    ]);
+
+    $articulo = Autoridades::find($id);
+
+    if ($articulo) {
+        $articulo->update($data);
+        return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('success', 'Artículo actualizado con éxito');
+    } else {
+        return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('error', 'Artículo no encontrado');
+    }
+} 
+    // Fin Autoridades
+    // Inicio Estadistica
+    public function indexEstadisticas()
+    {
+        $articulo = Estadisticas::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            return view('IntroduccionRegionLagos.Estadisticas.show', compact('articulo'));
+        } else {
+            // La consulta no devolvió ningún registro
+            return view('IntroduccionRegionLagos.Estadisticas.create');
+        }
+    }
+    public function storeEstadisticas(Request $request)
+    {
+        $data = $request->validate([
+            'provincia' => 'required',
+            'superficie' => 'required',
+            'comuna' => 'required',
+            'p_urbana_hombre' => 'required',
+            'p_urbana_mujeres' => 'required',
+            'p_rural_hombre' => 'required',
+            'p_rural_mujeres' => 'required',
+        ]);
+   
+        Estadisticas::create($data);
+   
+        return redirect(route('EstadisticasRegionLagos.indexEstadisticas'))->with('success', 'Artículo creado con éxito');
+    }
+    public function createEstadisticas()
+    {
+        return view('IntroduccionRegionLagos.Estadisticas.create');
+    }
+    public function editEstadisticas($id)
+    {
+        $articulo = Estadisticas::find($id);
+        return view('IntroduccionRegionLagos.Estadisticas.edit', compact('articulo'));
+    }
+    public function destroyEstadisticas ($id)
+{
+    $articulo = Estadisticas::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('EstadisticasRegionLagos.indexEstadisticas')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('EstadisticasRegionLagos.indexEstadisticas')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateEstadisticas(Request $request, $id)
+{
+    $data = $request->validate([
+        'provincia' => 'required',
+        'superficie' => 'required',
+        'comuna' => 'required',
+        'p_urbana_hombre' => 'required',
+        'p_urbana_mujeres' => 'required',
+        'p_rural_hombre' => 'required',
+        'p_rural_mujeres' => 'required',
+    ]);
+
+    $articulo = Estadisticas::find($id);
+
+    if ($articulo) {
+        $articulo->update($data);
+        return redirect()->route('EstadisticasRegionLagos.indexEstadisticas')->with('success', 'Artículo actualizado con éxito');
+    } else {
+        return redirect()->route('EstadisticasRegionLagos.indexEstadisticas')->with('error', 'Artículo no encontrado');
+    }
+} 
+
+    // Fin Estadistica
+
+
+
+    // frond de region los lagos
+    public function indexRegionlagosIntro()
+    {
+        $articulo = IntroduccionRegionLagos::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $introduccion  = IntroduccionRegionLagos::find($id);
+            return view('regionlagos.introduccion', compact('introduccion'));
+            
+        } else {
+            // La consulta no devolvió ningún registro
+            return view('IntroduccionRegionLagos.create');
+        }
+    }
+    public function indexRegionlagosAntecedentesregion()
+    {
+        $articulo = AntecedentesRegion::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $introduccion  = AntecedentesRegion::find($id);
+            return view('regionlagos.antecedentesregion', compact('introduccion'));
+            
+        } 
+    }
+    public function indexRegionlagosprovincias($titulo)
+    {
+        $provincia = AntecedentesRegion::where('nombreseccion', $titulo)->first();
+
+        return view('regionlagos.provincia', compact('provincia')); 
+    }
+    
 }
