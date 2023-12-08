@@ -51,9 +51,19 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/asambleaclimatica') }}">Asamblea Climatica</a>
-                                </li>
+                                <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Asamblea Climatica</a>
+                                        <ul class="submenu">
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/asambleaclimatica') }}">Asamblea Climatica</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/audienciasdepartes/') }}">Audiencias de Partes</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
