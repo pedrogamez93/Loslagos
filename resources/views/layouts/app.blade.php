@@ -53,15 +53,23 @@
         <a class="nav-link" href="#" style="color:white">Home </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-          Gobierno Regional
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Gobierno Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+          </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
@@ -133,7 +141,47 @@
     <div class="col mb-3">
       <h5>Menu</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a></li>
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
+            <ul class="submenu">
+                <li class="style-li" style="padding-top: 5px;">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+                </li>
+            </ul>
+        </li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
