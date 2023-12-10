@@ -37,7 +37,7 @@
 
 @stack('styles')
 </head>
-<body id="app-layout">
+<body id="app-layout"  class="mb-5">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;">
   <a class="navbar-brand" href="{{ url('/') }}">
@@ -115,17 +115,7 @@
 </nav>
 
 
-  
-
-    @yield('content')
-
-    <!-- JavaScripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-
-    <div class="" style="background-color: #389144; color:white">
-  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5  border-top">
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top">
     
     <div class="col mb-3">
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -216,7 +206,14 @@
       
       </ul>
     </div>
-  </footer>
-      </div>
+  </footer>  
+
+    @yield('content')
+
+    <!-- JavaScripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
 </body>
 </html>
