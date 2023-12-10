@@ -11,10 +11,10 @@ use League\CommonMark\Node\Block\Document;
 class DocumentoController extends Controller
 {
     public function index()
-    {
-        $documentos = Documento::all();
-        return view('documentos.index', compact('documentos'));
-    }
+{
+    $documentos['documentos'] = Documento::orderBy('created_at', 'asc')->paginate(2);
+    return view('documentos.index', $documentos);
+}
 
     public function create()
     {
@@ -24,30 +24,40 @@ class DocumentoController extends Controller
     
     public function store(Request $request)
     {
-       /* $request->validate([
-            'nombre' => 'required',
-            'categoria' => 'required',
-            'archivo' => 'required|mimes:pdf,doc,docx|max:2048', // Ajusta los tipos de archivo y el tamaño según tus necesidades
-        ]);
-
-        // Guardar el archivo
-        $archivoPath = $request->file('archivo')->store('archivos_documentos');
-
-        // Crear el documento en la base de datos
-        Documento::create([
-            'nombre' => $request->input('nombre'),
-            'categoria' => $request->input('categoria'),
-            'archivo_path' => $archivoPath,
-        ]);
-
-        return redirect('/documentos')->with('success', 'Documento guardado exitosamente'); */
+      
 
         $datosd = request()->except('_token');
         if($request->hasFile('archivo_path')){
             $datosd['archivo_path'] = $request->file('archivo_path')->store('documentos','public');
 
         }
+
+        $datosd['created_at'] = now();
+        $datosd['updated_at'] = now();
+
         Documento::insert($datosd);
         return redirect('/documentos')->with('success', 'Documento guardado exitosamente');
+    }
+
+    public function buscar(Request $request)
+    {
+        $request->validate([
+            'categoria' => 'nullable',
+            'nombre' => 'nullable',
+        ]);
+
+        $categoria = $request->input('categoria');
+        $nombre = $request->input('nombre');
+       
+        $documentos = Documento::where('categoria', $categoria);
+
+        if ($nombre) {
+            $documentos = $documentos->orWhere('nombre', 'LIKE', "%$nombre%");
+        }
+
+        $documentos = $documentos->get();
+        
+
+        return view('documentos.resultados', compact('documentos'));
     }
 }

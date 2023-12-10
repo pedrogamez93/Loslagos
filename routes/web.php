@@ -36,7 +36,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/documentos', [DocumentoController::class, 'index']);
 Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
 Route::post('/documentos', [DocumentoController::class, 'store']);
-
+Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
 //Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/

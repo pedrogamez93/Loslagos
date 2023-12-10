@@ -24,20 +24,22 @@
         .fa-btn {
             margin-right: 6px;
         }
-        footer {
-      background-color: #389144; /* Color de fondo del footer */
-      color: white; /* Color del texto en el footer */
-      width: 100%; /* Ancho del footer al 100% del viewport */
-      position: fixed; /* Fija el footer en la parte inferior de la pantalla */
-      bottom: 0; /* Alinea el footer en la parte inferior */
-      left: 0; /* Alinea el footer a la izquierda */
-      padding: 0px; /* Ajusta el relleno según sea necesario */
-    }
+       
+
+    footer {
+            background-color: #389144;
+            color: white;
+            width: 100%;
+            position: relative; /* Cambiado de fixed a relative */
+            bottom: 0;
+            left: 0;
+            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+        }
     </style>
 
 @stack('styles')
 </head>
-<body id="app-layout"  class="mb-5">
+<body id="app-layout"  class=" " style="">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;">
   <a class="navbar-brand" href="{{ url('/') }}">
@@ -115,6 +117,9 @@
 </nav>
 
 
+
+    @yield('content')
+   
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top">
     
     <div class="col mb-3">
@@ -207,9 +212,6 @@
       </ul>
     </div>
   </footer>  
-
-    @yield('content')
-
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     

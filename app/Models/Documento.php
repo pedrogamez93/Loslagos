@@ -12,5 +12,7 @@ class Documento extends Model
     protected $table = 'documentos';
 
     protected $fillable = ['nombre', 'categoria', 'archivo_path'];
+
+    public $timestamps = true;
     
 }

@@ -6,3 +6,32 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+
+
+
+.titulodocsdes{
+    color: #F59120;
+
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+
+.divtitulodocsdes{
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+.titulodoc {
+color: #FFF;
+font-family: 'Inter';
+font-size: 50px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
