@@ -12,6 +12,8 @@ use App\Http\Controllers\LeygbsController;
 use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\AsambleaClimaticaController;
 use App\Http\Controllers\AudienciasController;
 //use App\Http\Controllers\TramitesDigitalesDocsController;
@@ -30,6 +32,19 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+
+/*DOCUMENTOS */
+Route::get('/documentos', [DocumentoController::class, 'index']);
+Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
+Route::post('/documentos', [DocumentoController::class, 'store']);
+Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
+
+/*FUNCIONARIOS */
+
+Route::get('/funcionario', [FuncionarioController::class, 'index']);
+Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
+Route::post('/funcionarios', [FuncionarioController::class, 'store']);
+Route::post('/funcionario/buscar', [FuncionarioController::class, 'buscar']);
 
 //Route::resource('/', HomeController::class);
 

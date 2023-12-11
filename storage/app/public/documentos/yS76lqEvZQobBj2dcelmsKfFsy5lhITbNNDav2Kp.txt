@@ -1,0 +1,12 @@
+**** ACCIONA PASO A PASO *********
+
+1.- Instalar wordpress en el dominio de prueba.
+2.- Instalar el plugin one migration para la importacion del respaldo.
+3.- Activar los plugins.
+4.- Se ha desarrollado un nuevo plugins para la integracion de clave unica para el inicio de sesion en el sitio.
+5.- Cambiar las credenciales en el archivo index.php del plugin integracion con clave unica:
+6.- Remplazar estas credenciales por las de produccion:
+	linea-15 $clientId = "9f124c950f8445b2ae3aef1f8183adf2";
+	linea-16 $clientSecret = "04e5b6473c834e838bafd3223cc4ad24";
+	linea-17 $redirect_uri = "https://metasoftqa-testing.com/wp-json/callback/acciona";
+	

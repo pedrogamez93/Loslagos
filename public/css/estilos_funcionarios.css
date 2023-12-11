@@ -1,0 +1,27 @@
+.parrafo1{
+
+color: #00548F;
+font-family: Inter;
+font-size: 16px;
+font-style: italic;
+font-weight: 600;
+line-height: normal;
+}
+
+.tituloform{
+    color: #565656;
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.parrafo2{
+    color: #565656;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
