@@ -16,6 +16,8 @@ use App\Models\TramitesDigitales;
 use App\Models\TramitesDigitalesDocs;
 use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
+use App\Models\AudienciasPartes;
+use App\Models\AudienciasPartesDocs;
 
 class CategoriesController extends Controller{
     
@@ -96,6 +98,14 @@ class CategoriesController extends Controller{
     
         // Pasa la información a la vista
         return view('asambleaclimatica', ['asamblea' => $asamblea]);
+    }
+
+    public function audienciadepartesIndex() {
+        // Obtener el último registro de audiencia con documentos relacionados
+        $audiencia = AudienciasPartes::with('documentos')->latest()->first();
+    
+        // Pasa la información a la vista
+        return view('audienciadepartes', ['audiencia' => $audiencia]);
     }
 
 }

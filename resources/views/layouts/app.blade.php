@@ -24,6 +24,15 @@
         .fa-btn {
             margin-right: 6px;
         }
+        footer {
+      background-color: #389144; /* Color de fondo del footer */
+      color: white; /* Color del texto en el footer */
+      width: 100%; /* Ancho del footer al 100% del viewport */
+      position: fixed; /* Fija el footer en la parte inferior de la pantalla */
+      bottom: 0; /* Alinea el footer en la parte inferior */
+      left: 0; /* Alinea el footer a la izquierda */
+      padding: 0px; /* Ajusta el relleno según sea necesario */
+    }
     </style>
 
 @stack('styles')
@@ -44,15 +53,23 @@
         <a class="nav-link" href="#" style="color:white">Home </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-          Gobierno Regional
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Gobierno Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+          </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
@@ -106,5 +123,100 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <div class="" style="background-color: #389144; color:white">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5  border-top">
+    
+    <div class="col mb-3">
+      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+        <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" >
+      </a>
+      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+        <img src="{{ asset('storage/img/Logo-Core-blanco.png') }}" >
+      </a>
+    </div>
+
+    
+
+    <div class="col mb-3">
+      <h5>Menu</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
+            <ul class="submenu">
+                <li class="style-li" style="padding-top: 5px;">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
+      
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Enlaces directos</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Creando y Cuidando la Región</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información de la región</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Organigrama</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trámites</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Contacta con nosotras aquí</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contacta con nosotras aquí</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div></a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+      
+      </ul>
+    </div>
+  </footer>
+      </div>
 </body>
 </html>
