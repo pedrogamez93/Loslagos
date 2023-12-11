@@ -94,14 +94,14 @@
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
             <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" required>
                        
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="division">
                 <option selected>Actividad o Profesión</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="departamento">
                 <option selected>Division</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
