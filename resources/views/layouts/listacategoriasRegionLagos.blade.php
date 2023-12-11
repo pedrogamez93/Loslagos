@@ -68,7 +68,7 @@
     <ul id="categorylist">
         <li><a href="/regionlagos/introduccion" title="Categoría:acerca">Introducción</a></li>
         <li><a href="/regionlagos/antecedentesregion" title="Categoría:tags">Información de la Región</a></li>
-        <li><a href="#" title="Categoría:tags">Autoridades</a></li>
+        <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Categoría:tags">Autoridades</a></li>
         <li><a routerLink="#"title="Categoría:tags">Estadísticas</a></li>
         <li><a href="#" title="Categoría:tags">Inversiones</a></li>
     </ul>

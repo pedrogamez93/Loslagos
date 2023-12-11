@@ -244,7 +244,7 @@
                     <div class="container int">
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $provincia->subtitulo }}</p>
+                                <p class="style-tag pt-0 pb-4">{{ $provincia->subtitulo }}</p>
                                 <p class="title-cat pt-2 pb-2">{{ $provincia->nombreseccion }}</p>
                                 <p class="style-down pt-2 pb-2">{{ $provincia->descripcion }}</p>
                             </div>
@@ -257,7 +257,7 @@
                     <div class="container img">
                         <div class="row">
                             <div class="col-md-12">
-                            <p class="infoR pb-5">Información de la Región</p>
+                            <p class="infoR pb-4">Información de la Región</p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Antecedentes de la Región' ? 'active' : '' }}">Antecedentes de la Región</a></p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Osorno' ? 'active' : '' }}">Provincia de Osorno</a></p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Llanquihue' ? 'active' : '' }}">Provincia de Llanquihue</a></p>

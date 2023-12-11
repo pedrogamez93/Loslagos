@@ -81,7 +81,7 @@
                                     <a class="style-a-menu" href="{{ route('AntecedentesRegionLagos.indexAntecedentes') }}">Información de la Región</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('AutoridadesRegionLagos.indexAutoridades') }}">Autoridades</a>
+                                    <a class="style-a-menu" href="{{ route('AutoridadesRegionLagos.indexAutoridades', 'Gobernador Regional') }}">Autoridades</a>
                                 </li>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Estadísticas</a>
