@@ -241,7 +241,7 @@
                     <div class="container int">
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $introduccion->subtitulo }}</p>
+                                <p class="style-tag pt-0 pb-4">{{ $introduccion->subtitulo }}</p>
                                 <p class="title-cat pt-2 pb-2">{{ $introduccion->nombreseccion }}</p>
                                 <p class="style-down pt-2 pb-2">{{ $introduccion->descripcion }}</p>
                             </div>
@@ -254,8 +254,8 @@
                     <div class="container img">
                         <div class="row">
                             <div class="col-md-12">
-                            <p class="infoR pb-5">Información de la Región</p>
-                            <p class="enlaceM"><a href="/regionlagos/antecedentesregion">Antecedentes de la Región</a></p>
+                            <p class="infoR pb-4">Información de la Región</p>
+                            <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}">Antecedentes de la Región</a></p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}">Provincia de Osorno</a></p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}">Provincia de Llanquihue</a></p>
                             <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Chiloé') }}">Provincia de Chiloé</a></p>

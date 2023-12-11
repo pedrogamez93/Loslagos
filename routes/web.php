@@ -135,6 +135,13 @@ Route::delete('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\Introduccio
 
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
+
+Route::get('/regionlagos/autoridades/senador/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesSenador')->name('BuscarAutoridadesSenador.show');
+Route::get('/regionlagos/autoridades/diputados/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesDiputados')->name('BuscarAutoridadesDiputados.show');
+Route::get('/regionlagos/autoridades/seremis/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesSeremis')->name('BuscarAutoridadesSeremis.show');
+Route::get('/regionlagos/autoridades/servicios/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesServicios')->name('BuscarAutoridadesServicios.show');
+Route::get('/regionlagos/autoridades/municipalidades/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesMunicipalidades')->name('BuscarAutoridadesMunicipalidades.show');
+Route::get('/regionlagos/autoridades/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAutoridades')->name('RegionlagosAutoridades.show');
 Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAntecedentesregion')->name('antecedentesregion.index');;
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
