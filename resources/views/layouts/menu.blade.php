@@ -64,6 +64,9 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/disenopoliticoregionales') }}">Política Sostenibilidad Hidrica</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->

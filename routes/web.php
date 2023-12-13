@@ -14,6 +14,7 @@ use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AsambleaClimaticaController;
 use App\Http\Controllers\AudienciasController;
+use App\Http\Controllers\DisenoPoliticoRegionalesController;
 //use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,14 @@ Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
 
 Route::resource('audienciasdepartes', AudienciasController::class);
+
+Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
+
+// Rutas para los disenopoliticoregionales
+Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');
+Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta');
+Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update');
+//Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los trámites
 Route::resource('tramites', TramitesDigitalesController::class);
@@ -99,6 +108,8 @@ Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\Categori
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
 
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
+
+Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controllers\CategoriesController@politicasostenibilidadhidricaIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
