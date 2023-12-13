@@ -242,6 +242,10 @@ public function updateCargos(Request $request, $id)
             return view('IntroduccionRegionLagos.Autoridades.create');
         }
     }
+    public function createAutoridades()
+    {
+        return view('IntroduccionRegionLagos.Autoridades.create');
+    }
     public function storeAutoridades(Request $request)
     {
         $data = $request->validate([
@@ -428,6 +432,32 @@ public function updateEstadisticas(Request $request, $id)
         $provincia = AntecedentesRegion::where('nombreseccion', $titulo)->first();
 
         return view('regionlagos.provincia', compact('provincia')); 
+    }
+    public function indexRegionlagosGobernador($titulo)
+    {
+        $articulo = Autoridades::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $introduccion  = Autoridades::find($id);
+            return view('regionlagos.intendente', compact('introduccion'));
+            
+        } 
+    }
+    public function indexRegionlagosAutoridades($titulo)
+    {
+        $introduccion = Autoridades::where('cargo', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+
+        return view('regionlagos.autoridades', compact('introduccion','sen')); 
+    }
+    public function indexRegionlagosBuscarAutoridadesSenador($titulo)
+    {
+        $introduccion = Autoridades::where('nombre', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+
+        return view('regionlagos.intendente', compact('introduccion','sen')); 
     }
     
 }
