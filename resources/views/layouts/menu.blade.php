@@ -64,6 +64,9 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/disenopoliticoregionales') }}">Política Sostenibilidad Hidrica</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
@@ -92,6 +95,24 @@
                                    
                             </ul>
                         </div>
+
+                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
+                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
+                            Documentos
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="IntroduccionRegionLagos">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('documentos.create') }}">Subir</a>
+                                </li>
+                               
+                                   
+                            </ul>
+                        </div>
+
+
                     </div>
                 </div>
 <style>

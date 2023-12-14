@@ -18,6 +18,9 @@ use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
 use App\Models\AudienciasPartes;
 use App\Models\AudienciasPartesDocs;
+use App\Models\DisenoPoliticoRegionales;
+use App\Models\DisenoPoliticoRegionalesBtnEncuestas;
+use App\Models\DisenoPoliticoRegionalesBtnforms;
 
 class CategoriesController extends Controller{
     
@@ -106,6 +109,19 @@ class CategoriesController extends Controller{
     
         // Pasa la información a la vista
         return view('audienciadepartes', ['audiencia' => $audiencia]);
+    }
+
+    public function politicasostenibilidadhidricaIndex() {
+        // Obtén el último registro de DiseñoPolíticaRegionales
+        $ultimoRegistro = DisenoPoliticoRegionales::latest()->first();
+    
+        // Obtén los formularios relacionados
+        $formularios = $ultimoRegistro->btnForms;
+    
+        // Obtén las encuestas relacionadas
+        $encuestas = $ultimoRegistro->btnEncuestas;
+    
+        return view('politicasostenibilidadhidrica', compact('formularios', 'encuestas', 'ultimoRegistro'));
     }
 
 }

@@ -24,20 +24,22 @@
         .fa-btn {
             margin-right: 6px;
         }
-        footer {
-      background-color: #389144; /* Color de fondo del footer */
-      color: white; /* Color del texto en el footer */
-      width: 100%; /* Ancho del footer al 100% del viewport */
-      position: fixed; /* Fija el footer en la parte inferior de la pantalla */
-      bottom: 0; /* Alinea el footer en la parte inferior */
-      left: 0; /* Alinea el footer a la izquierda */
-      padding: 0px; /* Ajusta el relleno según sea necesario */
-    }
+       
+
+    footer {
+            background-color: #389144;
+            color: white;
+            width: 100%;
+            position: relative; /* Cambiado de fixed a relative */
+            bottom: 0;
+            left: 0;
+            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+        }
     </style>
 
 @stack('styles')
 </head>
-<body id="app-layout">
+<body id="app-layout"  class=" " style="">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;">
   <a class="navbar-brand" href="{{ url('/') }}">
@@ -115,17 +117,10 @@
 </nav>
 
 
-  
 
     @yield('content')
-
-    <!-- JavaScripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-
-    <div class="" style="background-color: #389144; color:white">
-  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5  border-top">
+   
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
     
     <div class="col mb-3">
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -138,51 +133,14 @@
 
     
 
-    <div class="col mb-3">
+    <div class="col mb-3 ">
       <h5>Menu</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2">
+      <ul class="nav flex-column ">
+        <li class="nav-item mb-2 text-light">
             <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
-            <ul class="submenu">
-                <li class="style-li" style="padding-top: 5px;">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
-                </li>
-                <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
-                </li>
-            </ul>
+         
         </li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
+        <li class="nav-item mb-2 "><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
       
@@ -216,7 +174,11 @@
       
       </ul>
     </div>
-  </footer>
-      </div>
+  </footer>  
+    <!-- JavaScripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
 </body>
 </html>
