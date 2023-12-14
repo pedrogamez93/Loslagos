@@ -140,28 +140,21 @@
         font-Size: 30px;
         color: #565656;
     }
-
-    h2.mititulo{
+    h2.mistyle{
         font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 25px;
-        color: #565656;
+        font-weight: 600;
+        font-style: italic;
+        font-Size: 30px;
+        Line-height: 36.31px;
+        color: #F59120;
     }
-	p.bajada-acord{
-			font-family: 'Inter';
-			font-Weight: 500;
-			font-Size: 16px;
-			Line-height: 19.36px;
-			color: #565656;
-			text-align: justify;
-	}
-    a.final-btn {
-    padding: 10px 20px;
-    border-Radius: 100px;
-    background-color: #F59120;
-    color: #FFFFFF;
-    font-Weight: 700;
-}
+    p.title-doc{
+        font-family: 'Inter';
+        font-Weight: 600;
+        font-Style: italic;
+        font-Size: 30px;
+        color: #F59120;
+    }
     p.p-down, .mi-span{
         font-family: 'Inter';
         font-Weight: 500;
@@ -219,7 +212,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/dptogestionpersonas">Política Sostenibilidad Hídrica</a></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/disenopoliticapersonasmayores">Diseño Política Regional Personas Mayores</a></span></p>
                 </div>
             </div>
         </div>   
@@ -245,53 +238,39 @@
         <div class="container set pb-4">
             @include('layouts.listacategorias')
         </div>
-        
-        <div class="container principal" style="padding-left: 5rem !important; padding-right: 5rem!important;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="mititulo mb-2">{{ $ultimoRegistro->titulo }}</h1>
-                        <p class="bajada-acord">{!! $ultimoRegistro->bajada ?? '' !!}</p>
-
-                        <h2 class="mititulo mt-3" style="font-style: italic;">{{ $ultimoRegistro->titulo_seccion_form }}</h2>
-
-                        <!-- Mostrar formularios -->
-                        @if($formularios->isNotEmpty())
-                            @foreach($formularios as $formulario)
-                                <div class="container mt-4 mb-5">
-                                    <div class="item">
-                                        <a class="final-btn" href="{{ $formulario->url_btn_form }}" target="_blank">{{ $formulario->nombre_btn_form }}</a>
-                                    </div>
-                                </div>   
-                            @endforeach       
-                        @else
-                            <p>No hay formularios disponibles.</p>
-                        @endif
-
-                        <div class="container seccionencuestas">
-                            <h2 class="mititulo mb-2">{{ $ultimoRegistro->titulo_seccion_encue }}</h2>
-                            <p>{!! $ultimoRegistro->bajada_seccion_encue ?? '' !!}</p>
-                        </div>
-
-                        <!-- Mostrar encuestas -->
-                        @if($encuestas->isNotEmpty())
-                            <div class="container mt-5 mb-5">
-                                <div class="row">
-                                    @foreach($encuestas as $encuesta)
-                                        <div class="col-md-4"> <!-- Puedes ajustar el tamaño de la columna según tus necesidades -->
-                                            <div class="item">
-                                                <p class="mip mb-3"><strong>{{ $encuesta->nombre_encuesta }}</strong></p>
-                                                <a class="final-btn mt-3" href="{{ $encuesta->url_btn_encuesta }}" target="_blank">{{ $encuesta->nombre_btn_encuesta }}</a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>                
-                        @else
-                            <p>No hay encuestas disponibles.</p>
-                        @endif
+        <div class="container content mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-8" style="padding: 0 0 0 5rem;">
+                    <div class="bajada">
+                        <h1 class="mititulo pb-4">{{ $ultimoRegistro->titulo }}</h1>
+                        <p class="p-down">{!! $ultimoRegistro->bajada ?? '' !!}</p>
                     </div>
                 </div>
+                <div class="col-md-4" style="border-left: 2px solid #F59120;">
+                    <div class="container doc">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (count($docs) > 0)
+                                            <h2 class="mistyle mb-5">Notas de Prensa:</h2>
+                                            <ul>
+                                                @foreach ($docs as $documento)
+                                                <li class="mi-list mb-4">
+                                                    <a href="{{ asset('storage/' . $documento->urldocs) }}" target="_blank">
+                                                        <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
+                                                        <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 257px;">{{ $documento->nombredocs }}</span>
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p>No hay documentos disponibles en todos los departamentos.</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
             </div>
+        </div>
     </main>
 
     <footer>
@@ -305,8 +284,6 @@
        
         
     </footer>
-    <script>
-
-</script>
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>

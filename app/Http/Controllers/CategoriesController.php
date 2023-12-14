@@ -21,6 +21,8 @@ use App\Models\AudienciasPartesDocs;
 use App\Models\DisenoPoliticoRegionales;
 use App\Models\DisenoPoliticoRegionalesBtnEncuestas;
 use App\Models\DisenoPoliticoRegionalesBtnforms;
+use App\Models\PoliticaPersonasMayores;
+use App\Models\PoliticaPersonasMayoresDocs;
 
 class CategoriesController extends Controller{
     
@@ -122,6 +124,16 @@ class CategoriesController extends Controller{
         $encuestas = $ultimoRegistro->btnEncuestas;
     
         return view('politicasostenibilidadhidrica', compact('formularios', 'encuestas', 'ultimoRegistro'));
+    }
+
+    public function politicapersonasmayoresIndex() {
+        // Obtén el último politicapersonasmayores
+        $ultimoRegistro = PoliticaPersonasMayores::latest()->first();
+    
+        // Asegúrate de verificar si existe un registro antes de intentar acceder a sus documentos
+        $docs = $ultimoRegistro ? $ultimoRegistro->documentos : collect();
+    
+        return view('disenopoliticapersonasmayores', compact('ultimoRegistro', 'docs'));
     }
 
 }
