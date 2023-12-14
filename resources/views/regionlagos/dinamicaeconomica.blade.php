@@ -212,7 +212,36 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    
+    table.table, .table th,.table td  {
+        border: 1px solid #F59120;
+    }
+    .tituloTable{
+        background-color: #F59120 !important;
+        height: 48px;
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff !important;
+    }
+    th.tituloT {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    th.tituloTS{
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
 </style>
 <html>
 <head>
@@ -287,101 +316,58 @@
                 <div class="col-md-8 borderR">
                     <div class="container int">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p class="style-tag pt-0 pb-4">{{ $introduccion->cargo }}</p>
-                            </div>
-                            <div class="col-md-5 fotoA">
-                                <img src="{{ asset('storage/' . $introduccion->foto) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
-                            </div>
-                            <div class="col-md-7 info">
-                                <p class="style-nombre pb-4">{{ $introduccion->nombre }}</p>
-                                <p>Lugar y fecha de Nacimiento:</p>
-                                <p>Actividad o Profesión:</p>
-                                <p>Partido Político:</p>
-                                <h3>Datos del servicio</h3>
-                                <p>Cargo: </p>
-                                <p>Institución: </p>
-                                <p>Dirección:</p>
-                                <p>Fono:</p>
-                                <p>Fax:</p>
-                                <p>E-Mail:</p>
-                                <p>Región:</p>
-                                <p>Provincia:</p>
-                                <p>Comuna:</p>
-                                <p>Sitio Web:</p>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="style-B pt-4 pb-4">Biografía</p>
-                                <p class="descripcion-B">{{ $introduccion->biografia }}</p>
-                                
-                            </div>
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                            <th scope="col" class="tituloT">Superficie</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
+                            <th scope="col" class="tituloT">Total</th>
+                            </tr>
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col"> {{ $totalSuperficie }}</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <td>CENSO2017</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
-                    
-
                 <div class="col-md-4">
                     <div class="container img">
                         <div class="row">
                             <div class="col-md-12">
-                            <p class="infoR pb-4">Información de la Región</p>
-                            <p class="enlaceM"><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" class="{{ request()->routeIs('RegionlagosAutoridades.show') && request()->route('cargo') == 'Gobernador Regional' ? 'active' : '' }}">Gobernador Regional</a></p>
+                            <p class="infoR pb-4">Información de las Estadistícas</p>
                             <div class="container">
                                 <div class="row">
-                                    
-                                    <div class="col-md-12 p-0">
-                                        <!-- Menú vertical -->
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Senadores</a>
-                                            <div class="collapse  p-0" id="submenu">
-                                                @foreach($sen as $autoridad)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSenador.show', $autoridad->nombre) }}">{{ $autoridad->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu">Diputados</a>
-                                            <div class="collapse  p-0" id="submenu1">
-                                                @foreach($dip as $autoridad1)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesDiputados.show', $autoridad1->nombre) }}">{{ $autoridad1->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu2" role="button" aria-expanded="false" aria-controls="submenu">Seremis</a>
-                                            <div class="collapse  p-0" id="submenu2">
-                                                @foreach($ser as $autoridad2)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu3" role="button" aria-expanded="false" aria-controls="submenu">Servicios</a>
-                                            <div class="collapse  p-0" id="submenu3">
-                                                @foreach($serv as $autoridad3)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu4" role="button" aria-expanded="false" aria-controls="submenu">Municipales</a>
-                                            <div class="collapse  p-0" id="submenu4">
-                                                @foreach($muni as $autoridad4)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
+                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <!-- Submenú -->
+                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Población y Superficie</a>
+                                    <div class="collapse  p-0" id="submenu">
+                                            <p class="enlaceM"><a class="ml-3" href="">Población y Superficie</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Osono</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Chiloé</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Palena</a></p>
                                     </div>
+                                    
+                                </div>
                                 </div>
                             </div>
                             </div>

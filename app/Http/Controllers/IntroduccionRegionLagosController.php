@@ -441,7 +441,12 @@ public function updateEstadisticas(Request $request, $id)
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $introduccion  = Autoridades::find($id);
-            return view('regionlagos.intendente', compact('introduccion'));
+            $sen = Autoridades::where('cargo', 'Senador')->get();
+            $dip = Autoridades::where('cargo', 'Diputados')->get();
+            $ser = Autoridades::where('cargo', 'Seremis')->get();
+            $serv = Autoridades::where('cargo', 'Servicios')->get();
+            $muni = Autoridades::where('cargo', 'Municipales')->get();
+            return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
             
         } 
     }
@@ -449,15 +454,78 @@ public function updateEstadisticas(Request $request, $id)
     {
         $introduccion = Autoridades::where('cargo', $titulo)->first();
         $sen = Autoridades::where('cargo', 'Senador')->get();
-
-        return view('regionlagos.autoridades', compact('introduccion','sen')); 
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        
+        return view('regionlagos.autoridades', compact('introduccion','sen','dip','ser','serv','muni'));
     }
     public function indexRegionlagosBuscarAutoridadesSenador($titulo)
     {
         $introduccion = Autoridades::where('nombre', $titulo)->first();
         $sen = Autoridades::where('cargo', 'Senador')->get();
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
 
-        return view('regionlagos.intendente', compact('introduccion','sen')); 
+        return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
+    public function indexRegionlagosBuscarAutoridadesDiputados($titulo)
+    {
+        $introduccion = Autoridades::where('nombre', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
+
+        return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
+    }
+    public function indexRegionlagosBuscarAutoridadesSeremis($titulo)
+    {
+        $introduccion = Autoridades::where('nombre', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
+
+        return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
+    }
+    public function indexRegionlagosBuscarAutoridadesServicios($titulo)
+    {
+        $introduccion = Autoridades::where('nombre', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
+
+        return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
+    }
+    public function indexRegionlagosBuscarAutoridadesMunicipalidades($titulo)
+    {
+        $introduccion = Autoridades::where('nombre', $titulo)->first();
+        $sen = Autoridades::where('cargo', 'Senador')->get();
+        $dip = Autoridades::where('cargo', 'Diputados')->get();
+        $ser = Autoridades::where('cargo', 'Seremis')->get();
+        $serv = Autoridades::where('cargo', 'Servicios')->get();
+        $muni = Autoridades::where('cargo', 'Municipales')->get();
+
+        return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
+    }
+    public function indexRegionlagosDinamicaEconomica()
+    {
+        $introduccion = Estadisticas::all();
+        // Obtén la suma de la columna 'superficie'
+        $totalSuperficie = Estadisticas::sum('superficie');
+
+        // Haz lo que necesites con $totalSuperficie
+        return view('regionlagos.dinamicaeconomica', compact('introduccion','totalSuperficie'));
+    }
+    
+    
     
 }

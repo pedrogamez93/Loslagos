@@ -13,7 +13,6 @@ use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AsambleaClimaticaController;
-use App\Http\Controllers\AudienciasController;
 //use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
@@ -51,8 +50,6 @@ Route::resource('organigrama', OrganigramaController::class);
 Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 
 Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
-
-Route::resource('audienciasdepartes', AudienciasController::class);
 
 // Rutas para los trámites
 Route::resource('tramites', TramitesDigitalesController::class);
@@ -97,8 +94,6 @@ Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\Catego
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
-
-Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
@@ -147,6 +142,8 @@ Route::get('/regionlagos/autoridades/seremis/{titulo}', 'App\Http\Controllers\In
 Route::get('/regionlagos/autoridades/servicios/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesServicios')->name('BuscarAutoridadesServicios.show');
 Route::get('/regionlagos/autoridades/municipalidades/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesMunicipalidades')->name('BuscarAutoridadesMunicipalidades.show');
 Route::get('/regionlagos/autoridades/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAutoridades')->name('RegionlagosAutoridades.show');
+Route::get('/regionlagos/PoblacionSuperficie/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosDinamicaEconomica')->name('RegionlagosDinamicaEconomica.index');
+//Route::get('/regionlagos/PoblacionSuperficie/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAutoridades')->name('RegionlagosAutoridades.show');
 Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAntecedentesregion')->name('antecedentesregion.index');;
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
