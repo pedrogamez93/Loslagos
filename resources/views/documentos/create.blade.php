@@ -108,6 +108,13 @@ input:required {
                 <input class="form-control" type="file" name="archivo_path" id="formFile">
             </div>
 
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Destacar
+            </label>
+            </div>
+
             <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
         </form>
                 </div>
