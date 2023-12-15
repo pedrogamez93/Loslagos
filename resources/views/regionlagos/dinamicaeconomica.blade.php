@@ -19,7 +19,7 @@
              text-align: left;
               color: #F59120;
     }
-    .borderR{
+    .borderR{ 
         border-right: 2px solid #F59120;
     }
     header{

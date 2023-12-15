@@ -711,7 +711,7 @@ public function updateEstadisticas(Request $request, $id)
     public function indexRegionlagosDinamicaEconomica()    
     {
         $introduccion = DinamicaEconomica::all();
-        return view('regionlagos.DinamicaEconomica', compact('introduccion'));
+        return view('regionlagos.dinamicaeconomica', compact('introduccion'));
     }
     
     
