@@ -19,7 +19,7 @@
              text-align: left;
               color: #F59120;
     }
-    .borderR{
+    .borderR{ 
         border-right: 2px solid #F59120;
     }
     header{
@@ -242,6 +242,42 @@
         letter-spacing: 0em;
         text-align: left;
     }
+    .cajaElementor {
+        border: 1px solid #F59120;
+        border-radius: 5px;
+    }
+    p.titulo {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.mb-2.subtitulo {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.fechas {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.fechas span {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
 </style>
 <html>
 <head>
@@ -316,37 +352,27 @@
                 <div class="col-md-8 borderR">
                     <div class="container int">
                         <div class="row">
-                        <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
-                            <th scope="col" class="tituloT">Superficie</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
-                            <th scope="col" class="tituloT">Total</th>
-                            </tr>
-                            <tr>
-                            <th scope="col"></th>
-                            <th scope="col"> {{ $totalSuperficie }}</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th></th>
-                                <td>CENSO2017</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                        </table>
+                        <p class="title-cat mb-5">Dinámica Económica</p>
+                            @foreach($introduccion as $art)
+                                <div class="col-md-6 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-3">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="titulo">{{$art->titulo}}</p>
+                                            <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
+                                            <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
+                                            <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -361,13 +387,18 @@
                                     <!-- Submenú -->
                                     <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Población y Superficie</a>
                                     <div class="collapse  p-0" id="submenu">
-                                            <p class="enlaceM"><a class="ml-3" href="">Población y Superficie</a></p>
-                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Osono</a></p>
-                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Chiloé</a></p>
-                                            <p class="enlaceM"><a class="ml-3" href="">Provincia de Palena</a></p>
+                                    <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficie.index') }}">Población y Superficie</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Osono') }}">Provincia de Osono</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Llaquihue') }}">Provincia de Llaquihue</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Chiloe') }}">Provincia de Chiloé</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Palena') }}">Provincia de Palena</a></p>
                                     </div>
-                                    
-                                </div>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Dinámica Económica</a>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Exportación Según Rama Actividad</a>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Exportación Según Bloque Económico</a>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Actividad Económica</a>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">FNDR 2009</a>
+                                </div> 
                                 </div>
                             </div>
                             </div>

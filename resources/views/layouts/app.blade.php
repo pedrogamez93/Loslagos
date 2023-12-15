@@ -68,16 +68,16 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
           </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
           Consejo Regional
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
@@ -85,15 +85,16 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-          Region de los Lagos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Region los Lagos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/introduccion') }}">Introducción </a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/antecedentesregion') }}">Información de la Región</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/autoridades/Gobernador%20Regional') }}">Autoridades</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/PoblacionSuperficie') }}">Estadísticas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Inversiones</a>
+          </div>
       </li>
 
       <li class="nav-item active">

@@ -212,7 +212,36 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    
+    table.table, .table th,.table td  {
+        border: 1px solid #F59120;
+    }
+    .tituloTable{
+        background-color: #F59120 !important;
+        height: 48px;
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff !important;
+    }
+    th.tituloT {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    th.tituloTS{
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
 </style>
 <html>
 <head>
@@ -287,101 +316,59 @@
                 <div class="col-md-8 borderR">
                     <div class="container int">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p class="style-tag pt-0 pb-4">{{ $introduccion->cargo }}</p>
-                            </div>
-                            <div class="col-md-5 fotoA">
-                                <img src="{{ asset('storage/' . $introduccion->foto) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
-                            </div>
-                            <div class="col-md-7 info">
-                                <p class="style-nombre pb-4">{{ $introduccion->nombre }}</p>
-                                <p>Lugar y fecha de Nacimiento: {{ $introduccion->lugar_fecha_nacimiento }}</p>
-                                <p>Actividad o Profesión: {{ $introduccion->actividad_profesion }}</p>
-                                <p>Partido Político: {{ $introduccion->partido_politico }}</p>
-                                <h3>Datos del servicio</h3>
-                                <p>Cargo: {{ $introduccion->cargo }}</p>
-                                <p>Institución: {{ $introduccion->institucion }}</p>
-                                <p>Dirección: {{ $introduccion->direccion }}</p>
-                                <p>Fono: {{ $introduccion->fono }}</p>
-                                <p>Fax: {{ $introduccion->fax }}</p>
-                                <p>E-Mail: {{ $introduccion->Email }}</p>
-                                <p>Región: {{ $introduccion->region }}</p>
-                                <p>Provincia: {{ $introduccion->provincia }}</p>
-                                <p>Comuna: {{ $introduccion->comuna }}</p>
-                                <p>Sitio Web: {{ $introduccion->web }}</p>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="style-B pt-4 pb-4">Biografía</p>
-                                <p class="descripcion-B">{{ $introduccion->biografia }}</p>
-                                
-                            </div>
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                            <th scope="col" class="tituloT">Superficie</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
+                            <th scope="col" class="tituloT">Total</th>
+                            </tr>
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col" style=" text-align: center;"> {{ $totalSuperficie }}</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <td style=" text-align: center;">CENSO2017</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_hombre }}</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_mujeres }}</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_mujeres }}</td>
+                                <td style=" text-align: center;"> {{ $p_rural_hombre }}</td>
+                                <td style=" text-align: center;"> {{ $total }}</td>
+                            </tr>
+                        </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
-                    
-
                 <div class="col-md-4">
                     <div class="container img">
                         <div class="row">
                             <div class="col-md-12">
-                            <p class="infoR pb-4">Información de la Región</p>
-                            <p class="enlaceM"><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" class="{{ request()->routeIs('RegionlagosAutoridades.show') && request()->route('cargo') == 'Gobernador Regional' ? 'active' : '' }}">Gobernador Regional</a></p>
+                            <p class="infoR pb-4">Información de las Estadistícas</p>
                             <div class="container">
                                 <div class="row">
-                                    
-                                    <div class="col-md-12 p-0">
-                                        <!-- Menú vertical -->
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Senadores</a>
-                                            <div class="collapse  p-0" id="submenu">
-                                                @foreach($sen as $autoridad)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSenador.show', $autoridad->nombre) }}">{{ $autoridad->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu">Diputados</a>
-                                            <div class="collapse  p-0" id="submenu1">
-                                                @foreach($dip as $autoridad1)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesDiputados.show', $autoridad1->nombre) }}">{{ $autoridad1->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu2" role="button" aria-expanded="false" aria-controls="submenu">Seremis</a>
-                                            <div class="collapse  p-0" id="submenu2">
-                                                @foreach($ser as $autoridad2)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu3" role="button" aria-expanded="false" aria-controls="submenu">Servicios</a>
-                                            <div class="collapse  p-0" id="submenu3">
-                                                @foreach($serv as $autoridad3)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
-                                        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                            <!-- Submenú -->
-                                            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu4" role="button" aria-expanded="false" aria-controls="submenu">Municipales</a>
-                                            <div class="collapse  p-0" id="submenu4">
-                                                @foreach($muni as $autoridad4)
-                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
-                                                @endforeach
-                                            </div>
-                                            <!-- Fin Submenú -->
-                                        </div>
+                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <!-- Submenú -->
+                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Población y Superficie</a>
+                                    <div class="collapse  p-0" id="submenu">
+                                    <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficie.index') }}">Población y Superficie</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Osono') }}">Provincia de Osono</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Llaquihue') }}">Provincia de Llaquihue</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Chiloe') }}">Provincia de Chiloé</a></p>
+                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Palena') }}">Provincia de Palena</a></p>
                                     </div>
+                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Dinámica Económica</a>
+                                </div>
                                 </div>
                             </div>
                             </div>

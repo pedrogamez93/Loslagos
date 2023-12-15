@@ -55,51 +55,21 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Dinámica Económica</h1>
-                <a href="{{ route('DinamicaEconomicaRegionLagos.createDinamicaEconomica') }}" class="btn btn-primary">Crear</a>
+                <h1>Listado de planificacion institucional</h1>
+                <a href="{{ route('listplanificainstitucional.create') }}" class="btn btn-primary">Agregar</a>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Titulo</th>
-                            <th>Subtitulo</th>
-                            <th>
-                                Descripcion 1
-                            </th>
-                            <th>
-                                Varlo 1
-                            </th>
-                            <th>
-                                Descripcion 2
-                            </th>
-                            <th>
-                                Varlo 2
-                            </th>
-                            <th>Acciones</th>
+                            <th>Título</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($articulo as $art)
+                        @foreach($planificacion as $arti)
                         <tr>
-                            <td>{{ $art->titulo }}</td>
-                            <td>{{ $art->subtitulo }}</td>
+                            <td>{{ $arti->titulo }}</td>
                             <td>
-                                {{ $art->descripcion1 }}
-                            </td>
-                            <td>
-                                {{$art->valor1 }}
-                            </td>
-                            <td>
-                                {{ $art->descripcion2 }}
-                            </td>
-                            <td>
-                                {{$art->valor2 }}
-                            </td>
-                            <td>
-
-                                <a href="{{ route('DinamicaEconomicaRegionLagos.editDinamicaEconomica', $art->id) }}" class="btn btn-warning">Editar</a>
-                                
-                                <form method="POST" action="{{ route('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica', $art->id) }}" style="display: inline;">
+                                <form method="POST" action="{{ route('listplanificainstitucional.destroy', $arti->id) }}"  style="display: inline;">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -113,4 +83,3 @@
         </div>
     </div>
 </div>
-

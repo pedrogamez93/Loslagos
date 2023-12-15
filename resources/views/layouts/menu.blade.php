@@ -70,6 +70,9 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/politicapersonasmayores') }}">Política Personas Mayores</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificacion institucional</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
@@ -93,7 +96,10 @@
                                     <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Estadísticas</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Dinámica Económica</a>
+                                    <a class="style-a-menu" href="{{ route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica') }}">Dinámica Económica</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('ExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
                                 </li>
                                    
                             </ul>

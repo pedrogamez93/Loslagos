@@ -23,6 +23,7 @@ use App\Models\DisenoPoliticoRegionalesBtnEncuestas;
 use App\Models\DisenoPoliticoRegionalesBtnforms;
 use App\Models\PoliticaPersonasMayores;
 use App\Models\PoliticaPersonasMayoresDocs;
+use App\Models\PlanificacionInstitucional;
 
 class CategoriesController extends Controller{
     
@@ -134,6 +135,12 @@ class CategoriesController extends Controller{
         $docs = $ultimoRegistro ? $ultimoRegistro->documentos : collect();
     
         return view('disenopoliticapersonasmayores', compact('ultimoRegistro', 'docs'));
+    }
+
+    public function planificacioninstitucionalIndex() {
+        $planificacion = PlanificacionInstitucional::all();
+        
+        return view('planificacioninstitucional', ['planificacion' => $planificacion]);
     }
 
 }
