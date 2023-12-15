@@ -295,20 +295,20 @@
                             </div>
                             <div class="col-md-7 info">
                                 <p class="style-nombre pb-4">{{ $introduccion->nombre }}</p>
-                                <p>Lugar y fecha de Nacimiento:</p>
-                                <p>Actividad o Profesión:</p>
-                                <p>Partido Político:</p>
+                                <p>Lugar y fecha de Nacimiento: {{ $introduccion->lugar_fecha_nacimiento }}</p>
+                                <p>Actividad o Profesión: {{ $introduccion->actividad_profesion }}</p>
+                                <p>Partido Político: {{ $introduccion->partido_politico }}</p>
                                 <h3>Datos del servicio</h3>
-                                <p>Cargo: </p>
-                                <p>Institución: </p>
-                                <p>Dirección:</p>
-                                <p>Fono:</p>
-                                <p>Fax:</p>
-                                <p>E-Mail:</p>
-                                <p>Región:</p>
-                                <p>Provincia:</p>
-                                <p>Comuna:</p>
-                                <p>Sitio Web:</p>
+                                <p>Cargo: {{ $introduccion->cargo }}</p>
+                                <p>Institución: {{ $introduccion->institucion }}</p>
+                                <p>Dirección: {{ $introduccion->direccion }}</p>
+                                <p>Fono: {{ $introduccion->fono }}</p>
+                                <p>Fax: {{ $introduccion->fax }}</p>
+                                <p>E-Mail: {{ $introduccion->Email }}</p>
+                                <p>Región: {{ $introduccion->region }}</p>
+                                <p>Provincia: {{ $introduccion->provincia }}</p>
+                                <p>Comuna: {{ $introduccion->comuna }}</p>
+                                <p>Sitio Web: {{ $introduccion->web }}</p>
                             </div>
                             <div class="col-md-12">
                                 <p class="style-B pt-4 pb-4">Biografía</p>
