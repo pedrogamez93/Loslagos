@@ -41,7 +41,7 @@
 </head>
 <body id="app-layout"  class=" " style="">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;padding-left: 3vw;">
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
   </a>
@@ -49,7 +49,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#" style="color:white">Home </a>
@@ -96,9 +96,36 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Inversiones</a>
           </div>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="#" style="color:white"> Directorio de Funciones </a>
+      </li>
+
+
+      <li class="nav-item dropdown">
+     
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="    border-radius: 18px;
+    background-color: rgb(255 255 255 / 34%); ">
+        <i class="bi bi-grid" style="color: white;"></i>Informate aqui
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
+        <a class="dropdown-item style-a-menu" >Sitio de Gobierno</a>
+        <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
+        <a class="dropdown-item style-a-menu" >Descarga de programas</a>
+        <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
+        <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
+
+        </div>
+      </li>
+
+
+
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+
+   
+    <!-- <ul class="nav navbar-nav navbar-right">
+                 
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -113,7 +140,7 @@
                             </ul>
                         </li>
                     @endif
-                </ul>
+                </ul> -->
   </div>
 </nav>
 

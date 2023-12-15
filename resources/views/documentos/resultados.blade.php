@@ -19,6 +19,9 @@
     </div>
 </div>
 
+<div class="contenido" style=" margin-top: -6vh;
+    background-color: white;
+    border-top-left-radius: 90px;">
 <div class="row py-5">
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
@@ -86,3 +89,4 @@
         <!-- ... tu código existente ... -->
     </div>
 @endsection
+</div>

@@ -47,7 +47,7 @@ Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
+Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
 Route::post('/funcionarios', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 
