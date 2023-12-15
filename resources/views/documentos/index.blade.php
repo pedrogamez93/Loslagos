@@ -37,7 +37,7 @@
             </div>
             </form>
     </div>
-    <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
+    <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 0%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
     @foreach($documentos as $documento)

@@ -22,7 +22,7 @@ class CreateFuncionariosTable extends Migration
             $table->string('cargo');
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('e-mail');
+            $table->string('email');
             $table->string('region');
             $table->string('provincia');
             $table->string('comuna');
