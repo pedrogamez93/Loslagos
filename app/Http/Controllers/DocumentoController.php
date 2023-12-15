@@ -52,7 +52,7 @@ class DocumentoController extends Controller
         $documentos = Documento::where('categoria', $categoria);
 
         if ($nombre) {
-            $documentos = $documentos->orWhere('nombre', 'LIKE', "%$nombre%");
+            $documentos = Documento::where('nombre', 'LIKE', "%$nombre%");
         }
 
         $documentos = $documentos->get();

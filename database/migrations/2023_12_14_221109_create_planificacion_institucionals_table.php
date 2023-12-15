@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveColumnsFromTramitesDigitalesDocsTable extends Migration
+class CreatePlanificacionInstitucionalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class RemoveColumnsFromTramitesDigitalesDocsTable extends Migration
      */
     public function up()
     {
-        Schema::table('tramites_digitales_docs', function (Blueprint $table) {
-            $table->dropColumn('nombre_comprimido');
-            $table->dropColumn('ruta_comprimido');
+        Schema::create('planificacion_institucionals', function (Blueprint $table) {
+            $table->id();
+            $table->string('titulo');
+            $table->string('urldocs');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class RemoveColumnsFromTramitesDigitalesDocsTable extends Migration
      */
     public function down()
     {
-        Schema::table('tramites_digitales_docs', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('planificacion_institucionals');
     }
 }

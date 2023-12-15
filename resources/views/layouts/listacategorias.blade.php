@@ -73,9 +73,9 @@
         <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
         <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
         <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climatica</a></li>
-        <li><a routerLink="/result/Carretera Austral" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
-        <li><a routerLink="/result/La Serena" title="Categoría:tags">Política Personas Mayores</a></li>
-        <li><a routerLink="/result/Animales" title="Categoría:tags">Planificación Institucional</a></li>
+        <li><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
+        <li><a href="/gobiernoregional/disenopoliticapersonasmayores" title="Categoría:tags">Política Personas Mayores</a></li>
+        <li><a href="/gobiernoregional/planificacioninstitucional" title="Categoría:tags">Planificación Institucional</a></li>
         <li><a routerLink="/result/Ballenas" title="Categoría:tags">Concurso Público</a></li>
         <li><a routerLink="/result/Ballenas" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
     </ul>

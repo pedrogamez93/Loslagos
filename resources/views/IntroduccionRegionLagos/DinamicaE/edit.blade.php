@@ -65,68 +65,45 @@
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
-                <form action="{{ route('EstadisticasRegionLagos.updateEstadisticas', $articulo->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('DinamicaEconomicaRegionLagos.updateDinamicaEconomica', $articulo->id) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                         @csrf
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6 provincia">
                                     <div class="input-group mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="provincia" required>
-                                        <option value="" {{ $articulo->provincia == '' ? 'selected' : '' }}>Seleccione una Provincia</option>
-                                        
-                                        <option value="PROVINCIA DE OSORNO" {{ $articulo->provincia == 'PROVINCIA DE OSORNO' ? 'selected' : '' }}>PROVINCIA DE OSORNO</option>
-                                        <option value="PROVINCIA DE LLANQUIHUE" {{ $articulo->provincia == 'PROVINCIA DE LLANQUIHUE' ? 'selected' : '' }}>PROVINCIA DE LLANQUIHUE</option>
-                                        <option value="PROVINCIA DE CHILOE" {{ $articulo->provincia == 'PROVINCIA DE CHILOE' ? 'selected' : '' }}>PROVINCIA DE CHILOE</option>
-                                        <option value="PROVINCIA DE PALENA" {{ $articulo->provincia == 'PROVINCIA DE PALENA' ? 'selected' : '' }}>PROVINCIA DE PALENA</option>
-                                    </select>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" value="{{ $articulo->titulo }}" placeholder="Titulo" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="comuna" name="comuna" class="form-control" value="{{ $articulo->comuna }}" placeholder="Comuna" required>
+                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" value="{{ $articulo->subtitulo }}" placeholder="Subtitulo" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 superficie">
-                                    <b>&nbsp;</b>
+                                <div class="col-md-3 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control"  value="{{ $articulo->superficie }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control"  value="{{ $articulo->descripcion1 }}" placeholder="Descripcion 1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4 purbana">
-                                    <b>Población Urbana</b>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_urbana_hombre" name="p_urbana_hombre"  value="{{ $articulo->p_urbana_hombre }}" class="form-control" placeholder="Hombre" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_urbana_mujeres" name="p_urbana_mujeres"   value="{{ $articulo->p_urbana_mujeres }}" class="form-control" placeholder="Mujer" required>
-                                            </div>
-                                        </div>
+                                <div class="col-md-3 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="valor1" name="valor1" class="form-control"  value="{{ $articulo->valor1 }}" placeholder="valor 1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4 prural">
-                                <div class="row">
-                                    <b>Población Rural</b>
-                                    <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_rural_hombre" name="p_rural_hombre"  value="{{ $articulo->p_rural_hombre }}"  class="form-control" placeholder="Hombre" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_rural_mujeres" name="p_rural_mujeres"  value="{{ $articulo->p_rural_mujeres }}"  class="form-control" placeholder="Mujer" required>
-                                            </div>
-                                        </div>
+                                <div class="col-md-3 provincia">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="descripcion2" name="descripcion2" class="form-control"   value="{{ $articulo->descripcion2 }}" placeholder="Descripcion 2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="valor2" name="valor2" class="form-control"  value="{{ $articulo->valor2 }}" placeholder="valor 2" required>
                                     </div>
                                 </div>
                             </div>
-                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Actualizar</button>
                     </form>
                 </div>
             </div>

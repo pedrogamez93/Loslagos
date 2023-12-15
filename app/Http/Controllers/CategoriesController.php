@@ -18,6 +18,12 @@ use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
 use App\Models\AudienciasPartes;
 use App\Models\AudienciasPartesDocs;
+use App\Models\DisenoPoliticoRegionales;
+use App\Models\DisenoPoliticoRegionalesBtnEncuestas;
+use App\Models\DisenoPoliticoRegionalesBtnforms;
+use App\Models\PoliticaPersonasMayores;
+use App\Models\PoliticaPersonasMayoresDocs;
+use App\Models\PlanificacionInstitucional;
 
 class CategoriesController extends Controller{
     
@@ -106,6 +112,35 @@ class CategoriesController extends Controller{
     
         // Pasa la información a la vista
         return view('audienciadepartes', ['audiencia' => $audiencia]);
+    }
+
+    public function politicasostenibilidadhidricaIndex() {
+        // Obtén el último registro de DiseñoPolíticaRegionales
+        $ultimoRegistro = DisenoPoliticoRegionales::latest()->first();
+    
+        // Obtén los formularios relacionados
+        $formularios = $ultimoRegistro->btnForms;
+    
+        // Obtén las encuestas relacionadas
+        $encuestas = $ultimoRegistro->btnEncuestas;
+    
+        return view('politicasostenibilidadhidrica', compact('formularios', 'encuestas', 'ultimoRegistro'));
+    }
+
+    public function politicapersonasmayoresIndex() {
+        // Obtén el último politicapersonasmayores
+        $ultimoRegistro = PoliticaPersonasMayores::latest()->first();
+    
+        // Asegúrate de verificar si existe un registro antes de intentar acceder a sus documentos
+        $docs = $ultimoRegistro ? $ultimoRegistro->documentos : collect();
+    
+        return view('disenopoliticapersonasmayores', compact('ultimoRegistro', 'docs'));
+    }
+
+    public function planificacioninstitucionalIndex() {
+        $planificacion = PlanificacionInstitucional::all();
+        
+        return view('planificacioninstitucional', ['planificacion' => $planificacion]);
     }
 
 }

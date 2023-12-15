@@ -66,11 +66,11 @@
         <span id="backToggle" class="responsiveCategorias">Categorías</span>
     </div>
     <ul id="categorylist">
-        <li><a href="/regionlagos/introduccion" title="Categoría:acerca">Introducción</a></li>
-        <li><a href="/regionlagos/antecedentesregion" title="Categoría:tags">Información de la Región</a></li>
-        <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Categoría:tags">Autoridades</a></li>
-        <li><a routerLink="#"title="Categoría:tags">Estadísticas</a></li>
-        <li><a href="#" title="Categoría:tags">Inversiones</a></li>
+        <li><a href="/regionlagos/introduccion" title="Categoría:Introducción">Introducción</a></li>
+        <li><a href="/regionlagos/antecedentesregion" title="Categoría:Información de la Región">Información de la Región</a></li>
+        <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Categoría:Autoridades">Autoridades</a></li>
+        <li><a href="{{ route('PoblacionSuperficie.index') }}" title="Categoría:Estadísticas">Estadísticas</a></li>
+        <li><a href="#" title="Categoría:Inversiones">Inversiones</a></li>
     </ul>
 </div>
 

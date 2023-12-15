@@ -335,9 +335,6 @@
                                             <!-- Submenú -->
                                             <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Senadores</a>
                                             <div class="collapse  p-0" id="submenu">
-                                              <!--   <p class="enlaceM"><a class="ml-3" href="#">Opción 1</a></p>
-                                                <p class="enlaceM"><a class="ml-3" href="#">Opción 2</a></p>-->
-                                                <!-- En tu vista_por_cargo.blade.php -->
                                                 @foreach($sen as $autoridad)
                                                     <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSenador.show', $autoridad->nombre) }}">{{ $autoridad->nombre }}</a></p>
                                                 @endforeach
@@ -348,8 +345,9 @@
                                             <!-- Submenú -->
                                             <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu">Diputados</a>
                                             <div class="collapse  p-0" id="submenu1">
-                                            <!--    <p class="enlaceM"><a class="ml-3" href="#">Opción 1</a></p>
-                                                <p class="enlaceM"><a class="ml-3" href="#">Opción 2</a></p>-->
+                                                @foreach($dip as $autoridad1)
+                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesDiputados.show', $autoridad1->nombre) }}">{{ $autoridad1->nombre }}</a></p>
+                                                @endforeach
                                             </div>
                                             <!-- Fin Submenú -->
                                         </div>
@@ -357,8 +355,9 @@
                                             <!-- Submenú -->
                                             <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu2" role="button" aria-expanded="false" aria-controls="submenu">Seremis</a>
                                             <div class="collapse  p-0" id="submenu2">
-                                                <!--<p class="enlaceM"><a class="ml-3" href="#">Opción 1</a></p>
-                                                <p class="enlaceM"><a class="ml-3" href="#">Opción 2</a></p> -->
+                                                @foreach($ser as $autoridad2)
+                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
+                                                @endforeach
                                             </div>
                                             <!-- Fin Submenú -->
                                         </div>
@@ -366,8 +365,9 @@
                                             <!-- Submenú -->
                                             <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu3" role="button" aria-expanded="false" aria-controls="submenu">Servicios</a>
                                             <div class="collapse  p-0" id="submenu3">
-                                                <!--<p class="enlaceM"><a class="ml-3" href="#">Opción 1</a></p>
-                                                <p class="enlaceM"><a class="ml-3" href="#">Opción 2</a></p> -->
+                                                @foreach($serv as $autoridad3)
+                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
+                                                @endforeach
                                             </div>
                                             <!-- Fin Submenú -->
                                         </div>
@@ -375,8 +375,9 @@
                                             <!-- Submenú -->
                                             <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu4" role="button" aria-expanded="false" aria-controls="submenu">Municipales</a>
                                             <div class="collapse  p-0" id="submenu4">
-                                                <!--<p class="enlaceM"><a class="ml-3" href="#">Opción 1</a></p>
-                                                <p class="enlaceM"><a class="ml-3" href="#">Opción 2</a></p> -->
+                                                @foreach($muni as $autoridad4)
+                                                    <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
+                                                @endforeach
                                             </div>
                                             <!-- Fin Submenú -->
                                         </div>

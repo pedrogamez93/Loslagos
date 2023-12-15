@@ -94,28 +94,25 @@
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
             <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" required>
                        
-            <select class="form-select mt-4" aria-label="Default select example" name="division">
+            <select class="form-select mt-4" aria-label="Default select example" name="actividad">
                 <option selected>Actividad o Profesión</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="departamento">
-                <option selected>Division</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
+            <select class="form-select mt-4" aria-label="Default select example" name="division" id="division">
+            <option value="" disabled selected>Seleccione División</option>
+            @foreach ($divisiones as $division)
+                <option value="{{ $division }}">{{ $division }}</option>
+                @endforeach
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-                <option selected>Departamento</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
+            <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
+            <option value="" disabled selected>Seleccione Departamento</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="cargo">
                 <option selected>Cargo</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
@@ -123,30 +120,30 @@
             </select>
 
             <label class="style-label mt-4 required" for="titulo">Direccion:</label>
-            <input class="form-control mt-2" type="text" name="Direccion" placeholder="Direccion" required>
+            <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" required>
 
             <label class="style-label mt-4 required" for="titulo">Telefono:</label>
-            <input class="form-control mt-2" type="text" name="Telefono" placeholder="Telefono" required>
+            <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" required>
 
             <label class="style-label mt-4 required" for="titulo">Email:</label>
-            <input class="form-control mt-2" type="text" name="e-mail" placeholder="Telefono" required>
+            <input class="form-control mt-2" type="text" name="email" placeholder="Email" required>
 
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="region">
                 <option selected>Región</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="provincia">
                 <option selected>Provincia</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+            <select class="form-select mt-4" aria-label="Default select example" name="comuna">
                 <option selected>Comuna</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
@@ -155,7 +152,7 @@
 
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Suba aquí la fo correspondiente</label>
-                <input class="form-control" type="file" name="archivo_path" id="formFile">
+                <input class="form-control" type="file" name="foto"  id="foto">
             </div>
 
             <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
@@ -166,3 +163,31 @@
     </div>
 </div>
 
+<script>
+    // En tu script JavaScript
+    document.addEventListener('DOMContentLoaded', function () {
+        var divisionSelect = document.getElementById('division');
+        var departamentoSelect = document.getElementById('departamento');
+
+        divisionSelect.addEventListener('change', function () {
+            var selectedDivision = this.value;
+            var departamentos = <?php echo json_encode($departamentos); ?>;
+
+            // Limpiar opciones anteriores
+            departamentoSelect.innerHTML = '<option value="" disabled selected>Seleccione Departamento</option>';
+
+            // Agregar nuevas opciones
+            if (departamentos[selectedDivision]) {
+                departamentos[selectedDivision].forEach(function (departamento) {
+                    var option = document.createElement('option');
+                    option.value = departamento;
+                    option.text = departamento;
+                    departamentoSelect.add(option);
+                });
+                departamentoSelect.disabled = false; // Habilitar el segundo select
+            } else {
+                departamentoSelect.disabled = true; // Deshabilitar si no hay departamentos
+            }
+        });
+    });
+</script>
