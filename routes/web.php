@@ -19,6 +19,8 @@ use App\Http\Controllers\AudienciasController;
 //use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProgramasController;
+use App\Http\Controllers\TodosLosProgramasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -166,3 +168,18 @@ Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\Introduccion
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('programas', ProgramasController::class);
+
+Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
+
+
+Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
+
+Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
+
+//Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
+Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+
+
