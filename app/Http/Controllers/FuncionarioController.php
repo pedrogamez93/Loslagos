@@ -138,7 +138,7 @@ class FuncionarioController extends Controller
         $divisiones = $this->divisiones; 
         $departamentos = $this->departamentos;
 
-        return view('funcionario.create', compact('divisiones', 'departamentos'));
+        return view('funcionarios.create', compact('divisiones', 'departamentos'));
     }
 
     public function store(Request $request)

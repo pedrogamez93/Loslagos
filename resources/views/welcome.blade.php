@@ -143,23 +143,23 @@
         <div class="row">
           <div class="col-md-3">
             <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p class="TitulocarouselTD pt-3">Fondos concursables FNDR</p>
+             <p>Sistema de postulación y gestión de proyectos fondo comunidad...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
-              <p class="TitulocarouselTD pt-3"> lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p class="TitulocarouselTD pt-3">Sistema de Gestión Fondo</p>
+               <p>La importancia de la realización de los concursos FIC radica en el trabajo...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
-              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p  class="TitulocarouselTD pt-3">Solicitud de Acceso</p>
+               <p>Busca dentro de la información pública de la Institución...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
-              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p  class="TitulocarouselTD pt-3">Solicitud de Audiencia</p>
+               <p>Ingresa a la PlataformaLey del Lobby y visualiza las solicitudes...</p>
           </div>
         </div>
       </div>

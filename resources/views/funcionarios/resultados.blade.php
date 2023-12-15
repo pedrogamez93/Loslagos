@@ -16,7 +16,7 @@
         padding-left: 50px;">
         <div>
             <h5>Home / Gobierno Regional</h5>
-            <h1 class="titulofunc">Funcionarios </h1>
+            <h1 class="titulofun">Funcionarios </h1>
             <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
         </div>
     </div>
@@ -86,7 +86,10 @@
                         <a href="{{ url('storage/' . $funcionario->archivo_path) }}" download style="margin-bottom:15px" >
                         <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
                                     
-                                <img src="{{ asset('storage').'/'.$funcionario->foto }}" alt="img">
+                        <div class="circular-div" style="width: 100px;
+    height: 100px;
+    background-color: #F59120;
+    border-radius: 50%;"></div>
                                 <div style="padding-left:3%">
                                 <p  class="tituloresultadobuscador1">{{ $funcionario->nombre }}</p>
                                 <p class="textoresultadobuscador1">Institucion: <span class="textoresultadobuscador2">Gobierno Regional de Los Lagos</span></p>
