@@ -66,9 +66,9 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
           </div>

@@ -17,6 +17,8 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\AsambleaClimaticaController;
 use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\DisenoPoliticoRegionalesController;
+use App\Http\Controllers\PoliticaPersonasMayoresController;
+use App\Http\Controllers\PlanificacionInstitucionalController;
 //use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +47,7 @@ Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
 Route::post('/funcionarios', [FuncionarioController::class, 'store']);
-Route::post('/funcionario/buscar', [FuncionarioController::class, 'buscar']);
+Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 
 //Route::resource('/', HomeController::class);
 
@@ -71,6 +73,12 @@ Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
 Route::resource('audienciasdepartes', AudienciasController::class);
 
 Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
+
+Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
+
+
+Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
+Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
 
 // Rutas para los disenopoliticoregionales
 Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');
@@ -125,6 +133,10 @@ Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\Categori
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
 Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controllers\CategoriesController@politicasostenibilidadhidricaIndex');
+
+Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controllers\CategoriesController@politicapersonasmayoresIndex');
+
+Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
