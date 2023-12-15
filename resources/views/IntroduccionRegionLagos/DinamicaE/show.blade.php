@@ -55,21 +55,25 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Estadística</h1>
-                <a href="{{ route('EstadisticasRegionLagos.createEstadisticas') }}" class="btn btn-primary">Crear Estadística</a>
+                <h1>Listado de Dinámica Económica</h1>
+                <a href="{{ route('DinamicaEconomicaRegionLagos.createDinamicaEconomica') }}" class="btn btn-primary">Crear</a>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Provincia</th>
-                            <th>Comuna</th>
+                            <th>Titulo</th>
+                            <th>Subtitulo</th>
                             <th>
-                                Población Urbana
-                                <p><b>Hombres</b> - <b>Mujeres</b></p>
+                                Descripcion 1
                             </th>
                             <th>
-                                Población Rural
-                                <p><b>Hombres</b> - <b>Mujeres</b></p>
+                                Varlo 1
+                            </th>
+                            <th>
+                                Descripcion 2
+                            </th>
+                            <th>
+                                Varlo 2
                             </th>
                             <th>Acciones</th>
                         </tr>
@@ -77,19 +81,25 @@
                     <tbody>
                         @foreach($articulo as $art)
                         <tr>
-                            <td>{{ $art->provincia }}</td>
-                            <td>{{ $art->comuna }}</td>
+                            <td>{{ $art->titulo }}</td>
+                            <td>{{ $art->subtitulo }}</td>
                             <td>
-                                {{ $art->p_urbana_hombre }} - {{ $art->p_urbana_mujeres }}
+                                {{ $art->descripcion1 }}
                             </td>
                             <td>
-                                {{ $art->p_rural_hombre }} - {{ $art->p_rural_mujeres }}
+                                {{$art->valor1 }}
                             </td>
                             <td>
-                                <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('EstadisticasRegionLagos.editEstadisticas', $art->id) }}" class="btn btn-warning">Editar</a>
+                                {{ $art->descripcion2 }}
+                            </td>
+                            <td>
+                                {{$art->valor2 }}
+                            </td>
+                            <td>
+
+                                <a href="{{ route('DinamicaEconomicaRegionLagos.editDinamicaEconomica', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
-                                <form method="POST" action="{{ route('EstadisticasRegionLagos.destroyEstadisticas', $art->id) }}"  style="display: inline;">
+                                <form method="POST" action="{{ route('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica', $art->id) }}" style="display: inline;">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Eliminar</button>

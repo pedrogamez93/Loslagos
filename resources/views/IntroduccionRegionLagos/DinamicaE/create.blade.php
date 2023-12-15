@@ -61,66 +61,44 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Registro de Estadística</h1>
+                        <h1>Dinámica Económica</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
-                <form action="{{ route('EstadisticasRegionLagos.storeEstadisticas') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('DinamicaEconomicaRegionLagos.storeDinamicaEconomica') }}" method="POST" enctype="multipart/form-data">
                         @csrf 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6 provincia">
                                     <div class="input-group mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="provincia" required>
-                                        <option value="" selected>Seleccione una Provincia</option>
-                                        <option value="PROVINCIA DE OSORNO">PROVINCIA DE OSORNO</option>
-                                        <option value="PROVINCIA DE LLANQUIHUE">PROVINCIA DE LLANQUIHUE</option>
-                                        <option value="PROVINCIA DE CHILOE">PROVINCIA DE CHILOE</option>
-                                        <option value="PROVINCIA DE PALENA">PROVINCIA DE PALENA</option>
-                                    </select>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="comuna" name="comuna" class="form-control" placeholder="Comuna" required>
+                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" placeholder="Subtitulo" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 superficie">
-                                    <b>&nbsp;</b>
+                                <div class="col-md-3 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control" placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control" placeholder="Descripcion 1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4 purbana">
-                                    <b>Población Urbana</b>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_urbana_hombre" name="p_urbana_hombre" class="form-control" placeholder="Hombre" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_urbana_mujeres" name="p_urbana_mujeres" class="form-control" placeholder="Mujer" required>
-                                            </div>
-                                        </div>
+                                <div class="col-md-3 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="valor1" name="valor1" class="form-control" placeholder="valor 1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4 prural">
-                                <div class="row">
-                                    <b>Población Rural</b>
-                                    <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_rural_hombre" name="p_rural_hombre" class="form-control" placeholder="Hombre" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="p_rural_mujeres" name="p_rural_mujeres" class="form-control" placeholder="Mujer" required>
-                                            </div>
-                                        </div>
+                                <div class="col-md-3 provincia">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="descripcion2" name="descripcion2" class="form-control" placeholder="Descripcion 2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="valor2" name="valor2" class="form-control" placeholder="valor 2" required>
                                     </div>
                                 </div>
                             </div>

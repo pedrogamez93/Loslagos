@@ -242,42 +242,6 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    .cajaElementor {
-        border: 1px solid #F59120;
-        border-radius: 5px;
-    }
-    p.titulo {
-        font-family: Inter;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 24px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.mb-2.subtitulo {
-        font-family: Inter;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 24px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.fechas {
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.fechas span {
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
 </style>
 <html>
 <head>
@@ -352,27 +316,37 @@
                 <div class="col-md-8 borderR">
                     <div class="container int">
                         <div class="row">
-                        <p class="title-cat mb-5">Dinámica Económica</p>
-                            @foreach($introduccion as $art)
-                                <div class="col-md-6 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="titulo">{{$art->titulo}}</p>
-                                            <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
-                                            <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
-                                            <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            
-                                        </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                            @endforeach
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                            <th scope="col" class="tituloT">Superficie</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
+                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
+                            <th scope="col" class="tituloT">Total</th>
+                            </tr>
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col" style=" text-align: center;"> {{ $totalSuperficie }}</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <td style=" text-align: center;">CENSO2017</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_hombre }}</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_mujeres }}</td>
+                                <td style=" text-align: center;"> {{ $p_urbana_mujeres }}</td>
+                                <td style=" text-align: center;"> {{ $p_rural_hombre }}</td>
+                                <td style=" text-align: center;"> {{ $total }}</td>
+                            </tr>
+                        </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
@@ -394,10 +368,6 @@
                                             <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Palena') }}">Provincia de Palena</a></p>
                                     </div>
                                     <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Dinámica Económica</a>
-                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Exportación Según Rama Actividad</a>
-                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Exportación Según Bloque Económico</a>
-                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Actividad Económica</a>
-                                    <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">FNDR 2009</a>
                                 </div>
                                 </div>
                             </div>

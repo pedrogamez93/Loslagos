@@ -90,7 +90,10 @@
                                     <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Estadísticas</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}">Dinámica Económica</a>
+                                    <a class="style-a-menu" href="{{ route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica') }}">Dinámica Económica</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('ExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
                                 </li>
                                    
                             </ul>

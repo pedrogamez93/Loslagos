@@ -18,10 +18,10 @@ class CreateEstadisticasTable extends Migration
             $table->string('provincia');
             $table->integer('superficie');
             $table->string('comuna');
-            $table->string('p_urbana_hombre');
-            $table->string('p_urbana_mujeres');
-            $table->string('p_rural_hombre');
-            $table->string('p_rural_mujeres');
+            $table->integer('p_urbana_hombre');
+            $table->integer('p_urbana_mujeres');
+            $table->integer('p_rural_hombre');
+            $table->integer('p_rural_mujeres');
             $table->timestamps();
         });
     }
