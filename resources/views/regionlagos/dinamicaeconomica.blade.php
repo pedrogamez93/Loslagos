@@ -398,7 +398,7 @@
                                     <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Exportación Según Bloque Económico</a>
                                     <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Actividad Económica</a>
                                     <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">FNDR 2009</a>
-                                </div>
+                                </div> 
                                 </div>
                             </div>
                             </div>
