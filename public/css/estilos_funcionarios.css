@@ -25,3 +25,34 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
+
+
+.tituloresultadobuscador1{
+    width: 105%;
+    color: #565656;
+
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.textoresultadobuscador1{
+    color: #565656;
+
+font-family: 'Inter';
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.textoresultadobuscador2{
+color: #565656;
+font-family: 'Inter';
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}

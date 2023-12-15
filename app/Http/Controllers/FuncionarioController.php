@@ -123,7 +123,8 @@ class FuncionarioController extends Controller
     public function index() 
     {
      
-
+        $divisiones = $this->divisiones; 
+        $departamentos = $this->departamentos;
        
 
     $funcionarios = Funcionario::all();
@@ -137,7 +138,7 @@ class FuncionarioController extends Controller
         $divisiones = $this->divisiones; 
         $departamentos = $this->departamentos;
 
-        return view('funcionarios.create', compact('divisiones', 'departamentos'));
+        return view('funcionario.create', compact('divisiones', 'departamentos'));
     }
 
     public function store(Request $request)
@@ -173,4 +174,45 @@ class FuncionarioController extends Controller
         Funcionario::insert($datosf);
         return redirect('/funcionarios')->with('success', 'Documento guardado exitosamente');
     }
+
+    public function buscar(Request $request)
+{
+    $divisiones = $this->divisiones; 
+    $departamentos = $this->departamentos;
+
+    $request->validate([
+        'nombre' => 'nullable',
+        
+        'division'  => 'nullable',
+        'departamento' => 'nullable'
+    ]);
+
+    $nombre = $request->input('nombre');
+
+    
+
+    $division = $request->input('division');
+    $departamento = $request->input('departamento');
+
+    $funcionarios = Funcionario::query();
+
+    if ($nombre) {
+        $funcionarios->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    
+
+    if ($division) {
+        $funcionarios->where('division', $division);
+    }
+
+    if ($departamento) {
+        $funcionarios->where('departamento', $departamento);
+    }
+
+    $funcionarios = $funcionarios->get();
+
+    return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
+}
+
 }

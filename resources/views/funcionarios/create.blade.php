@@ -126,7 +126,7 @@
             <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" required>
 
             <label class="style-label mt-4 required" for="titulo">Email:</label>
-            <input class="form-control mt-2" type="text" name="e-mail" placeholder="Email" required>
+            <input class="form-control mt-2" type="text" name="email" placeholder="Email" required>
 
 
             <select class="form-select mt-4" aria-label="Default select example" name="region">

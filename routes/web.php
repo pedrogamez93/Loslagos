@@ -46,7 +46,7 @@ Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
 Route::post('/funcionarios', [FuncionarioController::class, 'store']);
-Route::post('/funcionario/buscar', [FuncionarioController::class, 'buscar']);
+Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 
 //Route::resource('/', HomeController::class);
 

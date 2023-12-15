@@ -24,4 +24,14 @@ class Funcionario extends Model
       'provincia',
       'comuna',
       'foto'];
+
+      protected $appends = ['foto_url'];
+
+      // ...
+  
+      public function getFotoUrlAttribute()
+      {
+          return asset('storage/' . $this->foto);
+      }
+
 }
