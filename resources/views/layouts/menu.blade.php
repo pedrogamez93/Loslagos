@@ -116,6 +116,9 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('documentos.create') }}">Subir</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
+                                </li>
                                
                                    
                             </ul>
