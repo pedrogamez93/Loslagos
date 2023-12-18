@@ -43,7 +43,10 @@ Route::get('/documentos', [DocumentoController::class, 'index']);
 Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
 Route::post('/documentos', [DocumentoController::class, 'store']);
 Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
-
+Route::get('/documentos/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
+Route::put('/documentos/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
+Route::get('/documentos/ver-documentos', [DocumentoController::class, 'indexTabla'])->name('documentos.verdocumentos');
+Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
@@ -211,16 +214,16 @@ Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLago
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('programas', ProgramasController::class);
+// Route::resource('programas', ProgramasController::class);
 
-Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
+// Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
 
 
-Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
+// Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
 
-Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
+//Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
 
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
-Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+// Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
 
 
