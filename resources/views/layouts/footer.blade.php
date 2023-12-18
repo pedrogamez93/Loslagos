@@ -46,13 +46,13 @@
                     <a class="style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Planificación Institucional</a>
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
                 </li>
                 <li class="style-li">
                     <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>
                 </li>
             </ul>
         </li>

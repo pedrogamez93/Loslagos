@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\IntroduccionController;
 use App\Http\Controllers\CategoriesController;
@@ -19,11 +20,11 @@ use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\DisenoPoliticoRegionalesController;
 use App\Http\Controllers\PoliticaPersonasMayoresController;
 use App\Http\Controllers\PlanificacionInstitucionalController;
-//use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
+use App\Http\Controllers\ComiteCienciasController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +81,8 @@ Route::resource('audienciasdepartes', AudienciasController::class);
 Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
+
+Route::resource('comiteciencias', ComiteCienciasController::class);
 
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
@@ -142,6 +145,8 @@ Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controll
 Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controllers\CategoriesController@politicapersonasmayoresIndex');
 
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
+
+Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

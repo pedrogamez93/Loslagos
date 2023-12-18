@@ -71,7 +71,10 @@
                                     <a class="style-a-menu" href="{{ url('/politicapersonasmayores') }}">Política Personas Mayores</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificacion institucional</a>
+                                    <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificación institucional</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Comité de ciencia, Tecnología e Innovación</a>
                                 </li>
                             </ul>
                         </div>

@@ -24,6 +24,8 @@ use App\Models\DisenoPoliticoRegionalesBtnforms;
 use App\Models\PoliticaPersonasMayores;
 use App\Models\PoliticaPersonasMayoresDocs;
 use App\Models\PlanificacionInstitucional;
+use App\Models\ComiteCiencias;
+use App\Models\ComiteCienciasDocs;
 
 class CategoriesController extends Controller{
     
@@ -141,6 +143,14 @@ class CategoriesController extends Controller{
         $planificacion = PlanificacionInstitucional::all();
         
         return view('planificacioninstitucional', ['planificacion' => $planificacion]);
+    }
+
+    public function comitecienciastecnologiasIndex() {
+        // Obtener el último registro de ComiteCiencias con documentos relacionados
+        $comite = ComiteCiencias::with('documentos')->latest()->first();
+    
+        // Pasa la información a la vista
+        return view('comitecienciastecnologias', ['comite' => $comite]);
     }
 
 }
