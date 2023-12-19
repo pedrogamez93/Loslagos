@@ -105,7 +105,7 @@
                         @method('PUT')
                         <!-- Campos del formulario -->
                         <label class="style-label required" for="titulo">Título:</label>
-                        <input class="form-control mt-2" type="text" name="titulo" value="{{ $ultimoRegistro->titulo }}" readonly disabled>
+                        <input class="form-control mt-2" type="text" name="titulo" value="{{ $ultimoRegistro->titulo }}">
 
                         <label class="style-label" for="bajada">Bajada o Descripción:</label>
                         <textarea class="form-control mt-2 mb-4" id="editor" name="bajada" disabled>{{ $ultimoRegistro->bajada }}</textarea>
@@ -288,9 +288,5 @@
             clone.insertAfter(".agregando-btn-form:last");
         });
 
-            // Habilitar el formulario justo antes de enviar
-            $("form#formulario-edicion").submit(function () {
-                $(this).find(":input").prop("disabled", false);
-            });
     });
 </script>

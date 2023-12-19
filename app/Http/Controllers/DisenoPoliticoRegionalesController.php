@@ -115,11 +115,11 @@ class DisenoPoliticoRegionalesController extends Controller
             'titulo_seccion_form' => 'nullable|string',
             'titulo_seccion_encue' => 'nullable|string',
             'bajada_seccion_encue' => 'nullable|string',
-            'nombre_btn_form.*' => 'required|string|max:255',
-            'url_btn_form.*' => 'required|url',
-            'nombre_encuesta.*' => 'required|string|max:255',
-            'nombre_btn_encuesta.*' => 'required|string|max:255',
-            'url_btn_encuesta.*' => 'required|url',
+            'nombre_btn_form.*' => 'string|max:255',
+            'url_btn_form.*' => 'nullable|url',
+            'nombre_encuesta.*' => 'nullable|string|max:255',
+            'nombre_btn_encuesta.*' => 'nullable|string|max:255',
+            'url_btn_encuesta.*' => 'nullable|url',
         ]);
     
         // Obtener el registro existente
