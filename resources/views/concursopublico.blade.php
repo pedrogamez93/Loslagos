@@ -80,11 +80,11 @@
             color: #00548F;
         }
 
-        p.title-acord{
+        p.title-acord, .accordion-button{
 			font-family: 'Inter';
 			font-Weight: 700;
 			font-Size: 20px;
-			color: #FFFFFF;
+			color: #565656;
 		}
 	.bajada-acord{
 			font-family: 'Inter';
@@ -289,7 +289,7 @@
                 <div class="accordion mt-4 mb-4" id="concursoAccordion{{ $concurso->id }}">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ $concurso->id }}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $concurso->id }}" aria-expanded="true" aria-controls="collapse{{ $concurso->id }}" style="background-color: #F59120 !important;">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $concurso->id }}" aria-expanded="true" aria-controls="collapse{{ $concurso->id }}" style="background-color: #F591201A !important;">
                                <p class="title-acord">{{ $concurso->titulo }}</p>
                             </button>
                         </h2>
@@ -302,8 +302,8 @@
 
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="documentosHeading{{ $concurso->id }}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#documentosCollapse{{ $concurso->id }}" aria-expanded="true" aria-controls="documentosCollapse{{ $concurso->id }}">
-                                Documentos Relacionados
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#documentosCollapse{{ $concurso->id }}" aria-expanded="true" aria-controls="documentosCollapse{{ $concurso->id }}" style="background-color: #F591201A !important;">
+                             Documentos Concurso Profesional
                             </button>
                         </h2>
                         <div id="documentosCollapse{{ $concurso->id }}" class="accordion-collapse collapse" aria-labelledby="documentosHeading{{ $concurso->id }}" data-bs-parent="#concursoAccordion{{ $concurso->id }}">
