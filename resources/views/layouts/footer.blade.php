@@ -49,7 +49,7 @@
                     <a class="style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
                 </li>
                 <li class="style-li">
                     <a class="style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>

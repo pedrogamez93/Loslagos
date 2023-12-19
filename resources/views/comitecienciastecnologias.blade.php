@@ -196,18 +196,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
-<!-- jQuery (asegúrate de incluirlo antes de Bootstrap JS) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Comite de ciencia y tecnologia</title>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<!-- Bootstrap JS y Popper (incluye Bootstrap Bundle) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-<!-- Tu archivo de estilos personalizados -->
-<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <!-- Tu archivo de estilos personalizados -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <header>
@@ -238,7 +233,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/asambleaclimatica">Asamblea Climatica Ciudadana</a></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/comitecienciastecnologias">Comite de Ciencias y Tecnologias e Innovacion</a></span></p>
                 </div>
             </div>
         </div>   
@@ -280,7 +275,7 @@
                                 @foreach ($comite->documentos as $documento)
                                     {{-- Aquí puedes acceder a las propiedades del documento --}}
                                     <div class="mi-documento mt-3 mb-3">
-                                        <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                        <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
                                         </a>
@@ -298,8 +293,15 @@
     </main>
 
     <footer>
-</footer>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
-</body>
+    </footer>
+        <!-- jQuery (asegúrate de incluirlo antes de Bootstrap JS) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Bootstrap JS y Popper (incluye Bootstrap Bundle) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+        <!-- Script personalizado para cerrar el acordeón al hacer clic en el mismo botón -->
+    </body>
 </html>
+
 

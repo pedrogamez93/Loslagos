@@ -24,6 +24,7 @@ use App\Http\Controllers\TramitesDigitalesController;
 use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
 use App\Http\Controllers\ComiteCienciasController;
+use App\Http\Controllers\ConcursosPublicosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,10 @@ Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
 
 Route::resource('comiteciencias', ComiteCienciasController::class);
+
+Route::resource('concursospublicos', ConcursosPublicosController::class);
+
+Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
 
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
@@ -147,6 +152,8 @@ Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controll
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
 
 Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
+
+Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

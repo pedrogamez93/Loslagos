@@ -26,6 +26,8 @@ use App\Models\PoliticaPersonasMayoresDocs;
 use App\Models\PlanificacionInstitucional;
 use App\Models\ComiteCiencias;
 use App\Models\ComiteCienciasDocs;
+use App\Models\ConcursosPublicos;
+use App\Models\ConcursosPublicosDocs;
 
 class CategoriesController extends Controller{
     
@@ -151,6 +153,14 @@ class CategoriesController extends Controller{
     
         // Pasa la información a la vista
         return view('comitecienciastecnologias', ['comite' => $comite]);
+    }
+
+    public function concursopublicoIndex() {
+        // Obtener todos los registros de ConcursosPublicos con documentos relacionados
+        $concursos = ConcursosPublicos::with('documentos')->get();
+        
+        // Pasa la información a la vista
+        return view('concursopublico', ['concursos' => $concursos]);
     }
 
 }

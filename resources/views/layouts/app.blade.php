@@ -69,7 +69,7 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>
           </div>
       </li>

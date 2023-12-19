@@ -73,6 +73,19 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificación institucional</a>
                                 </li>
+                                <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Concursos Públicos</a>
+                                        <ul class="submenu">
+                                            <li class="style-li" style="padding-top: 5px;">
+                                                <a class="style-a-menu" href="{{ url('/concursospublicos') }}">Todos los Concursos Públicos</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/concursospublicos/create') }}">Nuevo Concurso Público</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Comité de ciencia, Tecnología e Innovación</a>
                                 </li>
