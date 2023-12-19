@@ -322,6 +322,10 @@
                 </div>
             @endforeach
                 </div>
+                <p class="minot"><strong>Nota:</strong><br> 
+                    Si no puede abrir directamente el documento, presione el botón derecho del mouse
+                    sobre el icono de descarga y luego seleccionar "Guardar destino como...".
+                    Esto le permite guardar el documento directamente a su equipo.</p>
             </div>
         </div>              
     </main>
