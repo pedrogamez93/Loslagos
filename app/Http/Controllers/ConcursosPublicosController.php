@@ -117,8 +117,7 @@ class ConcursosPublicosController extends Controller
         return redirect()->route('concursospublicos.index');
     }
 
-    public function eliminarDocumento($documentoId)
-{
+    public function eliminarDocumento($documentoId){
     try {
         $documento = ConcursosPublicosDocs::findOrFail($documentoId);
         $documento->delete();
@@ -128,4 +127,5 @@ class ConcursosPublicosController extends Controller
         return response()->json(['success' => false, 'message' => 'Error al eliminar el documento', 'error' => $e->getMessage()]);
     }
 }
+
 }

@@ -58,6 +58,49 @@
         color: #565656;
         text-align: justify;
     }
+    .accordion-item {
+    		border: 1px solid #F59120 !important;
+		}
+		button.accordion-button {
+    		background-color: rgba(0, 0, 0, 0) !important;
+		}
+        .accordion-button:focus, .accordion-button:not(.collapsed) {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        button.accordion-button::before, button.accordion-button::after{
+            border: none !important;
+        }
+    p.style-tags{
+            font-family: 'Inter';
+            font-weight: 600;
+            font-style: italic;
+            font-Size: 16px;
+            Line-height: 19.36px;
+            color: #00548F;
+        }
+
+        p.title-acord{
+			font-family: 'Inter';
+			font-Weight: 700;
+			font-Size: 20px;
+			color: #FFFFFF;
+		}
+	.bajada-acord{
+			font-family: 'Inter';
+			font-Weight: 500;
+			font-Size: 16px;
+			Line-height: 19.36px;
+			color: #565656;
+			text-align: justify;
+	}
+    p.minot{
+        font-family: 'Inter';
+        font-Weight: 500;
+        font-Size: 16px;
+        line-height: 19.36px;
+        color: #565656;
+    }
     p.style-btn {
         padding: 7px 27px;
     }
@@ -83,110 +126,85 @@
         background-color: #FFFFFF;
         border-radius: 100px 0 0 0;
     }
-    .enlaces{
-        Width: 392px !important;
-        Height: 292px!important;
-        border-radius: 10px;
-        background-color: #00548F;
-        color:#FFFFFF;
+    /*lista categorias*/
+    .lista-categorias {
+        width: 100%;
+        box-sizing: border-box;
     }
-    /*css contenido*/
+
+    #categoriasToggle {
+        display: none;
+    }
+
+    #categorylist {
+        display: table;
+        padding-left: 5rem !important;
+    }
+
+    #categorylist li:first-child {
+        position: relative;
+    }
+
+    #categorylist li {
+        margin-right: 30px;
+        margin-top: 10px;
+        float: left;
+    }
+
+    #categorylist li a {
+        box-sizing: border-box;
+        font-family: 'Inter';
+        background: none repeat scroll 0 0 #E5E8ED;;
+        border: 1px solid #E5E8ED;
+        border-radius: 8px;
+        color: #565656;
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 4px 12px;
+        margin-top: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+    }
+
+    #categorylist li a:hover{
+        background-color: #64C69F;
+        color: #FFFFFF;
+    }
+
+    #categoriasToggle {
+        display: none;
+    }
     h1.mititulo{
         font-family: 'Inter';
         font-Weight: 700;
         font-Size: 30px;
         color: #565656;
     }
-    .accordion-item {
-    		border: none !important;
-		}
-		button.accordion-button {
-    		background-color: rgba(0, 0, 0, 0) !important;
-		}
-        .accordion-button:focus, .accordion-button:not(.collapsed) {
-            border: none !important;
-            box-shadow: none !important;
-        }
-        button.accordion-button::before, button.accordion-button::after{
-            border: none !important;
-        }
-
-    p.title-acord-one{
-		font-family: 'Inter';
-		font-Weight: 700;
-		font-Size: 30px;
-		color: #565656;0
-	}
-
-    p.title-acord{
-			font-family: 'Inter';
-			font-Weight: 700;
-			font-Size: 20px;
-			color: #565656;0
-		}
-        p.style-descripcion{
-            font-family: 'Inter';
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 24.2px;
-            color: #565656;
-        }
-        p.style-tags{
-            font-family: 'Inter';
-            font-weight: 600;
-            font-style: italic;
-            font-Size: 16px;
-            Line-height: 19.36px;
-            color: #00548F;
-        }
-        p.style-descripcion{
-            font-family: 'Inter';
-            font-Weight: 500;
-            font-Size: 16px;
-            Line-height: 19.36px;
-            color: #565656;
-        }
-
-    p.title-categ{
+    h2.mistyle{
         font-family: 'Inter';
-        font-Weight: 700;
+        font-weight: 600;
         font-Size: 20px;
-        line-height: 24.2px;
-        color: #F59120
+        color:#565656;
     }
-
-    h2.mi-style-h2{
+    p.title-doc{
         font-family: 'Inter';
         font-Weight: 600;
-        font-Size: 20px;
-        font-style: italic;
-        line-height: 24.2px;
+        font-Style: italic;
+        font-Size: 30px;
         color: #F59120;
-        
     }
-    .mi-documento{
-        display: flex;
-    }
-    p.mistyle-final-pcateg{
+    p.p-down, .mi-span{
         font-family: 'Inter';
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19.36px;
-        color: #565656;
-    }
-    h2.h2-seccion-btn-extras{
-        font-family: 'Inter';
-        font-weight: 700;
+        font-Weight: 500;
         font-Size: 16px;
-        line-height: 19.36px;
+        Line-height: 19.36px;
         color: #565656;
     }
-    a.final-btn{
-        padding: 10px 20px;
-        border-Radius: 100px;
-        background-color: #F59120;
-        color: #FFFFFF;
-        font-Weight: 700;
+    li.mi-list {
+    margin-bottom: 15px;
     }
     footer{
         height:535px;
@@ -196,7 +214,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Comite de ciencia y tecnologia</title>
+    <title>Concursos Publicos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -233,7 +251,7 @@
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/comitecienciastecnologias">Comite de Ciencias y Tecnologias e Innovacion</a></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/planificacioninstitucional">Concursos Publicos</a></span></p>
                 </div>
             </div>
         </div>   
@@ -259,49 +277,82 @@
         <div class="container set pb-4">
             @include('layouts.listacategorias')
         </div>
-        <div class="container content mt-5 mb-5">
+        <div class="container content mt-5 mb-5" style="padding-left: 5rem !important;">
             <div class="row">
-                <div class="col-md-12" style="padding: 0 0 0 5rem;">
-                    <p class="title-acord-one">{{ $comite->titulo ?? '' }}</p>
+                <div class="col-md-12">
 
-                    <p class="style-tags mt-4 mb-4">{{ $comite->tags ?? '' }}</p>
+                    <h1 class="mititulo">LLAMADO A CONCURSO PÚBLICO DE INGRESO</h1>
 
-					<p class="style-descripcion">{{ $comite->descripcion ?? '' }}</p>
+                    <p class="style-tags mt-5 mb-5">Documentos de Concurso Profesional...</p>
 
-                    {{-- Verifica si $comite no es nulo antes de intentar acceder a sus propiedades --}}
-                            @if($comite && $comite->documentos)
-                                {{-- Itera sobre los documentos solo si $comite y $comite->documentos no son nulos --}}
-                               
+                @foreach ($comites as $comite)
+                <div class="accordion mt-4 mb-4" id="concursoAccordion{{ $comite->id }}">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $comite->id }}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $comite->id }}" aria-expanded="true" aria-controls="collapse{{ $comite->id }}" style="background-color: #F59120 !important;">
+                               <p class="title-acord">{{ $comite->titulo }}</p>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $comite->id }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ $comite->id }}" data-bs-parent="#concursoAccordion{{ $comite->id }}">
+                            <div class="accordion-body">
+                            <div class="bajada-acord">{{ $comite->descripcion }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="documentosHeading{{ $comite->id }}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#documentosCollapse{{ $comite->id }}" aria-expanded="true" aria-controls="documentosCollapse{{ $comite->id }}">
+                                Documentos Relacionados
+                            </button>
+                        </h2>
+                        <div id="documentosCollapse{{ $comite->id }}" class="accordion-collapse collapse" aria-labelledby="documentosHeading{{ $comite->id }}" data-bs-parent="#concursoAccordion{{ $comite->id }}">
+                            <div class="accordion-body documentos-container">
                                 @foreach ($comite->documentos as $documento)
-                                    {{-- Aquí puedes acceder a las propiedades del documento --}}
-                                    <div class="mi-documento mt-3 mb-3">
-                                        <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
-                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
-                                            <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
-                                        </a>
-                                    </div>
-                                    {{-- ... --}}
+                                <div class="mi-documento mt-3 mb-3">
+                                    <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
+                                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                            <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656; width: 950px;">{{ $documento->nombre_documento }}</p>
+                                    </a>
+                                </div>
                                 @endforeach
-                            @else
-                                {{-- Maneja el caso en que $comite o $comite->documentos sea nulo --}}
-                                <p>No hay documentos disponibles</p>
-                            @endif
-
-                    <p class="style-nota">{{ $comite->nota ?? '' }}</p>
-
-                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+                </div>
+            </div>
+        </div>              
     </main>
 
     <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Pie de página &copy; {{ date('Y') }}</p>
+                </div>
+            </div>
+        </div>                    
+       
+        
     </footer>
-        <!-- jQuery (asegúrate de incluirlo antes de Bootstrap JS) -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var accordionButtons = document.querySelectorAll('.accordion-button');
 
-        <!-- Bootstrap JS y Popper (incluye Bootstrap Bundle) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-        <!-- Script personalizado para cerrar el acordeón al hacer clic en el mismo botón -->
-    </body>
+        accordionButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Togglea la clase 'collapsed' para permitir el cierre del mismo elemento
+                button.classList.toggle('collapsed');
+            });
+        });
+    });
+</script>
+</body>
 </html>
 
 

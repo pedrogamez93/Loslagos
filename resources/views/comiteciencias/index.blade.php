@@ -1,12 +1,12 @@
-<!-- Jquery -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- Bootstrap CSS y JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    h1 , h2 {
+    h1, h2 {
         color: #565656;
     }
     .principal {
@@ -47,7 +47,7 @@
         font-weight: 500;   
     }
     textarea.form-control.mt-2.mb-4 {
-    height: 200px;
+        height: 200px;
     }
 </style>
 
@@ -72,59 +72,31 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('comiteciencias.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
-                        @csrf
-                            <!-- Campos del formulario -->
-                            <label class="style-label required" for="titulo">Título:</label>
-                            <input class="form-control mt-2" type="text" name="titulo" value="{{ $comite->titulo ?? '' }}" disabled>
+                    <div class="container first-form pt-2 pb-2">
+                        @foreach ($comites as $comite)
+                            <h2>{{ $comite->titulo }}</h2>
+                            <p>{{ $comite->tags }}</p>
+                            <p>{{ $comite->descripcion }}</p>
 
-                            <label class="style-label required" for="tags">Tags:</label>
-                            <input class="form-control mt-2" type="text" name="tags" value="{{ $comite->tags ?? '' }}" disabled>
-                           
-                            <label class="style-label" for="bajada">Bajada o Descripción:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="descripcion" disabled>{{ $comite->descripcion ?? '' }}</textarea>
-
-                            <label class="style-label mb-2" for="bajada">Nota:</label>
-                            <textarea class="form-control mt-2 mb-4" id="" name="nota" disabled>{{ $comite->nota ?? '' }}</textarea>
-                            
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group mt-4">
-                                        <label class="style-label mb-2" for="bajada">Documentos</label>
-                                        <div class="container form-control">                            
-                                            <div class="row">
-                                            @if($documentos->count() > 0)
-                                               @foreach($documentos as $documento)
-                                                <div class="col-md-6">
-                                                    <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                  <!--  <button type="button" class="btn btn-danger mt-2">Eliminar</button>-->
-                                                </div>
-                                                @endforeach  
-                                                @else
-                                                <!-- Mensaje o contenido alternativo cuando no hay documentos -->
-                                            @endif 
+                            <h3>Documentos relacionados:</h3>
+                            @if($comite->documentos->count() > 0)
+                                <div class="container form-control">
+                                    <div class="row">
+                                        @foreach($comite->documentos as $documento)
+                                            <div class="col-md-6">
+                                                <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
                                             </div>
-                                            <div class="documentos-container mt-3">
-                                                <div id="documentos-original" class="documentos-input" style="display: none;">
-                                                    <label class="style-label" for="documentos">Documentos:</label>
-                                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple disabled>
-                                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple disabled>
-                                                </div>
-                                            </div>
-                                            <!-- Botón para agregar más documentos -->
-                                            <!--<button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>-->
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
-                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
-                    </form>
+                            @else
+                                <p>No hay documentos asociados a este concurso.</p>
+                            @endif
+                        @endforeach
+                    </div>
+                    <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar Comite</button>
                 </div>
+                <button class="mt-4 mb-4 btn btn-primary crear-concurso" type="button"  id="boton-crear">Crear nuevo Comite</button>
             </div>
         </div>
     </div>
@@ -132,44 +104,13 @@
 
 <script>
     $(document).ready(function() {
-        // Contador para asignar identificadores únicos
-        var contador = 1;
-
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container");
-            var original = documentosContainer.find("#documentos-original");
-            var nuevoDocumentoInput = original.clone(); // Clona el conjunto de campos original
-
-            // Asigna un nuevo identificador único a los campos clonados
-            var nuevoId = 'documentos-clonados-' + contador;
-            nuevoDocumentoInput.attr('id', nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
-
-            // Incrementa el contador
-            contador++;
-
-            // Muestra los campos clonados con una animación
-            nuevoDocumentoInput.hide().appendTo(documentosContainer).slideDown(300);
-
-            // Puedes ajustar el valor de 300 según tu preferencia para la duración de la animación
-        });
-        
-            // Redirigir a la página de edición al hacer clic en "Editar asamblea"
-    $("#boton-editar").click(function() {
-        window.location.href = "{{ route('comiteciencias.edit', $comite->id) }}";
-    });
-        // Habilitar/deshabilitar campos al hacer clic en "Editar Asamblea"
         $("#boton-editar").click(function() {
-            $("form#formulario-edicion :input:not(:button)").prop("disabled", function(i, val) {
-                return !val;
-            });
+            // Cambié $comite->id a {{ $comite->id }}
+            window.location.href = "{{ route('comiteciencias.edit', $comite->id) }}";
+        });
 
-            // Habilitar/deshabilitar el botón "Guardar"
-            $("form#formulario-edicion button[type='submit']").prop("disabled", function(i, val) {
-                return !val;
-            });
+        $("#boton-crear").click(function() {
+            window.location.href = "{{ route('comiteciencias.create') }}";
         });
     });
 </script>

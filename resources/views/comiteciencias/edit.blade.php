@@ -85,8 +85,33 @@
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="" name="descripcion">{{ $comite->descripcion ?? '' }}</textarea>
 
-                            <label class="style-label mb-2" for="bajada">Nota:</label>
+                            <label class="style-label required" for="tags">Nota:</label>
                             <textarea class="form-control mt-2 mb-4" id="" name="nota">{{ $comite->nota ?? '' }}</textarea>
+                            <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group mt-4">
+                <label class="style-label mb-2" for="bajada">Documentos</label>
+                <div class="container form-control">
+                    <div class="row">
+                        @if($comite->documentos->count() > 0)
+                            @foreach($comite->documentos as $documento)
+                                <div class="col-md-6">
+                                    <p class="form-control mt-2">{{ $documento->nombre_documento ?? '' }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                <button type="button" class="btn btn-danger mt-2" onclick="eliminarDocumento({{ $documento->id }})">Eliminar</button>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No hay documentos asociados a este concurso.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                         <div class="container pregunta-doc mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
@@ -118,6 +143,7 @@
                         <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
                     </form>
                 </div>
+                <button class=" mt-5 btn btn-success" id="boton-volver" >Volver</button>
             </div>
         </div>
     </div>
@@ -168,4 +194,43 @@
       }
     });
 });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        $("#boton-volver").click(function() {
+            window.location.href = "{{ route('comiteciencias.index') }}";
+        });
+            
+    });
+</script>
+<script>
+    function eliminarDocumento(documentoId) {
+        // Aquí debes hacer la llamada a tu backend para eliminar el documento
+        // Puedes usar AJAX o Fetch para realizar una solicitud DELETE al controlador
+
+        // Ejemplo con Fetch:
+        fetch(`/eliminar-documento/${documentoId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Agrega el token CSRF si estás utilizando protección CSRF
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Documento eliminado con éxito, puedes recargar la página o actualizar la lista de documentos
+                alert(data.message);
+                location.reload(); // Recarga la página, puedes ajustar esto según tus necesidades
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error al eliminar documento:', error);
+            alert('Error al eliminar documento. Consulta la consola para obtener más detalles.');
+        });
+    }
 </script>

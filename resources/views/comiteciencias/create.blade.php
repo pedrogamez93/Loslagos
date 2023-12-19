@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ url('/comiteciencias') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
+                    <form action="{{ route('comiteciencias.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
                         @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
@@ -84,10 +84,10 @@
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="" name="descripcion"></textarea>
 
-                            <label class="style-label mb-2" for="bajada">Nota:</label>
+                            <label class="style-label required" for="tags">Nota:</label>
                             <textarea class="form-control mt-2 mb-4" id="" name="nota"></textarea>
-
-                        <div class="container pregunta-doc mt-4">
+                            
+                            <div class="container pregunta-doc mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
                             <div class="row">
                                 <div class="col-md-12">

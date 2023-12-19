@@ -11,13 +11,14 @@ class ComiteCienciasController extends Controller
 {
     public function index(){
 
-        $comite = ComiteCiencias::latest()->first();
+        $comites = ComiteCiencias::all();
     
-        if ($comite) {
-            $documentos = $comite->documentos;
-            return view('comiteciencias.index', compact('comite', 'documentos'));
+        if ($comites->isEmpty()) {
+            // No hay comités disponibles, redirigir a la creación
+            return redirect()->route('comiteciencias.create')->with('message', 'No hay comités disponibles. Puedes crear uno nuevo.');
         } else {
-            return view('comiteciencias.index')->with('message', 'No hay asambleas disponibles.');
+            // Hay comités disponibles, mostrar en el índice
+            return view('comiteciencias.index', compact('comites'));
         }
     }
 
@@ -118,6 +119,18 @@ class ComiteCienciasController extends Controller
         }
 
         return redirect()->route('comiteciencias.index');
+    }
+
+    public function eliminarDocumento($documentoId){
+        
+        try {
+            $documento = ComiteCienciasDocs::findOrFail($documentoId);
+            $documento->delete();
+    
+            return response()->json(['success' => true, 'message' => 'Documento eliminado exitosamente']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Error al eliminar el documento', 'error' => $e->getMessage()]);
+        }
     }
 
 }

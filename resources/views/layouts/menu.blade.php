@@ -86,9 +86,19 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Comité de ciencia, Tecnología e Innovación</a>
-                                </li>
+                                <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Comité de ciencia, Tecnología e Innovación</a>
+                                        <ul class="submenu">
+                                            <li class="style-li" style="padding-top: 5px;">
+                                                <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Todos los Comites</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/comiteciencias/create') }}">Nuevo Comite</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->

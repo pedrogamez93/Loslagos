@@ -85,6 +85,8 @@ Route::resource('listplanificainstitucional', PlanificacionInstitucionalControll
 
 Route::resource('comiteciencias', ComiteCienciasController::class);
 
+Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
+
 Route::resource('concursospublicos', ConcursosPublicosController::class);
 
 Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);

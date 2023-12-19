@@ -58,6 +58,19 @@
         color: #565656;
         text-align: justify;
     }
+    .accordion-item {
+    		border: 1px solid #F59120 !important;
+		}
+		button.accordion-button {
+    		background-color: rgba(0, 0, 0, 0) !important;
+		}
+        .accordion-button:focus, .accordion-button:not(.collapsed) {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        button.accordion-button::before, button.accordion-button::after{
+            border: none !important;
+        }
     p.style-tags{
             font-family: 'Inter';
             font-weight: 600;
@@ -66,6 +79,28 @@
             Line-height: 19.36px;
             color: #00548F;
         }
+
+        p.title-acord{
+			font-family: 'Inter';
+			font-Weight: 700;
+			font-Size: 20px;
+			color: #FFFFFF;
+		}
+	.bajada-acord{
+			font-family: 'Inter';
+			font-Weight: 500;
+			font-Size: 16px;
+			Line-height: 19.36px;
+			color: #565656;
+			text-align: justify;
+	}
+    p.minot{
+        font-family: 'Inter';
+        font-Weight: 500;
+        font-Size: 16px;
+        line-height: 19.36px;
+        color: #565656;
+    }
     p.style-btn {
         padding: 7px 27px;
     }
@@ -254,13 +289,13 @@
                 <div class="accordion mt-4 mb-4" id="concursoAccordion{{ $concurso->id }}">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ $concurso->id }}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $concurso->id }}" aria-expanded="true" aria-controls="collapse{{ $concurso->id }}">
-                                {{ $concurso->titulo }}
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $concurso->id }}" aria-expanded="true" aria-controls="collapse{{ $concurso->id }}" style="background-color: #F59120 !important;">
+                               <p class="title-acord">{{ $concurso->titulo }}</p>
                             </button>
                         </h2>
                         <div id="collapse{{ $concurso->id }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ $concurso->id }}" data-bs-parent="#concursoAccordion{{ $concurso->id }}">
                             <div class="accordion-body">
-                                <p>{{ $concurso->descripcion }}</p>
+                            <div class="bajada-acord">{{ $concurso->descripcion }}</div>
                             </div>
                         </div>
                     </div>
@@ -287,6 +322,10 @@
                 </div>
             @endforeach
                 </div>
+                <p class="minot"><strong>Nota:</strong><br> 
+                    Si no puede abrir directamente el documento, presione el botón derecho del mouse
+                    sobre el icono de descarga y luego seleccionar "Guardar destino como...".
+                    Esto le permite guardar el documento directamente a su equipo.</p>
             </div>
         </div>              
     </main>

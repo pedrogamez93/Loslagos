@@ -148,11 +148,11 @@ class CategoriesController extends Controller{
     }
 
     public function comitecienciastecnologiasIndex() {
-        // Obtener el último registro de ComiteCiencias con documentos relacionados
-        $comite = ComiteCiencias::with('documentos')->latest()->first();
-    
+        // Obtener todos los registros de ConcursosPublicos con documentos relacionados
+        $comites = ComiteCiencias::with('documentos')->get();
+        
         // Pasa la información a la vista
-        return view('comitecienciastecnologias', ['comite' => $comite]);
+        return view('comitecienciastecnologias', ['comites' => $comites]);
     }
 
     public function concursopublicoIndex() {
