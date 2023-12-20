@@ -81,6 +81,11 @@ input:required {
                 <div class="row">
                     <div class="col-md-12">
                         <h1>Formulario subida de documentos</h1>
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">

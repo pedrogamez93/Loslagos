@@ -55,7 +55,10 @@ Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
 Route::post('/funcionarios', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-
+Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
 //Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/
