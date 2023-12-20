@@ -267,7 +267,7 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
+        <div class="container-fluid cat">
             <div class="row">
                 <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
                     <p class="title-cat">Selecciona una Categoría</p>
@@ -295,7 +295,12 @@
                         </h2>
                         <div id="collapse{{ $concurso->id }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ $concurso->id }}" data-bs-parent="#concursoAccordion{{ $concurso->id }}">
                             <div class="accordion-body">
-                            <div class="bajada-acord">{{ $concurso->descripcion }}</div>
+                            <div class="bajada-acord">{{ $concurso->descripcion }}
+                                <p class="minot mt-3 mb-3"><strong>Nota:<br></strong><br> 
+                                    Si no puede abrir directamente el documento, presione el botón derecho del mouse
+                                    sobre el icono de descarga y luego seleccionar "Guardar destino como...".
+                                    Esto le permite guardar el documento directamente a su equipo.</p>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -322,10 +327,6 @@
                 </div>
             @endforeach
                 </div>
-                <p class="minot"><strong>Nota:</strong><br> 
-                    Si no puede abrir directamente el documento, presione el botón derecho del mouse
-                    sobre el icono de descarga y luego seleccionar "Guardar destino como...".
-                    Esto le permite guardar el documento directamente a su equipo.</p>
             </div>
         </div>              
     </main>

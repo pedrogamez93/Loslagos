@@ -248,7 +248,7 @@ h5.card-title{
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
+        <div class="container-fluid cat">
             <div class="row">
                 <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
                     <p class="title-cat">Selecciona una Categoría</p>

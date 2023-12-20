@@ -130,13 +130,13 @@ class DisenoPoliticoRegionalesController extends Controller
         $ultimoRegistro->btnEncuestas()->delete();
     
         // Actualizar los campos del registro
-        $ultimoRegistro->update([
+        $ultimoRegistro->fill([
             'titulo' => $request->input('titulo'),
             'bajada' => $request->input('bajada'),
             'titulo_seccion_form' => $request->input('titulo_seccion_form', ''),  // Proporcionar un valor predeterminado
             'titulo_seccion_encue' => $request->input('titulo_seccion_encue', ''),
             'bajada_seccion_encue' => $request->input('bajada_seccion_encue', ''),
-        ]);
+        ])->save();
     
         // Crear formularios asociados actualizados
         $nombreBtnForms = $request->input('nombre_btn_form');
@@ -145,7 +145,7 @@ class DisenoPoliticoRegionalesController extends Controller
         if (!is_null($nombreBtnForms) && is_iterable($nombreBtnForms)) {
             foreach ($nombreBtnForms as $index => $nombreBtnForm) {
                 if (array_key_exists($index, $urlBtnForms)) {
-                    $ultimoRegistro->btnForms()->create([
+                    $ultimoRegistro->btnForms()->updateOrCreate([
                         'nombre_btn_form' => $nombreBtnForm,
                         'url_btn_form' => $urlBtnForms[$index],
                     ]);
@@ -161,7 +161,7 @@ class DisenoPoliticoRegionalesController extends Controller
         if (!is_null($nombreEncuestas) && is_iterable($nombreEncuestas)) {
             foreach ($nombreEncuestas as $index => $nombreEncue) {
                 if (array_key_exists($index, $nombreBtnEncuestas) && array_key_exists($index, $urlBtnEncuestas)) {
-                    $ultimoRegistro->btnEncuestas()->create([
+                    $ultimoRegistro->btnEncuestas()->updateOrCreate([
                         'nombre_encuesta' => $nombreEncue,
                         'nombre_btn_encuesta' => $nombreBtnEncuestas[$index],
                         'url_btn_encuesta' => $urlBtnEncuestas[$index],

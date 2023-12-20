@@ -57,7 +57,7 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Listado de planificacion institucional</h1>
+                        <h1>Agregar planificación institucional</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
