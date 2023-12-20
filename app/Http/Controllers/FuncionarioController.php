@@ -132,13 +132,21 @@ class FuncionarioController extends Controller
     return view('funcionarios.index', compact('funcionarios', 'divisiones', 'departamentos'));
 }
 
+public function indexTabla()
+{
+    $funcionarios['funcionarios'] = Funcionario::orderBy('created_at', 'asc')->paginate(20);
+    return view('funcionarios.tablafuncionarios', $funcionarios);
+}
+
+
+
     public function create()
     {
 
         $divisiones = $this->divisiones; 
         $departamentos = $this->departamentos;
 
-        return view('funcionario.create', compact('divisiones', 'departamentos'));
+        return view('funcionarios.create', compact('divisiones', 'departamentos'));
     }
 
     public function store(Request $request)
@@ -172,7 +180,7 @@ class FuncionarioController extends Controller
 
    
         Funcionario::insert($datosf);
-        return redirect('/funcionarios')->with('success', 'Documento guardado exitosamente');
+        return redirect('/funcionarios')->with('success', 'Funcionarios guardado exitosamente');
     }
 
     public function buscar(Request $request)
@@ -214,5 +222,51 @@ class FuncionarioController extends Controller
 
     return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
 }
+
+
+public function edit($id)
+{
+
+    $divisiones = $this->divisiones; 
+    $departamentos = $this->departamentos;
+    $funcionarios = Funcionario::findOrFail($id);
+    // Puedes necesitar cargar otras cosas según tus necesidades
+    return view('funcionarios.edit', compact('funcionarios', 'divisiones', 'departamentos'));
+}
+
+ public function update(Request $request, $id)
+{
+    $funcionarios = Funcionario::findOrFail($id);
+
+    // Valida y actualiza los campos según tu modelo
+    $request->validate([
+        'nombre' => 'required',
+            
+            'actividad' => 'nullable',
+            'division' => 'nullable',
+            'departamento' => 'nullable',
+            'cargo' => 'nullable',
+            'direccion' => 'nullable',
+            'telefono' => 'nullable',
+            'e-mail' => 'nullable',
+            'region' => 'nullable',
+            'provincia' => 'nullable',
+            'comuna' => 'nullable',
+        // Agrega otras reglas de validación según tus necesidades
+    ]);
+
+    $funcionarios->update($request->all());
+
+    return redirect('/funcionarios')->with('success', 'Funcionarios actualizado exitosamente');
+}
+
+public function destroy($id)
+{
+    $funcionarios = Funcionario::findOrFail($id);
+    $funcionarios->delete();
+
+    return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Documento eliminado exitosamente');
+}
+
 
 }

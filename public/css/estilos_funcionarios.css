@@ -17,6 +17,15 @@ font-weight: 700;
 line-height: normal;
 }
 
+.titulofun {
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    }
+
 .parrafo2{
     color: #565656;
 font-family: Inter;

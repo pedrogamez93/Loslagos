@@ -220,7 +220,7 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
+        <div class="container-fluid cat">
             <div class="row">
                 <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
                     <p class="title-cat">Selecciona una Categoría</p>
@@ -244,7 +244,7 @@
                         <ul>
                             @foreach ($documentosTodos as $documento)
                                 <li class="mi-list">
-                                    <a href="{{ asset( $documento->ruta) }}" target="_blank">
+                                    <a href="{{ asset('storage/' . $documento['ruta']) }}" target="_blank">
                                         <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                         <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre }}</span>
                                     </a>

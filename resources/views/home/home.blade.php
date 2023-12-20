@@ -139,23 +139,23 @@
         <div class="row">
           <div class="col-md-3">
             <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p class="TitulocarouselTD pt-3">Fondos concursables FNDR</p>
+             <p>Sistema de postulación y gestión de proyectos fondo comunidad...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
-              <p class="TitulocarouselTD pt-3"> lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p class="TitulocarouselTD pt-3">Sistema de Gestión Fondo</p>
+               <p>La importancia de la realización de los concursos FIC radica en el trabajo...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
-              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p  class="TitulocarouselTD pt-3">Solicitud de Acceso</p>
+               <p>Busca dentro de la información pública de la Institución...</p>
           </div>
           <div class="col-md-3">
             <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
-              <p  class="TitulocarouselTD pt-3">lorem ipsu</p>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p  class="TitulocarouselTD pt-3">Solicitud de Audiencia</p>
+               <p>Ingresa a la PlataformaLey del Lobby y visualiza las solicitudes...</p>
           </div>
         </div>
       </div>
@@ -199,12 +199,13 @@
   </div>
 
 
+
 <!--Banner-->
-<article class=" ">
+<article class=" " id="">
     
-    <h2>Add borders 123</h2>
-    <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-    <button class="btn btn-outline-secondary" type="button">Example button</button>
+    <h2>Ahora puedes estar actualizado sobre nuestra región</h2>
+    <p>En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
+    <button class="btn btn-outline-secondary" type="button">Ver todos los detalles</button>
 
 </article>
 <!--Cuadro dentro del banner-->
@@ -226,6 +227,31 @@
         </div>
     </div>
 </div>
+
+
+<div class="row py-5 my-5">
+    <div class="col">
+        <img src="{{ asset('storage/img/gobiernotransparente.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/informestadoavance.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/PoliticaTurismo.png') }}" class="mb-3">
+    </div>
+    <div class="col">
+        <img src="{{ asset('storage/img/ban_ley_transparencia3.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/Recolectoras_orilla.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/ReceptoresFondos.png') }}" class="mb-3">
+    </div>
+    <div class="col">
+        <img src="{{ asset('storage/img/IDE_Los_Lagos.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/renueva.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/CodigoEtica2.png') }}" class="mb-3">
+    </div>
+    <div class="col">
+        <img src="{{ asset('storage/img/GobiernoChile.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/cumplimiento20422.png') }}" class="mb-3">
+        <img src="{{ asset('storage/img/AccesoFril2023 1.png') }}" class="mb-3">
+    </div>
+</div>
+
 
 </div>
 @endsection

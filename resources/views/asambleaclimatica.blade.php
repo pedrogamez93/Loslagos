@@ -240,7 +240,7 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
+        <div class="container-fluid cat">
             <div class="row">
                 <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
                     <p class="title-cat">Selecciona una Categoría</p>
@@ -351,7 +351,7 @@
                                 @foreach ($asamblea->documentos as $documento)
                                     {{-- Aquí puedes acceder a las propiedades del documento --}}
                                     <div class="mi-documento mt-3 mb-3">
-                                        <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                        <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
                                         </a>
@@ -391,17 +391,7 @@
         </div>    
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
+    @include('layouts.footer')
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>

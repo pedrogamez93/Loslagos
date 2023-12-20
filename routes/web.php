@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\IntroduccionController;
 use App\Http\Controllers\CategoriesController;
@@ -19,9 +20,12 @@ use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\DisenoPoliticoRegionalesController;
 use App\Http\Controllers\PoliticaPersonasMayoresController;
 use App\Http\Controllers\PlanificacionInstitucionalController;
-//use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProgramasController;
+use App\Http\Controllers\TodosLosProgramasController;
+use App\Http\Controllers\ComiteCienciasController;
+use App\Http\Controllers\ConcursosPublicosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,14 +45,20 @@ Route::get('/documentos', [DocumentoController::class, 'index']);
 Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
 Route::post('/documentos', [DocumentoController::class, 'store']);
 Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
-
+Route::get('/documentos/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
+Route::put('/documentos/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
+Route::get('/documentos/ver-documentos', [DocumentoController::class, 'indexTabla'])->name('documentos.verdocumentos');
+Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionario/create', [FuncionarioController::class, 'create'])->name('funcionario.create');
+Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
 Route::post('/funcionarios', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-
+Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
 //Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/
@@ -75,6 +85,14 @@ Route::resource('audienciasdepartes', AudienciasController::class);
 Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
+
+Route::resource('comiteciencias', ComiteCienciasController::class);
+
+Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
+
+Route::resource('concursospublicos', ConcursosPublicosController::class);
+
+Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
 
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
@@ -137,6 +155,10 @@ Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controll
 Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controllers\CategoriesController@politicapersonasmayoresIndex');
 
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
+
+Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
+
+Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
@@ -227,3 +249,18 @@ Route::get('/regionlagos/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosCon
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route::resource('programas', ProgramasController::class);
+
+// Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
+
+
+// Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
+
+//Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
+
+//Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
+// Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+
+

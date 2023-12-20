@@ -76,8 +76,8 @@
         <li><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
         <li><a href="/gobiernoregional/disenopoliticapersonasmayores" title="Categoría:tags">Política Personas Mayores</a></li>
         <li><a href="/gobiernoregional/planificacioninstitucional" title="Categoría:tags">Planificación Institucional</a></li>
-        <li><a routerLink="/result/Ballenas" title="Categoría:tags">Concurso Público</a></li>
-        <li><a routerLink="/result/Ballenas" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
+        <li><a href="/gobiernoregional/concursopublico" title="Categoría:tags">Concurso Público</a></li>
+        <li><a href="/gobiernoregional/comitecienciastecnologias" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
     </ul>
 </div>
 

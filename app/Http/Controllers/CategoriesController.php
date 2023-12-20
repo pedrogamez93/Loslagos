@@ -24,6 +24,10 @@ use App\Models\DisenoPoliticoRegionalesBtnforms;
 use App\Models\PoliticaPersonasMayores;
 use App\Models\PoliticaPersonasMayoresDocs;
 use App\Models\PlanificacionInstitucional;
+use App\Models\ComiteCiencias;
+use App\Models\ComiteCienciasDocs;
+use App\Models\ConcursosPublicos;
+use App\Models\ConcursosPublicosDocs;
 
 class CategoriesController extends Controller{
     
@@ -141,6 +145,22 @@ class CategoriesController extends Controller{
         $planificacion = PlanificacionInstitucional::all();
         
         return view('planificacioninstitucional', ['planificacion' => $planificacion]);
+    }
+
+    public function comitecienciastecnologiasIndex() {
+        // Obtener todos los registros de ConcursosPublicos con documentos relacionados
+        $comites = ComiteCiencias::with('documentos')->get();
+        
+        // Pasa la información a la vista
+        return view('comitecienciastecnologias', ['comites' => $comites]);
+    }
+
+    public function concursopublicoIndex() {
+        // Obtener todos los registros de ConcursosPublicos con documentos relacionados
+        $concursos = ConcursosPublicos::with('documentos')->get();
+        
+        // Pasa la información a la vista
+        return view('concursopublico', ['concursos' => $concursos]);
     }
 
 }
