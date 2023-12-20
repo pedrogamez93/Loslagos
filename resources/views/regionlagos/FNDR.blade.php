@@ -256,7 +256,7 @@
     }
     p.mb-2.subtitulo {
         font-family: Inter;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 400;
         line-height: 24px;
         letter-spacing: 0em;
@@ -284,6 +284,27 @@
     font-Style: italic;
     font-Size: 16px;
     color: #00548F;
+}
+p.descripcion1.pt-0.pb-4 {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+p.valor1.mb-5 {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.totalE{
+    height: 0;
+    border-left: 100px solid transparent;
+    border-bottom: 100px solid #f0ad4e;
 }
 </style>
 <html>
@@ -359,28 +380,105 @@
                 <div class="col-md-8 borderR">
                     <div class="container int">
                         <div class="row">
-                            <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
-                            <p class="title-cat mb-5">Dinámica Económica</p>
-                            @foreach($introduccion as $art)
-                                <div class="col-md-6 mb-4">
+                            <p class="style-tag pt-0 pb-4">{{$primerArticulo->subtitulo}}</p>
+                            <p class="title-cat mb-5">{{$primerArticulo->titulo}}</p>
+                                <div class="col-md-5 mb-4">
                                     <div class="col-md-12 cajaElementor mb-4 p-3">
                                     <div class="container">
                                     <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="titulo">{{$art->titulo}}</p>
-                                            <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
-                                            <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
-                                            <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            
+                                        <div class="col-md-12">
+                                            <p class="titulo">{{$primerArticulo->actividad1}}</p>
+                                            <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad1}}</p>
+                                            <p class="fechas"><span></span></p>
+                                            <p class="fechas"><span></span></p>
                                         </div>
                                     </div>
                                     </div>
                                     </div>
                                     
                                 </div>
-                            @endforeach
+                                <div class="col-md-5 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-3">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="titulo">{{$primerArticulo->actividad2}}</p>
+                                            <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad2}}</p>
+                                            <p class="fechas"><span></span></p>
+                                            <p class="fechas"><span></span></p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-5 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-3">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="titulo">{{$primerArticulo->actividad3}}</p>
+                                            <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad3}}</p>
+                                            <p class="fechas"><span></span></p>
+                                            <p class="fechas"><span></span></p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-5 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-3">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="titulo">{{$primerArticulo->actividad4}}</p>
+                                            <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad4}}</p>
+                                            <p class="fechas"><span></span></p>
+                                            <p class="fechas"><span></span></p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-5 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-3">
+                                    <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="titulo">{{$primerArticulo->actividad5}}</p>
+                                            <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad5}}</p>
+                                            <p class="fechas"><span></span></p>
+                                            <p class="fechas"><span></span></p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-10 mb-4">
+                                    <div class="col-md-12 cajaElementor mb-4 p-0">
+                                        <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                
+                                            </div>
+                                            <div class="col-md-7 totalE">
+                                                <p class="titulo">Total Exportaciones</p>
+                                                <p class="mb-2 subtitulo">{{$primerArticulo->total}}</p>
+                                                <p class="fechas"><span></span></p>
+                                                <p class="fechas"></p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-10 mb-4">
+                                <b>Fuente:</b> Elaborado por el INE sobre la base de información del Servicio Nacional de Aduanas.
+                                </div>
+
                         </div>
                     </div>
                 </div>

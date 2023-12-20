@@ -183,12 +183,28 @@ Route::get('/DinamicaEconomicaRegionLagos/edit/{id}', 'App\Http\Controllers\Intr
 Route::put('/DinamicaEconomicaRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.updateDinamicaEconomica');
 Route::delete('/DinamicaEconomicaRegionLagos/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica');
 
+Route::get('/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.index');
+Route::post('/ExportacionSegunBloqueEconomico/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.store');
+Route::get('/ExportacionSegunBloqueEconomico/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.create');
+Route::get('/ExportacionSegunBloqueEconomico/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.edit');
+Route::put('/ExportacionSegunBloqueEconomico/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.update');
+Route::delete('/ExportacionSegunBloqueEconomico/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.destroy');
+
 Route::get('/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.index');
 Route::post('/ExportacionSegunRamaActividad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.store');
 Route::get('/ExportacionSegunRamaActividad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.create');
 Route::get('/ExportacionSegunRamaActividad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.edit');
 Route::put('/ExportacionSegunRamaActividad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.update');
 Route::delete('/ExportacionSegunRamaActividad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.destroy');
+
+Route::get('/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFNDR')->name('FNDR.index');
+Route::post('/FNDR/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFNDR')->name('FNDR.store');
+Route::get('/FNDR/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFNDR')->name('FNDR.create');
+Route::get('/FNDR/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFNDR')->name('FNDR.edit');
+Route::put('/FNDR/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFNDR')->name('FNDR.update');
+Route::delete('/FNDR/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyFNDR')->name('FNDR.destroy');
+
+
 
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
@@ -203,6 +219,10 @@ Route::get('/regionlagos/PoblacionSuperficie/', 'App\Http\Controllers\Introducci
 Route::get('/regionlagos/PoblacionSuperficie/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosPoblacionSuperficieProvincia')->name('PoblacionSuperficieProvincia.show');
 Route::get('/regionlagos/DinamicaEconomica/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosDinamicaEconomica')->name('DinamicaEconomica.index');
 Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAntecedentesregion')->name('antecedentesregion.index');
+Route::get('/regionlagos/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosExportacionSegunRamaActividad')->name('RegionlagosExportacionSegunRamaActividad.index');
+Route::get('/regionlagos/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosExportacionSegunBloqueEconomico')->name('RegionlagosExportacionSegunBloqueEconomico.index');
+Route::get('/regionlagos/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosFNDR.index');
+
 
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
