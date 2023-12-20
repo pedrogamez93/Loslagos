@@ -241,25 +241,25 @@
                             <div class="col-md-2" style="text-align: -webkit-center;">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="align-self: center;">
                                 <a href="/gobiernoregional/acerca/comofunciona"><p>Cómo Funciona el Gobieno Regional</p></a>
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center;">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="align-self: center;">
                                 <a href="/gobiernoregional/acerca/estrategiaregional"><p>Estrategia Regional de desarrollo</p></a>
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center;">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="align-self: center;">
                                 <a href="/gobiernoregional/acerca/inversionpublica"><p>Inversión Pública en la Región</p></a>
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center;">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="align-self: center;">
                                 <a href="/gobiernoregional/acerca/misiongobierno"><p>Misión</p></a>
                             </div>
                         </div>
