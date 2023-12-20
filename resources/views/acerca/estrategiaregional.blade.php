@@ -145,6 +145,28 @@
         height:535px;
         background-color: #389144;
     }
+    .items {
+        display: contents;
+        align-items: flex-start; /* Alinea los elementos en la parte superior del contenedor */
+        margin-bottom: 10px; /* Otra propiedad de estilo para ajustar el espacio entre los elementos */
+    }
+
+    .items img {
+        width: 35px;
+        height: 35px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .items p {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19.36px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px; /* Ajusta el espacio entre la imagen y el texto */
+    }
 </style>
 <html>
 <head>
@@ -237,30 +259,35 @@
                         </div>
                     </div>
                     <div class="container enlaces" style="position:absolute; top: 8rem;">
-                        <div class="row" style="padding-top: 2rem; row-gap: 2rem;">
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10" style="align-self: center;">
-                                <a href="/gobiernoregional/acerca/comofunciona"><p>Cómo Funciona el Gobieno Regional</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10" style="align-self: center;">
-                                <a href="/gobiernoregional/acerca/estrategiaregional"><p>Estrategia Regional de desarrollo</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10" style="align-self: center;">
-                                <a href="/gobiernoregional/acerca/inversionpublica"><p>Inversión Pública en la Región</p></a>
-                            </div>
-                            <div class="col-md-2" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/images/check.png') }}" alt="Logo 1">
-                            </div>
-                            <div class="col-md-10" style="align-self: center;">
-                                <a href="/gobiernoregional/acerca/misiongobierno"><p>Misión</p></a>
+                        <div class="row" style="padding-top: 2rem; padding-left: 2rem; row-gap: 2rem;">
+                            <div class="container items">
+                                <div class="items">
+                                    <a href="/gobiernoregional/acerca/comofunciona" target="_blank">
+                                        <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                        <p class="p-doc">Cómo Funciona el Gobierno Regional</p>
+                                    </a>
+                                </div>
+
+                                <div class="items">
+                                    <a href="/gobiernoregional/acerca/estrategiaregional" target="_blank">
+                                        <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                        <p class="p-doc">Estrategia Regional de Desarrollo</p>
+                                    </a>
+                                </div>
+
+                                <div class="items">
+                                    <a href="/gobiernoregional/acerca/inversionpublica" target="_blank">
+                                        <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                        <p class="p-doc">Inversión Pública en la Región</p>
+                                    </a>
+                                </div>
+
+                                <div class="items">
+                                    <a href="/gobiernoregional/acerca/misiongobierno" target="_blank">
+                                        <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                        <p class="p-doc">Misión</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -264,7 +264,7 @@
                         </div>
                     </div>
                     <div class="container enlaces" style="position:absolute; top: 8rem;">
-                        <div class="row" style="    padding-top: 2rem; padding-left: 2rem; row-gap: 2rem;">
+                        <div class="row" style="padding-top: 2rem; padding-left: 2rem; row-gap: 2rem;">
                             <div class="container items">
                                 <div class="items">
                                     <a href="/gobiernoregional/acerca/comofunciona" target="_blank">
