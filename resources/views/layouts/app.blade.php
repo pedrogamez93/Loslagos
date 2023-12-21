@@ -41,7 +41,7 @@
 </head>
 <body id="app-layout"  class=" " style="">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;padding-left: 3vw;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5" style="background-color: #389144 !important;padding-left: 3vw;">
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
   </a>
@@ -50,7 +50,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav  mr-auto ml-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#" style="color:white">Home </a>
       </li>
@@ -98,17 +98,18 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="color:white"> Directorio de Funciones </a>
+        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funciones </a>
       </li>
 
 
+    
+
       <li class="nav-item dropdown">
-     
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="    border-radius: 18px;
-    background-color: rgb(255 255 255 / 34%); ">
-        <i class="bi bi-grid" style="color: white;"></i>Informate aqui
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
+            <i class="bi bi-grid" style="color: white;"></i>Informate aqui
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
         <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
         <a class="dropdown-item style-a-menu" >Sitio de Gobierno</a>
         <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
@@ -117,8 +118,7 @@
         <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
 
         </div>
-      </li>
-
+    </li>
 
 
     </ul>

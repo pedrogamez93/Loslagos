@@ -19,10 +19,10 @@
     </div>
 </div>
 
-<div class="contenido" style=" margin-top: -6vh;
+<div class="contenido" style=" margin-top: -7vh;
     background-color: white;
-    border-top-left-radius: 90px;">
-<div class="row py-5">
+    border-top-left-radius: 80px;">
+<div class="row py-5 px-5">
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
          <form action="{{ url('/documentos/buscar') }}" method="POST">
