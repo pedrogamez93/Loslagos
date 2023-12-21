@@ -233,17 +233,17 @@
     <main>
         <div class="container-fluid cat">
             <div class="row">
-                <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
+                <div class="col-md-12 pt-4 pb-4">
                     <p class="title-cat">Selecciona una Categoría</p>
                 </div>
             </div>
         </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategorias')
+        <div class="container set pb-4">           
+                @include('layouts.listacategorias') 
         </div>
         <div class="container mt-5 mb-5">
             <div class="row">
-                <div class="col-md-6" style="padding: 0 0 0 5rem;">
+                <div class="col-md-6">
                     <div class="container int">
                         <div class="row">
                             <div class="col-md-12">
