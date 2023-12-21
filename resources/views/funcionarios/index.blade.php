@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div class="contenido" style=" margin-top: -6vh;
+<div class="contenido h-800 " style=" margin-top: -9vh;
     background-color: white;
     border-top-left-radius: 90px;">
     <div class="row py-5">
