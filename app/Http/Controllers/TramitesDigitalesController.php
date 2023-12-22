@@ -141,10 +141,4 @@ class TramitesDigitalesController extends Controller{
         TramitesDigitales::destroy($id);
         return redirect()->route('tramites.index');
     }
-
-    /*public function showList(){
-    $tramites = TramitesDigitales::all();
-    return view('tramites.show', compact('tramites'));
-
-    } */
 }

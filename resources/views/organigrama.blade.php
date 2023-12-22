@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <style>
-    header{
+    .second{
        /* width: 100%;*/
         height: 450px;
-        background-color: #00548F;
         color: #fff; /* Cambia esto al color de texto que desees */
         padding: 20px; /* Añade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
@@ -11,22 +10,6 @@
         top: 0; /* Lo fija en la parte superior */
         left: 0; /* Lo fija en la parte izquierda */
         z-index: 1000;
-    }
-    .top-bar{
-        border-bottom: 1px solid #FFFFFF;
-    }
-    nav ul {
-        list-style: none; 
-        padding: 0; 
-        display: flex; 
-    }
-
-    nav li {
-        margin-right: 20px; 
-    }
-
-    nav a {
-        text-decoration: none; 
     }
     p.style-bread{
         font-family:'Inter';
@@ -83,57 +66,6 @@
         background-color: #FFFFFF;
         border-radius: 100px 0 0 0;
     }
-    /*lista categorias*/
-    .lista-categorias {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    #categoriasToggle {
-        display: none;
-    }
-
-    #categorylist {
-        display: table;
-        padding-left: 5rem !important;
-    }
-
-    #categorylist li:first-child {
-        position: relative;
-    }
-
-    #categorylist li {
-        margin-right: 30px;
-        margin-top: 10px;
-        float: left;
-    }
-
-    #categorylist li a {
-        box-sizing: border-box;
-        font-family: 'Inter';
-        background: none repeat scroll 0 0 #E5E8ED;;
-        border: 1px solid #E5E8ED;
-        border-radius: 8px;
-        color: #565656;
-        display: block;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 4px 12px;
-        margin-top: 5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-decoration: none;
-    }
-
-    #categorylist li a:hover{
-        background-color: #64C69F;
-        color: #FFFFFF;
-    }
-
-    #categoriasToggle {
-        display: none;
-    }
     .enlaces{
         Width: 392px !important;
         Height: 292px!important;
@@ -171,10 +103,6 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
-    footer{
-        height:535px;
-        background-color: #389144;
-    }
 </style>
 <html>
 <head>
@@ -190,8 +118,14 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
+@extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+    <!--<header>
+         Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -214,60 +148,74 @@
             </div>
         </div>
 
-        <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
-        <div class="container content-breadc pt-4 pb-3">
-            <div class="row" style="padding: 10px 0px 20px 55px;">
-                <div class="col-md-12">
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/organigrama">Organigrama</a></span></p>
-                </div>
-            </div>
-        </div>   
-        <div class="container content-prin">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-12">
-                    <p class="one-title pb-4">Gobierno Regional</p>
-
-                    <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
-                </div>
-            </div>
-        </div>   
+    Contenido del encabezado principal breadcumbs, titulo, bajadas
     </header>
-    <!-- Contenido principal de tu página -->
-    <main>
-        <div class="container-fluid cat">
-            <div class="row">
-                <div class="col-md-12 pt-4 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat">Selecciona una Categoría</p>
+    Contenido principal de tu página -->
+<div class="container-fluid" style="background-color:#00548F;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container second content-breadc pt-5 pb-5">
+                <div class="row" style="padding: 10px 0px 20px 55px;">
+                    <div class="col-md-12" style="padding: 0;">
+                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/organigrama">Organigrama</a></span></p>
+                    </div>
                 </div>
+                    
+                <div class="container content-prin pt-4">
+                    <div class="row" style="padding: 10px 0px 0px 25px;">
+                        <div class="col-md-12">
+                            <p class="one-title pb-5">Gobierno Regional</p>
+
+                            <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                        </div>
+                    </div>
+                </div>   
             </div>
         </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategorias')
-        </div>
-        <div class="container titulo">
-            <div class="row">
-                <div class="col-md-12" style="padding: 0 0 0 5rem;">
-                    <h1 class="mititulo">{{ $organigrama->titulo }}</h1>
-
-                    <div class="mi-img pt-4 pb-5">
-                    <img src="{{ asset('storage/' . $organigrama->img) }}" alt="Imagen actual" style="">
+    </div>
+</div>    
+<main>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
+                            <p class="title-cat">Selecciona una Categoría</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>      
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container set pb-4">
+                    @include('layouts.listacategorias')
+                </div>
+                <div class="container titulo">
+                    <div class="row">
+                        <div class="col-md-12" style="padding: 0 0 0 3rem;">
+                            <p style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 16px; color: #00548F;">Infórmate sobre nuestra Región...</p>
+                            <h1 class="mititulo mt-4">{{ $organigrama->titulo }}</h1>
+                            <div class="mi-img pt-4 pb-5">
+                            <img src="{{ asset('storage/' . $organigrama->img) }}" alt="Imagen actual" style="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>                    
-       
-        
-    </footer>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+        </div>
+    </div>      
+</main>
 </body>
 </html>
+</html>
+<script>  
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
+    });
+</script>
+@endsection

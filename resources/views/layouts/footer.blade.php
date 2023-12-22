@@ -1,4 +1,14 @@
-
+<style>
+      footer {
+            background-color: #389144;
+            color: white;
+            width: 100%;
+            position: relative; /* Cambiado de fixed a relative */
+            bottom: 0;
+            left: 0;
+            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+        }
+</style>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top">
     
     <div class="col mb-3">
