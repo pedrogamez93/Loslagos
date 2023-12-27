@@ -119,7 +119,6 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
     }
 
     #categorylist li:first-child {
@@ -365,134 +364,140 @@ p.valor1.mb-5 {
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row ">
-                <div class="col-md-12 mt-5 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat mt-5">Selecciona una Categoría</p>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 mt-5 pb-4">
+                            <p class="title-cat mt-5">Selecciona una Categoría</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategoriasRegionLagos')
-        </div>
-        <div class="container mt-5 mb-5">
-            <div class="row p-5">
-                <div class="col-md-8 borderR">
-                    <div class="container int">
-                        <div class="row">
-                            <p class="style-tag pt-0 pb-4">{{$primerArticulo->subtitulo}}</p>
-                            <p class="title-cat mb-5">{{$primerArticulo->titulo}}</p>
-                            <p class="descripcion1 pt-0 pb-4">{{$primerArticulo->descripcion1}}</p>
-                            <p class="valor1 mb-5">{{$primerArticulo->valor1}}</p>
-                            <div class="col-md-5 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="titulo">{{$primerArticulo->actividad1}}</p>
-                                            <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad1}} {{$primerArticulo->valor1}}</p>
-                                            <p class="fechas"><span></span></p>
-                                            <p class="fechas"><span></span></p>
+                <div class="container set pb-4">
+                    @include('layouts.listacategoriasRegionLagos')
+                </div>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-8 borderR">
+                            <div class="container int p-0">
+                                <div class="row">
+                                    <p class="style-tag pt-0 pb-4">{{$primerArticulo->subtitulo}}</p>
+                                    <p class="title-cat mb-5">{{$primerArticulo->titulo}}</p>
+                                    <p class="descripcion1 pt-0 pb-4">{{$primerArticulo->descripcion1}}</p>
+                                    <p class="valor1 mb-5">{{$primerArticulo->valor1}}</p>
+                                    <div class="col-md-5 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="titulo">{{$primerArticulo->actividad1}}</p>
+                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad1}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-5 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="titulo">{{$primerArticulo->actividad2}}</p>
-                                            <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad2}} {{$primerArticulo->valor1}}</p>
-                                            <p class="fechas"><span></span></p>
-                                            <p class="fechas"><span></span></p>
+                                        <div class="col-md-5 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="titulo">{{$primerArticulo->actividad2}}</p>
+                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad2}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-5 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="titulo">{{$primerArticulo->actividad3}}</p>
-                                            <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad3}} {{$primerArticulo->valor1}}</p>
-                                            <p class="fechas"><span></span></p>
-                                            <p class="fechas"><span></span></p>
+                                        <div class="col-md-5 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="titulo">{{$primerArticulo->actividad3}}</p>
+                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad3}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-5 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="titulo">{{$primerArticulo->actividad4}}</p>
-                                            <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad4}} {{$primerArticulo->valor1}}</p>
-                                            <p class="fechas"><span></span></p>
-                                            <p class="fechas"><span></span></p>
-                                        </div>
+                                        <div class="col-md-5 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="titulo">{{$primerArticulo->actividad4}}</p>
+                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad4}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
+                                                </div>
 
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-5 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="titulo">{{$primerArticulo->actividad5}}</p>
-                                            <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad5}} {{$primerArticulo->valor1}}</p>
-                                            <p class="fechas"><span></span></p>
-                                            <p class="fechas"><span></span></p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-md-10 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-0">
-                                        <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                
                                             </div>
-                                            <div class="col-md-7 totalE">
-                                                <p class="titulo">Total Exportaciones</p>
-                                                <p class="mb-2 subtitulo">{{$primerArticulo->total}} {{$primerArticulo->valor1}}</p>
-                                                <p class="fechas"><span></span></p>
-                                                <p class="fechas"></p>
                                             </div>
+                                            </div>
+                                            
                                         </div>
+                                        <div class="col-md-5 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="titulo">{{$primerArticulo->actividad5}}</p>
+                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad5}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
-                                    </div>
-                                    
+                                        <div class="col-md-10 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-0">
+                                                <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-7 totalE">
+                                                        <p class="titulo">Total Exportaciones</p>
+                                                        <p class="mb-2 subtitulo">{{$primerArticulo->total}} {{$primerArticulo->valor1}}</p>
+                                                        <p class="fechas"><span></span></p>
+                                                        <p class="fechas"></p>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-10 mb-4">
+                                        <b>Fuente:</b> Elaborado por el INE sobre la base de información del Servicio Nacional de Aduanas.
+                                        </div>
                                 </div>
-                                <div class="col-md-10 mb-4">
-                                <b>Fuente:</b> Elaborado por el INE sobre la base de información del Servicio Nacional de Aduanas.
-                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="container img">
-                        <div class="row">
-                            @include('layouts.menuestadistica') 
+                        <div class="col-md-4">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>
+    </div>        
     </main>
 
     <footer>

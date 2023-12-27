@@ -11,6 +11,8 @@ use App\Models\DinamicaEconomica;
 use App\Models\ExportacionSegunRamaActividad;
 use App\Models\ExportacionSegunBloqueEconomico;
 use App\Models\FNDR;
+use App\Models\ActividadEconomica;
+use App\Models\ActividadesEconomicaI;
 
 use Carbon\Carbon;
 
@@ -752,6 +754,95 @@ if ($articulo) {
 }
 } 
 //Fin FNDR
+
+//Inicio ActividadesEconomica
+
+public function indexActividadesEconomica()
+{
+    $articulo = ActividadEconomica::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        //$articulo = ActividadEconomica::find($id);
+        return view('IntroduccionRegionLagos.ActividadesEconomica.show', compact('articulo'));
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+    }
+}
+public function storeActividadesEconomica(Request $request){
+    $data = $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+    ]);
+
+    $actividadEconomica = ActividadEconomica::create($data);
+    // Almacenamiento de campos adicionales en el modelo CampoAdicional
+    // Ahora puedes acceder al ID del modelo recién creado
+    $actividadEconomicaId = $actividadEconomica->id;
+    $camposAdicionales = $request->input('nombreA', []);
+    $hombres = $request->input('hombres', []);
+    $mujeres = $request->input('mujeres', []);
+
+
+
+
+    foreach ($camposAdicionales ?? [] as $key => $campo) {
+        ActividadesEconomicaI::create(['ActividadesEconomicaI_id' => $actividadEconomicaId,'nombreA' => $campo,'hombres' => $hombres[$key],'mujeres' => $mujeres[$key]]); // Ajusta según tus necesidades
+    }
+    return redirect(route('ActividadEconomica.index'))->with('success', 'Creado con éxito');
+}
+public function createActividadesEconomica()
+{
+    return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+}
+public function editActividadesEconomica($id){
+    $articulo  = ActividadEconomica::findOrFail($id);
+
+    $actividadesC = $articulo->ActividadesEconomicaI;
+    return view('IntroduccionRegionLagos.ActividadesEconomica.edit', compact('articulo','actividadesC'));
+}
+public function destroyActividadesEconomica($id)
+{
+    $articulo = ActividadEconomica::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateActividadesEconomica(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = ActividadEconomica::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin ActividadesEconomica
+
 
     // frond de region los lagos
     public function indexRegionlagosIntro()

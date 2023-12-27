@@ -15,7 +15,7 @@
         <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Dinámica Económica</a>
         <a class="enlaceM" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
         <a class="enlaceM" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
-        <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Actividad Económica</a>
+        <a class="enlaceM" href="{{ route('RegionlagosActividadEconomica.index') }}">Actividad Económica</a>
         <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}">FNDR 2009</a>
     </div> 
     </div>

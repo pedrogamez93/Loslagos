@@ -119,7 +119,6 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
     }
 
     #categorylist li:first-child {
@@ -301,69 +300,75 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row ">
-                <div class="col-md-12 mt-5 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat mt-5">Selecciona una Categoría</p>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 mt-5 pb-4">
+                            <p class="title-cat mt-5">Selecciona una Categoría</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategoriasRegionLagos')
-        </div>
-        <div class="container mt-5 mb-5">
-            <div class="row p-5">
-                <div class="col-md-8 borderR">
-                    <div class="container int">
-                        <div class="row">
-                        <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
-                            <th scope="col" class="tituloT">Superficie</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
-                            <th scope="col" class="tituloT">Total</th>
-                            </tr>
-                            <tr>
-                            <th scope="col"></th>
-                            <th scope="col" style=" text-align: center;"> {{$acumulador}} </th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($introduccion as $p)
-                            
-                            <tr>
-                                <td>{{ $p->comuna }}</td>
-                                <td style=" text-align: center;">{{ $p->superficie }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_hombre }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_rural_hombre }}</td>
-                                <td style=" text-align: center;"> {{  $total =$p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;}}</td>
-                            </tr>
-                            
-                            @endforeach
+                <div class="container set pb-4">
+                    @include('layouts.listacategoriasRegionLagos')
+                </div>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-8 borderR">
+                            <div class="container int">
+                                <div class="row">
+                                <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                                    <th scope="col" class="tituloT">Superficie</th>
+                                    <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
+                                    <th scope="col" class="tituloT" colspan="2">Población Rural</th>
+                                    <th scope="col" class="tituloT">Total</th>
+                                    </tr>
+                                    <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col" style=" text-align: center;"> {{$acumulador}} </th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($introduccion as $p)
+                                    
+                                    <tr>
+                                        <td>{{ $p->comuna }}</td>
+                                        <td style=" text-align: center;">{{ $p->superficie }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_hombre }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_rural_hombre }}</td>
+                                        <td style=" text-align: center;"> {{  $total =$p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;}}</td>
+                                    </tr>
+                                    
+                                    @endforeach
 
-                        </tbody>
-                        </table>
+                                </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="container img">
-                        <div class="row">
-                            @include('layouts.menuestadistica') 
-                        </div>
-                    </div>
-                </div>
+                </div>   
             </div>
-        </div>      
+        </div>
+    </div>   
     </main>
 
     <footer>

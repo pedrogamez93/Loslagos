@@ -95,7 +95,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
+        
     }
 
     #categorylist li:first-child {
@@ -204,41 +204,47 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row">
-                <div class="col-md-12 mt-5 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat mt-5">Selecciona una Categoría</p>
-                </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategoriasRegionLagos')
-        </div>
-        <div class="container mt-5 mb-5">
-            <div class="row p-5">
-                <div class="col-md-6">
-                    <div class="container int">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="style-tag pt-4 pb-4">{{ $introduccion->subtitulo }}</p>
-                                <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
-                                <p class="style-down pt-2 pb-2">{{ $introduccion->descripcion }}</p>
-                            </div>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mt-5 pb-4">
+                            <p class="title-cat mt-5">Selecciona una Categoría</p>
                         </div>
                     </div>
                 </div>
+                <div class="container set pb-4">
+                    @include('layouts.listacategoriasRegionLagos')
+                </div>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-6 p-0">
+                            <div class="container int p-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="style-tag pt-4 pb-4">{{ $introduccion->subtitulo }}</p>
+                                        <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
+                                        <p class="style-down pt-2 pb-2">{{ $introduccion->descripcion }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="col-md-6" style="position: relative;">
-                    <div class="container img">
-                        <div class="row">
-                            <div class="col-md-12" style="text-align: -webkit-center;">
-                                <img src="{{ asset('storage/' . $introduccion->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                        <div class="col-md-6  p-0" style="position: relative;">
+                            <div class="container img">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: -webkit-center;">
+                                        <img src="{{ asset('storage/' . $introduccion->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>
+    </div>
     </main>
 
     <footer>

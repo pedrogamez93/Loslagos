@@ -119,7 +119,6 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
     }
 
     #categorylist li:first-child {
@@ -344,55 +343,61 @@
     </header>
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row ">
-                <div class="col-md-12 mt-5 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat mt-5">Selecciona una Categoría</p>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 mt-5 pb-4">
+                            <p class="title-cat mt-5">Selecciona una Categoría</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategoriasRegionLagos')
-        </div>
-        <div class="container mt-5 mb-5">
-            <div class="row p-5">
-                <div class="col-md-8 borderR">
-                    <div class="container int">
-                        <div class="row">
-                            <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
-                            <p class="title-cat mb-5">Dinámica Económica</p>
-                            @foreach($introduccion as $art)
-                                <div class="col-md-6 mb-4">
-                                    <div class="col-md-12 cajaElementor mb-4 p-3">
-                                    <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="titulo">{{$art->titulo}}</p>
-                                            <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
-                                            <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
-                                            <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
-                                        </div>
-                                        <div class="col-md-2">
+                <div class="container set pb-4">
+                    @include('layouts.listacategoriasRegionLagos')
+                </div>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-8 borderR">
+                            <div class="container int p-0">
+                                <div class="row">
+                                    <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
+                                    <p class="title-cat mb-5">Dinámica Económica</p>
+                                    @foreach($introduccion as $art)
+                                        <div class="col-md-6 mb-4">
+                                            <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <p class="titulo">{{$art->titulo}}</p>
+                                                    <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
+                                                    <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
+                                                    <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
                                             
                                         </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="container img">
-                        <div class="row">
-                            @include('layouts.menuestadistica') 
-                        </div>
-                    </div>
-                </div>
+                </div>  
             </div>
-        </div>      
+        </div>
+    </div>     
     </main>
 
     <footer>
