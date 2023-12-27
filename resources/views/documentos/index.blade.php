@@ -17,8 +17,8 @@
     </div>
 </div>
 
-<div class="contenido bg-white rounded-top-left-90 mt-n6" style="height: 800px;">
-    <div class="row py-5">
+<div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="height: 800px; margin-top: -7vh;border-radius: 70px 0px 0px 0px;">
+    <div class="row py-5 px-5">
         <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">
@@ -37,7 +37,7 @@
         </div>
 
         <div id="Docsparadesc" class="col-md-4 col-lg-3 pt-3 ps-4" style="border-left: 3px solid #F59120; ">
-        <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
+        <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes decargar:</h4>
 
         @foreach($documentos as $documento)
         <a class="mt-5" href="{{ url('storage/' . $documento->archivo_path) }}" download>
@@ -53,4 +53,13 @@
         </div>
     </div>
 </div>
+
+<script>
+   
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.setProperty('background-color', '#F59120', 'important');
+    });
+</script>
+
 @endsection

@@ -11,7 +11,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
+        padding-left: 2rem !important;
     }
 
     #categorylist li:first-child {
@@ -61,6 +61,7 @@
         display: none;
     }    
 </style>
+
 <div class="lista-categorias">
     <div id="categoriasToggle">
         <span id="backToggle" class="responsiveCategorias">Categorías</span>
