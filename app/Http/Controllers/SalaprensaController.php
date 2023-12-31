@@ -10,8 +10,11 @@ class SalaprensaController extends Controller
 {
     public function index()
     {
-        $salapresa = Salaprensa::all();
-        return view('salapresa.index', compact('salapresa'));
+        // Obtén las noticias con paginación
+        $noticias = Salaprensa::paginate(12); // 12 noticias por página, ajusta según tus necesidades
+    
+        // Retorna la vista con las noticias paginadas
+        return view('salaprensa.index', ['noticias' => $noticias]);
     }
 
     public function create()
