@@ -1030,7 +1030,10 @@ if ($articulo) {
         $primerArticulo = $FNDR->first();
         return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
     }
-    
+    public function imagenesP($img)    
+    {
+        return response()->file(storage_path("app/public/images/".$img));
+    }
     
     
 }

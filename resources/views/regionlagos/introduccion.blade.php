@@ -155,9 +155,10 @@
         color:#fff;
 
     }
+
     .backgroundB{
-        background-color: #00548F !important;
-    }
+          background-color: #00548F !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
+        }
 </style>
 <html>
 <head>
@@ -235,7 +236,7 @@
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: -webkit-center;">
-                                        <img src="{{ asset('storage/' . $introduccion->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                                        <img src="{{ asset($introduccion->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
                                     </div>
                                 </div>
                             </div>
