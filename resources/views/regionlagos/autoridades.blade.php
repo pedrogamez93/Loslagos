@@ -292,7 +292,7 @@
                                         <p class="style-tag pt-0 pb-4">{{ $introduccion->cargo }}</p>
                                     </div>
                                     <div class="col-md-5 fotoA">
-                                        <img src="{{ asset('storage/' . $introduccion->foto) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                                        <img src="{{ asset('$introduccion->foto) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
                                     </div>
                                     <div class="col-md-7 info">
                                         <p class="style-nombre pb-4">{{ $introduccion->nombre }}</p>

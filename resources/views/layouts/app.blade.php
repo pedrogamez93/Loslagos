@@ -36,7 +36,7 @@
             padding: 10px 0; /* Ajusta el relleno según sea necesario */
         }
         .backgroundB{
-          background-color: #389144 !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
+          background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
         }
     </style>
 
@@ -44,7 +44,7 @@
 </head>
 <body id="app-layout"  class=" " style="">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light px-5 backgroundB" >
+<nav class="navbar navbar-expand-lg px-5 backgroundB" >
   
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">

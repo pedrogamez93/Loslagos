@@ -107,7 +107,7 @@
                                     <div class="col-md-12 pb-3">
                                         <label for="imagen" class="form-label style-label">Imagen Actual:</label>
                                     </div>
-                                        <img src="{{ asset('storage/' . $articulo->imagen) }}" alt="Imagen Actual" width="250">
+                                        <img src="{{ asset($articulo->imagen) }}" alt="Imagen Actual" width="250">
                                     </div>
                                 </div>
                             </div>

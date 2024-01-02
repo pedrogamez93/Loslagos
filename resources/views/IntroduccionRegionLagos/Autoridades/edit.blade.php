@@ -163,7 +163,7 @@
                                             <div class="col-md-12 pb-3">
                                                 <label for="imagen" class="form-label style-label">Imagen Actual:</label>
                                             </div>
-                                                <img src="{{ asset('storage/' . $articulo->foto) }}" alt="Imagen Actual" width="250">
+                                                <img src="{{ asset($articulo->foto) }}" alt="Imagen Actual" width="250">
                                         </div>
                                         <div class="mb-3">
                                         <label for="formFile" class="form-label style-label">Selecciona la foto para cambiarla</label>
