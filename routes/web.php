@@ -15,6 +15,7 @@ use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\SalaprensaController;
 use App\Http\Controllers\AsambleaClimaticaController;
 use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\DisenoPoliticoRegionalesController;
@@ -59,6 +60,16 @@ Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->n
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+
+//Sala de prensa
+Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create']);
+Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
+Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
+Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
+Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
+Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
+Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 //Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/

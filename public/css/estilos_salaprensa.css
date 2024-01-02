@@ -1,0 +1,49 @@
+.tituloform{
+    color: #565656;
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+
+
+.titulodocsdes{
+    color: #F59120;
+
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+
+.divtitulodocsdes{
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+.noticia-categoria {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+
+.titulonoticia{
+    font-family: 'Inter';
+font-size: 20px;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+
+}
