@@ -64,9 +64,12 @@ Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'des
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
 Route::get('/saladeprensa/create', [SalaprensaController::class, 'create']);
-Route::post('/saladeprensa', [SalaprensaController::class, 'store']);
-
-
+Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
+Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
+Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
+Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
+Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
+Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 //Route::resource('/', HomeController::class);
 
 /*RUTAS CRUD INIT*/

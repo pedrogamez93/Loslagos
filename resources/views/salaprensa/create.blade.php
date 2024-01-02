@@ -69,7 +69,7 @@ input:required {
     margin-right: 4px;
 }
 </style>
-<div class="container-fluid body">
+<div class="container-fluid body" onload="formatDateOnInit()">
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario subida de documentos</h1>
+                        <h1>Formulario subida de Noticia</h1>
                         @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -95,11 +95,12 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/documentos') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/saladeprensasubir') }}" method="POST" enctype="multipart/form-data">
+                        
             @csrf
 
             <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="nombre" placeholder="Título" required>
+            <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" required>
                        
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
                 <option selected>Seleccione Categoria</option>
@@ -109,8 +110,21 @@ input:required {
             </select>
 
             <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Descripcion</label>
+                <textarea class="form-control" type="text" name="descripcion" id="descripcion"></textarea>
+               
+            </div>
+
+            <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Suba aquí el documento correspondiente</label>
-                <input class="form-control" type="file" name="archivo_path" id="formFile">
+                <input class="form-control" type="file" name="archivo_path" id="formFile"></input>
+               
+            </div>
+
+
+            <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Fecha:</label>
+                <input class="form-control" type="date" name="fecha" id="formDate">
             </div>
 
             <div class="form-check">
@@ -128,49 +142,4 @@ input:required {
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container");
-            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
 
-            // Limpia los valores en los campos clonados
-            nuevoDocumentoInput.find("input[type='file']").val('');
-            nuevoDocumentoInput.find("input[type='text']").val('');
-
-            // Genera un nuevo nombre único para cada campo clonado
-            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
-            nuevoDocumentoInput.find("input[type='file']").attr('id', 'ruta_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[]');
-            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
-
-            // Agrega los campos clonados al contenedor
-            documentosContainer.append(nuevoDocumentoInput);
-        });
-    });
-</script>
-
-<script>
-  $(document).ready(function () {
-    // Ocultar el container add-boton inicialmente
-    $(".documentos-container").hide();
-    // Desactivar la opción "No" cuando se selecciona "Si"
-    $("#inlineCheckbox12").change(function () {
-      if ($(this).prop("checked")) {
-        $("#inlineCheckbox21").prop("checked", false);
-        $(".documentos-container").slideDown(); 
-      } else {
-        $(".documentos-container").slideUp(); 
-      }
-    });
-    // Desactivar la opción "Si" cuando se selecciona "No"
-    $("#inlineCheckbox21").change(function () {
-      if ($(this).prop("checked")) {
-        $("#inlineCheckbox12").prop("checked", false);
-        $(".documentos-container").slideUp();    
-      }
-    });
-});
-</script>

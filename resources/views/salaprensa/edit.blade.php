@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario edicion de documentos</h1>
+                        <h1>Formulario edicion de noticia</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -90,12 +90,12 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ route('documentos.update', ['id' => $documento->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('noticia.update', ['id' => $noticia->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-    @method('PUT')
+                     @method('PUT')
 
-            <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="nombre" placeholder="Título" required>
+                     <label class="style-label required" for="titulo">Título:</label>
+            <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" required>
                        
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
                 <option selected>Seleccione Categoria</option>
@@ -105,8 +105,21 @@ input:required {
             </select>
 
             <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Descripcion</label>
+                <textarea class="form-control" type="text" name="descripcion" id="descripcion"></textarea>
+               
+            </div>
+
+            <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Suba aquí el documento correspondiente</label>
-                <input class="form-control" type="file" name="archivo_path" id="formFile">
+                <input class="form-control" type="file" name="archivo_path" id="formFile"></input>
+               
+            </div>
+
+
+            <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Fecha:</label>
+                <input class="form-control" type="date" name="fecha" id="formDate">
             </div>
 
             <div class="form-check">

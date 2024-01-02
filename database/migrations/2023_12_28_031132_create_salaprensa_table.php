@@ -15,8 +15,11 @@ class CreateSalaprensaTable extends Migration
     {
         Schema::create('salaprensa', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');    
+            $table->string('titulo');  
+            $table->string('categoria');   
             $table->text('descripcion');
+            $table->string('archivo_path');
+            $table->date('fecha'); // Agregamos el campo fecha de tipo date
             $table->timestamps();
         });
     }

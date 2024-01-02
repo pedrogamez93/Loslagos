@@ -4,7 +4,7 @@
 
 @section('content')
 @push('styles')
-    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos_salaprensa.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
 
@@ -23,19 +23,23 @@
 
             <!-- Aquí se colocan las noticias -->
             <div class="row">
-                @foreach($noticias as $noticia)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ $noticia->imagen }}" class="card-img-top" alt="Imagen de la noticia">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $noticia->titulo }}</h5>
-                                <p class="card-text">{{ $noticia->descripcion }}</p>
-                                <a href="{{ $noticia->enlace }}" class="btn btn-primary">Ir ahora</a>
-                            </div>
-                        </div>
+    @foreach($noticias as $noticia)
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ asset($noticia->archivo_path) }}" class="card-img-top" alt="Imagen de la noticia">
+                <div class="card-img-overlay">
+                    <div class="card-body text-white">
+                    <p class="card-text noticia-categoria" >{{ $noticia->categoria }}</p>
+                        <h5 class="card-title titulonoticia">{{ $noticia->titulo }}</h5>
+                       
+                        <a href="{{ $noticia->enlace }}" class="btn btn-primary">Ir ahora</a>
                     </div>
-                @endforeach
+                </div>
             </div>
+        </div>
+    @endforeach
+</div>
+>
 
             <!-- Paginación -->
             <div class="row">

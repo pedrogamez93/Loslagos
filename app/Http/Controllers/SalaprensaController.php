@@ -19,11 +19,47 @@ class SalaprensaController extends Controller
 
     public function create()
     {
-        return view('salapresa.create');
+        return view('salaprensa.create');
     }
 
+     
     public function store(Request $request)
     {
-        // Lógica para almacenar el documento
+
+      
+        $request->validate([
+            'titulo' => 'required|string',
+            'categoria' => 'required|string',
+            'descripcion' => 'required|string',
+            'archivo_path' => 'required|file|mimes:jpeg,jpg,png,gif',
+            'fecha' => 'required|date',
+        ]);
+        
+        
+
+
+        $datosd = $request->except('_token');
+        
+        
+        // Manejo del archivo
+        if ($request->hasFile('archivo_path')) {
+            $archivoPath = $request->file('archivo_path')->store('salaprensa', 'public');
+            $datosd['archivo_path'] = $archivoPath;
+        }
+
+        // Otras asignaciones y ajustes según tus necesidades
+        $datosd['created_at'] = now();
+        $datosd['updated_at'] = now();
+
+        Salaprensa::insert($datosd);
+
+        return redirect('/saladeprensa/create')->with('success', 'Documento guardado exitosamente');
     }
+
+
+    public function mostrarImagen($imagen)
+    {
+        return response()->file(storage_path('app/public/salaprensa/' . $imagen));
+    }
+
 }
