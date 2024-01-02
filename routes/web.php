@@ -128,7 +128,7 @@ Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController
 
 // Rutas para los trámites
 Route::resource('tramites', TramitesDigitalesController::class);
-Route::get('/iconos/{imagen}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
 Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');

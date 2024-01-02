@@ -142,7 +142,7 @@ class TramitesDigitalesController extends Controller{
         return redirect()->route('tramites.index');
     }
 
-    public function mostrarImagen($imagen){
-        return response()->file(storage_path('app/public/iconos/' . $imagen));
+    public function mostrarImagen($icono){
+        return response()->file(storage_path('app/public/iconos/' . $icono));
     }
 }
