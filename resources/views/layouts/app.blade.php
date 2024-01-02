@@ -36,7 +36,7 @@
             padding: 10px 0; /* Ajusta el relleno según sea necesario */
         }
         .backgroundB{
-          background-color: #00548F !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
+          background-color: #389144 !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
         }
     </style>
 
