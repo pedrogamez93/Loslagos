@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModificarFechaAperturaNullableEnTramitesDigitales extends Migration
+class CreateInversionesGeneralsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class ModificarFechaAperturaNullableEnTramitesDigitales extends Migration
      */
     public function up()
     {
-        Schema::table('tramites_digitales', function (Blueprint $table) {
-            $table->date('fecha_apertura')->nullable()->change();
+        Schema::create('inversiones_generals', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class ModificarFechaAperturaNullableEnTramitesDigitales extends Migration
      */
     public function down()
     {
-        Schema::table('tramites_digitales', function (Blueprint $table) {
-            $table->date('fecha_apertura')->change();
-        });
+        Schema::dropIfExists('inversiones_generals');
     }
 }

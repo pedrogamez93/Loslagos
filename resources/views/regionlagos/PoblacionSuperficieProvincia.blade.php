@@ -119,7 +119,6 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
     }
 
     #categorylist li:first-child {
@@ -242,6 +241,19 @@
         letter-spacing: 0em;
         text-align: left;
     }
+    .backgroundB{
+        background-color: #00548F !important;
+    }
+    .descripB{
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color:#fff;
+
+    }
 </style>
 <html>
 <head>
@@ -257,113 +269,106 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
-        <div class="container top-bar">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-2">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                </div>
-                <div class="col-md-8" style="align-self: center;">
-                    <nav style="margin-left: 5rem;">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/acerca">Gobierno Regional</a></li>
-                            <li><a href="/contacto">Concejo Regional</a></li>
-                            <li><a href="/regionlagos/introduccion">Region de Los Lagos</a></li>
-                            <li><a href="/contacto">Directorio de Funciones</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-2" style="align-self: center;">
-                    <a href="" class="style-btn"><p class="style-btn">Infórmate aquí</p></a>
-                </div>
+@extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+<div class="container-fluid" style="background-color:#00548F;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container pt-5 pb-5">
+                <div class="row" >
+                    <div class="col-md-12" >
+                        <p class="style-bread"><a href="/">Home </a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/asambleaclimatica">Región de los Lagos</a></span></p>                    </div>
+                    </div>
+                    <div class="col-md-12 pt-5 pb-5">
+                        <p class="one-title pb-4">Región de los Lagos</p>
+
+                        <p style="Width:623px;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
+                    </div>
+                    
+                <div class="container pt-4">
+                    <div class="row">
+                        
+                    </div>
+                </div>   
             </div>
         </div>
-
-        <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
-        <div class="container content-breadc pt-4 pb-3">
-            <div class="row" style="padding: 10px 0px 20px 55px;">
-                <div class="col-md-12">
-                    <p class="style-bread">Home / <span style="font-Weight: 700;">Región de los Lagos</span></p>
-                </div>
-            </div>
-        </div>   
-        <div class="container content-prin">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-12">
-                    <p class="one-title pb-4">Región de los Lagos</p>
-
-                    <p style="Width:623px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                </div>
-            </div>
-        </div>   
-    </header>
+    </div>
+</div> 
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row ">
-                <div class="col-md-12 mt-5 pb-4" style="padding: 0 0 0 5.3rem;">
-                    <p class="title-cat mt-5">Selecciona una Categoría</p>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 mt-5 pb-4">
+                            <p class="title-cat mt-5">Selecciona una Categoría</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-            @include('layouts.listacategoriasRegionLagos')
-        </div>
-        <div class="container mt-5 mb-5">
-            <div class="row p-5">
-                <div class="col-md-8 borderR">
-                    <div class="container int">
-                        <div class="row">
-                        <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col" class="tituloTable">Región de los  Lagos</th>
-                            <th scope="col" class="tituloT">Superficie</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
-                            <th scope="col" class="tituloT" colspan="2">Población Rural</th>
-                            <th scope="col" class="tituloT">Total</th>
-                            </tr>
-                            <tr>
-                            <th scope="col"></th>
-                            <th scope="col" style=" text-align: center;"> {{$acumulador}} </th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
-                            <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
-                            <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($introduccion as $p)
-                            
-                            <tr>
-                                <td>{{ $p->comuna }}</td>
-                                <td style=" text-align: center;">{{ $p->superficie }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_hombre }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                <td style=" text-align: center;"> {{ $p->p_rural_hombre }}</td>
-                                <td style=" text-align: center;"> {{  $total =$p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;}}</td>
-                            </tr>
-                            
-                            @endforeach
+                <div class="container set pb-4">
+                    @include('layouts.listacategoriasRegionLagos')
+                </div>
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-8 borderR">
+                            <div class="container int">
+                                <div class="row">
+                                <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                                    <th scope="col" class="tituloT">Superficie</th>
+                                    <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
+                                    <th scope="col" class="tituloT" colspan="2">Población Rural</th>
+                                    <th scope="col" class="tituloT">Total</th>
+                                    </tr>
+                                    <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col" style=" text-align: center;"> {{$acumulador}} </th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
+                                    <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($introduccion as $p)
+                                    
+                                    <tr>
+                                        <td>{{ $p->comuna }}</td>
+                                        <td style=" text-align: center;">{{ $p->superficie }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_hombre }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
+                                        <td style=" text-align: center;"> {{ $p->p_rural_hombre }}</td>
+                                        <td style=" text-align: center;"> {{  $total =$p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;}}</td>
+                                    </tr>
+                                    
+                                    @endforeach
 
-                        </tbody>
-                        </table>
+                                </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="container img">
-                        <div class="row">
-                            @include('layouts.menuestadistica') 
-                        </div>
-                    </div>
-                </div>
+                </div>   
             </div>
-        </div>      
+        </div>
+    </div>   
     </main>
 
     <footer>
@@ -380,4 +385,4 @@
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
- 
+@endsection

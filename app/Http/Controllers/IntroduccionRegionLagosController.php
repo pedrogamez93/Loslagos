@@ -11,6 +11,8 @@ use App\Models\DinamicaEconomica;
 use App\Models\ExportacionSegunRamaActividad;
 use App\Models\ExportacionSegunBloqueEconomico;
 use App\Models\FNDR;
+use App\Models\ActividadEconomica;
+use App\Models\ActividadesEconomicaI;
 
 use Carbon\Carbon;
 
@@ -753,6 +755,95 @@ if ($articulo) {
 } 
 //Fin FNDR
 
+//Inicio ActividadesEconomica
+
+public function indexActividadesEconomica()
+{
+    $articulo = ActividadEconomica::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        //$articulo = ActividadEconomica::find($id);
+        return view('IntroduccionRegionLagos.ActividadesEconomica.show', compact('articulo'));
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+    }
+}
+public function storeActividadesEconomica(Request $request){
+    $data = $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+    ]);
+
+    $actividadEconomica = ActividadEconomica::create($data);
+    // Almacenamiento de campos adicionales en el modelo CampoAdicional
+    // Ahora puedes acceder al ID del modelo recién creado
+    $actividadEconomicaId = $actividadEconomica->id;
+    $camposAdicionales = $request->input('nombreA', []);
+    $hombres = $request->input('hombres', []);
+    $mujeres = $request->input('mujeres', []);
+
+
+
+
+    foreach ($camposAdicionales ?? [] as $key => $campo) {
+        ActividadesEconomicaI::create(['ActividadesEconomicaI_id' => $actividadEconomicaId,'nombreA' => $campo,'hombres' => $hombres[$key],'mujeres' => $mujeres[$key]]); // Ajusta según tus necesidades
+    }
+    return redirect(route('ActividadEconomica.index'))->with('success', 'Creado con éxito');
+}
+public function createActividadesEconomica()
+{
+    return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+}
+public function editActividadesEconomica($id){
+    $articulo  = ActividadEconomica::findOrFail($id);
+
+    $actividadesC = $articulo->ActividadesEconomicaI;
+    return view('IntroduccionRegionLagos.ActividadesEconomica.edit', compact('articulo','actividadesC'));
+}
+public function destroyActividadesEconomica($id)
+{
+    $articulo = ActividadEconomica::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateActividadesEconomica(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = ActividadEconomica::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin ActividadesEconomica
+
+
     // frond de region los lagos
     public function indexRegionlagosIntro()
     {
@@ -879,15 +970,19 @@ if ($articulo) {
         $p_urbana_mujeres = Estadisticas::sum('p_urbana_mujeres');
         $p_rural_hombre = Estadisticas::sum('p_rural_hombre');
         $p_rural_mujeres = Estadisticas::sum('p_rural_mujeres');
+        $actividadE = ActividadEconomica::all();
+        
+        
         $total =$p_urbana_hombre + $p_urbana_mujeres + $p_rural_hombre + $p_rural_mujeres;
 
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total'));
+        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total','actividadE'));
         
     }
     public function indexRegionlagosPoblacionSuperficieProvincia($titulo)
     {
         $introduccion = Estadisticas::where('provincia', $titulo)->get();
+        $actividadE = ActividadEconomica::all();
         $acumulador=0;
         foreach($introduccion as $p){
             $acumulador += $p->superficie;
@@ -895,33 +990,45 @@ if ($articulo) {
             
         
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo'));
+        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo','actividadE'));
         
+    }
+    public function indexRegionlagosBuscarActividadEconomica($titulo)
+    {
+        $introduccion = ActividadEconomica::where('nombre', $titulo)->first();
+        $actividadE = ActividadEconomica::all();
+        //$articulo  = ActividadEconomica::findOrFail($id);
+        $actividadesC = $introduccion->ActividadesEconomicaI;
+        return view('regionlagos.actividad_economica', compact('introduccion','actividadE','actividadesC','actividadE'));
     }
 
 //FNDR
     public function indexRegionlagosDinamicaEconomica()    
     {
         $introduccion = DinamicaEconomica::all();
-        return view('regionlagos.dinamicaeconomica', compact('introduccion'));
+        $actividadE = ActividadEconomica::all();
+        return view('regionlagos.dinamicaeconomica', compact('introduccion','actividadE'));
     }
     public function indexRegionlagosExportacionSegunRamaActividad()    
     {
         $SegunRamaActividad = ExportacionSegunRamaActividad::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunRamaActividad->first();
-        return view('regionlagos.ExportacionSegunRamaActividad', compact('primerArticulo'));
+        return view('regionlagos.ExportacionSegunRamaActividad', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosExportacionSegunBloqueEconomico()    
     {
         $SegunBloqueEconomico = ExportacionSegunBloqueEconomico::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunBloqueEconomico->first();
-        return view('regionlagos.ExportacionSegunBloqueEconomico', compact('primerArticulo'));
+        return view('regionlagos.ExportacionSegunBloqueEconomico', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosFNDR()    
     {
         $FNDR = FNDR::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $FNDR->first();
-        return view('regionlagos.FNDR', compact('primerArticulo'));
+        return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
     }
     
     

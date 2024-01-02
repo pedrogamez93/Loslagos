@@ -131,6 +131,9 @@
                                     <a class="style-a-menu" href="{{ route('ExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
                                 </li>
                                 <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('ActividadEconomica.index') }}">Actividad Económica</a>
+                                </li>
+                                <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('FNDR.index') }}">FNDR</a>
                                 </li>
                                    
