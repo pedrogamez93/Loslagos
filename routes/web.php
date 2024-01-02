@@ -25,6 +25,8 @@ use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
+use App\Http\Controllers\ConcejoRegionalController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,18 +65,24 @@ Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'des
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
+Route::get('/images/{imagen}', [IntroduccionController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('comofuncionagrs', ComofuncionaGrController::class);
+Route::get('/images/{imagen}', [ComofuncionaGrController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('estrategias', EstrategiasController::class);
+Route::get('/images/{imagen}', [EstrategiasController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('inversiones', InversionesPublicController::class);
+Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('mision', MisionGobController::class);
+Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('leygobiernoregional', LeygbsController::class);
 
 Route::resource('organigrama', OrganigramaController::class);
+Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 
@@ -94,6 +102,9 @@ Route::resource('concursospublicos', ConcursosPublicosController::class);
 
 Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
 
+Route::resource('concejoregional', ConcejoRegionalController::class);
+Route::put('/concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@updateSeccion');
+Route::delete('/concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@deleteSeccion')->name('concejoregional.deleteSeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
 Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
@@ -106,6 +117,7 @@ Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController
 
 // Rutas para los trámites
 Route::resource('tramites', TramitesDigitalesController::class);
+Route::get('/iconos/{imagen}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
 Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');

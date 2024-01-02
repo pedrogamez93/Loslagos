@@ -66,4 +66,8 @@ class ComofuncionaGrController extends Controller
     
         return view('comofuncionagrs.edit', compact('comofunciona'));
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

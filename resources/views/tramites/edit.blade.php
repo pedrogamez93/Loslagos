@@ -95,7 +95,7 @@
                             
                             @if($tramite->icono)
                                 <p>Icono actual:</p>
-                                <img src="{{ $tramite->icono }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
+                                <img src="{{ asset($tramite->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
                             @else
                                 <p>No hay icono actual.</p>
                             @endif

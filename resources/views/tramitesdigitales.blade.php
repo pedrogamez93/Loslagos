@@ -221,7 +221,7 @@ Contenido principal de tu página -->
                                             <a href="{{ route('tramites.show', $tramite->id) }}" class="card-link">
                                         @endif
                                             <div class="card">
-                                                <img src="{{ asset('storage/' . $tramite->icono) }}" alt="" class="img-fluid icon-style">
+                                                <img src="{{ asset($tramite->icono) }}" alt="" class="img-fluid icon-style">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ $tramite->titulo }}</h5>
                                                     <p style="font-family: 'Inter'; font-weight: 400; font-size: 16px; line-height: 19.36px; color:#565656;">{{ $tramite->tags }}</p>

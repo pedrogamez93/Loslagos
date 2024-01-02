@@ -320,7 +320,7 @@ h5.card-title{
                             
                             @if($tramites->icono)
                                 <p>Icono actual:</p>
-                                <img src="{{ asset('storage/' . $tramites->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
+                                <img src="{{ asset($tramites->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
                             @else
                                 <p>No hay icono actual.</p>
                             @endif

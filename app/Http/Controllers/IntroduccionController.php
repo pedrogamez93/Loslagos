@@ -77,4 +77,8 @@ class IntroduccionController extends Controller{
     
         return view('introduccion.edit', compact('introduccion'));
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

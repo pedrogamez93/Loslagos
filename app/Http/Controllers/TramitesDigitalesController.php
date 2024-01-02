@@ -141,4 +141,8 @@ class TramitesDigitalesController extends Controller{
         TramitesDigitales::destroy($id);
         return redirect()->route('tramites.index');
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/iconos/' . $imagen));
+    }
 }
