@@ -225,7 +225,7 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-4 pb-4">{{ $introduccion->subtitulo }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
-                                        <p class="style-down pt-2 pb-2">{{ $introduccion->descripcion }}</p>
+                                        <p class="style-down pt-2 pb-2">{!! $introduccion->descripcion ?? '' !!}</p>
                                     </div>
                                 </div>
                             </div>
