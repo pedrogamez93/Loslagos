@@ -88,7 +88,7 @@ Route::resource('inversiones', InversionesPublicController::class);
 Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('mision', MisionGobController::class);
-Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/images/{imagen}', [MisionGobController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('leygobiernoregional', LeygbsController::class);
 
