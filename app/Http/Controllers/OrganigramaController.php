@@ -46,4 +46,8 @@ class OrganigramaController extends Controller
             return redirect('/organigrama');
         }
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

@@ -11,6 +11,22 @@
         left: 0; /* Lo fija en la parte izquierda */
         z-index: 1000;
     }
+    .top-bar{
+        border-bottom: 1px solid #FFFFFF;
+    }
+    nav ul {
+        list-style: none; 
+        padding: 0; 
+        display: flex; 
+    }
+
+    nav li {
+        margin-right: 20px; 
+    }
+
+    nav a {
+        text-decoration: none; 
+    }
     p.style-bread{
         font-family:'Inter';
         font-Weight: 500;
@@ -157,6 +173,10 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
+    footer{
+        height:535px;
+        background-color: #389144;
+    }
 </style>
 <html>
 <head>
@@ -181,8 +201,8 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-   <!--<header>
-         Contenido del encabezado barra de arriba logo, menu, etc...
+    <!-- <header>
+        Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -205,8 +225,9 @@
             </div>
         </div>
 
-    </header>
-    Contenido principal de tu página -->
+Contenido del encabezado principal breadcumbs, titulo, bajadas
+</header>
+Contenido principal de tu página -->
 <div class="container-fluid" style="background-color:#00548F;">
     <div class="row">
         <div class="col-md-12">
@@ -230,8 +251,8 @@
         </div>
     </div>
 </div> 
-<main>
-    <div class="container-fluid cat">
+  <main>
+  <div class="container-fluid cat">
         <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
@@ -252,32 +273,33 @@
                 </div>
                 <div class="container content mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-8" style="padding: 0 0 0 5rem;">
+
                             <div class="accordion" id="accordionone">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <p class="title-acord-one">{{ $asamblea->titulo_one ?? '' }}</p>
+                                        <p class="title-acord-one">{{ $asamblea->titulo_one ?? '' }}</p>
                                         </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionone">
-                                        <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_one ?? '' }}</div>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionone">
+                                            <div class="accordion-body">
+                                                <div class="bajada-acord">{{ $asamblea->descripcion_one ?? '' }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>  
+                                    </div>  
                             </div>
 
                             <div class="accordion" id="accordionTwo">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <p class="title-acord">{{ $asamblea->titulo_two ?? '' }}</p>
-                                        </button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <p class="title-acord">{{ $asamblea->titulo_two ?? '' }}</p>
+                                    </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionTwo">
                                         <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_two ?? '' }}</div>
+                                        <div class="bajada-acord">{{ $asamblea->descripcion_two ?? '' }}</div>
                                         </div>
                                     </div>
                                 </div>   
@@ -286,13 +308,13 @@
                             <div class="accordion" id="accordionTree">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTree">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
-                                            <p class="title-acord">{{ $asamblea->titulo_tree ?? '' }}</p>
-                                        </button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                                    <p class="title-acord">{{ $asamblea->titulo_tree ?? '' }}</p>
+                                    </button>
                                     </h2>
                                     <div id="collapseTree" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#accordionTree">
                                         <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_tree ?? '' }}</div>
+                                        <div class="bajada-acord">{{ $asamblea->descripcion_tree ?? '' }}</div>
                                         </div>
                                     </div>
                                 </div>   
@@ -301,13 +323,13 @@
                             <div class="accordion" id="accordionFour">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            <p class="title-acord">{{ $asamblea->titulo_four ?? '' }}</p>
-                                        </button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <p class="title-acord">{{ $asamblea->titulo_four ?? '' }}</p>
+                                    </button>
                                     </h2>
                                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFour">
                                         <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_four ?? '' }}</div>
+                                        <div class="bajada-acord">{{ $asamblea->descripcion_four ?? '' }}</div>
                                         </div>
                                     </div>
                                 </div>   
@@ -316,13 +338,13 @@
                             <div class="accordion" id="accordionFive">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                            <p class="title-acord">{{ $asamblea->titulo_five ?? '' }}</p>
-                                        </button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <p class="title-acord">{{ $asamblea->titulo_five ?? '' }}</p>
+                                    </button>
                                     </h2>
                                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFive">
                                         <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_five ?? '' }}</div>
+                                        <div class="bajada-acord">{{ $asamblea->descripcion_five ?? '' }}</div>
                                         </div>
                                     </div>
                                 </div>   
@@ -331,49 +353,47 @@
                             <div class="accordion" id="accordionSix">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSix">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                            <p class="title-acord">{{ $asamblea->titulo_six ?? '' }}</p>
-                                        </button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    <p class="title-acord">{{ $asamblea->titulo_six ?? '' }}</p>
+                                    </button>
                                     </h2>
                                     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionSix">
                                         <div class="accordion-body">
-                                            <div class="bajada-acord">{{ $asamblea->descripcion_six ?? '' }}</div>
+                                        <div class="bajada-acord">{{ $asamblea->descripcion_six ?? '' }}</div>
                                         </div>
                                     </div>
                                 </div>   
                             </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Verifica si $asamblea no es nulo antes de intentar acceder a sus propiedades --}}
-                                        @if($asamblea && $asamblea->documentos)
+
+                            {{-- Verifica si $asamblea no es nulo antes de intentar acceder a sus propiedades --}}
+                                    @if($asamblea && $asamblea->documentos)
                                         {{-- Itera sobre los documentos solo si $asamblea y $asamblea->documentos no son nulos --}}
                                         <h2 class="mi-style-h2 mt-5 mb-5">{{ $asamblea->titulo_seccion_two ?? '' }}</h2>
-                                            @foreach ($asamblea->documentos as $documento)
-                                                {{-- Aquí puedes acceder a las propiedades del documento --}}
-                                                <div class="mi-documento mt-3 mb-3">
-                                                    <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
-                                                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
-                                                        <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
-                                                    </a>
-                                                </div>
-                                                {{-- ... --}}
-                                             @endforeach
-                                            @else
-                                                {{-- Maneja el caso en que $asamblea o $asamblea->documentos sea nulo --}}
-                                                <p>No hay documentos disponibles</p>
-                                        @endif
-                                        <div class="container btn-extras">
-                                            <h2 class="h2-seccion-btn-extras mt-5 mb-5">{{ $asamblea->titulo_seccion_btn ?? '' }}</h2>
-                                                <div class="mi-btn mt-4 mb-4">
-                                                    <a class="final-btn" href="{{ $asamblea->url_btn ?? '' }}" target="_blank">
-                                                        {{ $asamblea->nombre_btn ?? '' }}
-                                                    </a>
-                                                </div>
-                                        </div>
+                                        @foreach ($asamblea->documentos as $documento)
+                                            {{-- Aquí puedes acceder a las propiedades del documento --}}
+                                            <div class="mi-documento mt-3 mb-3">
+                                                <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                                    <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
+                                                </a>
+                                            </div>
+                                            {{-- ... --}}
+                                        @endforeach
+                                    @else
+                                        {{-- Maneja el caso en que $asamblea o $asamblea->documentos sea nulo --}}
+                                        <p>No hay documentos disponibles</p>
+                                    @endif
+
+                                    <div class="container btn-extras">
+                                        <h2 class="h2-seccion-btn-extras mt-5 mb-5">{{ $asamblea->titulo_seccion_btn ?? '' }}</h2>
+        
+                                            <div class="mi-btn mt-4 mb-4">
+                                                <a class="final-btn" href="{{ $asamblea->url_btn ?? '' }}" target="_blank">
+                                                    {{ $asamblea->nombre_btn ?? '' }}
+                                                </a>
+                                            </div>
+                        
                                     </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="col-md-4" style="border-left: 2px solid #F59120;">
@@ -392,7 +412,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>    
 </main>
 </body>
 </html>

@@ -60,7 +60,7 @@ class TramitesDigitalesController extends Controller{
     
         // Procesar el icono si está presente
         if ($request->hasFile('icono')) {
-            $iconoPath = $request->file('icono')->store('iconos');
+            $iconoPath = $request->file('icono')->store('iconos' , 'public');
             $nuevoTramite->update(['icono' => $iconoPath]);
         }
     
@@ -124,7 +124,7 @@ class TramitesDigitalesController extends Controller{
         ]);
 
         if ($request->hasFile('icono')) {
-            $iconoPath = $request->file('icono')->store('iconos');
+            $iconoPath = $request->file('icono')->store('iconos' , 'public');
             $tramites->update(['icono' => $iconoPath]);
         }
 
@@ -140,5 +140,9 @@ class TramitesDigitalesController extends Controller{
     {
         TramitesDigitales::destroy($id);
         return redirect()->route('tramites.index');
+    }
+
+    public function mostrarImagen($icono) {
+        return response()->file(storage_path('app/public/iconos/' . $icono));
     }
 }

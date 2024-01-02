@@ -202,7 +202,7 @@
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: -webkit-center;">
-                                        <img src="{{ asset('storage/' . $introduccion->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
+                                        <img src="{{ asset($introduccion->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
                                     </div>
                                 </div>
                             </div>

@@ -200,7 +200,7 @@
                             <p style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 16px; color: #00548F;">Infórmate sobre nuestra Región...</p>
                             <h1 class="mititulo mt-4">{{ $organigrama->titulo }}</h1>
                             <div class="mi-img pt-4 pb-5">
-                            <img src="{{ asset('storage/' . $organigrama->img) }}" alt="Imagen actual" style="">
+                            <img src="{{ asset($organigrama->img) }}" alt="Imagen actual" style="">
                             </div>
                         </div>
                     </div>
