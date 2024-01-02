@@ -26,12 +26,9 @@ use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\ConcejoRegionalController;
 
-=======
 use App\Http\Controllers\SitiosController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
