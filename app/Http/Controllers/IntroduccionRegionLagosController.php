@@ -970,15 +970,19 @@ if ($articulo) {
         $p_urbana_mujeres = Estadisticas::sum('p_urbana_mujeres');
         $p_rural_hombre = Estadisticas::sum('p_rural_hombre');
         $p_rural_mujeres = Estadisticas::sum('p_rural_mujeres');
+        $actividadE = ActividadEconomica::all();
+        
+        
         $total =$p_urbana_hombre + $p_urbana_mujeres + $p_rural_hombre + $p_rural_mujeres;
 
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total'));
+        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total','actividadE'));
         
     }
     public function indexRegionlagosPoblacionSuperficieProvincia($titulo)
     {
         $introduccion = Estadisticas::where('provincia', $titulo)->get();
+        $actividadE = ActividadEconomica::all();
         $acumulador=0;
         foreach($introduccion as $p){
             $acumulador += $p->superficie;
@@ -986,33 +990,45 @@ if ($articulo) {
             
         
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo'));
+        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo','actividadE'));
         
+    }
+    public function indexRegionlagosBuscarActividadEconomica($titulo)
+    {
+        $introduccion = ActividadEconomica::where('nombre', $titulo)->first();
+        $actividadE = ActividadEconomica::all();
+        //$articulo  = ActividadEconomica::findOrFail($id);
+        $actividadesC = $introduccion->ActividadesEconomicaI;
+        return view('regionlagos.actividad_economica', compact('introduccion','actividadE','actividadesC','actividadE'));
     }
 
 //FNDR
     public function indexRegionlagosDinamicaEconomica()    
     {
         $introduccion = DinamicaEconomica::all();
-        return view('regionlagos.dinamicaeconomica', compact('introduccion'));
+        $actividadE = ActividadEconomica::all();
+        return view('regionlagos.dinamicaeconomica', compact('introduccion','actividadE'));
     }
     public function indexRegionlagosExportacionSegunRamaActividad()    
     {
         $SegunRamaActividad = ExportacionSegunRamaActividad::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunRamaActividad->first();
-        return view('regionlagos.ExportacionSegunRamaActividad', compact('primerArticulo'));
+        return view('regionlagos.ExportacionSegunRamaActividad', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosExportacionSegunBloqueEconomico()    
     {
         $SegunBloqueEconomico = ExportacionSegunBloqueEconomico::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunBloqueEconomico->first();
-        return view('regionlagos.ExportacionSegunBloqueEconomico', compact('primerArticulo'));
+        return view('regionlagos.ExportacionSegunBloqueEconomico', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosFNDR()    
     {
         $FNDR = FNDR::all();
+        $actividadE = ActividadEconomica::all();
         $primerArticulo = $FNDR->first();
-        return view('regionlagos.FNDR', compact('primerArticulo'));
+        return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
     }
     
     

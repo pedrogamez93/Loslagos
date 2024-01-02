@@ -15,7 +15,17 @@
         <a class="enlaceM" href="{{ route('DinamicaEconomica.index') }}">Dinámica Económica</a>
         <a class="enlaceM" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
         <a class="enlaceM" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
-        <a class="enlaceM" href="{{ route('RegionlagosActividadEconomica.index') }}">Actividad Económica</a>
+        <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <!-- Submenú -->
+            <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu">Actividad Económica</a>
+            <div class="collapse  p-0" id="submenu1">
+                @foreach($actividadE as $actividad)
+                    <p class="enlaceM"><a class="ml-3" href="{{ route('RegionlagosBuscarActividadEconomica.show', $actividad->nombre) }}">{{ $actividad->nombre }}</a></p>
+                @endforeach
+            </div>
+            
+        </div>
+        
         <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}">FNDR 2009</a>
     </div> 
     </div>

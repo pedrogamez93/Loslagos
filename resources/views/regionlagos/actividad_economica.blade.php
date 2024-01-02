@@ -19,7 +19,7 @@
              text-align: left;
               color: #F59120;
     }
-    .borderR{ 
+    .borderR{
         border-right: 2px solid #F59120;
     }
     header{
@@ -58,13 +58,11 @@
         color: #FFFFFF;
     }
     p.style-tag {
-        font-family: Inter;
-        font-size: 30px;
-        font-weight: 700;
-        line-height: 36px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: #565656;
+        font-family: 'Inter';
+    font-Weight: 600;
+    font-Style: italic;
+    font-Size: 16px;
+    color: #00548F;
     }
     p.title-cat{
         font-family: 'Inter';
@@ -241,50 +239,46 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    .cajaElementor {
-        border: 1px solid #F59120;
+    .actividades {
         border-radius: 5px;
+        height: 108px;
+        border: 1px solid #F59120;
+        width: 96% !important;
+        margin-bottom: 20px;
     }
-    p.titulo {
+    .totalE{
+        height: 0;
+        border-left: 100px solid transparent;
+        border-bottom: 106px solid #F59120;
+    }
+    .totalE p {
+        font-family: Inter !important;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+        padding-top: 27px;
+    }
+    .totalE span {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+    }
+    .tituloAct {
         font-family: Inter;
         font-size: 20px;
         font-weight: 700;
-        line-height: 24px;
+        line-height: 25px;
         letter-spacing: 0em;
         text-align: left;
     }
-    p.mb-2.subtitulo {
-        font-family: Inter;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 24px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.fechas {
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.fechas span {
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 19px;
-        letter-spacing: 0em;
-        text-align: left;
-    }
-    p.style-tag {
-    font-family: 'Inter';
-    font-Weight: 600;
-    font-Style: italic;
-    font-Size: 16px;
-    color: #00548F;
-}
-.backgroundB{
+    .backgroundB{
         background-color: #00548F !important;
     }
     .descripB{
@@ -341,7 +335,6 @@
         </div>
     </div>
 </div> 
-    <!-- Contenido principal de tu página -->
     <main>
     <div class="container-fluid cat">
         <div class="row">
@@ -362,27 +355,27 @@
                             <div class="container int p-0">
                                 <div class="row">
                                     <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
-                                    <p class="title-cat mb-5">Dinámica Económica</p>
-                                    @foreach($introduccion as $art)
-                                        <div class="col-md-6 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="titulo">{{$art->titulo}}</p>
-                                                    <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
-                                                    <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
-                                                    <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
+                                    <p class="title-cat pt-2 pb-2">{{ $introduccion->nombre }}</p>
+                                    <p class="style-down pt-2 pb-2">Actividad Económica</p>
+                                    @foreach($actividadesC as $act)
+                                    <div class="container actividades ml-2 mr-2">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-7 ">
+                                            <p class="tituloAct">{{ $act->nombreA }}</p>
+                                            <p class="sexoAct">Hombres: {{ $act->hombres }} / Muejes: {{ $act->mujeres }}</p>
+                                            </div>
+                                            <div class="col-md-5 p-0">
+                                                <div class="totalE">
+                                                    <p>Total Exportaciones</p>
+                                                    <span>{{ $act->hombres + $act->mujeres }}</span>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    
-                                                </div>
                                             </div>
-                                            </div>
-                                            </div>
-                                            
                                         </div>
+                                    </div>
                                     @endforeach
+                                    <div class="col-md-10 mb-4">
+                                        <b>Fuente:</b> Elaborado por el INE sobre la base de información del Servicio Nacional de Aduanas.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -394,24 +387,13 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>   
             </div>
         </div>
-    </div>     
+    </div>    
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
 @endsection
+ 
