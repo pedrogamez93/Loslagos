@@ -246,7 +246,7 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-0 pb-4">{{ $introduccion->subtitulo }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $introduccion->nombreseccion }}</p>
-                                        <p class="style-down pt-2 pb-2">{{ $introduccion->descripcion }}</p>
+                                        <p class="style-down pt-2 pb-2">{!! $introduccion->descripcion ?? '' !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -273,18 +273,6 @@
         </div>
     </div>    
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
