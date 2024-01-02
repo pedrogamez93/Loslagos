@@ -11,5 +11,5 @@ class Salaprensa extends Model
 
     protected $table = 'salaprensa';
 
-    protected $fillable = ['nombre', 'categoria', 'archivo_path', 'fecha'];
+    protected $fillable = ['titulo', 'descripcion','categoria', 'archivo_path', 'fecha'];
 }

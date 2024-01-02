@@ -28,6 +28,7 @@ use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
 
+use App\Http\Controllers\SitiosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,19 @@ Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTab
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
 Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 //Route::resource('/', HomeController::class);
+
+//Sala de prensa
+Route::get('/sitios', [SitiosController::class, 'index']);
+Route::get('/sitios/create', [SitiosController::class, 'create']);
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('salaprensa.store');
+Route::get('/sitios/{id}/edit', [SitiosController::class, 'edit'])->name('salaprensa.edit');
+Route::put('/sitios/{id}', [SitiosController::class, 'update'])->name('salaprensa.update');
+Route::get('/sitios/ver-noticias', [SitiosController::class, 'indexTabla'])->name('salaprensa.vernoticia');
+Route::delete('/sitios/eliminar/{id}', [SitiosController::class, 'destroy'])->name('salaprensa.destroy');
+Route::get('/sitios/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+//Route::resource('/', HomeController::class);
+
+
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
