@@ -210,28 +210,28 @@
                                 <div class="row" style="padding-top: 2rem; padding-left: 2rem; row-gap: 2rem;">
                                     <div class="container items">
                                         <div class="items">
-                                            <a href="/gobiernoregional/acerca/comofunciona" target="_blank">
+                                            <a href="/gobiernoregional/acerca/comofunciona">
                                                 <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
                                                 <p class="p-doc">Cómo Funciona el Gobierno Regional</p>
                                             </a>
                                         </div>
 
                                         <div class="items">
-                                            <a href="/gobiernoregional/acerca/estrategiaregional" target="_blank">
+                                            <a href="/gobiernoregional/acerca/estrategiaregional">
                                                 <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
                                                 <p class="p-doc">Estrategia Regional de Desarrollo</p>
                                             </a>
                                         </div>
 
                                         <div class="items">
-                                            <a href="/gobiernoregional/acerca/inversionpublica" target="_blank">
+                                            <a href="/gobiernoregional/acerca/inversionpublica">
                                                 <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
                                                 <p class="p-doc">Inversión Pública en la Región</p>
                                             </a>
                                         </div>
 
                                         <div class="items">
-                                            <a href="/gobiernoregional/acerca/misiongobierno" target="_blank">
+                                            <a href="/gobiernoregional/acerca/misiongobierno">
                                                 <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
                                                 <p class="p-doc">Misión</p>
                                             </a>
