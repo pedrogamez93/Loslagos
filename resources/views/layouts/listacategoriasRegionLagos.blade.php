@@ -11,7 +11,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
+        
     }
 
     #categorylist li:first-child {
@@ -66,11 +66,11 @@
         <span id="backToggle" class="responsiveCategorias">Categorías</span>
     </div>
     <ul id="categorylist">
-        <li><a href="/regionlagos/introduccion" title="Categoría:Introducción">Introducción</a></li>
-        <li><a href="/regionlagos/antecedentesregion" title="Categoría:Información de la Región">Información de la Región</a></li>
-        <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Categoría:Autoridades">Autoridades</a></li>
-        <li><a href="{{ route('PoblacionSuperficie.index') }}" title="Categoría:Estadísticas">Estadísticas</a></li>
-        <li><a href="#" title="Categoría:Inversiones">Inversiones</a></li>
+        <li><a href="/regionlagos/introduccion" title="Introducción" class="a1">Introducción</a></li>
+        <li><a href="/regionlagos/antecedentesregion" title="Información de la Región"  class="a2">Información de la Región</a></li>
+        <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Autoridades" class="a3">Autoridades</a></li>
+        <li><a href="{{ route('PoblacionSuperficie.index') }}" title="Estadísticas" class="a4">Estadísticas</a></li>
+        <li><a href="{{ route('Inversiones.index') }}" title="Inversiones" class="a5">Inversiones</a></li>
     </ul>
 </div>
 

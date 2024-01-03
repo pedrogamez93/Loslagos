@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNombreBtnToTramitesDigitalesTable extends Migration
+class CreateEvolucionInversionfFNDRSTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddNombreBtnToTramitesDigitalesTable extends Migration
      */
     public function up()
     {
-        Schema::table('tramites_digitales', function (Blueprint $table) {
-            $table->string('nombre_btn')->nullable()->after('icono');
+        Schema::create('evolucion_inversionf_f_n_d_r_s', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class AddNombreBtnToTramitesDigitalesTable extends Migration
      */
     public function down()
     {
-        Schema::table('tramites_digitales', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('evolucion_inversionf_f_n_d_r_s');
     }
 }

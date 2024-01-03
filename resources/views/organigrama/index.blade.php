@@ -89,7 +89,7 @@
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label style-label">Imagen actual:</label>
                                                 @if ($organigrama->img)
-                                                    <img src="{{ asset('storage/' . $organigrama->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
+                                                    <img src="{{ asset($organigrama->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
                                                 @else
                                                     <p>No hay imagen disponible.</p>
                                                 @endif

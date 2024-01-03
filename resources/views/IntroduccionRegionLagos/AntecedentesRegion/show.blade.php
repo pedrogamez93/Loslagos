@@ -72,7 +72,6 @@
                             <td>{{ $arti->nombreseccion }}</td>
                             <td>{{ $arti->subtitulo }}</td>
                             <td>
-                                <a href="{{ route('AntecedentesRegionLagos.showAntecedentes', $arti->id) }}" class="btn btn-info">Ver</a>
                                 <a href="{{ route('AntecedentesRegionLagos.editAntecedentes', $arti->id) }}" class="btn btn-warning">Editar</a>
                                 
                                 <form method="POST" action="{{ route('AntecedentesRegionLagos.destroyAntecedentes', $arti->id) }}"  style="display: inline;">

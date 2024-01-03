@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModificarNombreDocumentoNullableEnTramitesDigitalesDocs extends Migration
+class AgregarCamposAExportacionSegunBloqueEconomico extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class ModificarNombreDocumentoNullableEnTramitesDigitalesDocs extends Migration
      */
     public function up()
     {
-        Schema::table('tramites_digitales_docs', function (Blueprint $table) {
-            $table->string('nombre_documento')->nullable()->change();
+        Schema::table('ExportacionSegunBloqueEconomico', function (Blueprint $table) {
+            $table->string('actividad6');
+            $table->string('valoractividad6'); 
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -25,8 +25,8 @@ class ModificarNombreDocumentoNullableEnTramitesDigitalesDocs extends Migration
      */
     public function down()
     {
-        Schema::table('tramites_digitales_docs', function (Blueprint $table) {
-            $table->string('nombre_documento')->change();
+        Schema::table('ExportacionSegunBloqueEconomico', function (Blueprint $table) {
+            //
         });
     }
 }

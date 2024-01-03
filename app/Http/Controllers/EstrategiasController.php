@@ -70,4 +70,8 @@ class EstrategiasController extends Controller {
     
         return view('estrategias.edit', compact('estrategias'));
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

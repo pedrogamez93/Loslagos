@@ -70,4 +70,8 @@ class InversionesPublicController extends Controller
     
         return view('inversion.edit', compact('inversiones'));
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

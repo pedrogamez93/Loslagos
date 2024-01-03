@@ -1,4 +1,14 @@
-
+<style>
+      footer {
+            background-color: #389144;
+            color: white;
+            width: 100%;
+            position: relative; /* Cambiado de fixed a relative */
+            bottom: 0;
+            left: 0;
+            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+        }
+</style>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top">
     
     <div class="col mb-3">
@@ -40,19 +50,19 @@
                     <a class="style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Sostenibilidad Hidrica</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
+                    <a class="style-a-menu" href="{{ url('/#') }}">Politica de Personas Mayores</a>
                 </li>
                 <li class="style-li">
                     <a class="style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
                 </li>
                 <li class="style-li">
-                    <a class="style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+                    <a class="style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>
                 </li>
             </ul>
         </li>

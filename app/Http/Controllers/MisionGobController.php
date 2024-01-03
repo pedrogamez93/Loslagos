@@ -70,4 +70,8 @@ class MisionGobController extends Controller{
     
         return view('mision.edit', compact('mision'));
     }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
+    }
 }

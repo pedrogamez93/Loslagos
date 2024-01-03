@@ -35,13 +35,17 @@
             left: 0;
             padding: 10px 0; /* Ajusta el relleno según sea necesario */
         }
+        .backgroundB{
+          background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
+        }
     </style>
 
 @stack('styles')
 </head>
 <body id="app-layout"  class=" " style="">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #389144 !important;padding-left: 3vw;">
+<nav class="navbar navbar-expand-lg px-5 backgroundB" >
+  
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
   </a>
@@ -50,7 +54,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav  mr-auto ml-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#" style="color:white">Home </a>
       </li>
@@ -69,8 +73,8 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Concurso Público</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Comité Ciencia Tecnologia e innovación</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>
           </div>
       </li>
       <li class="nav-item dropdown">
@@ -98,17 +102,18 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="color:white"> Directorio de Funciones </a>
+        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funciones </a>
       </li>
 
 
+    
+
       <li class="nav-item dropdown">
-     
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="    border-radius: 18px;
-    background-color: rgb(255 255 255 / 34%); ">
-        <i class="bi bi-grid" style="color: white;"></i>Informate aqui
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
+            <i class="bi bi-grid" style="color: white;"></i>Informate aqui
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
         <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
         <a class="dropdown-item style-a-menu" >Sitio de Gobierno</a>
         <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
@@ -117,8 +122,7 @@
         <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
 
         </div>
-      </li>
-
+    </li>
 
 
     </ul>

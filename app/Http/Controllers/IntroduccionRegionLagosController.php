@@ -9,6 +9,13 @@ use App\Models\Autoridades;
 use App\Models\Estadisticas;
 use App\Models\DinamicaEconomica;
 use App\Models\ExportacionSegunRamaActividad;
+use App\Models\ExportacionSegunBloqueEconomico;
+use App\Models\FNDR;
+use App\Models\ActividadEconomica;
+use App\Models\ActividadesEconomicaI;
+use App\Models\InversionPublicaEfectiva;
+use App\Models\InversionPublicaEfectivaSector;
+
 use Carbon\Carbon;
 
 class IntroduccionRegionLagosController extends Controller
@@ -495,12 +502,12 @@ public function updateEstadisticas(Request $request, $id)
               // La consulta devolvió al menos un registro
               $primerArticulo = $articulo->first();
               $id = $primerArticulo->id;
-              $Antecedentes = ExportacionSegunRamaActividad::find($id);
-              return view('IntroduccionRegionLagos.DinamicaE.show', compact('articulo'));
+              $articulo = ExportacionSegunRamaActividad::find($id);
+              return view('IntroduccionRegionLagos.ExportacionSegunRamaActividad.edit', compact('articulo'));
               
           } else {
               // La consulta no devolvió ningún registro
-              return view('IntroduccionRegionLagos.DinamicaE.create');
+              return view('IntroduccionRegionLagos.ExportacionSegunRamaActividad.create');
           }
       }
       public function storeExportacionSegunRamaActividad(Request $request){
@@ -509,57 +516,427 @@ public function updateEstadisticas(Request $request, $id)
               'subtitulo' => 'required',
               'descripcion1' => 'required',
               'valor1' => 'required',
-              'descripcion2' => 'required',
-              'valor2' => 'required',
+              'actividad1' => 'required',
+              'valoractividad1' => 'required',
+              'actividad2' => 'required',
+              'valoractividad2' => 'required',
+              'actividad3' => 'required',
+              'valoractividad3' => 'required',
+              'actividad4' => 'required',
+              'valoractividad4' => 'required',
+              'actividad5' => 'required',
+              'valoractividad5' => 'required',
+              'total' => 'required',
           ]);
       
-          DinamicaEconomica::create($data);
+          ExportacionSegunRamaActividad::create($data);
       
-          return redirect(route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica'))->with('success', 'Creado con éxito');
+          return redirect(route('ExportacionSegunRamaActividad.index'))->with('success', 'Creado con éxito');
       }
       public function createExportacionSegunRamaActividad()
       {
-          return view('IntroduccionRegionLagos.DinamicaE.create');
+          return view('IntroduccionRegionLagos.ExportacionSegunRamaActividad.create');
       }
       public function editExportacionSegunRamaActividad($id){
-          $articulo  = DinamicaEconomica::find($id);
-          return view('IntroduccionRegionLagos.DinamicaE.edit', compact('articulo'));
+          $articulo  = ExportacionSegunRamaActividad::find($id);
+          return view('IntroduccionRegionLagos.ExportacionSegunRamaActividad.edit', compact('articulo'));
       }
       public function destroyExportacionSegunRamaActividad($id)
       {
-          $articulo = DinamicaEconomica::find($id);
+          $articulo = ExportacionSegunRamaActividad::find($id);
       
           if ($articulo) {
               $articulo->delete();
-              return redirect()->route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica')->with('success', 'Artículo eliminado con éxito');
+              return redirect()->route('ExportacionSegunRamaActividad.index')->with('success', 'Artículo eliminado con éxito');
           } else {
-              return redirect()->route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica')->with('error', 'Artículo no encontrado');
+              return redirect()->route('ExportacionSegunRamaActividad.index')->with('error', 'Artículo no encontrado');
           }
       }
       public function updateExportacionSegunRamaActividad(Request $request, $id)
   {
       $data = $request->validate([
-          'titulo' => 'required',
-              'subtitulo' => 'required',
-              'descripcion1' => 'required',
-              'valor1' => 'required',
-              'descripcion2' => 'required',
-              'valor2' => 'required',
+        'titulo' => 'required',
+        'subtitulo' => 'required',
+        'descripcion1' => 'required',
+        'valor1' => 'required',
+        'actividad1' => 'required',
+        'valoractividad1' => 'required',
+        'actividad2' => 'required',
+        'valoractividad2' => 'required',
+        'actividad3' => 'required',
+        'valoractividad3' => 'required',
+        'actividad4' => 'required',
+        'valoractividad4' => 'required',
+        'actividad5' => 'required',
+        'valoractividad5' => 'required',
+        'total' => 'required',
       ]);
   
-      $articulo = DinamicaEconomica::find($id);
+      $articulo = ExportacionSegunRamaActividad::find($id);
   
       if ($articulo) {
           $articulo->update($data);
-          return redirect()->route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica')->with('success', 'Artículo actualizado con éxito');
+          return redirect()->route('ExportacionSegunRamaActividad.index')->with('success', 'Artículo actualizado con éxito');
       } else {
-          return redirect()->route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica')->with('error', 'Artículo no encontrado');
+          return redirect()->route('ExportacionSegunRamaActividad.index')->with('error', 'Artículo no encontrado');
       }
   } 
   
   
   
       // fin de Exportacion Segun Rama Actividad
+
+    //Inicio Exportacion Segun Bloque Economico 
+    public function indexExportacionSegunBloqueEconomico()
+    {
+        $articulo = ExportacionSegunBloqueEconomico::all();
+        if ($articulo->isNotEmpty()) {
+            // La consulta devolvió al menos un registro
+            $primerArticulo = $articulo->first();
+            $id = $primerArticulo->id;
+            $articulo = ExportacionSegunBloqueEconomico::find($id);
+            return view('IntroduccionRegionLagos.ExportacionSegunBloqueEconomico.edit', compact('articulo'));
+            
+        } else {
+            // La consulta no devolvió ningún registro
+            return view('IntroduccionRegionLagos.ExportacionSegunBloqueEconomico.create');
+        }
+    }
+    public function storeExportacionSegunBloqueEconomico(Request $request){
+        $data = $request->validate([
+            'titulo' => 'required',
+            'subtitulo' => 'required',
+            'descripcion1' => 'required',
+            'valor1' => 'required',
+            'actividad1' => 'required',
+            'valoractividad1' => 'required',
+            'actividad2' => 'required',
+            'valoractividad2' => 'required',
+            'actividad3' => 'required',
+            'valoractividad3' => 'required',
+            'actividad4' => 'required',
+            'valoractividad4' => 'required',
+            'actividad5' => 'required',
+            'valoractividad5' => 'required',
+            'total' => 'required',
+            'actividad6' => 'required',
+            'valoractividad6' => 'required'
+        ]);
+    
+        ExportacionSegunBloqueEconomico::create($data);
+    
+        return redirect(route('ExportacionSegunBloqueEconomico.index'))->with('success', 'Creado con éxito');
+    }
+    public function createExportacionSegunBloqueEconomico()
+    {
+        return view('IntroduccionRegionLagos.ExportacionSegunBloqueEconomico.create');
+    }
+    public function editExportacionSegunBloqueEconomico($id){
+        $articulo  = ExportacionSegunBloqueEconomico::find($id);
+        return view('IntroduccionRegionLagos.ExportacionSegunBloqueEconomico.edit', compact('articulo'));
+    }
+    public function destroyExportacionSegunBloqueEconomico($id)
+    {
+        $articulo = ExportacionSegunBloqueEconomico::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('ExportacionSegunBloqueEconomico.index')->with('success', 'Artículo eliminado con éxito');
+        } else {
+            return redirect()->route('ExportacionSegunBloqueEconomico.index')->with('error', 'Artículo no encontrado');
+        }
+    }
+    public function updateExportacionSegunBloqueEconomico(Request $request, $id)
+{
+    $data = $request->validate([
+      'titulo' => 'required',
+      'subtitulo' => 'required',
+      'descripcion1' => 'required',
+      'valor1' => 'required',
+      'actividad1' => 'required',
+      'valoractividad1' => 'required',
+      'actividad2' => 'required',
+      'valoractividad2' => 'required',
+      'actividad3' => 'required',
+      'valoractividad3' => 'required',
+      'actividad4' => 'required',
+      'valoractividad4' => 'required',
+      'actividad5' => 'required',
+      'valoractividad5' => 'required',
+      'total' => 'required',
+      'actividad6' => 'required',
+      'valoractividad6' => 'required'
+    ]);
+
+    $articulo = ExportacionSegunBloqueEconomico::find($id);
+
+    if ($articulo) {
+        $articulo->update($data);
+        return redirect()->route('ExportacionSegunBloqueEconomico.index')->with('success', 'Artículo actualizado con éxito');
+    } else {
+        return redirect()->route('ExportacionSegunBloqueEconomico.index')->with('error', 'Artículo no encontrado');
+    }
+} 
+    //Fin Exportacion Segun Bloque Economico
+
+//Inicio FNDR
+public function indexFNDR()
+{
+    $articulo = FNDR::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = FNDR::find($id);
+        return view('IntroduccionRegionLagos.FNDR.edit', compact('articulo'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.FNDR.create');
+    }
+}
+public function storeFNDR(Request $request){
+    $data = $request->validate([
+        'titulo' => 'required',
+        'subtitulo' => 'required',
+        'actividad1' => 'required',
+        'valoractividad1' => 'required',
+        'actividad2' => 'required',
+        'valoractividad2' => 'required',
+        'actividad3' => 'required',
+        'valoractividad3' => 'required',
+        'actividad4' => 'required',
+        'valoractividad4' => 'required',
+        'actividad5' => 'required',
+        'valoractividad5' => 'required',
+        'total' => 'required',
+    ]);
+
+    FNDR::create($data);
+
+    return redirect(route('FNDR.index'))->with('success', 'Creado con éxito');
+}
+public function createFNDR()
+{
+    return view('IntroduccionRegionLagos.FNDR.create');
+}
+public function editFNDR($id){
+    $articulo  = ExportacionSegunBloqueEconomico::find($id);
+    return view('IntroduccionRegionLagos.FNDR.edit', compact('articulo'));
+}
+public function destroyFNDR($id)
+{
+    $articulo = FNDR::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('FNDR.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('FNDR.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateFNDR(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = FNDR::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('FNDR.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('FNDR.index')->with('error', 'Artículo no encontrado');
+}
+} 
+//Fin FNDR
+
+//Inicio ActividadesEconomica
+
+public function indexActividadesEconomica()
+{
+    $articulo = ActividadEconomica::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        //$articulo = ActividadEconomica::find($id);
+        return view('IntroduccionRegionLagos.ActividadesEconomica.show', compact('articulo'));
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+    }
+}
+public function storeActividadesEconomica(Request $request){
+    $data = $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+    ]);
+
+    $actividadEconomica = ActividadEconomica::create($data);
+    // Almacenamiento de campos adicionales en el modelo CampoAdicional
+    // Ahora puedes acceder al ID del modelo recién creado
+    $actividadEconomicaId = $actividadEconomica->id;
+    $camposAdicionales = $request->input('nombreA', []);
+    $hombres = $request->input('hombres', []);
+    $mujeres = $request->input('mujeres', []);
+
+
+
+
+    foreach ($camposAdicionales ?? [] as $key => $campo) {
+        ActividadesEconomicaI::create(['ActividadesEconomicaI_id' => $actividadEconomicaId,'nombreA' => $campo,'hombres' => $hombres[$key],'mujeres' => $mujeres[$key]]); // Ajusta según tus necesidades
+    }
+    return redirect(route('ActividadEconomica.index'))->with('success', 'Creado con éxito');
+}
+public function createActividadesEconomica()
+{
+    return view('IntroduccionRegionLagos.ActividadesEconomica.create');
+}
+public function editActividadesEconomica($id){
+    $articulo  = ActividadEconomica::findOrFail($id);
+
+    $actividadesC = $articulo->ActividadesEconomicaI;
+    return view('IntroduccionRegionLagos.ActividadesEconomica.edit', compact('articulo','actividadesC'));
+}
+public function destroyActividadesEconomica($id)
+{
+    $articulo = ActividadEconomica::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateActividadesEconomica(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = ActividadEconomica::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin ActividadesEconomica
+
+//Inicio InversionPublicaEfectiva
+public function indexInversionPublicaEfectiva()
+{
+    $articulo = InversionPublicaEfectiva::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = InversionPublicaEfectiva::find($id);
+        $actividadesC = $articulo->InversionPublicaEfectivaSector;
+        return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.inversion.create');
+    }
+}
+public function storeInversionPublicaEfectiva(Request $request){
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+    $Inversion = InversionPublicaEfectiva::create($data);
+    // Almacenamiento de campos adicionales en el modelo CampoAdicional
+    // Ahora puedes acceder al ID del modelo recién creado
+    $InversionId = $Inversion->id;
+    $sector = $request->input('sector', []);
+    $inversionD = $request->input('inversionD', []);
+    $inversionP = $request->input('inversionP', []);
+    foreach ($sector ?? [] as $key => $campo) {
+        InversionPublicaEfectivaSector::create(['InversionPublicaEfectiva_id' => $InversionId,'sector' => $campo,'inversionD' => $inversionD[$key],'inversionP' => $inversionP[$key]]); // Ajusta según tus necesidades
+    }
+    return redirect(route('InversionPublicaEfectiva.index'))->with('success', 'Creado con éxito');
+}
+
+public function createInversionPublicaEfectiva()
+{
+    return view('IntroduccionRegionLagos.inversion.create');
+}
+public function editInversionPublicaEfectiva($id){
+    $articulo  = InversionPublicaEfectiva::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+}
+public function destroyInversionPublicaEfectiva($id)
+{
+    $articulo = InversionPublicaEfectiva::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('InversionPublicaEfectiva.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateInversionPublicaEfectiva(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = FNDR::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('InversionPublicaEfectiva.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin InversionPublicaEfectiva
 
     // frond de region los lagos
     public function indexRegionlagosIntro()
@@ -687,15 +1064,19 @@ public function updateEstadisticas(Request $request, $id)
         $p_urbana_mujeres = Estadisticas::sum('p_urbana_mujeres');
         $p_rural_hombre = Estadisticas::sum('p_rural_hombre');
         $p_rural_mujeres = Estadisticas::sum('p_rural_mujeres');
+        $actividadE = ActividadEconomica::all();
+        
+        
         $total =$p_urbana_hombre + $p_urbana_mujeres + $p_rural_hombre + $p_rural_mujeres;
 
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total'));
+        return view('regionlagos.PoblacionSuperficie', compact('introduccion','totalSuperficie','p_urbana_hombre','p_urbana_mujeres','p_rural_mujeres','p_rural_hombre','total','actividadE'));
         
     }
     public function indexRegionlagosPoblacionSuperficieProvincia($titulo)
     {
         $introduccion = Estadisticas::where('provincia', $titulo)->get();
+        $actividadE = ActividadEconomica::all();
         $acumulador=0;
         foreach($introduccion as $p){
             $acumulador += $p->superficie;
@@ -703,17 +1084,62 @@ public function updateEstadisticas(Request $request, $id)
             
         
         // Haz lo que necesites con $totalSuperficie
-        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo'));
+        return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo','actividadE'));
         
     }
+    public function indexRegionlagosBuscarActividadEconomica($titulo)
+    {
+        $introduccion = ActividadEconomica::where('nombre', $titulo)->first();
+        $actividadE = ActividadEconomica::all();
+        //$articulo  = ActividadEconomica::findOrFail($id);
+        $actividadesC = $introduccion->ActividadesEconomicaI;
+        return view('regionlagos.actividad_economica', compact('introduccion','actividadE','actividadesC','actividadE'));
+    }
 
-
+//FNDR
     public function indexRegionlagosDinamicaEconomica()    
     {
         $introduccion = DinamicaEconomica::all();
-        return view('regionlagos.dinamicaeconomica', compact('introduccion'));
+        $actividadE = ActividadEconomica::all();
+        return view('regionlagos.dinamicaeconomica', compact('introduccion','actividadE'));
+    }
+    public function indexRegionlagosExportacionSegunRamaActividad()    
+    {
+        $SegunRamaActividad = ExportacionSegunRamaActividad::all();
+        $actividadE = ActividadEconomica::all();
+        $primerArticulo = $SegunRamaActividad->first();
+        return view('regionlagos.exportacionsegunramaactividad', compact('primerArticulo','actividadE'));
+    }
+    public function indexRegionlagosExportacionSegunBloqueEconomico()    
+    {
+        $SegunBloqueEconomico = ExportacionSegunBloqueEconomico::all();
+        $actividadE = ActividadEconomica::all();
+        $primerArticulo = $SegunBloqueEconomico->first();
+        return view('regionlagos.exportacionsegunbloqueeconomico', compact('primerArticulo','actividadE'));
+    }
+    public function indexRegionlagosFNDR()    
+    {
+        $FNDR = FNDR::all();
+        $actividadE = ActividadEconomica::all();
+        $primerArticulo = $FNDR->first();
+        return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
+    }
+    public function indexInversiones()    
+    {
+        $FNDR = FNDR::all();
+        $actividadE = ActividadEconomica::all();
+        $primerArticulo = $FNDR->first();
+        return view('regionlagos.inversiones', compact('primerArticulo','actividadE'));
+    }
+    public function indexInversionPublicaEfectivaWeb()    
+    {
+        return view('regionlagos.InversionPublicaEfectiva');
     }
     
+    public function imagenesP($img)    
+    {
+        return response()->file(storage_path("app/public/images/".$img));
+    }
     
     
 }

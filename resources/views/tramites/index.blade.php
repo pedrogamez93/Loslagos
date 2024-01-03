@@ -65,14 +65,16 @@
                     <div class="row">
                         <h1>Listado de Trámites</h1>
                         @if(count($tramites) > 0)
-                        <ul>
-                            @foreach($tramites as $tramite)
-                            <li>
-                                {{ $tramite->titulo }}
-                                <a href="{{ route('tramites.edit', $tramite->id) }}" class="btn btn-primary">Ver Trámite</a>
-                            </li>
-                            @endforeach
-                        </ul>
+                        <div class="container">
+                            <ul>
+                                @foreach($tramites as $tramite)
+                                <li class="milist mt-4 mb-4">
+                                    {{ $tramite->titulo }}
+                                    <a href="{{ route('tramites.edit', $tramite->id) }}" class="btn btn-primary">Ver Trámite</a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
                         @else
                         <p>No hay trámites disponibles.</p>
                         @endif
