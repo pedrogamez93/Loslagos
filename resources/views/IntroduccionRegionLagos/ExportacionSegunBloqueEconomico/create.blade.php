@@ -145,6 +145,16 @@
                                     <input type="text" id="valoractividad5" name="valoractividad5" class="form-control" placeholder="Valor Actividad 5" required>
                                     </div>
                                 </div>
+                                <div class="col-md-3 provincia">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="actividad6" name="actividad6" class="form-control" placeholder="Actividad 6" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 title">
+                                    <div class="input-group mb-3">
+                                    <input type="text" id="valoractividad6" name="valoractividad6" class="form-control" placeholder="Valor Actividad 6" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 provincia">

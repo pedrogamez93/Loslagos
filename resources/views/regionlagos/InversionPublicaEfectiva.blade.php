@@ -318,6 +318,12 @@ p.valor1.mb-5 {
         color:#fff;
 
     }
+    a.a5 {
+    color: #00548F !important;
+    border-radius: 100px !important;
+    border: 1px solid #00548F !important;
+    font-weight: 700 !important;
+}
 </style>
 <html>
 <head>
@@ -382,7 +388,7 @@ p.valor1.mb-5 {
                         <div class="col-md-8 borderR">
                             <div class="container int">
                                 <div class="row">
-                                    <p class="title-cat mb-5">Inversiones</p>
+                                    <p class="title-cat mb-5">Inversión Pública Efectiva Según Sectores</p>
 
                                 </div>
                             </div>
@@ -395,10 +401,10 @@ p.valor1.mb-5 {
                                 <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
                                     Descripción General
                                 </a>
-                                <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva') ? 'font-weight: 700;' : '' }}">
                                     Inversión Pública Efectiva Según Sectores
                                 </a>
-                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
                                     Financiamiento por Provincias
                                 </a>
                                 </div>
