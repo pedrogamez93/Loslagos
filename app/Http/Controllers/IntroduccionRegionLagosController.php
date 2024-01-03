@@ -1015,14 +1015,14 @@ if ($articulo) {
         $SegunRamaActividad = ExportacionSegunRamaActividad::all();
         $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunRamaActividad->first();
-        return view('regionlagos.ExportacionSegunRamaActividad', compact('primerArticulo','actividadE'));
+        return view('regionlagos.exportacionsegunramaactividad', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosExportacionSegunBloqueEconomico()    
     {
         $SegunBloqueEconomico = ExportacionSegunBloqueEconomico::all();
         $actividadE = ActividadEconomica::all();
         $primerArticulo = $SegunBloqueEconomico->first();
-        return view('regionlagos.ExportacionSegunBloqueEconomico', compact('primerArticulo','actividadE'));
+        return view('regionlagos.exportacionsegunbloqueeconomico', compact('primerArticulo','actividadE'));
     }
     public function indexRegionlagosFNDR()    
     {
@@ -1031,6 +1031,14 @@ if ($articulo) {
         $primerArticulo = $FNDR->first();
         return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
     }
+    public function indexInversiones()    
+    {
+        $FNDR = FNDR::all();
+        $actividadE = ActividadEconomica::all();
+        $primerArticulo = $FNDR->first();
+        return view('regionlagos.inversiones', compact('primerArticulo','actividadE'));
+    }
+    
     public function imagenesP($img)    
     {
         return response()->file(storage_path("app/public/images/".$img));

@@ -382,112 +382,25 @@ p.valor1.mb-5 {
                         <div class="col-md-8 borderR">
                             <div class="container int">
                                 <div class="row">
-                                    <p class="style-tag pt-0 pb-4">{{$primerArticulo->subtitulo}}</p>
-                                    <p class="title-cat mb-5">{{$primerArticulo->titulo}}</p>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad1}}</p>
-                                                    <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad1}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad2}}</p>
-                                                    <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad2}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad3}}</p>
-                                                    <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad3}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad4}}</p>
-                                                    <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad4}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad5}}</p>
-                                                    <p class="mb-2 subtitulo">Inversión $: {{$primerArticulo->valoractividad5}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-10 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-0">
-                                                <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        
-                                                    </div>
-                                                    <div class="col-md-7 totalE">
-                                                        <p class="titulo">Total Exportaciones</p>
-                                                        <p class="mb-2 subtitulo">{{$primerArticulo->total}}</p>
-                                                        <p class="fechas"><span></span></p>
-                                                        <p class="fechas"></p>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-md-10 mb-4">
-                                        <b>Fuente:</b> Elaborado por el INE sobre la base de información del Servicio Nacional de Aduanas.
-                                        </div>
+                                    <p class="title-cat mb-5">Inversiones</p>
 
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
+                        <p class="infoR pb-4">Información de Inversiones</p>
                             <div class="container img">
                                 <div class="row">
-                                    @include('layouts.menuestadistica') 
+                                
+                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
+                                    Descripción General
+                                </a>
+                                <a  href="" class="p-0 pt-2 pb-2">
+                                    Inversión Pública Efectiva Según Sectores
+                                </a>
+                                <a  href="" class="p-0 pt-2 pb-2">
+                                    Financiamiento por Provincias
+                                </a>
                                 </div>
                             </div>
                         </div>

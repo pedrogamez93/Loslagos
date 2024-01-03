@@ -291,6 +291,7 @@ Route::get('/regionlagos/ExportacionSegunBloqueEconomico', 'App\Http\Controllers
 Route::get('/regionlagos/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosFNDR.index');
 Route::get('/regionlagos/ActividadEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosActividadEconomica.index');
 Route::get('/regionlagos/ActividadEconomica/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarActividadEconomica')->name('RegionlagosBuscarActividadEconomica.show');
+Route::get('/regionlagos/inversiones/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversiones')->name('Inversiones.index');
 
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 

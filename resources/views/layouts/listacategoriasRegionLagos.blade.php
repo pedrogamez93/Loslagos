@@ -70,7 +70,7 @@
         <li><a href="/regionlagos/antecedentesregion" title="Información de la Región"  class="a2">Información de la Región</a></li>
         <li><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" title="Autoridades" class="a3">Autoridades</a></li>
         <li><a href="{{ route('PoblacionSuperficie.index') }}" title="Estadísticas" class="a4">Estadísticas</a></li>
-        <li><a href="#" title="Inversiones" class="a5">Inversiones</a></li>
+        <li><a href="{{ route('Inversiones.index') }}" title="Inversiones" class="a5">Inversiones</a></li>
     </ul>
 </div>
 
