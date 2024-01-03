@@ -24,11 +24,16 @@ use App\Http\Controllers\PlanificacionInstitucionalController;
 use App\Http\Controllers\TramitesDigitalesController;
 use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
+use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\PreguntasFrecuentesController;
+use App\Http\Controllers\FormController;
+
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
 
 use App\Http\Controllers\SitiosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -315,5 +320,28 @@ Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLago
 
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 // Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+
+//PREGUNTAS FRECUENTES
+Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
+//Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
+//Route::resource('preguntas', PreguntaController::class);
+
+Route::get('/preguntas', [PreguntaController::class, 'index']);
+Route::resource('preguntas', PreguntaController::class);
+
+Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit');
+
+Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
+
+//FORMULARIO DE CONTACTO
+    //FORMULARIO DE CONTACTO
+Route::get('contactanos', [FormController::class, 'showForm']);
+    //FORMULARIOS ENVIADOS BACKEND
+Route::get('verformularios', [FormController::class, 'viewForm']);
+    //PROCESAR FORMULARIO
+Route::post('contactanos', [FormController::class, 'store'])->name('contactanos.store');
+    //ENVIAR CORREO ELECTRONICO
+Route::post('/contactanos/store', [FormController::class, 'store'])->name('contactanos.store');
+
 
 

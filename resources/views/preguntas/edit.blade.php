@@ -64,35 +64,33 @@
             </div>
         </div>
         <div class="col-md-10">
-            <div class="container principal mt-4 mb-4 pt-3 pb-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>Detalles del programa</h1>
-                    </div>
-                    <!-- Formulario para la edicion del programa -->
-                    <form action="{{ route('programas.update', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-                            <label class="mt-3 style-label required" for="titulo">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
-
-                            <label class="style-label mb-2" for="bajada">Bajada:</label>
-                            <textarea class="form-control mt-2" name="bajada" placeholder="Bajada">{{ $programa->bajada }}</textarea>
-
-                            <label class="style-label" for="icono">Imagen:</label>
-                            <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-
-                            <!--MIO-->
-
-                             <button class="btn btn-success" type="submit">Guardar cambios</button>
-                        </form>
-                        @if(session('mensaje'))
-    <div class="alert alert-success mt-3">
-        {{ session('mensaje') }}
-    </div>
-@endif
-                </div>
+    <div class="container principal mt-4 mb-4 pt-3 pb-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Editar pregunta Frecuente</h1>
             </div>
+            <!-- Formulario para la edicion del programa -->
+            <form action="{{ route('preguntas.update', ['pregunta' => $pregunta->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <label class="mt-3 style-label required" for="pregunta">Pregunta:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="pregunta" value="{{ $pregunta->pregunta }}" placeholder="Título" required>
+
+                <label class="style-label mb-2" for="respuesta">Respuesta:</label>
+                <textarea class="form-control mt-2" name="respuesta">{{ $pregunta->respuesta }}</textarea>
+
+                <!-- Otros campos del formulario... -->
+
+                <button class="btn btn-success mt-3" type="submit">Guardar cambios</button>
+            </form>
+
+            @if(session('mensaje'))
+                <div class="alert alert-success mt-3">
+                    {{ session('mensaje') }}
+                </div>
+            @endif
         </div>
     </div>
 </div>
+

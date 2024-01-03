@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programas</title>
+    <title>Preguntas Frecuentes</title>
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS y JS -->
@@ -67,20 +67,19 @@
                 <div class="container principal mt-4 mb-4 pt-3 pb-3">
                     <div class="row">
                         <div class="col-md-12">
-                            
-                            <div class="row justify-content-between">
+                        <div class="row justify-content-between">
     <div class="col-4">
-    <h1>Programas</h1>
+    <h1>Preguntas frecuentes</h1>
     </div>
     <div class="col-4" style="text-align: -webkit-right;">
-    <a class="mb-2 btn btn-primary" href="{{ url('/programas/create') }}">Nuevo Programa</a>
+    <a class="mb-2 btn btn-primary" href="{{ url('/preguntas/create') }}">Nueva Pregunta</a>
     </div>
   </div>
                         </div>
                     </div>
                     <div class="container first-form pt-2 pb-2">
                         <div class="row">
-                            <h2>Listado de Programas</h2>
+                            <h2>Listado de Preguntas</h2>
 
                             @if(session('success'))
                                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -90,30 +89,27 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Título</th>
-                                        <th>Bajada</th>
+                                        <th>Pregunta</th>
+                                        <th>Respuesta</th>
                                         <!--<th>Imagen</th>-->
                                         <th>Acciones</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($programas as $programa)
+                                @foreach($preguntas as $pregunta)
                                         <tr>
-                                            <td>{{ $programa->id }}</td>
-                                            <td>{{ $programa->titulo }}</td>
-                                            <td>{{ $programa->bajada }}</td>
-                                            <!--<td>
-                                                <img src="{{ asset('storage/' . $programa->imagen) }}" alt="Imagen del Programa" style="max-width: 100px;">
-                                            </td>-->
+                                            <td>{{ $pregunta->id }}</td>
+                                            <td>{{ $pregunta->pregunta }}</td>
+                                            <td>{{ $pregunta->respuesta }}</td>
                                             <td>
                 
-<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
+<a href="{{ route('preguntas.edit', ['pregunta' => $pregunta->id]) }}" class="mb-2 btn btn-primary">
     Editar
 </a>
             
 
-            <form action="{{ url('/programas/'.$programa->id) }}" method="post">
+            <form action="{{ url('/preguntas/' .$pregunta->id ) }}" method="post">
             @csrf
             {{ method_field('DELETE') }}
             <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar" class="btn btn-primary"> 

@@ -99,9 +99,10 @@ input:required {
                         
                         <label class="style-label" for="icono">Imagen:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-<!--
+                        
+                        <!--TEXTOS ACORDEÓN-->
                         <div class="container pregunta">
-                            <label class="style-label mb-2">Deseas agregar botones que redireccionen a sistemas externos?</label>
+                            <label class="style-label mb-2 mt-3">¿Deseas agregar un texto descriptivo?</label>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check form-check-inline">
@@ -119,6 +120,38 @@ input:required {
                         <div class="container add-boton mt-4">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <label class="style-label" for="url">Título:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Agregar título">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="style-label" for="url">Bajada:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="urlbtn" placeholder="Agregar descripción">
+                                </div>
+                            </div>
+                            <button type="button" id="agregarMas" class="btn btn-primary">Agregar otro texto</button>
+                        </div>
+
+                        
+                        <!--DOCUMENTOS-->
+                        <div class="container pregunta">
+                            <label class="style-label mb-2 mt-5">¿Deseas agregar un botón que direccione?</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Si</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+                                        <label class="form-check-label" for="inlineCheckbox2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container add-boton2 mt-4">
+                            <div class="row">
+                                <div class="col-md-6">
                                     <label class="style-label" for="url">Nombre del boton externo:</label>
                                     <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Nombre del boton externo">
                                 </div>
@@ -127,9 +160,9 @@ input:required {
                                     <input class="form-control mt-2 mb-4" type="text" name="urlbtn" placeholder="URL del boton externo">
                                 </div>
                             </div>
-                            <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
+                            <button type="button" id="agregarMas2" class="btn btn-primary">Agregar Más</button>
                         </div>
-
+<!--
                         <div class="container pregunta-doc mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
                           <div class="row">
@@ -188,7 +221,7 @@ input:required {
 
                             
 
-                        <button class="mt-1 btn btn-success" type="submit">Crear Programa</button>
+                        <button class="mt-1 btn btn-success mt-5" type="submit">Crear Programa</button>
                     </form>
                 </div>
             </div>
@@ -335,6 +368,12 @@ input:required {
     $("#agregarMas").click(function () {
       // Clonar el primer par de inputs y agregar al final
       var nuevoBoton = $(".add-boton .row").first().clone();
+      $(".add-boton .row:last").after(nuevoBoton);
+    });
+
+    $("#agregarMas2").click(function () {
+      // Clonar el primer par de inputs y agregar al final
+      var nuevoBoton = $(".add-boton2 .row").first().clone();
       $(".add-boton .row:last").after(nuevoBoton);
     });
   });

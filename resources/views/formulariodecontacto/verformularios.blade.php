@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programas</title>
+    <title>Ver formularios</title>
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS y JS -->
@@ -69,18 +69,16 @@
                         <div class="col-md-12">
                             
                             <div class="row justify-content-between">
-    <div class="col-4">
-    <h1>Programas</h1>
+    <div class="col">
+    <h1>Formulario de contactos</h1>
     </div>
-    <div class="col-4" style="text-align: -webkit-right;">
-    <a class="mb-2 btn btn-primary" href="{{ url('/programas/create') }}">Nuevo Programa</a>
-    </div>
+    
   </div>
                         </div>
                     </div>
                     <div class="container first-form pt-2 pb-2">
                         <div class="row">
-                            <h2>Listado de Programas</h2>
+                            <h2>Listado de Formularios enviados</h2>
 
                             @if(session('success'))
                                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -98,32 +96,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($programas as $programa)
-                                        <tr>
-                                            <td>{{ $programa->id }}</td>
-                                            <td>{{ $programa->titulo }}</td>
-                                            <td>{{ $programa->bajada }}</td>
-                                            <!--<td>
-                                                <img src="{{ asset('storage/' . $programa->imagen) }}" alt="Imagen del Programa" style="max-width: 100px;">
-                                            </td>-->
-                                            <td>
-                
-<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
-    Editar
-</a>
-            
-
-            <form action="{{ url('/programas/'.$programa->id) }}" method="post">
-            @csrf
-            {{ method_field('DELETE') }}
-            <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar" class="btn btn-primary"> 
-
-            </form>
-
-            </td>
-                                            
-                                        </tr>
-                                    @endforeach
+                                   
                                 </tbody>
                             </table>
                         </div>
