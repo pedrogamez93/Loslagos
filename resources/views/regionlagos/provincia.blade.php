@@ -181,6 +181,12 @@
         color:#fff;
 
     }
+    a.a2 {
+    color: #00548F !important;
+    border-radius: 100px !important;
+    border: 1px solid #00548F !important;
+    font-weight: 700 !important;
+}
 </style>
 <html>
 <head>
@@ -248,7 +254,7 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-0 pb-4">{{ $provincia->subtitulo }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $provincia->nombreseccion }}</p>
-                                        <p class="style-down pt-2 pb-2">{!! $provincia->descripcion ?? '' !!}</p>
+                                        <p class="style-down pt-2 pb-2 pr-4">{!! $provincia->descripcion ?? '' !!}</p>
                                     </div>
                                 </div>
                             </div>

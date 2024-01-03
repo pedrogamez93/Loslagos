@@ -179,6 +179,12 @@
         color:#fff;
 
     }
+    a.a2 {
+    color: #00548F !important;
+    border-radius: 100px !important;
+    border: 1px solid #00548F !important;
+    font-weight: 700 !important;
+}
 </style>
 <html>
 <head>
@@ -246,7 +252,7 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-0 pb-4">{{ $introduccion->subtitulo }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $introduccion->nombreseccion }}</p>
-                                        <p class="style-down pt-2 pb-2">{!! $introduccion->descripcion ?? '' !!}</p>
+                                        <p class="style-down pt-2 pb-2 pr-4">{!! $introduccion->descripcion ?? '' !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +264,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                     <p class="infoR pb-4">Información de la Región</p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}">Antecedentes de la Región</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}" style="{{ request()->is('regionlagos/antecedentesregion*') ? 'font-weight: 700;' : '' }}">Antecedentes de la Región</a></p>
                                     <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}">Provincia de Osorno</a></p>
                                     <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}">Provincia de Llanquihue</a></p>
                                     <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Chiloé') }}">Provincia de Chiloé</a></p>
@@ -274,6 +280,25 @@
     </div>    
     </main>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtenemos la URL actual
+        var currentUrl = window.location.href;
+
+        // Seleccionamos todos los enlaces dentro de #categorylist
+        var links = document.querySelectorAll("#categorylist li a");
+
+        // Iteramos sobre los enlaces
+        links.forEach(function (link) {
+            // Verificamos si la URL actual coincide con la href del enlace
+            if (currentUrl.includes(link.getAttribute("href"))) {
+                // Agregamos la clase activa
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
 </body>
 </html>
+
 @endsection

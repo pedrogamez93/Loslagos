@@ -224,6 +224,14 @@
         color:#fff;
 
     }
+a.active {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
 </style>
 <html>
 <head>
@@ -326,7 +334,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                     <p class="infoR pb-4">Información de la Región</p>
-                                    <p class="enlaceM"><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" class="{{ request()->routeIs('RegionlagosAutoridades.show') && request()->route('cargo') == 'Gobernador Regional' ? 'active' : '' }}">Gobernador Regional</a></p>
+                                    <p class="enlaceM"><a href="{{ route('RegionlagosAutoridades.show', 'Gobernador Regional') }}" class="{{ $introduccion->cargo == 'Gobernador Regional' ? 'active' : 'asd' }}">Gobernador Regional</a></p>
                                     <div class="container">
                                         <div class="row">
                                             
@@ -417,18 +425,58 @@
     </div>      
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener el estado almacenado en localStorage
+        const activeButton = localStorage.getItem('activeButton');
+        const activeLink = localStorage.getItem('activeLink');
+
+        // Aplicar estilos basados en el estado almacenado
+        if (activeButton) {
+            document.getElementById(activeButton).classList.add('fw-bold');
+        }
+
+        if (activeLink) {
+            document.getElementById(activeLink).classList.add('text-primary');
+        }
+
+        // Agregar manejadores de clic
+        const buttons = document.querySelectorAll('.accordion-button');
+        const links = document.querySelectorAll('.enlaceM a');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Limpiar todos los estilos al hacer clic
+                buttons.forEach(function (btn) {
+                    btn.classList.remove('fw-bold');
+                });
+
+                // Almacenar el botón activo en localStorage
+                localStorage.setItem('activeButton', this.id);
+
+                // Aplicar el estilo al botón clicado
+                this.classList.add('fw-bold');
+            });
+        });
+
+        links.forEach(function (link) {
+            link.addEventListener('click', function () {
+                // Limpiar todos los estilos al hacer clic
+                links.forEach(function (lnk) {
+                    lnk.classList.remove('text-primary');
+                });
+
+                // Almacenar el enlace activo en localStorage
+                localStorage.setItem('activeLink', this.parentElement.id);
+
+                // Aplicar el estilo al enlace clicado
+                this.classList.add('text-primary');
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
 @endsection

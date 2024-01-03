@@ -567,6 +567,7 @@ public function updateEstadisticas(Request $request, $id)
         'valoractividad4' => 'required',
         'actividad5' => 'required',
         'valoractividad5' => 'required',
+        'total' => 'required',
       ]);
   
       $articulo = ExportacionSegunRamaActividad::find($id);
