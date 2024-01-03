@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <style>
-    p.enlaceM {
+    .enlaceM {
         color: #565656;
     }
-    p.enlaceM:hover {
+    .enlaceM:hover {
         font-Weight: 700;
     }
     .enlaceM{
         padding: 10px 0px;
-    }
-    .active {
-    font-weight: bold;
+        width: fit-content;
     }
     .infoR{
         font-family: Inter;
@@ -21,7 +19,7 @@
              text-align: left;
               color: #F59120;
     }
-    .borderR{
+    .borderR{ 
         border-right: 2px solid #F59120;
     }
     header{
@@ -59,12 +57,14 @@
         Line-height: 19.36px;
         color: #FFFFFF;
     }
-    p.style-tag{
-        font-family: 'Inter';
-        font-Weight: 600;
-        font-Style: italic;
-        font-Size: 16px;
-        color: #00548F;
+    p.style-tag {
+        font-family: Inter;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #565656;
     }
     p.title-cat{
         font-family: 'Inter';
@@ -168,7 +168,144 @@
         height:535px;
         background-color: #389144;
     }
-    .backgroundB{
+    .fotoA img {
+        width: 313px;
+        height: 348px;
+        border-radius: 0px 0px 100px 0px;
+        object-fit: cover;
+    }
+    p.style-nombre {
+        font-family: Inter;
+        font-size: 20px;
+        font-style: italic;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #00548F;
+    }
+    .info h3 {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    p.style-B{
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #565656;
+    }
+    p.descripcion-B {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    table.table, .table th,.table td  {
+        border: 1px solid #F59120;
+    }
+    .tituloTable{
+        background-color: #F59120 !important;
+        height: 48px;
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff !important;
+    }
+    th.tituloT {
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    th.tituloTS{
+        font-family: Inter;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .cajaElementor {
+        border: 1px solid #F59120;
+        border-radius: 5px;
+    }
+    p.titulo {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.mb-2.subtitulo {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.fechas {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.fechas span {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    p.style-tag {
+    font-family: 'Inter';
+    font-Weight: 600;
+    font-Style: italic;
+    font-Size: 16px;
+    color: #00548F;
+}
+p.descripcion1.pt-0.pb-4 {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+p.valor1.mb-5 {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.totalE{
+    height: 0;
+    border-left: 100px solid transparent;
+    border-bottom: 100px solid #f0ad4e;
+}
+.backgroundB{
         background-color: #00548F !important;
     }
     .descripB{
@@ -181,12 +318,6 @@
         color:#fff;
 
     }
-    a.a2 {
-    color: #00548F !important;
-    border-radius: 100px !important;
-    border: 1px solid #00548F !important;
-    font-weight: 700 !important;
-}
 </style>
 <html>
 <head>
@@ -249,56 +380,37 @@
                 <div class="container mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-8 borderR">
-                            <div class="container int p-0">
+                            <div class="container int">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <p class="style-tag pt-0 pb-4">{{ $provincia->subtitulo }}</p>
-                                        <p class="title-cat pt-2 pb-2">{{ $provincia->nombreseccion }}</p>
-                                        <p class="style-down pt-2 pb-2 pr-4">{!! $provincia->descripcion ?? '' !!}</p>
-                                    </div>
+                                    <p class="title-cat mb-5">Inversiones</p>
+
                                 </div>
                             </div>
                         </div>
-                            
-
                         <div class="col-md-4">
+                        <p class="infoR pb-4">Información de Inversiones</p>
                             <div class="container img">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                    <p class="infoR pb-4">Información de la Región</p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Antecedentes de la Región' ? 'active' : '' }}">Antecedentes de la Región</a></p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Osorno' ? 'active' : '' }}">Provincia de Osorno</a></p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Llanquihue' ? 'active' : '' }}">Provincia de Llanquihue</a></p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Chiloé') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Chiloé' ? 'active' : '' }}">Provincia de Chiloé</a></p>
-                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Palena') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Palena' ? 'active' : '' }}">Provincia de Palena</a></p>
-                                    </div>
+                                
+                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
+                                    Descripción General
+                                </a>
+                                <a  href="" class="p-0 pt-2 pb-2">
+                                    Inversión Pública Efectiva Según Sectores
+                                </a>
+                                <a  href="" class="p-0 pt-2 pb-2">
+                                    Financiamiento por Provincias
+                                </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
         </div>
-    </div>   
+    </div>        
     </main>
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Obtenemos la URL actual
-        var currentUrl = window.location.href;
 
-        // Seleccionamos todos los enlaces dentro de #categorylist
-        var links = document.querySelectorAll("#categorylist li a");
-
-        // Iteramos sobre los enlaces
-        links.forEach(function (link) {
-            // Verificamos si la URL actual coincide con la href del enlace
-            if (currentUrl.includes(link.getAttribute("href"))) {
-                // Agregamos la clase activa
-                link.classList.add("active");
-            }
-        });
-    });
-</script>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>

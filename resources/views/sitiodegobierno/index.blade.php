@@ -11,7 +11,7 @@
 <div id="banner" class="h-500 text-light d-flex align-items-center" style="background: #00548F !important; height: 502px; display: flex; padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulobannernoticia">Sala de prensa </h1>
+        <h1 class="titulodoc">Sala de prensa </h1>
         <p>Infórmate aquí de las noticias más recientes del Gore</p>
     </div>
 </div>
@@ -23,15 +23,16 @@
 
             <!-- Aquí se colocan las noticias -->
             <div class="row">
-    @foreach($noticias as $noticia)
-        <div class="col-md-3 mb-4">
-            <div class="card card-noticias" >
-                <img src="{{ asset($noticia->archivo_path) }}" class="card-img-top image-container" alt="Imagen de la noticia">
+    @foreach($sitios as $sitios)
+        <div class="col-md-4 mb-4 ">
+            <div class="card card-noticias">
+                <img src="{{ asset($noticia->archivo_path) }}" class="card-img-top  "  alt="Imagen de la noticia">
                 <div class="card-img-overlay">
                     <div class="card-body text-white">
-                        <p class="card-text noticia-categoria mb-2">{{ $noticia->categoria }}</p>
-                        <h5 class="card-title titulonoticia mb-4">{{ $noticia->titulo }}</h5>
-                        <a href="{{ $noticia->enlace }}" style="padding: 6%; position: absolute; bottom: 0; right: 0;">Ir ahora <i class="bi bi-arrow-right"></i></a>
+                    <p class="card-text noticia-categoria" >{{ $sitios->categoria }}</p>
+                        <h5 class="card-title titulonoticia">{{ $sitios->titulo }}</h5>
+                       
+                        <a href="{{ $noticia->enlace }}" class="btn btn-primary">Ir ahora</a>
                     </div>
                 </div>
             </div>
@@ -40,12 +41,10 @@
 </div>
 
 
-
-
             <!-- Paginación -->
             <div class="row">
                 <div class="col-12">
-                    {{ $noticias->links() }}
+                    {{ $sitios->links() }}
                 </div>
             </div>
         </div>

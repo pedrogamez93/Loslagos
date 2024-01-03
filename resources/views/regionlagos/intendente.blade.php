@@ -224,6 +224,28 @@
         color:#fff;
 
     }
+    
+a.active {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+a.a3 {
+    color: #00548F !important;
+    border-radius: 100px !important;
+    border: 1px solid #00548F !important;
+    font-weight: 700 !important;
+}
+.negrita {
+        font-weight: bold;
+    }
+
+    .azul {
+        color: blue;
+    }
 </style>
 <html>
 <head>
@@ -331,56 +353,82 @@
                                         <div class="row">
                                             
                                             <div class="col-md-12 p-0">
-                                                <!-- Menú vertical -->
-                                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <!-- Submenú -->
-                                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu" role="button" aria-expanded="false" aria-controls="submenu">Senadores</a>
-                                                    <div class="collapse  p-0" id="submenu">
-                                                        @foreach($sen as $autoridad)
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSenador.show', $autoridad->nombre) }}">{{ $autoridad->nombre }}</a></p>
-                                                        @endforeach
+                                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                    <div class="accordion-item border-0">
+                                                        <h2 class="accordion-header">
+                                                        <button id="senadores-btn" class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                            Senadores
+                                                        </button>
+                                                        </h2>
+                                                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body p-0">
+                                                            @foreach($sen as $autoridad)
+                                                                <p class="enlaceM" id="senadores-enlace"><a class="ml-3" href="{{ route('BuscarAutoridadesSenador.show', $autoridad->nombre) }}">{{ $autoridad->nombre }}</a></p>
+                                                            @endforeach
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    
-                                                </div>
-                                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <!-- Submenú -->
-                                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu">Diputados</a>
-                                                    <div class="collapse  p-0" id="submenu1">
-                                                        @foreach($dip as $autoridad1)
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesDiputados.show', $autoridad1->nombre) }}">{{ $autoridad1->nombre }}</a></p>
-                                                        @endforeach
+                                                    <div class="accordion-item border-0">
+                                                        <h2 class="accordion-header">
+                                                        <button id="diputados-btn" class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                            Diputados
+                                                        </button>
+                                                        </h2>
+                                                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body p-0">
+                                                            @foreach($dip as $index => $autoridad1)
+                                                                <p class="enlaceM" id="diputados-enlace{{ $index + 1 }}">
+                                                                    <a class="ml-3" href="{{ route('BuscarAutoridadesDiputados.show', $autoridad1->nombre) }}">
+                                                                        {{ $autoridad1->nombre }}
+                                                                    </a>
+                                                                </p>
+                                                            @endforeach
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- Fin Submenú -->
-                                                </div>
-                                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <!-- Submenú -->
-                                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu2" role="button" aria-expanded="false" aria-controls="submenu">Seremis</a>
-                                                    <div class="collapse  p-0" id="submenu2">
-                                                        @foreach($ser as $autoridad2)
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
-                                                        @endforeach
+                                                    <div class="accordion-item border-0">
+                                                        <h2 class="accordion-header">
+                                                        <button id="seremis-btn" class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                                            Seremis
+                                                        </button>
+                                                        </h2>
+                                                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body p-0">
+                                                            @foreach($ser as $autoridad2)
+                                                                <p class="enlaceM"  id="seremis-enlace"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
+                                                            @endforeach
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- Fin Submenú -->
-                                                </div>
-                                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <!-- Submenú -->
-                                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu3" role="button" aria-expanded="false" aria-controls="submenu">Servicios</a>
-                                                    <div class="collapse  p-0" id="submenu3">
-                                                        @foreach($serv as $autoridad3)
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
-                                                        @endforeach
+                                                    <div class="accordion-item border-0">
+                                                        <h2 class="accordion-header">
+                                                        <button id="servicios-btn"class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                                                            Servicios
+                                                        </button>
+                                                        </h2>
+                                                        <div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body p-0">
+                                                            @foreach($serv as $autoridad3)
+                                                                <p class="enlaceM"  id="servicios-enlace"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
+                                                            @endforeach
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- Fin Submenú -->
-                                                </div>
-                                                <div class="nav  p-0 flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <!-- Submenú -->
-                                                    <a class="enlaceM" id="v-pills-submenu-tab" data-bs-toggle="collapse" href="#submenu4" role="button" aria-expanded="false" aria-controls="submenu">Municipales</a>
-                                                    <div class="collapse  p-0" id="submenu4">
-                                                        @foreach($muni as $autoridad4)
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
-                                                        @endforeach
+                                                    <div class="accordion-item border-0">
+                                                        <h2 class="accordion-header">
+                                                        <button id="municipales-btn" class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
+                                                            Municipales
+                                                        </button>
+                                                        </h2>
+                                                        <div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body p-0">
+                                                            @foreach($muni as $autoridad4)
+                                                                <p class="enlaceM" id="municipales-enlace">><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
+                                                            @endforeach
+                                                        </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- Fin Submenú -->
+                                                    </div>                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -396,18 +444,46 @@
     </div>      
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
+
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtener todos los elementos de encabezado del acordeón
+        var accordionHeaders = document.querySelectorAll(".accordion-header button");
+
+        // Manejar clics en los elementos de encabezado del acordeón
+        accordionHeaders.forEach(function (header) {
+            header.addEventListener("click", function () {
+                // Remover la clase 'negrita' de todos los encabezados
+                accordionHeaders.forEach(function (el) {
+                    el.classList.remove("negrita");
+                });
+
+                // Agregar la clase 'negrita' al encabezado clicado
+                header.classList.add("negrita");
+            });
+        });
+
+        // Obtener todos los enlacesM
+        var enlacesM = document.querySelectorAll(".enlaceM");
+
+        // Manejar clics en los enlacesM
+        enlacesM.forEach(function (enlace) {
+            enlace.addEventListener("click", function () {
+                // Remover la clase 'azul' de todos los enlacesM
+                enlacesM.forEach(function (el) {
+                    el.classList.remove("azul");
+                });
+
+                // Agregar la clase 'azul' al enlace clicado
+                enlace.classList.add("azul");
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
 @endsection

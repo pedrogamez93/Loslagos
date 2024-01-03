@@ -498,17 +498,6 @@ p.valor1.mb-5 {
     </div>        
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
