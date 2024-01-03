@@ -13,6 +13,8 @@ use App\Models\ExportacionSegunBloqueEconomico;
 use App\Models\FNDR;
 use App\Models\ActividadEconomica;
 use App\Models\ActividadesEconomicaI;
+use App\Models\InversionPublicaEfectiva;
+use App\Models\InversionPublicaEfectivaSector;
 
 use Carbon\Carbon;
 
@@ -849,6 +851,92 @@ if ($articulo) {
 
 //Fin ActividadesEconomica
 
+//Inicio InversionPublicaEfectiva
+public function indexInversionPublicaEfectiva()
+{
+    $articulo = InversionPublicaEfectiva::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = InversionPublicaEfectiva::find($id);
+        $actividadesC = $articulo->InversionPublicaEfectivaSector;
+        return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.inversion.create');
+    }
+}
+public function storeInversionPublicaEfectiva(Request $request){
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+    $Inversion = InversionPublicaEfectiva::create($data);
+    // Almacenamiento de campos adicionales en el modelo CampoAdicional
+    // Ahora puedes acceder al ID del modelo recién creado
+    $InversionId = $Inversion->id;
+    $sector = $request->input('sector', []);
+    $inversionD = $request->input('inversionD', []);
+    $inversionP = $request->input('inversionP', []);
+    foreach ($sector ?? [] as $key => $campo) {
+        InversionPublicaEfectivaSector::create(['InversionPublicaEfectiva_id' => $InversionId,'sector' => $campo,'inversionD' => $inversionD[$key],'inversionP' => $inversionP[$key]]); // Ajusta según tus necesidades
+    }
+    return redirect(route('InversionPublicaEfectiva.index'))->with('success', 'Creado con éxito');
+}
+
+public function createInversionPublicaEfectiva()
+{
+    return view('IntroduccionRegionLagos.inversion.create');
+}
+public function editInversionPublicaEfectiva($id){
+    $articulo  = InversionPublicaEfectiva::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+}
+public function destroyInversionPublicaEfectiva($id)
+{
+    $articulo = InversionPublicaEfectiva::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('InversionPublicaEfectiva.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateInversionPublicaEfectiva(Request $request, $id)
+{
+$data = $request->validate([
+  'titulo' => 'required',
+  'subtitulo' => 'required',
+  'actividad1' => 'required',
+  'valoractividad1' => 'required',
+  'actividad2' => 'required',
+  'valoractividad2' => 'required',
+  'actividad3' => 'required',
+  'valoractividad3' => 'required',
+  'actividad4' => 'required',
+  'valoractividad4' => 'required',
+  'actividad5' => 'required',
+  'valoractividad5' => 'required',
+]);
+
+$articulo = FNDR::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('InversionPublicaEfectiva.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin InversionPublicaEfectiva
 
     // frond de region los lagos
     public function indexRegionlagosIntro()
@@ -1042,6 +1130,10 @@ if ($articulo) {
         $actividadE = ActividadEconomica::all();
         $primerArticulo = $FNDR->first();
         return view('regionlagos.inversiones', compact('primerArticulo','actividadE'));
+    }
+    public function indexInversionPublicaEfectivaWeb()    
+    {
+        return view('regionlagos.InversionPublicaEfectiva');
     }
     
     public function imagenesP($img)    
