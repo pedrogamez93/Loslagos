@@ -129,12 +129,25 @@
                                                 <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programas</a>
+                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>   
                     </div>
+                    <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Preguntas Frecuentes</a>
+                                        <ul class="submenu">
+                                            <li class="style-li" style="padding-top: 5px;">
+                                                <a class="style-a-menu" href="{{ url('/preguntas') }}">Todas </a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/preguntas/create') }}">Nueva Pregunta</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>   
                 </div>
 <style>
     .submenu {

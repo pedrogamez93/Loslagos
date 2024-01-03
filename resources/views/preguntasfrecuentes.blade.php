@@ -1,10 +1,4 @@
-<!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap CSS y JS -->
-<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!DOCTYPE html>
 <style>
     header{
        /* width: 100%;*/
@@ -180,7 +174,7 @@ h5.card-title{
     Line-height: 24.2px;
     color: #565656;
 }
-    img.img-fluid.icon-style.mr-3 {
+    img.img-fluid.icon-style {
     width: 90px;
     height: 75px;
 }
@@ -195,79 +189,35 @@ h5.card-title{
         height:535px;
         background-color: #389144;
     }
-    /*aqui estilos del admin pila no te enredes arriba los del header front*/
-    h1 , h2{
-        color: #565656;
-    }
-    .principal{
-        padding: 10px 0px 20px 60px;       
-    }
-    .first-form{
-        border: 1px solid #CCCCCC;
-        border-radius: 10px;
-    }
-    input.form-control{
-    color: #565656;
-    font-size: 16px;
-    font-weight: 700;
-    font-style: italic;
-    }
-    .style-label{
-    color: #565656;
-    font-size: 16px;
-    font-weight: 700;
-    }
-    .style-col-menu{
-        background-color: #0c1e35;
-    }
-    button.btn.btn-link {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-family: unset;
-    font-weight: 700;
-    }
-    li.style-li{
-        list-style: none;
-        padding-bottom: 10px;
-    }
-    a.style-a-menu{
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 500;   
-    }
-    .title-descargas{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 20px;
-    Line-height: 24.2px;
-    color: #F59120;
-    }
-    .borde{
-    border-right: 1px solid #F59120 ;
-    }
-    .title-programa{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 30px;
-    Line-height: 36.2px;
-    color: #565656;
-    }
-    .bajada-programa{
-    font-family: 'Inter';
-    font-Weight: 500;
-    font-Size: 16px;
-    Line-height: 19.36px;
-    color: #565656;
-    }
-    .descargables{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 16px;
-    Line-height: 19.36px;
-    color: #565656;  
-    }
+.t-acord{
+    font-family: 'Inter' !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #565656 !important;
+    background: #ffffff !important;
+}
+.r-acord{
+    font-family: 'Inter' !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: #565656 !important;
+}
 </style>
-<header>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Preguntas Frecuentes</title>
+    <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
+    <!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap CSS y JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <header>
         <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
@@ -295,35 +245,74 @@ h5.card-title{
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
                 <div class="col-md-12">
-                    <p class="style-bread">Home / Gobierno Regional  <span style="font-Weight: 700;"></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="#">Preguntas Frecuentes</a></span></p>
                 </div>
             </div>
         </div>   
         <div class="container content-prin">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-12">
-                    <p class="one-title pb-4">{{ $programa->titulo }}</p>
+                    <p class="one-title pb-4">Preguntas Frecuentes</p>
 
-                    <p style="Width:623px;">El objetivo es financiar proyectos de infraestructura comunal, que mejoren la calidad de vida de la población más pobre de la comuna</p>
+                    <p style="Width:623px;">Lorem Ipsum Dolor Met</p>
                 </div>
             </div>
         </div>   
     </header>
-            
-    <div class="container principal mt-4 mb-4 pt-3 pb-3">
-    <div class="row">
-        <div class="col-md-7 borde">
-            <h2 class="title-programa">{{ $programa->titulo }}</h2>
-            <p class="bajada-programa">{{ $programa->bajada }}</p>
-            <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="{{ $programa->titulo }}">
-            <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
-
+    <!-- Contenido principal de tu página -->
+    <main>
+        <div class="container cat">
+            <div class="row">
+                <div class="col-md-12 pt-4 pb-4" style="padding: 10px 60px 20px 60px;">
+                    <p class="title-cat">Preguntas Frecuentes</p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 ml-3">
-            <h2 class="title-descargas">Documentos Regionales que puedes descargar:</h2>
-            <h3 class="pt-3 descargables">Documentos</h3>
-            <h3 class="pt-3 descargables">Fotografías</h3>
-        </div>  
+        <div class="container set pb-4">
+     
     </div>
+        <div class="container titulo">
+            <div class="row">
+                <div class="col-md-12 container-grid" style="padding: 10px 60px 20px 60px;       
+">
+                        <div class="accordion" id="preguntasAccordion">
+
+@foreach($preguntas as $key => $pregunta)
+    <div class="accordion-item {{ $key == 0 ? 'show' : '' }}">
+        <h2 class="accordion-header" id="pregunta{{ $key }}">
+            <button class="accordion-button t-acord" type="button" data-bs-toggle="collapse" data-bs-target="#respuesta{{ $key }}" aria-expanded="{{ $key == 0 ? 'true' : 'false' }}" aria-controls="respuesta{{ $key }}">
+                {{ $pregunta->pregunta }}
+            </button>
+        </h2>
+        <div id="respuesta{{ $key }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" aria-labelledby="pregunta{{ $key }}" data-bs-parent="#preguntasAccordion">
+            <div class="accordion-body r-acord">
+                {{ $pregunta->respuesta }}
+            </div>
+        </div>
+    </div>
+@endforeach
+
 </div>
 
+
+</div>
+                    </>
+                </div>
+            </div>
+        </div> 
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Pie de página &copy; {{ date('Y') }}</p>
+                </div>
+            </div>
+        </div>                    
+       
+        
+    </footer>
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+</body>
+</html>
