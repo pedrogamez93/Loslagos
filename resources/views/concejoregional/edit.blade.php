@@ -83,12 +83,14 @@
                             <h2>Introduccion</h2>
                         </div>
                     </div>
-                    <form id="formulario-creacion" action="{{ route('concejoregional.update') }}" method="POST" enctype="multipart/form-data">
+                    <form id="formulario-creacion" action="{{ route('concejoregional.update', $concejo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6 tag-comentario">
+                                    <!-- Campos para el Consejo Regional -->
                                     <div class="input-group mb-3">
                                         <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $concejo->tag_comentario }}">
                                     </div>
@@ -99,16 +101,18 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12 pb-3">
                                     <div id="text">
                                         <div class="form-floating">
-                                        <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px">{{ $concejo->bajada }}</textarea>
+                                            <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px">{{ $concejo->bajada }}</textarea>
                                             <label class="style-label" for="floatingTextarea2 style-label">Bajada</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-12 pt-3 pb-3">
                                     <div class="mb-3">
@@ -118,24 +122,30 @@
                                 </div>
                             </div>
 
-
-
+                            <!-- Campos para editar secciones -->
                             <div class="secciones-container mt-3">
-                                <div class="container moreseccion form-control mt-3 pb-3" style="display: none;">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label class="style-label mb-2" for="titulo_seccion">Título:</label>
-                                            <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion[]" placeholder="Título">
+                                <h2>Editar Secciones</h2>
+                                @foreach($concejo->secciones as $seccion)
+                                    <div class="seccion-item">
+                                        <input type="hidden" name="seccion_id[]" value="{{ $seccion->id }}">
+                                        <label class="style-label mb-2" for="titulo_seccion">Título:</label>
+                                        <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion[]" placeholder="Título" value="{{ $seccion->titulo_seccion }}">
+                                        
+                                        <label class="style-label mb-2" for="bajada_seccion">Bajada o Descripción:</label>
+                                        <textarea class="form-control mt-2 mb-4" name="bajada_seccion[]" placeholder="Bajada o Descripción">{{ $seccion->bajada_seccion }}</textarea>
 
-                                            <label class="style-label mb-2" for="bajada_seccion">Bajada o Descripción:</label>
-                                            <textarea class="form-control mt-2 mb-4" name="bajada_seccion[]" placeholder="Bajada o Descripción"></textarea>
+                                        <label for="formFile" class="form-label style-label">Imagen actual de la sección</label>
+                                        @if($seccion->img_seccion)
+                                            <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                        @endif
 
-                                            <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
-                                            <input class="form-control" type="file" name="img_seccion[]" accept="image/*">
-                                        </div>
+                                        <label for="formFile" class="form-label style-label">Selecciona una nueva imagen para la sección</label>
+                                        <input class="form-control" type="file" name="img_seccion[]" accept="image/*">
+                                        <hr>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
+                            
                             <div class="container mt-3 mb-5">
                                 <div class="row">
                                     <div class="col-md-12">

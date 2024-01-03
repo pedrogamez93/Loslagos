@@ -128,7 +128,7 @@ Route::resource('concursospublicos', ConcursosPublicosController::class);
 Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
 
 Route::resource('concejoregional', ConcejoRegionalController::class);
-
+Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
 Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
