@@ -617,6 +617,8 @@ public function updateEstadisticas(Request $request, $id)
             'actividad5' => 'required',
             'valoractividad5' => 'required',
             'total' => 'required',
+            'actividad6' => 'required',
+            'valoractividad6' => 'required'
         ]);
     
         ExportacionSegunBloqueEconomico::create($data);
@@ -659,6 +661,9 @@ public function updateEstadisticas(Request $request, $id)
       'valoractividad4' => 'required',
       'actividad5' => 'required',
       'valoractividad5' => 'required',
+      'total' => 'required',
+      'actividad6' => 'required',
+      'valoractividad6' => 'required'
     ]);
 
     $articulo = ExportacionSegunBloqueEconomico::find($id);
