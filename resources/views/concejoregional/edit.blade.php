@@ -83,7 +83,7 @@
                             <h2>Introduccion</h2>
                         </div>
                     </div>
-                    <form id="formulario-creacion" action="{{ route('concejoregional.update', $concejo->id) }}" method="POST" enctype="multipart/form-data">
+                    <form id="formulario-creacion" action="{{ route('concejoregional.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -118,32 +118,7 @@
                                 </div>
                             </div>
 
-                            <div class="secciones-container mt-3">
-                            <!-- Verificar si hay secciones asociadas -->
-                            @if($concejo->secciones->isNotEmpty())
-                                <h2>Secciones</h2>
-                                <!-- Iterar sobre las secciones y mostrar detalles -->
-                                @foreach($concejo->secciones as $seccion)
-                                    <div class="seccion-item">
-                                        <h3>{{ $seccion->titulo_seccion }}</h3>
-                                        <div class="seccion-content" style="display: flex;">
-                                            <p>{{ $seccion->bajada_seccion }}</p>
-                                            <!-- Aquí puedes mostrar la imagen de la sección si es necesario -->
-                                            @if($seccion->img_seccion)
-                                                <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
-                                            @endif
-                                        </div>
-                                        <div class="seccion-actions">
-                                            <!-- Agregar botones para editar y eliminar -->
-                                            <button type="button" class="btn btn-info btn-edit-seccion">Editar</button>
-                                            <button type="button" class="btn btn-danger btn-delete-seccion">Eliminar</button>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <p>No hay secciones disponibles para este concejo.</p>
-                            @endif
-                        </div>
+
 
                             <div class="secciones-container mt-3">
                                 <div class="container moreseccion form-control mt-3 pb-3" style="display: none;">
@@ -172,7 +147,7 @@
                             <div class="container mt-5 mb-2">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                                        <button type="submit" class="btn btn-success" id="guardarCambios" name="guardarCambios">Guardar</button>
                                     </div>
                                 </div>
                             </div>
@@ -209,41 +184,47 @@
         });
 
         // Manejar clic en el botón Editar Sección
-        $(".btn-edit-seccion").click(function() {
+        $(document).on("click", ".btn-edit-seccion", function() {
+            // Obtener el ID de la sección
+            var seccionId = $(this).data('seccion-id');
+            
             // Obtener el contenedor de la sección
             var seccionContainer = $(this).closest(".seccion-item");
 
             // Habilitar la edición de los campos de la sección
-            seccionContainer.find('.seccion-content').find('p').prop('contenteditable', true);
+            seccionContainer.find('.seccion-content p').prop('contenteditable', true);
+
+            // Aquí puedes hacer algo con el ID de la sección, si es necesario
+            console.log("ID de la sección:", seccionId);
         });
 
         // Manejar clic en el botón Eliminar Sección
-        $(".btn-delete-seccion").click(function() {
+        $(document).on("click", ".btn-delete-seccion", function() {
             // Obtener el contenedor de la sección y eliminarlo
             $(this).closest(".seccion-item").remove();
         });
 
         // Manejar clic en el botón Guardar Cambios
         $("#guardarCambios").click(function() {
-            // Recolectar la información actualizada y enviarla al servidor
-            var data = [];
+            var data = $("#formulario-creacion").serialize();  // Obtener datos del formulario
 
-            $(".seccion-item").each(function() {
-                var seccion = {
-                    id: $(this).data('seccion-id'),  // Agrega el ID de la sección
-                    titulo_seccion: $(this).find('.seccion-title').text(),
-                    bajada_seccion: $(this).find('.seccion-content p').text(),
-                    // Agrega más campos según sea necesario
-                };
-
-                data.push(seccion);
+            $.ajax({
+                url: '{{ route("concejoregional.updateSeccion", ["concejoId" => $concejo->id, "seccionId" => $seccionId]) }}',
+                method: 'PUT',
+                data: data,
+                success: function(response) {
+                    console.log(response);  // Manejar la respuesta del servidor
+                },
+                error: function(error) {
+                    console.error(error);  // Manejar errores, si los hay
+                }
             });
-
+        });
             // Enviar data al servidor
             $.ajax({
-                url: '/concejoregional/' + concejoId + '/seccion/' + seccionId,
+                url: '{{ route("concejoregional.updateSeccion", ["concejoId" => $concejo->id, "seccionId" => ":seccionId"]) }}'.replace(':seccionId', seccionId),
                 method: 'PUT',
-                data: { secciones: data },
+                data: { secciones: data, _token: '{{ csrf_token() }}' }, // Incluye el token CSRF
                 success: function(response) {
                     console.log(response);  // Manejar la respuesta del servidor
                 },
