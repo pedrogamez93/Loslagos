@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/funcionarios ') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/funcionariossubir ') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>

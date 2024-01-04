@@ -257,7 +257,7 @@ public function edit($id)
 
     $funcionarios->update($request->all());
 
-    return redirect('/funcionarios')->with('success', 'Funcionarios actualizado exitosamente');
+    return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Funcionarios actualizado exitosamente');
 }
 
 public function destroy($id)

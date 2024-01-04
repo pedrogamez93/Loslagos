@@ -62,7 +62,7 @@ Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
-Route::post('/funcionarios', [FuncionarioController::class, 'store']);
+Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
@@ -71,7 +71,7 @@ Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'des
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
-Route::get('/saladeprensa/create', [SalaprensaController::class, 'create']);
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
 Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
 Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
@@ -82,7 +82,7 @@ Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'
 
 //Sala de prensa
 Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
-Route::get('/sitiodegobierno/create', [SitiosController::class, 'create']);
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create');;
 Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
 Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
 Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');

@@ -95,7 +95,7 @@
                     <!-- Formulario para la creación de un nuevo trámite -->
                     <form  action="{{ route('funcionarios.update', ['id' => $funcionarios->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
             <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" required>
                        
