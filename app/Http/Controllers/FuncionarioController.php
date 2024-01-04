@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
+use Illuminate\Support\Facades\Storage;
 
 class FuncionarioController extends Controller
 {
@@ -169,18 +170,22 @@ public function indexTabla()
            
         ]);
 
-        $datosf = request()->except('_token');
-        if($request->hasFile('foto')){
-            $datosf['foto'] = $request->file('foto')->store('fotofuncionario','public');
+       
 
+         // Manejo del archivo
+         if ($request->hasFile('foto')) {
+            $archivoPath = $request->file('foto')->store('funcionarios', 'public');
+            $datosd['foto'] = $archivoPath;
         }
+
+
 
         $datosf['created_at'] = now();
         $datosf['updated_at'] = now();
 
    
         Funcionario::insert($datosf);
-        return redirect('/funcionarios')->with('success', 'Funcionarios guardado exitosamente');
+        return redirect('/funcionarios/create')->with('success', 'Funcionario guardado exitosamente');
     }
 
     public function buscar(Request $request)
@@ -255,18 +260,53 @@ public function edit($id)
         // Agrega otras reglas de validación según tus necesidades
     ]);
 
-    $funcionarios->update($request->all());
+  
+
+    // Actualiza solo los campos que se proporcionan en la solicitud
+    $funcionarios->update(array_filter($request->only(['nombre', 'actividad', 'division', 'departamento', 'cargo', 'direccion', 'telefono', 'e-mail', 'region', 'provincia', 'comuna'])));
+ 
+    // Si se ha enviado un nuevo archivo, maneja la lógica para actualizar 'archivo_path'
+    if ($request->hasFile('foto')) {
+        if ($funcionarios->foto) {
+            // Elimina la foto anterior si existe
+            Storage::delete('public/' . $funcionarios->foto);
+        }
+        // Sube y guarda la nueva foto
+        $foto = $request->file('foto')->store('funcionarios', 'public');
+        $funcionarios->foto = $foto;
+        $funcionarios->save(); // Guarda nuevamente para actualizar 'archivo_path'
+    }
 
     return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Funcionarios actualizado exitosamente');
 }
 
-public function destroy($id)
-{
-    $funcionarios = Funcionario::findOrFail($id);
-    $funcionarios->delete();
+         public function destroy($id)
+    {
+        $funcionarios = Funcionario::findOrFail($id);
+        $funcionarios->delete();
 
-    return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Documento eliminado exitosamente');
-}
+        return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Documento eliminado exitosamente');
+    }
+
+
+
+        public function mostrarImagen($imagen)
+    {
+        return response()->file(storage_path('app/public/funcionarios/' . $imagen));
+    }
+
+
+
+        public function show(int $id)
+    {
+
+        $divisiones = $this->divisiones; 
+    $departamentos = $this->departamentos;
+        $funcionario = Funcionario::findOrFail($id);
+
+        return view('funcionarios.show',  compact('funcionario', 'divisiones', 'departamentos'));
+       
+    }
 
 
 }

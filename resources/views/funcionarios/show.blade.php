@@ -1,3 +1,4 @@
+
 <!-- resources/views/documentos/index.blade.php -->
 
 @extends('layouts.app')
@@ -80,35 +81,35 @@
         </div>
 
         <div class="row p-5">
-            @foreach($funcionarios as $funcionario)
-        
-                <div class="col-md-4">
-                <a href="{{ route('funcionarios.show', ['id' => $funcionario->id]) }}" style="margin-bottom:15px">
-                        <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
-                                    
-                        <div >
-    
-<img src="{{ asset($funcionario->foto) }}" alt="" style="max-width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-"> </div>
-                                <div style="padding-left:3%">
-                                <p  class="tituloresultadobuscador1">{{ $funcionario->nombre }}</p>
-                                <p class="textoresultadobuscador1">Institucion: <span class="textoresultadobuscador2">Gobierno Regional de Los Lagos</span></p>
-                                <p class="textoresultadobuscador1">Cargo: <span class="textoresultadobuscador2"> {{ $funcionario->cargo }}</span></p>
-                                <p class="textoresultadobuscador1">E-mail: <span class="textoresultadobuscador2"> {{ $funcionario->email }}</span></p>
-                                </div>
-                            
-                        
-                        </div>
-                        </a>
-                </div> 
-
+           
             
-        
-                
-            @endforeach
+
+
+        <div class="row">
+    <div class="col-3">
+        <img src="{{ asset($funcionario->foto) }}" alt="Imagen del Funcionario" style="border-radius: 0px 0px 100px 0px;">
+    </div>
+    <div class="col-6" style="margin-top: -16px;">
+        <p class="fs-1 nombredetallado">{{ $funcionario->nombre }}</p>
+        <p><span class="spandetallado">Division:</span> {{ $funcionario->nombre }}</p>
+        <p><span class="spandetallado">Departamento:</span> {{ $funcionario->apellido }}</p>
+        <p><span class="spandetallado">Cargo:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado">Direccion:</span> </p>
+        <p><span class="spandetallado">Fono:</span> </p>
+        <p><span class="spandetallado">Correo Electrónico:</span> {{ $funcionario->email }}</p>
+        <p><span class="spandetallado">Region:</span> </p>
+        <p><span class="spandetallado">Provincia</span></p>
+      
+      
+    </div>
+</div>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
@@ -142,3 +143,4 @@
 </script>
 
 @endsection
+

@@ -79,6 +79,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1>Formulario creacion funcionario</h1>
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -88,7 +93,7 @@
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/funcionariossubir ') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/funcionariossubir') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
