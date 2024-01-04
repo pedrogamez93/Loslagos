@@ -171,7 +171,7 @@
                                     <a class="style-a-menu" href="{{ route('funcionarios.create') }}">Agregar nuevo</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Documentos</a>
+                                    <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Funcionarios</a>
                                 </li>
                                
                                    
@@ -189,7 +189,7 @@
                                     <a class="style-a-menu" href="{{ route('salaprensa.create') }}">Agregar nuevo</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('salaprensa.vernoticia') }}">Ver Documentos</a>
+                                    <a class="style-a-menu" href="{{ route('salaprensa.vernoticia') }}">Ver Noticias</a>
                                 </li>
                                
                                    
@@ -208,7 +208,7 @@
                                     <a class="style-a-menu" href="{{ route('sitiodegobierno.create') }}">Agregar nuevo</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('sitiodegobierno.vernoticia') }}">Ver Documentos</a>
+                                    <a class="style-a-menu" href="{{ route('sitiodegobierno.vernoticia') }}">Ver Sitios de Gobierno</a>
                                 </li>
                                
                                    

@@ -81,7 +81,7 @@ input:required {
 
         <div class="col-md-10">
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
-        <h1>Lista de Documentos</h1>
+        <h1>Lista de Sala de prensa</h1>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -96,7 +96,7 @@ input:required {
                     <th>Titulo</th>
                     <th>Categoria</th>
                     <th>Descripcion</th>
-                    <th>Foto</th>
+                    <th>imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
