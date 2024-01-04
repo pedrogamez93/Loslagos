@@ -69,7 +69,7 @@ class SalaprensaController extends Controller
 
     public function mostrarImagen($imagen)
     {
-        return response()->file(storage_path('app/public/salaprensa/' . $imagen));
+        return response()->file(storage_path('app/public/saladeprensa/' . $imagen));
     }
 
     public function edit($id)
@@ -81,35 +81,36 @@ class SalaprensaController extends Controller
 
     public function update(Request $request, $id)   
     {
-        $sitio = Salaprensa::findOrFail($id);
-
+        $noticia = Salaprensa::findOrFail($id);
+    
         // Valida y actualiza los campos según tu modelo
         $request->validate([
             'titulo' => 'nullable',
             'categoria' => 'nullable',
             'descripcion' => 'nullable',
             'archivo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajusta las reglas según tus necesidades
-            'fecha' => 'nullable',
+            'fecha' => 'nullable|date',
         ]);
-
-        // Verifica si se ha enviado un nuevo archivo
+    
+        // Actualiza solo los campos que se proporcionan en la solicitud
+        $noticia->update(array_filter($request->only(['titulo', 'categoria', 'descripcion', 'fecha'])));
+    
+        // Si se ha enviado un nuevo archivo, maneja la lógica para actualizar 'archivo_path'
         if ($request->hasFile('archivo_path')) {
-            // Elimina la foto anterior si existe
-            if ($sitio->archivo_path) {
-                // Utiliza Storage::delete() para eliminar la foto anterior
-                Storage::delete('public/' . $sitio->archivo_path);
+            if ($noticia->archivo_path) {
+                // Elimina la foto anterior si existe
+                Storage::delete('public/' . $noticia->archivo_path);
             }
-
             // Sube y guarda la nueva foto
             $archivoPath = $request->file('archivo_path')->store('saladeprensa', 'public');
-            $sitio->archivo_path = $archivoPath;
+            $noticia->archivo_path = $archivoPath;
+            $noticia->save(); // Guarda nuevamente para actualizar 'archivo_path'
         }
-
-        // Actualiza los demás campos
-        $sitio->update($request->except('archivo_path'));
-
-        return redirect('/saladeprensa')->with('success', 'Noticia actualizado exitosamente');
+    
+        return redirect()->route('salaprensa.vernoticia')->with('success', 'Noticia modificada exitosamente');
     }
+    
+
 
 
     public function destroy($id)

@@ -94,8 +94,8 @@ input:required {
                     @csrf
                      @method('PUT')
 
-                     <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" required>
+                     <label class="style-label " for="titulo">Título:</label>
+            <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" >
                        
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
                 <option selected>Seleccione Categoria</option>

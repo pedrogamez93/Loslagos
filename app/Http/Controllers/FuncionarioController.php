@@ -240,7 +240,7 @@ public function edit($id)
 
     // Valida y actualiza los campos según tu modelo
     $request->validate([
-        'nombre' => 'required',
+        'nombre' => 'nullable',
             
             'actividad' => 'nullable',
             'division' => 'nullable',
