@@ -90,7 +90,7 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-        <form action="{{ route('noticia.update', ['id' => $noticia->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('salaprensa.update', ['id' => $noticias->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                      @method('PUT')
 

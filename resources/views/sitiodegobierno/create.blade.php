@@ -111,8 +111,14 @@ input:required {
             </div>
 
             <div class="mb-3 mt-4">
-                <label for="formFile" class="form-label">subir imagen</label>
+                <label for="formFile" class="form-label">Subir imagen</label>
                 <input class="form-control" type="file" name="archivo_path" id="formFile"></input>
+               
+            </div>
+
+            <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Url</label>
+                <input class="form-control" type="text" name="url" id="url"></input>
                
             </div>
 

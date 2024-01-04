@@ -81,14 +81,15 @@ Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa
-Route::get('/sitios', [SitiosController::class, 'index']);
-Route::get('/sitios/create', [SitiosController::class, 'create']);
-Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('salaprensa.store');
-Route::get('/sitios/{id}/edit', [SitiosController::class, 'edit'])->name('salaprensa.edit');
-Route::put('/sitios/{id}', [SitiosController::class, 'update'])->name('salaprensa.update');
-Route::get('/sitios/ver-noticias', [SitiosController::class, 'indexTabla'])->name('salaprensa.vernoticia');
-Route::delete('/sitios/eliminar/{id}', [SitiosController::class, 'destroy'])->name('salaprensa.destroy');
-Route::get('/sitios/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create']);
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
+Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
+Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');
+Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia');
+Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy');
+Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+
 //Route::resource('/', HomeController::class);
 
 
