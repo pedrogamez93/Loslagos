@@ -4,7 +4,7 @@
 
 @section('content')
 @push('styles')
-    <link href="{{ asset('css/estilos_salaprensa.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos_sitiodegobierno.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
 
