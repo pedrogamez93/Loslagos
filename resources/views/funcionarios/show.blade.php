@@ -94,11 +94,11 @@
         <p><span class="spandetallado">Division:</span> {{ $funcionario->nombre }}</p>
         <p><span class="spandetallado">Departamento:</span> {{ $funcionario->apellido }}</p>
         <p><span class="spandetallado">Cargo:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado">Direccion:</span> </p>
-        <p><span class="spandetallado">Fono:</span> </p>
+        <p><span class="spandetallado">Direccion:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado">Fono:</span> {{ $funcionario->cargo }}</p>
         <p><span class="spandetallado">Correo Electrónico:</span> {{ $funcionario->email }}</p>
-        <p><span class="spandetallado">Region:</span> </p>
-        <p><span class="spandetallado">Provincia</span></p>
+        <p><span class="spandetallado">Region:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado">Provincia</span>{{ $funcionario->cargo }}</p>
       
       
     </div>
