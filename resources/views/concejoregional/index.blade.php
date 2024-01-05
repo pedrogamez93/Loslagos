@@ -147,7 +147,7 @@
         // Añade un evento de clic al botón con el id "boton-editar"
         $("#boton-editar").click(function() {
             // Redirige a la URL específica utilizando la función route de Laravel
-            window.location.href = "{{ route('concejoregional.edit', $concejo->id) }}";
+            window.location.href = "{{ route('concejoregional.edit', ['concejoId' => $concejo->id, 'seccionId' => $seccion->id]) }}";
         });
     });
 </script>

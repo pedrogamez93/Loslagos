@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario edicion de noticia</h1>
+                        <h1>Formulario edicion de sitios de gobierno</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -90,7 +90,7 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-        <form action="{{ route('noticia.update', ['id' => $noticia->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('sitiodegobierno.update', ['id' => $sitiodegobierno->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                      @method('PUT')
 

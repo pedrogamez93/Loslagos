@@ -103,7 +103,8 @@ class ProgramasController extends Controller
         Programas::where('id' , '=' ,$id)->update($programa);
 
         $programa=Programas::findOrfail($id);
-        return view('programas.edit', compact('programa') );
+        return redirect()->route('programas.index')->with('success', 'Programa editado exitosamente.');
+
 
     }
 
@@ -117,6 +118,7 @@ class ProgramasController extends Controller
     {
         //
         Programas::destroy($id);
-        return redirect('programas');
+        return redirect()->route('programas.index')->with('success', 'Programa eliminado exitosamente.');
+
     }
 }

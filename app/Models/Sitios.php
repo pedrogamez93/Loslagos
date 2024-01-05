@@ -11,5 +11,5 @@ class Sitios extends Model
 
     protected $table = 'sitios';
 
-    protected $fillable = ['titulo', 'descripcion', 'archivo_path'];
+    protected $fillable = ['titulo', 'descripcion', 'archivo_path','url'];
 }

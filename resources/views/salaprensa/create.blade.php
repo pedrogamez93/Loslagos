@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario subida de Noticia</h1>
+                        <h1>Formulario subida de Noticias</h1>
                         @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}

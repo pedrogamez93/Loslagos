@@ -83,12 +83,14 @@
                             <h2>Introduccion</h2>
                         </div>
                     </div>
-                    <form id="formulario-creacion" action="{{ route('concejoregional.update') }}" method="POST" enctype="multipart/form-data">
+                    <form id="formulario-creacion" action="{{ route('concejoregional.update', ['concejoId' => $concejoId, 'seccionId' => $seccionId]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6 tag-comentario">
+                                    <!-- Campos para el Consejo Regional -->
                                     <div class="input-group mb-3">
                                         <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $concejo->tag_comentario }}">
                                     </div>
@@ -99,16 +101,18 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-12 pb-3">
                                     <div id="text">
                                         <div class="form-floating">
-                                        <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px">{{ $concejo->bajada }}</textarea>
+                                            <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px">{{ $concejo->bajada }}</textarea>
                                             <label class="style-label" for="floatingTextarea2 style-label">Bajada</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-12 pt-3 pb-3">
                                     <div class="mb-3">
@@ -117,41 +121,51 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="secciones-container mt-3">
+                        <h2>Editar Secciones</h2>
+                        @foreach($concejo->secciones as $seccion)
+                            <div class="seccion-item">
+                                <input type="hidden" name="concejoId" value="{{ $concejoId }}">
+                                
+                                <label class="style-label mb-2" for="titulo_seccion">Título:</label>
+                                <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion[]" placeholder="Título" value="{{ $seccion->titulo_seccion }}">
+                                
+                                <label class="style-label mb-2" for="bajada_seccion">Bajada o Descripción:</label>
+                                <textarea class="form-control mt-2 mb-4" name="bajada_seccion[]" placeholder="Bajada o Descripción">{{ $seccion->bajada_seccion }}</textarea>
 
+                                <label for="formFile" class="form-label style-label">Imagen actual de la sección</label>
+                                @if($seccion->img_seccion)
+                                    <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                @endif
 
-                            <div class="secciones-container mt-3">
-                                <div class="container moreseccion form-control mt-3 pb-3" style="display: none;">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label class="style-label mb-2" for="titulo_seccion">Título:</label>
-                                            <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion[]" placeholder="Título">
-
-                                            <label class="style-label mb-2" for="bajada_seccion">Bajada o Descripción:</label>
-                                            <textarea class="form-control mt-2 mb-4" name="bajada_seccion[]" placeholder="Bajada o Descripción"></textarea>
-
-                                            <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
-                                            <input class="form-control" type="file" name="img_seccion[]" accept="image/*">
-                                        </div>
-                                    </div>
-                                </div>
+                                <label for="formFile" class="form-label style-label">Selecciona una nueva imagen para la sección</label>
+                                <input class="form-control" type="file" name="img_seccion[]" accept="image/*">
+                                <hr>
                             </div>
-                            <div class="container mt-3 mb-5">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-info" id="agregarSeccion">+ Sección</button>
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach
+                    </div>
 
-                            <div class="container mt-5 mb-2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-success" id="guardarCambios" name="guardarCambios">Guardar</button>
-                                    </div>
-                                </div>
+                    <!-- Cerrar el div secciones-container -->
+                    </div>
+
+                    <div class="container mt-3 mb-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-info" id="agregarSeccion">+ Sección</button>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="container mt-5 mb-2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success" id="guardarCambios" name="guardarCambios">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+
                     </form>
                 </div>
             </div>
@@ -160,78 +174,47 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        // Contador para generar IDs únicos
-        var contadorSecciones = {{ $concejo->secciones->count() + 1 }};
+$(document).ready(function() {
+    // Contador para generar IDs únicos
+    var contadorSecciones = {{ $concejo->secciones->count() + 1 }};
 
-        // Manejar clic en el botón + Sección
-        $("#agregarSeccion").click(function() {
-            // Clonar el contenedor y mostrarlo
-            var nuevoContenedor = $(".moreseccion").clone(true).removeClass('moreseccion').addClass('seccion').appendTo(".secciones-container").show();
-            
-            // Incrementar el contador para el siguiente clon
-            contadorSecciones++;
+    // Manejar clic en el botón + Sección
+    $("#agregarSeccion").click(function() {
+        // Clonar el contenedor y mostrarlo
+        var nuevoContenedor = $(".seccion-item:first").clone(true).appendTo(".secciones-container").show();
+        
+        // Incrementar el contador para el siguiente clon
+        contadorSecciones++;
 
-            // Generar IDs únicos para los inputs clonados
-            nuevoContenedor.find('input, textarea').each(function() {
-                var nombreOriginal = $(this).attr('name');
-                var nuevoID = nombreOriginal.replace(/\[\]/, '[' + contadorSecciones + ']');
-                $(this).attr('id', nuevoID).attr('name', nuevoID);
-            });
-
-            // Limpiar valores de los inputs clonados (excepto el de la imagen)
-            nuevoContenedor.find('input:not([type="file"]), textarea').val('');
+        // Generar clases únicas para los inputs clonados
+        nuevoContenedor.find('input, textarea').each(function() {
+            var nombreOriginal = $(this).attr('name');
+            var nuevaClase = nombreOriginal + '-clon-' + contadorSecciones;
+            $(this).removeClass(nombreOriginal).addClass(nuevaClase);
+            $(this).attr('name', nuevaClase);
         });
 
-        // Manejar clic en el botón Editar Sección
-        $(document).on("click", ".btn-edit-seccion", function() {
-            // Obtener el ID de la sección
-            var seccionId = $(this).data('seccion-id');
-            
-            // Obtener el contenedor de la sección
-            var seccionContainer = $(this).closest(".seccion-item");
+        // Limpiar valores de los inputs clonados (excepto el de la imagen)
+        nuevoContenedor.find('input:not([type="file"]), textarea').val('');
+    });
 
-            // Habilitar la edición de los campos de la sección
-            seccionContainer.find('.seccion-content p').prop('contenteditable', true);
+    // Manejar envío del formulario
+    $("#formulario-creacion").submit(function(e) {
+        e.preventDefault(); // Evitar el envío predeterminado del formulario
 
-            // Aquí puedes hacer algo con el ID de la sección, si es necesario
-            console.log("ID de la sección:", seccionId);
-        });
+        var data = $(this).serialize();  // Obtener datos del formulario
 
-        // Manejar clic en el botón Eliminar Sección
-        $(document).on("click", ".btn-delete-seccion", function() {
-            // Obtener el contenedor de la sección y eliminarlo
-            $(this).closest(".seccion-item").remove();
-        });
-
-        // Manejar clic en el botón Guardar Cambios
-        $("#guardarCambios").click(function() {
-            var data = $("#formulario-creacion").serialize();  // Obtener datos del formulario
-
-            $.ajax({
-                url: '{{ route("concejoregional.updateSeccion", ["concejoId" => $concejo->id, "seccionId" => $seccionId]) }}',
-                method: 'PUT',
-                data: data,
-                success: function(response) {
-                    console.log(response);  // Manejar la respuesta del servidor
-                },
-                error: function(error) {
-                    console.error(error);  // Manejar errores, si los hay
-                }
-            });
-        });
-            // Enviar data al servidor
-            $.ajax({
-                url: '{{ route("concejoregional.updateSeccion", ["concejoId" => $concejo->id, "seccionId" => ":seccionId"]) }}'.replace(':seccionId', seccionId),
-                method: 'PUT',
-                data: { secciones: data, _token: '{{ csrf_token() }}' }, // Incluye el token CSRF
-                success: function(response) {
-                    console.log(response);  // Manejar la respuesta del servidor
-                },
-                error: function(error) {
-                    console.error(error);  // Manejar errores, si los hay
-                }
-            });
+        $.ajax({
+            url: '{{ route("concejoregional.update", ["concejoId" => $concejoId, "seccionId" => $seccionId]) }}',
+            method: 'PUT',
+            data: data,
+            success: function(response) {
+                console.log(response);  // Manejar la respuesta del servidor
+            },
+            error: function(error) {
+                console.error(error);  // Manejar errores, si los hay
+            }
         });
     });
+});
 </script>

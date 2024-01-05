@@ -84,7 +84,6 @@
 
                             <!--MIO-->
 
-                             <a href="{{ route('programas.index') }}" class="btn btn-primary">Volver</a>
                              <button class="btn btn-success" type="submit">Guardar cambios</button>
                         </form>
                         @if(session('mensaje'))

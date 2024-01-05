@@ -78,15 +78,14 @@
           </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-          Consejo Regional
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Consejo Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introduccion</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
+          </div>
       </li>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
@@ -102,7 +101,7 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funciones </a>
+        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
       </li>
 
 
@@ -113,9 +112,10 @@
             <i class="bi bi-grid" style="color: white;"></i>Informate aqui
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
         <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
         <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
-        <a class="dropdown-item style-a-menu" >Sitio de Gobierno</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
         <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
         <a class="dropdown-item style-a-menu" >Descarga de programas</a>
         <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
