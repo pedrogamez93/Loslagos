@@ -155,6 +155,7 @@ Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->nam
 
 
 Route::resource('concejoregional', ConcejoRegionalController::class);
+Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
 Route::put('/concejoregional/{id}', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
 Route::get('/concejoregional/{concejoId}/edit/{seccionId}', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
 //Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');

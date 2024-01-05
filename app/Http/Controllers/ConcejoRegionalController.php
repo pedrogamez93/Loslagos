@@ -77,7 +77,7 @@ class ConcejoRegionalController extends Controller{
         return view('editarseccion', compact('seccion'));
     }
 
-    
+
     public function update(Request $request, $concejoId)
     {
         // Validación
@@ -158,10 +158,14 @@ class ConcejoRegionalController extends Controller{
     return response()->json(['message' => 'Sección eliminada exitosamente.']);
 }
 
-public function show($id)
-{
-    // Puedes dejar el método vacío o redireccionar a otra página si es necesario
-    return redirect()->route('concejoregional.index');
-}
+    public function show($id)
+    {
+        // Puedes dejar el método vacío o redireccionar a otra página si es necesario
+        return redirect()->route('concejoregional.index');
+    }
+
+    public function mostrarImagen($img){
+        return response()->file(storage_path('app/public/imagesConcejo/' . $img));
+    }
 
 }

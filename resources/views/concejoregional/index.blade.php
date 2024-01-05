@@ -100,7 +100,7 @@
                                 <div class="col-md-12 pt-3 pb-3">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label style-label">Imagen actual</label>
-                                        <img src="{{ asset('storage/' . $concejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
+                                        <img src="{{ asset($concejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                             <p>{{ $seccion->bajada_seccion }}</p>
                                             <!-- Asumiendo que tienes una imagen para cada sección -->
                                             @if($seccion->img_seccion)
-                                                <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                                <img src="{{ asset($seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
                                             @endif
                                         </div>
                                         <!-- Botón Editar para cada sección -->
