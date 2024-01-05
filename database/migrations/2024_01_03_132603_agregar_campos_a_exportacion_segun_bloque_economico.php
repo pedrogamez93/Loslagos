@@ -14,8 +14,14 @@ class AgregarCamposAExportacionSegunBloqueEconomico extends Migration
     public function up()
     {
         Schema::table('ExportacionSegunBloqueEconomico', function (Blueprint $table) {
-            $table->string('actividad6');
-            $table->string('valoractividad6'); 
+            // Agrega esta verificación para cada nueva columna
+            if (!Schema::hasColumn('ExportacionSegunBloqueEconomico', 'actividad6')) {
+                $table->string('actividad6');
+            }
+            if (!Schema::hasColumn('ExportacionSegunBloqueEconomico', 'valoractividad6')) {
+                $table->string('valoractividad6');
+            }
+            // Repite para otras columnas si es necesario
         });
     }
     /**
