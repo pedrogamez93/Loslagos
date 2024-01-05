@@ -390,29 +390,26 @@ p.valor1.mb-5 {
                                 <div class="row">
                                     <p class="title-cat mb-5">{{ $articulo1->titulo }}</p>
                                     <p class="subtitle-cat mb-5"><b>Periodo: </b>{{ $articulo1->periodo }}</p>
-                                    <?php
-                                        $totalInversion = 0;
-                                    ?>    
-                                    @foreach($InversionPu as $Inver)
-                                    <?php $totalInversion += $Inver->inversionD; ?>
+
                                     <div class="col-md-6 mb-4">
                                         <div class="col-md-12 cajaElementor mb-4 p-3">
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <p class="titulo pb-2">{{ $Inver->sector }}</p>
+                                                        <p class="titulo pb-2">Llanquihue</p>
                                                         <div class="container p-0">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <b>Inversión $</b>
                                                                     <?php
-                                                                        $inversionD = number_format($Inver->inversionD, 0, ',', '.');
+                                                                    $Llanquihue = number_format($articulo1->provinciaInversionLD, 0, ',', '.');
                                                                     ?> 
-                                                                    {{ $inversionD }}
+                                                                    {{ $Llanquihue }}
+                                                                    
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <b>Inversión %</b>
-                                                                    {{ $Inver->inversionP }}
+                                                                    {{ $articulo1->provinciaInversionLP }}%
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -421,7 +418,111 @@ p.valor1.mb-5 {
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    <div class="col-md-6 mb-4">
+                                        <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="titulo pb-2">Chiloe</p>
+                                                        <div class="container p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión $</b>
+                                                                    <?php
+                                                                    $Chiloe = number_format($articulo1->provinciaInversionCD, 0, ',', '.');
+                                                                    ?> 
+                                                                    {{ $Chiloe }}
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión %</b>
+                                                                    {{ $articulo1->provinciaInversionCP }}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="titulo pb-2">Osorno</p>
+                                                        <div class="container p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión $</b>
+                                                                    <?php
+                                                                    $Osorno = number_format($articulo1->provinciaInversionOD, 0, ',', '.');
+                                                                    ?> 
+                                                                    {{ $Osorno }}
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión %</b>
+                                                                    
+                                                                    {{ $articulo1->provinciaInversionOP }}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="titulo pb-2">Palena</p>
+                                                        <div class="container p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión $</b>
+                                                                    <?php
+                                                                    $Palena = number_format($articulo1->provinciaInversionPD, 0, ',', '.');
+                                                                    ?> 
+                                                                    {{ $Palena }}
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión %</b>
+                                                                    {{ $articulo1->provinciaInversionPP }}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="titulo pb-2">Regional</p>
+                                                        <div class="container p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión $</b>
+                                                                    <?php
+                                                                    $Regional = number_format($articulo1->provinciaInversionRD, 0, ',', '.');
+                                                                    ?> 
+                                                                    {{ $Regional }}
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión %</b>
+                                                                    {{ $articulo1->provinciaInversionRP }}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 pb-5">
                                     <div class="container cajaElementor p-3">
                                         <div class="row">
@@ -432,13 +533,21 @@ p.valor1.mb-5 {
                                                         <div class="col-md-6">
                                                             <b>Inversión $</b>
                                                             <?php
-                                                                $numeroFormateado = number_format($totalInversion, 0, ',', '.');
+                                                                $TotalD=0;
+                                                                $TotalD = $articulo1->provinciaInversionRD + $articulo1->provinciaInversionLD + $articulo1->provinciaInversionCD+$articulo1->provinciaInversionOD+$articulo1->provinciaInversionPD;
+                                                                $TotalD = number_format($TotalD, 0, ',', '.');
                                                             ?> 
-                                                            {{ $numeroFormateado }}
+                                                            
+                                                            {{ $TotalD }}
                                                         </div>
                                                         <div class="col-md-6">
                                                             <b>Inversión %</b>
-                                                            
+                                                            <?php
+                                                                $TotalP=0;
+                                                                $TotalP = $articulo1->provinciaInversionRP + $articulo1->provinciaInversionLP + $articulo1->provinciaInversionCP+$articulo1->provinciaInversionOP+$articulo1->provinciaInversionPP;
+                                                                
+                                                            ?> 
+                                                            {{ $TotalP }}%
                                                         </div>
                                                     </div>
                                                 </div>

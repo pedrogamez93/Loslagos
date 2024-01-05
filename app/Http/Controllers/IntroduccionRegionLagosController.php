@@ -15,6 +15,7 @@ use App\Models\ActividadEconomica;
 use App\Models\ActividadesEconomicaI;
 use App\Models\InversionPublicaEfectiva;
 use App\Models\InversionPublicaEfectivaSector;
+use App\Models\FinanciamientoporProvincias;
 
 use Carbon\Carbon;
 
@@ -938,6 +939,96 @@ if ($articulo) {
 
 //Fin InversionPublicaEfectiva
 
+//Inicio FinanciamientoporProvincias
+public function indexFinanciamientoporProvincias()
+{
+    $articulo = FinanciamientoporProvincias::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = FinanciamientoporProvincias::find($id);
+        $actividadesC = $articulo->InversionPublicaEfectivaSector;
+        return view('IntroduccionRegionLagos.FinanciamientoporProvincias.edit', compact('articulo','actividadesC'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.FinanciamientoporProvincias.create');
+    }
+}
+public function storeFinanciamientoporProvincias(Request $request){
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'provinciaInversionLD' => 'required',
+        'provinciaInversionLP' => 'required',
+        'provinciaInversionCD' => 'required',
+        'provinciaInversionCP' => 'required',
+        'provinciaInversionOD' => 'required',
+        'provinciaInversionOP' => 'required',
+        'provinciaInversionPD' => 'required',
+        'provinciaInversionPP' => 'required',
+        'provinciaInversionRD' => 'required',
+        'provinciaInversionRP' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+    $Inversion = FinanciamientoporProvincias::create($data);
+    return redirect(route('FinanciamientoporProvincias.index'))->with('success', 'Creado con éxito');
+}
+
+public function createFinanciamientoporProvincias()
+{
+    return view('IntroduccionRegionLagos.inversion.create');
+}
+public function editFinanciamientoporProvincias($id){
+    $articulo  = FinanciamientoporProvincias::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+}
+public function destroyFinanciamientoporProvincias($id)
+{
+    $articulo = FinanciamientoporProvincias::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('FinanciamientoporProvincias.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('FinanciamientoporProvincias.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateFinanciamientoporProvincias(Request $request, $id)
+{
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'provinciaInversionLD' => 'required',
+        'provinciaInversionLP' => 'required',
+        'provinciaInversionCD' => 'required',
+        'provinciaInversionCP' => 'required',
+        'provinciaInversionOD' => 'required',
+        'provinciaInversionOP' => 'required',
+        'provinciaInversionPD' => 'required',
+        'provinciaInversionPP' => 'required',
+        'provinciaInversionRD' => 'required',
+        'provinciaInversionRP' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+
+$articulo = FinanciamientoporProvincias::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('FinanciamientoporProvincias.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin FinanciamientoporProvincias
+
     // frond de region los lagos
     public function indexRegionlagosIntro()
     {
@@ -1133,9 +1224,20 @@ if ($articulo) {
     }
     public function indexInversionPublicaEfectivaWeb()    
     {
-        return view('regionlagos.InversionPublicaEfectiva');
+        $articulo  = InversionPublicaEfectiva::all();
+        $articulo1 = $articulo->first();
+        $InversionPu = $articulo1->InversionPublicaEfectivaSector;
+        return view('regionlagos.InversionPublicaEfectiva', compact('articulo1','InversionPu'));
     }
     
+    public function indexFinanciamientoporProvinciasWeb()    
+    {
+        $articulo  = FinanciamientoporProvincias::all();
+        $articulo1 = $articulo->first();
+        $InversionPu = $articulo1->InversionPublicaEfectivaSector;
+        return view('regionlagos.FinanciamientoporProvincias', compact('articulo1','InversionPu'));
+    }
+
     public function imagenesP($img)    
     {
         return response()->file(storage_path("app/public/images/".$img));

@@ -70,7 +70,7 @@
                             <div class="row">
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="nombre" value="{{ $articulo->nombre }}" class="form-control" placeholder="Titulo seccion" required>
+                                        <input type="text" id="titulo" name="nombre" value="{{ $articulo->titulo }}" class="form-control" placeholder="Titulo seccion" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 tag-comentario">
@@ -111,17 +111,17 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="sector[]" class="form-control" placeholder="Sector" required>
+                                                    <input type="text" id="titulo" name="sector[]" class="form-control" placeholder="Sector" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="inversionD" name="inversionD[]" class="form-control" placeholder="Inversión $" required>
+                                                    <input type="text" id="inversionD" name="inversionD[]" class="form-control" placeholder="Inversión $" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="inversionP" name="inversionP[]" class="form-control" placeholder="Inversión %" required>
+                                                    <input type="text" id="inversionP" name="inversionP[]" class="form-control" placeholder="Inversión %" >
                                                 </div>
                                             </div>
                                         </div>

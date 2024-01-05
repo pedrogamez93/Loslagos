@@ -398,7 +398,7 @@ p.valor1.mb-5 {
                                 <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
                                     Inversión Pública Efectiva Según Sectores
                                 </a>
-                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('FinanciamientoporProvinciasWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/FinanciamientoporProvincias/') ? 'font-weight: 700;' : '' }}">
                                     Financiamiento por Provincias
                                 </a>
                                 </div>
