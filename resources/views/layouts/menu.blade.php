@@ -185,12 +185,9 @@
                                    
                             </ul>
                         </div>
-
-
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
                             Funcionarios
                         </button>
-
                         <!-- Define el menú desplegable -->
                         <div class="collapse show" id="IntroduccionRegionLagos">
                             <ul>
@@ -222,8 +219,6 @@
                                    
                             </ul>
                         </div>
-
-
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
                             Sitios de Gobierno
                         </button>
@@ -236,41 +231,40 @@
                                 </li>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('sitiodegobierno.vernoticia') }}">Ver Sitios de Gobierno</a>
-                                </li>
-                               
-                                   
+                                </li>                  
                             </ul>
                         </div>
 
-
-
-                        <ul style="padding: 0px">
-                                    <li class="style-li">
-                                        <a class="style-a-menu" href="javascript:void(0);">Programas</a>
-                                        <ul class="submenu">
-                                            <li class="style-li" style="padding-top: 5px;">
-                                                <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>   
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#Programas" aria-expanded="false" aria-controls="Programas">
+                            Programas
+                        </button>
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="Programas">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
+                                </li>
+                                <li class="style-li" style="padding-top: 5px;">
+                                    <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
+                                </li>
+                            </ul>
+                        </div>  
                     </div>
-                    <ul style="padding: 0px">
-                                    <li class="style-li">
-                                        <a class="style-a-menu" href="javascript:void(0);">Preguntas Frecuentes</a>
-                                        <ul class="submenu">
-                                            <li class="style-li" style="padding-top: 5px;">
-                                                <a class="style-a-menu" href="{{ url('/preguntas') }}">Todas </a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/preguntas/create') }}">Nueva Pregunta</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>   
+
+                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#PreguntasFrecuentes" aria-expanded="false" aria-controls="PreguntasFrecuentes">
+                            Preguntas Frecuentes
+                    </button>
+                    <!-- Define el menú desplegable -->
+                    <div class="collapse show" id="PreguntasFrecuentes">
+                        <ul>
+                            <li class="style-li">
+                                <a class="style-a-menu" href="{{ url('/preguntas') }}">Preguntas Frecuentes</a>
+                            </li>
+                            <li class="style-li" style="padding-top: 5px;">
+                                <a class="style-a-menu" href="{{ url('/preguntas/create') }}">Nueva Pregunta</a>
+                            </li>
+                        </ul>
+                    </div>   
                 </div>
 <style>
     .submenu {
