@@ -71,21 +71,12 @@ class ConcejoRegionalController extends Controller{
     
     }
 
-    public function edit($concejoId)
+    public function edit($concejoId, $seccionId)
     {
-        // Obtener el valor de $seccionId (puedes necesitar realizar alguna lógica para obtenerlo)
-        $seccionId = obtenerSeccionId(); // Reemplaza esto con la lógica adecuada para obtener $seccionId
-    
-        // Fetch data or perform any necessary logic to get the data for the view
-        $concejo = ConsejoRegional::with('secciones')->find($concejoId);
-    
-        return view('concejoregional.edit', [
-            'concejoId' => $concejoId,
-            'seccionId' => $seccionId,
-            'concejo'   => $concejo,
-            // Otros datos que puedas necesitar en la vista
-        ]);
+        $seccion = Seccion::findOrFail($seccionId);
+        return view('editarseccion', compact('seccion'));
     }
+
     
     public function update(Request $request, $concejoId)
     {

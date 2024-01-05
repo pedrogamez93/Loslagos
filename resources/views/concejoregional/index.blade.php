@@ -106,26 +106,20 @@
                             </div>
                             <div class="secciones-container mt-3">
                                 <!-- Verificar si hay secciones asociadas -->
-                                @if($concejo->secciones->isNotEmpty())
-                                    <h2>Secciones</h2>
-                                        <!-- Iterar sobre las secciones y mostrar detalles -->
-                                        @foreach($concejo->secciones as $seccion)
-                                                <div class="item-complet">
-                                                    <h3>{{ $seccion->titulo_seccion }}</h3>
-
-                                                    <div class="item-donw" style="display: flex;">
-                                                        <p>{{ $seccion->bajada_seccion }}</p>
-                                                <!-- Aquí puedes mostrar la imagen de la sección si es necesario -->
-                                                @if($seccion->img_seccion)
-                                                        <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
-                                                    </div>
-                                                </div>
-                                                @endif
-                                            
-                                        @endforeach
-                                @else
-                                    <p>No hay secciones disponibles para este concejo.</p>
-                                @endif
+                                @foreach($concejo->secciones as $seccion)
+                                    <div class="item-complet">
+                                        <h3>{{ $seccion->titulo_seccion }}</h3>
+                                        <div class="item-donw" style="display: flex;">
+                                            <p>{{ $seccion->bajada_seccion }}</p>
+                                            <!-- Asumiendo que tienes una imagen para cada sección -->
+                                            @if($seccion->img_seccion)
+                                                <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                            @endif
+                                        </div>
+                                        <!-- Botón Editar para cada sección -->
+                                        <button type="button" class="btn btn-success editar-seccion" data-concejo-id="{{ $concejo->id }}" data-seccion-id="{{ $seccion->id }}">Editar</button>
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="container mt-5 mb-2">
                                 <div class="row">
@@ -142,12 +136,12 @@
     </div>
 </div>
 <script>
-    // Espera a que el documento esté completamente cargado
-    $(document).ready(function() {
-        // Añade un evento de clic al botón con el id "boton-editar"
-        $("#boton-editar").click(function() {
-            // Redirige a la URL específica utilizando la función route de Laravel
-            window.location.href = "{{ route('concejoregional.edit', ['concejoId' => $concejo->id, 'seccionId' => $seccion->id]) }}";
-        });
+$(document).ready(function() {
+    // Manejar clic en botones de edición de sección
+    $('.editar-seccion').on('click', function() {
+        var concejoId = $(this).data('concejo-id');
+        var seccionId = $(this).data('seccion-id');
+        window.location.href = "{{ url('concejoregional') }}/" + concejoId + "/edit/" + seccionId;
     });
+});
 </script>
