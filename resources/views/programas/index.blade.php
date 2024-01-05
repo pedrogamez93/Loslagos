@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trámites Digitales</title>
+    <title>Programas</title>
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS y JS -->
@@ -67,7 +67,15 @@
                 <div class="container principal mt-4 mb-4 pt-3 pb-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Programas</h1>
+                            
+                            <div class="row justify-content-between">
+    <div class="col-4">
+    <h1>Programas</h1>
+    </div>
+    <div class="col-4" style="text-align: -webkit-right;">
+    <a class="mb-2 btn btn-primary" href="{{ url('/programas/create') }}">Nuevo Programa</a>
+    </div>
+  </div>
                         </div>
                     </div>
                     <div class="container first-form pt-2 pb-2">

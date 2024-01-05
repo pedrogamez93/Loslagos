@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Salaprensa;
+use Illuminate\Support\Facades\Storage;
 
 class SalaprensaController extends Controller
 {
@@ -53,13 +54,73 @@ class SalaprensaController extends Controller
 
         Salaprensa::insert($datosd);
 
-        return redirect('/saladeprensa/create')->with('success', 'Documento guardado exitosamente');
+        return redirect('/saladeprensa/create')->with('success', 'Noticia guardado exitosamente');
     }
+
+
+    
+    public function indexTabla()
+        {
+            $saladeprensa['saladeprensa'] = Salaprensa::orderBy('created_at', 'asc')->paginate(20);
+            return view('salaprensa.tabla', $saladeprensa);
+        }
+
 
 
     public function mostrarImagen($imagen)
     {
-        return response()->file(storage_path('app/public/salaprensa/' . $imagen));
+        return response()->file(storage_path('app/public/saladeprensa/' . $imagen));
     }
+
+    public function edit($id)
+    {
+        $noticias = Salaprensa::findOrFail($id);
+        // Puedes necesitar cargar otras cosas según tus necesidades
+        return view('salaprensa.edit', compact('noticias'));
+    }
+
+    public function update(Request $request, $id)   
+    {
+        $noticia = Salaprensa::findOrFail($id);
+    
+        // Valida y actualiza los campos según tu modelo
+        $request->validate([
+            'titulo' => 'nullable',
+            'categoria' => 'nullable',
+            'descripcion' => 'nullable',
+            'archivo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajusta las reglas según tus necesidades
+            'fecha' => 'nullable|date',
+        ]);
+    
+        // Actualiza solo los campos que se proporcionan en la solicitud
+        $noticia->update(array_filter($request->only(['titulo', 'categoria', 'descripcion', 'fecha'])));
+    
+        // Si se ha enviado un nuevo archivo, maneja la lógica para actualizar 'archivo_path'
+        if ($request->hasFile('archivo_path')) {
+            if ($noticia->archivo_path) {
+                // Elimina la foto anterior si existe
+                Storage::delete('public/' . $noticia->archivo_path);
+            }
+            // Sube y guarda la nueva foto
+            $archivoPath = $request->file('archivo_path')->store('saladeprensa', 'public');
+            $noticia->archivo_path = $archivoPath;
+            $noticia->save(); // Guarda nuevamente para actualizar 'archivo_path'
+        }
+    
+        return redirect()->route('salaprensa.vernoticia')->with('success', 'Noticia modificada exitosamente');
+    }
+    
+
+
+
+    public function destroy($id)
+    {
+        $Salaprensa = Salaprensa::findOrFail($id);
+        $Salaprensa->delete();
+    
+        return redirect()->route('salaprensa.vernoticia')->with('success', 'Noticia eliminada exitosamente');
+    }
+    
+
 
 }

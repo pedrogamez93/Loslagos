@@ -104,7 +104,7 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funciones </a>
+        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
       </li>
 
 
@@ -115,9 +115,10 @@
             <i class="bi bi-grid" style="color: white;"></i>Informate aqui
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
         <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
         <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
-        <a class="dropdown-item style-a-menu" >Sitio de Gobierno</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
         <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
         <a class="dropdown-item style-a-menu" >Descarga de programas</a>
         <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>

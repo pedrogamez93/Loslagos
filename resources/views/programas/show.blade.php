@@ -259,6 +259,13 @@ h5.card-title{
     Line-height: 19.36px;
     color: #565656;
     }
+    .descargables{
+    font-family: 'Inter';
+    font-Weight: 700;
+    font-Size: 16px;
+    Line-height: 19.36px;
+    color: #565656;  
+    }
 </style>
 <header>
         <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
@@ -312,8 +319,10 @@ h5.card-title{
             <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 ml-3">
             <h2 class="title-descargas">Documentos Regionales que puedes descargar:</h2>
+            <h3 class="pt-3 descargables">Documentos</h3>
+            <h3 class="pt-3 descargables">Fotografías</h3>
         </div>  
     </div>
 </div>

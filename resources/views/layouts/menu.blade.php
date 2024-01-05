@@ -176,7 +176,7 @@
                         <div class="collapse show" id="IntroduccionRegionLagos">
                             <ul>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('documentos.create') }}">Subir</a>
+                                    <a class="style-a-menu" href="{{ route('documentos.create') }}">Agregar nuevo</a>
                                 </li>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
@@ -186,6 +186,64 @@
                             </ul>
                         </div>
 
+
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
+                            Funcionarios
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="IntroduccionRegionLagos">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('funcionarios.create') }}">Agregar nuevo</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Funcionarios</a>
+                                </li>
+                               
+                                   
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
+                            Sala de prensa
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="IntroduccionRegionLagos">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('salaprensa.create') }}">Agregar nuevo</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('salaprensa.vernoticia') }}">Ver Noticias</a>
+                                </li>
+                               
+                                   
+                            </ul>
+                        </div>
+
+
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
+                            Sitios de Gobierno
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="IntroduccionRegionLagos">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('sitiodegobierno.create') }}">Agregar nuevo</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('sitiodegobierno.vernoticia') }}">Ver Sitios de Gobierno</a>
+                                </li>
+                               
+                                   
+                            </ul>
+                        </div>
+
+
+
                         <ul style="padding: 0px">
                                     <li class="style-li">
                                         <a class="style-a-menu" href="javascript:void(0);">Programas</a>
@@ -194,12 +252,25 @@
                                                 <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programas</a>
+                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>   
                     </div>
+                    <ul style="padding: 0px">
+                                    <li class="style-li">
+                                        <a class="style-a-menu" href="javascript:void(0);">Preguntas Frecuentes</a>
+                                        <ul class="submenu">
+                                            <li class="style-li" style="padding-top: 5px;">
+                                                <a class="style-a-menu" href="{{ url('/preguntas') }}">Todas </a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/preguntas/create') }}">Nueva Pregunta</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>   
                 </div>
 <style>
     .submenu {

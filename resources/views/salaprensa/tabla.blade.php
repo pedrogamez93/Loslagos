@@ -81,7 +81,7 @@ input:required {
 
         <div class="col-md-10">
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
-        <h1>Lista de Documentos</h1>
+        <h1>Lista de Sala de prensa</h1>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -93,19 +93,29 @@ input:required {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
+                    <th>Titulo</th>
+                    <th>Categoria</th>
+                    <th>Descripcion</th>
+                    <th>imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($documentos as $documento)
+                @foreach($saladeprensa as $saladeprensa)
                     <tr>
-                        <td>{{ $documento->id }}</td>
-                        <td>{{ $documento->nombre }}</td>
+                        <td>{{ $saladeprensa->id }}</td>
+                        <td>{{ $saladeprensa->titulo }}</td>
+                        <td>{{ $saladeprensa->categoria }}</td>
+                        <td>{{ $saladeprensa->descripcion }}</td>
+                        <td> 
+                            <img  style="max-height:120px; max-width:120px" 
+                            src="{{ asset($saladeprensa->archivo_path) }}" >
+                        </td>
+
                         <td>
-                            <a href="{{ url('storage/' . $documento->archivo_path) }}" class="btn btn-primary" download>Descargar</a>
-                            <a href="{{ route('documentos.edit', ['id' => $documento->id]) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('documentos.destroy', ['id' => $documento->id]) }}" method="POST" style="display: inline;">
+                           
+                            <a href="{{ route('salaprensa.edit', ['id' => $saladeprensa->id]) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('salaprensa.destroy', ['id' => $saladeprensa->id]) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>

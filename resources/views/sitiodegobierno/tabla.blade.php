@@ -81,7 +81,7 @@ input:required {
 
         <div class="col-md-10">
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
-        <h1>Lista de Documentos</h1>
+        <h1>Lista de Sitios</h1>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -94,18 +94,28 @@ input:required {
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                    <th>Url</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($documentos as $documento)
+                @foreach($sitios as $sitio)
                     <tr>
-                        <td>{{ $documento->id }}</td>
-                        <td>{{ $documento->nombre }}</td>
+                        <td>{{ $sitio->id }}</td>
+                        <td>{{ $sitio->titulo }}</td>
+                        <td>{{ $sitio->descripcion }}</td>
+                        <td> 
+                            <img  style="max-height:120px; max-width:120px" 
+                            src="{{ asset($sitio->archivo_path) }}" >
+                        </td>
+                        <td>{{ $sitio->url }}</td>
+
                         <td>
-                            <a href="{{ url('storage/' . $documento->archivo_path) }}" class="btn btn-primary" download>Descargar</a>
-                            <a href="{{ route('documentos.edit', ['id' => $documento->id]) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('documentos.destroy', ['id' => $documento->id]) }}" method="POST" style="display: inline;">
+                           
+                            <a href="{{ route('sitiodegobierno.edit', ['id' => $sitio->id]) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('sitiodegobierno.destroy', ['id' => $sitio->id]) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>

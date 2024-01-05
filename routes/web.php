@@ -24,6 +24,10 @@ use App\Http\Controllers\PlanificacionInstitucionalController;
 use App\Http\Controllers\TramitesDigitalesController;
 use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
+use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\PreguntasFrecuentesController;
+use App\Http\Controllers\FormController;
+
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
@@ -34,6 +38,7 @@ use App\Http\Controllers\ConsejerosOsornoController;
 use App\Http\Controllers\ConsejerosPalenaController;
 
 use App\Http\Controllers\SitiosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,33 +67,37 @@ Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
-Route::post('/funcionarios', [FuncionarioController::class, 'store']);
+Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
+
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
-Route::get('/saladeprensa/create', [SalaprensaController::class, 'create']);
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
 Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
 Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
 Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
-Route::get('/salaprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa
-Route::get('/sitios', [SitiosController::class, 'index']);
-Route::get('/sitios/create', [SitiosController::class, 'create']);
-Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('salaprensa.store');
-Route::get('/sitios/{id}/edit', [SitiosController::class, 'edit'])->name('salaprensa.edit');
-Route::put('/sitios/{id}', [SitiosController::class, 'update'])->name('salaprensa.update');
-Route::get('/sitios/ver-noticias', [SitiosController::class, 'indexTabla'])->name('salaprensa.vernoticia');
-Route::delete('/sitios/eliminar/{id}', [SitiosController::class, 'destroy'])->name('salaprensa.destroy');
-Route::get('/sitios/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create');;
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
+Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
+Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');
+Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia');
+Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy');
+Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+
 //Route::resource('/', HomeController::class);
 
 
@@ -348,5 +357,28 @@ Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLago
 
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 // Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+
+//PREGUNTAS FRECUENTES
+Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
+//Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
+//Route::resource('preguntas', PreguntaController::class);
+
+Route::get('/preguntas', [PreguntaController::class, 'index']);
+Route::resource('preguntas', PreguntaController::class);
+
+Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit');
+
+Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
+
+//FORMULARIO DE CONTACTO
+    //FORMULARIO DE CONTACTO
+Route::get('contactanos', [FormController::class, 'showForm']);
+    //FORMULARIOS ENVIADOS BACKEND
+Route::get('verformularios', [FormController::class, 'viewForm']);
+    //PROCESAR FORMULARIO
+Route::post('contactanos', [FormController::class, 'store'])->name('contactanos.store');
+    //ENVIAR CORREO ELECTRONICO
+Route::post('/contactanos/store', [FormController::class, 'store'])->name('contactanos.store');
+
 
 
