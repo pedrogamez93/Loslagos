@@ -16,7 +16,7 @@ class MisionGobController extends Controller{
             return view('mision.index', compact('mision'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('mision.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('mision.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 

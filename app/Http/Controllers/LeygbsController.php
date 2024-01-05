@@ -17,7 +17,7 @@ class LeygbsController extends Controller {
                     return view('leygobiernoregional.index', compact('ley'));
                 } else {
                     // Si no hay registros, puedes manejarlo de alguna manera
-                    return view('leygobiernoregional.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+                    return view('leygobiernoregional.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
                 }
     
     }

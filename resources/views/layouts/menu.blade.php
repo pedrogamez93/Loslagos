@@ -7,7 +7,6 @@
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#menuGobiernoRegional" aria-expanded="false" aria-controls="menuGobiernoRegional">
                             Gobierno Regional
                         </button>
-
                         <!-- Define el menú desplegable -->
                         <div class="collapse show" id="menuGobiernoRegional">
                             <ul>
@@ -99,6 +98,34 @@
                                         </ul>
                                     </li>
                                 </ul>
+                            </ul>
+                        </div>
+                        <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#concejoregional" aria-expanded="false" aria-controls="concejoregional">
+                            Concejo Regional
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="concejoregional">
+                            <ul>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('concejoregional.index') }}">Introducción</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('presidenteconcejo.index') }}">Presidente del Concejo</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('consejerososorno.index') }}">Consejeros de Osorno</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('consejerosllanquihue.index') }}">Consejeros de Llanquihue</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('consejeroschiloe.index') }}">Consejeros de Chiloé</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('consejerospalena.index') }}">Consejeros de Palena</a>
+                                </li>            
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->

@@ -16,7 +16,7 @@ class ComofuncionaGrController extends Controller
             return view('comofunciona.index', compact('comofunciona'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('comofuncionagrs.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('comofuncionagrs.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 

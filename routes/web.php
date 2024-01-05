@@ -27,6 +27,11 @@ use App\Http\Controllers\TodosLosProgramasController;
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
+use App\Http\Controllers\PresidenteConcejoController;
+use App\Http\Controllers\ConsejerosChiloeController;
+use App\Http\Controllers\ConsejerosLlanquihueController;
+use App\Http\Controllers\ConsejerosOsornoController;
+use App\Http\Controllers\ConsejerosPalenaController;
 
 use App\Http\Controllers\SitiosController;
 
@@ -120,16 +125,32 @@ Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
 
 Route::resource('comiteciencias', ComiteCienciasController::class);
-
 Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
 
 Route::resource('concursospublicos', ConcursosPublicosController::class);
-
 Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
 
+Route::resource('presidenteconcejo', PresidenteConcejoController::class);
+
+Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class);
+Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejeroschiloe', ConsejerosChiloeController::class);
+Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejerososorno', ConsejerosOsornoController::class);
+Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejerospalena', ConsejerosPalenaController::class);
+Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show');
+
+
 Route::resource('concejoregional', ConcejoRegionalController::class);
-Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
-Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
+Route::put('/concejoregional/{id}', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+Route::get('/concejoregional/{concejoId}/edit/{seccionId}', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+//Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
+//Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
+//Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
 Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
@@ -196,6 +217,18 @@ Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers
 Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
 
 Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
+
+Route::get('/consejoregional/introduccion', 'App\Http\Controllers\CategoriesController@consejoregionalIndex');
+
+Route::get('/consejoregional/presidenteconsejo', 'App\Http\Controllers\CategoriesController@presidenteconsejoIndex');
+
+Route::get('/consejoregional/consejerososorno', 'App\Http\Controllers\CategoriesController@consejerososornoIndex');
+
+Route::get('/consejoregional/consejeroschiloe', 'App\Http\Controllers\CategoriesController@consejeroschiloeIndex');
+
+Route::get('/consejoregional/consejerosllanquihue', 'App\Http\Controllers\CategoriesController@consejerosllanquihueIndex');
+
+Route::get('/consejoregional/consejerospalena', 'App\Http\Controllers\CategoriesController@consejerospalenaIndex');
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');

@@ -78,15 +78,17 @@
           </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-          Consejo Regional
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Consejo Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introduccion</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">D</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">G</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">T</a>
+          </div>
       </li>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">

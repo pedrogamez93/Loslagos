@@ -16,7 +16,7 @@ class EstrategiasController extends Controller {
             return view('estrategias.index', compact('estrategias'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('estrategias.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('estrategias.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 

@@ -17,7 +17,7 @@ class AsambleaClimaticaController extends Controller
             $documentos = $asamblea->documentos;
             return view('asambleaclimatica.index', compact('asamblea', 'documentos'));
         } else {
-            return view('asambleaclimatica.index')->with('message', 'No hay asambleas disponibles.');
+            return view('asambleaclimatica.create')->with('message', 'No hay asambleas disponibles.');
         }
     }
 

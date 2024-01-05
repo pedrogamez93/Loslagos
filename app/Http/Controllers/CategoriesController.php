@@ -29,6 +29,14 @@ use App\Models\ComiteCienciasDocs;
 use App\Models\ConcursosPublicos;
 use App\Models\ConcursosPublicosDocs;
 
+use App\Models\ConsejoRegional;
+use App\Models\Seccion;
+use App\Models\presidenteconcejo;
+use App\Models\ConsejerosChiloe;
+use App\Models\ConsejerosLlanquihue;
+use App\Models\ConsejerosOsorno;
+use App\Models\ConsejerosPalena;
+
 class CategoriesController extends Controller{
     
     public function index(){
@@ -161,6 +169,87 @@ class CategoriesController extends Controller{
         
         // Pasa la información a la vista
         return view('concursopublico', ['concursos' => $concursos]);
+    }
+
+    public function consejoregionalIndex() {
+        $consejo = ConsejoRegional::with('secciones')->latest()->first();
+    
+        return view('consejoregional', compact('consejo'));
+    }
+
+    public function presidenteconsejoIndex() {
+        // Obtener el último registro de presidente del concejo
+        $presidente = presidenteconcejo::latest()->first();
+    
+        // Verificar si existe un registro y devolver la vista correspondiente
+        if ($presidente) {
+            // Si hay un registro disponible, pasa la variable a la vista
+            return view('presidenteconsejo', compact('presidente'));
+        } else {
+            // Si no hay registros, puedes manejarlo de alguna manera, 
+            // por ejemplo, mostrando un mensaje o redirigiendo a otra página
+            return view('presidenteconsejo')->with('message', 'No se encontraron datos del presidente del concejo');
+        }
+    }
+
+    public function consejerososornoIndex() {
+        // Obtener todos los registros de los consejeros
+        $consejeros = ConsejerosOsorno::all();
+    
+        // Verificar si existe un registro y devolver la vista correspondiente
+        if ($consejeros) {
+            // Si hay un registro disponible, pasa la variable a la vista
+            return view('consejerososorno', compact('consejeros'));
+        } else {
+            // Si no hay registros, puedes manejarlo de alguna manera, 
+            // por ejemplo, mostrando un mensaje o redirigiendo a otra página
+            return view('consejerososorno')->with('message', 'No se encontraron datos del consejero');
+        }
+    }
+
+    public function consejeroschiloeIndex() {
+        // Obtener todos los registros de los consejeros
+        $consejeros = ConsejerosChiloe::all();
+    
+        // Verificar si existe un registro y devolver la vista correspondiente
+        if ($consejeros) {
+            // Si hay un registro disponible, pasa la variable a la vista
+            return view('consejeroschiloe', compact('consejeros'));
+        } else {
+            // Si no hay registros, puedes manejarlo de alguna manera, 
+            // por ejemplo, mostrando un mensaje o redirigiendo a otra página
+            return view('consejeroschiloe')->with('message', 'No se encontraron datos del consejero');
+        }
+    }
+
+    public function consejerosllanquihueIndex() {
+        // Obtener todos los registros de los consejeros
+        $consejeros = ConsejerosLlanquihue::all();
+    
+        // Verificar si existe un registro y devolver la vista correspondiente
+        if ($consejeros) {
+            // Si hay un registro disponible, pasa la variable a la vista
+            return view('consejerosllanquihue', compact('consejeros'));
+        } else {
+            // Si no hay registros, puedes manejarlo de alguna manera, 
+            // por ejemplo, mostrando un mensaje o redirigiendo a otra página
+            return view('consejerosllanquihue')->with('message', 'No se encontraron datos del consejero');
+        }
+    }
+
+    public function consejerospalenaIndex() {
+        // Obtener todos los registros de los consejeros
+        $consejeros = ConsejerosPalena::all();
+    
+        // Verificar si existe un registro y devolver la vista correspondiente
+        if ($consejeros) {
+            // Si hay un registro disponible, pasa la variable a la vista
+            return view('consejerospalena', compact('consejeros'));
+        } else {
+            // Si no hay registros, puedes manejarlo de alguna manera, 
+            // por ejemplo, mostrando un mensaje o redirigiendo a otra página
+            return view('consejerospalena')->with('message', 'No se encontraron datos del consejero');
+        }
     }
 
 }
