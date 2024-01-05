@@ -222,7 +222,7 @@ h5.card-title{
                                             </div>
                                             <div class="col-md-6">
                                                 @if($consejo->img)
-                                                    <img src="{{ asset('storage/' . $consejo->img) }}" alt="Imagen del Consejo Regional" style="Width:499px; Height:567px;">
+                                                    <img src="{{ asset($consejo->img) }}" alt="Imagen del Consejo Regional" style="Width:499px; Height:567px;">
                                                 @endif
                                             </div>
                                         </div>
