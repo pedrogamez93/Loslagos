@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PresidenteConcejo;
+use App\Models\presidenteconcejo;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,7 +11,7 @@ class PresidenteConcejoController extends Controller
 {
     public function index()
     {
-        $presidente = PresidenteConcejo::latest()->first();
+        $presidente = presidenteconcejo::latest()->first();
     
         if ($presidente) {
             // Si existe un presidente, redirige a la vista correspondiente o realiza alguna otra acción.
@@ -49,7 +49,7 @@ class PresidenteConcejoController extends Controller
     $imagenPath = $request->file('imagen')->store('images', 'public');
 
     // Crear un nuevo registro en la tabla
-    $presidente = PresidenteConcejo::create([
+    $presidente = presidenteconcejo::create([
         'nombres' => $request->input('nombres'),
         'apellidos' => $request->input('apellidos'),
         'profesion' => $request->input('profesion'),
@@ -71,7 +71,7 @@ class PresidenteConcejoController extends Controller
     public function edit($id)
 {
     // Obtén el último registro
-    $presidente = PresidenteConcejo::find($id);
+    $presidente = presidenteconcejo::find($id);
 
     if ($presidente) {
         // Si existe un presidente, muestra el formulario del edit
@@ -112,7 +112,7 @@ public function update(Request $request, $id)
     }
 
     // Obtener el presidente existente
-    $presidente = PresidenteConcejo::findOrFail($id);
+    $presidente = presidenteconcejo::findOrFail($id);
 
     // Actualizar los campos con los nuevos valores
     $presidente->nombres = $request->input('nombres');
@@ -141,7 +141,7 @@ public function update(Request $request, $id)
 }
 public function destroy($id)
 {
-    $presidente = PresidenteConcejo::findOrFail($id);
+    $presidente = presidenteconcejo::findOrFail($id);
     $presidente->delete();
 
     return redirect()->route('presidenteconcejo.create');

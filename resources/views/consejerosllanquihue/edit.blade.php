@@ -54,6 +54,17 @@
         text-decoration: none;
         font-weight: 500;
     }
+    .btn-final, a.milastbtn {
+        Width: 146px;
+        Height: 40px;
+        border-radius: 100px;
+        background-color: #F59120;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 16px;
+        text-decoration: none;
+        color: #FFFFFF;
+    }
 </style>
 
 <div class="container-fluid body">
@@ -183,6 +194,9 @@
                 <button type="submit" class="btn btn-danger mt-4 mb-4" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?')">Eliminar registro</button>
                 </form>
                 @endif
+                <div class="btn-final" style="text-align: -webkit-center; padding-top: 0.5rem;font-weight: 700 !important;">
+                    <a class="milastbtn" href="{{ route('consejerosllanquihue.index') }}" style="font-weight: 700 !important;">Volver</a>
+                </div>
             </div>
         </div>
     </div>
