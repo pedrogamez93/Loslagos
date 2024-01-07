@@ -947,12 +947,12 @@ if ($articulo) {
 //Inicio Inversion General
 public function indexInversionesG()
 {
-    $articulo = inversiones::all();
+    $articulo = Inversiones::all();
     if ($articulo->isNotEmpty()) {
         // La consulta devolvió al menos un registro
         $primerArticulo = $articulo->first();
         $id = $primerArticulo->id;
-        $articulo = inversiones::find($id);
+        $articulo = Inversiones::find($id);
         return view('IntroduccionRegionLagos.inversion.edit', compact('articulo'));
         
     } else {
@@ -986,7 +986,7 @@ public function storeInversionesG(Request $request){
         $data['imagenD3'] = $imagenPatha;
     }
 
-    $Inversion = inversiones::create($data);
+    $Inversion = Inversiones::create($data);
 
     return redirect(route('InversionesD.index'))->with('success', 'Creado con éxito');
 
@@ -997,14 +997,14 @@ public function createInversionesG()
     return view('IntroduccionRegionLagos.inversion.create');
 }
 public function editInversionesG($id){
-    $articulo  = inversiones::findOrFail($id);
+    $articulo  = Inversiones::findOrFail($id);
 
     $actividadesC = $articulo->InversionPublicaEfectivaSector;
     return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
 }
 public function destroyInversionesG($id)
 {
-    $articulo = inversiones::find($id);
+    $articulo = Inversiones::find($id);
 
     if ($articulo) {
         $articulo->delete();
@@ -1030,7 +1030,7 @@ public function updateInversionesG(Request $request, $id)
         'acordeon2' => 'string',
     ]);
 
-$articulo = inversiones::find($id);
+$articulo = Inversiones::find($id);
 if ($request->hasFile('imagenD2')) {
     $imagenPath1 = $request->file('imagenD2')->store('images', 'public');
     $data['imagenD2'] = $imagenPath1;
