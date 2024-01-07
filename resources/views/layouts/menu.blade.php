@@ -163,6 +163,15 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('FNDR.index') }}">FNDR</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('InversionesD.index') }}">Inversiones</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('InversionPublicaEfectiva.index') }}">Inversión pública en la Región Fuente</a>
+                                </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('FinanciamientoporProvincias.index') }}">Financiamiento por Provincias</a>
+                                </li>
                                    
                             </ul>
                         </div>

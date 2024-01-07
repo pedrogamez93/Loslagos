@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <style>
     h1 , h2{
         color: #565656;
@@ -45,6 +46,9 @@
     text-decoration: none;
     font-weight: 500;   
     }
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
+    height: 350px;
+    }
 </style>
 <div class="container-fluid body">
     <div class="row">
@@ -57,96 +61,85 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Actualizar Inversión pública en la Región Fuente</h1>
+                        <h1>Actualizar Inversión Descripción General</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
 
-                <form action="{{ route('AntecedentesRegionLagos.updateAntecedentes', $articulo->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('InversionesD.update', $articulo->id) }}" method="POST" enctype="multipart/form-data">
                 
                 @method('PUT')
                 @csrf  
-                        <div class="form-group">
+                <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6 title">
+                                <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="nombre" value="{{ $articulo->titulo }}" class="form-control" placeholder="Titulo seccion" required>
+                                        <input type="text" id="titulo" name="titulo1" value="{{ $articulo->titulo1 }}" class="form-control" placeholder="Titulo seccion 1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 tag-comentario">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="periodo"  value="{{ $articulo->periodo }}" class="form-control" placeholder="Periodo" value="" required>
+                                <div class="col-md-12 tag-comentario">
+                                    <div class=" mb-3">
+                                    <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor" name="descripcionG">{{ $articulo->descripcionG }}</textarea>
                                     </div>
                                 </div>
-                                
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="row">
-                                @foreach($actividadesC as $act)
-                                    <div class="documentos-container col-md-12 mt-3">
-                                        <div class="documentos-input col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="sector[]" value="{{ $act->sector }}" class="form-control" placeholder="Actividad Económica" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="inversionD" name="inversionD[]" value="{{ $act->inversionD }}" class="form-control" placeholder="Inversión $" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="inversionP" name="inversionP[]"  value="{{ $act->inversionP }}" class="form-control" placeholder="Inversión %" required>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 pt-3 pb-3">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
+                                                <input class="form-control" type="file" name="imagenD2" id="img" accept="image/*" >
                                         </div>
                                     </div>
-                                    @endforeach
-                                    <div class="documentos-container1 col-md-12 mt-3">
-                                        <div class="documentos-input col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="sector[]" class="form-control" placeholder="Sector" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="inversionD" name="inversionD[]" class="form-control" placeholder="Inversión $" >
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="inversionP" name="inversionP[]" class="form-control" placeholder="Inversión %" >
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 title">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="fuente" class="form-control" placeholder="Fuente" value="{{ $articulo->fuente }}"  required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 tag-comentario">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" id="tag_comentario" name="descripcion" class="form-control" placeholder="Descripción"  value="{{ $articulo->descripcion }}" required>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
+                                </div>
+                                <div class="col-md-12 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="titulo" name="titulo2" value="{{ $articulo->titulo2 }}" class="form-control" placeholder="Titulo seccion 2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 tag-comentario">
+                                    <div class=" mb-3">
+                                    <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor1" name="descripcionG2">{{ $articulo->descripcionG2 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="titulo" name="titulo3"  value="{{ $articulo->titulo3 }}" class="form-control" placeholder="Titulo seccion 3" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 tag-comentario">
+                                    <div class=" mb-3">
+                                    <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor2" name="descripcionG3">{{ $articulo->descripcionG3 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 pt-3 pb-3">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label style-label">Selecciona una imagen para la sección</label>
+                                                <input class="form-control" type="file" name="imagenD3" id="img" accept="image/*" >
                                         </div>
                                     </div>
-                                    <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
-                                        <button type="button" class="btn btn-success agregar-documento" id="agregarCampo">Agregar más campos</button>
+                                </div>
+                                <div class="col-md-12 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="titulo"  value="{{ $articulo->titulo3acordeon1 }}" name="titulo3acordeon1" class="form-control" placeholder="Titulo de Acordeon 1" required>
                                     </div>
-                                    
+                                </div>
+                                <div class="col-md-12 tag-comentario">
+                                    <div class=" mb-3">
+                                    <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor3" name="acordeon1">{{ $articulo->acordeon1 }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 title">
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="titulo"  value="{{ $articulo->titulo3acordeon2 }}"  name="titulo3acordeon2" class="form-control" placeholder="Titulo de Acordeon 2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 tag-comentario">
+                                    <div class=" mb-3">
+                                    <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor4" name="acordeon2">{{ $articulo->acordeon2 }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                            
+                        </div>
                         <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Actializar</button>
                     </form>
                 </div>
@@ -155,21 +148,39 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container1");
-            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
-
-            // Limpia los valores en los campos clonados
-            nuevoDocumentoInput.find("input[type='text']").val('');
-            nuevoDocumentoInput.find("input[type='text']").val('');
-            nuevoDocumentoInput.find("input[type='text']").val('');
-
-
-            // Agrega los campos clonados al contenedor
-            documentosContainer.append(nuevoDocumentoInput);
-        });
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    ClassicEditor
+    .create(document.querySelector('#editor1'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    ClassicEditor
+    .create(document.querySelector('#editor2'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    ClassicEditor
+    .create(document.querySelector('#editor3'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    ClassicEditor
+    .create(document.querySelector('#editor4'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
     });
 </script>
-actividadesC
