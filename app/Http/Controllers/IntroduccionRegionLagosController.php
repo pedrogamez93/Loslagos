@@ -16,7 +16,7 @@ use App\Models\ActividadesEconomicaI;
 use App\Models\InversionPublicaEfectiva;
 use App\Models\InversionPublicaEfectivaSector;
 use App\Models\FinanciamientoporProvincias;
-use App\Models\inversiones;
+use App\Models\Inversiones;
 
 use Carbon\Carbon;
 
