@@ -953,11 +953,11 @@ public function indexInversionesG()
         $primerArticulo = $articulo->first();
         $id = $primerArticulo->id;
         $articulo = Inversiones::find($id);
-        return view('IntroduccionRegionLagos.inversion.edit', compact('articulo'));
+        return view('IntroduccionRegionLagos.Inversion.edit', compact('articulo'));
         
     } else {
         // La consulta no devolvió ningún registro
-        return view('IntroduccionRegionLagos.inversion.create');
+        return view('IntroduccionRegionLagos.Inversion.create');
     }
 }
 public function storeInversionesG(Request $request){
@@ -994,13 +994,13 @@ public function storeInversionesG(Request $request){
 
 public function createInversionesG()
 {
-    return view('IntroduccionRegionLagos.inversion.create');
+    return view('IntroduccionRegionLagos.Inversion.create');
 }
 public function editInversionesG($id){
     $articulo  = Inversiones::findOrFail($id);
 
     $actividadesC = $articulo->InversionPublicaEfectivaSector;
-    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+    return view('IntroduccionRegionLagos.Inversion.edit', compact('articulo','actividadesC'));
 }
 public function destroyInversionesG($id)
 {
