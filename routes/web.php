@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\IntroduccionController;
 use App\Http\Controllers\CategoriesController;
@@ -14,19 +15,29 @@ use App\Http\Controllers\DptoGestionPersonasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\SalaprensaController;
 use App\Http\Controllers\AsambleaClimaticaController;
 use App\Http\Controllers\AudienciasController;
 use App\Http\Controllers\DisenoPoliticoRegionalesController;
 use App\Http\Controllers\PoliticaPersonasMayoresController;
 use App\Http\Controllers\PlanificacionInstitucionalController;
-//use App\Http\Controllers\TramitesDigitalesDocsController;
 use App\Http\Controllers\TramitesDigitalesController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProgramasController;
 use App\Http\Controllers\TodosLosProgramasController;
 use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\PreguntasFrecuentesController;
 use App\Http\Controllers\FormController;
+
+use App\Http\Controllers\ComiteCienciasController;
+use App\Http\Controllers\ConcursosPublicosController;
+use App\Http\Controllers\ConcejoRegionalController;
+use App\Http\Controllers\PresidenteConcejoController;
+use App\Http\Controllers\ConsejerosChiloeController;
+use App\Http\Controllers\ConsejerosLlanquihueController;
+use App\Http\Controllers\ConsejerosOsornoController;
+use App\Http\Controllers\ConsejerosPalenaController;
+
+use App\Http\Controllers\SitiosController;
 
 
 /*
@@ -48,30 +59,69 @@ Route::get('/documentos', [DocumentoController::class, 'index']);
 Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
 Route::post('/documentos', [DocumentoController::class, 'store']);
 Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
-
+Route::get('/documentos/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
+Route::put('/documentos/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
+Route::get('/documentos/ver-documentos', [DocumentoController::class, 'indexTabla'])->name('documentos.verdocumentos');
+Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
-Route::post('/funcionarios', [FuncionarioController::class, 'store']);
+Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
+
+
+//Sala de prensa
+Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
+Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
+Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
+Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
+Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
+Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
+Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+//Route::resource('/', HomeController::class);
+
+//Sala de prensa
+Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create');;
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
+Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
+Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');
+Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia');
+Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy');
+Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 //Route::resource('/', HomeController::class);
 
+
+
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class);
+Route::get('/images/{imagen}', [IntroduccionController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('comofuncionagrs', ComofuncionaGrController::class);
+Route::get('/images/{imagen}', [ComofuncionaGrController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('estrategias', EstrategiasController::class);
+Route::get('/images/{imagen}', [EstrategiasController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('inversiones', InversionesPublicController::class);
+Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('mision', MisionGobController::class);
+Route::get('/images/{imagen}', [MisionGobController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('leygobiernoregional', LeygbsController::class);
 
 Route::resource('organigrama', OrganigramaController::class);
+Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
 
@@ -83,6 +133,34 @@ Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
 
+Route::resource('comiteciencias', ComiteCienciasController::class);
+Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
+
+Route::resource('concursospublicos', ConcursosPublicosController::class);
+Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
+
+Route::resource('presidenteconcejo', PresidenteConcejoController::class);
+
+Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class);
+Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejeroschiloe', ConsejerosChiloeController::class);
+Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejerososorno', ConsejerosOsornoController::class);
+Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->name('consejeros.show');
+
+Route::resource('consejerospalena', ConsejerosPalenaController::class);
+Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show');
+
+
+Route::resource('concejoregional', ConcejoRegionalController::class);
+Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
+Route::put('/concejoregional/{id}', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+Route::get('/concejoregional/{concejoId}/edit/{seccionId}', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+//Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
+//Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
+//Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
 Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
@@ -93,8 +171,9 @@ Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::cl
 Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
-// Rutas para los trámites
+// Rutas para los tr�mites
 Route::resource('tramites', TramitesDigitalesController::class);
+Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
 Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
@@ -145,6 +224,22 @@ Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controll
 
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
 
+Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
+
+Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
+
+Route::get('/consejoregional/introduccion', 'App\Http\Controllers\CategoriesController@consejoregionalIndex');
+
+Route::get('/consejoregional/presidenteconsejo', 'App\Http\Controllers\CategoriesController@presidenteconsejoIndex');
+
+Route::get('/consejoregional/consejerososorno', 'App\Http\Controllers\CategoriesController@consejerososornoIndex');
+
+Route::get('/consejoregional/consejeroschiloe', 'App\Http\Controllers\CategoriesController@consejeroschiloeIndex');
+
+Route::get('/consejoregional/consejerosllanquihue', 'App\Http\Controllers\CategoriesController@consejerosllanquihueIndex');
+
+Route::get('/consejoregional/consejerospalena', 'App\Http\Controllers\CategoriesController@consejerospalenaIndex');
+
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
 Route::post('/IntroduccionRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@store')->name('IntroduccionRegionLagos.store');
@@ -190,6 +285,13 @@ Route::get('/DinamicaEconomicaRegionLagos/edit/{id}', 'App\Http\Controllers\Intr
 Route::put('/DinamicaEconomicaRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.updateDinamicaEconomica');
 Route::delete('/DinamicaEconomicaRegionLagos/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica');
 
+Route::get('/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.index');
+Route::post('/ExportacionSegunBloqueEconomico/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.store');
+Route::get('/ExportacionSegunBloqueEconomico/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.create');
+Route::get('/ExportacionSegunBloqueEconomico/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.edit');
+Route::put('/ExportacionSegunBloqueEconomico/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.update');
+Route::delete('/ExportacionSegunBloqueEconomico/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.destroy');
+
 Route::get('/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.index');
 Route::post('/ExportacionSegunRamaActividad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.store');
 Route::get('/ExportacionSegunRamaActividad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.create');
@@ -197,9 +299,52 @@ Route::get('/ExportacionSegunRamaActividad/edit/{id}', 'App\Http\Controllers\Int
 Route::put('/ExportacionSegunRamaActividad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.update');
 Route::delete('/ExportacionSegunRamaActividad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.destroy');
 
+Route::get('/ActividadesEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexActividadesEconomica')->name('ActividadEconomica.index');
+Route::post('/ActividadesEconomica/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeActividadesEconomica')->name('ActividadEconomica.store');
+Route::get('/ActividadesEconomica/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createActividadesEconomica')->name('ActividadEconomica.create');
+Route::get('/ActividadesEconomica/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editActividadesEconomica')->name('ActividadEconomica.edit');
+Route::put('/ActividadesEconomica/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateActividadesEconomica')->name('ActividadEconomica.update');
+Route::delete('/ActividadesEconomica/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomica')->name('ActividadEconomica.destroy');
+Route::get('/ActividadesEconomica/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showActividadesEconomica')->name('ActividadEconomica.show');
+
+Route::get('/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFNDR')->name('FNDR.index');
+Route::post('/FNDR/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFNDR')->name('FNDR.store');
+Route::get('/FNDR/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFNDR')->name('FNDR.create');
+Route::get('/FNDR/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFNDR')->name('FNDR.edit');
+Route::put('/FNDR/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFNDR')->name('FNDR.update');
+Route::delete('/FNDR/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyFNDR')->name('FNDR.destroy');
+
+Route::get('/InversionesD', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesG')->name('InversionesD.index');
+Route::post('/InversionesD/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionesG')->name('InversionesD.store');
+Route::get('/InversionesD/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionesG')->name('InversionesD.create');
+Route::get('/InversionesD/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionesG')->name('InversionesD.edit');
+Route::put('/InversionesD/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionesG')->name('InversionesD.update');
+Route::delete('/InversionesD/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionesG')->name('InversionesD.destroy');
+
+Route::get('/InversionPublicaEfectiva', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectiva')->name('InversionPublicaEfectiva.index');
+Route::post('/InversionPublicaEfectiva/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionPublicaEfectiva')->name('InversionPublicaEfectiva.store');
+Route::get('/InversionPublicaEfectiva/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionPublicaEfectiva')->name('InversionPublicaEfectiva.create');
+Route::get('/InversionPublicaEfectiva/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionPublicaEfectiva')->name('InversionPublicaEfectiva.edit');
+Route::put('/InversionPublicaEfectiva/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionPublicaEfectiva')->name('InversionPublicaEfectiva.update');
+Route::delete('/InversionPublicaEfectiva/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionPublicaEfectiva')->name('InversionPublicaEfectiva.destroy');
+
+Route::get('/FinanciamientoporProvincias', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvincias')->name('FinanciamientoporProvincias.index');
+Route::post('/FinanciamientoporProvincias/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFinanciamientoporProvincias')->name('FinanciamientoporProvincias.store');
+Route::get('/FinanciamientoporProvincias/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFinanciamientoporProvincias')->name('FinanciamientoporProvincias.create');
+Route::get('/FinanciamientoporProvincias/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFinanciamientoporProvincias')->name('FinanciamientoporProvincias.edit');
+Route::put('/FinanciamientoporProvincias/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFinanciamientoporProvincias')->name('FinanciamientoporProvincias.update');
+Route::delete('/FinanciamientoporProvincias/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteFinanciamientoporProvincias')->name('FinanciamientoporProvincias.destroy');
+
+Route::get('/PoliticaPrivacidad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidad')->name('PoliticaPrivacidad.index');
+Route::post('/PoliticaPrivacidad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storePoliticaPrivacidad')->name('PoliticaPrivacidad.store');
+Route::get('/PoliticaPrivacidad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createPoliticaPrivacidad')->name('PoliticaPrivacidad.create');
+Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editPoliticaPrivacidad')->name('PoliticaPrivacidad.edit');
+Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
+Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
+
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
-
+Route::get('/regionlagos/introduccion/{imagen}', 'App\Http\Controllers\IntroduccionRegionLagosController@imagenesP')->name('imagenesP.mostrar');
 Route::get('/regionlagos/autoridades/senador/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesSenador')->name('BuscarAutoridadesSenador.show');
 Route::get('/regionlagos/autoridades/diputados/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesDiputados')->name('BuscarAutoridadesDiputados.show');
 Route::get('/regionlagos/autoridades/seremis/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarAutoridadesSeremis')->name('BuscarAutoridadesSeremis.show');
@@ -210,46 +355,14 @@ Route::get('/regionlagos/PoblacionSuperficie/', 'App\Http\Controllers\Introducci
 Route::get('/regionlagos/PoblacionSuperficie/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosPoblacionSuperficieProvincia')->name('PoblacionSuperficieProvincia.show');
 Route::get('/regionlagos/DinamicaEconomica/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosDinamicaEconomica')->name('DinamicaEconomica.index');
 Route::get('/regionlagos/antecedentesregion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosAntecedentesregion')->name('antecedentesregion.index');
+Route::get('/regionlagos/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosExportacionSegunRamaActividad')->name('RegionlagosExportacionSegunRamaActividad.index');
+Route::get('/regionlagos/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosExportacionSegunBloqueEconomico')->name('RegionlagosExportacionSegunBloqueEconomico.index');
+Route::get('/regionlagos/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosFNDR.index');
+Route::get('/regionlagos/ActividadEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosActividadEconomica.index');
+Route::get('/regionlagos/ActividadEconomica/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarActividadEconomica')->name('RegionlagosBuscarActividadEconomica.show');
+Route::get('/regionlagos/InversionesD/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesWeb')->name('Inversiones.index');
+Route::get('/regionlagos/InversionPublicaEfectiva/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectivaWeb')->name('InversionPublicaEfectivaWeb.index');
+Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvinciasWeb')->name('FinanciamientoporProvinciasWeb.index');
+Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//PROGRAMAS
-Route::resource('programas', ProgramasController::class);
-
-Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
-
-
-Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
-
-//Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
-
-//Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
-Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
-
-//PREGUNTAS FRECUENTES
-Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
-//Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
-//Route::resource('preguntas', PreguntaController::class);
-
-Route::get('/preguntas', [PreguntaController::class, 'index']);
-Route::resource('preguntas', PreguntaController::class);
-
-Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit');
-
-Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
-
-
-    //FORMULARIO DE CONTACTO
-Route::get('/contactanos', 'App\Http\Controllers\FormController@index')->name('contactanos.index');
-    //PROCESAR FORMULARIO Y ENVIAR CORREO ELECTRONICO
-Route::post('/contactanos/store', 'App\Http\Controllers\FormController@store')->name('contactanos.store');
-    //FORMULARIOS ENVIADOS BACKEND
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
-
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
-Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulario'])->name('detalle.formulario');
-Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
-    //DESCARGAR FORMULARIOS CSV
-Route::get('/descargar-csv', [FormController::class, 'descargarCSV'])->name('descargar.csv');

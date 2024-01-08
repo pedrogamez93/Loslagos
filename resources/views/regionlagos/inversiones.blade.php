@@ -318,6 +318,19 @@ p.valor1.mb-5 {
         color:#fff;
 
     }
+    table {
+        width: 100%;
+    }
+    button.accordion-button.collapsed.pl-0,button.accordion-button.pl-0 {
+
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #565656;
+}
 </style>
 <html>
 <head>
@@ -382,8 +395,47 @@ p.valor1.mb-5 {
                         <div class="col-md-8 borderR">
                             <div class="container int">
                                 <div class="row">
-                                    <p class="title-cat mb-5">Inversiones</p>
-
+                                    <p class="title-cat mb-5">{{ $primerArticulo->titulo1 }}</p>
+                                    
+                                    <div class="col-md-6">
+                                        {!! $primerArticulo->descripcionG ?? '' !!}
+                                        <img src="{{ asset($primerArticulo->imagenD3) }}" alt="Imagen actual">    
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="{{ asset($primerArticulo->imagenD2) }}" alt="Imagen actual">    
+                                        <p class="title-cat mb-4 mt-4">{{ $primerArticulo->titulo2 }}</p>
+                                        {!! $primerArticulo->descripcionG2 ?? '' !!}
+                                        <p class="title-cat mb-4 mt-4">{{ $primerArticulo->titulo3 }}</p>
+                                        {!! $primerArticulo->descripcionG3 ?? '' !!}
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed pl-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                {{ $primerArticulo->titulo3acordeon1 }}
+                                            </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                {!! $primerArticulo->acordeon1 ?? '' !!}
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed pl-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            {{ $primerArticulo->titulo3acordeon2 }}
+                                            </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                {!! $primerArticulo->acordeon2 ?? '' !!}
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -392,13 +444,13 @@ p.valor1.mb-5 {
                             <div class="container img">
                                 <div class="row">
                                 
-                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionesD') ? 'font-weight: 700;' : '' }}">
                                     Descripción General
                                 </a>
                                 <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
                                     Inversión Pública Efectiva Según Sectores
                                 </a>
-                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('FinanciamientoporProvinciasWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/FinanciamientoporProvincias/') ? 'font-weight: 700;' : '' }}">
                                     Financiamiento por Provincias
                                 </a>
                                 </div>

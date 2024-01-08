@@ -17,7 +17,8 @@ class CreateSitiosTable extends Migration
             $table->id();
             $table->string('titulo');  
             $table->text('descripcion');
-            $table->string('archivo_path');         
+            $table->string('archivo_path');
+            $table->string('url');       
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class InversionesPublicController extends Controller
             return view('inversion.index', compact('inversiones'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('inversion.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('inversion.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 

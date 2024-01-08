@@ -95,9 +95,9 @@
                     <!-- Formulario para la creación de un nuevo trámite -->
                     <form  action="{{ route('funcionarios.update', ['id' => $funcionarios->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
-            <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" required>
+            <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" >
                        
             <select class="form-select mt-4" aria-label="Default select example" name="actividad">
                 <option selected>Actividad o Profesión</option>
@@ -125,13 +125,13 @@
             </select>
 
             <label class="style-label mt-4 required" for="titulo">Direccion:</label>
-            <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" required>
+            <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" >
 
             <label class="style-label mt-4 required" for="titulo">Telefono:</label>
-            <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" required>
+            <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" >
 
             <label class="style-label mt-4 required" for="titulo">Email:</label>
-            <input class="form-control mt-2" type="text" name="email" placeholder="Email" required>
+            <input class="form-control mt-2" type="text" name="email" placeholder="Email" >
 
 
             <select class="form-select mt-4" aria-label="Default select example" name="region">

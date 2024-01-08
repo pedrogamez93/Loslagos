@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\ConsejoRegional;
 use App\Models\Seccion;
 use Illuminate\Support\Facades\Log;
@@ -74,14 +73,12 @@ class ConcejoRegionalController extends Controller{
 
     public function edit($concejoId, $seccionId)
     {
-        // Tu lógica para obtener $concejo y demás datos
-        $concejo = ConsejoRegional::findOrFail($concejoId);
-    
-        // Puedes seguir con el resto de la lógica
-        return view('concejoregional.edit', compact('concejo', 'seccionId'));
+        $seccion = Seccion::findOrFail($seccionId);
+        return view('editarseccion', compact('seccion'));
     }
-    
-    public function update(Request $request, ConsejoRegional $consejoRegional)
+
+
+    public function update(Request $request, $concejoId)
     {
         // Validación
         $request->validate([
@@ -91,12 +88,18 @@ class ConcejoRegionalController extends Controller{
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'titulo_seccion.*' => 'nullable|string|max:255',
             'bajada_seccion.*' => 'nullable|string',
-            'img_seccion.*.imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'img_seccion.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'seccion_id.*' => 'required|numeric', // Asegurar que se recibe el ID de la sección
             // Otras reglas de validación
         ]);
     
         // Actualizar los datos principales del Consejo Regional
+        $consejoRegional = ConsejoRegional::find($concejoId);
+    
+        if (!$consejoRegional) {
+            abort(404, 'Consejo Regional no encontrado');
+        }
+    
         $consejoRegional->update([
             'tag_comentario' => $request->input('tag_comentario'),
             'titulo' => $request->input('titulo'),
@@ -108,7 +111,11 @@ class ConcejoRegionalController extends Controller{
         if ($request->has('seccion_id')) {
             foreach ($request->input('seccion_id') as $index => $seccionId) {
                 // Obtén la sección por su ID o crea una nueva instancia si no existe
-                $seccion = Seccion::find($seccionId) ?? new Seccion();
+                $seccion = Seccion::find($seccionId);
+    
+                if (!$seccion) {
+                    $seccion = new Seccion();
+                }
     
                 // Actualizar campos de la sección
                 $this->updateSeccionFields($seccion, $request, $index);
@@ -117,29 +124,19 @@ class ConcejoRegionalController extends Controller{
     
         return redirect()->route('concejoregional.index')->with('success', 'Consejo Regional actualizado exitosamente.');
     }
-
-    // Método para actualizar los campos de la sección
-    public function updateSeccionFields($seccion, $request, $seccionId)
+    
+    private function updateSeccionFields($seccion, $request, $index)
     {
-        // Validación y actualización de campos de la sección
-        $request->validate([
-            "titulo_seccion.{$seccionId}" => 'nullable|string|max:255',
-            "bajada_seccion.{$seccionId}" => 'nullable|string',
-            "img_seccion.{$seccionId}.imagen" => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // Otras reglas de validación para la sección
-        ]);
-
-        $seccionData = [
-            'titulo_seccion' => $request->input("titulo_seccion.$seccionId"),
-            'bajada_seccion' => $request->input("bajada_seccion.$seccionId"),
-        ];
-
-        // Manejar imágenes de la sección
-        if ($request->hasFile("img_seccion.$seccionId")) {
-            $seccionData['img_seccion'] = $request->file("img_seccion.$seccionId")->store('imagesConcejo', 'public');
+        $seccion->titulo_seccion = $request->input("titulo_seccion.$index");
+        $seccion->bajada_seccion = $request->input("bajada_seccion.$index");
+    
+        // Actualizar la imagen de la sección si se proporciona una nueva imagen
+        if ($request->hasFile("img_seccion.$index")) {
+            $imagePath = $request->file("img_seccion.$index")->store('seccion_images', 'public');
+            $seccion->img_seccion = $imagePath;
         }
-
-        $seccion->update($seccionData);
+    
+        $seccion->save();
     }
 
     public function deleteSeccion($concejoId, $seccionId)
@@ -161,10 +158,14 @@ class ConcejoRegionalController extends Controller{
     return response()->json(['message' => 'Sección eliminada exitosamente.']);
 }
 
-public function show($id)
-{
-    // Puedes dejar el método vacío o redireccionar a otra página si es necesario
-    return redirect()->route('concejoregional.index');
-}
+    public function show($id)
+    {
+        // Puedes dejar el método vacío o redireccionar a otra página si es necesario
+        return redirect()->route('concejoregional.index');
+    }
+
+    public function mostrarImagen($img){
+        return response()->file(storage_path('app/public/imagesConcejo/' . $img));
+    }
 
 }

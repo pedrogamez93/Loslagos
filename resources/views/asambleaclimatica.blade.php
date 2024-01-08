@@ -273,7 +273,7 @@ Contenido principal de tu página -->
                 </div>
                 <div class="container content mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8" style="padding: 0 0 0 5rem;">
+                        <div class="col-md-8" style="padding: 0 1rem 0 5rem;">
 
                             <div class="accordion" id="accordionone">
                                     <div class="accordion-item">
@@ -396,7 +396,7 @@ Contenido principal de tu página -->
                                     </div>
                         </div>
 
-                        <div class="col-md-4" style="border-left: 2px solid #F59120;">
+                        <div class="col-md-4" style="border-left: 2px solid #F59120; padding-left: 2rem;">
                             <p class="title-categ pb-4">Categorias Asamblea Climática</p>
                             {{-- Para el enlace "Asamblea Climática Ciudadana" --}}
                                 <p class="mistyle-final-pcateg mt-2 mb-2" style="{{ request()->is('gobiernoregional/asambleaclimatica*') ? 'font-weight: 700;' : '' }}">

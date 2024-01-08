@@ -83,13 +83,16 @@
             @foreach($funcionarios as $funcionario)
         
                 <div class="col-md-4">
-                        <a href="{{ url('storage/' . $funcionario->archivo_path) }}" download style="margin-bottom:15px" >
+                <a href="{{ route('funcionarios.show', ['id' => $funcionario->id]) }}" style="margin-bottom:15px">
                         <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
                                     
-                        <div class="circular-div" style="width: 100px;
+                        <div >
+    
+<img src="{{ asset($funcionario->foto) }}" alt="" style="max-width: 100px;
     height: 100px;
-    background-color: #F59120;
-    border-radius: 50%;"></div>
+    border-radius: 50%;
+    overflow: hidden;
+"> </div>
                                 <div style="padding-left:3%">
                                 <p  class="tituloresultadobuscador1">{{ $funcionario->nombre }}</p>
                                 <p class="textoresultadobuscador1">Institucion: <span class="textoresultadobuscador2">Gobierno Regional de Los Lagos</span></p>

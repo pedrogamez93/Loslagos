@@ -388,8 +388,66 @@ p.valor1.mb-5 {
                         <div class="col-md-8 borderR">
                             <div class="container int">
                                 <div class="row">
-                                    <p class="title-cat mb-5">Inversión Pública Efectiva Según Sectores</p>
-
+                                    <p class="title-cat mb-5">{{ $articulo1->titulo }}</p>
+                                    <p class="subtitle-cat mb-5"><b>Periodo: </b>{{ $articulo1->periodo }}</p>
+                                    <?php
+                                        $totalInversion = 0;
+                                    ?>    
+                                    @foreach($InversionPu as $Inver)
+                                    <?php $totalInversion += $Inver->inversionD; ?>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="col-md-12 cajaElementor mb-4 p-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="titulo pb-2">{{ $Inver->sector }}</p>
+                                                        <div class="container p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión $</b>
+                                                                    <?php
+                                                                        $inversionD = number_format($Inver->inversionD, 0, ',', '.');
+                                                                    ?> 
+                                                                    {{ $inversionD }}
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <b>Inversión %</b>
+                                                                    {{ $Inver->inversionP }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    <div class="col-md-12 pb-5">
+                                    <div class="container cajaElementor p-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="titulo pb-2">Total Región</p>
+                                                <div class="container p-0">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <b>Inversión $</b>
+                                                            <?php
+                                                                $numeroFormateado = number_format($totalInversion, 0, ',', '.');
+                                                            ?> 
+                                                            {{ $numeroFormateado }}
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <b>Inversión %</b>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <p class="subtitle-cat"><b>Fuente: </b>{{ $articulo1->fuente }}</p>
+                                    <p class="subtitle-cat"><b>Periodo: </b>{{ $articulo1->descripcion }}</p>
                                 </div>
                             </div>
                         </div>
@@ -404,7 +462,7 @@ p.valor1.mb-5 {
                                 <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva') ? 'font-weight: 700;' : '' }}">
                                     Inversión Pública Efectiva Según Sectores
                                 </a>
-                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/inversiones') ? 'font-weight: 700;' : '' }}">
+                                <a  href="{{ route('FinanciamientoporProvinciasWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/FinanciamientoporProvincias') ? 'font-weight: 700;' : '' }}">
                                     Financiamiento por Provincias
                                 </a>
                                 </div>

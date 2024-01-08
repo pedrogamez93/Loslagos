@@ -16,7 +16,7 @@ class IntroduccionController extends Controller{
             return view('introduccion.index', compact('introducciones'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('introduccion.index')->with('message', 'No se encontraron introducciones');
+            return view('introduccion.create')->with('message', 'No se encontraron introducciones');
         }
     }
         /*$introduccion = Introduccion::latest()->first();

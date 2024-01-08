@@ -15,6 +15,8 @@ use App\Models\ActividadEconomica;
 use App\Models\ActividadesEconomicaI;
 use App\Models\InversionPublicaEfectiva;
 use App\Models\InversionPublicaEfectivaSector;
+use App\Models\FinanciamientoporProvincias;
+use App\Models\Inversiones;
 
 use Carbon\Carbon;
 
@@ -334,6 +336,10 @@ public function updateAutoridades(Request $request, $id)
             'foto' => 'image|max:2048',
     ]);
 
+    if ($request->hasFile('foto')) {
+        $imagenPath = $request->file('foto')->store('images', 'public');
+        $data['foto'] = $imagenPath;
+    }
     $articulo = Autoridades::find($id);
 
     if ($articulo) {
@@ -861,11 +867,11 @@ public function indexInversionPublicaEfectiva()
         $id = $primerArticulo->id;
         $articulo = InversionPublicaEfectiva::find($id);
         $actividadesC = $articulo->InversionPublicaEfectivaSector;
-        return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+        return view('IntroduccionRegionLagos.InversionPublicaEfectiva.edit', compact('articulo','actividadesC'));
         
     } else {
         // La consulta no devolvió ningún registro
-        return view('IntroduccionRegionLagos.inversion.create');
+        return view('IntroduccionRegionLagos.InversionPublicaEfectiva.create');
     }
 }
 public function storeInversionPublicaEfectiva(Request $request){
@@ -890,13 +896,13 @@ public function storeInversionPublicaEfectiva(Request $request){
 
 public function createInversionPublicaEfectiva()
 {
-    return view('IntroduccionRegionLagos.inversion.create');
+    return view('IntroduccionRegionLagos.InversionPublicaEfectiva.create');
 }
 public function editInversionPublicaEfectiva($id){
     $articulo  = InversionPublicaEfectiva::findOrFail($id);
 
     $actividadesC = $articulo->InversionPublicaEfectivaSector;
-    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+    return view('IntroduccionRegionLagos.InversionPublicaEfectiva.edit', compact('articulo','actividadesC'));
 }
 public function destroyInversionPublicaEfectiva($id)
 {
@@ -926,7 +932,7 @@ $data = $request->validate([
   'valoractividad5' => 'required',
 ]);
 
-$articulo = FNDR::find($id);
+$articulo = InversionPublicaEfectiva::find($id);
 
 if ($articulo) {
     $articulo->update($data);
@@ -937,6 +943,203 @@ if ($articulo) {
 } 
 
 //Fin InversionPublicaEfectiva
+
+//Inicio Inversion General
+public function indexInversionesG()
+{
+    $articulo = Inversiones::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = Inversiones::find($id);
+        return view('IntroduccionRegionLagos.Inversion.edit', compact('articulo'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.Inversion.create');
+    }
+}
+public function storeInversionesG(Request $request){
+    
+    $data = $request->validate([
+        'titulo1' => 'required',
+        'descripcionG' => 'required',
+        'imagenD2' => 'mimes:jpeg,jpg,png|max:2048',
+        'titulo2' => 'required',
+        'descripcionG2' => 'required',
+        'titulo3' => 'required',
+        'descripcionG3' => 'required',
+        'imagenD3' => 'mimes:jpeg,jpg,png|max:2048',
+        'titulo3acordeon1' => 'string',
+        'acordeon1' => 'string',
+        'titulo3acordeon2' => 'string',
+        'acordeon2' => 'string',
+    ]);
+
+    if ($request->hasFile('imagenD2')) {
+        $imagenPath1 = $request->file('imagenD2')->store('images', 'public');
+        $data['imagenD2'] = $imagenPath1;
+    }
+    if ($request->hasFile('imagenD3')) {
+        $imagenPatha = $request->file('imagenD3')->store('images', 'public');
+        $data['imagenD3'] = $imagenPatha;
+    }
+
+    $Inversion = Inversiones::create($data);
+
+    return redirect(route('InversionesD.index'))->with('success', 'Creado con éxito');
+
+}
+
+public function createInversionesG()
+{
+    return view('IntroduccionRegionLagos.Inversion.create');
+}
+public function editInversionesG($id){
+    $articulo  = Inversiones::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.Inversion.edit', compact('articulo','actividadesC'));
+}
+public function destroyInversionesG($id)
+{
+    $articulo = Inversiones::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('InversionesD.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('InversionesD.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateInversionesG(Request $request, $id)
+{
+    $data = $request->validate([
+        'titulo1' => 'required',
+        'descripcionG' => 'required',
+        'imagenD2' => 'image|max:2048',
+        'titulo2' => 'required',
+        'descripcionG2' => 'required',
+        'titulo3' => 'required',
+        'descripcionG3' => 'required',
+        'imagenD3' => 'image|max:2048',
+        'titulo3acordeon1' => 'string',
+        'acordeon1' => 'string',
+        'titulo3acordeon2' => 'string',
+        'acordeon2' => 'string',
+    ]);
+
+$articulo = Inversiones::find($id);
+if ($request->hasFile('imagenD2')) {
+    $imagenPath1 = $request->file('imagenD2')->store('images', 'public');
+    $data['imagenD2'] = $imagenPath1;
+}
+if ($request->hasFile('imagenD3')) {
+    $imagenPatha = $request->file('imagenD3')->store('images', 'public');
+    $data['imagenD3'] = $imagenPatha;
+}
+
+if ($articulo) {
+    
+    $articulo->update($data);
+    return redirect()->route('InversionesD.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('InversionesD.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin Inversion General
+
+//Inicio FinanciamientoporProvincias
+public function indexFinanciamientoporProvincias()
+{
+    $articulo = FinanciamientoporProvincias::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = FinanciamientoporProvincias::find($id);
+        $actividadesC = $articulo->InversionPublicaEfectivaSector;
+        return view('IntroduccionRegionLagos.FinanciamientoporProvincias.edit', compact('articulo','actividadesC'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.FinanciamientoporProvincias.create');
+    }
+}
+public function storeFinanciamientoporProvincias(Request $request){
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'provinciaInversionLD' => 'required',
+        'provinciaInversionLP' => 'required',
+        'provinciaInversionCD' => 'required',
+        'provinciaInversionCP' => 'required',
+        'provinciaInversionOD' => 'required',
+        'provinciaInversionOP' => 'required',
+        'provinciaInversionPD' => 'required',
+        'provinciaInversionPP' => 'required',
+        'provinciaInversionRD' => 'required',
+        'provinciaInversionRP' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+    $Inversion = FinanciamientoporProvincias::create($data);
+    return redirect(route('FinanciamientoporProvincias.index'))->with('success', 'Creado con éxito');
+}
+
+public function createFinanciamientoporProvincias()
+{
+    return view('IntroduccionRegionLagos.inversion.create');
+}
+public function editFinanciamientoporProvincias($id){
+    $articulo  = FinanciamientoporProvincias::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.inversion.edit', compact('articulo','actividadesC'));
+}
+public function destroyFinanciamientoporProvincias($id)
+{
+    $articulo = FinanciamientoporProvincias::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('FinanciamientoporProvincias.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('FinanciamientoporProvincias.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateFinanciamientoporProvincias(Request $request, $id)
+{
+    $data = $request->validate([
+        'titulo' => 'required',
+        'periodo' => 'required',
+        'provinciaInversionLD' => 'required',
+        'provinciaInversionLP' => 'required',
+        'provinciaInversionCD' => 'required',
+        'provinciaInversionCP' => 'required',
+        'provinciaInversionOD' => 'required',
+        'provinciaInversionOP' => 'required',
+        'provinciaInversionPD' => 'required',
+        'provinciaInversionPP' => 'required',
+        'provinciaInversionRD' => 'required',
+        'provinciaInversionRP' => 'required',
+        'fuente' => 'required',
+        'descripcion' => 'required',
+    ]);
+
+$articulo = FinanciamientoporProvincias::find($id);
+
+if ($articulo) {
+    $articulo->update($data);
+    return redirect()->route('FinanciamientoporProvincias.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('InversionPublicaEfectiva.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin FinanciamientoporProvincias
 
     // frond de region los lagos
     public function indexRegionlagosIntro()
@@ -1124,18 +1327,29 @@ if ($articulo) {
         $primerArticulo = $FNDR->first();
         return view('regionlagos.FNDR', compact('primerArticulo','actividadE'));
     }
-    public function indexInversiones()    
+    public function indexInversionesWeb()    
     {
-        $FNDR = FNDR::all();
-        $actividadE = ActividadEconomica::all();
+        $FNDR = inversiones::all();
+        $actividadE = inversiones::all();
         $primerArticulo = $FNDR->first();
-        return view('regionlagos.inversiones', compact('primerArticulo','actividadE'));
+        return view('regionlagos.inversiones', compact('primerArticulo'));
     }
     public function indexInversionPublicaEfectivaWeb()    
     {
-        return view('regionlagos.InversionPublicaEfectiva');
+        $articulo  = InversionPublicaEfectiva::all();
+        $articulo1 = $articulo->first();
+        $InversionPu = $articulo1->InversionPublicaEfectivaSector;
+        return view('regionlagos.InversionPublicaEfectiva', compact('articulo1','InversionPu'));
     }
     
+    public function indexFinanciamientoporProvinciasWeb()    
+    {
+        $articulo  = FinanciamientoporProvincias::all();
+        $articulo1 = $articulo->first();
+        $InversionPu = $articulo1->InversionPublicaEfectivaSector;
+        return view('regionlagos.FinanciamientoporProvincias', compact('articulo1','InversionPu'));
+    }
+
     public function imagenesP($img)    
     {
         return response()->file(storage_path("app/public/images/".$img));

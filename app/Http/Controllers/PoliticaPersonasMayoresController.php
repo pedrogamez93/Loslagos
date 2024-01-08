@@ -12,10 +12,16 @@ class PoliticaPersonasMayoresController extends Controller
     {
         $ultimoRegistro = PoliticaPersonasMayores::latest()->first();
     
-        // Asegúrate de verificar si existe un registro antes de intentar acceder a sus documentos
-        $docs = $ultimoRegistro ? $ultimoRegistro->documentos : collect();
+        // Si hay un último registro, mostrar la vista index con los datos
+        if ($ultimoRegistro) {
+            $docs = $ultimoRegistro->documentos; // Obteniendo los documentos relacionados
     
-        return view('politicapersonasmayores.index', compact('ultimoRegistro', 'docs'));
+            return view('politicapersonasmayores.index', compact('ultimoRegistro', 'docs'));
+        } else {
+            // Si no hay registros, redirigir a la vista de creación con un mensaje
+            return redirect()->route('politicapersonasmayores.create')
+                             ->with('message', 'No se encontraron datos');
+        }
     }
 
     public function create()
