@@ -38,6 +38,21 @@
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
         }
+        .dropdown-menu a{
+          color: #565656;
+          font-size: 16px;
+          font-weight: 400;
+          font-style: normal;
+          line-height: 40px;
+          font-family: 'Inter' !important;
+          background: url("http://127.0.0.1:8000/storage/app/public/img/arrow.png") no-repeat;
+          background-position: 97% 50%;
+          padding: 4px 60px 4px 20px;
+        }
+        .linea-separadora {
+          border-top: 1px solid #00548F;
+          margin: 20px 10px;
+        }
     </style>
 
 @stack('styles')
@@ -119,6 +134,7 @@
         <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
         <a class="dropdown-item style-a-menu" >Descarga de programas</a>
         <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
+        <div class="linea-separadora"></div>
         <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
 
         </div>

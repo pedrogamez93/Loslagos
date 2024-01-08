@@ -286,7 +286,7 @@ h5.card-title{
         </h2>
         <div id="respuesta{{ $key }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" aria-labelledby="pregunta{{ $key }}" data-bs-parent="#preguntasAccordion">
             <div class="accordion-body r-acord">
-                {{ $pregunta->respuesta }}
+             {!! $pregunta->respuesta ?? '' !!}  
             </div>
         </div>
     </div>
