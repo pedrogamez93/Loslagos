@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class PoliticaPrivacidad extends Model
 {
     use HasFactory;
+    protected $fillable = ['descripcionG1', 'imagen', 'descripcionG2'];
 }

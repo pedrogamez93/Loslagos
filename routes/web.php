@@ -335,6 +335,13 @@ Route::get('/FinanciamientoporProvincias/edit/{id}', 'App\Http\Controllers\Intro
 Route::put('/FinanciamientoporProvincias/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFinanciamientoporProvincias')->name('FinanciamientoporProvincias.update');
 Route::delete('/FinanciamientoporProvincias/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteFinanciamientoporProvincias')->name('FinanciamientoporProvincias.destroy');
 
+Route::get('/PoliticaPrivacidad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidad')->name('PoliticaPrivacidad.index');
+Route::post('/PoliticaPrivacidad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storePoliticaPrivacidad')->name('PoliticaPrivacidad.store');
+Route::get('/PoliticaPrivacidad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createPoliticaPrivacidad')->name('PoliticaPrivacidad.create');
+Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editPoliticaPrivacidad')->name('PoliticaPrivacidad.edit');
+Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
+Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
+
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
 Route::get('/regionlagos/introduccion/{imagen}', 'App\Http\Controllers\IntroduccionRegionLagosController@imagenesP')->name('imagenesP.mostrar');
@@ -356,6 +363,7 @@ Route::get('/regionlagos/ActividadEconomica/{titulo}', 'App\Http\Controllers\Int
 Route::get('/regionlagos/InversionesD/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesWeb')->name('Inversiones.index');
 Route::get('/regionlagos/InversionPublicaEfectiva/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectivaWeb')->name('InversionPublicaEfectivaWeb.index');
 Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvinciasWeb')->name('FinanciamientoporProvinciasWeb.index');
+Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 

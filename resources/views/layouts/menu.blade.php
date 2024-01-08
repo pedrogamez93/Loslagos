@@ -172,6 +172,11 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('FinanciamientoporProvincias.index') }}">Financiamiento por Provincias</a>
                                 </li>
+                                <li class="style-li">
+                                    <a class="style-a-menu" href="{{ route('PoliticaPrivacidad.index') }}">Políticas de Privacidad
+
+</a>
+                                </li>
                                    
                             </ul>
                         </div>

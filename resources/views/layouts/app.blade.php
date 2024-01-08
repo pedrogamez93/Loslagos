@@ -96,7 +96,7 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/antecedentesregion') }}">Información de la Región</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/autoridades/Gobernador%20Regional') }}">Autoridades</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/PoblacionSuperficie') }}">Estadísticas</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Inversiones</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/InversionesD') }}">Inversiones</a>
           </div>
       </li>
 
@@ -114,9 +114,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
         <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
-        <a class="dropdown-item style-a-menu" >Mapa del Sitio</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/mapa') }}">Mapa del Sitio</a>
         <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
-        <a class="dropdown-item style-a-menu" >Politicas de privacidad</a>
+        <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
         <a class="dropdown-item style-a-menu" >Descarga de programas</a>
         <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
         <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
