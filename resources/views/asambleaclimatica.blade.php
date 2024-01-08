@@ -257,7 +257,7 @@ Contenido principal de tu página -->
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
+                        <div class="col-md-12" style="padding: 0 0 0 2.5rem;">
                             <p class="title-cat">Selecciona una Categoría</p>
                         </div>
                     </div>
@@ -273,7 +273,7 @@ Contenido principal de tu página -->
                 </div>
                 <div class="container content mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8" style="padding: 0 1rem 0 5rem;">
+                        <div class="col-md-8">
 
                             <div class="accordion" id="accordionone">
                                     <div class="accordion-item">
@@ -364,26 +364,26 @@ Contenido principal de tu página -->
                                     </div>
                                 </div>   
                             </div>
-
-                            {{-- Verifica si $asamblea no es nulo antes de intentar acceder a sus propiedades --}}
-                                    @if($asamblea && $asamblea->documentos)
-                                        {{-- Itera sobre los documentos solo si $asamblea y $asamblea->documentos no son nulos --}}
-                                        <h2 class="mi-style-h2 mt-5 mb-5">{{ $asamblea->titulo_seccion_two ?? '' }}</h2>
-                                        @foreach ($asamblea->documentos as $documento)
-                                            {{-- Aquí puedes acceder a las propiedades del documento --}}
-                                            <div class="mi-documento mt-3 mb-3">
-                                                <a href="{{ $documento['ruta_documento'] }}" target="_blank">
-                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
-                                                    <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
-                                                </a>
-                                            </div>
-                                            {{-- ... --}}
-                                        @endforeach
-                                    @else
-                                        {{-- Maneja el caso en que $asamblea o $asamblea->documentos sea nulo --}}
-                                        <p>No hay documentos disponibles</p>
-                                    @endif
-
+                            <div class="container">
+                                {{-- Verifica si $asamblea no es nulo antes de intentar acceder a sus propiedades --}}
+                                        @if($asamblea && $asamblea->documentos)
+                                            {{-- Itera sobre los documentos solo si $asamblea y $asamblea->documentos no son nulos --}}
+                                            <h2 class="mi-style-h2 mt-5 mb-5">{{ $asamblea->titulo_seccion_two ?? '' }}</h2>
+                                            @foreach ($asamblea->documentos as $documento)
+                                                {{-- Aquí puedes acceder a las propiedades del documento --}}
+                                                <div class="mi-documento mt-3 mb-3">
+                                                    <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                                        <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_documento'] }}</p>
+                                                    </a>
+                                                </div>
+                                                {{-- ... --}}
+                                            @endforeach
+                                        @else
+                                            {{-- Maneja el caso en que $asamblea o $asamblea->documentos sea nulo --}}
+                                            <p>No hay documentos disponibles</p>
+                                        @endif
+                            </div>
                                     <div class="container btn-extras">
                                         <h2 class="h2-seccion-btn-extras mt-5 mb-5">{{ $asamblea->titulo_seccion_btn ?? '' }}</h2>
         
@@ -396,7 +396,7 @@ Contenido principal de tu página -->
                                     </div>
                         </div>
 
-                        <div class="col-md-4" style="border-left: 2px solid #F59120; padding-left: 2rem;">
+                        <div class="col-md-4" style="border-left: 2px solid #F59120;">
                             <p class="title-categ pb-4">Categorias Asamblea Climática</p>
                             {{-- Para el enlace "Asamblea Climática Ciudadana" --}}
                                 <p class="mistyle-final-pcateg mt-2 mb-2" style="{{ request()->is('gobiernoregional/asambleaclimatica*') ? 'font-weight: 700;' : '' }}">

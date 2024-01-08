@@ -17,6 +17,8 @@ use App\Models\InversionPublicaEfectiva;
 use App\Models\InversionPublicaEfectivaSector;
 use App\Models\FinanciamientoporProvincias;
 use App\Models\Inversiones;
+use App\Models\PoliticaPrivacidad;
+
 
 use Carbon\Carbon;
 
@@ -1141,6 +1143,89 @@ if ($articulo) {
 
 //Fin FinanciamientoporProvincias
 
+//Inicio PoliticaPrivacidad
+public function indexPoliticaPrivacidad()
+{
+    $articulo = PoliticaPrivacidad::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = PoliticaPrivacidad::find($id);
+        return view('IntroduccionRegionLagos.PoliticaPrivacidad.edit', compact('articulo'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.PoliticaPrivacidad.create');
+    }
+}
+public function storePoliticaPrivacidad(Request $request){
+    
+    $data = $request->validate([
+        'descripcionG1' => 'required',
+        'imagen' => 'mimes:jpeg,jpg,png|max:2048',
+        'descripcionG2' => 'required',
+    ]);
+
+    if ($request->hasFile('imagen')) {
+        $imagenPath1 = $request->file('imagen')->store('images', 'public');
+        $data['imagen'] = $imagenPath1;
+    }
+
+    $Inversion = PoliticaPrivacidad::create($data);
+
+    return redirect(route('PoliticaPrivacidad.index'))->with('success', 'Creado con éxito');
+
+}
+
+public function createPoliticaPrivacidad()
+{
+    return view('IntroduccionRegionLagos.PoliticaPrivacidad.create');
+}
+public function editPoliticaPrivacidad($id){
+    $articulo  = PoliticaPrivacidad::findOrFail($id);
+
+    $actividadesC = $articulo->InversionPublicaEfectivaSector;
+    return view('IntroduccionRegionLagos.PoliticaPrivacidad.edit', compact('articulo','actividadesC'));
+}
+public function destroyPoliticaPrivacidad($id)
+{
+    $articulo = PoliticaPrivacidad::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('PoliticaPrivacidad.index')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('PoliticaPrivacidad.index')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updatePoliticaPrivacidad(Request $request, $id)
+{
+    $data = $request->validate([
+        'descripcionG1' => 'required',
+        'imagen' => 'mimes:jpeg,jpg,png|max:2048',
+        'descripcionG2' => 'required',
+    ]);
+
+    if ($request->hasFile('imagen')) {
+        $imagenPath1 = $request->file('imagen')->store('images', 'public');
+        $data['imagen'] = $imagenPath1;
+    }
+
+
+$articulo = PoliticaPrivacidad::find($id);
+
+if ($articulo) {
+    
+    $articulo->update($data);
+    return redirect()->route('PoliticaPrivacidad.index')->with('success', 'Artículo actualizado con éxito');
+} else {
+    return redirect()->route('PoliticaPrivacidad.index')->with('error', 'Artículo no encontrado');
+}
+} 
+
+//Fin PoliticaPrivacidad
+
     // frond de region los lagos
     public function indexRegionlagosIntro()
     {
@@ -1348,6 +1433,13 @@ if ($articulo) {
         $articulo1 = $articulo->first();
         $InversionPu = $articulo1->InversionPublicaEfectivaSector;
         return view('regionlagos.FinanciamientoporProvincias', compact('articulo1','InversionPu'));
+    }
+    public function indexPoliticaPrivacidadWeb()    
+    {
+        $articulo  = PoliticaPrivacidad::all();
+        $articulo1 = $articulo->first();
+        $InversionPu = $articulo1->InversionPublicaEfectivaSector;
+        return view('regionlagos.PoliticaPrivacidad', compact('articulo1'));
     }
 
     public function imagenesP($img)    
