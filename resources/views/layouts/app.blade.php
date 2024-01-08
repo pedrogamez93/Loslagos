@@ -16,6 +16,11 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
+ <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
+
+<!-- Agrega tu script JavaScript personalizado para manejar cambios de accesibilidad -->
+<script src="{{ asset('js/accessibility.js') }}" defer></script>
     <style>
         body {
             font-family: 'Lato';
@@ -167,7 +172,12 @@
 
 
     @yield('content')
-   
+<div id="accessibility-controls">
+  <button onclick="changeFontSize('increase')">Aumentar Tamaño de Fuente</button>
+  <button onclick="changeFontSize('decrease')">Disminuir Tamaño de Fuente</button>
+  <button onclick="toggleHighContrast()">Alternar Alto Contraste</button>
+</div>
+ 
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
     
     <div class="col mb-3">
