@@ -314,12 +314,12 @@ Route::get('/FNDR/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosContr
 Route::put('/FNDR/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFNDR')->name('FNDR.update');
 Route::delete('/FNDR/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyFNDR')->name('FNDR.destroy');
 
-Route::get('/Inversiones', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversiones')->name('Inversiones.index');
-Route::post('/Inversiones/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversiones')->name('Inversiones.store');
-Route::get('/Inversiones/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversiones')->name('Inversiones.create');
-Route::get('/Inversiones/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversiones')->name('Inversiones.edit');
-Route::put('/Inversiones/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversiones')->name('Inversiones.update');
-Route::delete('/Inversiones/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversiones')->name('Inversiones.destroy');
+Route::get('/InversionesD', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesG')->name('InversionesD.index');
+Route::post('/InversionesD/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionesG')->name('InversionesD.store');
+Route::get('/InversionesD/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionesG')->name('InversionesD.create');
+Route::get('/InversionesD/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionesG')->name('InversionesD.edit');
+Route::put('/InversionesD/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionesG')->name('InversionesD.update');
+Route::delete('/InversionesD/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionesG')->name('InversionesD.destroy');
 
 Route::get('/InversionPublicaEfectiva', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectiva')->name('InversionPublicaEfectiva.index');
 Route::post('/InversionPublicaEfectiva/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionPublicaEfectiva')->name('InversionPublicaEfectiva.store');
@@ -353,7 +353,7 @@ Route::get('/regionlagos/ExportacionSegunBloqueEconomico', 'App\Http\Controllers
 Route::get('/regionlagos/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosFNDR.index');
 Route::get('/regionlagos/ActividadEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosFNDR')->name('RegionlagosActividadEconomica.index');
 Route::get('/regionlagos/ActividadEconomica/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosBuscarActividadEconomica')->name('RegionlagosBuscarActividadEconomica.show');
-Route::get('/regionlagos/inversiones/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversiones')->name('Inversiones.index');
+Route::get('/regionlagos/InversionesD/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesWeb')->name('Inversiones.index');
 Route::get('/regionlagos/InversionPublicaEfectiva/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectivaWeb')->name('InversionPublicaEfectivaWeb.index');
 Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvinciasWeb')->name('FinanciamientoporProvinciasWeb.index');
 
