@@ -91,7 +91,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Título</th>
-                                        <th>Bajada</th>
+                                        <th>Bajada encabezado</th>
                                         <!--<th>Imagen</th>-->
                                         <th>Acciones</th>
 

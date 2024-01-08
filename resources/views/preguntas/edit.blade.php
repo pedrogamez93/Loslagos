@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
 
 <style>
     h1, h2 {
@@ -78,7 +80,7 @@
                 <input class="form-control mt-2 mb-4" type="text" name="pregunta" value="{{ $pregunta->pregunta }}" placeholder="Título" required>
 
                 <label class="style-label mb-2" for="respuesta">Respuesta:</label>
-                <textarea class="form-control mt-2" name="respuesta">{{ $pregunta->respuesta }}</textarea>
+                <textarea class="form-control mt-2" placeholder="Escribe tu respuesta aquí" style="height: 250px"  id="editor" name="respuesta">{!! $pregunta->respuesta ?? '' !!}</textarea>
 
                 <!-- Otros campos del formulario... -->
 
@@ -93,4 +95,12 @@
         </div>
     </div>
 </div>
-
+<script>
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        allowedContent: true
+    })
+    .catch(error => {
+        console.error(error);
+    });
+</script>

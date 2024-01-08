@@ -38,8 +38,8 @@ class PreguntaController extends Controller
     {
         // Validación de los datos
         $validatedData = $request->validate([
-            'pregunta' => 'required|max:500',
-            'respuesta' => 'required|max:500',
+            'pregunta' => 'required',
+            'respuesta' => 'required',
             // Puedes añadir más reglas de validación según tus necesidades
         ]);
 

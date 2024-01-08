@@ -6,46 +6,51 @@ use App\Mail\ContactanosMailable;
 use App\Models\Formulario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 
 class FormController extends Controller
 {
-    public function showForm()
+    public function verFormularios()
     {
-        return view('formulariodecontacto');
-    }
+        $formularios = Formulario::all(); // Obtén todos los registros de la tabla formularios
 
-    public function viewForm()
-    {
-        return view('formulariodecontacto.verformularios');
+        return view('formulariodecontacto.verformularios', ['formularios' => $formularios]);
     }
-    
-    public function store(Request $request)
+    public function index()
+{
+    return view('formulariodecontacto');
+}
+
+public function store (Request $request)
     {
-        // Validar los datos del formulario según tus necesidades
-       /* $request->validate([
-            'nombre' => 'required|string',
-            'apellido' => 'required|string',
-            'email' => 'required|email',
-            'sexo' => 'required|string',
-            'direccion' => 'required|string',
-            'provincia' => 'required|string',
-            'comuna' => 'required|string',
-            'telefono' => 'required|string',
-            'tipo_mensaje' => 'required|string',
-            'date' => 'required|date_format:Y-m-d',
-            'usted_escribe_como' => 'required|string',
-            'actividad_oficio' => 'required|string',
-            'intitucion_a_enviar' => 'required|string',
-            'tema_mensaje' => 'required|string',
-            'proposito_objetivo' => 'required|string',
-            'solicita_respuestas' => 'required|string',
-            'mensaje' => 'required|string',
-        ]);
-        */
         
-        // Procesar los datos del formulario
+        $data = $request->validate([
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'email' => 'required',
+        'sexo' => 'required',
+        'direccion' => 'required',
+        'provincia' => 'required',
+        'comuna' => 'required',
+        'telefono' => 'required',
+        'tipo_mensaje' => '',
+        'mensaje' => '',
+        'date' => '',
+        'usted_escribe_como' => '',
+        'actividad_oficio' => '',
+        'intitucion_a_enviar' => '',
+        'tema_mensaje' => '',
+        'proposito_objetivo' => '',
+        'solicita_respuestas' => '',
+        'mensaje_sugerencia_reclamo' => '',
+         ]);
+         
+
+         // Procesar los datos del formulario
         $nombre = $request->input('nombre');
         $apellido = $request->input('apellido');
         $email = $request->input('email');
@@ -71,63 +76,52 @@ class FormController extends Controller
           $mensaje_sugerencia_reclamo);
         Mail::to('ingluisguedez@gmail.com')->send($correo);
 
-        // Puedes agregar lógica adicional aquí, como redireccionar a una página de éxito
-        return redirect()->route('nombre_de_ruta_de_exito');
+        Formulario::create($data);
+    
+         
+
+        return redirect(route('contactanos.index'))->with('success', 'Artículo creado con éxito');
     }
 
-    public function procesarFormulario(Request $request)
+
+
+    public function borrarFormulario($id)
     {
-        // Validar los datos del formulario, si es necesario
-        $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'email' => 'required',
-            'sexo' => 'required',
-            'direccion' => 'required',
-            'provincia' => 'required',
-            'comuna' => 'required',
-            'telefono' => 'required',
-            'tipo_mensaje' => 'required',
-            'mensaje' => 'required',
-            'date' => 'required',
-            'usted_escribe_como' => 'required',
-            'actividad_oficio' => 'required',
-            'intitucion_a_enviar' => 'required',
-            'tema_mensaje' => 'required',
-            'proposito_objetivo' => 'required',
-            'solicita_respuestas' => 'required',
-            'mensaje_sugerencia_reclamo' => 'required',
-            // ... otras reglas de validación según tus campos
-        ]);
+        $formulario = Formulario::findOrFail($id);
+        $formulario->delete();
 
-        // Crear una nueva instancia del modelo Formulario
-        $formulario = new Formulario;
-
-        // Asignar los valores del formulario al modelo
-        $formulario->nombre = $request->input('nombre');
-        $formulario->apellido = $request->input('apellido');
-        $formulario->email = $request->input('email');
-        $formulario->sexo = $request->input('sexo');
-        $formulario->direccion = $request->input('direccion');
-        $formulario->provincia = $request->input('provincia');
-        $formulario->comuna = $request->input('comuna');
-        $formulario->telefono = $request->input('telefono');
-        $formulario->tipo_mensaje = $request->input('tipo_mensaje');
-        $formulario->mensaje = $request->input('mensaje');
-        $formulario->date = $request->input('date');
-        $formulario->usted_escribe_como = $request->input('usted_escribe_como');
-        $formulario->actividad_oficio = $request->input('actividad_oficio');
-        $formulario->intitucion_a_enviar = $request->input('intitucion_a_enviar');
-        $formulario->tema_mensaje = $request->input('tema_mensaje');
-        $formulario->proposito_objetivo = $request->input('proposito_objetivo');
-        $formulario->solicita_respuestas = $request->input('solicita_respuestas');
-        $formulario->mensaje_sugerencia_reclamo = $request->input('mensaje_sugerencia_reclamo');
-        // ... asignar otros campos según tus necesidades
-
-        // Guardar el formulario en la base de datos
-        $formulario->save();
-
-        // Redireccionar o devolver una respuesta según tus necesidades
-        return redirect()->route('ruta.donde.quieres.redirigir');
+        return redirect()->route('verformularios')->with('success', 'Formulario eliminado exitosamente');
     }
+
+
+    public function detalleFormulario($id)
+    {
+        $formulario = Formulario::findOrFail($id);
+
+        return view('formulariodecontacto.detalleformulario', ['formulario' => $formulario]);
+    }
+
+    public function descargarCSV()
+{
+    // Obtener todos los formularios de la base de datos
+    $formularios = Formulario::all();
+
+    // Crear el contenido del archivo CSV
+    $csvData = "ID,Nombre,Apellido,Email,Sexo,Direccion,Provincia,Comuna,Telefono,Tipo de Mensaje,Mensaje,Fecha de Nacimiento,Usted Escribe Como,Actividad u Oficio,Institucion a Enviar,Tema del Mensaje,Proposito u Objetivo,Mensaje de Sugerencia o Reclamo\n";
+
+    foreach ($formularios as $formulario) {
+        // Agregar cada registro al contenido del CSV
+        $csvData .= "{$formulario->id},{$formulario->nombre},{$formulario->apellido},{$formulario->email},{$formulario->sexo},{$formulario->direccion},{$formulario->provincia},{$formulario->comuna},{$formulario->telefono},{$formulario->tipo_mensaje},{$formulario->mensaje},{$formulario->date},{$formulario->usted_escribe_como},{$formulario->actividad_oficio},{$formulario->intitucion_a_enviar},{$formulario->tema_mensaje},{$formulario->proposito_objetivo},{$formulario->mensaje_sugerencia_reclamo}\n";
+    }
+
+    // Generar un nombre de archivo único
+    $filename = 'formularios_' . Str::random(10) . '.csv';
+
+    // Almacenar el archivo CSV en el sistema de archivos temporal
+    Storage::put($filename, $csvData);
+
+    // Devolver la respuesta al navegador para descargar el archivo CSV
+    return response()->download(storage_path("app/{$filename}"), 'formularios.csv')
+        ->deleteFileAfterSend(); // Eliminar el archivo después de enviarlo
+}
 }

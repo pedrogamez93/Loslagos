@@ -71,34 +71,8 @@
                                     <a class="style-a-menu" href="{{ url('/politicapersonasmayores') }}">Política Personas Mayores</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificación institucional</a>
+                                    <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificacion institucional</a>
                                 </li>
-                                <ul style="padding: 0px">
-                                    <li class="style-li">
-                                        <a class="style-a-menu" href="javascript:void(0);">Concursos Públicos</a>
-                                        <ul class="submenu">
-                                            <li class="style-li" style="padding-top: 5px;">
-                                                <a class="style-a-menu" href="{{ url('/concursospublicos') }}">Todos los Concursos Públicos</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/concursospublicos/create') }}">Nuevo Concurso Público</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul style="padding: 0px">
-                                    <li class="style-li">
-                                        <a class="style-a-menu" href="javascript:void(0);">Comité de ciencia, Tecnología e Innovación</a>
-                                        <ul class="submenu">
-                                            <li class="style-li" style="padding-top: 5px;">
-                                                <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Todos los Comites</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/comiteciencias/create') }}">Nuevo Comite</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </ul>
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
@@ -127,15 +101,6 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('ExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
                                 </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('ExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('ActividadEconomica.index') }}">Actividad Económica</a>
-                                </li>
-                                <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('FNDR.index') }}">FNDR</a>
-                                </li>
                                    
                             </ul>
                         </div>
@@ -151,8 +116,20 @@
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('documentos.create') }}">Subir</a>
                                 </li>
+                               
+                                   
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#IntroduccionRegionLagos" aria-expanded="false" aria-controls="IntroduccionRegionLagos">
+                            Formularios
+                        </button>
+
+                        <!-- Define el menú desplegable -->
+                        <div class="collapse show" id="formulariosbtn">
+                            <ul>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
+                                    <a class="style-a-menu" href="{{ route('verformularios') }}">Todos los formularios</a>
                                 </li>
                                
                                    

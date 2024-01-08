@@ -47,6 +47,7 @@ class ProgramasController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'bajada' => 'nullable|string',
+            'bajada_programa' => 'nullable|string',
             'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
         ]);
 
@@ -57,8 +58,9 @@ class ProgramasController extends Controller
         $programas = new Programas();
         $programas->titulo = $request->input('titulo');
         $programas->bajada = $request->input('bajada');
+        
         $programas->imagen = $imagenPath; // Almacena la ruta de la imagen en la base de datos
-
+        $programas->bajada_programa = $request->input('bajada_programa');
         // Guardar el programa en la base de datos
         $programas->save();
 
