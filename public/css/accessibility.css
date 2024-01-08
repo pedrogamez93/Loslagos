@@ -4,8 +4,8 @@ body {
     font-size: 16px; /* Tamaño de fuente predeterminado */
   }
   
-  body.high-contrast {
-    color: #fff; /* Cambiar a color de texto alto contraste */
-    background-color: #000; /* Cambiar a color de fondo alto contraste */
+  body.high-contrast,.high-contrast footer {
+    color: #fff !important; /* Cambiar a color de texto alto contraste */
+    background-color: #000 !important; /* Cambiar a color de fondo alto contraste */
   }
   
