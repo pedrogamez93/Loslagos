@@ -171,7 +171,7 @@ Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::cl
 Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
-// Rutas para los trámites
+// Rutas para los tr�mites
 Route::resource('tramites', TramitesDigitalesController::class);
 Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
@@ -335,6 +335,13 @@ Route::get('/FinanciamientoporProvincias/edit/{id}', 'App\Http\Controllers\Intro
 Route::put('/FinanciamientoporProvincias/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFinanciamientoporProvincias')->name('FinanciamientoporProvincias.update');
 Route::delete('/FinanciamientoporProvincias/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteFinanciamientoporProvincias')->name('FinanciamientoporProvincias.destroy');
 
+Route::get('/PoliticaPrivacidad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidad')->name('PoliticaPrivacidad.index');
+Route::post('/PoliticaPrivacidad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storePoliticaPrivacidad')->name('PoliticaPrivacidad.store');
+Route::get('/PoliticaPrivacidad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createPoliticaPrivacidad')->name('PoliticaPrivacidad.create');
+Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editPoliticaPrivacidad')->name('PoliticaPrivacidad.edit');
+Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
+Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
+
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
 Route::get('/regionlagos/introduccion/{imagen}', 'App\Http\Controllers\IntroduccionRegionLagosController@imagenesP')->name('imagenesP.mostrar');
@@ -356,23 +363,23 @@ Route::get('/regionlagos/ActividadEconomica/{titulo}', 'App\Http\Controllers\Int
 Route::get('/regionlagos/InversionesD/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesWeb')->name('Inversiones.index');
 Route::get('/regionlagos/InversionPublicaEfectiva/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectivaWeb')->name('InversionPublicaEfectivaWeb.index');
 Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvinciasWeb')->name('FinanciamientoporProvinciasWeb.index');
+Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//PROGRAMAS
+Route::resource('programas', ProgramasController::class);
+
+Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
 
 
-// Route::resource('programas', ProgramasController::class);
-
-// Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
-
-
-// Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
+Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
 
 //Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
 
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
-// Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
 
 //PREGUNTAS FRECUENTES
 Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
@@ -386,15 +393,16 @@ Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->n
 
 Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
 
-//FORMULARIO DE CONTACTO
+
     //FORMULARIO DE CONTACTO
-Route::get('contactanos', [FormController::class, 'showForm']);
+Route::get('/contactanos', 'App\Http\Controllers\FormController@index')->name('contactanos.index');
+    //PROCESAR FORMULARIO Y ENVIAR CORREO ELECTRONICO
+Route::post('/contactanos/store', 'App\Http\Controllers\FormController@store')->name('contactanos.store');
     //FORMULARIOS ENVIADOS BACKEND
-Route::get('verformularios', [FormController::class, 'viewForm']);
-    //PROCESAR FORMULARIO
-Route::post('contactanos', [FormController::class, 'store'])->name('contactanos.store');
-    //ENVIAR CORREO ELECTRONICO
-Route::post('/contactanos/store', [FormController::class, 'store'])->name('contactanos.store');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
 
-
-
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
+Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulario'])->name('detalle.formulario');
+Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
+    //DESCARGAR FORMULARIOS CSV
+Route::get('/descargar-csv', [FormController::class, 'descargarCSV'])->name('descargar.csv');

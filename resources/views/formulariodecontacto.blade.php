@@ -275,6 +275,7 @@ button {
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+    
     <header>
         <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
         <div class="container top-bar">
@@ -382,10 +383,11 @@ button {
             <!-- Agrega aquí los campos específicos para "Sugerencias" -->
             <!-- Ejemplo: -->
             <label>Fecha de Nacimiento:</label>
-            <input type="date" name="fecha_nacimiento">
+            <input type="date" name="date">
 
             <label>Usted escribe como:</label>
             <select name="usted_escribe_como">
+                
             <option value="">Seleccione</option>
 
                 <option value="AGRUPACION DEPORTIVA">AGRUPACION DEPORTIVA</option>                                                   
@@ -419,6 +421,7 @@ button {
 
             <label>Actividad u oficio:</label>
             <select name="actividad_oficio" >
+                
             <option value="">Seleccione</option>
 			                                           
                 <option value="abogado">ABOGADO(A)</option>                                                   
@@ -543,6 +546,7 @@ button {
             <label>Institución a la que desea enviar mensaje:</label>
             <select name="intitucion_a_enviar" >
             <option value="">Seleccione</option>
+            
 			                                          
                 <option value="Gobierno Regional de Los Lagos">Gobierno Regional de Los Lagos</option>                                                   
                 <option value="Intendencia Regional">Intendencia Regional</option>                                                   
@@ -643,6 +647,7 @@ button {
 
             <label>Tema del Mensaje:</label>
             <select name="tema_mensaje" >
+                
             <option value="">Seleccione</option>
                 <option value="agricultura">AGRICULTURA</option>                                                   
                 <option value="borde_costero">BORDE COSTERO</option>                                                   
@@ -671,6 +676,7 @@ button {
 
             <label>Propósito u Objetivo:</label>
             <select name="proposito_objetivo" >
+                
             <option value="">Seleccione</option>
 
                 <option value="audiencia">AUDIENCIA</option>                                                   
@@ -684,6 +690,7 @@ button {
 
             <label>Solicita Respuestas:</label>
             <select name="solicita_respuestas" >
+                
                 <option value="">Seleccione</option>
                 <option value="si">Si</option>
                 <option value="no">No</option>
@@ -692,6 +699,7 @@ button {
             <label>Mensaje:</label>
             <textarea name="mensaje_sugerencia_reclamo" rows="4" cols="50" ></textarea>
         </div>
+        
 
         <button type="submit">Enviar</button>
     </form>

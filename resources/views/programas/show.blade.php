@@ -259,12 +259,21 @@ h5.card-title{
     Line-height: 19.36px;
     color: #565656;
     }
-    .descargables{
+    a.descargables{
     font-family: 'Inter';
     font-Weight: 700;
     font-Size: 16px;
     Line-height: 19.36px;
-    color: #565656;  
+    color: #565656; 
+    text-decoration:none;
+    display: block;
+    }
+    .title-doc-fot{
+    font-family: 'Inter';
+    font-Weight: 700;
+    font-Size: 30px;
+    Line-height: 36.31px;
+    color: #565656;   
     }
 </style>
 <header>
@@ -304,26 +313,59 @@ h5.card-title{
                 <div class="col-md-12">
                     <p class="one-title pb-4">{{ $programa->titulo }}</p>
 
-                    <p style="Width:623px;">El objetivo es financiar proyectos de infraestructura comunal, que mejoren la calidad de vida de la población más pobre de la comuna</p>
+                    <p style="Width:623px;">{{ $programa->bajada }}</p>
+                    
                 </div>
             </div>
         </div>   
     </header>
             
     <div class="container principal mt-4 mb-4 pt-3 pb-3">
-    <div class="row">
-        <div class="col-md-7 borde">
-            <h2 class="title-programa">{{ $programa->titulo }}</h2>
-            <p class="bajada-programa">{{ $programa->bajada }}</p>
-            <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="{{ $programa->titulo }}">
-            <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
-
-        </div>
-        <div class="col-md-3 ml-3">
-            <h2 class="title-descargas">Documentos Regionales que puedes descargar:</h2>
-            <h3 class="pt-3 descargables">Documentos</h3>
-            <h3 class="pt-3 descargables">Fotografías</h3>
+        <div class="row">
+            <div class="col-md-7 borde">
+                    <div id="contenidoPrincipal">
+                        <h2 class="title-programa">{{ $programa->titulo }}</h2>
+                        <p class="bajada-programa">{!! $programa->bajada_programa ?? '' !!}</p>
+                        <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="{{ $programa->titulo }}">
+                        
+                    </div>
+                    
+                    <div id="contenidoDocumentos" style="display: none;">
+                        <h2 class="title-doc-fot">Documentos</h2>
+                        <p>Contenido que se despliega al hacer clic en "Documentos".</p>
+                    </div>
+                    <div id="contenidoFotografias" style="display: none;">
+                        <h2 class="title-doc-fot">Fotografías</h2>
+                        <p>Contenido que se despliega al hacer clic en "Fotografías".</p>
+                    </div>
+                        <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
+            </div>
+            <div class="col-md-3 ml-3">
+                <h2 class="title-descargas mb-5">Documentos Regionales que puedes descargar:</h2>
+                <a href="#" class="descargables pb-4" id="enlacePrincipal" onclick="mostrarContenido('principal')">{{ $programa->titulo }}</a>
+                <a href="#" id="enlaceDocumentos" class="descargables pb-4" onclick="mostrarContenido('documentos')">Documentos</a>
+                <a href="#" class="descargables pb-4" id="enlaceFotografias" onclick="mostrarContenido('fotografias')">Fotografías</a>
+                
+            </div>  
         </div>  
     </div>
-</div>
+
+
+<script>
+    function mostrarContenido(tipo) {
+        // Oculta todos los contenidos
+        document.getElementById('contenidoPrincipal').style.display = 'none';
+        document.getElementById('contenidoDocumentos').style.display = 'none';
+        document.getElementById('contenidoFotografias').style.display = 'none';
+
+        // Muestra el contenido correspondiente al tipo seleccionado
+        if (tipo === 'documentos') {
+            document.getElementById('contenidoDocumentos').style.display = 'block';
+        } else if (tipo === 'fotografias') {
+            document.getElementById('contenidoFotografias').style.display = 'block';
+        } else if (tipo === 'principal') {
+            document.getElementById('contenidoPrincipal').style.display = 'block';
+        }
+    }
+</script>
 

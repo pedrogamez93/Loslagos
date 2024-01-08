@@ -60,26 +60,36 @@
         <div class="row">
             <div class="col-md-2 style-col-menu">
                 <div class="container menu">
+                    <!-- Contenido del menú -->
                     @include('layouts.menu')
                 </div>
             </div>
+
             <div class="col-md-10">
                 <div class="container principal mt-4 mb-4 pt-3 pb-3">
                     <div class="row">
                         <div class="col-md-12">
-                            
                             <div class="row justify-content-between">
-    <div class="col">
-    <h1>Formulario de contactos</h1>
-    </div>
-    
-  </div>
+                                <div class="col">
+                                    <h1>Formulario de Contactos</h1>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="container first-form pt-2 pb-2">
                         <div class="row">
-                            <h2>Listado de Formularios enviados</h2>
-
+                        <div class="col-10">
+                            <h1>Listado Formularios</h1>
+                        </div>
+                           
+                        <div class="col-2">
+                            <!-- Agrega este botón al contenido de tu página -->
+<form action="{{ route('descargar.csv') }}" method="GET">
+    @csrf
+    <button type="submit" class="btn btn-primary">Descargar CSV</button>
+</form>
+</div>
                             @if(session('success'))
                                 <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
@@ -88,17 +98,65 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Título</th>
-                                        <th>Bajada</th>
-                                        <!--<th>Imagen</th>-->
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Email</th>
+                                        <th>Provincia</th>
+                                        <th>Tipo de mensaje</th>
+                                        
+                                        <!-- Agrega más columnas según tus campos de la tabla -->
                                         <th>Acciones</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+                                
+                            <!-- Agrega más elementos según tus campos de la tabla -->
+                                    @foreach($formularios as $formulario)
+                                        <tr>
+                                            <td>{{ $formulario->id }}</td>
+                                            <td>{{ $formulario->nombre }}</td>
+                                            <td>{{ $formulario->apellido }}</td>
+                                            <td>{{ $formulario->email }}</td>
+                                            <td>{{ $formulario->provincia }}</td>
+                                            <td>{{ $formulario->tipo_mensaje }}</td>
+                                            <!-- Agrega más celdas según tus campos de la tabla -->
+                                            <td>
+                                                <a href="{{ route('detalle.formulario', $formulario->id) }}" class="mb-2 btn btn-primary">Ver más</a>
+
+                                                <!-- Formulario para borrar el registro -->
+                                                <form action="{{ route('borrar.formulario', $formulario->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+<body>
+
+    <div class="container-fluid body">
+        <div class="row">
+            <div class="col-md-2 style-col-menu">
+                <div class="container menu">
+                    <!-- Contenido del menú -->
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+</body>

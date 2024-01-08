@@ -12,6 +12,7 @@ class Programas extends Model
     protected $fillable = [
         'titulo',
         'bajada',
+        'bajada_programa',
         'imagen',
     ];
 }
