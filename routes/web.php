@@ -379,7 +379,7 @@ Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasControll
 //Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
 
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
-Route::get('/programas/{id}', [Programas::class, 'show'])->name('programas.show');
+Route::get('/programas/{id}', [ProgramasController::class, 'show'])->name('programas.show');
 
 //PREGUNTAS FRECUENTES
 Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
