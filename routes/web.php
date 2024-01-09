@@ -36,6 +36,7 @@ use App\Http\Controllers\ConsejerosChiloeController;
 use App\Http\Controllers\ConsejerosLlanquihueController;
 use App\Http\Controllers\ConsejerosOsornoController;
 use App\Http\Controllers\ConsejerosPalenaController;
+use App\Http\Controllers\DocumentosDeGestionController;
 
 use App\Http\Controllers\SitiosController;
 
@@ -53,6 +54,8 @@ use App\Http\Controllers\SitiosController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home/create', [HomeController::class, 'create']);
+Route::post('/home/subir', [HomeController::class, 'store']);
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentoController::class, 'index']);
@@ -239,6 +242,38 @@ Route::get('/consejoregional/consejeroschiloe', 'App\Http\Controllers\Categories
 Route::get('/consejoregional/consejerosllanquihue', 'App\Http\Controllers\CategoriesController@consejerosllanquihueIndex');
 
 Route::get('/consejoregional/consejerospalena', 'App\Http\Controllers\CategoriesController@consejerospalenaIndex');
+
+/* DOCUMENTOS DE GESTION VISTAS*/
+Route::get('/gobiernoregional/documentosdegestion', 'App\Http\Controllers\DocumentosDeGestionController@index')->name('DocumentosDeGestionController.index');
+
+Route::get('/gobiernoregional/comisionregbordecostero', 'App\Http\Controllers\DocumentosDeGestionController@Indexcomisionregbordecostero')->name('comisionregbordecostero.Indexcomisionregbordecostero');
+
+Route::get('/gobiernoregional/controlesssi', 'App\Http\Controllers\DocumentosDeGestionController@Indexcontrolesssi')->name('controlesssi.Indexcontrolesssi');
+
+Route::get('/gobiernoregional/estadosituacionfndr', 'App\Http\Controllers\DocumentosDeGestionController@Indexestadosituacionfndr')->name('estadosituacionfndr.Indexestadosituacionfndr');
+
+Route::get('/gobiernoregional/informeejecucion', 'App\Http\Controllers\DocumentosDeGestionController@Indexinformeejecucion')->name('informeejecucion.Indexinformeejecucion');
+
+Route::get('/gobiernoregional/informegastosley', 'App\Http\Controllers\DocumentosDeGestionController@Indexinformegastosley')->name('informegastosley.Indexinformegastosley');
+
+Route::get('/gobiernoregional/planregulador', 'App\Http\Controllers\DocumentosDeGestionController@Indexplanregulador')->name('planregulador.Indexplanregulador');
+
+Route::get('/gobiernoregional/presupuesto', 'App\Http\Controllers\DocumentosDeGestionController@Indexpresupuesto')->name('presupuesto.Indexpresupuesto');
+
+Route::get('/gobiernoregional/receptoresfondos', 'App\Http\Controllers\DocumentosDeGestionController@Indexreceptoresfondos')->name('receptoresfondos.Indexreceptoresfondos');
+
+Route::get('/gobiernoregional/unidaddecontrol', 'App\Http\Controllers\DocumentosDeGestionController@Indexunidaddecontrol')->name('unidaddecontrol.Indexunidaddecontrol');
+/* FIN DOCUMENTOS DE GESTION VISTAS*/
+
+/*DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
+Route::get('/consejoregional/actas', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexactas')->name('actas.Indexactas');
+
+Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexcertificadosdeacuerdos')->name('certificadosdeacuerdos.Indexcertificadosdeacuerdos');
+
+Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexresumendegastos')->name('resumendegastos.Indexresumendegastos');
+
+Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
+/*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
