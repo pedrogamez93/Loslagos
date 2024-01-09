@@ -20,8 +20,9 @@
               color: #F59120;
     }
     .borderR{ 
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
     }
+
     header{
        /* width: 100%;*/
         height: 450px;
@@ -303,7 +304,15 @@ p.valor1.mb-5 {
 .totalE{
     height: 0;
     border-left: 100px solid transparent;
-    border-bottom: 100px solid #f0ad4e;
+    border-bottom: 100px solid #F59120;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    
 }
 .backgroundB{
         background-color: #00548F !important;
@@ -317,6 +326,19 @@ p.valor1.mb-5 {
         text-align: left;
         color:#fff;
 
+    }
+    .borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
+    }
+    a.a4 {
+        color: #00548F !important;
+        border-radius: 100px !important;
+        border: 1px solid #00548F !important;
+        font-weight: 700 !important;
+        background: #fff !important;
     }
 </style>
 <html>
@@ -379,7 +401,14 @@ p.valor1.mb-5 {
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
+                        <div class="col-md-4 borderM d-block d-lg-none">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
                             <div class="container int">
                                 <div class="row">
                                     <p class="style-tag pt-0 pb-4">{{$primerArticulo->subtitulo}}</p>
@@ -467,7 +496,7 @@ p.valor1.mb-5 {
                                                         
                                                     </div>
                                                     <div class="col-md-7 totalE">
-                                                        <p class="titulo">Total Exportaciones</p>
+                                                        <p class="titulo mt-4">Total Exportaciones</p>
                                                         <p class="mb-2 subtitulo">{{$primerArticulo->total}}</p>
                                                         <p class="fechas"><span></span></p>
                                                         <p class="fechas"></p>
@@ -484,7 +513,7 @@ p.valor1.mb-5 {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 borderR  d-none d-lg-block">
                             <div class="container img">
                                 <div class="row">
                                     @include('layouts.menuestadistica') 

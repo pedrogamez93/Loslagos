@@ -20,7 +20,7 @@
               color: #F59120;
     }
     .borderR{ 
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
     }
     header{
        /* width: 100%;*/
@@ -297,6 +297,33 @@
         color:#fff;
 
     }
+    .anchoC{
+        width: 48% !important;
+    }
+    
+@media (min-width: 576px) and (max-width: 768px) {
+    .anchoC{
+        width: 100% !important;
+    }
+}
+@media (max-width: 575px) {
+    .anchoC{
+        width: 100% !important;
+    }
+}
+.borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
+    }
+    a.a4 {
+        color: #00548F !IMPORTANT;
+        border-radius: 100px !important;
+        border: 1px solid #00548F !important;
+        font-weight: 700 !important;
+        background: #fff !important;
+    }
 </style>
 <html>
 <head>
@@ -358,27 +385,34 @@
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
+                        <div class="col-md-4 borderM d-block d-lg-none">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
                             <div class="container int p-0">
                                 <div class="row">
                                     <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
                                     <p class="title-cat mb-5">Dinámica Económica</p>
                                     @foreach($introduccion as $art)
-                                        <div class="col-md-6 mb-4">
+                                        <div class="col-md-6 anchoC">
                                             <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="titulo">{{$art->titulo}}</p>
-                                                    <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
-                                                    <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
-                                                    <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <p class="titulo">{{$art->titulo}}</p>
+                                                            <p class="mb-2 subtitulo">{{$art->subtitulo}}</p>
+                                                            <p class="fechas">{{$art->descripcion1}} : <span>{{$art->valor1}}</span></p>
+                                                            <p class="fechas">{{$art->descripcion2}} : <span>{{$art->valor2}}</span></p>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    
-                                                </div>
-                                            </div>
-                                            </div>
                                             </div>
                                             
                                         </div>
@@ -386,7 +420,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 borderR d-none d-lg-block">
                             <div class="container img">
                                 <div class="row">
                                     @include('layouts.menuestadistica') 

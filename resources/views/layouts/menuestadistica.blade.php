@@ -22,19 +22,19 @@
   </div>
   <div class="accordion-item border-0 ">
     <h2 class="accordion-header enlaceM">
-      <a  href="{{ route('DinamicaEconomica.index') }}" class="p-0 pt-3 pb-3">
+      <a  href="{{ route('DinamicaEconomica.index') }}" class="p-0 pt-3 pb-3"  style="{{ request()->is('regionlagos/DinamicaEconomica') ? 'font-weight: 700;' : '' }}">
         Dinámica Económica
         </a>
     </h2>
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM">
-        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
+        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}" style="{{ request()->is('regionlagos/ExportacionSegunRamaActividad') ? 'font-weight: 700;' : '' }}">Exportación Según Rama Actividad</a>
     </h2>
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM">
-        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
+        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}" style="{{ request()->is('regionlagos/ExportacionSegunBloqueEconomico') ? 'font-weight: 700;' : '' }}">Exportación Según Bloque Económico</a>
     </h2>
   </div>
   <div class="accordion-item border-0">
@@ -53,7 +53,7 @@
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM ">
-    <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}">FNDR 2009</a>
+    <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}" style="{{ request()->is('regionlagos/FNDR') ? 'font-weight: 700;' : '' }}">FNDR 2009</a>
     </h2>
   </div>
 </div>

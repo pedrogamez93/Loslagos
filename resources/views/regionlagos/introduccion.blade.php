@@ -236,7 +236,7 @@
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: -webkit-center;">
-                                        <img src="{{ asset($introduccion->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                                        <img src="{{ asset($introduccion->imagen) }}" alt="Imagen actual" >    
                                     </div>
                                 </div>
                             </div>

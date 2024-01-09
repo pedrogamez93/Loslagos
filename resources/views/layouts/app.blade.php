@@ -172,15 +172,37 @@
 
 
     @yield('content')
-<div id="accessibility-controls">
-  <button onclick="changeFontSize('increase')">Aumentar Tamaño de Fuente</button>
-  <button onclick="changeFontSize('decrease')">Disminuir Tamaño de Fuente</button>
-  <button onclick="toggleHighContrast()">Alternar Alto Contraste</button>
+
+ <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Accesibilidad</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="accessibility-controls">
+      <p><button onclick="changeFontSize('increase')">Aumentar Tamaño de Fuente</button></p>
+      <p><button onclick="changeFontSize('decrease')">Disminuir Tamaño de Fuente</button></p>
+      <p><button onclick="toggleHighContrast()">Alternar Alto Contraste</button></p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
- 
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
     
     <div class="col mb-3">
+    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+Accesibilidad
+      </a>
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
         <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" >
       </a>

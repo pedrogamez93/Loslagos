@@ -19,7 +19,13 @@
               color: #F59120;
     }
     .borderR{
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
+    }
+    .borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
     }
     header{
        /* width: 100%;*/
@@ -246,7 +252,21 @@
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR pl-0">
+                        <div class="col-md-4 d-block d-lg-none borderM">
+                            <div class="container img">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    <p class="infoR pb-4">Información de la Región</p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}" style="{{ request()->is('regionlagos/antecedentesregion*') ? 'font-weight: 700;' : '' }}">Antecedentes de la Región</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}">Provincia de Osorno</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}">Provincia de Llanquihue</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Chiloé') }}">Provincia de Chiloé</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Palena') }}">Provincia de Palena</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pl-0">
                             <div class="container int p-0">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -259,8 +279,8 @@
                         </div>
                             
 
-                        <div class="col-md-4">
-                            <div class="container img">
+                        <div class="col-md-4 d-none d-lg-block borderR">
+                            <div class="container  img">
                                 <div class="row">
                                     <div class="col-md-12">
                                     <p class="infoR pb-4">Información de la Región</p>

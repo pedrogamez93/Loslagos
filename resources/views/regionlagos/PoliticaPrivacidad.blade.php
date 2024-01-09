@@ -235,7 +235,7 @@
 
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-6 p-0">
+                        <div class="col-md-7 p-0">
                             <div class="container int p-0">
                                 <div class="row">
                                     <div class="col-md-12 style-cont">
@@ -246,13 +246,13 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6  p-0 mt-5" style="position: relative;">
+                        <div class="col-md-5  p-0 mt-5" style="position: relative;">
                             <div class="container img">
                                 <div class="row">
-                                    <div class="col-md-2 mt-3">
-                                        <img src="{{ asset($articulo1->imagen) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
+                                    <div class="col-md-2 mt-3 col-3">
+                                        <img src="{{ asset($articulo1->imagen) }}" alt="Imagen actual" style="max-width: 100%;">    
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 col-8">
                                         <p class="style-down pt-2 pb-2">{!! $articulo1->descripcionG2 ?? '' !!}</p>
                                     </div>
                                 </div>
