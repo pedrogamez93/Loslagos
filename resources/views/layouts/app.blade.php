@@ -81,7 +81,7 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/documentosdegestion') }}">Documentos de Gestión</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
@@ -100,6 +100,10 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introduccion</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/actas') }}">Actas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/certificadosdeacuerdos') }}">Certificados de Acuerdos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/resumendegastos') }}">Resumen de Gastos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/tablassesionesconsejo') }}">Tabla de Sesiones Consejo Regional de Los Lagos</a>
           </div>
       </li>
       <li class="nav-item dropdown">
