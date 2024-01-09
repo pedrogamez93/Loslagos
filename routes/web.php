@@ -53,6 +53,8 @@ use App\Http\Controllers\SitiosController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/home/create', [HomeController::class, 'create']);
+Route::post('/home/subir', [HomeController::class, 'store']);
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentoController::class, 'index']);
