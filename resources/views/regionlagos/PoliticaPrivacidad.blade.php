@@ -183,6 +183,9 @@
     padding-left: 1.5em;
     padding-right: 1.5em;
 }
+.colorB{
+            background-color:#00548F;
+        }
 </style>
 <html>
 <head>
@@ -204,7 +207,7 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid colorB">
     <div class="row">
         <div class="col-md-12">
             <div class="container pt-5 pb-5">

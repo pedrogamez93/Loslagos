@@ -190,9 +190,9 @@
       </div>
       <div class="modal-body">
       <div id="accessibility-controls">
-      <p><button onclick="changeFontSize('increase')">Aumentar Tamaño de Fuente</button></p>
-      <p><button onclick="changeFontSize('decrease')">Disminuir Tamaño de Fuente</button></p>
-      <p><button onclick="toggleHighContrast()">Alternar Alto Contraste</button></p>
+      <p><button  id="increase-font">Aumentar Tamaño de Fuente</button></p>
+      <p><button id="decrease-font">Disminuir Tamaño de Fuente</button></p>
+      <p><button id="toggle-contrast">Alternar Alto Contraste</button></p>
       </div>
       </div>
       <div class="modal-footer">
@@ -204,7 +204,7 @@
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
     
     <div class="col mb-3">
-    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 Accesibilidad
       </a>
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
