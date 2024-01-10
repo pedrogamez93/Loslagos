@@ -73,7 +73,7 @@
                                     <div class="input-group mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="provincia" required>
                                         <option value="" selected>Seleccione una Provincia</option>
-                                        <option value="Provincia de Osono">PROVINCIA DE OSORNO</option>
+                                        <option value="Provincia de Osorno">PROVINCIA DE OSORNO</option>
                                         <option value="Provincia de Llaquihue">PROVINCIA DE LLANQUIHUE</option>
                                         <option value="Provincia de Chiloe">PROVINCIA DE CHILOE</option>
                                         <option value="Provincia de Palema">PROVINCIA DE PALENA</option>
