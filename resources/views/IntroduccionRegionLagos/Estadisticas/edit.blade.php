@@ -75,7 +75,7 @@
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="provincia" required>
                                         <option value="" {{ $articulo->provincia == '' ? 'selected' : '' }}>Seleccione una Provincia</option>
                                         
-                                        <option value="Provincia de Osono" {{ $articulo->provincia == 'Provincia de Osorno' ? 'selected' : '' }}>Provincia de Osorno</option>
+                                        <option value="Provincia de Osorno" {{ $articulo->provincia == 'Provincia de Osorno' ? 'selected' : '' }}>Provincia de Osorno</option>
                                         <option value="Provincia de Llaquihue" {{ $articulo->provincia == 'Provincia de Llaquihue' ? 'selected' : '' }}>Provincia de Llaquihue</option>
                                         <option value="Provincia de Chiloe" {{ $articulo->provincia == 'Provincia de Chiloe' ? 'selected' : '' }}>Provincia de Chiloe</option>
                                         <option value="Provincia de Palema" {{ $articulo->provincia == 'Provincia de Palema' ? 'selected' : '' }}>Provincia de Palema</option>
