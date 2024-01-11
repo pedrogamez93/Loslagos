@@ -1441,6 +1441,10 @@ if ($articulo) {
         $InversionPu = $articulo1->InversionPublicaEfectivaSector;
         return view('regionlagos.PoliticaPrivacidad', compact('articulo1'));
     }
+    public function indexMapaWeb()    
+    {
+        return view('regionlagos.mapadesitio');
+    }
 
     public function imagenesP($img)    
     {

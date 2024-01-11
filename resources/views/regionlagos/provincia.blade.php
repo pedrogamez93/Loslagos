@@ -22,7 +22,7 @@
               color: #F59120;
     }
     .borderR{
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
     }
     header{
        /* width: 100%;*/
@@ -182,11 +182,20 @@
 
     }
     a.a2 {
-    color: #00548F !important;
-    border-radius: 100px !important;
-    border: 1px solid #00548F !important;
-    font-weight: 700 !important;
-}
+        color: #00548F !important;
+        border-radius: 100px !important;
+        border: 1px solid #00548F !important;
+        font-weight: 700 !important;
+    }
+    .borderM {
+            border-top: 2px solid #F59120;
+            border-bottom: 2px solid #F59120;
+            padding: 24px 0px;
+            margin-bottom: 20px;
+        }
+        .colorB{
+            background-color:#00548F;
+        }
 </style>
 <html>
 <head>
@@ -208,7 +217,7 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid colorB">
     <div class="row">
         <div class="col-md-12">
             <div class="container pt-5 pb-5">
@@ -248,7 +257,21 @@
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
+                        <div class="col-md-4 d-block d-lg-none borderM">
+                            <div class="container img">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    <p class="infoR pb-4">Información de la Región</p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Antecedentes de la Región') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Antecedentes de la Región' ? 'active' : '' }}">Antecedentes de la Región</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Osorno') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Osorno' ? 'active' : '' }}">Provincia de Osorno</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Llanquihue') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Llanquihue' ? 'active' : '' }}">Provincia de Llanquihue</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Chiloé') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Chiloé' ? 'active' : '' }}">Provincia de Chiloé</a></p>
+                                    <p class="enlaceM"><a href="{{ route('Regionlagosprovincias.show', 'Provincia de Palena') }}" class="{{ request()->routeIs('Regionlagosprovincias.show') && request()->route('titulo') == 'Provincia de Palena' ? 'active' : '' }}">Provincia de Palena</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
                             <div class="container int p-0">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -261,7 +284,7 @@
                         </div>
                             
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-none d-lg-block borderR">
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12">

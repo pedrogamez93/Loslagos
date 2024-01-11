@@ -20,7 +20,7 @@
               color: #F59120;
     }
     .borderR{ 
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
     }
     header{
        /* width: 100%;*/
@@ -331,6 +331,15 @@ p.valor1.mb-5 {
     text-align: left;
     color: #565656;
 }
+    .borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
+    }
+    .colorB{
+            background-color:#00548F;
+        }
 </style>
 <html>
 <head>
@@ -352,7 +361,7 @@ p.valor1.mb-5 {
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid colorB">
     <div class="row">
         <div class="col-md-12">
             <div class="container pt-5 pb-5">
@@ -392,7 +401,24 @@ p.valor1.mb-5 {
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
+                        <div class="col-md-4 borderM d-block d-lg-none">
+                            <p class="infoR pb-4">Información de Inversiones</p>
+                            <div class="container img">
+                                <div class="row">
+                                
+                                <a  href="{{ route('Inversiones.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionesD') ? 'font-weight: 700;' : '' }}">
+                                    Descripción General
+                                </a>
+                                <a  href="{{ route('InversionPublicaEfectivaWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/InversionPublicaEfectiva/') ? 'font-weight: 700;' : '' }}">
+                                    Inversión Pública Efectiva Según Sectores
+                                </a>
+                                <a  href="{{ route('FinanciamientoporProvinciasWeb.index') }}" class="p-0 pt-2 pb-2" style="{{ request()->is('regionlagos/FinanciamientoporProvincias/') ? 'font-weight: 700;' : '' }}">
+                                    Financiamiento por Provincias
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
                             <div class="container int">
                                 <div class="row">
                                     <p class="title-cat mb-5">{{ $primerArticulo->titulo1 }}</p>
@@ -439,8 +465,8 @@ p.valor1.mb-5 {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                        <p class="infoR pb-4">Información de Inversiones</p>
+                        <div class="col-md-4 borderR  d-none d-lg-block">
+                            <p class="infoR pb-4">Información de Inversiones</p>
                             <div class="container img">
                                 <div class="row">
                                 

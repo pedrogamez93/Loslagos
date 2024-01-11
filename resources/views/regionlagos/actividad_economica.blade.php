@@ -20,7 +20,13 @@
               color: #F59120;
     }
     .borderR{
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
+    }
+    .borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
     }
     header{
        /* width: 100%;*/
@@ -291,6 +297,91 @@
         color:#fff;
 
     }
+    a.a4 {
+        color: #00548F !important;
+        border-radius: 100px !important;
+        border: 1px solid #00548F !important;
+        font-weight: 700 !important;
+        background: #fff !important;
+    }
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .totalE {
+        height: max-content;
+        border-left: none;
+        border-bottom: none;
+        background: #f59120;
+    }
+    .totalE p {
+        font-family: Inter !important;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+        padding: 4px 11px;
+    }
+    .totalE span {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+        padding: 4px 11px;
+    }
+    .actividades {
+        border-radius: 5px;
+        height: auto;
+        border: 1px solid #F59120;
+        width: 96% !important;
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .totalE {
+        height: max-content;
+        border-left: none;
+        border-bottom: none;
+        background: #f59120;
+    }
+    .totalE p {
+        font-family: Inter !important;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+        padding: 4px 11px;
+    }
+    .totalE span {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #fff;
+        padding: 4px 11px;
+    }
+    .actividades {
+        border-radius: 5px;
+        height: auto;
+        border: 1px solid #F59120;
+        width: 96% !important;
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+}
+.colorB{
+            background-color:#00548F;
+        }
 </style>
 <html>
 <head>
@@ -312,7 +403,7 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<<div class="container-fluid colorB">
     <div class="row">
         <div class="col-md-12">
             <div class="container pt-5 pb-5">
@@ -351,7 +442,14 @@
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
+                        <div class="col-md-4 borderM d-block d-lg-none">
+                            <div class="container img">
+                                <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
                             <div class="container int p-0">
                                 <div class="row">
                                     <p class="style-tag pt-0 pb-4">Infórmate sobre nuestra Región...</p>
@@ -379,7 +477,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 borderR  d-none d-lg-block">
                             <div class="container img">
                                 <div class="row">
                                     @include('layouts.menuestadistica') 

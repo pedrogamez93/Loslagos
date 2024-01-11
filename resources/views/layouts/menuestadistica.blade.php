@@ -13,7 +13,7 @@
     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body p-0">
             <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficie.index') }}">Población y Superficie</a></p>
-            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Osono') }}">Provincia de Osono</a></p>
+            <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Osorno') }}">Provincia de Osorno</a></p>
             <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Llaquihue') }}">Provincia de Llaquihue</a></p>
             <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Chiloe') }}">Provincia de Chiloé</a></p>
             <p class="enlaceM"><a class="ml-3" href="{{ route('PoblacionSuperficieProvincia.show','Provincia de Palena') }}">Provincia de Palena</a></p>
@@ -22,19 +22,19 @@
   </div>
   <div class="accordion-item border-0 ">
     <h2 class="accordion-header enlaceM">
-      <a  href="{{ route('DinamicaEconomica.index') }}" class="p-0 pt-3 pb-3">
+      <a  href="{{ route('DinamicaEconomica.index') }}" class="p-0 pt-3 pb-3"  style="{{ request()->is('regionlagos/DinamicaEconomica') ? 'font-weight: 700;' : '' }}">
         Dinámica Económica
         </a>
     </h2>
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM">
-        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}">Exportación Según Rama Actividad</a>
+        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunRamaActividad.index') }}" style="{{ request()->is('regionlagos/ExportacionSegunRamaActividad') ? 'font-weight: 700;' : '' }}">Exportación Según Rama Actividad</a>
     </h2>
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM">
-        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}">Exportación Según Bloque Económico</a>
+        <a class="enlaceM p-0 pt-3 pb-3" href="{{ route('RegionlagosExportacionSegunBloqueEconomico.index') }}" style="{{ request()->is('regionlagos/ExportacionSegunBloqueEconomico') ? 'font-weight: 700;' : '' }}">Exportación Según Bloque Económico</a>
     </h2>
   </div>
   <div class="accordion-item border-0">
@@ -53,7 +53,7 @@
   </div>
   <div class="accordion-item border-0">
     <h2 class="accordion-header enlaceM ">
-    <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}">FNDR 2009</a>
+    <a class="enlaceM" href="{{ route('RegionlagosFNDR.index') }}" style="{{ request()->is('regionlagos/FNDR') ? 'font-weight: 700;' : '' }}">FNDR 2009</a>
     </h2>
   </div>
 </div>

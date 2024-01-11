@@ -19,7 +19,7 @@ class CreateInversionPublicaEfectivaSectorsTable extends Migration
             $table->foreign('InversionPublicaEfectiva_id')->references('id')->on('InversionPublicaEfectiva')->onDelete('cascade');
             $table->string('sector');
             $table->integer('inversionD');
-            $table->integer('inversionP');
+            $table->decimal('inversionP', 8, 2);
             $table->timestamps();
         });
     }

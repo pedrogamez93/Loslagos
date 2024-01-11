@@ -100,3 +100,27 @@ letter-spacing: 0em;
 text-align: left;
 
 }
+
+.titulohome{
+  color: #FFF;
+
+font-family: Inter;
+font-size: 50px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: start;
+width: 100%;
+}
+
+.descripcionhome{
+  color: #FFF;
+
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-align: start;
+width: 100%;
+}

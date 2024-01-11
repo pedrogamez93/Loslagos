@@ -16,6 +16,11 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
+ <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
+
+<!-- Agrega tu script JavaScript personalizado para manejar cambios de accesibilidad -->
+<script src="{{ asset('js/accessibility.js') }}" defer></script>
     <style>
         body {
             font-family: 'Lato';
@@ -81,7 +86,7 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/documentosdegestion') }}">Documentos de Gestión</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
@@ -100,6 +105,10 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introduccion</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/actas') }}">Actas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/certificadosdeacuerdos') }}">Certificados de Acuerdos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/resumendegastos') }}">Resumen de Gastos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/tablassesionesconsejo') }}">Tabla de Sesiones Consejo Regional de Los Lagos</a>
           </div>
       </li>
       <li class="nav-item dropdown">
@@ -167,10 +176,37 @@
 
 
     @yield('content')
-   
+
+ <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Accesibilidad</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="accessibility-controls">
+      <p><button  id="increase-font">Aumentar Tamaño de Fuente</button></p>
+      <p><button id="decrease-font">Disminuir Tamaño de Fuente</button></p>
+      <p><button id="toggle-contrast">Alternar Alto Contraste</button></p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
     
     <div class="col mb-3">
+    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+Accesibilidad
+      </a>
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
         <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" >
       </a>

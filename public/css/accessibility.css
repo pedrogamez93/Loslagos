@@ -1,0 +1,12 @@
+/* accessibility.css */
+
+body {
+    font-size: 16px; /* Tamaño de fuente predeterminado */
+  }
+  
+  body.high-contrast,.high-contrast footer,.high-contrast  .backgroundB,.high-contrast  .cat,.high-contrast .modal-content,.high-contrast .flex-column,.high-contrast .high-contrast,
+  .high-contrast .nav-link,.high-contrast  .colorB   {
+    color: #fff !important; /* Cambiar a color de texto alto contraste */
+    background-color: #000 !important; /* Cambiar a color de fondo alto contraste */
+  }
+  
