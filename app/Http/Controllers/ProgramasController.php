@@ -23,6 +23,10 @@ class ProgramasController extends Controller
         $programas = Programas::all(); // Cambiar el nombre del modelo
 
         return view('programas.index', compact('programas'));
+    //IMPRESION DE LA RELACION DE TABLAS
+        $programas = Programas::with('descripcion')->get();
+        return view('programas.index', compact('programas'));
+    
     }
 
     /**
@@ -43,26 +47,70 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        // Validación de datos
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'bajada' => 'nullable|string',
-            'bajada_programa' => 'nullable|string',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
-        ]);
-
-        // Procesamiento de la imagen
-        $imagenPath = $request->file('imagen')->store('imagenes_programas', 'public');
-
-        // Crear un nuevo programa
-        $programas = new Programas();
-        $programas->titulo = $request->input('titulo');
-        $programas->bajada = $request->input('bajada');
         
-        $programas->imagen = $imagenPath; // Almacena la ruta de la imagen en la base de datos
-        $programas->bajada_programa = $request->input('bajada_programa');
-        // Guardar el programa en la base de datos
-        $programas->save();
+                // Validar los datos del formulario
+                $request->validate([
+                    'titulo' => 'required',
+                    'bajada' => 'required',
+                    'bajada_programa' => 'required',
+                    'titulo_descripcion' => 'required',
+                    'bajada_descripcion' => 'required',
+                    'nombrebtn' => 'required',
+                    'urlbtn' => 'required',
+                    'nombreDocumento' => 'required',
+                    'urlDocumento' => 'file|mimes:pdf,doc,docx', // Ajusta según los tipos de documentos que deseas permitir
+
+                ]);
+
+                // Crear un nuevo programa
+                $programa = new Programas;
+                $programa->titulo = $request->titulo;
+                $programa->bajada = $request->bajada;
+                $programa->bajada_programa = $request->bajada_programa;
+                $programa->save();
+
+                // Crear una nueva descripción de programa
+                $descripcion = new ProgramasDescripciones;
+                $descripcion->programa_id = $programa->id;
+                $descripcion->titulo_descripcion = $request->titulo_descripcion;
+                $descripcion->bajada_descripcion = $request->bajada_descripcion;
+                $descripcion->save();
+
+                // Crear un nuevo botón de programa
+                $botones = new Programasbtn;
+                $botones->programa_id = $programa->id;
+                $botones->nombrebtn = $request->nombrebtn;
+                $botones->urlbtn = $request->urlbtn;
+                $botones->save();
+
+                // Crear un nuevo docuento
+                $documentos = new ProgramasDocumentos;
+                $documentos->programa_id = $programa->id;
+                $documentos->nombreDocumento = $request->nombreDocumento;
+                $documentos->urlDocumento = $request->urlDocumento;
+                $documentos->save();
+
+                // Procesar y guardar el documento si se proporcionó
+                if ($request->hasFile('urlDocumento')) {
+                    $documento = $request->file('urlDocumento');
+                    $nombreDocumento = $documento->getClientOriginalName();
+
+                    // Guardar el documento en el sistema de archivos
+                    $rutaDocumento = $documento->storeAs('documentos', $nombreDocumento);
+
+                    // Crear un nuevo registro en la tabla programas_documentos
+                    ProgramasDocumento::create([
+                        'programa_id' => $programa->id,
+                        'nombreDocumento' => $nombreDocumento,
+                        'urlDocumento' => $urlDocumento,
+                    ]);
+                }
+
+                // Recuperar los datos para mostrar en la vista
+                $programas = Programas::all();
+                $descripciones = ProgramasDescripciones::all();
+                $botones = Programasbtn::all();
+                $documentos = ProgramasDocumentos::all();
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
@@ -77,6 +125,9 @@ class ProgramasController extends Controller
     public function show($id){
         $programa = Programas::findOrFail($id);
         return view('programas.show')->with('programa', $programa);
+
+            $programa = Programa::with('colecciones', 'descripciones', 'documentos', 'fotografias', 'botones')->find($id);
+    return view('programa.show', ['programa' => $programa]);
     }
 
     /**
@@ -117,10 +168,25 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
-        Programas::destroy($id);
-        return redirect()->route('programas.index')->with('success', 'Programa eliminado exitosamente.');
+{
+    // Buscar el programa por ID
+    $programa = Programas::find($id);
 
+    // Verificar si el programa existe
+    if ($programa) {
+        // Eliminar descripciones relacionadas
+        $programa->descripcion()->delete();
+
+        // Eliminar botones relacionados
+        $programa->botones()->delete();
+
+        // Finalmente, eliminar el programa
+        $programa->delete();
+
+        return redirect()->route('programas.index')->with('success', 'Programa y registros relacionados eliminados exitosamente.');
     }
+
+    return redirect()->route('programas.index')->with('error', 'No se encontró el programa.');
+}
+    
 }

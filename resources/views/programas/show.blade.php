@@ -339,7 +339,30 @@ h5.card-title{
                         <p>Contenido que se despliega al hacer clic en "Fotografías".</p>
                     </div>
                         <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
+
+                       <strong>Titulo:</strong> <p>{{ $programa->titulo }}</p>
+                       <strong>bajada encabezado:</strong><p>{{ $programa->bajada }}</p>
+                       <strong>bajada programa:</strong><p>{{ $programa->bajada_programa }}</p>
+                       <strong>titulo descripcion:</strong><p>{{ $programa->descripcion->titulo_descripcion }}</p>
+                       <strong>bajada descripcion:</strong><p>{{ $programa->descripcion->bajada_descripcion }}</p>
+                       <strong>nombre del boton:</strong><p>{{ $programa->botones->nombrebtn }}</p>
+                       <strong>url del boton:</strong><p>{{ $programa->botones->urlbtn }}</p>
+
+
+                      
+
             </div>
+
+
+
+          
+
+
+            
+
+
+
+            
             <div class="col-md-3 ml-3">
                 <h2 class="title-descargas mb-5">Documentos Regionales que puedes descargar:</h2>
                 <a href="#" class="descargables pb-4" id="enlacePrincipal" onclick="mostrarContenido('principal')">{{ $programa->titulo }}</a>

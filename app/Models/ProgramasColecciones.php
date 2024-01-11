@@ -13,4 +13,11 @@ class ProgramasColecciones extends Model
         'titulo',
         'imagen',
     ];
+
+    
+}
+class ProgramasColecciones extends Model {
+    public function Programas() {
+        return $this->belongsTo(Programas::class);
+    }
 }

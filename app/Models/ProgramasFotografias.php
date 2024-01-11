@@ -13,4 +13,10 @@ class ProgramasFotografias extends Model
         'titulo',
         'imagen',
     ];
+
+    public function Programas() {
+        return $this->belongsTo(Programas::class);
+    }
 }
+
+

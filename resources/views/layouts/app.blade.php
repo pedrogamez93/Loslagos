@@ -45,7 +45,7 @@
           font-style: normal;
           line-height: 40px;
           font-family: 'Inter' !important;
-          background: url("http://127.0.0.1:8000/storage/app/public/img/arrow.png") no-repeat;
+          background: url("/asset/storage/app/public/img/arrow.png") no-repeat;
           background-position: 97% 50%;
           padding: 4px 60px 4px 20px;
         }
@@ -84,12 +84,12 @@
               <a class="dropdown-item style-a-menu" href="{{ url('/#') }}">Documentos de Gestión</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climatica</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Politica de Sostenibilidad Hidrica</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Politica de Personas Mayores</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climática</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Política de Sostenibilidad Hídrica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Política de Personas Mayores</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
-              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnologia e innovación</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnología e Innovación</a>
           </div>
       </li>
       <li class="nav-item dropdown">
@@ -97,14 +97,14 @@
               Consejo Regional
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introduccion</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introducción</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
               <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
           </div>
       </li>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-              Region los Lagos
+              Región los Lagos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/introduccion') }}">Introducción </a>
@@ -124,7 +124,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
-            <i class="bi bi-grid" style="color: white;"></i>Informate aqui
+            <i class="bi bi-grid" style="color: white;"></i>Informate aquí
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
@@ -135,7 +135,7 @@
         <a class="dropdown-item style-a-menu" >Descarga de programas</a>
         <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
         <div class="linea-separadora"></div>
-        <a class="dropdown-item style-a-menu" >Forumario de contacto</a>
+        <a class="dropdown-item style-a-menu" >Formulario de contacto</a>
 
         </div>
     </li>
