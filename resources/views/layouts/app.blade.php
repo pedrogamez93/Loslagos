@@ -133,7 +133,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
-            <i class="bi bi-grid" style="color: white;"></i>Informate aquí
+            <i class="bi bi-grid" style="color: white;"></i>Infórmate aquí
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
