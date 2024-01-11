@@ -418,9 +418,13 @@ p.valor1.mb-5 {
                                     <p class="subtitle-cat mb-5"><b>Periodo: </b>{{ $articulo1->periodo }}</p>
                                     <?php
                                         $totalInversion = 0;
+                                        $totalInversionP = 0;
                                     ?>    
                                     @foreach($InversionPu as $Inver)
-                                    <?php $totalInversion += $Inver->inversionD; ?>
+                                    <?php 
+                                    $totalInversion += $Inver->inversionD;
+                                    $totalInversionP += $Inver->inversionP;
+                                     ?>
                                     <div class="col-md-6 mb-4">
                                         <div class="col-md-12 cajaElementor mb-4 p-3">
                                             <div class="container">
@@ -464,7 +468,7 @@ p.valor1.mb-5 {
                                                         </div>
                                                         <div class="col-md-6">
                                                             <b>Inversión %</b>
-                                                            
+                                                            {{ $totalInversionP }}
                                                         </div>
                                                     </div>
                                                 </div>
