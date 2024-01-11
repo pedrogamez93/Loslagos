@@ -20,7 +20,11 @@
                         <!-- <i class="bi bi-search"></i> -->
                     </span>
                 </div>
+               
+                <h1 class="titulohome">Titulo</h1>
+                <p class="descripcionhome">Descripcion</p>
                 <input type="text" id="inputbucador" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
+               
                 <div class="input-group-append">
               <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->
                 </div>

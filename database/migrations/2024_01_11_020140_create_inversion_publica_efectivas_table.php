@@ -18,7 +18,7 @@ class CreateInversionPublicaEfectivasTable extends Migration
             $table->string('titulo');
             $table->string('periodo');
             $table->string('fuente');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }

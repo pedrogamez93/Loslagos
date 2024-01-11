@@ -20,7 +20,7 @@
               color: #F59120;
     }
     .borderR{
-        border-right: 2px solid #F59120;
+        border-left: 2px solid #F59120;
     }
     header{
        /* width: 100%;*/
@@ -254,6 +254,15 @@
         color:#fff;
 
     }
+    .borderM {
+        border-top: 2px solid #F59120;
+        border-bottom: 2px solid #F59120;
+        padding: 24px 0px;
+        margin-bottom: 20px;
+    }
+    .colorB{
+            background-color:#00548F;
+        }
 </style>
 <html>
 <head>
@@ -275,7 +284,7 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid colorB">
     <div class="row">
         <div class="col-md-12">
             <div class="container pt-5 pb-5">
@@ -315,9 +324,16 @@
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8 borderR">
-                            <div class="container int p-0">
+                        <div class="col-md-4 borderM d-block d-lg-none">
+                            <div class="container img">
                                 <div class="row">
+                                    @include('layouts.menuestadistica') 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
+                            <div class="container int">
+                                <div class="row1">
                                 <table class="table">
                                 <thead>
                                     <tr>
@@ -352,7 +368,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 borderR d-none d-lg-block">
                             <div class="container img">
                                 <div class="row">
                                     @include('layouts.menuestadistica') 
