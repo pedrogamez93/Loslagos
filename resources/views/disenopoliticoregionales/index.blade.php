@@ -100,8 +100,6 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('disenopoliticoregionales.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
-                        @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
                             <input class="form-control mt-2" type="text" name="titulo" value="{{ $ultimoRegistro->titulo }}" readonly disabled>
@@ -165,7 +163,6 @@
 
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar diseño</button>
                         <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
-                    </form>
                 </div>
             </div>
         </div>
@@ -195,7 +192,7 @@ $(document).ready(function () {
     // Agrega un evento de clic al botón
     $("#boton-editar").on("click", function () {
         // Redirige a la página de edición con el ID del elemento actual
-        window.location.href = "{{ route('disenopoliticoregionales.edit', $ultimoRegistro->id) }}";
+        window.location.href = "";
     });
 });
 </script>

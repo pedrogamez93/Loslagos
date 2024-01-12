@@ -104,7 +104,7 @@
                         @csrf
                         @method('PUT')
                         <!-- Campos del formulario -->
-                        <label class="style-label required" for="titulo">Título:</label>
+                        <label class="style-label" for="titulo">Título:</label>
                         <input class="form-control mt-2" type="text" name="titulo" value="{{ $ultimoRegistro->titulo }}">
 
                         <label class="style-label" for="bajada">Bajada o Descripción:</label>
@@ -114,40 +114,21 @@
                         <input class="form-control mt-2 mb-4" type="text" name="titulo_secciontwo" value="{{ $ultimoRegistro->titulo_seccion_form }}">
 
 
-                        <!-- Contenedor original para agregar formularios -->
-                        <div class="container form-control agregando-btn-form mt-2 mb-2 pt-4 pb-4">
-                            <label class="style-label" for="nombre_btn_form">Nombre del botón:</label>
-                            <input class="form-control mt-2 campo" type="text" name="nombre_btn_form[]">
+                            <!-- Contenedor original para agregar formularios, oculto inicialmente -->
+                            <div class="container form-control agregando-btn-form mt-2 mb-2 pt-4 pb-4" style="display: none;">
+                                <!-- Tus inputs y labels para formularios aquí -->
+                            </div>
 
-                            <label class="style-label" for="url_btn_form">URL del botón:</label>
-                            <input class="form-control mt-2 campo" type="text" name="url_btn_form[]">
-                        </div>
+                            <!-- Botón para clonar formularios -->
+                            <button type="button" class="btn btn-primary mt-2 mb-2" id="clonar">Agregar más</button>
 
-                        <!-- Botón para clonar formularios -->
-                        <button type="button" class="btn btn-primary mt-2 mb-2" id="clonar">Agregar más</button>
+                            <!-- Contenedor original para agregar encuestas -->
+                            <div class="container form-control agregando-btn-encuestas mt-4 mb-2 pt-4 pb-4" style="display: none;">
+                                <!-- Tus inputs y labels para encuestas aquí -->
+                            </div>
 
-                        <div class="container seccionencuestas">
-                            <label class="style-label mt-4" for="titulo_seccion_encue">Título Seccion Encuestas:</label>
-                            <input class="form-control mt-2" type="text" name="titulo_seccion_encue" value="{{ $ultimoRegistro->titulo_seccion_encue }}" disabled>
-
-                            <label class="style-label mt-2" for="bajada_seccion_encue">Bajada o Descripción Encuestas:</label>
-                            <textarea class="form-control mt-2 mb-4" id="editortwo" name="bajada_seccion_encue">{{ $ultimoRegistro->bajada_seccion_encue }}</textarea>
-                        </div>
-
-                        <!-- Contenedor original para agregar encuestas -->
-                        <div class="container form-control agregando-btn-encuestas mt-4 mb-2 pt-4 pb-4">
-                            <label class="style-label" for="nombre_encuesta">Nombre de la encuesta</label>
-                            <input class="form-control mt-2 campoencuesta" type="text" name="nombre_encuesta[]">
-
-                            <label class="style-label" for="nombre_btn_encuesta">Nombre del botón encuesta:</label>
-                            <input class="form-control mt-2 campoencuesta" type="text" name="nombre_btn_encuesta[]">
-
-                            <label class="style-label" for="url_btn_encuesta">URL del botón encuesta:</label>
-                            <input class="form-control mt-2 campoencuesta" type="text" name="url_btn_encuesta[]">
-                        </div>
-
-                        <!-- Botón para clonar encuestas -->
-                        <button type="button" class="btn btn-primary mt-2 mb-2" id="clonarencuesta">Agregar más</button>
+                            <!-- Botón para clonar encuestas -->
+                            <button type="button" class="btn btn-primary mt-2 mb-2" id="clonarencuesta">Agregar más</button>
 
                         <div class="container last-btn">
                             <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar diseño</button>
@@ -205,88 +186,57 @@
                         @endif
                 </div>
             </div>
+            <form action="{{ route('eliminar_diseno_completo', $ultimoRegistro->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar todo el diseño?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm mt-4">Eliminar Diseño</button>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            allowedContent: true
-        })
-        .catch(error => {
-            console.error(error);
-        });
-
-    ClassicEditor
-        .create(document.querySelector('#editortwo'), {
-            allowedContent: true
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-
-<script>
     $(document).ready(function () {
-        $(".agregando-btn-encuestas").hide();
-        $("#clonarencuesta").hide();
-        $(".agregando-btn-form").hide();
-        $("#clonar").hide();
+      // Inicializar elementos ocultos y deshabilitados
+      $(".agregando-btn-encuestas, .agregando-btn-form, #clonarencuesta, #clonar").hide();
+    $(".form-control, .campo, .campoencuesta").prop("disabled", true);
 
-        // Manejador de clic en el botón "Editar diseño"
-        $("#boton-editar").on("click", function () {
-            // Habilita todos los campos deshabilitados
-            $(".form-control:disabled").prop("disabled", false);
+    // Habilitar edición
+    $("#boton-editar").click(function () {
+        $(".form-control, .campo, .campoencuesta").prop("disabled", false);
+        $(".agregando-btn-encuestas, .agregando-btn-form, #clonarencuesta, #clonar").show();
+        // Mostrar los contenedores ocultos
+        $(".agregando-btn-encuestas, .agregando-btn-form").css("display", "block");
+    });
 
-            // Habilita campos y muestra elementos al hacer clic en "Editar diseño"
-            $(".editable").prop("readonly", false);
-            $(".campo, .campoencuesta").prop("disabled", false);
-            $(".agregando-btn-encuestas").show();
-            $(".agregando-btn-form").show();
-            $("#clonarencuesta").show();
-            $("#clonar").show();
-            $(".principal").css("background-color", "#FFFFFF");
+        // Función para clonar secciones y agregar botón de eliminar
+        function clonarSeccion(selector) {
+            var clonado = $(selector).first().clone();
+            clonado.find("input").val('');
+
+            // Agregar botón de eliminar al clonado
+            var deleteButton = $('<button/>', {
+                type: 'button',
+                class: 'btn btn-danger btn-sm mt-2 mb-2',
+                text: 'Eliminar',
+                click: function() { $(this).parent().remove(); }
+            });
+
+            clonado.append(deleteButton);
+            clonado.appendTo(selector);
+        }
+
+        // Eventos para clonar
+        $("#clonar").click(function () {
+            clonarSeccion(".agregando-btn-form");
         });
 
-        // Manejador de clic en el botón "Agregar más" para encuestas
-        $("#clonarencuesta").on("click", function () {
-            // Clona el contenedor y sus campos
-            var clone = $(".agregando-btn-encuestas:last").clone();
-
-            // Genera un nuevo identificador único basado en la marca de tiempo
-            var nuevoId = Date.now();
-
-            // Asigna el nuevo identificador a los campos clonados
-            clone.find("input[name='nombre_encuesta[]']").attr('id', 'nombre_encuesta_' + nuevoId);
-            clone.find("input[name='nombre_btn_encuesta[]']").attr('id', 'nombre_btn_encuesta_' + nuevoId);
-            clone.find("input[name='url_btn_encuesta[]']").attr('id', 'url_btn_encuesta_' + nuevoId);
-
-            // Limpia los valores de los campos clonados
-            clone.find(".campoencuesta").val('');
-
-            // Inserta el clon justo debajo del contenedor original
-            clone.insertAfter(".agregando-btn-encuestas:last");
+        $("#clonarencuesta").click(function () {
+            clonarSeccion(".agregando-btn-encuestas");
         });
 
-        // Manejador de clic en el botón "Agregar más" para formularios
-        $("#clonar").on("click", function () {
-            // Clona el contenedor y sus campos
-            var clone = $(".agregando-btn-form:last").clone();
-
-            // Genera un nuevo identificador único basado en la marca de tiempo
-            var nuevoId = Date.now();
-
-            // Asigna el nuevo identificador a los campos clonados
-            clone.find("input[name='nombre_btn_form[]']").attr('id', 'nombre_btn_form_' + nuevoId);
-            clone.find("input[name='url_btn_form[]']").attr('id', 'url_btn_form_' + nuevoId);
-
-            // Limpia los valores de los campos clonados
-            clone.find(".campo").val('');
-
-            // Inserta el clon justo debajo del contenedor original
-            clone.insertAfter(".agregando-btn-form:last");
-        });
-
+        // Inicialización de CKEditor
+        ClassicEditor.create(document.querySelector('#editor'), { allowedContent: true }).catch(error => { console.error(error); });
+        ClassicEditor.create(document.querySelector('#editortwo'), { allowedContent: true }).catch(error => { console.error(error); });
     });
 </script>

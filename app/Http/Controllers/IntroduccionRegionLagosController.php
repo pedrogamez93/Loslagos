@@ -1247,8 +1247,8 @@ if ($articulo) {
         $articulo = AntecedentesRegion::all();
         if ($articulo->isNotEmpty()) {
             // La consulta devolvió al menos un registro
-            $primerArticulo = $articulo->first();
-            $id = $primerArticulo->id;
+            $provincia = AntecedentesRegion::where('nombreseccion', 'Antecedentes de la Región')->first();
+            $id = $provincia->id;
             $introduccion  = AntecedentesRegion::find($id);
             return view('regionlagos.antecedentesregion', compact('introduccion'));
             

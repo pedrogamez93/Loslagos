@@ -73,12 +73,12 @@
         <li><a href="/gobiernoregional/documentosdegestion"title="Categoría:tags">Documentos de Gestión</a></li>
         <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
         <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
-        <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climatica</a></li>
-        <li><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hidrica</a></li>
+        <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climática</a></li>
+        <li><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hídrica</a></li>
         <li><a href="/gobiernoregional/disenopoliticapersonasmayores" title="Categoría:tags">Política Personas Mayores</a></li>
         <li><a href="/gobiernoregional/planificacioninstitucional" title="Categoría:tags">Planificación Institucional</a></li>
         <li><a href="/gobiernoregional/concursopublico" title="Categoría:tags">Concurso Público</a></li>
-        <li><a href="/gobiernoregional/comitecienciastecnologias" title="Categoría:tags">Comité Ciencia Tecno e innova</a></li>
+        <li><a href="/gobiernoregional/comitecienciastecnologias" title="Categoría:tags">Comité Ciencia Tecnología e Innovación</a></li>
     </ul>
 </div>
 

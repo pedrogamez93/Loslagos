@@ -39,7 +39,7 @@ use App\Http\Controllers\ConsejerosPalenaController;
 use App\Http\Controllers\DocumentosDeGestionController;
 
 use App\Http\Controllers\SitiosController;
-
+use App\Http\Controllers\DocumentonewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,17 +55,21 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home/create', [HomeController::class, 'create']);
-Route::post('/home/subir', [HomeController::class, 'store']);
+Route::post('/home/store', [HomeController::class, 'store']);
+Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
+Route::put('/home/update', [HomeController::class, 'update']);
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentoController::class, 'index']);
-Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
-Route::post('/documentos', [DocumentoController::class, 'store']);
-Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
-Route::get('/documentos/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
-Route::put('/documentos/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
-Route::get('/documentos/ver-documentos', [DocumentoController::class, 'indexTabla'])->name('documentos.verdocumentos');
-Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');;
+Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
+Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
+Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
+Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit');
+Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
+Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
+Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
+
+
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
@@ -126,13 +130,23 @@ Route::resource('leygobiernoregional', LeygbsController::class);
 Route::resource('organigrama', OrganigramaController::class);
 Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
+Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy']);
+Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit');
+Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update');
+Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc');
+Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento');
+
 
 Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
+Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento');
+Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea');
 
 Route::resource('audienciasdepartes', AudienciasController::class);
+Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia');
+Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia');
 
 Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
+Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo');
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
 
@@ -159,14 +173,23 @@ Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->nam
 
 Route::resource('concejoregional', ConcejoRegionalController::class);
 Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
-Route::put('/concejoregional/{id}', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
-Route::get('/concejoregional/{concejoId}/edit/{seccionId}', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+
+Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+
+Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion');
+
+Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+
+Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion');
+
 //Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
 //Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
 //Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
 Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
+Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica');
+Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol');
 
 // Rutas para los disenopoliticoregionales
 Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');
@@ -377,6 +400,9 @@ Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRe
 Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
 Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
 
+//Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
 Route::get('/regionlagos/introduccion/{imagen}', 'App\Http\Controllers\IntroduccionRegionLagosController@imagenesP')->name('imagenesP.mostrar');
@@ -402,6 +428,7 @@ Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\Introduccio
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
+
 
 
 //PROGRAMAS

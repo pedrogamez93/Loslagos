@@ -2,7 +2,8 @@
 
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Models\DisenoPoliticoRegionales;
 use App\Models\DisenoPoliticoRegionalesBtnforms;
 use App\Models\DisenoPoliticoRegionalesBtnEncuestas;
@@ -12,16 +13,19 @@ use Illuminate\Http\Request;
 class DisenoPoliticoRegionalesController extends Controller
 {
     public function index() {
-        // Obtén el último registro de DiseñoPolíticaRegionales
+        // Obtén el último registro de DisenoPoliticoRegionales
         $ultimoRegistro = DisenoPoliticoRegionales::latest()->first();
     
-        // Obtén los formularios relacionados
-        $formularios = $ultimoRegistro->btnForms;
+        // Si no hay registros, redirige al formulario de creación
+        if (!$ultimoRegistro) {
+            return redirect()->route('disenopoliticoregionales.create'); // Asegúrate de cambiar 'ruta_crear_diseno' por la ruta real de tu formulario de creación
+        }
     
-        // Obtén las encuestas relacionadas
+        // Obtén los formularios y encuestas relacionados si existe un registro
+        $formularios = $ultimoRegistro->btnForms;
         $encuestas = $ultimoRegistro->btnEncuestas;
     
-        return view('disenopoliticoregionales.index', compact('formularios', 'encuestas', 'ultimoRegistro'));
+        return view('disenopoliticoregionales.index', compact('ultimoRegistro', 'formularios', 'encuestas'));
     }
 
     public function create(){
@@ -110,7 +114,7 @@ class DisenoPoliticoRegionalesController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
-            'titulo' => 'required|string|max:255',
+            'titulo' => 'string|max:255',
             'bajada' => 'nullable|string',
             'titulo_seccion_form' => 'nullable|string',
             'titulo_seccion_encue' => 'nullable|string',
@@ -187,4 +191,17 @@ class DisenoPoliticoRegionalesController extends Controller
     return redirect()->back();
     }
 
+    public function eliminarDisenoCompleto($id)
+    {
+        $ultimoRegistro = DisenoPoliticoRegionales::findOrFail($id);
+    
+        // Eliminar formularios y encuestas asociadas
+        DisenoPoliticoRegionalesBtnforms::where('diseno_politico_regionales_id', $id)->delete();
+        DisenoPoliticoRegionalesBtnEncuestas::where('diseno_politico_regionales_id', $id)->delete();
+    
+        // Eliminar el registro principal
+        $ultimoRegistro->delete();
+    
+        return redirect()->route('disenopoliticoregionales.create')->with('success', 'Diseño eliminado con éxito');
+    }
 }

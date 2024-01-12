@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('asambleaclimatica.update', $asamblea->id) }}" method="POST" id="formulario-edicion">
+                        <form action="{{ route('asambleaclimatica.update', $asamblea->id) }}" method="POST" id="formulario-edicion" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <!-- Campos del formulario -->
@@ -114,108 +114,123 @@
 
                             <label class="style-label" for="tituloseccion">Título Sección documentos:</label>
                             <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion_two" value="{{ $asamblea->titulo_seccion_two }}" disabled>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12 pt-3 pb-3">
+                                    <div class="mb-3">
+                                        <label for="documentos" class="form-label style-label">Documentos</label>
+                                        <div class="documentos-container" id="documentos-container" style="display: none;">
+                                            <!-- Contenedor inicial vacío -->
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-4 mb-4" id="agregarDocumento">Agregar más documentos</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container form-control">
+                                <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Boton:</label>
+                                <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn }}" disabled>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-4">
+                                        <label class="style-label" for="nombre_btn">Nombre Boton:</label>
+                                        <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn }}" disabled>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="style-label" for="url_btn">Url Boton:</label>
+                                        <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
+                            <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
+                        </form>
+
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group mt-4">
+                                    <div class="form-group">
                                         <label class="style-label mb-2" for="bajada">Documentos</label>
                                         <div class="container form-control">                            
                                             <div class="row">
-                                                @foreach($documentos as $documento)
+                                            @foreach($documentos as $documento)
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button type="button" class="btn btn-danger mt-2">Eliminar</button>
+                                                    <form action="{{ route('eliminar_documento', ['asambleaId' => $asamblea->id, 'documentoId' => $documento->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este documento?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger mt-2" onclick="return confirm('¿Estás seguro de querer eliminar este documento?');">Eliminar</button>
+                                                        </form>
                                                     </div>
-                                                @endforeach   
-                                            </div>
-                                            <div class="documentos-container mt-3">
-                                                <div id="documentos-original" class="documentos-input" style="display: none;">
-                                                    <label class="style-label" for="documentos">Documentos:</label>
-                                                    <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple disabled>
-                                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple disabled>
                                                 </div>
+                                            @endforeach
                                             </div>
-                                            <!-- Botón para agregar más documentos -->
-                                            <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="container form-control mt-4">
-                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
-                            <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn }}" disabled>
-                            <div class="row mt-3">
-                                <div class="col-md-6 mb-4">
-                                    <label class="style-label" for="nombre_btn">Nombre Boton:</label>
-                                    <input class="form-control" type="text" name="nombre_btn" value="{{ $asamblea->nombre_btn }}" disabled>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label class="style-label" for="url_btn">Url Boton:</label>
-                                    <input class="form-control" type="text" name="url_btn" value="{{ $asamblea->url_btn }}" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
-                        <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
-                    </form>
                 </div>
             </div>
+            <form action="{{ route('ruta_eliminar_asamblea', $asamblea->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este registro?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm mt-4 mb-4">Eliminar Asamblea</button>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
 $(document).ready(function() {
-    // Contador para asignar identificadores únicos
-    var contador = 1;
+    var contador = 0; // Inicializa el contador para identificadores únicos
 
-    // Función para clonar el conjunto de campos original
-    function clonarDocumentoInput() {
-        var documentosContainer = $(".documentos-container");
-        var original = documentosContainer.find("#documentos-original");
-        var nuevoDocumentoInput = original.clone();
+    // Función para agregar más documentos
+    $("#agregarDocumento").click(function() {
+        // Mostrar el contenedor si está oculto
+        var documentosContainer = $("#documentos-container");
+        documentosContainer.show();
 
-        // Asigna un nuevo identificador único a los campos clonados
-        var nuevoId = 'documentos-clonados-' + contador;
-        nuevoDocumentoInput.attr('id', nuevoId);
-        nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
-        nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
+        var newInput = $('<div/>', { "class": "documentos-input", "id": "doc-input-" + contador });
 
-        // Incrementa el contador
-        contador++;
+        newInput.append($('<input/>', {
+            "type": "file",
+            "class": "form-control mt-2 mb-2",
+            "name": "ruta_documento[]",
+            "accept": ".pdf,.doc,.docx"
+        }));
 
-        return nuevoDocumentoInput;
-    }
+        newInput.append($('<input/>', {
+            "type": "text",
+            "class": "form-control mt-2 mb-2",
+            "name": "nombre_documento[]",
+            "placeholder": "Nombre del documento"
+        }));
 
-    // Agregar más documentos
-    $(".agregar-documento").click(function() {
-        var nuevoDocumentoInput = clonarDocumentoInput();
+        // Opcional: Añadir un botón para eliminar este conjunto de inputs
+        var deleteButton = $('<button/>', {
+            "type": "button",
+            "class": "btn btn-danger btn-sm mt-2 mb-2",
+            "text": "Eliminar",
+            "click": function() { $(this).parent().remove(); }
+        });
+        newInput.append(deleteButton);
 
-        // Muestra los campos clonados con una animación
-        nuevoDocumentoInput.hide().appendTo(".documentos-container").slideDown(300);
+        documentosContainer.append(newInput);
+        contador++; // Incrementa el contador
     });
 
-    // Habilitar/deshabilitar campos al hacer clic en "Editar Asamblea"
+    // Evento click para el botón "Editar"
     $("#boton-editar").click(function() {
-        var formEdicion = $("form#formulario-edicion");
-
-        // Habilita/deshabilita todos los campos excepto los botones
-        formEdicion.find(':input:not(:button)').prop('disabled', function(i, val) {
-            return !val;
-        });
-
-        // Habilitar/deshabilitar el botón "Guardar"
-        formEdicion.find('button[type="submit"]').prop('disabled', function(i, val) {
-            return !val;
-        });
+        $("input, textarea").prop("disabled", false); // Habilita todos los inputs y textareas
+        $("button[type='submit']").prop("disabled", false); // Habilita el botón "Guardar"
     });
 
-    // Habilitar el formulario justo antes de enviar
-    $("form#formulario-edicion").submit(function () {
-        $(this).find(":input").prop("disabled", false);
+    // Evento submit para el formulario
+    $("form#formulario-edicion").submit(function() {
+        // Aquí podrías agregar lógica adicional si es necesario
     });
 });
 </script>

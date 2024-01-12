@@ -58,13 +58,13 @@
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Formulario para la creacion del presidente del concejo</h1>
+                            <h1>Formulario para la creacion del presidente del consejo</h1>
                         </div>
                     </div>
                     <div class="container first-form pt-2 pb-2">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1>Formulario para la creacion del presidente del concejo </h1>
+                                <h1>Formulario para la creacion del presidente del consejo </h1>
                             </div>
                         </div>
                         <form id="formulario-creacion" action="{{ route('presidenteconcejo.store') }}" method="POST" enctype="multipart/form-data">

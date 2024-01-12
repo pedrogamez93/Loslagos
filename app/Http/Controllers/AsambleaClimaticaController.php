@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
@@ -138,6 +139,7 @@ class AsambleaClimaticaController extends Controller
     
         // Lógica para actualizar los datos en la base de datos
         $asamblea = AsambleaClimatica::findOrFail($id);
+
         $asamblea->update([
             'titulo_one' => $request->input('titulo_one'),
             'descripcion_one' => $request->input('descripcion_one'),
@@ -156,15 +158,52 @@ class AsambleaClimaticaController extends Controller
             'nombre_btn' => $request->input('nombre_btn'),
             'url_btn' => $request->input('url_btn'),
         ]);
-    
+
+        if ($request->hasFile('ruta_documento')) {
+            foreach ($request->file('ruta_documento') as $key => $documento) {
+                $path = $documento->store('public/documentosasamblea');
+                $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
+        
+                // Actualizar o crear nuevos registros de documentos
+                AsambleaClimaticaDocs::updateOrCreate(
+                    ['asamblea_climaticas_id' => $asamblea->id, 'nombre_documento' => $nombre],
+                    ['ruta_documento' => $path, 'nombre_documento' => $nombre]
+                );
+            }
+        }
+
         // Redirecciona a la vista index
         return redirect()->route('asambleaclimatica.index')->with('success', 'Asamblea actualizada exitosamente');
     }
 
-    public function destroy($id)
+    public function deleteDocumento($asambleaId, $documentoId)
+    {
+        // Encuentra el documento específico y elimínalo
+        $documento = AsambleaClimaticaDocs::find($documentoId);
+        if ($documento) {
+            Storage::delete($documento->ruta); // Asegúrate de que esta ruta sea correcta
+            $documento->delete();
+            return back()->with('success', 'Documento eliminado con éxito.');
+        } else {
+            return back()->with('error', 'Documento no encontrado.');
+        }
+    }
+
+
+    public function destroyasamblea($id)
     {
         $asamblea = AsambleaClimatica::findOrFail($id);
+    
+        // Eliminar o manejar documentos relacionados
+        // Por ejemplo, eliminar todos los documentos asociados con esta asamblea
+        foreach ($asamblea->documentos as $documento) {
+            // Aquí también podrías eliminar los archivos físicos si es necesario
+            $documento->delete();
+        }
+    
+        // Ahora que los documentos relacionados han sido manejados, puedes eliminar la asamblea
         $asamblea->delete();
-        return redirect()->route('asambleaclimatica.index');
+    
+        return redirect()->route('asambleaclimatica.create');
     }
 }

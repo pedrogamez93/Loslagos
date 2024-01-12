@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\AudienciasPartes;
 use App\Models\AudienciasPartesDocs;
 
@@ -10,22 +11,18 @@ class AudienciasController extends Controller
 {
     public function index()
     {
-        $audiencia = AudienciasPartes::latest()->with('documentos')->first();
+        // Intenta obtener la última audiencia con sus documentos
+        $audiencia = AudienciasPartes::with('documentos')->latest()->first();
     
         if ($audiencia) {
-            // Verifica si la relación documentos está cargada, si no, cárgala
-            if (!$audiencia->relationLoaded('documentos')) {
-                $audiencia->load('documentos');
-            }
-    
-            $documentos = $audiencia->documentos;
-            return view('audienciasdepartes.index', compact('audiencia', 'documentos'));
+            // Si existe una audiencia, la envía a la vista con sus documentos
+            return view('audienciasdepartes.index', compact('audiencia'));
         } else {
-            return view('audienciasdepartes.index')->with('message', 'No hay asambleas disponibles.');
+            // Si no hay audiencias, redirige a la vista de creación con un mensaje
+            return redirect()->route('audienciasdepartes.create')->with('message', 'No hay audiencias disponibles. Por favor, crea una.');
         }
     }
     
-
     public function show($id)
     {
         $audiencia = AudienciasPartes::with('documentos')->find($id);
@@ -129,15 +126,14 @@ class AudienciasController extends Controller
                 $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
                 $rutaDocumento = $documento->store('documentosasamblea');
     
-                // Almacena en la base de datos
-                AudienciasPartesDocs::create([
-                    'audiencias_parte_id' => $audiencia->id,
-                    'nombre_doc' => $nombreDocumento,
-                    'url_doc' => $rutaDocumento,
-                ]);
+                // Actualiza o crea el registro del documento
+                AudienciasPartesDocs::updateOrCreate(
+                    ['audiencias_parte_id' => $audiencia->id, 'nombre_doc' => $nombreDocumento],
+                    ['url_doc' => $rutaDocumento]
+                );
             }
         } catch (\Exception $e) {
-            // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+            // Manejar la excepción
             \Log::error('Error al procesar documentos: ' . $e->getMessage());
             return redirect()->route('audienciasdepartes.index')->with('error', 'Error al procesar documentos');
         }
@@ -145,13 +141,31 @@ class AudienciasController extends Controller
         return redirect()->route('audienciasdepartes.index')->with('success', 'Audiencia actualizada correctamente');
     }
 
-    public function destroy($id)
+    public function destroyDocAudiencia($audienciaId, $documentoId)
+    {
+        // Encuentra el documento específico relacionado con una audiencia
+        $documento = AudienciasPartesDocs::where('audiencias_parte_id', $audienciaId)
+                                    ->where('id', $documentoId)
+                                    ->first();
+
+        if ($documento) {
+            // Si el documento existe, lo elimina
+            Storage::delete($documento->ruta); // Asegúrate de que esta ruta sea correcta
+            $documento->delete();
+            return back()->with('success', 'Documento eliminado con éxito.');
+        } else {
+            // Si el documento no se encuentra, devuelve un mensaje de error
+            return back()->with('error', 'Documento no encontrado.');
+        }
+    }
+
+    public function destroyaudiencia($id)
     {
         $audiencia = AudienciasPartes::findOrFail($id);
         $audiencia->delete();
 
         // Puedes manejar aquí la eliminación de documentos relacionados si es necesario
 
-        return redirect()->route('audienciasdepartes.index')->with('success', 'Audiencia eliminada correctamente');
+        return redirect()->route('audienciasdepartes.create')->with('success', 'Audiencia eliminada correctamente');
     }
 }

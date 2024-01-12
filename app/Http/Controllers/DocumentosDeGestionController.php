@@ -14,6 +14,7 @@ class DocumentosDeGestionController extends Controller
     public function Indexcomisionregbordecostero(){
 
         return view('documentosdegestion.comisionregbordecostero.index');
+
     }
 
     public function Indexcontrolesssi(){
