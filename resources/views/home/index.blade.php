@@ -21,8 +21,8 @@
                     </span>
                 </div>
                
-                <h1 class="titulohome">Titulo</h1>
-                <p class="descripcionhome">Descripcion</p>
+                <h1 class="titulohome">{{$home->titulobanner}}</h1>
+                <p class="descripcionhome">{{$home->descripcionbanner}}</p>
                 <input type="text" id="inputbucador" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
                
                 <div class="input-group-append">
@@ -126,13 +126,14 @@
     <div  class=" d-flex justify-content-between">
         <h3 style="">Tramites Digitales</h3>
         <div>
-                <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;">
-                Galeria Fotografica
-                </button >
-                <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;"> 
-                    Videos
-                </button>
-        </div>
+    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
+        Galeria Fotografica
+    </button>
+    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
+        Videos
+    </button>
+</div>
+
     </div>
     
 
@@ -235,24 +236,24 @@
 
 <div class="row py-5 my-5">
     <div class="col">
-        <img src="{{ asset('storage/img/gobiernotransparente.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/informestadoavance.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/PoliticaTurismo.png') }}" class="mb-3">
+        <img src="{{ asset($home->minibanners1) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners2) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners3) }}" class="mb-3">
     </div>
     <div class="col">
-        <img src="{{ asset('storage/img/ban_ley_transparencia3.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/Recolectoras_orilla.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/ReceptoresFondos.png') }}" class="mb-3">
+        <img src="{{ asset($home->minibanners4) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners5) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners6) }}" class="mb-3">
     </div>
     <div class="col">
-        <img src="{{ asset('storage/img/IDE_Los_Lagos.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/renueva.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/CodigoEtica2.png') }}" class="mb-3">
+        <img src="{{ asset($home->minibanners8) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners9) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners10) }}" class="mb-3">
     </div>
     <div class="col">
-        <img src="{{ asset('storage/img/GobiernoChile.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/cumplimiento20422.png') }}" class="mb-3">
-        <img src="{{ asset('storage/img/AccesoFril2023 1.png') }}" class="mb-3">
+        <img src="{{ asset($home->minibanners11) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners12) }}" class="mb-3">
+        <img src="{{ asset($home->minibanners13) }}" class="mb-3">
     </div>
 </div>
 
