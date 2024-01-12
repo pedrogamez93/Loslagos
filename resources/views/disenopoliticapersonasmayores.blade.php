@@ -104,12 +104,6 @@
     <title>Tu Título Aquí</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap CSS y JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
 @extends('layouts.app')
@@ -190,7 +184,7 @@
                 </div>
                 <div class="container content mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8" style="padding: 0 1rem 0 3rem;">
+                        <div class="col-md-8 style-cont" style="padding: 0 1rem 0 3rem;">
                             <div class="bajada">
                                 <h1 class="mititulo pb-4">{{ $ultimoRegistro->titulo }}</h1>
                                 <p class="p-down">{!! $ultimoRegistro->bajada ?? '' !!}</p>

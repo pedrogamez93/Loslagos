@@ -83,7 +83,7 @@
                             <h2>Introduccion</h2>
                         </div>
                     </div>
-                    <form id="formulario-creacion" action="{{ route('concejoregional.update', ['concejoId' => $concejoId, 'seccionId' => $seccionId]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('concejoregional.update', $concejo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -123,98 +123,28 @@
                             </div>
                         </div>
 
-                        <div class="secciones-container mt-3">
-                        <h2>Editar Secciones</h2>
-                        @foreach($concejo->secciones as $seccion)
-                            <div class="seccion-item">
-                                <input type="hidden" name="concejoId" value="{{ $concejoId }}">
-                                
-                                <label class="style-label mb-2" for="titulo_seccion">Título:</label>
-                                <input class="form-control mt-2 mb-4" type="text" name="titulo_seccion[]" placeholder="Título" value="{{ $seccion->titulo_seccion }}">
-                                
-                                <label class="style-label mb-2" for="bajada_seccion">Bajada o Descripción:</label>
-                                <textarea class="form-control mt-2 mb-4" name="bajada_seccion[]" placeholder="Bajada o Descripción">{{ $seccion->bajada_seccion }}</textarea>
+                        <!-- Cerrar el div secciones-container -->
+                        </div>
 
-                                <label for="formFile" class="form-label style-label">Imagen actual de la sección</label>
-                                @if($seccion->img_seccion)
-                                    <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
-                                @endif
-
-                                <label for="formFile" class="form-label style-label">Selecciona una nueva imagen para la sección</label>
-                                <input class="form-control" type="file" name="img_seccion[]" accept="image/*">
-                                <hr>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <!-- Cerrar el div secciones-container -->
-                    </div>
-
-                    <div class="container mt-3 mb-5">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-info" id="agregarSeccion">+ Sección</button>
+                        <div class="container mt-3 mb-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-info" id="agregarSeccion">+ Sección</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="container mt-5 mb-2">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-success" id="guardarCambios" name="guardarCambios">Guardar</button>
+                        <div class="container mt-5 mb-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success" id="guardarCambios" name="guardarCambios">Guardar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
                     </form>
                 </div>
+                <a href="{{ route('concejoregional.index') }}" class="btn btn-secondary">Volver al Índice</a>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-$(document).ready(function() {
-    // Contador para generar IDs únicos
-    var contadorSecciones = {{ $concejo->secciones->count() + 1 }};
-
-    // Manejar clic en el botón + Sección
-    $("#agregarSeccion").click(function() {
-        // Clonar el contenedor y mostrarlo
-        var nuevoContenedor = $(".seccion-item:first").clone(true).appendTo(".secciones-container").show();
-        
-        // Incrementar el contador para el siguiente clon
-        contadorSecciones++;
-
-        // Generar clases únicas para los inputs clonados
-        nuevoContenedor.find('input, textarea').each(function() {
-            var nombreOriginal = $(this).attr('name');
-            var nuevaClase = nombreOriginal + '-clon-' + contadorSecciones;
-            $(this).removeClass(nombreOriginal).addClass(nuevaClase);
-            $(this).attr('name', nuevaClase);
-        });
-
-        // Limpiar valores de los inputs clonados (excepto el de la imagen)
-        nuevoContenedor.find('input:not([type="file"]), textarea').val('');
-    });
-
-    // Manejar envío del formulario
-    $("#formulario-creacion").submit(function(e) {
-        e.preventDefault(); // Evitar el envío predeterminado del formulario
-
-        var data = $(this).serialize();  // Obtener datos del formulario
-
-        $.ajax({
-            url: '{{ route("concejoregional.update", ["concejoId" => $concejoId, "seccionId" => $seccionId]) }}',
-            method: 'PUT',
-            data: data,
-            success: function(response) {
-                console.log(response);  // Manejar la respuesta del servidor
-            },
-            error: function(error) {
-                console.error(error);  // Manejar errores, si los hay
-            }
-        });
-    });
-});
-</script>

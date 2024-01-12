@@ -85,10 +85,6 @@ input:required {
                             <h1>Política Regional Personas Mayores</h1> 
                         </div>
                     </div>
-                    <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/politicapersonasmayores.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
                         <!-- Campos para el nuevo trámite -->
                         <label class="style-label required" for="titulo">Título:</label>
                         <input class="form-control mt-2" type="text" id="titulo" name="titulo" placeholder="Título" value="{{ $ultimoRegistro->titulo }}" required disabled>
@@ -118,7 +114,7 @@ input:required {
                                         <ul>
                                             @foreach ($docs as $documento)
                                                 <li>
-                                                    <a href="{{ asset('storage/' . $documento->urldocs) }}" target="_blank">{{ $documento->nombredocs }}</a>
+                                                    <p>{{ $documento->nombredocs }}</p>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -131,7 +127,6 @@ input:required {
 
                       <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
                       <button class="btn btn-success" style="display: none;" type="submit">Guardar</button>
-                    </form>
                 </div>
             </div>
         </div>

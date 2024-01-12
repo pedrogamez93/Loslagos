@@ -86,7 +86,7 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo Diseño Política Regional Sostenibilidad Hídrica -->
-                    <form action="{{ url('/disenopoliticoregionales') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('disenopoliticoregionales.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Campos para el nuevo Diseño Política Regional Sostenibilidad Hídrica -->
                         <label class="style-label required" for="titulo">Título:</label>

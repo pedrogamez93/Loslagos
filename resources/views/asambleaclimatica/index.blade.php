@@ -72,8 +72,6 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('asambleaclimatica.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
-                        @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
                             <input class="form-control mt-2" type="text" name="titulo_one" value="{{ $asamblea->titulo_one ?? '' }}" disabled>
@@ -148,7 +146,7 @@
                             </div>
                         </div>
                         <div class="container form-control mt-4">
-                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
+                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Boton:</label>
                             <input class="form-control" type="text" name="titulo_seccion_btn" value="{{ $asamblea->titulo_seccion_btn ?? '' }}" disabled>
                             <div class="row mt-3">
                                 <div class="col-md-6 mb-4">
@@ -163,7 +161,6 @@
                         </div>
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar asamblea</button>
                         <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
-                    </form>
                 </div>
             </div>
         </div>

@@ -86,10 +86,8 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un Política Regional Personas Mayores -->
-                    <form action="{{ url('/politicapersonasmayores') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('politicapersonasmayores.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
-                        <!-- Campos para el nuevo trámite -->
                         <label class="style-label required" for="titulo">Título:</label>
                         <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" required>
                        

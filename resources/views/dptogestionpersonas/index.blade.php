@@ -67,8 +67,6 @@
                             <h1>Departamento Gestión y Desarrollo de Personas</h1>
                         </div>
                     </div>
-                    <form id="formulario-creacion" action="{{ route('dptogestionpersonas.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12 title">
@@ -88,7 +86,7 @@
                                 </div>
                             </div>
                         </div>                        
-                        <div class="form-group">
+                        <div class="form-group" style="display:none;">
                             <div class="col-md-12 pt-3 pb-3">
                                 <div class="mb-3">
                                     <label for="documentos" class="form-label style-label">Documentos</label>
@@ -105,28 +103,12 @@
                         <div class="container doc">
                             <div class="row">
                                 <div class="col-md-12">
-                                @php
-                                    /*
-                                    @if (count($documentosUltimoDepartamento) > 0)
-                                            <h2>Documentos del Último Departamento:</h2>
-                                            <ul>
-                                                @foreach ($documentosUltimoDepartamento as $documento)
-                                                    <li>
-                                                        <a href="{{ asset('documentos/dptogestionpersonas/' . $documento->ruta) }}" target="_blank">{{ $documento->nombre }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            <p>No hay documentos disponibles en el último departamento.</p>
-                                    @endif
-                                    */
-                                @endphp
                                     @if (count($documentosTodos) > 0)
                                         <h2>Todos los Documentos:</h2>
                                         <ul>
                                             @foreach ($documentosTodos as $documento)
                                                 <li>
-                                                    <a href="{{ asset('documentos/dptogestionpersonas/' . $documento->ruta) }}" target="_blank">{{ $documento->nombre }}</a>
+                                                    <p>{{ $documento->nombre }}</p>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -136,32 +118,9 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
-                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
-                    </form>
+                        <button type="button" onclick="location.href='{{ route('dptogestionpersonas.edit', $departamento->id) }}'" class="btn btn-primary">Editar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        // Cuando se haga clic en el botón "Editar"
-        $("#editar").click(function() {
-            // Habilita los campos de entrada por su ID
-            $("#titulo").prop("disabled", false);
-            $("#bajada").prop("disabled", false);
-            $(".documentos-input input").prop("disabled", false);
-            $("#agregarDocumento").prop("disabled", false);
-        });
-
-        // Agregar más documentos
-        $("#agregarDocumento").click(function() {
-            var documentosContainer = document.getElementById("documentos-container");
-            var newInput = document.createElement("div");
-            newInput.innerHTML = '<input class="form-control mt-2 mb-2" type="file" name="documentos[]" accept=".pdf,.doc,.docx"><input class="form-control mt-2 mb-2" type="text" name="nombres[]" placeholder="Nombre del documento">';
-            documentosContainer.appendChild(newInput);
-        });
-    });
-</script>

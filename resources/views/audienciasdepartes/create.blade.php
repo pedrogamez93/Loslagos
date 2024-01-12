@@ -86,7 +86,7 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/audienciasdepartes') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('audienciasdepartes.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Campos para el nuevo trámite -->

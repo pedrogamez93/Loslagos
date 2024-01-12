@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/home/subir') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('/home/store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label class="style-label required" for="titulo">Título:</label>
