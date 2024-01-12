@@ -72,7 +72,6 @@
                             <td>{{ $art->nombre }}</td>
                             <td>{{ $art->cargo }}</td>
                             <td>
-                                <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
                                 <a href="{{ route('AutoridadesRegionLagos.editAutoridades', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
                                 <form method="POST" action="{{ route('AutoridadesRegionLagos.destroyAutoridades', $art->id) }}"  style="display: inline;">
