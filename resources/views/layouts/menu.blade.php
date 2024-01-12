@@ -306,6 +306,23 @@
                                     </div>
                                     </div>
                                 </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                    
+                                    @if(auth()->check())
+                                    <form action="{{ route('logout') }}" method="POST" style="background: #0c1e35;">
+                                        @csrf
+                                        <button type="submit" style="color: #fff;font-size: 16px;background: #0c1e35;padding: 10px 21px;border: none;">Cerrar Sesión</button>
+                                    </form>
+                                @endif
+                                    
+                                    </h2>
+                                    
+                                    </div>
+                                </div>
+                                <!-- En tu vista Blade -->
+                                
+
                                 
                                         
                             

@@ -400,6 +400,9 @@ Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRe
 Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
 Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
 
+//Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
 //frond region los lagos
 Route::get('/regionlagos/introduccion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosIntro');
 Route::get('/regionlagos/introduccion/{imagen}', 'App\Http\Controllers\IntroduccionRegionLagosController@imagenesP')->name('imagenesP.mostrar');
@@ -425,6 +428,7 @@ Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\Introduccio
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
+
 
 
 //PROGRAMAS
