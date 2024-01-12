@@ -54,13 +54,13 @@ use App\Http\Controllers\DocumentonewController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home/create', [HomeController::class, 'create']);
+Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create');
 Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');;
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
 Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
