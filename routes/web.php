@@ -39,7 +39,7 @@ use App\Http\Controllers\ConsejerosPalenaController;
 use App\Http\Controllers\DocumentosDeGestionController;
 
 use App\Http\Controllers\SitiosController;
-
+use App\Http\Controllers\DocumentonewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,17 +55,21 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home/create', [HomeController::class, 'create']);
-Route::post('/home/subir', [HomeController::class, 'store']);
+Route::post('/home/store', [HomeController::class, 'store']);
+Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
+Route::put('/home/update', [HomeController::class, 'update']);
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentoController::class, 'index']);
-Route::get('/documentos/create', [DocumentoController::class, 'create'])->name('documentos.create');
-Route::post('/documentos', [DocumentoController::class, 'store']);
-Route::post('/documentos/buscar', [DocumentoController::class, 'buscar']);
-Route::get('/documentos/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
-Route::put('/documentos/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
-Route::get('/documentos/ver-documentos', [DocumentoController::class, 'indexTabla'])->name('documentos.verdocumentos');
-Route::delete('/documentos/eliminar/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');;
+Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
+Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
+Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
+Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit');
+Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
+Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
+Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
+
+
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
