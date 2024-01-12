@@ -182,15 +182,15 @@
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour1" aria-expanded="false" aria-controls="flush-collapsefour1">
                                         Home
                                     </button>
                                     </h2>
-                                    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapsefour1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('Home.create') }}">Home nuevo</a>
+                                                <a class="style-a-menu" href="{{ route('Home.create') }}">Editar</a>
                                             </li>
                                             
                                         </ul>
