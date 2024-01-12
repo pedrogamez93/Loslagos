@@ -62,6 +62,8 @@
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
+            @include('layouts.menu')
+
             </div>
         </div>
         <div class="col-md-10">
@@ -86,9 +88,27 @@
                             <label class="style-label" for="icono">Imagen:</label>
                             <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
 
-                            <!--MIO-->
+                            <!--TEXTO DESCRIPTIVO-->
+                            <div class="container">
+                            <label class="style-label mb-2 mt-3">Texto descriptivo</label>
+                            
+                        </div>
 
-                             <button class="btn btn-success" type="submit">Guardar cambios</button>
+                        <div class="container texto-descriptivo mt-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="style-label" for="url">Título:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion" placeholder="Agregar título" value="{{ $programa->descripcion->titulo_descripcion }}">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="style-label" for="url">Bajada:</label>
+                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada_descripcion">{{ $programa->descripcion->bajada_descripcion }}</textarea>
+
+                                </div>
+                            </div>
+                        </div>
+
+                             <button class="btn btn-success mt-3" type="submit">Guardar cambios</button>
                         </form>
                         @if(session('mensaje'))
     <div class="alert alert-success mt-3">

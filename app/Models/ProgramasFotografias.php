@@ -10,7 +10,16 @@ class ProgramasFotografias extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo',
-        'imagen',
+        'ruta',
     ];
+
+    public function coleccion()
+    {
+        return $this->belongsTo(ProgramasColecciones::class, 'coleccion_id');
+    }
+
+   
+    
 }
+
+

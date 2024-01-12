@@ -13,4 +13,10 @@ class ProgramasDescripciones extends Model
         'titulo',
         'bajada',
     ];
+    
+    public function programa()
+    {
+    return $this->belongsTo(Programas::class, 'programa_id');
+    }
 }
+

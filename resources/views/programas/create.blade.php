@@ -96,13 +96,14 @@ input:required {
                         <input class="form-control mt-2 mb-4" type="text" name="titulo" placeholder="Título" required>
                        
                         <label class="style-label mb-2" for="bajada">Bajada encabezado:</label>
-                        <textarea class="form-control mt-2 mb-4" name="bajada" placeholder="Bajada"></textarea>
+                        <textarea class="form-control mt-2 mb-4" name="bajada" placeholder="Bajada encabezado"></textarea>
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
                         <textarea class="form-control mt-2 mb-4" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
-
+<!--
                         <label class="style-label mt-3" for="icono">Agregar imagen:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
+                        -->
                 
 <!--TEXTOS ACORDEÓN-->
                         <div class="container">
@@ -125,18 +126,20 @@ input:required {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="style-label" for="url">Título:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Agregar título">
+                                    <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion" placeholder="Agregar título">
                                 </div>
                                 <div class="col-md-12">
                                     <label class="style-label" for="url">Bajada:</label>
-                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada"></textarea>
+                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada_descripcion"></textarea>
 
                                 </div>
                             </div>
-                            <button type="button" id="agregarMas" class="btn btn-primary mt-2">Agregar otra descripción</button>
+                            <button type="button" id="agregarMas" class="btn btn-primary">Agregar otra descripción</button>
                         </div>
 <!--FIN TEXTOS ACORDEÓN-->
                         
+
+
 <!--BOTONES PARA DIRECCIONAR-->
                         <div class="container">
                             <label class="style-label mb-2 mt-5">¿Deseas agregar un botón que direccione?</label>
@@ -157,17 +160,18 @@ input:required {
                         <div class="container botton-direccionar mt-4">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label class="style-label" for="url">Nombre del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Nombre del boton externo">
+                                    <label class="style-label" for="url">Nombre del botón:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Nombre del botón">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="style-label" for="url">URL del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="urlbtn" placeholder="URL del boton externo">
+                                    <label class="style-label" for="url">URL del botón:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="urlbtn" placeholder="URL del botón">
                                 </div>
                             </div>
                             <button type="button" id="agregarMas2" class="btn btn-primary">Agregar Más</button>
                         </div>
-<!--FIN BOTONES PARA DIRECCIONAR-->
+
+<!--FIN BOTONES PARA DIRECCIONAR
                        
                         <div class="container agregar-documentos mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
@@ -175,53 +179,52 @@ input:required {
                               <div class="col-md-12">
                                   <div class="form-check form-check-inline">
                                       <input class="form-check-input" type="checkbox" id="inlineCheckbox111" value="option1">
-                                      <label class="form-check-label" for="inlineCheckbox12">Si</label>
+                                      <label class="form-check-label" for="inlineCheckbox111">Si</label>
                                   </div>
                                   <div class="form-check form-check-inline">
                                       <input class="form-check-input" type="checkbox" id="inlineCheckbox222" value="option2" checked>
-                                      <label class="form-check-label" for="inlineCheckbox21">No</label>
+                                      <label class="form-check-label" for="inlineCheckbox222">No</label>
                                   </div>
                               </div>
                           </div>
                       </div>
+-->
+                       <!--Campos para documentos
 
-                       <!--Campos para documentos-->
                       <div class="documentos-container mt-5">
                           <div class="documentos-input">
                               <label class="style-label" for="documentos">Agregar documento:</label>
-                              <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del Documento" multiple>
-                              <input class="form-control mt-2 mb-2" type="file" name="urlDocumento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
+                              <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento" placeholder="Nombre del documento" multiple>
+                              <input class="form-control mt-2 mb-2" type="file" name="urlDocumento" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
                           </div>
-                          <button type="button" class="btn btn-primary agregar-documento mt-2">Agregar otro documento</button>
+                          <button type="button" class="btn btn-primary agregar-documento">Agregar otro documento</button>
                       </div>
+-->
+                    <!--Colecciones-->
+                    <div class="container pregunta-doc mt-4">
+                        <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1111" name="agregar_coleccion" value="1">
+                                    <label class="form-check-label" for="inlineCheckbox1111">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2222" name="agregar_coleccion" value="0" checked>
+                                    <label class="form-check-label" for="inlineCheckbox2222">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    
-                      <div class="container pregunta-doc mt-4">
-                          <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1111" value="option1">
-                                      <label class="form-check-label" for="inlineCheckbox1">Si</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2222" value="option2" checked>
-                                      <label class="form-check-label" for="inlineCheckbox25">No</label>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Campos para colecciones-->
-                      <div class="colecciones-container mt-3">
-                          <div class="colecciones-input">
-                              <label class="style-label" for="colecciones">Añadir fotografías:</label>
-                              <input class="form-control mt-2 mb-2" type="text" name="titulo[]" placeholder="Título de la colección" multiple>
-                              <input class="form-control mt-2 mb-3" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" multiple>
-                          </div>
-                          <button type="button" class="btn btn-primary agregar-coleccion">Agregar colección</button>
-                      </div>
-
+                    <div class="colecciones-container mt-3">
+                        <div class="colecciones-input">
+                            <label class="style-label" for="colecciones">Fotografías:</label>
+                            <input class="form-control mt-2 mb-4" type="file" name="ruta[]" accept=".png, .jpg, .jpeg" multiple>
+                            <input class="form-control mt-2 mb-2" type="text" name="titulo_coleccion" placeholder="Nombre de la colección">
+                        </div>
+                        <button type="button" class="btn btn-primary agregar-coleccion">Agregar fotografías</button>
+                    </div>
 
                             
 
@@ -330,6 +333,7 @@ input:required {
     });
 
 
+
     // Desactivar la opción "Si" cuando se selecciona "No"
     $("#inlineCheckbox2").change(function () {
       if ($(this).prop("checked")) {
@@ -359,7 +363,7 @@ input:required {
       }
     });
 
-  
+ 
 
     // Botón "Agregar Más" para duplicar los inputs
     $("#agregarMas").click(function () {
@@ -382,14 +386,13 @@ input:required {
 // ClassicEditor
 <script>
 ClassicEditor
-    .create(document.querySelector('#editor-bajada' ), {
+    .create(document.querySelector('#editor-bajada'), {
         allowedContent: true
     })
     .catch(error => {
         console.error(error);
     });
 </script>
-
 <script>
 ClassicEditor
     .create(document.querySelector('#editor-bajada-acord'), {
@@ -399,3 +402,5 @@ ClassicEditor
         console.error(error);
     });
 </script>
+
+

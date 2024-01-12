@@ -218,7 +218,13 @@ h5.card-title{
 </head>
 <body>
     <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
+    @extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+        <!-- Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -240,6 +246,7 @@ h5.card-title{
                 </div>
             </div>
         </div>
+-->
 
         <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
         <div class="container content-breadc pt-4 pb-3">
@@ -254,7 +261,6 @@ h5.card-title{
                 <div class="col-md-12">
                     <p class="one-title pb-4">Preguntas Frecuentes</p>
 
-                    <p style="Width:623px;">Lorem Ipsum Dolor Met</p>
                 </div>
             </div>
         </div>   
@@ -273,7 +279,7 @@ h5.card-title{
     </div>
         <div class="container titulo">
             <div class="row">
-                <div class="col-md-12 container-grid" style="padding: 10px 60px 20px 60px;       
+                <div class="col-md-12 container-grid mb-4" style="padding: 10px 60px 20px 60px;       
 ">
                         <div class="accordion" id="preguntasAccordion">
 
@@ -296,23 +302,22 @@ h5.card-title{
 
 
 </div>
-                    </>
+                   
                 </div>
             </div>
         </div> 
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
+    
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
+<script>  
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+        document.querySelector('header').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+
+    });
+</script>
+@endsection

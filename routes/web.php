@@ -444,6 +444,8 @@ Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasControll
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 Route::get('/programas/{id}', [ProgramasController::class, 'show'])->name('programas.show');
 
+
+
 //PREGUNTAS FRECUENTES
 Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
 //Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
