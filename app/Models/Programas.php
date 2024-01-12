@@ -15,7 +15,12 @@ class Programas extends Model
         'bajada_programa',
         'imagen',
         'nombrebtn', 
-        'urlbtn',    
+        'urlbtn',
+        'nombreDocumento',
+        'urlDocumento',
+        'titulo_coleccion',    
+        'ruta',    
+
     ];
 
     public function descripcion()
@@ -32,5 +37,12 @@ class Programas extends Model
     {
         return $this->hasOne(ProgramasDocumentos::class, 'programa_id');
     }
+
+    public function colecciones()
+{
+    return $this->hasMany(ProgramasColecciones::class, 'programa_id');
 }
+}
+
+
 

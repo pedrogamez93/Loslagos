@@ -277,7 +277,13 @@ h5.card-title{
     }
 </style>
 <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
+@extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+        <!-- Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -299,7 +305,7 @@ h5.card-title{
                 </div>
             </div>
         </div>
-
+-->
         <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
@@ -326,7 +332,6 @@ h5.card-title{
                     <div id="contenidoPrincipal">
                         <h2 class="title-programa">{{ $programa->titulo }}</h2>
                         <p class="bajada-programa">{!! $programa->bajada_programa ?? '' !!}</p>
-                        <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="{{ $programa->titulo }}">
                         
                     </div>
                     
@@ -340,15 +345,34 @@ h5.card-title{
                     </div>
                         <a href="/todoslosprogramas" class="btn btn-secondary mt-3 mb-4">Volver</a>
 
-                       <strong>Titulo:</strong> <p>{{ $programa->titulo }}</p>
-                       <strong>bajada encabezado:</strong><p>{{ $programa->bajada }}</p>
-                       <strong>bajada programa:</strong><p>{{ $programa->bajada_programa }}</p>
-                       <strong>titulo descripcion:</strong><p>{{ $programa->descripcion->titulo_descripcion }}</p>
-                       <strong>bajada descripcion:</strong><p>{{ $programa->descripcion->bajada_descripcion }}</p>
-                       <strong>nombre del boton:</strong><p>{{ $programa->botones->nombrebtn }}</p>
-                       <strong>url del boton:</strong><p>{{ $programa->botones->urlbtn }}</p>
+                    <!--   
 
+-->
+<!-- En tu vista 
+<h2>Detalles del Programa</h2>
+<h3>{{ $programa->titulo }}</h3>
+<p>{{ $programa->bajada }}</p>
 
+<h4>Descripción</h4>
+<p>{{ $programa->descripcion->titulo_descripcion }}</p>
+<p>{{ $programa->descripcion->bajada_descripcion }}</p>
+
+<h4>Botones</h4>
+<p>Nombre del botón: {{ $programa->botones->nombrebtn }}</p>
+<p>URL del botón: {{ $programa->botones->urlbtn }}</p>
+
+<h4>Documentos</h4>
+{{-- Agrega el código para mostrar los documentos, si es relevante --}}
+
+<h4>Colecciones</h4>
+@foreach($programa->colecciones as $coleccion)
+    <h5>{{ $coleccion->titulo_coleccion }}</h5>
+
+    @foreach($coleccion->fotografias as $fotografia)
+        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía">
+    @endforeach
+@endforeach
+-->
                       
 
             </div>
@@ -392,3 +416,12 @@ h5.card-title{
     }
 </script>
 
+<script>  
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+        document.querySelector('header').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+
+    });
+</script>
+@endsection

@@ -62,6 +62,8 @@
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
+            @include('layouts.menu')
+
             </div>
         </div>
         <div class="col-md-10">

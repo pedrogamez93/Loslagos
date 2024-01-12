@@ -57,8 +57,10 @@ class ProgramasController extends Controller
                     'bajada_descripcion' => 'required',
                     'nombrebtn' => 'required',
                     'urlbtn' => 'required',
-                    'nombreDocumento' => 'required',
-                    'urlDocumento' => 'file|mimes:pdf,doc,docx', // Ajusta según los tipos de documentos que deseas permitir
+                    /*'nombreDocumento' => 'required',
+                    'urlDocumento' => 'file|mimes:pdf,doc,docx', // Ajusta según los tipos de documentos que deseas permitir*/
+                    'titulo_coleccion' => 'required',
+                     'ruta.*' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ajusta según tus necesidades
 
                 ]);
 
@@ -83,14 +85,14 @@ class ProgramasController extends Controller
                 $botones->urlbtn = $request->urlbtn;
                 $botones->save();
 
-                // Crear un nuevo docuento
+               /* // Crear un nuevo docuento
                 $documentos = new ProgramasDocumentos;
                 $documentos->programa_id = $programa->id;
                 $documentos->nombreDocumento = $request->nombreDocumento;
                 $documentos->urlDocumento = $request->urlDocumento;
-                $documentos->save();
+                $documentos->save();*/
 
-                // Procesar y guardar el documento si se proporcionó
+               /* // Procesar y guardar el documento si se proporcionó
                 if ($request->hasFile('urlDocumento')) {
                     $documento = $request->file('urlDocumento');
                     $nombreDocumento = $documento->getClientOriginalName();
@@ -105,6 +107,26 @@ class ProgramasController extends Controller
                         'urlDocumento' => $urlDocumento,
                     ]);
                 }
+*/
+
+             // Verifica si se desean agregar colecciones
+                if ($request->input('agregar_coleccion', 0)) {
+                    // Crea una nueva colección para el programa
+                    $coleccion = new ProgramasColecciones;
+                    $coleccion->titulo_coleccion = $request->input('titulo_coleccion');
+                    $coleccion->programa_id = $programa->id;
+                    $coleccion->save();
+
+                    // Guarda las fotografías asociadas a la colección
+                    foreach ($request->file('ruta') as $imagen) {
+                        $rutaImagen = $imagen->store('documentos');
+                        $fotografia = new ProgramasFotografias;
+                        $fotografia->ruta = $rutaImagen;
+                        $fotografia->coleccion_id = $coleccion->id;
+                        $fotografia->save();
+                    }
+                }
+
 
                 // Recuperar los datos para mostrar en la vista
                 $programas = Programas::all();
@@ -180,13 +202,27 @@ class ProgramasController extends Controller
         // Eliminar botones relacionados
         $programa->botones()->delete();
 
+        // Eliminar documentos relacionados
+        $programa->documentos()->delete();
+
+        // Obtener y eliminar colecciones relacionadas
+        $colecciones = $programa->colecciones;
+        foreach ($colecciones as $coleccion) {
+            // Eliminar fotografías asociadas a la colección
+            $coleccion->fotografias()->delete();
+        }
+
+        // Eliminar colecciones relacionadas
+        $programa->colecciones()->delete();
+
         // Finalmente, eliminar el programa
         $programa->delete();
 
-        return redirect()->route('programas.index')->with('success', 'Programa y registros relacionados eliminados exitosamente.');
+        return redirect()->route('programas.index')->with('success', 'Programa eliminado exitosamente.');
     }
 
     return redirect()->route('programas.index')->with('error', 'No se encontró el programa.');
 }
+
     
 }

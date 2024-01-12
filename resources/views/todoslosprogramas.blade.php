@@ -202,6 +202,8 @@ h5.card-title{
     font-Size: 20px;
     color: #565656;
     line-height: 24px;
+    padding: 10px 0;
+
 
   }
   .bajada-programa{
@@ -214,8 +216,20 @@ h5.card-title{
     display: -webkit-box;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
-
   }
+  #bajada-p{
+    font-family: 'Inter';
+    font-Weight: 600;
+    font-Size: 16px;
+    color: #00548F;
+    font-style: italic;
+    line-height: 19px;
+    overflow: hidden !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical !important;
+    margin: 13px 0;
+}
   .programa{
     border: 1px solid rgba(86, 86, 86, 0.5);
   }
@@ -225,6 +239,12 @@ h5.card-title{
   .linea {
     border-top: 2px solid #00548F;
     margin: 10px 0 10px 0;
+}
+.btn-programa{
+    font-family: 'Inter';
+    font-Weight: 700;
+    font-Size: 16px;
+    color: #00548F;
 }
 </style>
 <html>
@@ -242,7 +262,13 @@ h5.card-title{
 </head>
 <body>
     <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
+    @extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+        <!-- Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -264,7 +290,7 @@ h5.card-title{
                 </div>
             </div>
         </div>
-
+-->
         <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
@@ -307,7 +333,18 @@ h5.card-title{
                                 <div class="info">
                                     <h2 class="title-programa">{{ $programa->titulo }}</h2>
                                     <p class="bajada-programa">{{ $programa->bajada }}</p>
+                                    <span id="bajada-p">{!! $programa->bajada_programa ?? '' !!}  </span>
                                     <div class="linea"></div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                             <img src="" alt="icon">
+                                            </div>
+                                            <div class="col">
+                                             <a href="{{ route('programas.show', $programa) }}"" class="btn-programa"> Ir ahora</a>                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>    
                             </div>
                         @endforeach
@@ -317,17 +354,14 @@ h5.card-title{
         </div> 
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+<script>  
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+        document.querySelector('header').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+
+    });
+</script>
+@endsection
 </body>
 </html>

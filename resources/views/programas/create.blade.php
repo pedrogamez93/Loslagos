@@ -171,7 +171,7 @@ input:required {
                             <button type="button" id="agregarMas2" class="btn btn-primary">Agregar Más</button>
                         </div>
 
-<!--FIN BOTONES PARA DIRECCIONAR-->
+<!--FIN BOTONES PARA DIRECCIONAR
                        
                         <div class="container agregar-documentos mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
@@ -188,8 +188,8 @@ input:required {
                               </div>
                           </div>
                       </div>
-
-                       <!--Campos para documentos-->
+-->
+                       <!--Campos para documentos
 
                       <div class="documentos-container mt-5">
                           <div class="documentos-input">
@@ -199,36 +199,33 @@ input:required {
                           </div>
                           <button type="button" class="btn btn-primary agregar-documento">Agregar otro documento</button>
                       </div>
-
-                    <!--Colecciones
-                      <div class="container pregunta-doc mt-4">
-                          <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1111" value="option1">
-                                      <label class="form-check-label" for="inlineCheckbox1111">Si</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2222" value="option2" checked>
-                                      <label class="form-check-label" for="inlineCheckbox2222">No</label>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
 -->
+                    <!--Colecciones-->
+                    <div class="container pregunta-doc mt-4">
+                        <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1111" name="agregar_coleccion" value="1">
+                                    <label class="form-check-label" for="inlineCheckbox1111">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2222" name="agregar_coleccion" value="0" checked>
+                                    <label class="form-check-label" for="inlineCheckbox2222">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                      <!-- Campos para colecciones
-                      <div class="colecciones-container mt-3">
-                          <div class="colecciones-input">
-                              <label class="style-label" for="colecciones">Fotografías:</label>
-                              <input class="form-control mt-2 mb-4" type="file" name="imagen[]" accept=".png, .jpg, .jpeg" multiple>
-                              <input class="form-control mt-2 mb-2" type="text" name="titulo[]" placeholder="Nombre de la colección" multiple>
-                          </div>
-                          <button type="button" class="btn btn-primary agregar-coleccion">Agregar fotografías</button>
-                      </div>
+                    <div class="colecciones-container mt-3">
+                        <div class="colecciones-input">
+                            <label class="style-label" for="colecciones">Fotografías:</label>
+                            <input class="form-control mt-2 mb-4" type="file" name="ruta[]" accept=".png, .jpg, .jpeg" multiple>
+                            <input class="form-control mt-2 mb-2" type="text" name="titulo_coleccion" placeholder="Nombre de la colección">
+                        </div>
+                        <button type="button" class="btn btn-primary agregar-coleccion">Agregar fotografías</button>
+                    </div>
 
--->
                             
 
                         <button class="mt-1 btn btn-success mt-5" type="submit">Crear Programa</button>

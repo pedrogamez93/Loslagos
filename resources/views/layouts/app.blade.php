@@ -141,10 +141,10 @@
         <a class="dropdown-item style-a-menu" href="{{ url('/mapa') }}">Mapa del Sitio</a>
         <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
         <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
-        <a class="dropdown-item style-a-menu" >Descarga de programas</a>
-        <a class="dropdown-item style-a-menu" >Preguntas frecuente</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
         <div class="linea-separadora"></div>
-        <a class="dropdown-item style-a-menu" >Formulario de contacto</a>
+        <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
 
         </div>
     </li>
