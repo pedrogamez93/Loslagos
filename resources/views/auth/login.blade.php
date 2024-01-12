@@ -210,7 +210,8 @@ button.btn.btn-primary.Accede {
 }
 input#email,input#password {
     border-radius: 100px;
-    border: 1px;
+    border: 1px solid #565656;
+
     padding-left: 25px;
 }
 .colorB {
