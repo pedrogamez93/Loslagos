@@ -90,8 +90,8 @@ input:required {
                         @csrf
                         @method('PUT')
                         <!-- Campos para el nuevo trámite -->
-                        <label class="style-label required" for="titulo">Título:</label>
-                        <input class="form-control mt-2" type="text" id="titulo" name="titulo" placeholder="Título" value="{{ $ultimoRegistro->titulo }}" required disabled>
+                        <label class="style-label" for="titulo">Título:</label>
+                        <input class="form-control mt-2" type="text" id="titulo" name="titulo" placeholder="Título" value="{{ $ultimoRegistro->titulo }}" disabled>
                        
                         <label class="style-label" for="bajada">Bajada o Descripción:</label>
                         <textarea class="form-control mt-2 mb-4" id="editor" name="bajada" placeholder="Bajada o Descripción" disabled>{{ $ultimoRegistro->bajada }}</textarea>
@@ -110,29 +110,33 @@ input:required {
                             </div>
                         </div>
 
-                        <div class="container doc">
+                        <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
+                        <button class="btn btn-success"  type="submit">Guardar</button>
+                    </form>
+
+                        <div class="container doc mt-5">
                             <div class="row">
-                                <div class="col-md-12">
-                                    @if (count($docs) > 0)
-                                        <h2>Todos los Documentos:</h2>
-                                        <ul>
-                                            @foreach ($docs as $documento)
-                                                <li>
-                                                    <a href="{{ asset('storage/' . $documento->urldocs) }}" target="_blank">{{ $documento->nombredocs }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @else
-                                        <p>No hay documentos disponibles en todos los departamentos.</p>
-                                    @endif
-                                </div>
+                                @foreach($docs as $documento)
+                                    <div class="col-md-6">
+                                        <p class="form-control mt-2">{{ $documento->nombredocs }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Formulario de eliminación -->
+                                        <form action="{{ route('eliminar_doc_politica', ['ultimoRegistroId' => $ultimoRegistro->id, 'documentoId' => $documento->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este documento?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
+                                        </form>
+                                    </div>
+                                @endforeach   
                             </div>
                         </div>
-
-                        <button type="button" id="editar" name="editar" class="btn btn-primary">Editar</button>
-                      <button class="btn btn-success"  type="submit">Guardar</button>
-                    </form>
                 </div>
+                <form action="{{ route('ruta_eliminar_pol', $ultimoRegistro->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este registro?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm mt-4 mb-4">Eliminar Registro completo</button>
+                </form>
             </div>
         </div>
     </div>

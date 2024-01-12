@@ -279,7 +279,7 @@
                         <div class="col-md-8">
                             <div class="container" style="padding-left: 2rem;">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 style-cont">
                                         <h1 class="mi-title mb-5">{{ $audiencia->titulo ?? '' }}</h1>
                                         
                                         <div class="mi-bajada">{!! $audiencia->bajada ?? '' !!}</div>

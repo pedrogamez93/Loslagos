@@ -220,7 +220,7 @@ h5.card-title{
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h1 class="mititulo mt-2 mb-2">{{ $consejero->nombres ?? '' }} {{ $presidente->apellidos ?? '' }}</h1>
+                                        <h1 class="mititulo mt-2 mb-2">{{ $consejero->nombres ?? '' }} {{ $consejero->apellidos ?? '' }}</h1>
                                         <div class="itemss">
                                             <p class="itemss">Actividad o Profesión: <span style="font-family: 'Inter'; font-weight: 400; font-size: 16px;">{{ $consejero->profesion ?? '' }}</span></p>
                                             <p class="itemss">Partido Político: <span style="font-family: 'Inter'; font-weight: 400; font-size: 16px;">{{ $consejero->partidopolitico ?? '' }}</span></p>

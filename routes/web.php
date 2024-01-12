@@ -126,13 +126,23 @@ Route::resource('leygobiernoregional', LeygbsController::class);
 Route::resource('organigrama', OrganigramaController::class);
 Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('dptogestionpersonas', DptoGestionPersonasController::class);
+Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy']);
+Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit');
+Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update');
+Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc');
+Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento');
+
 
 Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
+Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento');
+Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea');
 
 Route::resource('audienciasdepartes', AudienciasController::class);
+Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia');
+Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia');
 
 Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
+Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo');
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
 
@@ -159,14 +169,23 @@ Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->nam
 
 Route::resource('concejoregional', ConcejoRegionalController::class);
 Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
-Route::put('/concejoregional/{id}', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
-Route::get('/concejoregional/{concejoId}/edit/{seccionId}', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+
+Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+
+Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion');
+
+Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+
+Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion');
+
 //Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
 //Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
 //Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
 Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
 Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
+Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica');
+Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol');
 
 // Rutas para los disenopoliticoregionales
 Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');

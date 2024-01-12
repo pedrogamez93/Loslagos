@@ -73,7 +73,6 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('audienciasdepartes.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
                         @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
@@ -119,10 +118,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar audiencia</button>
-                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
-                    </form>
+                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->       
                 </div>
             </div>
         </div>

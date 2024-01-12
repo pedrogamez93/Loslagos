@@ -190,7 +190,7 @@
                 </div>
                 <div class="container content mt-5 mb-5">
                     <div class="row">
-                        <div class="col-md-8" style="padding: 0 1rem 0 3rem;">
+                        <div class="col-md-8 style-cont" style="padding: 0 1rem 0 3rem;">
                             <div class="bajada">
                                 <h1 class="mititulo pb-4">{{ $ultimoRegistro->titulo }}</h1>
                                 <p class="p-down">{!! $ultimoRegistro->bajada ?? '' !!}</p>

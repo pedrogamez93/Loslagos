@@ -32,9 +32,6 @@
                                     <a class="style-a-menu" href="{{ url('/organigrama') }}">Organigrama</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ url('/documentosgestion') }}">Documentos de Gestión</a>
-                                </li>
-                                <li class="style-li">
                                     <a class="style-a-menu" href="{{ url('/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
                                 </li>
                                 <ul style="padding: 0px">
@@ -76,7 +73,7 @@
                         </div>
                         <!-- Agrega un botón que servirá como el enlace principal "Gobierno Regional" -->
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#concejoregional" aria-expanded="false" aria-controls="concejoregional">
-                            Concejo Regional
+                            Consejo Regional
                         </button>
 
                         <!-- Define el menú desplegable -->
@@ -86,7 +83,7 @@
                                     <a class="style-a-menu" href="{{ route('concejoregional.index') }}">Introducción</a>
                                 </li>
                                 <li class="style-li">
-                                    <a class="style-a-menu" href="{{ route('presidenteconcejo.index') }}">Presidente del Concejo</a>
+                                    <a class="style-a-menu" href="{{ route('presidenteconcejo.index') }}">Presidente del Consejo</a>
                                 </li>
                                 <li class="style-li">
                                     <a class="style-a-menu" href="{{ route('consejerososorno.index') }}">Consejeros de Osorno</a>

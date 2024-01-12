@@ -61,87 +61,96 @@
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Concejo Regional</h1>
+                        <h1>Consejo Regional</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Concejo Regional</h1> 
+                            <h1>Consejo Regional</h1> 
                         </div>
                     </div>
-                    <!-- Mostrar la información de la base de datos -->
-                    <form id="formulario-creacion" action="" method="POST" enctype="multipart/form-data">
-                        @csrf
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6 tag-comentario">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $concejo->tag_comentario }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 title">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $concejo->titulo }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 pb-3">
-                                    <div id="text">
-                                        <div class="form-floating">
-                                            <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px">"{{ $concejo->bajada }}"</textarea>
-                                            <label class="style-label" for="floatingTextarea2 style-label">Bajada</label>
+                            {{-- Verificar si existe un concejo regional --}}
+                                @if($concejo)
+                                    {{-- Usar $concejo->id para obtener el ID del concejo regional --}}
+                                    <div class="col-md-6 tag-comentario">
+                                        <!-- Campos para el Consejo Regional -->
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="tag_comentario" name="tag_comentario" class="form-control" placeholder="Tag o comentario" value="{{ $concejo->tag_comentario }}" disabled>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12 pt-3 pb-3">
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label style-label">Imagen actual</label>
-                                        <img src="{{ asset($concejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
+                                    <div class="col-md-6 title">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $concejo->titulo }}" disabled>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="secciones-container mt-3">
-                                <!-- Verificar si hay secciones asociadas -->
-                                @foreach($concejo->secciones as $seccion)
-                                    <div class="item-complet">
-                                        <h3>{{ $seccion->titulo_seccion }}</h3>
-                                        <div class="item-donw" style="display: flex;">
-                                            <p>{{ $seccion->bajada_seccion }}</p>
-                                            <!-- Asumiendo que tienes una imagen para cada sección -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 pb-3">
+                                            <div id="text">
+                                                <div class="form-floating">
+                                                    <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled>{{ $concejo->bajada }}</textarea>
+                                                    <label class="style-label" for="floatingTextarea2 style-label">Bajada</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 pb-3">
+                                            <img src="{{ asset('storage/' . $concejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{{ route('concejoregional.edit', $concejo->id) }}" class="btn btn-primary mt-2">Editar</a>
+                                    </div>
+                                    {{-- Si tienes secciones y quieres mostrarlas --}}
+                                    <h1>Secciones extras</h1>
+                                    @foreach($concejo->secciones as $seccion)
+                                        {{-- Aquí manejas la visualización de cada sección --}}
+                                        <div class="container first-form mt-4 mb-4 pt-4 pb-4">
+                                            <div class="col-md-6 title">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $seccion->titulo_seccion }}" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 pb-3">
+                                                    <div id="text">
+                                                        <div class="form-floating">
+                                                            <textarea name="bajada" class="form-control" placeholder="Escribe tu contenido aquí" id="bajada" style="height: 250px" disabled>{{ $seccion->bajada_seccion }}</textarea>
+                                                            <label class="style-label" for="floatingTextarea2 style-label">Bajada</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             @if($seccion->img_seccion)
-                                                <img src="{{ asset($seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 pb-3">
+                                                        <img src="{{ asset('storage/' . $seccion->img_seccion) }}" style="width: 150px; height: 150px;" alt="Imagen de la sección">
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <a href="{{ route('editar.seccion', ['seccionId' => $seccion->id]) }}" class="btn btn-primary mt-2">Editar</a>
+                                                    </div>
+                                                </div>
                                             @endif
-                                        </div>
-                                        <!-- Botón Editar para cada sección -->
-                                        <button type="button" class="btn btn-success editar-seccion" data-concejo-id="{{ $concejo->id }}" data-seccion-id="{{ $seccion->id }}">Editar</button>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="container mt-5 mb-2">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    <button type="button" class="btn btn-success" id="boton-editar" name="editar">Editar</button>
-                                    </div>
-                                </div>
+                                        </div>            
+                                    @endforeach
+                                @else
+
+                                    <p>No hay concejos regionales disponibles.</p>
+                                    {{-- Opcionalmente, puedes incluir un enlace para crear uno nuevo --}}
+
+                                    <a href="{{ route('concejoregional.create') }}">Crear Nuevo Concejo Regional</a>
+                                @endif
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    // Manejar clic en botones de edición de sección
-    $('.editar-seccion').on('click', function() {
-        var concejoId = $(this).data('concejo-id');
-        var seccionId = $(this).data('seccion-id');
-        window.location.href = "{{ url('concejoregional') }}/" + concejoId + "/edit/" + seccionId;
-    });
-});
+
 </script>

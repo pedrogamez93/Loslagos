@@ -161,7 +161,7 @@ input:required {
                       </div>
 
                       <div class="container form-control mt-4">
-                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Botones:</label>
+                            <label class="style-label mt-4 mb-2" for="tituloseccionbtn">Título Sección Boton:</label>
                             <input class="form-control" type="text" name="titulo_seccion_btn">
                             <div class="row mt-3">
                                 <div class="col-md-6 mb-4">
