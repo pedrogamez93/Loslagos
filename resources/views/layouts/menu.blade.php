@@ -318,7 +318,6 @@
                                     
                                     </h2>
                                     
-                                    </div>
                                 </div>
                                 <!-- En tu vista Blade -->
                                 
