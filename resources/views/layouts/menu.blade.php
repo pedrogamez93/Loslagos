@@ -211,7 +211,7 @@
                                                 <a class="style-a-menu" href="{{ route('documentos.create') }}">Agregar nuevo</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('documentos.create') }}">Ver Documentos</a>
+                                                <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
                                             </li>
                                         </ul>
                                     </div>

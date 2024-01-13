@@ -58,6 +58,7 @@ Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create
 Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
+Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
@@ -85,7 +86,7 @@ Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImag
 
 
 //Sala de prensa
-Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
+Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
 Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
 Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');

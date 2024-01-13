@@ -11,8 +11,8 @@
   
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
-<main class="px-3" class="headercontent">
-    <div class="row">
+<main class="container" class="headercontent">
+    <div class="row p-5"  class="centrar">
         <div class="col colinputbuscador" >
             <div class="input-group rounded">
             <div class="position-absolute mt-2">
@@ -51,85 +51,10 @@
 </div>
   </div>
 <!--seccion de sala de prensa y tramite -->
-<div class="container">
-  <div class="" style="width: 100%;
-    padding: 50px;
-    margin: 0px;
-    /* border-radius: 35px 35px 0px 0px !important; */
-    background-color: white;
-   
-    /* margin-top: -5vh;*/"> 
-            <div  class="d-flex justify-content-between">
-                         <h3 style="">Sala de prensa</h3>
-                         <div>
-                                 <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;">
-                                    Galeria Fotografica
-                                 </button >
-                                 <button type="button" class="btn btn-outline-warning" style="border-radius: 100px;"> 
-                                        Videos
-                                 </button>
-                        </div>
-
-            </div>
-    
-            
-            <div class=" mt-5 pb-5">
-  <div id="thumbnail-slider" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <!-- Primer Slide -->
-      <div class="carousel-item active">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 1">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 2">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 3">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 4">
-          </div>
-        </div>
-      </div>
-
-      <!-- Segundo Slide -->
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 5">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 6">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/aventura.png') }}" class="d-block w-80" alt="Imagen 7">
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/Rectangle45.png') }}" class="d-block w-80" alt="Imagen 8">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Miniaturas -->
-    <div class="carousel-indicators pt-5">
-      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    </div>
-
-   
-        </div>
-</div>
-
-    <div class="row" style="justify-content: center;">
-    <button class="btn btn-primary w-10" style="width:10rem;"> Ver todos </button>
-    </div>
-  </div>
-<div class="container">
-    <div  class=" d-flex justify-content-between">
-        <h3 style="">Tramites Digitales</h3>
+<div class="container-fluid">
+  <div class="container mt-5" > 
+            <div  class=" d-flex justify-content-between">
+        <h3 style="">Sala de prensa</h3>
         <div>
     <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
         Galeria Fotografica
@@ -141,127 +66,132 @@
 
     </div>
     
-
-    <div id="thumbnail-slider" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <!-- Primer Slide -->
-      <div class="carousel-item active pt-5">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
-            <p class="TitulocarouselTD pt-3">Fondos concursables FNDR</p>
-             <p>Sistema de postulación y gestión de proyectos fondo comunidad...</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
-              <p class="TitulocarouselTD pt-3">Sistema de Gestión Fondo</p>
-               <p>La importancia de la realización de los concursos FIC radica en el trabajo...</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
-              <p  class="TitulocarouselTD pt-3">Solicitud de Acceso</p>
-               <p>Busca dentro de la información pública de la Institución...</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
-              <p  class="TitulocarouselTD pt-3">Solicitud de Audiencia</p>
-               <p>Ingresa a la PlataformaLey del Lobby y visualiza las solicitudes...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Segundo Slide -->
-      <div class="carousel-item pt-5">
-      <div class="row">
-          <div class="col-md-3 ">
-            <img src="{{ asset('storage/img/icono-abeja.png') }}" class="d-block w-80" alt="Imagen 1">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/icono-turismo.png') }}" class="d-block w-80" alt="Imagen 2">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/lenguaje-señas.png') }}" class="d-block w-80" alt="Imagen 3">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          </div>
-          <div class="col-md-3">
-            <img src="{{ asset('storage/img/arreglos-2.png') }}" class="d-block w-80" alt="Imagen 4">
-            <p class="TitulocarouselTD pt-3">lorem ipsu</p>
-             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          </div>
-        </div>
-      </div>
+    <div class="mt-5 pb-5">
+    <div id="thumbnail-slider" class="carousel">
+        @foreach($salaprensa as $registro)
+            <div class="carousel-item">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}">
+                <div class="carousel-caption">
+                    <h5>{{ $registro->titulo }}</h5>
+                    <p>{{ $registro->descripcion }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
+</div>
+</div>
+
 
     <!-- Miniaturas -->
-    <div class="carousel-indicators pt-5">
+    <div class="carousel-indicators ">
       <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#thumbnail-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
     </div>
 
    
+        </div>
+
+
+    <div class="row" style="justify-content: center;">
+    <a href="{{ route('salaprensa.index') }}" class="btn btn-primary w-10 btn-vertodos mb-5" style="width:10rem;">Ver todos</a>
+
+
+    </div>
   </div>
+<div class="container mt-5">
+<div class="d-flex justify-content-between">
+    <h3 style="">Tramites Digitales  <a href="{{ route('salaprensa.index') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+   
+    <div>
+        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
+            Galeria Fotografica
+        </button>
+        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
+            Videos
+        </button>
+    </div>
+</div>
+
+    
+<div class="mt-5 pb-5">
+    <div id="thumbnail-slider2" class="carousel">
+        @foreach($tramitesDigitales as $tramite)
+            <div class="carousel-item">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'iconos', 'imagen' => basename($tramite->icono)]) }}" class="mb-3" style="width: 150px; height:130px" alt="{{ $tramite->titulo }}">
+                <div class="carousel-caption mb-3">
+                    
+                </div>
+                <h5 class="titulotramites">{{ $tramite->titulo }}</h5>
+                    <p class="descripciontramites">{{ $tramite->descripcion }}</p>
+            </div>
+        @endforeach
+    </div>
+</div>
 
   </div>
 
 
 
 <!--Banner-->
-<article class=" " id="">
-    
-    <h2>Ahora puedes estar actualizado sobre nuestra región</h2>
-    <p>En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
-    <button class="btn btn-outline-secondary" type="button">Ver todos los detalles</button>
 
-</article>
+    <div class="bg-body-tertiary p-5 rounded mt-3">
+        <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
+        <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
+        <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>
+    </div>
+
 <!--Cuadro dentro del banner-->
-<div class="row">
-    <div class="col-md-4" style="height: 100%; margin-top: 12vw; background-color:#D9D9D980" id="banner">
-        <div class="h-100 p-2 bg-body-tertiary border rounded-3">
-            <h2>Add borders</h2>
-            <p>Or, keep it light and add a border Or, keep it light and add a border</p>
-            <button class="btn btn-outline-secondary" type="button">Example button</button>
+<div class="container" style="margin-top: -8vw;">
+  <div class="row justify-content-end">
+    <div class="col-md-4" style="margin-left: -3vw;">
+      <div class="card bg-gray-300 text-center" style="position: relative;">
+        <div class="card-body">
+          <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Resultados 2023</h5>
+          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Fondo comunidad (Evaluación)</p>
         </div>
+      </div>
     </div>
-   
-    
-    <div class="col-md-4" style="height: 100%; margin-top: 12vw; background-color:#D9D9D980" id="banner">
-        <div class="h-100 p-2 bg-body-tertiary border rounded-3">
-            <h2>Add borders</h2>
-            <p>Or, keep it light and add a border Or, keep it light and add a border</p>
-            <button class="btn btn-outline-secondary" type="button">Example button</button>
+    <div class="col-md-4" style="margin-left: -3vw;">
+      <div class="card bg-gray-300 text-center" style="position: relative;">
+        <div class="card-body">
+        <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Fondo Comunidad</h5>
+          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Creando y Cuidando la Región</p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <div class="row py-5 my-5">
-    <div class="col">
-        <img src="{{ asset($home->minibanners1) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners2) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners3) }}" class="mb-3">
-    </div>
-    <div class="col">
-        <img src="{{ asset($home->minibanners4) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners5) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners6) }}" class="mb-3">
-    </div>
-    <div class="col">
-        <img src="{{ asset($home->minibanners8) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners9) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners10) }}" class="mb-3">
-    </div>
-    <div class="col">
-        <img src="{{ asset($home->minibanners11) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners12) }}" class="mb-3">
-        <img src="{{ asset($home->minibanners13) }}" class="mb-3">
-    </div>
+<div class="col">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="mb-3">
+</div>
+<div class="col">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="mb-3">
+</div>
+<div class="col">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="mb-3">
+</div>
+<div class="col">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="mb-3">
+    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="mb-3">
+</div>
+
 </div>
 
 
 </div>
+</div>
+
+
+
+
+
 @endsection
