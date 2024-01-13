@@ -21,8 +21,13 @@
                     </span>
                 </div>
                
-                <h1 class="titulohome">{{$home->titulobanner}}</h1>
-                <p class="descripcionhome">{{$home->descripcionbanner}}</p>
+                @if ($home)
+                  <h1 class="titulohome">{{$home->titulobanner}}</h1>
+                  <p class="descripcionhome">{{$home->descripcionbanner}}</p>
+              @else
+              <h1 class="titulohome">Titulo</h1>
+                  <p class="descripcionhome">Descripcion</p>
+              @endif
                 <input type="text" id="inputbucador" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
                
                 <div class="input-group-append">

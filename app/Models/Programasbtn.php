@@ -13,4 +13,10 @@ class Programasbtn extends Model
         'nombrebtn',
         'urlbtn',
     ];
+
+    public function programa()
+{
+    return $this->belongsTo(Programas::class, 'programa_id');
 }
+}
+

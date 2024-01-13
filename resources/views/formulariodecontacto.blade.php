@@ -277,7 +277,13 @@ button {
 <body>
     
     <header>
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...-->
+    @extends('layouts.app')
+@section('content')
+@push('styles')
+    <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
+        <!-- Contenido del encabezado barra de arriba logo, menu, etc...
         <div class="container top-bar">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-2">
@@ -299,7 +305,7 @@ button {
                 </div>
             </div>
         </div>
-
+-->
         <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
         <div class="container content-breadc pt-4 pb-3">
             <div class="row" style="padding: 10px 0px 20px 55px;">
@@ -717,17 +723,7 @@ button {
         </div> 
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
+    
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -766,7 +762,15 @@ button {
         });
     });
 </script>
+<script>  
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+        document.querySelector('header').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
 
+    });
+</script>
+@endsection
 </body>
 
 </html>

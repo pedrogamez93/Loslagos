@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario edicion de documentos</h1>
+                        <h1>Formulario creacion de documentos</h1>
                         @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -95,7 +95,7 @@ input:required {
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form method="POST" action="{{ route('documentos.store') }}">
+                    <form method="POST" action="{{ route('documentos.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             {{-- Campo para seleccionar el tipo de documento --}}

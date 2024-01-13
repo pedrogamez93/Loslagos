@@ -37,23 +37,27 @@ class DocumentonewController extends Controller
 public function store(Request $request)
 {
     try {
+
+        
         // Iniciar una transacción
         DB::beginTransaction();
     
-        // Crear el documento principal
         $documento = Documentonew::create($request->except(['_token']));
+
+       if ($request->hasFile('archivo')) {
+           
+
+        $archivoPath = $request->file('archivo')->store('documentos', 'public');
+      $documento['archivo'] = $archivoPath;
+    }
+
+    dd($documento);
+
+       
         
-        // Verificar si se ha enviado un nuevo archivo
-        if ($request->hasFile('archivo')) {
-            // Obtener el archivo del formulario
-            $archivo = $request->file('archivo');
+       
+        
 
-            // Guardar el archivo en la carpeta 'documentos' dentro de la carpeta 'public'
-            $archivoPath = $archivo->store('documentos', 'public');
-
-            // Asignar la ruta del archivo al campo 'archivo' del modelo Documentonew
-            $documento->archivo = $archivoPath;
-        }
 
         // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
         switch ($request->tipo_documento) {
@@ -132,6 +136,16 @@ public function store(Request $request)
         $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->findOrFail($id);
         return view('documentos.show', compact('documento'));
     }
+
+    public function indexTabla()
+    {
+        // Obtener todos los documentos con las relaciones cargadas
+        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->get();
+    
+        // Retornar la vista con los documentos para mostrar en la tabla
+        return view('documentos.tabladocumentos', compact('documentos'));
+    }
+    
 
     // Mostrar el formulario para editar un documento
     public function edit($id)

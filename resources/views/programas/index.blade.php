@@ -126,6 +126,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+
+
+                            <!-- index.blade.php -->
+
+
                         </div>
                     </div>
-                </div
+                
+               
+               
+                
