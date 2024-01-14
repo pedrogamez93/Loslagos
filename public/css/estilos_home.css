@@ -80,15 +80,39 @@
 .colinputbuscador{
     align-self: center;
 }
+#inputbucador {
+  width: 68%; /* Ancho del 68% de la pantalla */
+  height: 80px;
+  top: 1vh;
+  border-radius: 100px !important;
+}
 
-#inputbucador{
-    width: 727px;
-    height: 80px;
-    top: 1vh;
-    left: 1vw;
-    border-radius: 100px !important;
+/* Estilos específicos para pantallas pequeñas */
+@media only screen and (max-width: 767px) {
+  #inputbucador {
+      width: 90%; /* Ancho del 90% de la pantalla para dispositivos más pequeños */
+  }
+}
 
+/* Estilos específicos para pantallas medianas */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  #inputbucador {
+      width: 80%; /* Ancho del 80% de la pantalla para dispositivos medianos */
+  }
+}
 
+/* Estilos específicos para pantallas grandes (computadoras) */
+@media only screen and (min-width: 1024px) and (max-width: 2500px) {
+  #inputbucador {
+      width: 68%; /* Ancho del 68% de la pantalla para pantallas de hasta 2500px */
+  }
+}
+
+/* Estilos específicos para pantallas muy grandes (mayores a 2500px) */
+@media only screen and (min-width: 2501px) {
+  #inputbucador {
+      width: 68%; /* Puedes ajustar este valor según sea necesario para pantallas mayores a 2500px */
+  }
 }
 
 .TitulocarouselTD{
@@ -123,4 +147,163 @@ font-weight: 500;
 line-height: normal;
 text-align: start;
 width: 100%;
+}
+
+
+.bannerinferior{
+  color: #565656;
+
+font-family: Inter;
+font-size: 50px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+width: 65%;
+text-align: -webkit-left;
+
+}
+.contenidobannerinferior{
+  color: #565656;
+
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.bg-gray-300{
+  background-color: #D9D9D9;
+  width: 299px;
+height: 268px;
+border-color: #d9d9d9;
+}
+
+.bg-body-tertiary{
+  background: rgba(217, 217, 217, 0.50);
+}
+
+.bg-body-tertiary {
+  height: 413px;
+  width: 100vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
+  margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
+  margin-right: calc(-50vw + 50%);
+  border-radius: 0; /* Elimina el borde redondeado que puede tener el banner */
+}
+
+.centrar{
+  margin-left: calc(6vw + 15%);
+}
+
+/* Media query para pantallas pequeñas */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .bannerinferior,
+  .contenidobannerinferior,
+  .btn-outline-primary {
+      margin-left: calc(5vw + 5%);
+      margin-right: calc(5vw + 5%);
+  }
+}
+
+/* Media query para pantallas medianas */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .bannerinferior,
+  .contenidobannerinferior,
+  .btn-outline-primary {
+      margin-left: calc(7.5vw + 7.5%);
+      margin-right: calc(7.5vw + 7.5%);
+  }
+}
+
+/* Media query para pantallas grandes (computadoras) */
+@media only screen and (min-width: 1024px) {
+  .bannerinferior,
+  .contenidobannerinferior,
+  .btn-outline-primary {
+      margin-left: calc(10vw + 10%);
+      margin-right: calc(10vw + 10%);
+  }
+}
+
+ /* Agrega estilos para el margen entre los slides */
+ #thumbnail-slider .carousel-item {
+  margin-right: 20px;
+}
+
+/* Corrige el margen del último elemento */
+#thumbnail-slider .carousel-item:last-child {
+  margin-right: 0;
+}
+
+
+.card-title{
+  color: #565656;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.card-text{
+  color: #565656;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.btn-vertodos{
+  
+  border-radius: 20px;
+  background: #F59120;
+  border: none;
+
+}
+
+.titulotramites{
+  color: #565656;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.descripciontramites{
+  color: #565656;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%; /* Ajustar a la altura deseada */
+}
+
+.carousel-item img {
+  max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
+}
+
+.carousel-caption {
+ 
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.titulotramites {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.descripciontramites {
+  font-size: 1rem;
 }

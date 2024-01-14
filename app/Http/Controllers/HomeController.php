@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Home;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use App\Models\Salaprensa;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $home = Home::where('id', 1)->first();
-        return view('home.index', compact('home'));
+        $tramitesDigitales = DB::table('tramites_digitales')->latest()->take(12)->get();
+        $salaprensa = Salaprensa::latest()->take(12)->get();
+        return view('home.index', compact('home','tramitesDigitales','salaprensa'));
     }
 
     public function actualizar()
@@ -264,8 +268,15 @@ class HomeController extends Controller
     }
 
     
-    public function mostrarImagen($imagen)
-    {
-        return response()->file(storage_path('app/public/minibanners/' . $imagen));
+    public function mostrarImagen($carpeta, $imagen)
+{
+    $rutaCompleta = storage_path("app/public/{$carpeta}/{$imagen}");
+
+    if (file_exists($rutaCompleta)) {
+        return response()->file($rutaCompleta);
+    } else {
+        abort(404); // O redirige a una página de error según tus necesidades
     }
+}
+
 }

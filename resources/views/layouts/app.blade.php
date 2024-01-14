@@ -16,6 +16,8 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
  <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
  <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
 
@@ -261,8 +263,61 @@ Accesibilidad
   </footer>  
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <script>
+    jQuery(document).ready(function(){
+      $('#thumbnail-slider').slick({
+            slidesToShow: 4, // Cambia según tus preferencias
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
+            dots: true,
+            responsive: [
+                {
+                    breakpoint: 368,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 492,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }
+            ]
+        });
+    });
+
+    jQuery(document).ready(function(){
+      $('#thumbnail-slider2').slick({
+            slidesToShow: 4, // Cambia según tus preferencias
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
+            dots: true,
+            responsive: [
+                {
+                    breakpoint: 368,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 492,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+
 
 </body>
 </html>
