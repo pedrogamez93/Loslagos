@@ -11,7 +11,7 @@
 <div id="banner" class="h-500 text-light d-flex align-items-center" style="background: #00548F !important; height: 502px; display: flex; padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulobannernoticia">Sala de prensa </h1>
+        <h1 class="titulobannernoticia" style="text-align: left;">Sala de prensa </h1>
         <p>Infórmate aquí de las noticias más recientes del Gore</p>
     </div>
 </div>
@@ -54,10 +54,14 @@
     </div>
 </div>
 
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.navbar').style.setProperty('background-color', '#00548F', 'important');
-    });
-</script>
+   
+   document.addEventListener("DOMContentLoaded", function() {
+     
+       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F', 'important');
+       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F', 'important');
+   });
+</script> 
 
 @endsection

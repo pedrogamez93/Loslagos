@@ -15,7 +15,7 @@
     padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulofun">Funcionarios </h1>
+        <h1 class="titulofun" style="text-align: left;">Funcionarios </h1>
         <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
