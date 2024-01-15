@@ -12,7 +12,7 @@
     padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulodoc">Documentos </h1>
+        <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
@@ -23,7 +23,7 @@
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">
             @csrf
-                <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+                <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
                                 <option value="Documentos de Gestión">Documentos de Gestión</option>
                                 <option value="Estudios">Estudios</option>
