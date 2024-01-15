@@ -243,7 +243,7 @@ Contenido principal de tu página -->
 </html>
 <script>  
     document.addEventListener("DOMContentLoaded", function() {
-      
+        document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
         document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
     });
 </script>
