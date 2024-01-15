@@ -28,12 +28,15 @@
             <div class="card card-noticias">
                 <div class="row no-gutters">
                     <div class="col-md-2">
-                        <img src="{{ asset($sitio->archivo_path) }}" style="max-height: 200px;max-width:200px" class="card-img img-fluid" alt="Imagen de la noticia">
+                        <img src="{{ asset($sitio->archivo_path) }}" style="min-height: 110px;
+    min-width: 260px;
+    max-height: 200px;
+    max-width: 290px;" class="card-img img-fluid" alt="Imagen de la noticia">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <p class="card-text noticia-categoria">{{ $sitio->categoria }}</p>
-                            <h5 class="card-title titulonoticia">{{ $sitio->titulo }}</h5>
+                            <h3 class="card-title titulonoticia">{{ $sitio->titulo }}</h3>
                             <a href="{{ $sitio->url }}" class="btn btn-primary">Ir ahora</a>
                         </div>
                     </div>
@@ -55,10 +58,15 @@
     </div>
 </div>
 
+
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.navbar').style.setProperty('background-color', '#00548F', 'important');
-    });
-</script>
+   
+   document.addEventListener("DOMContentLoaded", function() {
+     
+       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F', 'important');
+       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F', 'important');
+   });
+</script> 
 
 @endsection
