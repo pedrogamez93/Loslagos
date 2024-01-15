@@ -58,13 +58,16 @@
           border-top: 1px solid #00548F;
           margin: 20px 10px;
         }
+        .nav-head{
+          background-color: #389144;
+        }
     </style>
 
 @stack('styles')
 </head>
 <body id="app-layout"  class=" " style="">
-
-<nav class="navbar navbar-expand-lg px-5 backgroundB" >
+<div class="container-fluid nav-head">
+<nav class="navbar navbar-expand-lg px-5 backgroundB container" >
   
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
@@ -172,7 +175,7 @@
                 </ul> -->
   </div>
 </nav>
-
+</div>
 
 
     @yield('content')

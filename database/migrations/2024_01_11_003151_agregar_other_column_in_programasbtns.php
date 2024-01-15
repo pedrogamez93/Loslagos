@@ -12,6 +12,7 @@ class AgregarOtherColumnInProgramasbtns extends Migration
      *
      * @return void
      */
+    /*
     public function up()
     {
         Schema::table('programasbtns', function (Blueprint $table) {
@@ -24,6 +25,23 @@ class AgregarOtherColumnInProgramasbtns extends Migration
                 ->onDelete('cascade'); // Esto indica que si el programa asociado se elimina, también se eliminarán los registros relacionados en programasbtns
         });
     }
+    */
+    public function up()
+{
+    Schema::table('programasbtns', function (Blueprint $table) {
+        // Agrega esta verificación para cada nueva columna
+        if (!Schema::hasColumn('ExportacionSegunBloqueEconomico', 'actividad6')) {
+            $table->unsignedBigInteger('programa_id');
+
+            // Agregar la restricción de clave foránea
+            $table->foreign('programa_id')
+                ->references('id')
+                ->on('programas')
+                ->onDelete('cascade'); // Esto indica que si el programa asociado se elimina, también se eliminarán los registros relacionados en programasbtns            
+        }
+
+    });
+}
 
     /**
      * Reverse the migrations.
