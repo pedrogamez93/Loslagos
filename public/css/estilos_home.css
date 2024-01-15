@@ -353,3 +353,12 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+
+h5.footer-col-title {
+  padding-bottom: 20px;
+}
+
+
+#newsletter12::placeholder {
+  color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
+}
