@@ -210,6 +210,9 @@ Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name
 
 Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
 
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
