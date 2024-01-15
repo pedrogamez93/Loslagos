@@ -308,3 +308,9 @@ line-height: normal;
 .descripciontramites {
   font-size: 1rem;
 }
+
+.carousel-caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
