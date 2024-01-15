@@ -62,7 +62,7 @@
    
     document.addEventListener("DOMContentLoaded", function() {
       
-        document.querySelector('.navbar').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
     });
 </script>
 
