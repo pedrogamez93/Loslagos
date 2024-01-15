@@ -14,7 +14,7 @@
     padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulodoc">Documentos </h1>
+        <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p >Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
@@ -88,5 +88,17 @@
         @endif
         <!-- ... tu código existente ... -->
     </div>
+
+    <script>
+   
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120', 'important');
+    });
+</script>
+
+
+
 @endsection
 </div>

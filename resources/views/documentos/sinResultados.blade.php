@@ -38,6 +38,13 @@
     </div>
 </div>
 
-  
+<script>
+   
+   document.addEventListener("DOMContentLoaded", function() {
+     
+       document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
+       document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120', 'important');
+   });
+</script>
 @endsection
 </div>
