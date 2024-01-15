@@ -162,6 +162,9 @@
         .colorB{
             background-color:#00548F;
         }
+        .nav-head{
+            background-color:#00548f !important;
+        }   
 </style>
 <html>
 <head>
