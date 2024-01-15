@@ -740,7 +740,7 @@ button {
             }
         }
 
-        // Mostrar u ocultar campos específicos al cargar la página
+        // Mostrar u ocultar campos especíasficos al cargar la página
         toggleCampos();
 
         // Mostrar u ocultar campos específicos al cambiar el tipo de mensaje
