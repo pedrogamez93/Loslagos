@@ -69,16 +69,17 @@
     <div class="mt-5 pb-5">
     <div id="thumbnail-slider" class="carousel">
         @foreach($salaprensa as $registro)
-            <div class="carousel-item">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px;">
+            <div class="carousel-item" style="position: relative;">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
                 <div class="carousel-caption">
-                    <h5>{{ $registro->titulo }}</h5>
-                    <p>{{ $registro->descripcion }}</p>
+                    <h5 style="position: absolute; top: 10px; left: 10px;">{{ $registro->titulo }}</h5>
+                    <p style="text-align: center; margin-top: 50%; transform: translateY(-50%);">{{ $registro->descripcion }}</p>
                 </div>
             </div>
         @endforeach
     </div>
 </div>
+
 
 
 
