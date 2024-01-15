@@ -160,7 +160,7 @@
 
 
     </ul>
-    <img src="{{ asset('storage/img/accessibility_icon.png') }}" alt="accessibilidad_icon" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <img src="{{ asset('storage/images/accessibility_icon.png') }}" alt="accessibilidad_icon" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="36px">
    
     <!-- <ul class="nav navbar-nav navbar-right">
                  
@@ -212,9 +212,7 @@
 </div>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top" style="">
     <div class="col mb-3">
-        <a href="#" class="" >
-            Accesibilidad
-        </a>
+
         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
             <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" alt="Logo GORE Vertical Blanco">
         </a>
