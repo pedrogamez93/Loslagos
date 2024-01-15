@@ -25,13 +25,10 @@
             @csrf
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
-                                <option value="Documentos de Gestión">Documentos de Gestión</option>
-                                <option value="Estudios">Estudios</option>
-                                <option value="Fondos Concursable">Fondos Concursable</option>
-                                <option value="Leyes">Leyes</option>
-                                <option value="Gestión">Gestión </option>
-                                <option value="Comité de integración">Comité de integración</option>
-                                <option value="Bode costero">Bode costero</option>
+                <option value="Actas">Actas</option>
+                                    <option value="Acuerdos">Acuerdos</option>
+                                    <option value="Resumengastos">Resumen de Gastos</option>
+                                    <option value="Documentogeneral">Documento General</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
                 <div class="pt-5" style="direction: rtl;">
