@@ -253,14 +253,14 @@
                         <div class="row mt-4">
                             @if ($tramites->fecha_apertura)
                                 <div class="col-md-6">
-                                    <p>FECHA DE APERTURA</p>
+                                    <p><strong>FECHA DE APERTURA</strong></p>
                                     <p>{{ $tramites->fecha_apertura }}</p>
                                 </div>
                             @endif
 
                             @if ($tramites->fecha_cierre)
                                 <div class="col-md-6">
-                                    <p>FECHA DE CIERRE</p>
+                                    <p><strong>FECHA DE CIERRE</strong></p>
                                     <p>{{ $tramites->fecha_cierre }}</p>
                                 </div>
                             @endif
