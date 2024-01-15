@@ -210,7 +210,7 @@ input:required {
                                 <div class="form-group">
                                     <label for="categoria">Categoría:</label>
                                     <select name="categoria" id="categoria" class="form-control">
-                                <option value="">Seleccione Sector</option>
+                                <option value="">Seleccione Categoria</option>
                                 <option value="Documentos de Gestión">Documentos de Gestión</option>
                                 <option value="Estudios">Estudios</option>
                                 <option value="Fondos Concursable">Fondos Concursable</option>

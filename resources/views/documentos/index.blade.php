@@ -24,10 +24,14 @@
             <form action="{{ url('/documentos/buscar') }}" method="POST">
             @csrf
                 <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-                    <option selected>Seleccione Categoria</option>
-                    <option value="Categoria 1">Categoria 1</option>
-                    <option value="Categoria 2">Categoria 2</option>
-                    <option value="Categoria 3">Categoria 3</option>
+                <option value="">Seleccione Categoria</option>
+                                <option value="Documentos de Gestión">Documentos de Gestión</option>
+                                <option value="Estudios">Estudios</option>
+                                <option value="Fondos Concursable">Fondos Concursable</option>
+                                <option value="Leyes">Leyes</option>
+                                <option value="Gestión">Gestión </option>
+                                <option value="Comité de integración">Comité de integración</option>
+                                <option value="Bode costero">Bode costero</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
                 <div class="pt-5" style="direction: rtl;">
