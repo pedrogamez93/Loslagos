@@ -54,13 +54,14 @@ use App\Http\Controllers\DocumentonewController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home/create', [HomeController::class, 'create']);
+Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create');
 Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
+Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');;
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
 Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
@@ -68,7 +69,7 @@ Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->na
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
-
+Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 
 /*FUNCIONARIOS */
 
@@ -85,14 +86,15 @@ Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImag
 
 
 //Sala de prensa
-Route::get('/saladeprensa', [SalaprensaController::class, 'index']);
+Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
 Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
 Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
 Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
 Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
-Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+//Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa
