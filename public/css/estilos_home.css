@@ -309,6 +309,11 @@ line-height: normal;
   font-size: 1rem;
 }
 
+.carousel-item {
+  border-radius: 10px; /* Ajusta el valor según la curvatura deseada */
+  overflow: hidden; /* Asegura que el contenido no se extienda más allá del contenedor redondeado */
+}
+
 .carousel-caption {
   overflow: hidden;
   text-overflow: ellipsis;
