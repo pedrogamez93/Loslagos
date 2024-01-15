@@ -224,5 +224,27 @@ public function store(Request $request)
         }
     }
 
-    
+    public function buscar(Request $request)
+    {
+        $request->validate([
+            'categoria' => 'nullable',
+            'nombre' => 'nullable',
+        ]);
+
+        $categoria = $request->input('categoria');
+        $nombre = $request->input('nombre');
+       
+        $documentos = Documentonew::where('categoria', $categoria);
+
+        if ($nombre) {
+            $documentos = Documentonew::where('nombre', 'LIKE', "%$nombre%");
+        }
+
+        $documentos = $documentos->get();
+        
+
+        return view('documentos.resultados', compact('documentos'));
+    }
+
+
 }
