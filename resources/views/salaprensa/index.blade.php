@@ -24,7 +24,7 @@
             <!-- Aquí se colocan las noticias -->
             <div class="row">
     @foreach($noticias as $noticia)
-        <div class="col-md-2 mb-4">
+        <div class="col-md-3 mb-4">
             <div class="card card-noticias" >
              
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
