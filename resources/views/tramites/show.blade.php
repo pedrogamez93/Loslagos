@@ -247,7 +247,7 @@
 
                     <p class="style-tag pt-4 pb-4">{{ $tramites->tags }}</p>
                         
-                    <div class="mt-4 mb-4">{!! $tramites->descripcion !!}</div>
+                    <div class="style-cont mt-4 mb-4">{!! $tramites->descripcion !!}</div>
 
                     @if ($tramites->fecha_apertura || $tramites->fecha_cierre)
                         <div class="row mt-4">
