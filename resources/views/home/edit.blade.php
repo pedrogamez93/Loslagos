@@ -89,11 +89,11 @@
             @csrf
             @method('PUT')
             <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="titulobanner" placeholder="Título" >
+            <input class="form-control mt-2" type="text" name="titulobanner" placeholder="{{ $home->titulobanner }}" >
 
 
             <label class="style-label required" for="titulo">Descripcion:</label>
-            <input class="form-control mt-2" type="text" name="descripcionbanner" placeholder="Descripcion" >
+            <input class="form-control mt-2" type="text" name="descripcionbanner" placeholder="{{ $home->descripcionbanner  }}" >
                        
         
 

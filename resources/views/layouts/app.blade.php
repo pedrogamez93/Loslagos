@@ -16,6 +16,8 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
  <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
  <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
 
@@ -29,7 +31,15 @@
         .fa-btn {
             margin-right: 6px;
         }
-       
+        .nav-link{
+    font-family: 'Inter' !important;
+      src: url('/fonts/Inter-Regular.ttf') format('truetype');
+      color: white !important;
+    
+  }
+  h1{
+    text-align: center;
+}
 
     footer {
             background-color: #389144;
@@ -38,7 +48,7 @@
             position: relative; /* Cambiado de fixed a relative */
             bottom: 0;
             left: 0;
-            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+            padding: 5%; /* Ajusta el relleno según sea necesario */
         }
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
@@ -204,68 +214,140 @@
     </div>
   </div>
 </div>
-<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
-    
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top" style="">
     <div class="col mb-3">
-    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-Accesibilidad
-      </a>
-      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-        <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" >
-      </a>
-      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-        <img src="{{ asset('storage/img/Logo-Core-blanco.png') }}" >
-      </a>
-    </div>
-
-    
-
-    <div class="col mb-3 ">
-      <h5>Menu</h5>
-      <ul class="nav flex-column ">
-        <li class="nav-item mb-2 text-light">
-            <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
-         
-        </li>
-        <li class="nav-item mb-2 "><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
-      
-      </ul>
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Accesibilidad
+        </a>
+        <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" alt="Logo GORE Vertical Blanco">
+        </a>
+        <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <img src="{{ asset('storage/img/Logo-Core-blanco.png') }}" alt="Logo Core Blanco">
+        </a>
     </div>
 
     <div class="col mb-3">
-      <h5>Enlaces directos</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Creando y Cuidando la Región</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información de la región</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Organigrama</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trámites</a></li>
-      </ul>
+        <h5 class="footer-col-title">Menú</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2 text-light">
+                <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
+        </ul>
     </div>
 
     <div class="col mb-3">
-      <h5>Contacta con nosotras aquí</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contacta con nosotras aquí</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><div class="d-flex flex-column flex-sm-row w-100 gap-2">
-            <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-            <button class="btn btn-primary" type="button">Subscribe</button>
-          </div></a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
-      
-      </ul>
+        <h5 class="footer-col-title" >Enlaces directos</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Creando y Cuidando la Región</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información de la región</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Organigrama</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trámites</a></li>
+        </ul>
     </div>
-  </footer>  
+
+    <div class="col mb-3">
+        <h5 class="footer-col-title" >Contacta con nosotros aquí</h5>
+        <ul class="nav flex-column">
+            
+            <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
+            <li class="nav-item mb-2">
+            <a href="#" class="nav-link p-0 text-muted">
+                <div class="d-flex flex-column flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+                    <label for="newsletter1" class="visually-hidden" style="color:white">Escríbenos</label>
+                    <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
+
+                    <button class="btn " type="button" style="color: white;">Suscribirse</button>
+                </div>
+            </a>
+            </li>
+            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+        </ul>
+    </div>
+</footer>
+  
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <script>
+   jQuery(document).ready(function(){
+    $('#thumbnail-slider').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true, 
+        responsive: [
+            {
+              breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1 // Agrega esta línea para que también se desplace 1 slide en dispositivos móviles
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+});
+
+
+    jQuery(document).ready(function(){
+      $('#thumbnail-slider2').slick({
+            slidesToShow: 4, // Cambia según tus preferencias
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
+            dots: true,
+            responsive: [
+            {
+              breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1 // Agrega esta línea para que también se desplace 1 slide en dispositivos móviles
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+        });
+    });
+</script>
+
+
 
 </body>
 </html>

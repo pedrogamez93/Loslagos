@@ -155,7 +155,7 @@ public function indexTabla()
 
       
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'nullable',
             
             'actividad' => 'nullable',
             'division' => 'nullable',
@@ -171,11 +171,12 @@ public function indexTabla()
         ]);
 
        
+        $datosf = $request->except('_token');
 
          // Manejo del archivo
          if ($request->hasFile('foto')) {
             $archivoPath = $request->file('foto')->store('funcionarios', 'public');
-            $datosd['foto'] = $archivoPath;
+            $datosf['foto'] = $archivoPath;
         }
 
 

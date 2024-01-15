@@ -61,7 +61,7 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Registro de Estadística</h1>
+                        <h1>Actualizar Dinámica Económica</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
