@@ -686,7 +686,7 @@ button {
                 <option value="expresar_felicitaciones">EXPRESAR FELICITACIONES</option>
             </select>
 
-            <label>Solicita Respuestas:</label>
+            <label>Solicita Respuesta:</label>
             <select name="solicita_respuestas" >
                 
                 <option value="">Seleccione</option>
@@ -740,7 +740,7 @@ button {
             }
         }
 
-        // Mostrar u ocultar campos específicos al cargar la página
+        // Mostrar u ocultar campos especíasficos al cargar la página
         toggleCampos();
 
         // Mostrar u ocultar campos específicos al cambiar el tipo de mensaje
