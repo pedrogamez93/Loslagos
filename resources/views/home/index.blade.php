@@ -72,8 +72,8 @@
             <div class="carousel-item" style="position: relative;">
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
                 <div class="carousel-caption">
-                    <h5 style="position: absolute; top: 35px; left: 0px;" class="tituloprensa">{{ $registro->titulo }}</h5>
-                    <p style="text-align: center; margin-top: 50%; transform: translateY(-50%);" class="descripcionprensa">{{ $registro->descripcion }}</p>
+                    <h5 style="" class="tituloprensa">{{ $registro->titulo }}</h5>
+                    <p style="" class="descripcionprensa">{{ $registro->descripcion }}</p>
                 </div>
             </div>
         @endforeach
