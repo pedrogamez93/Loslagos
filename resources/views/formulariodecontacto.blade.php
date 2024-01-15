@@ -686,7 +686,7 @@ button {
                 <option value="expresar_felicitaciones">EXPRESAR FELICITACIONES</option>
             </select>
 
-            <label>Solicita Respuesta:</label>
+            <label>Solicita Respuestas:</label>
             <select name="solicita_respuestas" >
                 
                 <option value="">Seleccione</option>
