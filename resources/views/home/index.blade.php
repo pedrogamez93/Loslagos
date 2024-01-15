@@ -70,7 +70,7 @@
     <div id="thumbnail-slider" class="carousel">
         @foreach($salaprensa as $registro)
             <div class="carousel-item">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px;">
                 <div class="carousel-caption">
                     <h5>{{ $registro->titulo }}</h5>
                     <p>{{ $registro->descripcion }}</p>
@@ -79,7 +79,7 @@
         @endforeach
     </div>
 </div>
-</div>
+
 
 
     <!-- Miniaturas -->
