@@ -276,29 +276,39 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
     <script>
-    jQuery(document).ready(function(){
-      $('#thumbnail-slider').slick({
-            slidesToShow: 4, // Cambia según tus preferencias
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
-            dots: true,
-            responsive: [
-                {
-                    breakpoint: 368,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                },
-                {
-                    breakpoint: 492,
-                    settings: {
-                        slidesToShow: 2
-                    }
+   jQuery(document).ready(function(){
+    $('#thumbnail-slider').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true, 
+        responsive: [
+            {
+              breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1 // Agrega esta línea para que también se desplace 1 slide en dispositivos móviles
                 }
-            ]
-        });
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     });
+});
+
 
     jQuery(document).ready(function(){
       $('#thumbnail-slider2').slick({
@@ -308,19 +318,28 @@
             autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
             dots: true,
             responsive: [
-                {
-                    breakpoint: 368,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                },
-                {
-                    breakpoint: 492,
-                    settings: {
-                        slidesToShow: 2
-                    }
+            {
+              breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1 // Agrega esta línea para que también se desplace 1 slide en dispositivos móviles
                 }
-            ]
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
         });
     });
 </script>

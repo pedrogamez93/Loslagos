@@ -73,7 +73,7 @@
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
                 <div class="carousel-caption">
                     <h5 style="" class="tituloprensa">{{ $registro->titulo }}</h5>
-                    <p style="" class="descripcionprensa">{{ $registro->descripcion }}</p>
+                    <!-- <p style="" class="descripcionprensa">{{ $registro->descripcion }}</p> -->
                 </div>
             </div>
         @endforeach
