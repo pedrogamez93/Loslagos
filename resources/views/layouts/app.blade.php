@@ -31,7 +31,15 @@
         .fa-btn {
             margin-right: 6px;
         }
-       
+        .nav-link{
+    font-family: 'Inter' !important;
+      src: url('/fonts/Inter-Regular.ttf') format('truetype');
+      color: white !important;
+    
+  }
+  h1{
+    text-align: center;
+}
 
     footer {
             background-color: #389144;
@@ -40,7 +48,7 @@
             position: relative; /* Cambiado de fixed a relative */
             bottom: 0;
             left: 0;
-            padding: 10px 0; /* Ajusta el relleno según sea necesario */
+            padding: 5%; /* Ajusta el relleno según sea necesario */
         }
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
@@ -203,7 +211,7 @@
     </div>
   </div>
 </div>
-<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="padding: 5%;">
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="">
     
     <div class="col mb-3">
     <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -249,11 +257,11 @@ Accesibilidad
     <div class="col mb-3">
       <h5>Contacta con nosotras aquí</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contacta con nosotras aquí</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contacta con nosotros aquí</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Comunícates con nosotros a través nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><div class="d-flex flex-column flex-sm-row w-100 gap-2">
-            <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <label for="newsletter1" class="visually-hidden">Escribenos</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Escribenos">
             <button class="btn btn-primary" type="button">Subscribe</button>
           </div></a></li>
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>

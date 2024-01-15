@@ -114,8 +114,10 @@ input:required {
                                 <div class="form-group">
                                     <label for="provincia">Provincia:</label>
                                     <select name="provincia" id="provincia" class="form-control">
-                                        {{-- Opciones para la provincia --}}
-                                        <!-- Agrega las opciones que correspondan -->
+                                        <option value="Llanquihue">Llanquihue</option>
+                                        <option value="Osorno">Osorno</option>
+                                        <option value="Chiloé">Chiloé</option>
+                                        <option value="Palena">Palena</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -208,9 +210,15 @@ input:required {
                                 <div class="form-group">
                                     <label for="categoria">Categoría:</label>
                                     <select name="categoria" id="categoria" class="form-control">
-                                        {{-- Opciones para la categoría --}}
-                                        <!-- Agrega las opciones que correspondan -->
-                                    </select>
+                                <option value="">Seleccione Sector</option>
+                                <option value="Documentos de Gestión">Documentos de Gestión</option>
+                                <option value="Estudios">Estudios</option>
+                                <option value="Fondos Concursable">Fondos Concursable</option>
+                                <option value="Leyes">Leyes</option>
+                                <option value="Gestión">Gestión </option>
+                                <option value="Comité de integración">Comité de integración</option>
+                                <option value="Bode costero">Bode costero</option>
+                                </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="titulo">Título:</label>
@@ -222,20 +230,25 @@ input:required {
                                 </div>
                                 <div class="form-group">
                                     <label for="tipo_documento">Sector: :</label>
-                                        <select name="sector" id="sector" class="form-control" required>
-                                            <option value="Actas">Actas</option>
-                                            <option value="Acuerdos">Acuerdos</option>
-                                            <option value="Resumengastos">Resumen de Gastos</option>
-                                            <option value="Documentogeneral">Documento General</option>
-                                        </select>
+                                    <select name="sector" id="sector" class="form-control">
+                                   <option value="">Seleccione Sector</option>
+                                   <option value="Trabajo"> Trabajo</option>
+                                   <option value="MOP">MOP</option>
+                                   <option value="Agricultura">Agricultura</option>
+                                   <option value="Planificacion">Planificacion</option>
+                                   <option value="Economia">Economía</option>
+                                   <option value="Transporte">Transporte</option>
+                                   <option value="Otros">Otros</option>
+                                   <option value="Educacion">Educacion</option>
+                                   <option value="Vivienda">Vivienda</option>
+                                   <option value="Salud">Salud</option>
+
+                                </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="tipo_documento">Sub-Sector: :</label>
                                         <select name="sub_sector" id="sub_sector" class="form-control" required>
-                                            <option value="Actas">Actas</option>
-                                            <option value="Acuerdos">Acuerdos</option>
-                                            <option value="Resumengastos">Resumen de Gastos</option>
-                                            <option value="Documentogeneral">Documento General</option>
+                                            
                                         </select>
                                 </div>
                                 <div class="form-group">
@@ -315,3 +328,50 @@ mostrarCamposPorTipoDocumento();
     </script>
 
 
+<script>
+    $(document).ready(function () {
+        // Define las comunas por provincia
+        const comunasPorProvincia = {
+            Llanquihue: ["Puerto Montt", "Calbuco", "Maullín", "Frutillar", "Puerto Varas"],
+            Osorno: ["Osorno", "San Pablo", "Purranque", "Río Negro", "Puerto Octay"],
+            Chiloé: ["Castro", "Ancud", "Dalcahue", "Curaco de Vélez", "Quellón"],
+            Palena: ["Chaitén", "Futaleufú", "Palena"]
+            // Agrega otras provincias y comunas según sea necesario
+        };
+
+        // Al cambiar la provincia, actualiza las opciones de comuna
+        $("#provincia").change(function () {
+            const selectedProvincia = $(this).val();
+            const comunas = comunasPorProvincia[selectedProvincia] || [];
+
+            // Limpia y actualiza las opciones de comuna
+            $("#comuna").empty();
+            $.each(comunas, function (index, comuna) {
+                $("#comuna").append('<option value="' + comuna + '">' + comuna + '</option>');
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Define los subsectores para cada sector
+        const subsectoresPorSector = {
+            Transporte: ["Administracion transporte", "capacitacion transporte", "intersubsectorial transporte", "transporte aereo", "transporte caminero", "transpore ferroviario", "transporte maritimo, fuvia y lacustre", "transporte urbano, Vialidad peatonal", "Multisectorial"],
+            Vivienda: ["Administracion vivienda", "capacitacion vivienda", "intersubsectorial vivienda", "solucion habitacional parcial o complementaria", "vivienda definitiva", "multisectoria"],
+            Salud: ["Administracion salud", "Alta complejidad (N. Terciario)", "Baja complejidad (N. Primario)", "CAPACITACION SALUD", "INTERSUBSECTORIAL SALUD", "MEDIA COMPLEJIDAD (N. Secundario)", "Multisectorial"]
+            // Agrega otros sectores y subsectores según sea necesario
+        };
+
+        // Al cambiar el sector, actualiza los subsectores correspondientes
+        $("#sector").change(function () {
+            const selectedSector = $(this).val();
+            const subsectores = subsectoresPorSector[selectedSector] || [];
+            
+            // Limpia y actualiza las opciones del sub_sector
+            $("#sub_sector").empty();
+            $.each(subsectores, function (index, subsector) {
+                $("#sub_sector").append('<option value="' + subsector + '">' + subsector + '</option>');
+            });
+        });
+    });
+</script>

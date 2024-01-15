@@ -69,7 +69,7 @@ Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->na
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
-
+Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 
 /*FUNCIONARIOS */
 
@@ -93,7 +93,8 @@ Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->na
 Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
 Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
-Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+//Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa

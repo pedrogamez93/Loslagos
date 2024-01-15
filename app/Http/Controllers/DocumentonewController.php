@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class DocumentonewController extends Controller
 {
+
+ 
+
+
+
     // Mostrar todos los documentos
     public function index()
     {
@@ -28,6 +33,8 @@ class DocumentonewController extends Controller
     // Mostrar el formulario para crear un nuevo documento
     public function create()
     {
+       
+
         return view('documentos.create');
     }
 
@@ -51,7 +58,7 @@ public function store(Request $request)
       $documento['archivo'] = $archivoPath;
     }
 
-    dd($documento);
+ 
 
        
         
@@ -147,24 +154,49 @@ public function store(Request $request)
     }
     
 
-    // Mostrar el formulario para editar un documento
     public function edit($id)
     {
-        $documento = Documentonew::findOrFail($id);
+        // Eager load the related models
+        $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
+            ->findOrFail($id);
+    
         return view('documentos.edit', compact('documento'));
     }
+    
 
-    // Actualizar un documento en la base de datos
     public function update(Request $request, $id)
-    {
-        // Validación de datos
-        // Puedes agregar aquí las reglas de validación según tus necesidades
+{
+    // Validación de datos
+    // Puedes agregar aquí las reglas de validación según tus necesidades
+    
+    $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
+                      ->findOrFail($id);
 
-        $documento = Documentonew::findOrFail($id);
-        $documento->update($request->except(['_token']));
+    // Update Documentonew with the provided data in the request
+    $documento->fill($request->except(['_token'])); // Set the new values without saving
 
-        return redirect()->route('documentos.index')->with('success', 'Documento actualizado exitosamente.');
+    // Check each field for changes and save only if there are changes
+    if ($documento->isDirty()) {
+        $documento->save();
     }
+
+    // Now check for each related model and update accordingly
+    $relationships = ['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'];
+
+    foreach ($relationships as $relationship) {
+        if ($documento->{$relationship}) {
+            $documento->{$relationship}->fill($request->only($documento->{$relationship}->getFillable()));
+            // Again, check if fields have been changed before saving
+            if ($documento->{$relationship}->isDirty()) {
+                $documento->{$relationship}->save();
+            }
+        }
+    }
+
+    return redirect()->route('documentos.verdocumentos')->with('success', 'Documento actualizado exitosamente.');
+}
+
+    
 
     // Eliminar un documento de la base de datos
     public function destroy($id)
@@ -172,6 +204,25 @@ public function store(Request $request)
         $documento = Documentonew::findOrFail($id);
         $documento->delete();
 
-        return redirect()->route('documentos.index')->with('success', 'Documento eliminado exitosamente.');
+        return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente.');
     }
+
+    public function download($id)
+    {
+        $documento = Documentonew::findOrFail($id);
+
+        // Obtener la ruta del archivo almacenado en storage
+        $filePath = storage_path("app/public/{$documento->archivo}");
+
+        // Verificar si el archivo existe
+        if (Storage::exists("public/{$documento->archivo}")) {
+            // Descargar el archivo
+            return response()->download($filePath, $documento->archivo);
+        } else {
+            // Manejar el caso en el que el archivo no existe
+            return redirect()->back()->with('error', 'El archivo no existe.');
+        }
+    }
+
+    
 }
