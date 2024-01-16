@@ -334,12 +334,13 @@ line-height: normal;
 
 .tituloprensa{
   position: absolute; top: 35px; left: 0px;
+  
   color: #FFF;
-font-family: Inter;
-font-size: 16px;
-font-style: italic;
-font-weight: 600;
-line-height: normal;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 
@@ -366,4 +367,29 @@ h5.footer-col-title {
 .irnoticia{
   
   text-decoration: none;
+  color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.home-descripcion{
+  color: #565656;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+
+.titleshome{
+  color: #565656;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }

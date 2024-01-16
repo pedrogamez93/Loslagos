@@ -12,38 +12,51 @@
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
 <main class="container" class="headercontent">
-    <div class="row p-5"  class="centrar">
-        <div class="col colinputbuscador" >
+    <div class="row p-5" class="centrar">
+        <div class="col colinputbuscador">
             <div class="input-group rounded">
-            <div class="position-absolute mt-2">
+                <div class="position-absolute mt-2">
                     <span class="" style="background-color: transparent; border: none; ">
                         <!-- <i class="bi bi-search"></i> -->
                     </span>
                 </div>
-               
+
                 @if ($home)
-                  <h1 class="titulohome">{{$home->titulobanner}}</h1>
-                  <p class="descripcionhome">{{$home->descripcionbanner}}</p>
-              @else
-              <h1 class="titulohome">Titulo</h1>
-                  <p class="descripcionhome">Descripcion</p>
-              @endif
-                <input type="text" id="inputbucador" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
-               
+                    <h1 class="titulohome">{{$home->titulobanner}}</h1>
+                    <p class="descripcionhome">{{$home->descripcionbanner}}</p>
+                @else
+                    <h1 class="titulohome">Titulo</h1>
+                    <p class="descripcionhome">Descripcion</p>
+                @endif
+
+                <form action="{{ route('buscador') }}" method="GET" class="input-group rounded">
+                    <!-- Otros elementos del formulario aquí -->
+
+                    <input type="text" id="inputbucador" name="q" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
+
+                    <div class="input-group-append position-absolute top-0" style="width: 100%;text-align: right;padding-top: 7%;">
+                        <button type="submit" class="btn btn-outline-secondary rounded-left" style="   border-radius: 100px;
+    background: #F59120;
+    width: 110px;
+    height: 60px;">ir</button>
+                    </div>
+                </form>
+
                 <div class="input-group-append">
-              <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->
+                    <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->
                 </div>
             </div>
         </div>
-        <div class="col">
-    <div class="d-flex " style="margin-left: -4vw;">
-        <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" style="margin-right: 5px;height: 380px;margin-top: 30px;">
-        <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" style="height: 420px;">
-    </div>
-</div>
 
+        <div class="col">
+            <div class="d-flex" style="flex-direction: row; align-items: flex-start; ">
+                <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" style="margin-bottom: 5px; height: 380px;">
+                <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" style="height: 420px;">
+            </div>
+        </div>
     </div>
 </main>
+
 
 
 
@@ -53,9 +66,11 @@
 <!--seccion de sala de prensa y tramite -->
 <div class="container-fluid">
   <div class="container mt-5" > 
-            <div  class=" d-flex justify-content-between">
-        <h3 style="">Sala de prensa</h3>
+     <div  class=" d-flex justify-content-between">
+        <h3 class="titleshome">Sala de prensa</h3>
+        
         <div>
+          
     <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
         Galeria Fotografica
     </button>
@@ -65,7 +80,9 @@
 </div>
 
     </div>
-    
+    <p class="home-descripcion">
+        Infórmate de los acontecimientos más recientes de nuestra región
+        </p>
     <div class="mt-5 pb-5">
     <div id="thumbnail-slider" class="carousel">
         @foreach($salaprensa as $registro)
@@ -105,7 +122,7 @@
   </div>
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 style="">Tramites Digitales  <a href="{{ route('salaprensa.index') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Tramites Digitales  <a href="{{ route('salaprensa.index') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
     <div>
         <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
@@ -116,7 +133,9 @@
         </button>
     </div>
 </div>
-
+<p class="home-descripcion">
+Actividades planeadas que involucran un accionar más amplio que un proyecto...
+        </p>
     
 <div class="mt-5 pb-5">
     <div id="thumbnail-slider2" class="carousel">

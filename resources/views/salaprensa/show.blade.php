@@ -19,28 +19,22 @@
 <div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
     <div class="row py-5 px-5">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
-            <h4 class="tituloform mb-5">Sala de Prensa</h4>
+           
 
             <!-- Aquí se colocan las noticias -->
             <div class="row">
-    @foreach($noticias as $noticia)
-        <div class="col-md-3 mb-4">
-            <div class="card card-noticias" >
-             
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
-                
-                <div class="card-img-overlay">
-                    <div class="card-body text-white">
-                        <p class="card-text noticia-categoria mb-2">{{ $noticia->categoria }}</p>
-                        <h5 class="card-title titulonoticia mb-4">{{ $noticia->titulo }}</h5>
-                      <!-- Cambia el enlace existente en index.blade.php -->
-<a href="{{ route('salaprensa.show', ['id' => $noticia->id]) }}" style="padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>
+            <div class="container">
+    <h1 class="tituloform mb-1">{{ $noticia->titulo }}</h1>
+    <p class="mb-5" style="color: #565656; font-family: Inter; font-size: 16px; font-style: italic; font-weight: 600; line-height: normal;">{{ $noticia->categoria }}</p>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+    <div class="text-center">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid mx-auto d-block" alt="Imagen de la noticia" style="max-width: 600px; max-height: 600px; ">
+       
+    </div>
+
+    <p class="mt-5" style="color: #565656; font-family: Inter; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; white-space: pre-line;">{{ $noticia->descripcion }}</p>
+</div>
+
 </div>
 
 
@@ -48,9 +42,7 @@
 
             <!-- Paginación -->
             <div class="row">
-                <div class="col-12">
-                    {{ $noticias->links() }}
-                </div>
+                
             </div>
         </div>
     </div>
