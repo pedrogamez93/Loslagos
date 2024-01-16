@@ -59,6 +59,7 @@ Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
+Route::get('/buscador', [HomeController::class, 'buscador'])->name('buscador');
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
@@ -95,6 +96,8 @@ Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTab
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
+Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
+
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa

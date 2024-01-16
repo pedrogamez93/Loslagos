@@ -279,4 +279,14 @@ class HomeController extends Controller
     }
 }
 
+
+public function buscador(Request $request)
+{
+    $resultados = $request->input('q');
+
+    // Realiza la lógica de búsqueda aquí
+
+    return view('buscador', ['resultados' => $resultados]);
+}
+
 }

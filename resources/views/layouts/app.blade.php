@@ -53,6 +53,12 @@
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
         }
+
+        h5.footer-col-title {
+  padding-bottom: 20px;
+}
+
+
         .dropdown-menu a{
           color: #565656;
           font-size: 16px;
@@ -89,7 +95,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
     <ul class="navbar-nav  mr-auto ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="color:white">Home </a>
+        <a class="nav-link" href="{{ url('/') }}" style="color:white">Home </a>
       </li>
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
