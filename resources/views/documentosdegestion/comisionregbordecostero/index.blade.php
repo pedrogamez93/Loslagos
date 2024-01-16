@@ -333,7 +333,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container docs">
+            <div class="container docs" style="padding: 50px;">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="mi-style">Documentos</h3>

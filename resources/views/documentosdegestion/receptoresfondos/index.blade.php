@@ -249,7 +249,18 @@
                         </div>
                         <div class="container content mt-5 mb-5">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8" style="padding: 0px 35px 0px 40px;">
+                                    <h1 class="mititulo mb-4">Registro Receptores Fondos Públicos del Gobierno Regional de Los Lagos, Ley N°19.862</h1>
+                                    
+                                    <p class="bajada-acord">Se crea el Registro de Personas Jurídicas Receptoras de Fondos Públicos a
+                                        cargo del Departamento Jurídico.
+                                        <br>
+                                        <br>
+                                        Las personas jurídicas que postulen y/o reciban fondos del Gobierno Regional por transferencia, deberán estar inscritas en el Registro de Personas Receptoras de Fondos Públicos, con anterioridad a su solicitud, de conformidad a la ley N° 19.862 y su reglamento.
+                                        Se dispondrá de un Formulario de Inscripción en la Oficina de Partes del Gobierno Regional, el cual tambien estará disponible para descarga en el enlace que más adelante se dispone.
+                                    </p>
+
+                                    <p class="mt-5 mb-4" style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 30px; color: #F59120;">Documentos</p>
 
                                 </div>
 

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Documento;
+use League\CommonMark\Node\Block\Document;
 
 class DocumentosDeGestionController extends Controller
 {
     public function Index(){
+
+        
 
         return view('documentosdegestion.index');
     }
