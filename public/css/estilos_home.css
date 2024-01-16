@@ -362,3 +362,8 @@ h5.footer-col-title {
 #newsletter12::placeholder {
   color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
 }
+
+.irnoticia{
+  
+  text-decoration: none;
+}

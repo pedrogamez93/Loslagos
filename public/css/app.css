@@ -25,6 +25,11 @@
   --tw-content: '';
 }
 
+#newsletter12::placeholder {
+  color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
+}
+
+
 /*
 1. Use a consistent sensible line-height in all browsers.
 2. Prevent adjustments of font size after orientation changes in iOS.

@@ -74,7 +74,11 @@
                 <div class="carousel-caption">
                     <h5 style="" class="tituloprensa">{{ $registro->titulo }}</h5>
                     <!-- <p style="" class="descripcionprensa">{{ $registro->descripcion }}</p> -->
+                    <a style="right: 1px;
+    bottom: 0px;
+    position: absolute;" class="irnoticia">ir ahora <i class="bi bi-arrow-right"></i></a>
                 </div>
+              
             </div>
         @endforeach
     </div>

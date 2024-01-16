@@ -14,7 +14,7 @@
     padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulodoc">Documentos </h1>
+        <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p >Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
@@ -28,10 +28,10 @@
          <form action="{{ url('/documentos/buscar') }}" method="POST">
          @csrf
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-                <option selected>Seleccione Categoria</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
+            <option value="Actas">Actas</option>
+                                    <option value="Acuerdos">Acuerdos</option>
+                                    <option value="Resumengastos">Resumen de Gastos</option>
+                                    <option value="Documentogeneral">Documento General</option>
             </select>
             <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
             <div class="pt-5" style="direction: rtl;">
@@ -47,7 +47,7 @@
     <div class="row divtitulodocsdes" >
        
             <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-            <p>{{ $documento->nombre }}</p>
+            <p>{{ $documento->archivo }}</p>
        
     </div>
     </a>
@@ -76,8 +76,8 @@
                     @foreach($documentos as $documento)
                         <tr>
                             <a href="{{ $documento->archivo_path }}"> 
-                                <td> <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;"></td>
-                                <td>{{ $documento->nombre }}</td>
+                                <td style="width: 5%;"> <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;"></td>
+                                <td> {{ $documento->id }} {{ $documento->archivo }}</td>
                              
                                 
                             </a>
@@ -88,5 +88,17 @@
         @endif
         <!-- ... tu código existente ... -->
     </div>
+
+    <script>
+   
+    document.addEventListener("DOMContentLoaded", function() {
+      
+        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120', 'important');
+    });
+</script>
+
+
+
 @endsection
 </div>

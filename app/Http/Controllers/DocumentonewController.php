@@ -227,24 +227,28 @@ public function store(Request $request)
     public function buscar(Request $request)
     {
         $request->validate([
-            'categoria' => 'nullable',
+            'tipo_documento' => 'nullable',
             'nombre' => 'nullable',
         ]);
-
-        $categoria = $request->input('categoria');
+    
+        $categoria = $request->input('tipo_documento');
         $nombre = $request->input('nombre');
-       
-        $documentos = Documentonew::where('categoria', $categoria);
-
+    
+        $documentos = Documentonew::where('tipo_documento', $categoria);
+    
         if ($nombre) {
-            $documentos = Documentonew::where('nombre', 'LIKE', "%$nombre%");
+            $documentos->where('archivo', 'LIKE', "%$nombre%");
         }
-
+    
         $documentos = $documentos->get();
-        
-
+    
+        if ($documentos->isEmpty()) {
+            // No se encontraron resultados, puedes redirigir o mostrar un mensaje en la vista
+            return view('documentos.sinResultados');
+        }
+    
         return view('documentos.resultados', compact('documentos'));
     }
-
+    
 
 }

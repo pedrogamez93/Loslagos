@@ -135,11 +135,11 @@ input:required {
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">Nombre del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn" placeholder="Nombre del boton externo">
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del boton externo">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">URL del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del boton externo">
+                                    <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del boton externo">
                                 </div>
                             </div>
                             <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
@@ -205,6 +205,49 @@ input:required {
 
 <script>
     $(document).ready(function() {
+        $('#agregarMas').click(function() {
+            var botonesContainer = $('.add-boton');
+            var nuevoBoton = botonesContainer.find('.row:first').clone(); // Clona el primer conjunto de campos
+
+            // Limpia los valores en los campos clonados
+            nuevoBoton.find("input[type='text']").val('');
+
+            // Genera un nuevo nombre único para cada campo clonado
+            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
+            nuevoBoton.find("input[type='text']").each(function() {
+                var name = $(this).attr('name');
+                $(this).attr('id', name + '_' + nuevoId);
+            });
+
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.row').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoBoton.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
+            // Agrega los campos clonados al contenedor
+                botonesContainer.append(nuevoBoton);
+            });
+
+            // Evento para eliminar filas existentes (manejador delegado)
+            $(document).on('click', '.eliminar', function() {
+                $(this).closest('.row').remove();
+            });
+        });
+</script>
+
+<script>
+    $(document).ready(function() {
         // Agregar más documentos
         $(".agregar-documento").click(function() {
             var documentosContainer = $(".documentos-container");
@@ -221,8 +264,29 @@ input:required {
             nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
             nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
 
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar-documento',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.documentos-input').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoDocumentoInput.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
             // Agrega los campos clonados al contenedor
             documentosContainer.append(nuevoDocumentoInput);
+        });
+
+        // Evento para eliminar filas existentes (manejador delegado)
+        $(document).on('click', '.eliminar-documento', function() {
+            $(this).closest('.documentos-input').remove();
         });
     });
 </script>
@@ -320,11 +384,5 @@ input:required {
       }
     });
 
-    // Botón "Agregar Más" para duplicar los inputs
-    $("#agregarMas").click(function () {
-      // Clonar el primer par de inputs y agregar al final
-      var nuevoBoton = $(".add-boton .row").first().clone();
-      $(".add-boton .row:last").after(nuevoBoton);
-    });
   });
 </script>

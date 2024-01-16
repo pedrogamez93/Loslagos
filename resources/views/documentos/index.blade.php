@@ -12,7 +12,7 @@
     padding-left: 50px;">
     <div>
         <h5>Home / Gobierno Regional</h5>
-        <h1 class="titulodoc">Documentos </h1>
+        <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
@@ -23,15 +23,12 @@
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">
             @csrf
-                <select class="form-select mt-4" aria-label="Default select example" name="categoria">
+                <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
-                                <option value="Documentos de Gestión">Documentos de Gestión</option>
-                                <option value="Estudios">Estudios</option>
-                                <option value="Fondos Concursable">Fondos Concursable</option>
-                                <option value="Leyes">Leyes</option>
-                                <option value="Gestión">Gestión </option>
-                                <option value="Comité de integración">Comité de integración</option>
-                                <option value="Bode costero">Bode costero</option>
+                <option value="Actas">Actas</option>
+                                    <option value="Acuerdos">Acuerdos</option>
+                                    <option value="Resumengastos">Resumen de Gastos</option>
+                                    <option value="Documentogeneral">Documento General</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
                 <div class="pt-5" style="direction: rtl;">
@@ -62,7 +59,8 @@
    
     document.addEventListener("DOMContentLoaded", function() {
       
-        document.querySelector('.navbar').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120', 'important');
     });
 </script>
 

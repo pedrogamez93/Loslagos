@@ -37,7 +37,7 @@
       color: white !important;
     
   }
-  h1{
+  h1.menu{
     text-align: center;
 }
 
@@ -125,7 +125,7 @@
           </div>
       </li>
       <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
               Región los Lagos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -140,31 +140,27 @@
       <li class="nav-item active">
         <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
       </li>
-
-
-    
-
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
             <i class="bi bi-grid" style="color: white;"></i>Infórmate aquí
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
-        <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
-        <a class="dropdown-item style-a-menu" href="{{ url('/mapa') }}">Mapa del Sitio</a>
-        <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
-        <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
-        <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
-        <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/mapa') }}">Mapa del Sitio</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
+            <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
         <div class="linea-separadora"></div>
-        <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
 
         </div>
     </li>
 
 
     </ul>
-
+    <img src="{{ asset('storage/images/accessibility_icon.png') }}" alt="accessibilidad_icon" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="36px">
    
     <!-- <ul class="nav navbar-nav navbar-right">
                  
@@ -198,7 +194,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Accesibilidad</h1>
+        <h1 class="menu modal-title fs-5" id="staticBackdropLabel">Accesibilidad</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -216,9 +212,7 @@
 </div>
 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top" style="">
     <div class="col mb-3">
-        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Accesibilidad
-        </a>
+
         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
             <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" alt="Logo GORE Vertical Blanco">
         </a>
