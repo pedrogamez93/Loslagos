@@ -77,6 +77,10 @@
         .nav-head{
           background-color: #389144;
         }
+        
+#newsletter12::placeholder {
+  color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
+}
     </style>
 
 @stack('styles')
