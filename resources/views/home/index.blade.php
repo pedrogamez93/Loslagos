@@ -92,17 +92,13 @@
         Infórmate de los acontecimientos más recientes de nuestra región
         </p>
         <div class="mt-5 pb-5">
-            
-        <div id="thumbnail-slider" class="carousel">
+    <div id="thumbnail-slider" class="carousel">
     @foreach($salaprensa as $registro)
         <div class="carousel-item" style="position: relative;">
             <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
             <div class="carousel-caption">
-                <h5 style="" class="tituloprensa">{{ Illuminate\Support\Str::limit($registro->titulo, 20) }}</h5>
-                @if($registro->descripcion)
-                    <?php $descripcionLimitada = Illuminate\Support\Str::limit(strip_tags($registro->descripcion), 20); ?>
-                    <p style="" class="descripcionprensa">{!! htmlspecialchars($descripcionLimitada) !!}</p>
-                @endif
+                <h5 style="" class="tituloprensa">{{ Str::limit($registro->titulo, 20) }}</h5>
+               
                 <a style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>

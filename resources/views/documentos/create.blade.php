@@ -247,7 +247,7 @@ input:required {
                                 </div>
                                 <div class="form-group">
                                     <label for="tipo_documento">Sub-Sector: :</label>
-                                        <select name="sub_sector" id="sub_sector" class="form-control" required>
+                                        <select name="sub_sector" id="sub_sector" class="form-control" >
                                             
                                         </select>
                                 </div>
