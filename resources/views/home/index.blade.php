@@ -29,18 +29,26 @@
                     <p class="descripcionhome">Descripcion</p>
                 @endif
 
-                <form action="{{ route('buscador') }}" method="GET" class="input-group rounded">
-                    <!-- Otros elementos del formulario aquí -->
+                <form action="http://127.0.0.1:8000/buscador" method="GET" class="input-group rounded">
+    <!-- Otros elementos del formulario aquí -->
 
-                    <input type="text" id="inputbucador" name="q" class="form-control rounded-right" placeholder="Buscar" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; padding-left: 40;">
+    <input type="text" id="inputbucador" name="q" class="form-control rounded-right" placeholder="Buscar aqui" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; 
+    padding-left: 40;
+    ">
 
-                    <div class="input-group-append position-absolute top-0" style="width: 100%;text-align: right;padding-top: 7%;">
-                        <button type="submit" class="btn btn-outline-secondary rounded-left" style="   border-radius: 100px;
+    <div class="input-group-append" style="display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-left: -9vw;">
+        <button type="submit" class="btn btn-outline-secondary rounded-left" style="border-radius: 100px;
     background: #F59120;
     width: 110px;
-    height: 60px;">ir</button>
-                    </div>
-                </form>
+    height: 60px;
+    color: white;
+    border-color: white;">Buscar</button>
+    </div>
+</form>
+
 
                 <div class="input-group-append">
                     <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->

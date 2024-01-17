@@ -147,7 +147,8 @@ public function store(Request $request)
     public function indexTabla()
     {
         // Obtener todos los documentos con las relaciones cargadas
-        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->get();
+        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
+                    ->paginate(10);
     
         // Retornar la vista con los documentos para mostrar en la tabla
         return view('documentos.tabladocumentos', compact('documentos'));

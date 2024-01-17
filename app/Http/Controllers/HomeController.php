@@ -7,7 +7,9 @@ use App\Models\Home;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
-
+use App\Models\Documentonew;
+use App\Models\TramitesDigitales
+;
 class HomeController extends Controller
 {
     public function index()
@@ -280,13 +282,35 @@ class HomeController extends Controller
 }
 
 
+
+
 public function buscador(Request $request)
 {
-    $resultados = $request->input('q');
+    $query = $request->input('q');
 
-    // Realiza la lógica de búsqueda aquí
+    // Realiza la búsqueda en las tablas
+    $resultados1 = Salaprensa::where('titulo', 'like', "%$query%")
+        ->orWhere('descripcion', 'like', "%$query%")
+        ->orWhere('categoria', 'like', "%$query%")
+        ->get();
 
-    return view('buscador', ['resultados' => $resultados]);
+    $resultados2 = TramitesDigitales::where('titulo', 'like', "%$query%")
+        ->orWhere('tags', 'like', "%$query%")
+        ->orWhere('descripcion', 'like', "%$query%")
+        ->get();
+
+    $resultados3 = Documentonew::where('tipo_documento', 'like', "%$query%")
+        ->orWhere('provincia', 'like', "%$query%")
+        ->orWhere('comuna', 'like', "%$query%")
+        ->get();
+
+    // Combina los resultados de todas las tablas en una sola colección
+    $resultados = $resultados1->merge($resultados2)->merge($resultados3);
+
+    // Redirige a la vista 'buscador' con los resultados
+    return view('Home.buscador', ['resultados' => $resultados]);
 }
+
+
 
 }

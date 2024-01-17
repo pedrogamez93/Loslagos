@@ -135,8 +135,11 @@ class FuncionarioController extends Controller
 
 public function indexTabla()
 {
-    $funcionarios['funcionarios'] = Funcionario::orderBy('created_at', 'asc')->paginate(20);
-    return view('funcionarios.tablafuncionarios', $funcionarios);
+    // Obtener todos los funcionarios ordenados por fecha de creación y paginados
+    $funcionarios = Funcionario::orderBy('created_at', 'asc')->paginate(20);
+
+    // Retornar la vista con los funcionarios paginados
+    return view('funcionarios.tablafuncionarios', compact('funcionarios'));
 }
 
 

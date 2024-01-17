@@ -59,7 +59,7 @@ Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
-Route::get('/buscador', [HomeController::class, 'buscador'])->name('buscador');
+Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');

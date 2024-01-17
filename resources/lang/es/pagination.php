@@ -15,5 +15,5 @@ return [
 
     'previous' => '&laquo; Anterior',
     'next' => 'Siguiente &raquo;',
-    'showing' => 'Mostrando :firstItem a :lastItem de :total resultados',
+
 ];

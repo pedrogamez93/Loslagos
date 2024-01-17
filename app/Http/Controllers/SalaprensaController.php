@@ -61,7 +61,7 @@ class SalaprensaController extends Controller
     
     public function indexTabla()
         {
-            $saladeprensa['saladeprensa'] = Salaprensa::orderBy('created_at', 'asc')->paginate(20);
+            $saladeprensa['saladeprensa'] = Salaprensa::orderBy('created_at', 'asc')->paginate(7);
             return view('salaprensa.tabla', $saladeprensa);
         }
 
