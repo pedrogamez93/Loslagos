@@ -282,35 +282,35 @@ class HomeController extends Controller
 }
 
 
-
-
 public function buscador(Request $request)
 {
     $query = $request->input('q');
 
-    // Realiza la búsqueda en las tablas
-    $resultados1 = Salaprensa::where('titulo', 'like', "%$query%")
-        ->orWhere('descripcion', 'like', "%$query%")
-        ->orWhere('categoria', 'like', "%$query%")
-        ->get();
+    // Convertir la consulta a minúsculas (puedes usar strtoupper para convertir a mayúsculas)
+    $queryLower = strtolower($query);
 
-    $resultados2 = TramitesDigitales::where('titulo', 'like', "%$query%")
-        ->orWhere('tags', 'like', "%$query%")
-        ->orWhere('descripcion', 'like', "%$query%")
-        ->get();
+   // Pagina los resultados de cada tabla por separado
+$resultados1 = Salaprensa::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(categoria) like ?', ["%$queryLower%"])
+->paginate(10);
 
-    $resultados3 = Documentonew::where('tipo_documento', 'like', "%$query%")
-        ->orWhere('provincia', 'like', "%$query%")
-        ->orWhere('comuna', 'like', "%$query%")
-        ->get();
+$resultados2 = TramitesDigitales::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(tags) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
+->paginate(10);
 
-    // Combina los resultados de todas las tablas en una sola colección
-    $resultados = $resultados1->merge($resultados2)->merge($resultados3);
+$resultados3 = Documentonew::whereRaw('LOWER(tipo_documento) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(provincia) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(comuna) like ?', ["%$queryLower%"])
+->paginate(10);
 
-    // Redirige a la vista 'buscador' con los resultados
-    return view('Home.buscador', ['resultados' => $resultados]);
+// Combina los resultados paginados de todas las tablas en una sola colección
+$resultados = $resultados1->merge($resultados2)->merge($resultados3);
+
+// Redirige a la vista 'buscador' con los resultados paginados y la variable $query
+return view('Home.buscador', ['resultados' => $resultados, 'query' => $query]);
 }
-
 
 
 }
