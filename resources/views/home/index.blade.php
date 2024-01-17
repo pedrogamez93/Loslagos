@@ -99,7 +99,8 @@
             <div class="carousel-caption">
                 <h5 style="" class="tituloprensa">{{ Str::limit($registro->titulo, 20) }}</h5>
                 @if($registro->descripcion)
-                    <p style="" class="descripcionprensa">{{ Str::limit(strip_tags($registro->descripcion), 20) }}</p>
+                    <?php $descripcionLimitada = Str::limit(strip_tags($registro->descripcion), 20); ?>
+                    <p style="" class="descripcionprensa">{{ htmlspecialchars($descripcionLimitada) }}</p>
                 @endif
                 <a style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
