@@ -23,6 +23,15 @@ class ConsejoRegionalDocsViewsController extends Controller
         return view('consejoregionaldocsviews.actas.index', ['actas' => $actas]);
     }
 
+    public function showActa($id)
+    {
+        // Obtener la acta específica por ID y su relación con Documentonew
+        $acta = Acta::with('documentonew')->findOrFail($id);
+
+        // Pasar la acta a la vista de detalles
+        return view('consejoregionaldocsviews.actas.show', ['acta' => $acta]);
+    }
+
 
     public function Indexcertificadosdeacuerdos()
     {

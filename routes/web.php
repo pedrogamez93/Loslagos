@@ -31,6 +31,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
+use App\Http\Controllers\ConsejoRegionalDocsViewsController;
 use App\Http\Controllers\PresidenteConcejoController;
 use App\Http\Controllers\ConsejerosChiloeController;
 use App\Http\Controllers\ConsejerosLlanquihueController;
@@ -298,6 +299,7 @@ Route::get('/gobiernoregional/unidaddecontrol', 'App\Http\Controllers\Documentos
 
 /*DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 Route::get('/consejoregional/actas', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexactas')->name('actas.Indexactas');
+Route::get('/consejoregional/actas/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showActa')->name('actas.showActa');
 
 Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexcertificadosdeacuerdos')->name('certificadosdeacuerdos.Indexcertificadosdeacuerdos');
 
