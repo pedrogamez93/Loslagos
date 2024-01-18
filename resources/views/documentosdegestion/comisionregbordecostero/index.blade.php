@@ -339,6 +339,15 @@
                         <h3 class="mi-style">Documentos</h3>
 
                         <div>
+                        @foreach ($documentos as $documento)
+                            <div class="mi-documento mt-3 mb-3">
+                                <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                    <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento->titulo }}</p>
+                                </a>
+                            </div>
+                            <!-- Otros detalles del documento -->
+                        @endforeach
 
                         </div>
                         <div class="nota mt-4 mb-4">

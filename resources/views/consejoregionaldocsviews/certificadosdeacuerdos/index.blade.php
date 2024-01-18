@@ -55,6 +55,18 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    p.p-doc-tit{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+    p.p-doc-baj{
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #565656;  
+    }
 </style>
 <html>
 <head>
@@ -101,6 +113,26 @@
                         <p class="style-tag">Infórmate sobre nuestra Región...</p>
 
                         <h1 class="mititulo mt-4 mb-4">Certificados de Acuerdos</h1>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                @foreach ($acuerdos as $acuerdo)
+                                    @if ($acuerdo->documentonew)
+                                        <div class="col-md-3 mb-4">
+                                            <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
+                                                <a href="{{ $acuerdo->documentonew->archivo }}" target="_blank" class="d-flex align-items-center">
+                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acuerdo" style="margin-right: 10px;">
+                                                    <div>
+                                                        <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
+                                                        <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
+                                                        <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
