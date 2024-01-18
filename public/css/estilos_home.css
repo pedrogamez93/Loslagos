@@ -390,3 +390,7 @@ line-height: normal;
   font-weight: 700;
   line-height: normal;
 }
+
+.imagen-con-brillo {
+  filter: brightness(0.7); /* Ajusta el valor según desees, 0.7 es más oscuro, 1 es normal */
+}

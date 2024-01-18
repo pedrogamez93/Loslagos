@@ -36,10 +36,7 @@
     padding-left: 40;
     ">
 
-    <div class="input-group-append" style="display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    margin-left: -9vw;">
+    <div class="input-group-append" style="">
         <button type="submit" class="btn btn-outline-secondary rounded-left" style="border-radius: 100px;
     background: #F59120;
     width: 110px;
@@ -95,7 +92,7 @@
     <div id="thumbnail-slider" class="carousel">
     @foreach($salaprensa as $registro)
         <div class="carousel-item" style="position: relative;">
-            <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
             <div class="carousel-caption">
                 <h5 style="" class="tituloprensa">{{ Str::limit($registro->titulo, 20) }}</h5>
                 @if($registro->descripcion)
