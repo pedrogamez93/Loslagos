@@ -16,8 +16,8 @@ class ConsejoRegionalDocsViewsController extends Controller
 {
     public function Indexactas()
     {
-        // Obtener todas las actas y su relación con Documentonew
-        $actas = Acta::with('documentonew')->get();
+        // Obtener todas las actas y su relación con Documentonew con paginación
+        $actas = Acta::with('documentonew')->paginate(8); // 8 actas por página
 
         // Pasar las actas a la vista
         return view('consejoregionaldocsviews.actas.index', ['actas' => $actas]);

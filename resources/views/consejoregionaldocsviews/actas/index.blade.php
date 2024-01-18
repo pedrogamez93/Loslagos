@@ -140,6 +140,12 @@
                             @endif
                         @endforeach
                     </div>
+                    <!-- Enlaces de paginación -->
+                    <div class="row">
+                        <div class="col-12">
+                            {{ $actas->links() }} <!-- Muestra los enlaces de paginación -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
