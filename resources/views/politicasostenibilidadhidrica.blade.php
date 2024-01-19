@@ -174,7 +174,7 @@
                 <div class="container set pb-4">
                     @include('layouts.listacategorias')
                 </div>       
-                <div class="container principal" style="padding-left: 3rem !important; padding-right: 5rem!important;">
+                <div class="container principal" style="padding-left: 1.5rem !important; padding-right: 5rem!important;">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="mititulo mb-2">{{ $ultimoRegistro->titulo }}</h1>
