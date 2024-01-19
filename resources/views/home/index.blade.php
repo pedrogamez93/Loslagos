@@ -29,35 +29,31 @@
                     <p class="descripcionhome">Descripcion</p>
                 @endif
 
-                <form action="http://127.0.0.1:8000/buscador" method="GET" class="input-group rounded">
-    <!-- Otros elementos del formulario aquí -->
+                <form action="http://127.0.0.1:8000/buscador" method="GET" >
+                    
+                    
+                    <div class="input-group input-group-rounded">
+    <input class="input-group-field" id="inputbucador" name="q" type="search">
+    <input type="submit" class="button secondary" value="Search">
+</div>
 
-    <input type="text" id="inputbucador" name="q" class="form-control rounded-right" placeholder="Buscar aqui" aria-label="Buscar" style="border-radius: 0px 12px 12px 0px; 
-    padding-left: 40;
-    ">
-
-    <div class="input-group-append" style="">
-        <button type="submit" class="btn btn-outline-secondary rounded-left" style="border-radius: 100px;
-    background: #F59120;
-    width: 110px;
-    height: 60px;
-    color: white;
-    border-color: white;">Buscar</button>
-    </div>
+   
 </form>
-
-
-                <div class="input-group-append">
-                    <!-- <button class="btn btn-outline-secondary rounded-left" type="button" style="border-radius: 18px">Buscar</button> -->
-                </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="d-flex" style="flex-direction: row; align-items: flex-start; ">
-                <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" style="margin-bottom: 5px; height: 380px;">
-                <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" style="height: 420px;">
-            </div>
+        <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" class="img-fluid">
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </main>

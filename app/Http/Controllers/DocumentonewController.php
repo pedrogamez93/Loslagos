@@ -88,6 +88,7 @@ public function store(Request $request)
                         'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
                         'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
                         'publicacion' => $request->input('publicacion'), // Ajusta con el nombre correcto del campo
+                        'categoria' => $request->input('categoria'),
                     ]);
                     $resumengastos->save();
                     // Establece la relación en el modelo Documentonew

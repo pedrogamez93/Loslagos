@@ -201,6 +201,30 @@ input:required {
                                     <label for="nombre">Nombre:</label>
                                     <input type="text" name="nombre" id="nombre" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="provincia">Categoria:</label>
+                                    <select name="categoria" id="categoria" class="form-control">
+                                    <option value="">Categoria</option>
+                                        <option value="C.R.U.B.C">C.R.U.B.C</option>
+                                        <option value="Controles SSI">Controles SSI</option>
+                                        <option value="Estado Situacion FNDR">Estado Situacion FNDR</option>
+                                        <option value="Informe Ejecucion PROPIR">Informe Ejecucion PROPIR</option>
+                                        <option value="Informe Gastos Ley 21.516">Informe Gastos Ley 21.516</option>
+                                        <option value="Plan Regulador Comunal">Plan Regulador Comunal</option>
+                                        <option value="Presupuesto">Presupuesto</option>
+                                        <option value="Receptores Fondos Publicos Ley 19.62">Receptores Fondos Publicos Ley 19.62</option>
+                                        <option value="Unidad de Control">Unidad de Control</option>
+                                        <option value="Cuenta PublicaRegional">Cuenta PublicaRegional</option>
+                                        <option value="Estrategia Regional de Desarrollo 2030">Estrategia Regional de Desarrollo 2030</option>
+                                        <option value="Estado Financieros Gobierno Regional de Los Lagos">Estado Financieros Gobierno Regional de Los Lagos</option>
+                                        <option value="Boletin Informativo">Boletin Informativo</option>
+
+                                        <option value="Difusion Proyectos FNDR y Normativa Grafica GORE">Difusion Proyectos FNDR y Normativa Grafica GORE</option>
+                                        <option value="Estrategia, Politica y Planes Regionales">Estrategia, Politica y Planes Regionales</option>
+                                        <option value="Convenios Internacinales">Convenios Internacinales</option>
+                                        <option value="Documentos de Consulta GORE LOS LAGOS">Documentos de Consulta GORE LOS LAGOS</option>
+                                    </select>
+                                </div>
                                 
                                 <!-- Agrega los demás campos de Resumen de Gastos según tu especificación -->
                             </div>

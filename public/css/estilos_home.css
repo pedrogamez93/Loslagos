@@ -77,46 +77,44 @@
     place-content: center;
 }
 
-.colinputbuscador{
+/* .colinputbuscador{
     align-self: center;
 }
 #inputbucador {
-  width: 68%; /* Ancho del 68% de la pantalla */
+  width: 68%;
   height: 80px;
   top: 1vh;
   border-radius: 100px !important;
 }
 
-/* Estilos específicos para pantallas pequeñas */
+
 @media only screen and (max-width: 767px) {
   #inputbucador {
-      width: 90%; /* Ancho del 90% de la pantalla para dispositivos más pequeños */
-  }
+      width: 90%; 
 }
 
-/* Estilos específicos para pantallas medianas */
+
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   #inputbucador {
-      width: 80%; /* Ancho del 80% de la pantalla para dispositivos medianos */
+      width: 80%; 
   }
 }
 
-/* Estilos específicos para pantallas grandes (computadoras) */
+
 @media only screen and (min-width: 1024px) and (max-width: 2500px) {
   #inputbucador {
-      width: 68%; /* Ancho del 68% de la pantalla para pantallas de hasta 2500px */
-  }
+      width: 68%; 
 }
 
-/* Estilos específicos para pantallas muy grandes (mayores a 2500px) */
+
 @media only screen and (min-width: 2501px) {
   #inputbucador {
-      width: 68%; /* Puedes ajustar este valor según sea necesario para pantallas mayores a 2500px */
+      width: 68%; /
   }
-}
+} */
 
 .TitulocarouselTD{
-    /*font-family: Inter;*/
+   
 font-size: 20px;
 font-weight: 700;
 line-height: 24px;
@@ -394,3 +392,54 @@ line-height: normal;
 .imagen-con-brillo {
   filter: brightness(0.7); /* Ajusta el valor según desees, 0.7 es más oscuro, 1 es normal */
 }
+
+.input-group {
+  display: flex;
+  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el grupo de entrada en la pantalla */
+}
+
+.input-group-field {
+  flex-grow: 1;
+  box-sizing: border-box;
+
+  padding: 10px; /* Ajusta el relleno según tus necesidades */
+}
+
+.button.secondary {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: #F59120;
+  color: white;
+  /*padding: 10px;  Ajusta el relleno según tus necesidades */
+}
+
+/* TELEFONO */
+@media screen and (max-width: 600px) {
+  .input-group {
+    flex-direction: column; /* Cambia a columna en pantallas más pequeñas si es necesario */
+  }
+
+  .input-group-field {
+    margin-right: 0; /* Elimina el margen derecho en pantallas más pequeñas */
+    margin-bottom: 10px; /* Agrega margen inferior en pantallas más pequeñas si es necesario */
+  }
+}
+
+/* PC */
+@media screen and (min-width: 800px) {
+  .input-group {
+    flex-direction: row; /* Mantén la fila en pantallas más grandes */
+  }
+
+  .input-group-field {
+    /* Restaura el margen derecho en pantallas más grandes si es necesario */
+    margin-bottom: 0; /* Elimina el margen inferior en pantallas más grandes */
+  }
+
+  .button.secondary {
+    border-radius: 0px 20px 20px 0px !important;
+  }
+}
+
+

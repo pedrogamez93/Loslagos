@@ -117,12 +117,8 @@
             <option value="" disabled selected>Seleccione Departamento</option>
             </select>
 
-            <select class="form-select mt-4" aria-label="Default select example" name="cargo">
-                <option selected>Cargo</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
-            </select>
+            <label class="style-label mt-4 required" for="titulo">Cargo:</label>
+            <input class="form-control mt-2" type="text" name="cargo" placeholder="cargo" required>
 
             <label class="style-label mt-4 required" for="titulo">Direccion:</label>
             <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" required>
