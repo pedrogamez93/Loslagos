@@ -185,31 +185,32 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
   </div>
 </div>
 
+
 <div class="container">
     <div class="row py-5 my-5">
-            <div class="col-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="mb-3">
-            </div>
-            <div class="col-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="mb-3">
-            </div>
-            <div class="col-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="mb-3">
-            </div>
-            <div class="col-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="mb-3">
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="mb-3">
-            </div>
-
+        <div class="col-3">
+            <img src="{{ optional($home)->minibanners1 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners2 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners3 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+        </div>
+        <div class="col-3">
+            <img src="{{ optional($home)->minibanners4 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners5 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners6 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+        </div>
+        <div class="col-3">
+            <img src="{{ optional($home)->minibanners7 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners8 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners9 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+        </div>
+        <div class="col-3">
+            <img src="{{ optional($home)->minibanners10 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners11 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners12 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+        </div>
     </div>
 </div>
+
 
 
 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class FuncionarioController extends Controller
 {
@@ -312,5 +313,19 @@ public function edit($id)
        
     }
 
+    public function obtenerUbicaciones()
+    {
+        $jsonPath = storage_path('app/json/localidades.json');
 
+        if (File::exists($jsonPath)) {
+            $ubicaciones = File::get($jsonPath);
+
+            return response()->json($ubicaciones);
+        }
+
+        return response()->json(['error' => 'Archivo no encontrado'], 404);
+    }
+
+
+    
 }

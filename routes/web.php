@@ -85,7 +85,7 @@ Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'ind
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
 Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
-
+Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
