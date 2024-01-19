@@ -94,6 +94,7 @@
         padding-bottom: 2%;
     }
     .contenido-ley{
+        padding: 3rem;
         border: 1px solid #F59120;
     }
     a.final-btn{
