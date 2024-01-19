@@ -93,7 +93,7 @@
         color: #565656;
         padding-bottom: 2%;
     }
-    .contenido-ley{
+    .container.contenido-ley{
         padding: 3rem;
         border: 1px solid #F59120;
     }
