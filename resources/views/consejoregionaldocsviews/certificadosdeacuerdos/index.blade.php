@@ -67,6 +67,13 @@
         font-size: 16px;
         color: #565656;  
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -94,8 +101,9 @@
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Consejo Regional</p>
-
-                            <p style="Width:623px;">Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
                 </div>   
