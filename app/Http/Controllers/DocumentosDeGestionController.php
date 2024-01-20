@@ -39,10 +39,12 @@ class DocumentosDeGestionController extends Controller
 
     public function Indexcomisionregbordecostero()
     {
+        $categorias = ['Bode costero', 'C.R.U.B.C'];
+    
         $documentosBodeCostero = DocumentoGeneral::with('documentonew')
-            ->where('categoria', 'Bode costero', 'C.R.U.B.C')
+            ->whereIn('categoria', $categorias)
             ->get();
-
+    
         // Añadir el atributo 'ruta_documento' a cada documento
         foreach ($documentosBodeCostero as $documento) {
             if ($documento->documentonew) {
@@ -51,7 +53,7 @@ class DocumentosDeGestionController extends Controller
                 $documento->ruta_documento = null; // O un valor por defecto si es necesario
             }
         }
-
+    
         return view('documentosdegestion.comisionregbordecostero.index', ['documentos' => $documentosBodeCostero]);
     }
 
