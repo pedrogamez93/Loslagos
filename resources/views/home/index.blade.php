@@ -57,16 +57,16 @@
         </div>
     </div>
 </main>
-
-
-
-
-  
+ 
 </div>
+
   </div>
+
+ <div class="esquina-curva"> </div>
 <!--seccion de sala de prensa y tramite -->
 <div class="container-fluid">
-  <div class="container mt-5" > 
+
+  <div class="container " > 
      <div  class=" d-flex justify-content-between">
         <h3 class="titleshome">Sala de prensa</h3>
         
