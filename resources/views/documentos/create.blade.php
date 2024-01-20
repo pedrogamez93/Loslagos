@@ -279,6 +279,7 @@ input:required {
                                     <textarea  name="descripcion" id="descripcion" class="form-control">
                                     </textarea>
                                 </div>
+                                
                                 <div class="form-group">
                                 <label for="portada">Portada:</label>
                                 <div class="form-check">
@@ -305,6 +306,7 @@ input:required {
                             </div>
 
                             {{-- Campos comunes a todos los tipos de documentos --}}
+                            
                            
                             <div class="form-group mt-3">
                                
