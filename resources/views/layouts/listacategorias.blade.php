@@ -88,7 +88,7 @@
         var currentUrl = window.location.href;
 
         // Seleccionamos todos los enlaces dentro de #categorylist
-        var links = document.querySelectorAll("#categorylist li .mi-li a");
+        var links = document.querySelectorAll("#categorylist li a");
 
         // Iteramos sobre los enlaces
         links.forEach(function (link) {
