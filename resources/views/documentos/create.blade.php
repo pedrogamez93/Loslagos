@@ -281,6 +281,11 @@ input:required {
                                 </div>
                                 
                                 <div class="form-group">
+                                    <label for="fecha_hora">Fecha y Hora:</label>
+                                    <input type="datetime-local" name="fecha_hora" id="fecha_hora" class="form-control">
+                                 </div>
+
+                                <div class="form-group">
                                 <label for="portada">Portada:</label>
                                 <div class="form-check">
                                     <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input">
@@ -306,7 +311,6 @@ input:required {
                             </div>
 
                             {{-- Campos comunes a todos los tipos de documentos --}}
-                            
                            
                             <div class="form-group mt-3">
                                
