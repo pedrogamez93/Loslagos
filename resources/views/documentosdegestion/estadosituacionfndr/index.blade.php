@@ -258,9 +258,44 @@
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-8">
+                                    <div class="container">
+                                        @php $accordionId = 1; @endphp
+                                        @if($documentosAgrupados->has($anioActual))
+                                            <div class="accordion" id="accordion{{ $accordionId }}">
+                                                <div class="accordion-item">
+                                                    <!-- Acordeón para el año actual -->
+                                                    <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="true" aria-controls="collapse{{ $accordionId }}">
+                                                            <p class="title-acord-one">Estado situación F.N.D.R {{ $anioActual }}</p>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                        <div class="accordion-body">
+                                                            <!-- Contenido del acordeón para el año actual -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @php $accordionId++; @endphp
+                                        @endif
 
+                                        <!-- Acordeón para años anteriores -->
+                                        <div class="accordion" id="accordion{{ $accordionId }}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="false" aria-controls="collapse{{ $accordionId }}">
+                                                        <p class="title-acord-one">Estados de Situación F.N.D.R. Años Anteriores</p>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                    <div class="accordion-body">
+                                                        <!-- Contenido del acordeón para años anteriores -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>

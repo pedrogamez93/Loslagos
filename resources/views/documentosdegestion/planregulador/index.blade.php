@@ -258,9 +258,26 @@
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-8">
-
+                                    <div class="container">
+                                        <div class="row">
+                                            <h1 class="mititulo">Plan Regulador Comunal de Maullín 2022</h1>
+                                            @foreach ($documentosPlanRegulador as $documento)
+                                                <div class="col-md-6">
+                                                    <div class="mi-documento mt-3 mb-3">
+                                                        <!-- Contenido del documento, como enlace, imagen, título, etc. -->
+                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank">
+                                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                            <p>{{ $documento->titulo }}</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @if ($loop->iteration % 2 == 0)
+                                                    <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>

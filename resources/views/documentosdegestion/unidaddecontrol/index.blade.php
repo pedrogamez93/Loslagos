@@ -260,7 +260,6 @@
                                 <div class="col-md-8">
 
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>

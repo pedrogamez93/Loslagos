@@ -258,9 +258,29 @@
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-8">
-
+                                    <div class="container">
+                                        @php $accordionId = 1; @endphp
+                                        @foreach($documentosAgrupados->sortKeysDesc() as $anio => $documentos)
+                                            <div class="accordion" id="accordion{{ $accordionId }}">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="{{ $anio == $anioActual ? 'true' : 'false' }}" aria-controls="collapse{{ $accordionId }}">
+                                                            <p class="title-acord-one">Informe Ejecución PROPIR {{ $anio }}</p>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse {{ $anio == $anioActual ? 'show' : '' }}" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                        <div class="accordion-body">
+                                                            @foreach ($documentos as $documento)
+                                                                <!-- Mostrar los detalles del documento aquí -->
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @php $accordionId++; @endphp
+                                        @endforeach
+                                    </div>
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>

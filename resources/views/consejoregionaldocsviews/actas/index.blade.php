@@ -139,7 +139,7 @@
                                         <a href="{{ route('actas.showActa', $acta->id) }}" target="_blank" class="d-flex align-items-center"> <!-- Añade flexbox al enlace -->
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;"> <!-- Añade margen a la imagen -->
                                             <div> <!-- Contenedor para los textos -->
-                                                <p class="p-doc-tit">Sesión ordinaria N° {{ $acta->documentonew->numero_sesion }}</p>
+                                                <p class="p-doc-tit">{{ $acta->documentonew->tema }}</p>
                                                 <p class="p-doc-baj">Fecha y Hora: {{ $acta->documentonew->fecha_hora }}</p>
                                             </div>
                                         </a>

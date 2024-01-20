@@ -270,8 +270,24 @@
 
                                     <p class="mt-5 mb-4" style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 30px; color: #F59120;">Documentos</p>
 
+                                    <div class="container">
+                                        <div class="row">
+                                            @foreach ($documentosReceptoresFondos as $documento)
+                                                <div class="col-md-6">
+                                                    <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                            <p class="ms-3">{{ $documento->titulo }}</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @if ($loop->iteration % 2 == 0)
+                                                    <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>
