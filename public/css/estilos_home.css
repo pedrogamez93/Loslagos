@@ -331,19 +331,17 @@ line-height: normal;
 }
 
 .tituloprensa {
-  position: absolute;
-  top: 35px;
-  left: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #FFF;
   font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; /* Esto agrega puntos suspensivos (...) al final si el texto es demasiado largo */
 }
+
 
 
 
