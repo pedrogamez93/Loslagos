@@ -443,3 +443,14 @@ line-height: normal;
 }
 
 
+/* Estilo para el div con esquina izquierda superior curva */
+/* Estilo para el div con esquina izquierda superior curva */
+.esquina-curva {
+  position: relative;
+  top: -99px;
+  height: 100px;
+  width: 100%;
+  z-index: 999;
+  background: linear-gradient(to bottom right, #389144 0%, #fff 0%);
+  border-top-left-radius: 100px;
+}
