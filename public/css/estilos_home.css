@@ -324,13 +324,14 @@ line-height: normal;
 }
 
 .carousel-caption {
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 80%;
 }
 
 .tituloprensa {
+  position: relative !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
