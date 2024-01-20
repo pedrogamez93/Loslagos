@@ -406,7 +406,7 @@ line-height: normal;
 .input-group-field {
   flex-grow: 1;
   box-sizing: border-box;
-
+  border-radius: 20px 1px 1px 20px;
   padding: 10px; /* Ajusta el relleno según tus necesidades */
 }
 
