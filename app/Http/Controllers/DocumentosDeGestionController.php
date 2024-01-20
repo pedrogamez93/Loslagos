@@ -40,7 +40,7 @@ class DocumentosDeGestionController extends Controller
     public function Indexcomisionregbordecostero()
     {
         $documentosBodeCostero = DocumentoGeneral::with('documentonew')
-            ->where('categoria', 'Bode costero')
+            ->where('categoria', 'Bode costero', 'C.R.U.B.C')
             ->get();
 
         // Añadir el atributo 'ruta_documento' a cada documento
