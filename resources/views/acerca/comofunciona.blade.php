@@ -39,6 +39,7 @@
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;

@@ -14,17 +14,17 @@
         padding-left: 0.5rem !important;
     }
 
-    #categorylist li:first-child {
+    #categorylist li.mi-li:first-child {
         position: relative;
     }
 
-    #categorylist li {
+    #categorylist li.mi-li {
         margin-right: 30px;
         margin-top: 10px;
         float: left;
     }
 
-    #categorylist li a {
+    #categorylist li.mi-li a {
         background-color: #FFFFFF;
         border: 1px solid #FFFFFF;
         box-sizing: border-box;
@@ -41,7 +41,7 @@
         text-decoration: none;
     }
 
-    #categorylist li a:hover{
+    #categorylist li.mi-li a:hover{
         color: #00548F;
         border-radius: 100px;
         border: 1px solid #00548F;
@@ -49,7 +49,7 @@
         background-color: #FFFFFF;
     }
 
-    #categorylist li a.active {
+    #categorylist li.mi-li a.active {
         color: #00548F;
         border-radius: 100px;
         border: 1px solid #00548F;
@@ -66,19 +66,19 @@
     <div id="categoriasToggle">
         <span id="backToggle" class="responsiveCategorias">Categorías</span>
     </div>
-    <ul id="categorylist">
-        <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
-        <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
-        <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
-        <li><a href="/gobiernoregional/documentosdegestion"title="Categoría:tags">Documentos de Gestión</a></li>
-        <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
-        <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
-        <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climática</a></li>
-        <li><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hídrica</a></li>
-        <li><a href="/gobiernoregional/disenopoliticapersonasmayores" title="Categoría:tags">Política Personas Mayores</a></li>
-        <li><a href="/gobiernoregional/planificacioninstitucional" title="Categoría:tags">Planificación Institucional</a></li>
-        <li><a href="/gobiernoregional/concursopublico" title="Categoría:tags">Concurso Público</a></li>
-        <li><a href="/gobiernoregional/comitecienciastecnologias" title="Categoría:tags">Comité Ciencia Tecnología e Innovación</a></li>
+    <ul class="mi-ul" id="categorylist">
+        <li class="mi-li"><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
+        <li class="mi-li"><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/documentosdegestion"title="Categoría:tags">Documentos de GestiónDepto</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climática</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/politicasostenibilidadhidrica" title="Categoría:tags">Política Sostenibilidad Hídrica</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/disenopoliticapersonasmayores" title="Categoría:tags">Política Personas Mayores</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/planificacioninstitucional" title="Categoría:tags">Planificación Institucional</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/concursopublico" title="Categoría:tags">Concurso Público</a></li>
+        <li class="mi-li"><a href="/gobiernoregional/comitecienciastecnologias" title="Categoría:tags">Comité Ciencia Tecnología e Innovación</a></li>
     </ul>
 </div>
 
@@ -88,7 +88,7 @@
         var currentUrl = window.location.href;
 
         // Seleccionamos todos los enlaces dentro de #categorylist
-        var links = document.querySelectorAll("#categorylist li a");
+        var links = document.querySelectorAll("#categorylist li .mi-li a");
 
         // Iteramos sobre los enlaces
         links.forEach(function (link) {

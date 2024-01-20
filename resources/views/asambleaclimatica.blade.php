@@ -129,6 +129,7 @@
 			Line-height: 19.36px;
 			color: #565656;
 			text-align: justify;
+            white-space: pre-wrap;
 	}
 
     p.title-categ{
@@ -263,7 +264,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <p class="title-acord">{{ $asamblea->titulo_two ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_two ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionTwo">
@@ -278,7 +279,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTree">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
-                                    <p class="title-acord">{{ $asamblea->titulo_tree ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_tree ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseTree" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#accordionTree">
@@ -293,7 +294,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <p class="title-acord">{{ $asamblea->titulo_four ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_four ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFour">
@@ -308,7 +309,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    <p class="title-acord">{{ $asamblea->titulo_five ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_five ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFive">
@@ -323,7 +324,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSix">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                    <p class="title-acord">{{ $asamblea->titulo_six ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_six ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionSix">

@@ -39,6 +39,7 @@
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;
@@ -168,13 +169,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="container set">
+                <div class="container set" style="padding-left: 2.5rem;">
                     @include('layouts.listacategorias')
                 </div>
                 <div class="container mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="container int">
+                            <div class="container int" style="padding-left: 2rem;">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="style-tag pt-4 pb-4">{{ $introduccion->tag_comentario }}</p>

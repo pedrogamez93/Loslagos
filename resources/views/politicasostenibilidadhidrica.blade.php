@@ -176,7 +176,7 @@
                 </div>       
                 <div class="container principal" style="padding-left: 1.5rem !important; padding-right: 5rem!important;">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 style-cont">
                             <h1 class="mititulo mb-2">{{ $ultimoRegistro->titulo }}</h1>
                             <p class="bajada-acord">{!! $ultimoRegistro->bajada ?? '' !!}</p>
                             <h2 class="mititulo mt-3" style="font-style: italic;">{{ $ultimoRegistro->titulo_seccion_form }}</h2>
@@ -192,7 +192,7 @@
                             @else
                             <p>No hay formularios disponibles.</p>
                             @endif
-                            <div class="container seccionencuestas" style="padding: 0px;">
+                            <div class="container style-cont  seccionencuestas" style="padding: 0px;">
                                 <h2 class="mititulo mb-2">{{ $ultimoRegistro->titulo_seccion_encue }}</h2>
                                 <p>{!! $ultimoRegistro->bajada_seccion_encue ?? '' !!}</p>
                             </div>

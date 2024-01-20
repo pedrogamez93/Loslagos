@@ -40,6 +40,7 @@
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;
@@ -114,6 +115,7 @@
 			Line-height: 19.36px;
 			color: #565656;
 			text-align: justify;
+            white-space: pre-wrap;
 	}
 
     p.title-categ{
@@ -176,6 +178,14 @@
 }
     ul, ol {
     margin-bottom: 10px; /* Ajusta el valor según tus necesidades */
+}
+ul {
+    list-style-type: disc !important; /* Estilo de viñeta para listas no ordenadas */
+    padding-left: 20px !important; /* Espaciado para la indentación de la lista */
+}
+
+ul li {
+    margin-bottom: 5px !important; /* Espaciado entre elementos de la lista */
 }
 @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
@@ -250,7 +260,7 @@
                                     <div class="col-md-12 style-cont">
                                         <h1 class="mi-title mb-5">{{ $audiencia->titulo ?? '' }}</h1>
                                         
-                                        <div class="mi-bajada">{!! $audiencia->bajada ?? '' !!}</div>
+                                        <div class="style-cont mi-bajada" id="editor">{!! $audiencia->bajada ?? '' !!}</div>
 
                                         {{-- Verifica si $audiencia no es nulo antes de intentar acceder a sus propiedades --}}
                                             @if($audiencia && $audiencia->documentos->count() > 0)
@@ -302,4 +312,5 @@
         document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
     });
 </script>
+
 @endsection

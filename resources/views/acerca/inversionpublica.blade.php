@@ -39,6 +39,7 @@
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;
@@ -177,7 +178,9 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-4 pb-4">{{ $inversiones->tag_comentario }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $inversiones->titulo }}</p>
-                                        <p class="style-down pt-2 pb-2">{{ $inversiones->bajada }}</p>
+                                        <p class="style-down pt-2 pb-5">{{ $inversiones->bajada }}</p>
+
+                                        <a style="width: 178px; height:40px; border-radius:100px; font-family: 'Inter'; font-weight: 700; font-size: 16px; background-color: #F59120; color: #FFFFFF; padding: 10px;" href="{{ $inversiones->enlace }}">Más Información</a>
                                     </div>
                                 </div>
                             </div>
