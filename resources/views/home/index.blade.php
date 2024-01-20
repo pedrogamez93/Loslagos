@@ -92,11 +92,7 @@
             <div class="carousel-caption">
             <h5 style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</h5>
 
-                @if($registro->descripcion)
-                   
-                    <p style="" class="descripcionprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</p>
-
-                @endif
+               
                 <a style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
