@@ -14,7 +14,7 @@
 <main class="container" class="headercontent">
     <div class="row p-5" class="centrar">
         <div class="col colinputbuscador">
-            <div class="input-group rounded">
+            <div id="divbuscador" class="input-group rounded">
                 <div class="position-absolute mt-2">
                     <span class="" style="background-color: transparent; border: none; ">
                         <!-- <i class="bi bi-search"></i> -->
@@ -34,7 +34,7 @@
                     
                     <div class="input-group input-group-rounded">
     <input class="input-group-field" id="inputbucador" name="q" type="search">
-    <input type="submit" class="button secondary" value="Search">
+    <input type="submit" class="button secondary" value="Buscar">
 </div>
 
    
