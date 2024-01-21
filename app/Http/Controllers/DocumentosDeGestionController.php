@@ -76,44 +76,63 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.controlesssi.index', ['documentosControlesSSI' => $documentosControlesSSI]);
     }
 
-    public function Indexestadosituacionfndr()
-    {
-        $anioActual = Carbon::now()->year;
-        $documentos = DocumentoGeneral::with('documentonew')
-            ->where('categoria', 'Estado Situacion FNDR')
-            ->get();
-    
-        $documentosAgrupados = $documentos->groupBy(function($documento) {
-            return Carbon::parse($documento->fecha)->year; // Asumiendo que 'fecha' es un campo en tus documentos
-        });
-    
-        return view('documentosdegestion.estadosituacionfndr.index', [
-            'documentosAgrupados' => $documentosAgrupados,
-            'anioActual' => $anioActual
-        ]);
-    }
+        public function Indexestadosituacionfndr()
+        {
+            $anioActual = Carbon::now()->year;
+            $documentos = DocumentoGeneral::with('documentonew')
+                ->where('categoria', 'Estado Situacion FNDR')
+                ->get();
 
-    public function Indexinformeejecucion()
-    {
-        $anioActual = Carbon::now()->year;
-        $documentos = DocumentoGeneral::with('documentonew')
-            ->where('categoria', 'Informe Ejecucion PROPIR')
-            ->get();
-    
-        $documentosAgrupados = $documentos->groupBy(function($documento) {
-            return Carbon::parse($documento->fecha)->year; // Asume que 'fecha' es un campo en tus documentos
-        });
-    
-        return view('documentosdegestion.informeejecucion.index', [
-            'documentosAgrupados' => $documentosAgrupados,
-            'anioActual' => $anioActual
-        ]);
-    }
+            $documentosAgrupados = $documentos->groupBy(function($documento) {
+                // Verificar si el documento tiene una fecha asociada válida
+                return ($documento->documentonew && $documento->documentonew->fecha_hora) ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+            });
 
-    public function Indexinformegastosley(){
+            // Filtrar grupos vacíos (sin año)
+            $documentosAgrupados = $documentosAgrupados->filter(function($group) {
+                return $group->isNotEmpty();
+            });
 
-        return view('documentosdegestion.informegastosley.index');
-    }
+            return view('documentosdegestion.estadosituacionfndr.index', [
+                'documentosAgrupados' => $documentosAgrupados,
+                'anioActual' => $anioActual
+            ]);
+        }
+        public function Indexinformeejecucion()
+        {
+            $anioActual = Carbon::now()->year;
+            $documentos = DocumentoGeneral::with('documentonew')
+                ->where('categoria', 'Informe Ejecucion PROPIR')
+                ->get();
+
+            $documentosAgrupados = $documentos->groupBy(function($documento) {
+                // Utilizar el campo fecha_hora del modelo Documentonew
+                return $documento->documentonew ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+            });
+
+            return view('documentosdegestion.informeejecucion.index', [
+                'documentosAgrupados' => $documentosAgrupados,
+                'anioActual' => $anioActual
+            ]);
+        }
+
+        public function Indexinformegastosley()
+        {
+            $anioActual = Carbon::now()->year;
+            $documentos = DocumentoGeneral::with('documentonew')
+                ->where('categoria', 'Informe Gastos Ley 21.516') // Reemplaza 'Tu Categoria Aquí' con la categoría correcta
+                ->get();
+        
+            $documentosAgrupados = $documentos->groupBy(function($documento) {
+                // Utilizar el campo fecha_hora del modelo Documentonew si está disponible
+                return $documento->documentonew ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+            });
+        
+            return view('documentosdegestion.informegastosley.index', [
+                'documentosAgrupados' => $documentosAgrupados,
+                'anioActual' => $anioActual
+            ]);
+        }
 
     public function Indexplanregulador()
     {
@@ -124,9 +143,27 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.planregulador.index', ['documentosPlanRegulador' => $documentosPlanRegulador]);
     }
 
-    public function Indexpresupuesto(){
-
-        return view('documentosdegestion.presupuesto.index');
+    public function Indexpresupuesto()
+    {
+        $anioActual = Carbon::now()->year;
+        $documentos = DocumentoGeneral::with('documentonew')
+            ->where('categoria', 'Presupuesto')
+            ->get();
+    
+        $documentosAgrupados = $documentos->groupBy(function($documento) {
+            // Utilizar el campo fecha_hora del modelo Documentonew si está disponible
+            return $documento->documentonew ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+        });
+    
+        // Filtrar grupos vacíos (sin año)
+        $documentosAgrupados = $documentosAgrupados->filter(function($group) {
+            return $group->isNotEmpty();
+        });
+    
+        return view('documentosdegestion.presupuesto.index', [
+            'documentosAgrupados' => $documentosAgrupados,
+            'anioActual' => $anioActual
+        ]);
     }
 
     public function Indexreceptoresfondos()
@@ -138,8 +175,26 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.receptoresfondos.index', ['documentosReceptoresFondos' => $documentosReceptoresFondos]);
     }
 
-    public function Indexunidaddecontrol(){
-
-        return view('documentosdegestion.unidaddecontrol.index');
+    public function Indexunidaddecontrol()
+    {
+        $anioActual = Carbon::now()->year;
+        $documentos = DocumentoGeneral::with('documentonew')
+            ->where('categoria', 'Unidad de Control')
+            ->get();
+    
+        $documentosAgrupados = $documentos->groupBy(function($documento) {
+            // Utilizar el campo fecha_hora del modelo Documentonew si está disponible
+            return $documento->documentonew ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+        });
+    
+        // Filtrar grupos vacíos (sin año)
+        $documentosAgrupados = $documentosAgrupados->filter(function($group) {
+            return $group->isNotEmpty();
+        });
+    
+        return view('documentosdegestion.unidaddecontrol.index', [
+            'documentosAgrupados' => $documentosAgrupados,
+            'anioActual' => $anioActual
+        ]);
     }
 }

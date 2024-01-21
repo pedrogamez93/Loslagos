@@ -260,10 +260,11 @@
                                 <div class="col-md-8">
                                     <div class="container">
                                         @php $accordionId = 1; @endphp
+
+                                        <!-- Acordeón para el año actual -->
                                         @if($documentosAgrupados->has($anioActual))
                                             <div class="accordion" id="accordion{{ $accordionId }}">
                                                 <div class="accordion-item">
-                                                    <!-- Acordeón para el año actual -->
                                                     <h2 class="accordion-header" id="heading{{ $accordionId }}">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="true" aria-controls="collapse{{ $accordionId }}">
                                                             <p class="title-acord-one">Estado situación F.N.D.R {{ $anioActual }}</p>
@@ -271,7 +272,21 @@
                                                     </h2>
                                                     <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
                                                         <div class="accordion-body">
-                                                            <!-- Contenido del acordeón para el año actual -->
+                                                            <div class="row">
+                                                                @foreach ($documentosAgrupados[$anioActual] as $documento)
+                                                                    <div class="col-md-6">
+                                                                        <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                                            <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                                <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                                                <p class="ms-3">{{ $documento->titulo }}</p>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    @if ($loop->iteration % 2 == 0)
+                                                                        <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -280,20 +295,41 @@
                                         @endif
 
                                         <!-- Acordeón para años anteriores -->
-                                        <div class="accordion" id="accordion{{ $accordionId }}">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="heading{{ $accordionId }}">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="false" aria-controls="collapse{{ $accordionId }}">
-                                                        <p class="title-acord-one">Estados de Situación F.N.D.R. Años Anteriores</p>
-                                                    </button>
-                                                </h2>
-                                                <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
-                                                    <div class="accordion-body">
-                                                        <!-- Contenido del acordeón para años anteriores -->
+                                        @if($documentosAgrupados->filter(function ($value, $key) use ($anioActual) { return $key < $anioActual; })->isNotEmpty())
+                                            <div class="accordion" id="accordion{{ $accordionId }}">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="false" aria-controls="collapse{{ $accordionId }}">
+                                                            <p class="title-acord-one">Estados de Situación F.N.D.R. Años Anteriores</p>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                @foreach($documentosAgrupados as $anio => $documentosDelAnio)
+                                                                    @if($anio < $anioActual)
+                                                                        @foreach($documentosDelAnio as $documento)
+                                                                            <div class="col-md-6">
+                                                                                <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                                                    <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                                                        <p class="ms-3">{{ $documento->titulo }}</p>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                            @if ($loop->iteration % 2 == 0)
+                                                                                <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            @php $accordionId++; @endphp
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">

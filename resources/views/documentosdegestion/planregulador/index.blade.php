@@ -263,11 +263,10 @@
                                             <h1 class="mititulo">Plan Regulador Comunal de Maullín 2022</h1>
                                             @foreach ($documentosPlanRegulador as $documento)
                                                 <div class="col-md-6">
-                                                    <div class="mi-documento mt-3 mb-3">
-                                                        <!-- Contenido del documento, como enlace, imagen, título, etc. -->
-                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank">
+                                                    <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
                                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
-                                                            <p>{{ $documento->titulo }}</p>
+                                                            <p class="ms-3">{{ $documento->titulo }}</p>
                                                         </a>
                                                     </div>
                                                 </div>

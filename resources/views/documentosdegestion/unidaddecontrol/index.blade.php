@@ -258,7 +258,38 @@
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-8">
+                                    <div class="container">
+                                        @php $accordionId = 1; @endphp
 
+                                        @foreach($documentosAgrupados->sortKeysDesc() as $anio => $documentosDelAnio)
+                                            <div class="accordion" id="accordion{{ $accordionId }}">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="{{ $anio == $anioActual ? 'true' : 'false' }}" aria-controls="collapse{{ $accordionId }}">
+                                                            <p class="title-acord-one">Informes Ejercicio Presupuestario {{ $anio }}</p>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse {{ $anio == $anioActual ? 'show' : '' }}" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                @foreach ($documentosDelAnio as $documento)
+                                                                <div class="col-md-6">
+                                                                    <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                                            <p class="ms-3">{{ $documento->titulo }}</p>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @php $accordionId++; @endphp
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
