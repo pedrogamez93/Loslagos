@@ -250,7 +250,7 @@
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 3rem;">
+                        <div class="col-md-12" style="padding: 0 0 0 2rem;">
                             <h1 class="mititulo mt-2 mb-2">Introducción</h1>
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                                     {{-- Mostrar información del consejo --}}
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-6"  style="padding: 0 0 0 2.5rem;">
+                                            <div class="col-md-6"  style="padding: 0 0 0 1.5rem;">
                                                 <p class="style-down">{{ $consejo->bajada }}</p>
 
                                                 {{-- Acordeón para las secciones --}}
