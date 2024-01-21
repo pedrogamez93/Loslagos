@@ -7,7 +7,7 @@
     <link href="{{ asset('css/estilos_home.css') }}" rel="stylesheet">
 @endpush
 
-  <div class="d-flex h-300 text-center " style="height: 700px; background-color: #389144;">
+  <div id="header" class="d-flex h-300 text-center " style=" background-color: #389144;">
   
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
@@ -29,12 +29,12 @@
                     <p class="descripcionhome">Descripcion</p>
                 @endif
 
-                <form action="http://127.0.0.1:8000/buscador" method="GET" >
+                <form action="http://127.0.0.1:8000/buscador" method="GET" id="formbuscador">
                     
                     
-                    <div class="input-group input-group-rounded">
+                    <div id="divformbuscador" class="input-group input-group-rounded">
     <input class="input-group-field" id="inputbucador" name="q" type="search">
-    <input type="submit" class="button secondary" value="Buscar">
+    <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
 </div>
 
    
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div id="columnaimg" class="col">
         <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -119,7 +119,7 @@
   </div>
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 class="titleshome">Tramites Digitales  <a href="{{ route('salaprensa.index') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Tramites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
     <div>
         <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">

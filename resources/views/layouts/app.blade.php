@@ -257,13 +257,14 @@
     </div>
 
     <div class="col mb-3">
-        <h5 class="footer-col-title" >Contacta con nosotros aquí</h5>
+    <a style="text-decoration: none;
+    color: white;" href="{{ url('/contactanos') }}"><h5 class="footer-col-title" >Contacta con nosotros aquí</h5></a>
         <ul class="nav flex-column">
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
             <a href="#" class="nav-link p-0 text-muted">
-                <div class="d-flex flex-column flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+                <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
                     <label for="newsletter1" class="visually-hidden" style="color:white">Escríbenos</label>
                     <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
 

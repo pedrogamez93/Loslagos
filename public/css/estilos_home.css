@@ -420,8 +420,36 @@ line-height: normal;
 
 /* TELEFONO */
 @media screen and (max-width: 600px) {
+  #columnaimg{
+display: none;
+  }
+
+  #btnbuscador{
+    height: 11.5vw;
+    border-radius: 1px 20px 20px 1px;
+  }
+  
+  #formbuscador{
+    position: absolute;
+    margin-top: 30vw;
+  }
+
+  #header{
+height: 115vw;
+
+  }
+
+  #divformbuscador{
+    margin-top: 25vw;
+    display: flex !important;
+    max-width: 400px;
+    margin: 0 auto;
+    flex-wrap: nowrap !important;
+  }
+
   .input-group {
-    flex-direction: column; /* Cambia a columna en pantallas más pequeñas si es necesario */
+   
+    flex-direction: row; /* Cambia a columna en pantallas más pequeñas si es necesario */
   }
 
   .input-group-field {
@@ -432,6 +460,12 @@ line-height: normal;
 
 /* PC */
 @media screen and (min-width: 800px) {
+  #header{
+    height: 800px;
+    
+      }
+
+
   .input-group {
     flex-direction: row; /* Mantén la fila en pantallas más grandes */
   }
