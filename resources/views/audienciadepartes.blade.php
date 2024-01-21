@@ -106,7 +106,7 @@
 			font-family: 'Inter';
 			font-Weight: 700;
 			font-Size: 20px;
-			color: #565656;0
+			color: #565656;
 		}
 	.bajada-acord{
 			font-family: 'Inter';
