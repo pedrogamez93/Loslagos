@@ -344,7 +344,7 @@
                                     <th scope="col"></th>
                                     <th scope="col" style=" text-align: center;"> 
                                     <?php
-                                        $totalSuperficie = number_format($totalSuperficie, 0, ',', '.');
+                                        $totalSuperficie = number_format($totalSuperficie, 2, ',', '.');
                                     ?> 
 
                                     {{ $totalSuperficie }} Km2

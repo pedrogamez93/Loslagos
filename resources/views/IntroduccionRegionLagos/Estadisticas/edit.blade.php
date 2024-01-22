@@ -92,7 +92,7 @@
                                 <div class="col-md-4 superficie">
                                     <b>&nbsp;</b>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control"  value="{{ $articulo->superficie }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="superficie" name="superficie_nueva" class="form-control"  value="{{ $articulo->superficie_nueva }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
                                     </div>
                                 </div>
                                 <div class="col-md-4 purbana">

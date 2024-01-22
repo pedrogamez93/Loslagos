@@ -370,7 +370,7 @@ public function updateAutoridades(Request $request, $id)
     {
         $data = $request->validate([
             'provincia' => 'required',
-            'superficie' => 'required',
+            'superficie_nueva' => 'required',
             'comuna' => 'required',
             'p_urbana_hombre' => 'required',
             'p_urbana_mujeres' => 'required',
@@ -406,7 +406,7 @@ public function updateEstadisticas(Request $request, $id)
 {
     $data = $request->validate([
         'provincia' => 'required',
-        'superficie' => 'required',
+        'superficie_nueva' => 'required',
         'comuna' => 'required',
         'p_urbana_hombre' => 'required',
         'p_urbana_mujeres' => 'required',
@@ -1351,7 +1351,7 @@ if ($articulo) {
     {
         $introduccion = Estadisticas::all();
         // Obtén la suma de la columna 'superficie'
-        $totalSuperficie = Estadisticas::sum('superficie');
+        $totalSuperficie = Estadisticas::sum('superficie_nueva');
         $p_urbana_hombre = Estadisticas::sum('p_urbana_hombre');
         $p_urbana_mujeres = Estadisticas::sum('p_urbana_mujeres');
         $p_rural_hombre = Estadisticas::sum('p_rural_hombre');
@@ -1373,7 +1373,7 @@ if ($articulo) {
         foreach($introduccion as $p){
             $acumulador += $p->superficie_nueva;
         }
-            
+        $acumulador = number_format($acumulador, 2, ',', '.');
         
         // Haz lo que necesites con $totalSuperficie
         return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo','actividadE'));
