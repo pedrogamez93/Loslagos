@@ -45,6 +45,7 @@
     text-decoration: none;
     font-weight: 500;   
     }
+
 </style>
 <div class="container-fluid body">
     <div class="row">
@@ -62,7 +63,7 @@
                 </div>
                 <div class="container first-form pt-2 pb-2">
 
-                <form action="{{ route('AntecedentesRegionLagos.updateAntecedentes', $articulo->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('ActividadEconomica.update', $articulo->id) }}" method="POST" enctype="multipart/form-data">
                 
                 @method('PUT')
                 @csrf  
@@ -84,11 +85,15 @@
                             <div class="form-group">
                                 <div class="row">
                                 @foreach($actividadesC as $act)
+                                    <div class="col-md-12 mt-3 text-end">
+                                        <a href="/ActividadesEconomicaI/delete/{{ $act->id }}"  class="btn btn-danger ">Eliminar</a>
+                                    </div>
                                     <div class="documentos-container col-md-12 mt-3">
                                         <div class="documentos-input col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="input-group mb-3">
+                                                
                                                     <input type="text" id="titulo" name="nombreA[]" value="{{ $act->nombreA }}" class="form-control" placeholder="Actividad Económica" required>
                                                 </div>
                                             </div>
@@ -107,27 +112,28 @@
                                     </div>
                                     @endforeach
                                     <div class="documentos-container1 col-md-12 mt-3">
-                                        <div class="documentos-input col-md-12">
+                                        <div class="documentos-input2 col-md-12">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Actividad Económica" required>
+                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Actividad Económica" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="hombres" name="hombres[]" class="form-control" placeholder="Hombres" required>
+                                                    <input type="text" id="hombres" name="hombres[]" class="form-control" placeholder="Hombres" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="mujeres" name="mujeres[]" class="form-control" placeholder="Mujeres" required>
+                                                    <input type="text" id="mujeres" name="mujeres[]" class="form-control" placeholder="Mujeres" >
                                                 </div>
                                             </div>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
+                                    <input type="hidden" value="{{ $articulo->id }}" name="idPrincipal" class="form-control">
                                         <button type="button" class="btn btn-success agregar-documento" id="agregarCampo">Agregar más campos</button>
                                     </div>
                                     
@@ -146,7 +152,7 @@
         // Agregar más documentos
         $(".agregar-documento").click(function() {
             var documentosContainer = $(".documentos-container1");
-            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
+            var nuevoDocumentoInput = documentosContainer.find(".documentos-input2:first").clone(); // Clona el primer conjunto de campos
 
             // Limpia los valores en los campos clonados
             nuevoDocumentoInput.find("input[type='text']").val('');
@@ -159,4 +165,3 @@
         });
     });
 </script>
-actividadesC

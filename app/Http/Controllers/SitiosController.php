@@ -68,10 +68,13 @@ class SitiosController extends Controller
 
 
     public function indexTabla()
-        {
-            $sitios['sitios'] = Sitios::orderBy('created_at', 'asc')->paginate(20);
-            return view('sitiodegobierno.tabla', $sitios);
-        }
+    {
+        // Obtener todos los sitios ordenados por fecha de creación y paginados
+        $sitios = Sitios::orderBy('created_at', 'asc')->paginate(5);
+    
+        // Retornar la vista con los sitios paginados
+        return view('sitiodegobierno.tabla', compact('sitios'));
+    }
 
 
 

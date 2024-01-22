@@ -335,7 +335,7 @@
                                 <table class="table">
                                 <thead>
                                     <tr>
-                                    <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                                    <th scope="col" class="tituloTable">{{$titulo}} </th>
                                     <th scope="col" class="tituloT">Superficie</th>
                                     <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
                                     <th scope="col" class="tituloT" colspan="2">Población Rural</th>
@@ -343,7 +343,11 @@
                                     </tr>
                                     <tr>
                                     <th scope="col"></th>
-                                    <th scope="col" style=" text-align: center;"> {{$acumulador}} </th>
+                                    <th scope="col" style=" text-align: center;"> 
+                                    <?php
+                                       // $acumulador = number_format($acumulador, 0, ',', '.');
+                                    ?> 
+                                    {{$acumulador}}  Km2</th>
                                     <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
                                     <th scope="col" class="tituloTS" style=" text-align: center;">Mujer</th>
                                     <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
@@ -356,12 +360,38 @@
                                     
                                     <tr>
                                         <td>{{ $p->comuna }}</td>
-                                        <td style=" text-align: center;">{{ $p->superficie }}</td>
-                                        <td style=" text-align: center;"> {{ $p->p_urbana_hombre }}</td>
-                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                        <td style=" text-align: center;"> {{ $p->p_urbana_mujeres }}</td>
-                                        <td style=" text-align: center;"> {{ $p->p_rural_hombre }}</td>
-                                        <td style=" text-align: center;"> {{  $total =$p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;}}</td>
+                                        <td style=" text-align: center;">
+                                        <?php
+                                            $superficie = number_format($p->superficie_nueva, 2, ',', '.');
+                                            $superficieAcumulada=+$p->superficie_nueva;
+                                        ?> 
+                                        {{ $superficie }}  Km2</td>
+                                        <td style=" text-align: center;"> 
+                                        <?php
+                                            $p_urbana_hombre = number_format($p->p_urbana_hombre, 0, ',', '.');
+                                        ?>
+                                        {{ $p_urbana_hombre }}</td>
+                                        <td style=" text-align: center;"> 
+                                        <?php
+                                            $p_urbana_mujeres = number_format($p->p_urbana_mujeres, 0, ',', '.');
+                                        ?>
+                                        {{ $p_urbana_mujeres }}</td>
+                                        <td style=" text-align: center;"> 
+                                        <?php
+                                            $p_rural_mujeres = number_format($p->p_rural_hombre, 0, ',', '.');
+                                        ?>
+                                        {{ $p_rural_mujeres }}</td>
+                                        <td style=" text-align: center;">
+                                        <?php
+                                            $p_rural_mujeres = number_format($p->p_rural_mujeres, 0, ',', '.');
+                                        ?>
+                                        {{ $p_rural_mujeres }}</td>
+                                        <td style=" text-align: center;">
+                                        <?php
+                                        $total = $p->p_urbana_hombre + $p->p_urbana_mujeres + $p->p_rural_hombre + $p->p_rural_mujeres;
+                                            $total = number_format($total, 0, ',', '.');
+                                        ?>
+                                        {{  $total}}</td>
                                     </tr>
                                     
                                     @endforeach

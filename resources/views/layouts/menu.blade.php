@@ -18,7 +18,10 @@
 <div class="row">
                     <div class="col-md-12">
                         <div class="logo pt-4 pb-4">
-                            <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
+                        <a href="{{ url('/') }}">
+                        <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
+                        </a>    
+                      
                         </div>
                         <div class="menu-back accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item">

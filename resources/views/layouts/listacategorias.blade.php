@@ -70,7 +70,7 @@
         <li><a href="/gobiernoregional/acerca" title="Categoría:acerca">Acerca del Gobierno Regional </a></li>
         <li><a href="/gobiernoregional/leygobiernoregional" title="Categoría:tags">Ley</a></li>
         <li><a href="/gobiernoregional/organigrama" title="Categoría:tags">Organigrama</a></li>
-        <li><a href="/gobiernoregional/documentosdegestion"title="Categoría:tags">Documentos de Gestión</a></li>
+        <li><a href="/gobiernoregional/documentosdegestion"title="Categoría:tags">Documentos de GestiónDepto</a></li>
         <li><a href="/gobiernoregional/dptogestionpersonas" title="Categoría:tags">Gestión y Desarrollo de Personas</a></li>
         <li><a href="/gobiernoregional/tramitesdigitales"  title="Categoría:tags">Trámites Digitales</a></li>
         <li><a href="/gobiernoregional/asambleaclimatica"  title="Categoría:tags">Asamblea Climática</a></li>

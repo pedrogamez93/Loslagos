@@ -33,7 +33,9 @@
                     <div class="card-body text-white">
                         <p class="card-text noticia-categoria mb-2">{{ $noticia->categoria }}</p>
                         <h5 class="card-title titulonoticia mb-4">{{ $noticia->titulo }}</h5>
-                        <a href="{{ $noticia->enlace }}" style="padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>
+                      <!-- Cambia el enlace existente en index.blade.php -->
+<a href="{{ route('salaprensa.show', ['id' => $noticia->id]) }}" style="padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>
+
                     </div>
                 </div>
             </div>

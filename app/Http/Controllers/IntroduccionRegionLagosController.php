@@ -370,7 +370,7 @@ public function updateAutoridades(Request $request, $id)
     {
         $data = $request->validate([
             'provincia' => 'required',
-            'superficie' => 'required',
+            'superficie_nueva' => 'required',
             'comuna' => 'required',
             'p_urbana_hombre' => 'required',
             'p_urbana_mujeres' => 'required',
@@ -406,7 +406,7 @@ public function updateEstadisticas(Request $request, $id)
 {
     $data = $request->validate([
         'provincia' => 'required',
-        'superficie' => 'required',
+        'superficie_nueva' => 'required',
         'comuna' => 'required',
         'p_urbana_hombre' => 'required',
         'p_urbana_mujeres' => 'required',
@@ -830,31 +830,34 @@ public function destroyActividadesEconomica($id)
         return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
     }
 }
+public function destroyActividadesEconomicaI($id)
+{
+    $articulo = ActividadesEconomicaI::findOrFail($id);
+    
+    $articulo->delete();
+    return redirect()->route('ActividadEconomica.edit', $articulo->ActividadesEconomicaI_id)->with('success', 'Archivo Eliminado');
+}
 public function updateActividadesEconomica(Request $request, $id)
 {
-$data = $request->validate([
-  'titulo' => 'required',
-  'subtitulo' => 'required',
-  'actividad1' => 'required',
-  'valoractividad1' => 'required',
-  'actividad2' => 'required',
-  'valoractividad2' => 'required',
-  'actividad3' => 'required',
-  'valoractividad3' => 'required',
-  'actividad4' => 'required',
-  'valoractividad4' => 'required',
-  'actividad5' => 'required',
-  'valoractividad5' => 'required',
-]);
+    $data = $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+    ]);
 
-$articulo = ActividadEconomica::find($id);
-
-if ($articulo) {
-    $articulo->update($data);
-    return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo actualizado con éxito');
-} else {
-    return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
-}
+    $camposAdicionales = $request->input('nombreA', []);
+    $hombres = $request->input('hombres', []);
+    $mujeres = $request->input('mujeres', []);
+    $idPrincipal = $request->input('idPrincipal');
+    ActividadesEconomicaI::where('ActividadesEconomicaI_id', $idPrincipal)->delete();
+    foreach ($camposAdicionales ?? [] as $key => $campo) {
+        if($campo=="" || $hombres[$key]=="" || $mujeres[$key]==""){
+            return redirect()->route('ActividadEconomica.edit', $idPrincipal)->with('success', 'Archivo Actualizado');
+        }
+        else{
+            ActividadesEconomicaI::create(['ActividadesEconomicaI_id' => $idPrincipal,'nombreA' => $campo,'hombres' => $hombres[$key],'mujeres' => $mujeres[$key]]); // Ajusta según tus necesidades
+        }
+    }
+    return redirect()->route('ActividadEconomica.edit', $idPrincipal)->with('success', 'Archivo Actualizado');
 } 
 
 //Fin ActividadesEconomica
@@ -1256,9 +1259,10 @@ if ($articulo) {
     }
     public function indexRegionlagosprovincias($titulo)
     {
+        $titulo= $titulo;
         $provincia = AntecedentesRegion::where('nombreseccion', $titulo)->first();
 
-        return view('regionlagos.provincia', compact('provincia')); 
+        return view('regionlagos.provincia', compact('provincia','titulo')); 
     }
     public function indexRegionlagosGobernador($titulo)
     {
@@ -1347,7 +1351,7 @@ if ($articulo) {
     {
         $introduccion = Estadisticas::all();
         // Obtén la suma de la columna 'superficie'
-        $totalSuperficie = Estadisticas::sum('superficie');
+        $totalSuperficie = Estadisticas::sum('superficie_nueva');
         $p_urbana_hombre = Estadisticas::sum('p_urbana_hombre');
         $p_urbana_mujeres = Estadisticas::sum('p_urbana_mujeres');
         $p_rural_hombre = Estadisticas::sum('p_rural_hombre');
@@ -1367,9 +1371,9 @@ if ($articulo) {
         $actividadE = ActividadEconomica::all();
         $acumulador=0;
         foreach($introduccion as $p){
-            $acumulador += $p->superficie;
+            $acumulador += $p->superficie_nueva;
         }
-            
+        $acumulador = number_format($acumulador, 2, ',', '.');
         
         // Haz lo que necesites con $totalSuperficie
         return view('regionlagos.PoblacionSuperficieProvincia', compact('introduccion','acumulador','titulo','actividadE'));

@@ -133,6 +133,15 @@ class TramitesDigitalesController extends Controller{
         'nombre_documento.*' => 'nullable|string',
     ]);
 
+        // Procesar fechas
+        $fechaApertura = $request->input('fecha_apertura')
+        ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_apertura'))->toDateString()
+        : null;
+
+    $fechaCierre = $request->input('fecha_cierre')
+        ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_cierre'))->toDateString()
+        : null;
+
     $tramite = TramitesDigitales::findOrFail($id);
 
     $tramite->update([

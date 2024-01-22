@@ -76,7 +76,7 @@
                                         <option value="Provincia de Osorno">PROVINCIA DE OSORNO</option>
                                         <option value="Provincia de Llaquihue">PROVINCIA DE LLANQUIHUE</option>
                                         <option value="Provincia de Chiloe">PROVINCIA DE CHILOE</option>
-                                        <option value="Provincia de Palema">PROVINCIA DE PALENA</option>
+                                        <option value="Provincia de Palena">PROVINCIA DE PALENA</option>
                                     </select>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                 <div class="col-md-4 superficie">
                                     <b>&nbsp;</b>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control" placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="superficie" name="superficie_nueva" class="form-control" placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
                                     </div>
                                 </div>
                                 <div class="col-md-4 purbana">

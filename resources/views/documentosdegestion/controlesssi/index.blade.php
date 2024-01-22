@@ -191,6 +191,13 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
     <head>
@@ -218,8 +225,9 @@
                             <div class="row" style="padding: 10px 0px 0px 25px;">
                                 <div class="col-md-12">
                                     <p class="one-title pb-5">Gobierno Regional</p>
-
-                                    <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                                 </div>
                             </div>
                         </div>   
@@ -250,7 +258,28 @@
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-8">
+                                    <h1 class="mititulo">Políticas y Procedimientos Sistema Seguridad de la Información</h1>
 
+                                    <div class="container">
+    <div class="row">
+        @foreach ($documentosControlesSSI as $documento)
+            <div class="col-md-6">
+                <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                    <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                        <p class="p-doc mt-2 mb-2 ms-3" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; color:#565656;">{{ $documento->titulo }}</p>
+                    </a>
+                </div>
+            </div>
+            @if ($loop->iteration % 2 == 0)
+                <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+            @endif
+        @endforeach
+    </div>
+
+    <!-- Paginación -->
+    {{ $documentosControlesSSI->links() }}
+</div>
                                 </div>
 
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">

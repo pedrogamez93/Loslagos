@@ -94,38 +94,45 @@
                         </div>
                     </div>
                     <form method="POST" action="{{ route('documentos.update', $documento->id) }}" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-
-                        <div class="form-group">
-                            <label for="tipo_documento">Tipo de Documento:</label>
-                            <select name="tipo_documento" id="tipo_documento" class="form-control" required>
-                                <option value="Actas" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
-                                <option value="Acuerdos" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
-                                <option value="Resumengastos" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
-                                <option value="Documentogeneral" {{ $documento->tipo_documento == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
-                            </select>
-                        </div>
-
-                        <div id="actas-fields" class="document-fields">
-                        @if($documento->actas)
+                            @csrf
+                            @method('PUT')
+                            {{-- Campo para seleccionar el tipo de documento --}}
                             <div class="form-group">
-                                <label for="provincia">Provincia:</label>
-                                <select name="provincia" id="provincia" class="form-control">
-                                    <!-- Opciones para la provincia -->
+                                <label for="tipo_documento">Tipo de Documento:</label>
+                                <select name="tipo_documento" id="tipo_documento" class="form-control" required>
+                                        <option value="Actas" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
+                                        <option value="Acuerdos" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
+                                        <option value="Resumengastos" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
+                                     <option value="Documentogeneral" {{ $documento->tipo_documento == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="comuna">Comuna:</label>
-                                <select name="comuna" id="comuna" class="form-control">
-                                    <!-- Opciones para la comuna -->
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tema">Tema:</label>
-                                <input type="text" name="tema" id="tema" class="form-control" value="{{ $documento->tema }}">
-                            </div>
-                            <div class="form-group">
+
+                            @if($documento->tipo_documento == 'Actas')
+                            <div id="actas-fields" class="document-fields">
+                                <div class="form-group">
+                                   
+                                    <label for="provincia">Provincia:</label>
+                                    <select name="provincia" id="provincia" class="form-control">
+                                        <option value="Llanquihue">Llanquihue</option>
+                                        <option value="Osorno">Osorno</option>
+                                        <option value="Chiloé">Chiloé</option>
+                                        <option value="Palena">Palena</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comuna">Comuna:</label>
+                                    <select name="comuna" id="comuna" class="form-control">
+                                        {{-- Opciones para la comuna --}}
+                                        <!-- Agrega las opciones que correspondan -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tema">Tema:</label>
+                                    <input type="text" name="tema" id="tema" class="form-control" value="{{ $documento->tema }}">
+                                </div>
+                                <!-- Agrega los demás campos de Actas según tu especificación -->
+
+                                <div class="form-group">
                                 <label for="fecha_hora">Fecha y Hora:</label>
                                 <input type="datetime-local" name="fecha_hora" id="fecha_hora" class="form-control" value="{{ $documento->fecha_hora }}">
                             </div>
@@ -142,69 +149,76 @@
                                 <input type="datetime-local" name="fecha_hora_sesion" id="fecha_hora_sesion" class="form-control" value="{{ $documento->fecha_hora_sesion }}">
                             </div>
                             <div class="form-group">
-                                <label for="portada">Portada:</label>
-                                <div class="form-check">
-                                    <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input" {{ $documento->portada == 'si' ? 'checked' : '' }}>
-                                    <label for="portada_si" class="form-check-label">Sí</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input" {{ $documento->portada == 'no' ? 'checked' : '' }}>
-                                    <label for="portada_no" class="form-check-label">No</label>
-                                </div>
+                            <label for="portada">Portada:</label>
+                            <div class="form-check">
+                                <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input" {{ $documento->portada == 'si' ? 'checked' : '' }}>
+                                <label for="portada_si" class="form-check-label">Sí</label>
                             </div>
-                            <div class="form-group">
-                                <label for="publicacion">Publicación:</label>
-                                <div class="form-check">
-                                    <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input" {{ $documento->publicacion == 'si' ? 'checked' : '' }}>
-                                    <label for="publicacion_si" class="form-check-label">Sí</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input" {{ $documento->publicacion == 'no' ? 'checked' : '' }}>
-                                    <label for="publicacion_no" class="form-check-label">No</label>
-                                </div>
+                            <div class="form-check">
+                                <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input" {{ $documento->portada == 'no' ? 'checked' : '' }}>
+                                <label for="portada_no" class="form-check-label">No</label>
                             </div>
-                            @endif
                         </div>
 
-                        <div id="acuerdos-fields" class="document-fields">
-                        @if($documento->acuerdo)
-                            <div class="form-group">
-                                <label for="numero">Número:</label>
-                                <input type="number" name="numero" id="numero" class="form-control" placeholder="{{ $documento->acuerdo->numero }}">
-                            </div>
-                          
-                           
-                            <div class="form-group">
-                                <label for="fecha">Fecha:</label>
-                                <input type="date" name="fecha" id="fecha" class="form-control" value="{{ $documento->acuerdo->fecha }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripción:</label>
-                                <textarea name="descripcion" id="descripcion" class="form-control">{{ $documento->acuerdo->descripcion }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="codigo_bip">Codigo B.I.P:</label>
-                                <textarea name="codigo_bip" id="codigo_bip" class="form-control">{{ $documento->acuerdo->codigo_bip }}</textarea>
-                            </div>
-                            @endif
-                        </div>
-
-                        <div id="resumengastos-fields" class="document-fields">
-                        @if($documento->resumengastos)
-                            <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $documento->nombre }}">
-                            </div>
-                            @endif
-                            <!-- Agregar otros campos de Resumen de Gastos según la especificación -->
-                        </div>
-
-                        <div id="documentogeneral-fields" class="document-fields">
-                        @if($documento->documentogeneral)
                         <div class="form-group">
-                                <label for="categoria">Categoría:</label>
-                                <select name="categoria" id="categoria" class="form-control">
-                                <option value="">Seleccione Sector</option>
+                            <label for="publicacion">Publicación:</label>
+                            <div class="form-check">
+                                <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input" {{ $documento->publicacion == 'si' ? 'checked' : '' }}>
+                                <label for="publicacion_si" class="form-check-label">Sí</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input" {{ $documento->publicacion == 'no' ? 'checked' : '' }}>
+                                <label for="publicacion_no" class="form-check-label">No</label>
+                            </div>
+                        </div>
+
+                          
+                            </div>
+                            @endif
+                     
+                            @if($documento->tipo_documento == 'Acuerdos')
+                            <div id="acuerdos-fields" class="document-fields">
+                                <div class="form-group">
+                               
+                                    <label for="numero">Número:</label>
+                                    <input type="number" name="numero" id="numero" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha">Fecha:</label>
+                                    <input type="date" name="fecha" id="fecha" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcion">Codigo B.I.P:</label>
+                                    <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                                </div>
+                              
+                                <!-- Agreg
+                                
+                                a los demás campos de Acuerdos según tu especificación -->
+                            </div>
+                            @endif
+                           
+                            @if($documento->tipo_documento == 'Resumengastos')
+                                <div id="resumengastos-fields" class="document-fields">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" name="nombre" id="nombre" class="form-control">
+                                    </div>
+                                    
+                                    <!-- Agrega los demás campos de Resumen de Gastos según tu especificación -->
+                                </div>
+                            @endif
+                           
+                            @if($documento->tipo_documento == 'Documentogeneral')
+                            <div id="documentogeneral-fields" class="document-fields">
+                                <div class="form-group">
+                                    <label for="categoria">Categoría:</label>
+                                    <select name="categoria" id="categoria" class="form-control">
+                                <option value="">Seleccione Categoria</option>
                                 <option value="Documentos de Gestión">Documentos de Gestión</option>
                                 <option value="Estudios">Estudios</option>
                                 <option value="Fondos Concursable">Fondos Concursable</option>
@@ -213,18 +227,18 @@
                                 <option value="Comité de integración">Comité de integración</option>
                                 <option value="Bode costero">Bode costero</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="titulo">Título:</label>
-                                <input type="text" name="titulo" id="titulo" class="form-control" value="{{ $documento->titulo }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="autor">Autor:</label>
-                                <input type="text" name="autor" id="autor" class="form-control" value="{{ $documento->autor }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="sector">Sector:</label>
-                                <select name="sector" id="sector" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="titulo">Título:</label>
+                                    <input type="text" name="titulo" id="titulo" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="titulo">Autor:</label>
+                                    <input type="text" name="autor" id="autor" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipo_documento">Sector: :</label>
+                                    <select name="sector" id="sector" class="form-control">
                                    <option value="">Seleccione Sector</option>
                                    <option value="Trabajo"> Trabajo</option>
                                    <option value="MOP">MOP</option>
@@ -238,74 +252,116 @@
                                    <option value="Salud">Salud</option>
 
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="sub_sector">Sub-Sector:</label>
-                                <select name="sub_sector" id="sub_sector" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="financiamiento">Financiamiento:</label>
-                                <input type="text" name="financiamiento" id="financiamiento" class="form-control" value="{{ $documento->financiamiento }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripción:</label>
-                                <textarea name="descripcion" id="descripcion" class="form-control">{{ $documento->descripcion }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="portada">Portada:</label>
-                                <div class="form-check">
-                                    <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input" {{ $documento->portada == 'si' ? 'checked' : '' }}>
-                                    <label for="portada_si" class="form-check-label">Sí</label>
                                 </div>
-                                <div class="form-check">
-                                    <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input" {{ $documento->portada == 'no' ? 'checked' : '' }}>
-                                    <label for="portada_no" class="form-check-label">No</label>
+                                <div class="form-group">
+                                    <label for="tipo_documento">Sub-Sector: :</label>
+                                        <select name="sub_sector" id="sub_sector" class="form-control" required>
+                                            
+                                        </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="titulo">Financiamiento:</label>
+                                    <input type="text" name="financiamiento" id="financiamiento" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="titulo">Descripcion:</label>
+                                    <textarea  name="descripcion" id="descripcion" class="form-control">
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                            <label for="portada">Portada:</label>
+                            <div class="form-check">
+                                <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input" {{ $documento->portada == 'si' ? 'checked' : '' }}>
+                                <label for="portada_si" class="form-check-label">Sí</label>
                             </div>
-                            <div class="form-group">
-                                <label for="publicacion">Publicación:</label>
-                                <div class="form-check">
-                                    <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input" {{ $documento->publicacion == 'si' ? 'checked' : '' }}>
-                                    <label for="publicacion_si" class="form-check-label">Sí</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input" {{ $documento->publicacion == 'no' ? 'checked' : '' }}>
-                                    <label for="publicacion_no" class="form-check-label">No</label>
-                                </div>
+                            <div class="form-check">
+                                <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input" {{ $documento->portada == 'no' ? 'checked' : '' }}>
+                                <label for="portada_no" class="form-check-label">No</label>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publicacion">Publicación:</label>
+                            <div class="form-check">
+                                <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input" {{ $documento->publicacion == 'si' ? 'checked' : '' }}>
+                                <label for="publicacion_si" class="form-check-label">Sí</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input" {{ $documento->publicacion == 'no' ? 'checked' : '' }}>
+                                <label for="publicacion_no" class="form-check-label">No</label>
+                            </div>
+                        </div>
+
+                                <!-- Agrega los demás campos de Documento General según tu especificación -->
+                            </div>
+
                             @endif
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <input type="File" name="archivo" id="archivo" class="form-control">
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary">Guardar Documento</button>
-                        </div>
-                    </form>
+                           
+                            <div class="form-group mt-3">
+                               
+                                <input type="File" name="archivo" id="archivo" class="form-control">
+                            </div>
+                           
+                          
+                            
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary">Guardar Documento</button>
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    function mostrarCamposPorTipoDocumento() {
-        var tipoDocumento = document.getElementById('tipo_documento').value;
-        var documentFields = document.getElementsByClassName('document-fields');
-        for (var i = 0; i < documentFields.length; i++) {
-            documentFields[i].style.display = 'none';
-        }
-        document.getElementById(tipoDocumento.toLowerCase().replace(/\s/g, '-') + '-fields').style.display = 'block';
+        // Función para mostrar u ocultar campos según el tipo de documento seleccionado
+function mostrarCamposPorTipoDocumento() {
+    // Obtener el tipo de documento seleccionado
+    var tipoDocumento = document.getElementById('tipo_documento').value;
+
+    // Ocultar todos los campos específicos de documentos
+    var documentFields = document.getElementsByClassName('document-fields');
+    for (var i = 0; i < documentFields.length; i++) {
+        documentFields[i].style.display = 'none';
+    }
+
+    // Mostrar los campos específicos del tipo de documento seleccionado
+    document.getElementById(tipoDocumento.toLowerCase().replace(/\s/g, '-') + '-fields').style.display = 'block';
 }
 
+// Asociar la función al evento de cambio del tipo de documento
 document.getElementById('tipo_documento').addEventListener('change', mostrarCamposPorTipoDocumento);
 
+// Llamar a la función al cargar la página para manejar el caso cuando la página ya tiene un tipo de documento seleccionado
 mostrarCamposPorTipoDocumento();
-</script>
 
+    </script>
+
+
+<script>
+    $(document).ready(function () {
+        // Define las comunas por provincia
+        const comunasPorProvincia = {
+            Llanquihue: ["Puerto Montt", "Calbuco", "Maullín", "Frutillar", "Puerto Varas"],
+            Osorno: ["Osorno", "San Pablo", "Purranque", "Río Negro", "Puerto Octay"],
+            Chiloé: ["Castro", "Ancud", "Dalcahue", "Curaco de Vélez", "Quellón"],
+            Palena: ["Chaitén", "Futaleufú", "Palena"]
+            // Agrega otras provincias y comunas según sea necesario
+        };
+
+        // Al cambiar la provincia, actualiza las opciones de comuna
+        $("#provincia").change(function () {
+            const selectedProvincia = $(this).val();
+            const comunas = comunasPorProvincia[selectedProvincia] || [];
+
+            // Limpia y actualiza las opciones de comuna
+            $("#comuna").empty();
+            $.each(comunas, function (index, comuna) {
+                $("#comuna").append('<option value="' + comuna + '">' + comuna + '</option>');
+            });
+        });
+    });
+</script>
 <script>
     $(document).ready(function () {
         // Define los subsectores para cada sector

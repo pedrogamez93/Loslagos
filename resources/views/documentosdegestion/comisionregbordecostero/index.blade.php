@@ -191,6 +191,13 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
     <head>
@@ -218,8 +225,9 @@
                             <div class="row" style="padding: 10px 0px 0px 25px;">
                                 <div class="col-md-12">
                                     <p class="one-title pb-5">Gobierno Regional</p>
-
-                                    <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                                 </div>
                             </div>
                         </div>   
@@ -333,12 +341,21 @@
                     </div>
                 </div>
             </div>
-            <div class="container docs">
+            <div class="container docs" style="padding: 0px 50px;">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="mi-style">Documentos</h3>
 
                         <div>
+                        @foreach ($documentos as $documento)
+                            <div class="mi-documento mt-3 mb-3">
+                                <a href="{{ $documento['ruta_documento'] }}" target="_blank">
+                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                    <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento->titulo }}</p>
+                                </a>
+                            </div>
+                            <!-- Otros detalles del documento -->
+                        @endforeach
 
                         </div>
                         <div class="nota mt-4 mb-4">
