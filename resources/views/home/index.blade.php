@@ -7,7 +7,7 @@
     <link href="{{ asset('css/estilos_home.css') }}" rel="stylesheet">
 @endpush
 
-  <div id="header" class="d-flex h-300 text-center " style=" background-color: #389144;">
+  <div id="header" class="d-flex h-300 text-center colorB" style="">
   
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
@@ -32,10 +32,20 @@
                 <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
                     
                     
-                    <div id="divformbuscador" class="input-group input-group-rounded">
-    <input class="input-group-field" id="inputbucador" name="q" type="search">
-    <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+                <div id="divformbuscador" class="input-group input-group-rounded">
+    <div class="input-group-prepend">
+        <span class="input-group-text" style="position: absolute;
+    background-color: transparent !important;
+    border: none;height: -webkit-fill-available;">
+        <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
+        </span>
+    </div>
+    <input class="input-group-field" id="inputbucador" name="q" type="search" placeholder="Buscar aquí">
+    <div class="input-group-append">
+        <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+    </div>
 </div>
+
 
    
 </form>
@@ -62,7 +72,7 @@
 
   </div>
 
- <div class="esquina-curva"> </div>
+ <div class="esquina-curva colorB"> </div>
 <!--seccion de sala de prensa y tramite -->
 <div class="container-fluid">
 
@@ -149,7 +159,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 <!--Banner-->
 
-    <div class="bg-body-tertiary p-5 rounded mt-3">
+    <div class="bg-body-tertiary p-5 rounded mt-3 colorB">
         <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
         <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
         <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>

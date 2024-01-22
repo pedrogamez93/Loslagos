@@ -18,7 +18,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
- <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
+ 
+<!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
  <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
 
 <!-- Agrega tu script JavaScript personalizado para manejar cambios de accesibilidad -->
