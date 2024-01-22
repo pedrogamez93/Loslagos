@@ -830,31 +830,34 @@ public function destroyActividadesEconomica($id)
         return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
     }
 }
+public function destroyActividadesEconomicaI($id)
+{
+    $articulo = ActividadesEconomicaI::findOrFail($id);
+    
+    $articulo->delete();
+    return redirect()->route('ActividadEconomica.edit', $articulo->ActividadesEconomicaI_id)->with('success', 'Archivo Eliminado');
+}
 public function updateActividadesEconomica(Request $request, $id)
 {
-$data = $request->validate([
-  'titulo' => 'required',
-  'subtitulo' => 'required',
-  'actividad1' => 'required',
-  'valoractividad1' => 'required',
-  'actividad2' => 'required',
-  'valoractividad2' => 'required',
-  'actividad3' => 'required',
-  'valoractividad3' => 'required',
-  'actividad4' => 'required',
-  'valoractividad4' => 'required',
-  'actividad5' => 'required',
-  'valoractividad5' => 'required',
-]);
+    $data = $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+    ]);
 
-$articulo = ActividadEconomica::find($id);
-
-if ($articulo) {
-    $articulo->update($data);
-    return redirect()->route('ActividadEconomica.index')->with('success', 'Artículo actualizado con éxito');
-} else {
-    return redirect()->route('ActividadEconomica.index')->with('error', 'Artículo no encontrado');
-}
+    $camposAdicionales = $request->input('nombreA', []);
+    $hombres = $request->input('hombres', []);
+    $mujeres = $request->input('mujeres', []);
+    $idPrincipal = $request->input('idPrincipal');
+    ActividadesEconomicaI::where('ActividadesEconomicaI_id', $idPrincipal)->delete();
+    foreach ($camposAdicionales ?? [] as $key => $campo) {
+        if($campo=="" || $hombres[$key]=="" || $mujeres[$key]==""){
+            return redirect()->route('ActividadEconomica.edit', $idPrincipal)->with('success', 'Archivo Actualizado');
+        }
+        else{
+            ActividadesEconomicaI::create(['ActividadesEconomicaI_id' => $idPrincipal,'nombreA' => $campo,'hombres' => $hombres[$key],'mujeres' => $mujeres[$key]]); // Ajusta según tus necesidades
+        }
+    }
+    return redirect()->route('ActividadEconomica.edit', $idPrincipal)->with('success', 'Archivo Actualizado');
 } 
 
 //Fin ActividadesEconomica

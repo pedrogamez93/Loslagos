@@ -365,6 +365,7 @@ Route::get('/ActividadesEconomica/create', 'App\Http\Controllers\IntroduccionReg
 Route::get('/ActividadesEconomica/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editActividadesEconomica')->name('ActividadEconomica.edit');
 Route::put('/ActividadesEconomica/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateActividadesEconomica')->name('ActividadEconomica.update');
 Route::delete('/ActividadesEconomica/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomica')->name('ActividadEconomica.destroy');
+Route::get('/ActividadesEconomicaI/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomicaI')->name('ActividadEconomicaI.destroy');
 Route::get('/ActividadesEconomica/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showActividadesEconomica')->name('ActividadEconomica.show');
 
 Route::get('/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFNDR')->name('FNDR.index');
