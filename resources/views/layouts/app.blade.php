@@ -268,7 +268,7 @@
                     <label for="newsletter1" class="visually-hidden" style="color:white">Escríbenos</label>
                     <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
 
-                    <button class="btn " type="button" style="color: white;">Suscribirse</button>
+                    <button class="btn " type="button" style="color: white;">Enviar</button>
                 </div>
             </a>
             </li>
