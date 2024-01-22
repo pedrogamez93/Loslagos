@@ -77,6 +77,7 @@
         font-Size: 50px;
         line-height: 60.51px;
         color: #FFFFFF;
+        word-break: break-word !important;
     }
     .cat{
         margin-top: -5rem;
@@ -203,8 +204,7 @@ h5.card-title{
     color: #565656;
     line-height: 24px;
     padding: 10px 0;
-
-
+    overflow-wrap: break-word;
   }
   .bajada-programa{
     font-family: 'Inter';
@@ -216,6 +216,8 @@ h5.card-title{
     display: -webkit-box;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
+    overflow-wrap: break-word;
+    padding-top: 5px;
   }
   #bajada-p{
     font-family: 'Inter';
@@ -228,13 +230,22 @@ h5.card-title{
     display: -webkit-box;
     -webkit-line-clamp: 1 !important;
     -webkit-box-orient: vertical !important;
-    margin: 13px 0;
+    margin: 30px 0 13px 0;
+    overflow-wrap: break-word;
 }
   .programa{
     border: 1px solid rgba(86, 86, 86, 0.5);
   }
+  .programa img{
+    width: 100%;
+    height: 75.1%;
+    max-width: 960px;
+    max-width: auto;
+    height: 211px;
+    object-fit: cover;
+  }
   .info{
-    padding: 10px;
+    padding: 25px 25px 12px 25px;
   }
   .linea {
     border-top: 2px solid #00548F;
@@ -295,9 +306,9 @@ h5.card-title{
         <div class="container content-prin">
             <div class="row" style="padding: 10px 0px 20px 50px;">
                 <div class="col-md-12">
-                    <p class="one-title pb-4">Programas</p>
+                    <p class="one-title pb-4" style="overflow-wrap: break-word;">Programas</p>
 
-                    <p style="Width:623px;">Los programas son una serie de actividades planeadas que involucran un accionar más amplio que un proyecto</p>
+                    <p>Los programas son una serie de actividades planeadas que involucran un accionar más amplio que un proyecto</p>
                 </div>
             </div>
         </div>   
@@ -321,20 +332,21 @@ h5.card-title{
                         @foreach($programas as $programa)
                             <div class="programa ">
                                 <a href="{{ route('programas.show', $programa) }}">
-                                    <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="{{ $programa->titulo }}">
+                                    <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="Imagen-programa">
                                 </a>
                                 <div class="info">
-                                    <h2 class="title-programa">{{ $programa->titulo }}</h2>
+                                    <a href="{{ route('programas.show', $programa) }}"><h2 class="title-programa">{{ $programa->titulo }}</h2></a>
                                     <p class="bajada-programa">{{ $programa->bajada }}</p>
                                     <span id="bajada-p">{!! $programa->bajada_programa ?? '' !!}  </span>
                                     <div class="linea"></div>
-                                    <div class="container">
+                                    <div class="container pt-2 mb-1">
                                         <div class="row">
-                                            <div class="col">
-                                             <img src="" alt="icon">
+                                            <div class="col-6">
+                                             <!--<img src="" alt="icon">-->
                                             </div>
-                                            <div class="col">
-                                             <a href="{{ route('programas.show', $programa) }}"" class="btn-programa"> Ir ahora</a>                                            </div>
+                                            <div class="col-6">
+                                             <a href="{{ route('programas.show', $programa) }}"" class="btn-programa" style="display:flex; justify-content: end;"> Ir ahora <i class="bi bi-arrow-right" style="padding-left:10px;"></i></a>
+                                            </div>
                                         </div>
 
                                     </div>
