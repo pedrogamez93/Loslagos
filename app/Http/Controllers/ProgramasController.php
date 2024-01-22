@@ -47,95 +47,91 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'titulo' => 'required',
+            'bajada' => 'required',
+            'bajada_programa' => 'required',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          //  'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
+        ]);
+
+
+        // Procesar la imagen si está presente
+        if ($request->hasFile('imagen')) {
+            $iconoPath = $request->file('imagen')->store('imagenes_programas' , 'public');
+        }
         
-                // Validar los datos del formulario
-                $request->validate([
-                    'titulo' => 'required',
-                    'bajada' => 'required',
-                    'bajada_programa' => 'required',
-                    'titulo_descripcion' => 'required',
-                    'bajada_descripcion' => 'required',
-                    'nombrebtn' => 'required',
-                    'urlbtn' => 'required',
-                    /*'nombreDocumento' => 'required',
-                    'urlDocumento' => 'file|mimes:pdf,doc,docx', // Ajusta según los tipos de documentos que deseas permitir*/
-                    'titulo_coleccion' => 'required',
-                     'ruta.*' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ajusta según tus necesidades
+        $programas = Programas::create($data);
+        $programasid = $programas->id;
+        $seleccion = $request->input('si_descripcion');
+        $seleccion_btn = $request->input('si_btn');
+        $seleccion_coleccion = $request->input('si_coleccion');
 
-                ]);
+        // Procesar documentos (individuales y comprimidos)
+        $nombreDocumento = $request->input('nombreDocumento') ?? [];
 
-                // Crear un nuevo programa
-                $programa = new Programas;
-                $programa->titulo = $request->titulo;
-                $programa->bajada = $request->bajada;
-                $programa->bajada_programa = $request->bajada_programa;
-                $programa->save();
+        $urlDocumento = $request->file('urlDocumento');
+        //echo count($urlDocumento);
 
-                // Crear una nueva descripción de programa
-                $descripcion = new ProgramasDescripciones;
-                $descripcion->programa_id = $programa->id;
-                $descripcion->titulo_descripcion = $request->titulo_descripcion;
-                $descripcion->bajada_descripcion = $request->bajada_descripcion;
-                $descripcion->save();
+        foreach ($urlDocumento ?? [] as $key => $documento) {
+             $nombreDocumento = $nombreDocumento[$key]?? 'documento_' . ($key + 1);
+             $urlDocumento = $documento->store('documentosdeprograma');
 
-                // Crear un nuevo botón de programa
-                $botones = new Programasbtn;
-                $botones->programa_id = $programa->id;
-                $botones->nombrebtn = $request->nombrebtn;
-                $botones->urlbtn = $request->urlbtn;
-                $botones->save();
+            // Almacena en la base de datos
+             ProgramasDocumentos::create([
+                'nombreDocumento' => $nombreDocumento,
+                'urlDocumento' => $urlDocumento,
+                'programa_id' => $programasid,
+            ]);
+        }
+        
+          //DESCRIPCION
+        if ($seleccion=="option1"){
+            $titulo_descripcion = $request->input('titulo_descripcion', []);
+            $bajada_descripcion = $request->input('bajada_descripcion', []);
 
-               /* // Crear un nuevo docuento
-                $documentos = new ProgramasDocumentos;
-                $documentos->programa_id = $programa->id;
-                $documentos->nombreDocumento = $request->nombreDocumento;
-                $documentos->urlDocumento = $request->urlDocumento;
-                $documentos->save();*/
+            foreach ($titulo_descripcion ?? [] as $key => $campo) {
+              ProgramasDescripciones::create(['titulo_descripcion' => $titulo_descripcion[$key],'bajada_descripcion' => $bajada_descripcion[$key],'programa_id' => $programasid]); // Ajusta según tus necesidades
+             }
+        }
+            //botones
+            if ($seleccion_btn=="option1"){
+                $nombrebtn = $request->input('nombrebtn', []);
+                $urlbtn = $request->input('urlbtn', []);
 
-               /* // Procesar y guardar el documento si se proporcionó
-                if ($request->hasFile('urlDocumento')) {
-                    $documento = $request->file('urlDocumento');
-                    $nombreDocumento = $documento->getClientOriginalName();
-
-                    // Guardar el documento en el sistema de archivos
-                    $rutaDocumento = $documento->storeAs('documentos', $nombreDocumento);
-
-                    // Crear un nuevo registro en la tabla programas_documentos
-                    ProgramasDocumento::create([
-                        'programa_id' => $programa->id,
-                        'nombreDocumento' => $nombreDocumento,
-                        'urlDocumento' => $urlDocumento,
-                    ]);
+                foreach ($nombrebtn ?? [] as $key => $campo) {
+                Programasbtn::create(['nombrebtn' => $nombrebtn[$key],'urlbtn' => $urlbtn[$key],'programa_id' => $programasid]); // Ajusta según tus necesidades
                 }
-*/
+            }
 
-             // Verifica si se desean agregar colecciones
-                if ($request->input('agregar_coleccion', 0)) {
-                    // Crea una nueva colección para el programa
-                    $coleccion = new ProgramasColecciones;
-                    $coleccion->titulo_coleccion = $request->input('titulo_coleccion');
-                    $coleccion->programa_id = $programa->id;
-                    $coleccion->save();
-
-                    // Guarda las fotografías asociadas a la colección
-                    foreach ($request->file('ruta') as $imagen) {
-                        $rutaImagen = $imagen->store('documentos');
-                        $fotografia = new ProgramasFotografias;
-                        $fotografia->ruta = $rutaImagen;
-                        $fotografia->coleccion_id = $coleccion->id;
-                        $fotografia->save();
+                //colecciones
+                if ($seleccion_coleccion == "option1") {
+                    $titulo_coleccion = $request->input('titulo_coleccion', []);
+                
+                    foreach ($titulo_coleccion ?? [] as $key => $titulo) {
+                        $coleccionesid = ProgramasColecciones::create([
+                            'titulo_coleccion' => $titulo_coleccion[$key],
+                            'programa_id' => $programasid
+                        ]); // Ajusta según tus necesidades
+                
+                        $coleccionesid = $coleccionesid->id;
+                
+                        if ($request->hasFile('ruta')) {
+                            // Recorrer cada archivo asociado a la colección actual
+                            foreach ($request->file('ruta') ?? [] as $archivo) {
+                                // Realizar alguna operación con cada archivo, como almacenarlo, validar, etc.
+                                $nombreArchivo = $archivo->getClientOriginalName();
+                                $ruta = $archivo->storeAs('directorio_destino', $nombreArchivo);
+                
+                                $fotografiasid = ProgramasFotografias::create([
+                                    'ruta' => $ruta,
+                                    'coleccion_id' => $coleccionesid
+                                ]); // Ajusta según tus necesidades
+                            }
+                        }
                     }
                 }
-
-
-                // Recuperar los datos para mostrar en la vista
-                $programas = Programas::all();
-                $descripciones = ProgramasDescripciones::all();
-                $botones = Programasbtn::all();
-                $documentos = ProgramasDocumentos::all();
-
-        // Redireccionar con un mensaje de éxito
-        return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
+                return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
     }
 
     /**
@@ -145,11 +141,20 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $programa = Programas::findOrFail($id);
-        return view('programas.show')->with('programa', $programa);
+            $programaColecciones = Programas::with('colecciones')->findOrFail($id);
+            $programa  = Programas::findOrFail($id);
+            $programaDescripcion = $programa->descripcion;
+            $programaBtn = $programa->botones; 
+            $programaDocumentos = $programa->documentos; 
+            /*$programaColecciones = $programa->colecciones; 
+            $programaFotografias = $programaColecciones->fotografias; */
 
-            $programa = Programa::with('colecciones', 'descripciones', 'documentos', 'fotografias', 'botones')->find($id);
-    return view('programa.show', ['programa' => $programa]);
+          
+           
+
+            //$programa = Programas::where('id', $id)->get();
+            return view('programas.show', compact('programa', 'programaDescripcion', 'programaBtn', 'programaDocumentos'));
+            
     }
 
     /**

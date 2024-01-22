@@ -93,12 +93,15 @@
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-movil" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button>-->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-movil" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
-    <ul class="navbar-nav  mr-auto ml-auto">
+  <div class="collapse navbar-collapse" id="menu-movil" style="    ">
+    <ul class="navbar-nav  mr-auto ml-auto" >
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/') }}" style="color:white">Home </a>
       </li>
@@ -149,10 +152,12 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link"  style="color:white" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
+        <a class="nav-link"  style="color:white, margin-right: 12px;" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: white;">
+      </ul>
+       
+      <li class="nav-item dropdown d-none d-lg-block" style="margin-left:auto; list-style: none;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: #ffffff; padding:0.5rem;">
             <i class="bi bi-grid" style="color: white;"></i>Infórmate aquí
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -168,13 +173,50 @@
 
         </div>
     </li>
-
-
-    </ul>
-    <img src="{{ asset('storage/images/accessibility_icon.png') }}" alt="accessibilidad_icon" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="36px">
    
-    <!-- <ul class="nav navbar-nav navbar-right">
-                 
+
+
+    
+    <img src="{{ asset('storage/images/accessibility_icon.png') }}" alt="accessibilidad_icon" data-bs-toggle="modal" data-bs-target="#staticBackdrop" width="36px" style="margin-left:auto;" class="d-none d-lg-block">
+    <ul class="navbar-nav text-light d-lg-none">
+
+            <li class="nav-item dropdown" style="margin-right:auto; list-style: none;">
+                <a class="nav-link dropdown-toggle mt-4 mb-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 18px; background-color: rgb(255 255 255 / 34%);color: #ffffff; padding:0.5rem 1.7rem;">
+                    <i class="bi bi-grid" style="color: white;"></i>Infórmate aquí
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item style-a-menu" href="{{ url('/saladeprensa') }}">Sala de prensa</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/documentos') }}">Documentos</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/mapa') }}">Mapa del Sitio</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/sitiodegobierno') }}">Sitio de Gobierno</a>
+                    <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
+                <div class="linea-separadora"></div>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
+
+                </div>
+            </li>        
+            <hr size="5px">
+
+           <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+                <img src="" alt="icon">
+                <small class="ms-2">Plataforma <br><strong>Ley del Lobby</strong></small>  
+            </li>
+
+            <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+              <img src="" alt="icon">
+              <small class="ms-2">Transparencia activa <br><strong>Ley de Transparencia</strong></small>
+
+            </li>
+
+            <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+              <img src="" alt="icon">
+              <small class="ms-2">Solicitar información <br><strong>Ley de Transparencia</strong></small>
+
+            </li>
+    </ul>
+                 <!--
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>

@@ -12,6 +12,7 @@ class ProgramasDocumentos extends Model
     protected $fillable = [
         'nombreDocumento',
         'urlDocumento',
+        'programa_id',
     ];
 
     public function programa()
