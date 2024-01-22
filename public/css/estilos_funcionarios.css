@@ -8,6 +8,20 @@ font-weight: 600;
 line-height: normal;
 }
 
+#banner{
+    background-color: #389144 ; height: 502px; display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.contenido{
+    margin-top: -9vh;
+    background-color: white;
+    border-top-left-radius: 90px;
+}
+
 .tituloform{
     color: #565656;
 font-family: Inter;

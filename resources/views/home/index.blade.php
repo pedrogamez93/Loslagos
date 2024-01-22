@@ -191,24 +191,24 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="container">
     <div class="row py-5 my-5">
         <div class="col-md-3">
-            @if($home->minibanners1) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3"> @endif
-            @if($home->minibanners2) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners3) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3">@endif
+        @isset($home->minibanners1) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3">  @endisset
+        @isset($home->minibanners2) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners3) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3"> @endisset
         </div>
         <div class="col-md-3">
-            @if($home->minibanners4) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners5) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners6) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3">@endif
+        @isset($home->minibanners4) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners5) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners6) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3"> @endisset
         </div>
         <div class="col-md-3">
-            @if($home->minibanners7) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners8) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners9) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3">@endif
+        @isset($home->minibanners7) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners8) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners9) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3"> @endisset
         </div>
         <div class="col-md-3">
-            @if($home->minibanners10)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners11)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3">@endif
-            @if($home->minibanners12)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3">@endif
+        @isset($home->minibanners10)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners11)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners12)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3"> @endisset
         </div>
     </div>
 </div>

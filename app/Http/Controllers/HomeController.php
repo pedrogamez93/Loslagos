@@ -14,6 +14,49 @@ class HomeController extends Controller
 {
     public function index()
     {
+         // Verificar si ya existe un registro
+        $existeRegistro = DB::table('home')->exists();
+
+        // Si no existe un registro, realiza la inserción
+        if (!$existeRegistro) {
+            DB::table('home')->insert([
+                'id' => '1',
+                'titulobanner' => 'Tu Titulo',
+                'descripcionbanner' => 'Tu Descripción',
+                'minibanners1' => 'public/minibanners/default_image.png',
+                'url_minibanner1' => '#',
+                'minibanners2' => 'public/minibanners/default_image.png',
+                'url_minibanner2' => '#',
+                'minibanners3' => 'public/minibanners/default_image.png',
+                'url_minibanner3' => '#',
+                'minibanners4' => 'public/minibanners/default_image.png',
+                'url_minibanner4' => '#',
+                'minibanners5' => 'public/minibanners/default_image.png',
+                'url_minibanner5' => '#',
+                'minibanners6' => 'public/minibanners/default_image.png',
+                'url_minibanner6' => '#',
+                'minibanners7' => 'public/minibanners/default_image.png',
+                'url_minibanner7' => '#',
+                'minibanners8' => 'public/minibanners/default_image.png',
+                'url_minibanner8' => '#',
+                'minibanners9' => 'public/minibanners/default_image.png',
+                'url_minibanner9' => '#',
+                'minibanners10' => 'public/minibanners/default_image.png',
+                'url_minibanner10' => '#',
+                'minibanners11' => 'public/minibanners/default_image.png',
+                'url_minibanner11' => '#',
+                'minibanners12' => 'public/minibanners/default_image.png',
+                'url_minibanner12' => '#',
+            ]);
+
+            
+        }
+
+       
+    
+    
+
+     
         $home = Home::where('id', 1)->first();
         $tramitesDigitales = DB::table('tramites_digitales')->latest()->take(12)->get();
         $salaprensa = Salaprensa::latest()->take(12)->get();

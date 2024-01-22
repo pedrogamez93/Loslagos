@@ -23,7 +23,15 @@ class Funcionario extends Model
       'region',
       'provincia',
       'comuna',
-      'foto'];
+      'foto',
+      'partido_politico',
+      'biografia', 
+      'funciones',
+      'Tfuncionario',      
+      'fecha_nacimiento',  
+      'lugar_nacimiento',  
+      'sexo',              
+    ];
 
       protected $appends = ['foto_url'];
 
