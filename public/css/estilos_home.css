@@ -218,7 +218,7 @@ border-color: #d9d9d9;
   .bannerinferior,
   .contenidobannerinferior,
   .btn-outline-primary {
-      margin-left: calc(10vw + 10%);
+      margin-left: calc(1vw + 5%);
       margin-right: calc(10vw + 10%);
   }
 }
@@ -261,20 +261,20 @@ line-height: normal;
 }
 
 .titulotramites{
-  color: #565656;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
+  color: #565656 ;
+  font-family: Inter !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
   line-height: normal;
 }
 
 .descripciontramites{
   color: #565656;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
+  font-family: Inter !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
   line-height: normal;
 }
 

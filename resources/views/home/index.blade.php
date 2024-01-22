@@ -29,7 +29,7 @@
                     <p class="descripcionhome">Descripcion</p>
                 @endif
 
-                <form action="http://127.0.0.1:8000/buscador" method="GET" id="formbuscador">
+                <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
                     
                     
                     <div id="divformbuscador" class="input-group input-group-rounded">
@@ -90,8 +90,8 @@
         <div class="carousel-item" style="position: relative;">
             <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
             <div class="carousel-caption">
-            <h5 style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</h5>
-            <h5 style="" class="descripcionprensa">{{ implode(' ', array_slice(str_word_count($registro->descripcion, 1), 0, 5)) }}</h5>
+            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</p>
+            <p style="" class="descripcionprensa">{{ implode(' ', array_slice(str_word_count($registro->descripcion, 1), 0, 5)) }}</p>
             <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -188,24 +188,24 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="container">
     <div class="row py-5 my-5">
         <div class="col-3">
-            <img src="{{ optional($home)->minibanners1 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners2 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners3 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners1 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners2 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners3 ?? asset('storage/img/default_image.png') }}" class="mb-3">
         </div>
         <div class="col-3">
-            <img src="{{ optional($home)->minibanners4 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners5 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners6 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners4 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners5 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners6 ?? asset('storage/img/default_image.png') }}" class="mb-3">
         </div>
         <div class="col-3">
-            <img src="{{ optional($home)->minibanners7 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners8 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners9 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners7 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners8 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners9 ?? asset('storage/img/default_image.png') }}" class="mb-3">
         </div>
         <div class="col-3">
-            <img src="{{ optional($home)->minibanners10 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners11 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners12 ?? asset('path/to/default_image.jpg') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners10 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners11 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+            <img src="{{ optional($home)->minibanners12 ?? asset('storage/img/default_image.png') }}" class="mb-3">
         </div>
     </div>
 </div>
