@@ -140,15 +140,17 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="mt-5 pb-5">
     <div id="thumbnail-slider2" class="carousel">
         @foreach($tramitesDigitales as $tramite)
-            <div class="carousel-item">
+        <a href="{{ route('tramites.show', $tramite->id) }}">    
+        <div class="carousel-item">
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'iconos', 'imagen' => basename($tramite->icono)]) }}" class="mb-3" style="width: 150px; height:130px" alt="{{ $tramite->titulo }}">
                 <div class="carousel-caption mb-3">
                     
                 </div>
                 <h5 class="titulotramites">{{ $tramite->titulo }}</h5>
                 <p style="" class="descripciontramites">{{ implode(' ', array_slice(str_word_count($tramite->descripcion, 1), 0, 4)) }}</p>
-                  <a href="{{ route('tramites.show', $tramite->id) }}"></a>
+                 
             </div>
+            </a>
         @endforeach
     </div>
 </div>
