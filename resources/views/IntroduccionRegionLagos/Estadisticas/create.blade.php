@@ -76,7 +76,7 @@
                                         <option value="Provincia de Osorno">PROVINCIA DE OSORNO</option>
                                         <option value="Provincia de Llaquihue">PROVINCIA DE LLANQUIHUE</option>
                                         <option value="Provincia de Chiloe">PROVINCIA DE CHILOE</option>
-                                        <option value="Provincia de Palema">PROVINCIA DE PALENA</option>
+                                        <option value="Provincia de Palena">PROVINCIA DE PALENA</option>
                                     </select>
                                     </div>
                                 </div>

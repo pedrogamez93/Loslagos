@@ -78,7 +78,7 @@
                                         <option value="Provincia de Osorno" {{ $articulo->provincia == 'Provincia de Osorno' ? 'selected' : '' }}>Provincia de Osorno</option>
                                         <option value="Provincia de Llaquihue" {{ $articulo->provincia == 'Provincia de Llaquihue' ? 'selected' : '' }}>Provincia de Llaquihue</option>
                                         <option value="Provincia de Chiloe" {{ $articulo->provincia == 'Provincia de Chiloe' ? 'selected' : '' }}>Provincia de Chiloe</option>
-                                        <option value="Provincia de Palema" {{ $articulo->provincia == 'Provincia de Palema' ? 'selected' : '' }}>Provincia de Palema</option>
+                                        <option value="Provincia de Palena" {{ $articulo->provincia == 'Provincia de Palena' ? 'selected' : '' }}>Provincia de Palena</option>
                                     </select>
                                     </div>
                                 </div>
