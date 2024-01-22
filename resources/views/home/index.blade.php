@@ -7,7 +7,7 @@
     <link href="{{ asset('css/estilos_home.css') }}" rel="stylesheet">
 @endpush
 
-  <div id="header" class="d-flex h-300 text-center " style=" background-color: #389144;">
+  <div id="header" class="d-flex h-300 text-center colorB" style="">
   
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
@@ -32,10 +32,20 @@
                 <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
                     
                     
-                    <div id="divformbuscador" class="input-group input-group-rounded">
-    <input class="input-group-field" id="inputbucador" name="q" type="search">
-    <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+                <div id="divformbuscador" class="input-group input-group-rounded">
+    <div class="input-group-prepend">
+        <span class="input-group-text" style="position: absolute;
+    background-color: transparent !important;
+    border: none;height: -webkit-fill-available;">
+        <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
+        </span>
+    </div>
+    <input class="input-group-field" id="inputbucador" name="q" type="search" placeholder="Buscar aquí">
+    <div class="input-group-append">
+        <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+    </div>
 </div>
+
 
    
 </form>
@@ -62,7 +72,7 @@
 
   </div>
 
- <div class="esquina-curva"> </div>
+ <div class="esquina-curva colorB"> </div>
 <!--seccion de sala de prensa y tramite -->
 <div class="container-fluid">
 
@@ -121,14 +131,7 @@
 <div class="d-flex justify-content-between">
     <h3 class="titleshome">Tramites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
-    <div>
-        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
-            Galeria Fotografica
-        </button>
-        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
-            Videos
-        </button>
-    </div>
+    
 </div>
 <p class="home-descripcion">
 Actividades planeadas que involucran un accionar más amplio que un proyecto...
@@ -156,7 +159,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 <!--Banner-->
 
-    <div class="bg-body-tertiary p-5 rounded mt-3">
+    <div class="bg-body-tertiary p-5 rounded mt-3 colorB">
         <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
         <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
         <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>
@@ -187,25 +190,25 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 <div class="container">
     <div class="row py-5 my-5">
-        <div class="col-3">
-            <img src="{{ optional($home)->minibanners1 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners2 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners3 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+        <div class="col-md-3">
+            @if($home->minibanners1) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3"> @endif
+            @if($home->minibanners2) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners3) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3">@endif
         </div>
-        <div class="col-3">
-            <img src="{{ optional($home)->minibanners4 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners5 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners6 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+        <div class="col-md-3">
+            @if($home->minibanners4) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners5) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners6) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3">@endif
         </div>
-        <div class="col-3">
-            <img src="{{ optional($home)->minibanners7 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners8 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners9 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+        <div class="col-md-3">
+            @if($home->minibanners7) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners8) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners9) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3">@endif
         </div>
-        <div class="col-3">
-            <img src="{{ optional($home)->minibanners10 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners11 ?? asset('storage/img/default_image.png') }}" class="mb-3">
-            <img src="{{ optional($home)->minibanners12 ?? asset('storage/img/default_image.png') }}" class="mb-3">
+        <div class="col-md-3">
+            @if($home->minibanners10)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners11)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3">@endif
+            @if($home->minibanners12)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3">@endif
         </div>
     </div>
 </div>

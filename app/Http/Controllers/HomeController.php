@@ -24,7 +24,7 @@ class HomeController extends Controller
     { 
        
         $home = Home::where('id', 1)->first();
-
+        
         if (!$home) {
             abort(404); // O redirige a otra página, según tus necesidades
         }

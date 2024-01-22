@@ -420,7 +420,12 @@ line-height: normal;
   box-sizing: border-box;
   background-color: #F59120;
   color: white;
-  /*padding: 10px;  Ajusta el relleno según tus necesidades */
+  padding: 12px; 
+}
+
+.input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating){
+  border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
 }
 
 /* TELEFONO */
@@ -441,6 +446,7 @@ display: none;
 
   #header{
 height: 185vw;
+background-color: #389144;
 
   }
 
@@ -467,7 +473,7 @@ height: 185vw;
 @media screen and (min-width: 800px) {
   #header{
     height: 800px;
-    
+    background-color: #389144;
       }
 
 
@@ -485,6 +491,10 @@ height: 185vw;
   }
 }
 
+#inputbucador::placeholder {
+  text-align: left;
+  padding-left: 25%; /* Adjust the value as needed */
+}
 
 /* Estilo para el div con esquina izquierda superior curva */
 /* Estilo para el div con esquina izquierda superior curva */
