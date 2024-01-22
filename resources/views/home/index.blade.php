@@ -121,14 +121,7 @@
 <div class="d-flex justify-content-between">
     <h3 class="titleshome">Tramites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
-    <div>
-        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
-            Galeria Fotografica
-        </button>
-        <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
-            Videos
-        </button>
-    </div>
+    
 </div>
 <p class="home-descripcion">
 Actividades planeadas que involucran un accionar más amplio que un proyecto...
