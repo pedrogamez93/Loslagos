@@ -31,6 +31,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\ComiteCienciasController;
 use App\Http\Controllers\ConcursosPublicosController;
 use App\Http\Controllers\ConcejoRegionalController;
+use App\Http\Controllers\ConsejoRegionalDocsViewsController;
 use App\Http\Controllers\PresidenteConcejoController;
 use App\Http\Controllers\ConsejerosChiloeController;
 use App\Http\Controllers\ConsejerosLlanquihueController;
@@ -59,6 +60,7 @@ Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
+Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
@@ -83,7 +85,7 @@ Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'ind
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
 Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
-
+Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
@@ -95,6 +97,8 @@ Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTab
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
+Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
+
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa
@@ -210,6 +214,9 @@ Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name
 
 Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
 
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -292,6 +299,7 @@ Route::get('/gobiernoregional/unidaddecontrol', 'App\Http\Controllers\Documentos
 
 /*DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 Route::get('/consejoregional/actas', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexactas')->name('actas.Indexactas');
+Route::get('/consejoregional/actas/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showActa')->name('actas.showActa');
 
 Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexcertificadosdeacuerdos')->name('certificadosdeacuerdos.Indexcertificadosdeacuerdos');
 

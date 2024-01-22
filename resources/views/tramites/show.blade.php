@@ -176,6 +176,26 @@
         height:535px;
         background-color: #389144;
     }
+    a.mifinal-a{
+        width: 146px;
+        height: 40px;
+        padding: 10px 20px;
+        border-radius: 100px;
+        background-color: #F59120;
+        font-family: 'Inter';
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19.36px;
+        text-align: Center;
+    }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -200,7 +220,7 @@
             <div class="container second content-breadc pt-5 pb-5">
                 <div class="row" style="padding: 10px 0px 20px 55px;">
                     <div class="col-md-12" style="padding: 0;">
-                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span><a href="/gobiernoregional/tramitesdigitales">Tramites Digitales</a></span>/ <span style="font-Weight: 700;"><a href="">{{ $tramites->titulo }}</a></span></p>
+                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span><a href="/gobiernoregional/tramitesdigitales">Tramites Digitales</a></span>/ <span style="font-Weight: 700;"><a href="">{{ $tramite->titulo }}</a></span></p>
                     </div>
                 </div>
                     
@@ -208,8 +228,9 @@
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Gobierno Regional</p>
-
-                            <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                         </div>
                     </div>
                 </div>   
@@ -223,12 +244,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6" style="padding: 0 0 0 2.5rem;">
-                            <p class="title-cat">Trámite digital: {{ $tramites->titulo }}</p>
+                            <p class="title-cat">Trámite digital: {{ $tramite->titulo }}</p>
                         </div>
                         <div class="col-md-6">
                             <div class="">
-                                @if($tramites->icono)
-                                    <img src="{{ asset($tramites->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
+                                @if($tramite->icono)
+                                    <img src="{{ asset($tramite->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
                                 @else
                                     <p>No hay icono actual.</p>
                                 @endif
@@ -245,54 +266,54 @@
             <div class="container principal" style="padding: 0 0 0 2.5rem;">
                 <div class="row">
 
-                    <p class="style-tag pt-4 pb-4">{{ $tramites->tags }}</p>
+                    <p class="style-tag pt-4 pb-4">{{ $tramite->tags }}</p>
                         
-                    <div class="style-cont mt-4 mb-4">{!! $tramites->descripcion !!}</div>
+                    <div class="style-cont mt-4 mb-4">{!! $tramite->descripcion !!}</div>
 
-                    @if ($tramites->fecha_apertura || $tramites->fecha_cierre)
+                    @if ($tramite->fecha_apertura || $tramite->fecha_cierre)
                         <div class="row mt-4">
-                            @if ($tramites->fecha_apertura)
+                            @if ($tramite->fecha_apertura)
                                 <div class="col-md-6">
                                     <p><strong>FECHA DE APERTURA</strong></p>
-                                    <p>{{ $tramites->fecha_apertura }}</p>
+                                    <p>{{ $tramite->fecha_apertura }}</p>
                                 </div>
                             @endif
 
-                            @if ($tramites->fecha_cierre)
+                            @if ($tramite->fecha_cierre)
                                 <div class="col-md-6">
                                     <p><strong>FECHA DE CIERRE</strong></p>
-                                    <p>{{ $tramites->fecha_cierre }}</p>
+                                    <p>{{ $tramite->fecha_cierre }}</p>
                                 </div>
                             @endif
                         </div>
                     @endif
 
-                    @foreach ($tramites as $tramite)
-                        @if (!empty($tramite['nombre_btn']) && !empty($tramite['url']))
-                            <div class="container add-boton mt-4">
+                    @if ($tramite->btns->isNotEmpty())
+                        @foreach ($tramite->btns as $btn)
+                            <div class="container add-boton mt-5 mb-4">
+                            <h2 style="font-family: 'Inter'; font-weight: 700; font-size: 16px; line-height: 19.36px; color: #565656;">Visita los siguientes sitios externos</h2>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="style-label" for="url">Nombre del botón externo:</label>
-                                        <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del botón externo" value="{{ $tramite['nombre_btn'] }}">
+                                    <div class="col-md-6 mt-4 mb-4">
+                                        <a class="mifinal-a" href="{{ $btn->url }}">{{ $btn->nombre_btn }}</a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="style-label" for="url">URL del botón externo:</label>
-                                        <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del botón externo" value="{{ $tramite['url'] }}">
-                                    </div>
-                                </div>     
+                                </div>
                             </div>
-                        @endif
-                    @endforeach
+                        @endforeach
+                    @endif
 
-                    @if ($tramites->documentos->isNotEmpty() && $tramites->documentos->every(function($documento) { return !empty($documento->nombre_documento) && !empty($documento->ruta_documento); }))
+                    @if ($tramite->documentos->isNotEmpty() && $tramite->documentos->every(function($documento) { return !empty($documento->nombre_documento) && !empty($documento->ruta_documento); }))
                         <div class="container docs">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="mi-h3 mt-4">Documentos Adjuntos</h3>
-                                    @foreach ($tramites->documentos as $documento)
+                                    <h3 style="font-family: 'Inter';font-weight: 600; font-style: italic; font-size: 20px; color: #F59120; line-height: 24.2px;" class="mt-4">Documentos Adjuntos</h3>
+                                    @foreach ($tramite->documentos as $documento)
                                         @if (!empty($documento->nombre_documento) && !empty($documento->ruta_documento))
-                                            <p>Nombre del Documento: {{ $documento->nombre_documento }}</p>
-                                            <p>Ruta del Documento: {{ $documento->ruta_documento }}</p>
+                                        <li class="mi-list mt-4">
+                                            <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank">
+                                                <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
+                                                <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre_documento }}</span>
+                                            </a>
+                                        </li>
                                         @endif
                                     @endforeach
                                 </div>

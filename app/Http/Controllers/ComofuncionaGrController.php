@@ -8,16 +8,16 @@ use App\Models\ComofuncionaGr;
 class ComofuncionaGrController extends Controller
 {
     public function index() {
-        // Obtén los datos que deseas mostrar en la vista
+        // Obtén el último registro de ComofuncionaGr
         $comofunciona = ComofuncionaGr::latest()->first();
     
-        if ($comofunciona) {
-            // Si encontraste registros, pasa los datos a la vista
-            return view('comofunciona.index', compact('comofunciona'));
-        } else {
-            // Si no hay registros, puedes manejarlo de alguna manera
-            return view('comofuncionagrs.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
+        if (!$comofunciona) {
+            // Si no hay registros, redirige a la vista de creación
+            return redirect()->route('comofunciona.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
+    
+        // Si hay registros, pasa los datos a la vista
+        return view('comofunciona.index', compact('comofunciona'));
     }
 
     public function create() {

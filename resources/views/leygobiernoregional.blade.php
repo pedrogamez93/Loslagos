@@ -93,7 +93,8 @@
         color: #565656;
         padding-bottom: 2%;
     }
-    .contenido-ley{
+    .container.contenido-ley{
+        padding: 3rem;
         border: 1px solid #F59120;
     }
     a.final-btn{
@@ -103,6 +104,13 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -118,33 +126,6 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-    <!--<header>
-         Contenido del encabezado barra de arriba logo, menu, etc...
-        <div class="container top-bar">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-2">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                </div>
-                <div class="col-md-8" style="align-self: center;">
-                    <nav style="margin-left: 5rem;">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/acerca">Gobierno Regional</a></li>
-                            <li><a href="/contacto">Concejo Regional</a></li>
-                            <li><a href="/contacto">Region de Los Lagos</a></li>
-                            <li><a href="/contacto">Directorio de Funciones</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-2" style="align-self: center;">
-                    <a href="" class="style-btn"><p class="style-btn">Infórmate aquí</p></a>
-                </div>
-            </div>
-        </div>
-
-    Contenido del encabezado principal breadcumbs, titulo, bajadas
-        </header>
-    Contenido principal de tu página -->
 <div class="container-fluid" style="background-color:#00548F;">
     <div class="row">
         <div class="col-md-12">
@@ -159,8 +140,9 @@
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Gobierno Regional</p>
-
-                            <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                         </div>
                     </div>
                 </div>   
@@ -198,7 +180,7 @@
                 </div>
                 <div class="container contenido-ley mt-4 mb-5">
                     <div class="row">    
-                        <div class="col-md-6" style="padding: 0 0 0 5rem;">
+                        <div class="col-md-6">
                             <p class="mi-style-onep mt-4">Tipo de Norma:</p>
 
                             <p class="mi-style-onet">{{ $ley->tipo_norma }}</p>

@@ -40,16 +40,22 @@
         <div id="Docsparadesc" class="col-md-4 col-lg-3 pt-3 ps-4" style="border-left: 3px solid #F59120; ">
         <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes decargar:</h4>
 
-        @foreach($documentos as $documento)
-        <a class="mt-5" href="{{ url('storage/' . $documento->archivo_path) }}" download>
-        <div class="row divtitulodocsdes" >
-        
-                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                <p>{{ $documento->nombre }}</p>
-        
-        </div>
-        </a>
-    @endforeach
+        <ul class="list-unstyled">
+    @foreach($documentos as $documento)
+        @if($documento->portada == 'si')
+            <li class="mt-3">
+                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+                    <div class="row divtitulodocsdes">
+                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                        <p>{{ $documento->archivo }}</p>
+                    </div>
+                </a>
+            </li>
+          @endif
+     @endforeach
+        </ul>
+
+
 
         </div>
     </div>

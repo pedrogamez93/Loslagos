@@ -417,7 +417,7 @@ button {
                 <option value="OTRO">OTRO</option>
             </select>
 
-            <label>Actividad u oficio</label>
+            <label>Actividad u oficio:</label>
             <select name="actividad_oficio" >
                 
             <option value="">Seleccione</option>

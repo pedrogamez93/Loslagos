@@ -88,6 +88,7 @@ public function store(Request $request)
                         'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
                         'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
                         'publicacion' => $request->input('publicacion'), // Ajusta con el nombre correcto del campo
+                        'categoria' => $request->input('categoria'),
                     ]);
                     $resumengastos->save();
                     // Establece la relación en el modelo Documentonew
@@ -147,7 +148,8 @@ public function store(Request $request)
     public function indexTabla()
     {
         // Obtener todos los documentos con las relaciones cargadas
-        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->get();
+        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
+                    ->paginate(10);
     
         // Retornar la vista con los documentos para mostrar en la tabla
         return view('documentos.tabladocumentos', compact('documentos'));

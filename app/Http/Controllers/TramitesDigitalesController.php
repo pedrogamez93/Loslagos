@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\TramitesDigitales;
 use App\Models\TramitesDigitalesDocs;
+use App\Models\TramitesDigitalesBtns;
 use Carbon\Carbon;
 
 
 class TramitesDigitalesController extends Controller{
 
-    public function index(){
+    public function index()
+    {
         $tramites = TramitesDigitales::all();
+    
+        if ($tramites->isEmpty()) {
+            // Redirecciona al método 'create'
+            return redirect()->route('tramites.create');
+        }
+    
         return view('tramites.index', compact('tramites'));
     }
 
@@ -21,7 +30,7 @@ class TramitesDigitalesController extends Controller{
 
     public function store(Request $request)
     {
-        ini_set('post_max_size', '1024M');
+        ini_set('post_max_size', '4048M');
         // Validar los campos del formulario
         $request->validate([
             'titulo' => 'required|string|max:255',
@@ -30,8 +39,8 @@ class TramitesDigitalesController extends Controller{
             'fecha_apertura' => 'nullable|date',
             'fecha_cierre' => 'nullable|date',
             'icono' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nombre_btn' => 'nullable|string',
-            'url' => 'nullable|string',
+            'nombre_btn.*' => 'nullable|string',
+            'url.*' => 'nullable|string',
             'url_single' => 'nullable|string',
             'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:4048',
             'nombre_documento.*' => 'nullable|string',
@@ -53,8 +62,6 @@ class TramitesDigitalesController extends Controller{
             'descripcion' => $request->input('descripcion'),
             'fecha_apertura' => $fechaApertura,
             'fecha_cierre' => $fechaCierre,
-            'nombre_btn' => $request->input('nombre_btn'),
-            'url' => $request->input('url'),
             'url_single' => $request->input('url_single'),
         ]);
     
@@ -63,6 +70,22 @@ class TramitesDigitalesController extends Controller{
             $iconoPath = $request->file('icono')->store('iconos' , 'public');
             $nuevoTramite->update(['icono' => $iconoPath]);
         }
+
+            // Guardar los botones en la nueva tabla
+            if ($request->has('nombre_btn') && $request->has('url')) {
+                $nombreBtns = $request->input('nombre_btn');
+                $urls = $request->input('url');
+
+                foreach ($nombreBtns as $index => $nombreBtn) {
+                    if (!empty($nombreBtn) && !empty($urls[$index])) {
+                        TramitesDigitalesBtns::create([
+                            'tramite_id' => $nuevoTramite->id,
+                            'nombre_btn' => $nombreBtn,
+                            'url' => $urls[$index],
+                        ]);
+                    }
+                }
+            }
     
         try {
             // Procesar documentos (individuales y comprimidos)
@@ -95,45 +118,94 @@ class TramitesDigitalesController extends Controller{
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'tags' => 'string',
-            'descripcion' => 'string',
-            'fecha_apertura' => 'date',
-            'fecha_cierre' => 'date',
-            'icono' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nombre_btn' => 'string',
-            'url' => 'string',
-            'url_single' => 'string',
-            'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx|max:2048',
-            'nombre_documento.*' => 'string',
-        ]);
+{
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'tags' => 'nullable|string',
+        'descripcion' => 'nullable|string',
+        'fecha_apertura' => 'nullable|date',
+        'fecha_cierre' => 'nullable|date',
+        'icono' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'nombre_btn.*' => 'nullable|string',
+        'url.*' => 'nullable|string',
+        'url_single' => 'nullable|string',
+        'ruta_documento.*' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:4048',
+        'nombre_documento.*' => 'nullable|string',
+    ]);
 
-        $tramites = TramitesDigitales::findOrFail($id);
+        // Procesar fechas
+        $fechaApertura = $request->input('fecha_apertura')
+        ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_apertura'))->toDateString()
+        : null;
 
-        $tramites->update([
-            'titulo' => $request->input('titulo'),
-            'tags' => $request->input('tags'),
-            'descripcion' => $request->input('descripcion'),
-            'fecha_apertura' => $request->input('fecha_apertura'),
-            'fecha_cierre' => $request->input('fecha_cierre'),
-            'nombre_btn' => $request->input('nombre_btn'),
-            'url' => $request->input('url'),
-            'url_single' => $request->input('url_single'),
-        ]);
+    $fechaCierre = $request->input('fecha_cierre')
+        ? Carbon::createFromFormat('d-m-Y', $request->input('fecha_cierre'))->toDateString()
+        : null;
 
-        if ($request->hasFile('icono')) {
-            $iconoPath = $request->file('icono')->store('iconos' , 'public');
-            $tramites->update(['icono' => $iconoPath]);
-        }
+    $tramite = TramitesDigitales::findOrFail($id);
 
-        return redirect()->route('tramites.index');
+    $tramite->update([
+        'titulo' => $request->input('titulo'),
+        'tags' => $request->input('tags'),
+        'descripcion' => $request->input('descripcion'),
+        'fecha_apertura' => $request->input('fecha_apertura'),
+        'fecha_cierre' => $request->input('fecha_cierre'),
+        'url_single' => $request->input('url_single'),
+    ]);
+
+    if ($request->hasFile('icono')) {
+        $iconoPath = $request->file('icono')->store('iconos', 'public');
+        $tramite->update(['icono' => $iconoPath]);
     }
 
-    public function show($id){
-        $tramites = TramitesDigitales::findOrFail($id);
-        return view('tramites.show', compact('tramites'));
+    // Actualizar o agregar nuevos botones
+    if ($request->has('nombre_btn') && $request->has('url')) {
+        foreach ($request->nombre_btn as $index => $nombreBtn) {
+            if (!empty($nombreBtn) && !empty($request->url[$index])) {
+                TramitesDigitalesBtns::create([
+                    'tramite_id' => $tramite->id,
+                    'nombre_btn' => $nombreBtn,
+                    'url' => $request->url[$index],
+                ]);
+            }
+        }
+    }
+
+    // Actualizar o agregar nuevos documentos
+    if ($request->has('nombre_documento')) {
+        $nombresDocumentos = $request->nombre_documento;
+        $documentos = $request->file('ruta_documento');
+
+        foreach ($nombresDocumentos as $index => $nombreDocumento) {
+            if (!empty($documentos[$index])) {
+                $rutaDocumento = $documentos[$index]->store('documentostramites', 'public');
+                TramitesDigitalesDocs::create([
+                    'tramite_id' => $tramite->id,
+                    'nombre_documento' => $nombreDocumento,
+                    'ruta_documento' => $rutaDocumento,
+                ]);
+            }
+        }
+    }
+
+    return redirect()->route('tramites.index');
+}
+
+        public function show($id){
+            try {
+                // Buscar el trámite por su ID junto con sus botones y documentos relacionados
+                $tramite = TramitesDigitales::with(['btns', 'documentos'])->findOrFail($id);
+
+                // Pasar el trámite a la vista
+                return view('tramites.show', compact('tramite'));
+            } catch (\Exception $e) {
+                // Manejar una excepción si el trámite no se encuentra
+                return abort(404); // Puedes personalizar el código de respuesta según tus necesidades
+            }
+        }
+
+    public function mostrarImagen($icono) {
+        return response()->file(storage_path('app/public/iconos/' . $icono));
     }
 
     public function destroy($id)
@@ -142,7 +214,15 @@ class TramitesDigitalesController extends Controller{
         return redirect()->route('tramites.index');
     }
 
-    public function mostrarImagen($icono) {
-        return response()->file(storage_path('app/public/iconos/' . $icono));
+    public function destroyDoc($docId)
+    {
+        TramitesDigitalesDocs::destroy($docId);
+        return redirect()->route('tramites.index')->with('success', 'Documento eliminado correctamente.');
+    }
+
+    public function destroyBtn($btnId)
+    {
+        TramitesDigitalesBtns::destroy($btnId);
+        return redirect()->route('tramites.index')->with('success', 'Botón eliminado correctamente.');
     }
 }

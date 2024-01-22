@@ -351,8 +351,7 @@ h5.card-title{
     document.addEventListener("DOMContentLoaded", function() {
       
         document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
-        document.querySelector('header').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
-
+        document.querySelector('.nav-head').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
     });
 </script>
 @endsection

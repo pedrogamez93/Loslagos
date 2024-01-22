@@ -77,46 +77,44 @@
     place-content: center;
 }
 
-.colinputbuscador{
+/* .colinputbuscador{
     align-self: center;
 }
 #inputbucador {
-  width: 68%; /* Ancho del 68% de la pantalla */
+  width: 68%;
   height: 80px;
   top: 1vh;
   border-radius: 100px !important;
 }
 
-/* Estilos específicos para pantallas pequeñas */
+
 @media only screen and (max-width: 767px) {
   #inputbucador {
-      width: 90%; /* Ancho del 90% de la pantalla para dispositivos más pequeños */
-  }
+      width: 90%; 
 }
 
-/* Estilos específicos para pantallas medianas */
+
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   #inputbucador {
-      width: 80%; /* Ancho del 80% de la pantalla para dispositivos medianos */
+      width: 80%; 
   }
 }
 
-/* Estilos específicos para pantallas grandes (computadoras) */
+
 @media only screen and (min-width: 1024px) and (max-width: 2500px) {
   #inputbucador {
-      width: 68%; /* Ancho del 68% de la pantalla para pantallas de hasta 2500px */
-  }
+      width: 68%; 
 }
 
-/* Estilos específicos para pantallas muy grandes (mayores a 2500px) */
+
 @media only screen and (min-width: 2501px) {
   #inputbucador {
-      width: 68%; /* Puedes ajustar este valor según sea necesario para pantallas mayores a 2500px */
+      width: 68%; /
   }
-}
+} */
 
 .TitulocarouselTD{
-    /*font-family: Inter;*/
+   
 font-size: 20px;
 font-weight: 700;
 line-height: 24px;
@@ -220,7 +218,7 @@ border-color: #d9d9d9;
   .bannerinferior,
   .contenidobannerinferior,
   .btn-outline-primary {
-      margin-left: calc(10vw + 10%);
+      margin-left: calc(1vw + 5%);
       margin-right: calc(10vw + 10%);
   }
 }
@@ -263,20 +261,20 @@ line-height: normal;
 }
 
 .titulotramites{
-  color: #565656;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
+  color: #565656 ;
+  font-family: Inter !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
   line-height: normal;
 }
 
 .descripciontramites{
   color: #565656;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
+  font-family: Inter !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
   line-height: normal;
 }
 
@@ -326,21 +324,26 @@ line-height: normal;
 }
 
 .carousel-caption {
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 80%;
 }
 
-.tituloprensa{
-  position: absolute; top: 35px; left: 0px;
+.tituloprensa {
+  position: relative !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #FFF;
-font-family: Inter;
-font-size: 16px;
-font-style: italic;
-font-weight: 600;
-line-height: normal;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
+
+
 
 
 .descripcionprensa{
@@ -348,10 +351,15 @@ line-height: normal;
   text-align: center; margin-top: 50%; transform: translateY(-50%);
   color: #FFF;
 font-family: Inter;
-font-size: 20px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+font-size: 16px;
+font-style: italic;
+font-weight: 600;
+line-height: 1.5;
+overflow-wrap: break-word;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+
 }
 
 h5.footer-col-title {
@@ -359,6 +367,144 @@ h5.footer-col-title {
 }
 
 
-#newsletter12::placeholder {
-  color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
+
+.irnoticia{
+  
+  text-decoration: none;
+  color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.home-descripcion{
+  color: #565656;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+
+.titleshome{
+  color: #565656;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.imagen-con-brillo {
+  filter: brightness(0.7); /* Ajusta el valor según desees, 0.7 es más oscuro, 1 es normal */
+}
+
+.input-group {
+  display: flex;
+  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el grupo de entrada en la pantalla */
+}
+
+.input-group-field {
+  flex-grow: 1;
+  box-sizing: border-box;
+  border-radius: 20px 1px 1px 20px;
+  padding: 10px; /* Ajusta el relleno según tus necesidades */
+}
+
+.button.secondary {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: #F59120;
+  color: white;
+  /*padding: 10px;  Ajusta el relleno según tus necesidades */
+}
+
+/* TELEFONO */
+@media screen and (max-width: 600px) {
+  #columnaimg{
+display: none;
+  }
+
+  #btnbuscador{
+    height: 11.5vw;
+    border-radius: 1px 20px 20px 1px;
+  }
+  
+  #formbuscador{
+    position: absolute;
+    margin-top: 30vw;
+  }
+
+  #header{
+height: 185vw;
+
+  }
+
+  #divformbuscador{
+    margin-top: 25vw;
+    display: flex !important;
+    max-width: 400px;
+    margin: 0 auto;
+    flex-wrap: nowrap !important;
+  }
+
+  .input-group {
+   
+    flex-direction: row; /* Cambia a columna en pantallas más pequeñas si es necesario */
+  }
+
+  .input-group-field {
+    margin-right: 0; /* Elimina el margen derecho en pantallas más pequeñas */
+    margin-bottom: 10px; /* Agrega margen inferior en pantallas más pequeñas si es necesario */
+  }
+}
+
+/* PC */
+@media screen and (min-width: 800px) {
+  #header{
+    height: 800px;
+    
+      }
+
+
+  .input-group {
+    flex-direction: row; /* Mantén la fila en pantallas más grandes */
+  }
+
+  .input-group-field {
+    /* Restaura el margen derecho en pantallas más grandes si es necesario */
+    margin-bottom: 0; /* Elimina el margen inferior en pantallas más grandes */
+  }
+
+  .button.secondary {
+    border-radius: 0px 20px 20px 0px !important;
+  }
+}
+
+
+/* Estilo para el div con esquina izquierda superior curva */
+/* Estilo para el div con esquina izquierda superior curva */
+.esquina-curva {
+  position: relative;
+  top: -99px;
+  height: 100px;
+  width: 100%;
+  z-index: 999;
+  background: linear-gradient(to bottom right, #389144 0%, #fff 0%);
+  border-top-left-radius: 100px;
+}
+
+.carousel-indicators button {
+  border-radius: 50%;  /* Esto hace que los dots sean redondos */
+  width: 10px !important;  /* Ajusta el ancho según sea necesario */
+  height: 10px !important;  /* Ajusta la altura según sea necesario */
+  margin-right: 3px;
+  margin-left: 3px;
+  background-color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
 }
