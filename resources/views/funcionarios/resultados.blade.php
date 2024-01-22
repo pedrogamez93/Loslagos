@@ -78,17 +78,19 @@
             </div>
             
         </div>
-
+   
+  
         <div class="row p-5">
             @foreach($funcionarios as $funcionario)
         
+       
                 <div class="col-md-4">
                 <a href="{{ route('funcionarios.show', ['id' => $funcionario->id]) }}" style="margin-bottom:15px">
                         <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
                                     
                         <div >
-    
-<img src="{{ asset($funcionario->foto) }}" alt="" style="max-width: 100px;
+                       
+<img  src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="" style="max-width: 100px;
     height: 100px;
     border-radius: 50%;
     overflow: hidden;

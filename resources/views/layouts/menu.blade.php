@@ -193,7 +193,7 @@
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('Home.create') }}">Editar</a>
+                                                <a class="style-a-menu" href="{{ route('Home.actualizar') }}">Editar</a>
                                             </li>
                                             
                                         </ul>
