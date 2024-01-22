@@ -476,27 +476,16 @@ p.valor1.mb-5 {
                                             </div>
                                             
                                         </div>
-                                        <div class="col-md-5 mb-4">
-                                            <div class="col-md-12 cajaElementor mb-4 p-3">
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p class="titulo">{{$primerArticulo->actividad5}}</p>
-                                                    <p class="mb-2 subtitulo">{{$primerArticulo->valoractividad5}} {{$primerArticulo->valor1}}</p>
-                                                    <p class="fechas"><span></span></p>
-                                                    <p class="fechas"><span></span></p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
+                                        
                                         <div class="col-md-10 mb-4">
                                             <div class="col-md-12 cajaElementor mb-4 p-0">
                                                 <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        
+                                                    <p class="titulo  mt-4 ml-4 ">{{$primerArticulo->actividad5}}</p>
+                                                    <p class="mb-2 subtitulo  ml-4">{{$primerArticulo->valoractividad5}} {{$primerArticulo->valor1}}</p>
+                                                    <p class="fechas"><span></span></p>
+                                                    <p class="fechas"><span></span></p>
                                                     </div>
                                                     <div class="col-md-7 totalE">
                                                         <p class="titulo mt-4">Total Exportaciones</p>
@@ -528,18 +517,6 @@ p.valor1.mb-5 {
         </div>
     </div>  
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
