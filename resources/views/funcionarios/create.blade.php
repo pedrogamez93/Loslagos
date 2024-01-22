@@ -107,7 +107,7 @@
             </select>
 
             <label for="region">Tipo de funcionario:</label>
-                <select class="form-select mt-4" id="Tfuncionario" onchange="cargarProvincias()">
+                <select class="form-select mt-4" id="Tfuncionario" name="Tfuncionario" onchange="cargarProvincias()">
                     <option value="">Selecciona Tipo de funcionario</option>
                     <option value="Gobernador Regional">Gobernador Regional</option>
                     <option value="Senadores">Senadores</option>
@@ -145,7 +145,7 @@
             <input class="form-control mt-2" type="text" name="email" placeholder="Email" >
 
             <label class="style-label mt-4 required" for="titulo">Partido Politico:</label>
-            <input class="form-control mt-2" type="text" name="email" placeholder="Partido Politico" >
+            <input class="form-control mt-2" type="text" name="partido_politico" placeholder="Partido Politico" >
 
             <label class="style-label mt-4 required" for="titulo">Biografia:</label>
             <textarea class="form-control mt-2" type="text" name="biografia" placeholder="Biografia" ></textarea>
@@ -153,26 +153,35 @@
             <label class="style-label mt-4 required" for="titulo">Funciones:</label>
             <textarea class="form-control mt-2" type="text" name="funciones" placeholder="Funciones" ></textarea>
 
+
+            <div class="form-group">
+               <label for="fecha_nacimiento">Fecha de nacimiento</label>
+               <input type="datetime-local" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+             </div>
+
+             <label class="style-label mt-4 required" for="lugar_nacimiento">Lugar de nacimiento</label>
+            <input class="form-control mt-2" type="text" name="lugar_nacimiento" placeholder="Lugar de nacimiento" >
+
             <label for="region">Región:</label>
-    <select class="form-select mt-4" id="region" onchange="cargarProvincias()">
+    <select class="form-select mt-4" id="region" name="region" onchange="cargarProvincias()">
         <option value="">Selecciona una región</option>
         <!-- Aquí puedes agregar opciones para cada región -->
     </select>
 
     <label for="provincia">Provincia:</label>
-    <select class="form-select mt-4" id="provincia" onchange="cargarComunas()">
+    <select class="form-select mt-4" id="provincia" name="provincia" onchange="cargarComunas()">
         <option value="">Selecciona una provincia</option>
         <!-- Las opciones de provincias se cargarán dinámicamente mediante JavaScript -->
     </select>
 
     <label for="comuna">Comuna:</label>
-    <select  class="form-select mt-4" id="comuna">
+    <select  class="form-select mt-4" id="comuna" name="comuna">
         <option value="">Selecciona una comuna</option>
         <!-- Las opciones de comunas se cargarán dinámicamente mediante JavaScript -->
     </select>
 
-    <label for="comuna">Sexo:</label>
-    <select  class="form-select mt-4" id="comuna">
+    <label for="sexo">Sexo:</label>
+    <select  class="form-select mt-4" id="sexo" name="sexo">
         <option value="Masculino">Masculino</option>
         <option value="Femenino">Femenino</option>
         <option value="Otros">Otros</option>

@@ -266,7 +266,7 @@
             <li class="nav-item mb-2">
             <a href="#" class="nav-link p-0 text-muted">
                 <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
-                    <label for="newsletter1" class="visually-hidden" style="color:white">Escríbenos</label>
+                    
                     <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
 
                     <button class="btn " type="button" style="color: white;">Enviar</button>

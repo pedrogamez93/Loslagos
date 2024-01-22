@@ -8,11 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
     
-<div id="banner" class=" h-500  text-light" style="background-color: #389144 !important; height: 502px; display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    padding-left: 50px;">
+<div id="banner" class=" h-500  text-light colorB" style="">
     <div>
         <h5>Home / Gobierno Regional</h5>
         <h1 class="titulofun" style="text-align: left;">Funcionarios </h1>
@@ -20,9 +16,7 @@
     </div>
 </div>
 
-<div class="contenido h-800 " style=" margin-top: -9vh;
-    background-color: white;
-    border-top-left-radius: 90px;">
+<div class="contenido h-800 colorB" style=" ">
     <div class="row py-5">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
         <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>

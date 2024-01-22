@@ -171,6 +171,11 @@ public function indexTabla()
             'region' => 'nullable',
             'provincia' => 'nullable',
             'comuna' => 'nullable',
+            'partido_politico' => 'nullable',
+            'Tfuncionario' => 'nullable',
+            'fecha_nacimiento' => 'nullable',
+            'lugar_nacimiento' => 'nullable',
+            'sexo' => 'nullable'
            
         ]);
 
@@ -252,24 +257,47 @@ public function edit($id)
     $request->validate([
         'nombre' => 'nullable',
             
-            'actividad' => 'nullable',
-            'division' => 'nullable',
-            'departamento' => 'nullable',
-            'cargo' => 'nullable',
-            'direccion' => 'nullable',
-            'telefono' => 'nullable',
-            'e-mail' => 'nullable',
-            'region' => 'nullable',
-            'provincia' => 'nullable',
-            'comuna' => 'nullable',
+        'actividad' => 'nullable',
+        'division' => 'nullable',
+        'departamento' => 'nullable',
+        'cargo' => 'nullable',
+        'direccion' => 'nullable',
+        'telefono' => 'nullable',
+        'e-mail' => 'nullable',
+        'region' => 'nullable',
+        'provincia' => 'nullable',
+        'comuna' => 'nullable',
+        'partido_politico' => 'nullable',
+        'Tfuncionario' => 'nullable',
+        'fecha_nacimiento' => 'nullable',
+        'lugar_nacimiento' => 'nullable',
+        'sexo' => 'nullable'
         // Agrega otras reglas de validación según tus necesidades
     ]);
 
   
 
     // Actualiza solo los campos que se proporcionan en la solicitud
-    $funcionarios->update(array_filter($request->only(['nombre', 'actividad', 'division', 'departamento', 'cargo', 'direccion', 'telefono', 'e-mail', 'region', 'provincia', 'comuna'])));
- 
+    $funcionarios->update(array_filter($request->only([
+        'nombre',
+        'actividad',
+        'division',
+        'departamento',
+        'cargo',
+        'direccion',
+        'telefono',
+        'e-mail',
+        'region',
+        'provincia',
+        'comuna',
+        'foto',
+        'partido_politico',
+        'Tfuncionario',
+        'fecha_nacimiento',
+        'lugar_nacimiento',
+        'sexo',
+    ])));
+    
     // Si se ha enviado un nuevo archivo, maneja la lógica para actualizar 'archivo_path'
     if ($request->hasFile('foto')) {
         if ($funcionarios->foto) {
@@ -295,9 +323,15 @@ public function edit($id)
 
 
 
-        public function mostrarImagen($imagen)
+    public function mostrarImagen($carpeta, $imagen)
     {
-        return response()->file(storage_path('app/public/funcionarios/' . $imagen));
+        $rutaCompleta = storage_path("app/public/{$carpeta}/{$imagen}");
+    
+        if (file_exists($rutaCompleta)) {
+            return response()->file($rutaCompleta);
+        } else {
+            abort(404); // O redirige a una página de error según tus necesidades
+        }
     }
 
 
