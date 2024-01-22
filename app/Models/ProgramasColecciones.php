@@ -11,6 +11,7 @@ class ProgramasColecciones extends Model
 
     protected $fillable = [
         'titulo_coleccion',
+        'programa_id',
     ];
 
     public function programa()

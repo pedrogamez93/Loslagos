@@ -12,6 +12,7 @@ class Programasbtn extends Model
     protected $fillable = [
         'nombrebtn',
         'urlbtn',
+        'programa_id',
     ];
 
     public function programa()

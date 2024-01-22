@@ -100,10 +100,10 @@ input:required {
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
                         <textarea class="form-control mt-2 mb-4" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
-<!--
+
                         <label class="style-label mt-3" for="icono">Agregar imagen:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-                        -->
+                     
                 
 <!--TEXTOS ACORDEÓN-->
                         <div class="container">
@@ -111,11 +111,11 @@ input:required {
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox1" value="option1" name="si_descripcion">
                                         <label class="form-check-label" for="inlineCheckbox1">Si</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox2" value="option2" name="si_descripcion" checked>
                                         <label class="form-check-label" for="inlineCheckbox2">No</label>
                                     </div>
                                 </div>
@@ -126,11 +126,11 @@ input:required {
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="style-label" for="url">Título:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion" placeholder="Agregar título">
+                                    <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion[]" placeholder="Agregar título">
                                 </div>
                                 <div class="col-md-12">
                                     <label class="style-label" for="url">Bajada:</label>
-                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada_descripcion"></textarea>
+                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada_descripcion[]"></textarea>
 
                                 </div>
                             </div>
@@ -146,11 +146,11 @@ input:required {
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option1">
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox11" value="option1" name="si_btn"> 
                                         <label class="form-check-label" for="inlineCheckbox11">Si</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox22" value="option2" checked>
+                                        <input class="form-check-input" type="radio" id="inlineCheckbox22" value="option2" name="si_btn" checked>
                                         <label class="form-check-label" for="inlineCheckbox22">No</label>
                                     </div>
                                 </div>
@@ -161,56 +161,54 @@ input:required {
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">Nombre del botón:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn" placeholder="Nombre del botón">
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombrebtn[]" placeholder="Nombre del botón">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">URL del botón:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="urlbtn" placeholder="URL del botón">
+                                    <input class="form-control mt-2 mb-4" type="text" name="urlbtn[]" placeholder="URL del botón">
                                 </div>
                             </div>
                             <button type="button" id="agregarMas2" class="btn btn-primary">Agregar Más</button>
                         </div>
 
-<!--FIN BOTONES PARA DIRECCIONAR
-                       
+<!--FIN BOTONES PARA DIRECCIONAR-->
+         <!--DOCUMENTOS-->              
                         <div class="container agregar-documentos mt-4">
                           <label class="style-label mb-2">Deseas agregar Documentos?</label>
                           <div class="row">
                               <div class="col-md-12">
                                   <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox111" value="option1">
+                                      <input class="form-check-input" type="radio" id="inlineCheckbox111" value="option1" name="si_documentos">
                                       <label class="form-check-label" for="inlineCheckbox111">Si</label>
                                   </div>
                                   <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="checkbox" id="inlineCheckbox222" value="option2" checked>
+                                      <input class="form-check-input" type="radio" id="inlineCheckbox222" value="option2" checked name="si_documentos">
                                       <label class="form-check-label" for="inlineCheckbox222">No</label>
                                   </div>
                               </div>
                           </div>
                       </div>
--->
-                       <!--Campos para documentos
 
                       <div class="documentos-container mt-5">
                           <div class="documentos-input">
                               <label class="style-label" for="documentos">Agregar documento:</label>
-                              <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento" placeholder="Nombre del documento" multiple>
-                              <input class="form-control mt-2 mb-2" type="file" name="urlDocumento" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
+                              <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del documento">
+                              <input class="form-control mt-2 mb-2" type="file" name="urlDocumento[]" accept=".pdf, .doc, .docx, .zip, .rar">
                           </div>
                           <button type="button" class="btn btn-primary agregar-documento">Agregar otro documento</button>
                       </div>
--->
+
                     <!--Colecciones-->
                     <div class="container pregunta-doc mt-4">
                         <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1111" name="agregar_coleccion" value="1">
+                                    <input class="form-check-input" type="radio" id="inlineCheckbox1111"  value="option1" name="si_coleccion">
                                     <label class="form-check-label" for="inlineCheckbox1111">Si</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2222" name="agregar_coleccion" value="0" checked>
+                                    <input class="form-check-input" type="radio" id="inlineCheckbox2222"  value="option2" checked>
                                     <label class="form-check-label" for="inlineCheckbox2222">No</label>
                                 </div>
                             </div>
@@ -221,9 +219,9 @@ input:required {
                         <div class="colecciones-input">
                             <label class="style-label" for="colecciones">Fotografías:</label>
                             <input class="form-control mt-2 mb-4" type="file" name="ruta[]" accept=".png, .jpg, .jpeg" multiple>
-                            <input class="form-control mt-2 mb-2" type="text" name="titulo_coleccion" placeholder="Nombre de la colección">
+                            <input class="form-control mt-2 mb-2" type="text" name="titulo_coleccion[]" placeholder="Nombre de la colección">
                         </div>
-                        <button type="button" class="btn btn-primary agregar-coleccion">Agregar fotografías</button>
+                        <button type="button" class="btn btn-primary agregar-coleccion">Agregar otra colección</button>
                     </div>
 
                             
@@ -236,7 +234,6 @@ input:required {
     </div>
 </div>
 
- Y DOCUMENTOS
 
 <script>
     $(document).ready(function() {
@@ -251,10 +248,10 @@ input:required {
 
             // Genera un nuevo nombre único para cada campo clonado
             var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
-            nuevoDocumentoInput.find("input[type='file']").attr('id', 'ruta_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[]');
-            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
+            nuevoDocumentoInput.find("input[type='file']").attr('id', 'urlDocumento' + nuevoId);
+            nuevoDocumentoInput.find("input[type='file']").attr('name', 'urlDocumento[]');
+            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombreDocumento' + nuevoId);
+            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombreDocumento[]');
 
             // Agrega los campos clonados al contenedor
             documentosContainer.append(nuevoDocumentoInput);
@@ -273,10 +270,10 @@ input:required {
 
             // Genera un nuevo nombre único para cada campo clonado
             var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
-            nuevoFotografiaInput.find("input[type='file']").attr('id', 'imagen' + nuevoId);
-            nuevoFotografiaInput.find("input[type='file']").attr('name', 'imagen[]');
-            nuevoFotografiaInput.find("input[type='text']").attr('id', 'titulo' + nuevoId);
-            nuevoFotografiaInput.find("input[type='text']").attr('name', 'titulo[]');
+            nuevoFotografiaInput.find("input[type='file']").attr('id', 'ruta' + nuevoId);
+            nuevoFotografiaInput.find("input[type='file']").attr('name', 'ruta[]');
+            nuevoFotografiaInput.find("input[type='text']").attr('id', 'titulo_coleccion' + nuevoId);
+            nuevoFotografiaInput.find("input[type='text']").attr('name', 'titulo_coleccion[]');
 
             // Agrega los campos clonados al contenedor
             coleccionesContainer.append(nuevoFotografiaInput);
@@ -380,10 +377,8 @@ input:required {
    
   });
 
-
-  
 </script>
-// ClassicEditor
+
 <script>
 ClassicEditor
     .create(document.querySelector('#editor-bajada'), {

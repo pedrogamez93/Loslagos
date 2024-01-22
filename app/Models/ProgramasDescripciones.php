@@ -10,8 +10,9 @@ class ProgramasDescripciones extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titulo',
-        'bajada',
+        'titulo_descripcion',
+        'bajada_descripcion',
+        'programa_id',
     ];
     
     public function programa()

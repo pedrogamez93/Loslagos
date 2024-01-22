@@ -11,6 +11,7 @@ class ProgramasFotografias extends Model
 
     protected $fillable = [
         'ruta',
+        'coleccion_id',
     ];
 
     public function coleccion()
