@@ -1259,9 +1259,10 @@ if ($articulo) {
     }
     public function indexRegionlagosprovincias($titulo)
     {
+        $titulo= $titulo;
         $provincia = AntecedentesRegion::where('nombreseccion', $titulo)->first();
 
-        return view('regionlagos.provincia', compact('provincia')); 
+        return view('regionlagos.provincia', compact('provincia','titulo')); 
     }
     public function indexRegionlagosGobernador($titulo)
     {
@@ -1370,7 +1371,7 @@ if ($articulo) {
         $actividadE = ActividadEconomica::all();
         $acumulador=0;
         foreach($introduccion as $p){
-            $acumulador += $p->superficie;
+            $acumulador += $p->superficie_nueva;
         }
             
         

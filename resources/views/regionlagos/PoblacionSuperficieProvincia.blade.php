@@ -335,7 +335,7 @@
                                 <table class="table">
                                 <thead>
                                     <tr>
-                                    <th scope="col" class="tituloTable">Región de los  Lagos</th>
+                                    <th scope="col" class="tituloTable">{{$titulo}} </th>
                                     <th scope="col" class="tituloT">Superficie</th>
                                     <th scope="col" class="tituloT" colspan="2">Población Urbana</th>
                                     <th scope="col" class="tituloT" colspan="2">Población Rural</th>
@@ -345,7 +345,7 @@
                                     <th scope="col"></th>
                                     <th scope="col" style=" text-align: center;"> 
                                     <?php
-                                        $acumulador = number_format($acumulador, 0, ',', '.');
+                                       // $acumulador = number_format($acumulador, 0, ',', '.');
                                     ?> 
                                     {{$acumulador}}  Km2</th>
                                     <th scope="col" class="tituloTS" style=" text-align: center;">Hombre</th>
@@ -362,7 +362,8 @@
                                         <td>{{ $p->comuna }}</td>
                                         <td style=" text-align: center;">
                                         <?php
-                                            $superficie = number_format($p->superficie, 0, ',', '.');
+                                            $superficie = number_format($p->superficie_nueva, 2, ',', '.');
+                                            $superficieAcumulada=+$p->superficie_nueva;
                                         ?> 
                                         {{ $superficie }}  Km2</td>
                                         <td style=" text-align: center;"> 
