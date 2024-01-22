@@ -215,12 +215,7 @@ border-color: #d9d9d9;
 
 /* Media query para pantallas grandes (computadoras) */
 @media only screen and (min-width: 1024px) {
-  .bannerinferior,
-  .contenidobannerinferior,
-  .btn-outline-primary {
-      margin-left: calc(1vw + 5%);
-      margin-right: calc(10vw + 10%);
-  }
+ 
 }
 
  /* Agrega estilos para el margen entre los slides */

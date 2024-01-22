@@ -162,9 +162,11 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <!--Banner-->
 
     <div class="bg-body-tertiary p-5 rounded mt-3 colorB">
+        <div class="container">
         <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
         <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
         <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>
+        </div>
     </div>
 
 <!--Cuadro dentro del banner-->
