@@ -27,7 +27,7 @@
         <div class="col-md-3 mb-4">
             <div class="card card-noticias" >
              
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
                 
                 <div class="card-img-overlay">
                     <div class="card-body text-white">
