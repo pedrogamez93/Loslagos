@@ -89,76 +89,76 @@
             @csrf
 
             <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="titulobanner" placeholder="Título" required>
+            <input class="form-control mt-2" type="text" name="titulobanner" placeholder="Título" >
 
 
             <label class="style-label required" for="titulo">Descripcion:</label>
-            <input class="form-control mt-2" type="text" name="descripcionbanner" placeholder="Descripcion" required>
+            <input class="form-control mt-2" type="text" name="descripcionbanner" placeholder="Descripcion" >
                        
         
 
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 1</label>
                 <input class="form-control" type="file" name="minibanner1" id="minibanner1">
-                <input class="form-control mt-2" type="text" name="url_minibanner1" placeholder="URL Minibanner 1" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner1" placeholder="URL Minibanner 1" >
             </div>
 
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 2</label>
                 <input class="form-control" type="file" name="minibanner2" id="minibanner2">
-                <input class="form-control mt-2" type="text" name="url_minibanner2" placeholder="URL Minibanner 2" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner2" placeholder="URL Minibanner 2" >
             </div>
 
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 3</label>
                 <input class="form-control" type="file" name="minibanner3" id="minibanner3">
-                <input class="form-control mt-2" type="text" name="url_minibanner3" placeholder="URL Minibanner 3" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner3" placeholder="URL Minibanner 3" >
             </div>
 
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 4</label>
                 <input class="form-control" type="file" name="minibanner4" id="minibanner4">
-                <input class="form-control mt-2" type="text" name="url_minibanner4" placeholder="URL Minibanner 4" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner4" placeholder="URL Minibanner 4" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 5</label>
                 <input class="form-control" type="file" name="minibanner5" id="minibanner5">
-                <input class="form-control mt-2" type="text" name="url_minibanner5" placeholder="URL Minibanner 5" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner5" placeholder="URL Minibanner 5" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 6</label>
                 <input class="form-control" type="file" name="minibanner6" id="minibanner6">
-                <input class="form-control mt-2" type="text" name="url_minibanner6" placeholder="URL Minibanner 6" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner6" placeholder="URL Minibanner 6" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 7</label>
                 <input class="form-control" type="file" name="minibanner7" id="minibanner7">
-                <input class="form-control mt-2" type="text" name="url_minibanner7" placeholder="URL Minibanner 7" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner7" placeholder="URL Minibanner 7" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 8</label>
                 <input class="form-control" type="file" name="minibanner8" id="minibanner8">
-                <input class="form-control mt-2" type="text" name="url_minibanner8" placeholder="URL Minibanner 8" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner8" placeholder="URL Minibanner 8" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 9</label>
                 <input class="form-control" type="file" name="minibanner9" id="minibanner9">
-                <input class="form-control mt-2" type="text" name="url_minibanner9" placeholder="URL Minibanner 9" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner9" placeholder="URL Minibanner 9" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 10</label>
                 <input class="form-control" type="file" name="minibanner10" id="minibanner10">
-                <input class="form-control mt-2" type="text" name="url_minibanner10" placeholder="URL Minibanner 10" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner10" placeholder="URL Minibanner 10" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 11</label>
                 <input class="form-control" type="file" name="minibanner11" id="minibanner11">
-                <input class="form-control mt-2" type="text" name="url_minibanner11" placeholder="URL Minibanner 11" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner11" placeholder="URL Minibanner 11" >
             </div>
             <div class="mb-3 mt-4">
                 <label for="formFile" class="form-label">Mini banner 12</label>
                 <input class="form-control" type="file" name="minibanner12" id="minibanner12">
-                <input class="form-control mt-2" type="text" name="url_minibanner12" placeholder="URL Minibanner 12" required>
+                <input class="form-control mt-2" type="text" name="url_minibanner12" placeholder="URL Minibanner 12" >
             </div>
 
 

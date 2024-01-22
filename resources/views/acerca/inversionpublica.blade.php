@@ -33,13 +33,13 @@
         color: #565656;
     }
     p.style-down{
-        width: 580px;
         font-family: 'Inter';
         font-Weight: 500;
         font-Size: 16px;
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;
@@ -69,6 +69,8 @@
     .enlaces{
         Width: 392px !important;
         Height: 292px!important;
+        position: absolute;
+        top: 8rem;
         border-radius: 10px;
         background-color: #00548F;
         color:#FFFFFF;
@@ -95,6 +97,20 @@
         vertical-align: middle;
         margin-left: 10px; /* Ajusta el espacio entre la imagen y el texto */
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+    .enlaces{
+        top: 0rem;
+    }
+    .container.img {
+        margin-top: 14rem;
+    }
+
+}
 </style>
 <html>
 <head>
@@ -110,33 +126,6 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-  <!--<header>
-         Contenido del encabezado barra de arriba logo, menu, etc...
-        <div class="container top-bar">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-2">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                </div>
-                <div class="col-md-8" style="align-self: center;">
-                    <nav style="margin-left: 5rem;">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/acerca">Gobierno Regional</a></li>
-                            <li><a href="/contacto">Concejo Regional</a></li>
-                            <li><a href="/contacto">Region de Los Lagos</a></li>
-                            <li><a href="/contacto">Directorio de Funciones</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-2" style="align-self: center;">
-                    <a href="" class="style-btn"><p class="style-btn">Infórmate aquí</p></a>
-                </div>
-            </div>
-        </div>
-
-        Contenido del encabezado principal breadcumbs, titulo, bajadas
-    </header>
-    Contenido principal de tu página -->
 <div class="container-fluid" style="background-color:#00548F;">
     <div class="row">
         <div class="col-md-12">
@@ -151,8 +140,9 @@
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Gobierno Regional</p>
-
-                            <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                         </div>
                     </div>
                 </div>   
@@ -177,7 +167,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="container-fluid set pb-4">
+                <div class="container-fluid set">
                     @include('layouts.listacategorias')
                 </div>
                 <div class="container-fluid mt-5 mb-5">
@@ -188,7 +178,9 @@
                                     <div class="col-md-12">
                                         <p class="style-tag pt-4 pb-4">{{ $inversiones->tag_comentario }}</p>
                                         <p class="title-cat pt-2 pb-2">{{ $inversiones->titulo }}</p>
-                                        <p class="style-down pt-2 pb-2">{{ $inversiones->bajada }}</p>
+                                        <p class="style-down pt-2 pb-5">{{ $inversiones->bajada }}</p>
+
+                                        <a style="width: 178px; height:40px; border-radius:100px; font-family: 'Inter'; font-weight: 700; font-size: 16px; background-color: #F59120; color: #FFFFFF; padding: 10px;" href="{{ $inversiones->enlace }}">Más Información</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,11 +190,11 @@
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: -webkit-center;">
-                                        <img src="{{ asset($inversiones->img) }}" alt="Imagen actual" style="max-width: 499px; max-height: 567px;">    
+                                        <img src="{{ asset($inversiones->img) }}" alt="Imagen actual">    
                                     </div>
                                 </div>
                             </div>
-                            <div class="container enlaces" style="position:absolute; top: 8rem;">
+                            <div class="container enlaces">
                                 <div class="row" style="padding-top: 2rem; padding-left: 2rem; row-gap: 2rem;">
                                     <div class="container items">
                                         <div class="items">

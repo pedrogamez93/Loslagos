@@ -18,7 +18,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
- <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
+ 
+<!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
  <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
 
 <!-- Agrega tu script JavaScript personalizado para manejar cambios de accesibilidad -->
@@ -53,6 +54,12 @@
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
         }
+
+        h5.footer-col-title {
+  padding-bottom: 20px;
+}
+
+
         .dropdown-menu a{
           color: #565656;
           font-size: 16px;
@@ -71,6 +78,10 @@
         .nav-head{
           background-color: #389144;
         }
+        
+#newsletter12::placeholder {
+  color: #ffff !important; /* Puedes ajustar el color según tus preferencias */
+}
     </style>
 
 @stack('styles')
@@ -89,7 +100,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="    ">
     <ul class="navbar-nav  mr-auto ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="color:white">Home </a>
+        <a class="nav-link" href="{{ url('/') }}" style="color:white">Home </a>
       </li>
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
@@ -247,17 +258,18 @@
     </div>
 
     <div class="col mb-3">
-        <h5 class="footer-col-title" >Contacta con nosotros aquí</h5>
+    <a style="text-decoration: none;
+    color: white;" href="{{ url('/contactanos') }}"><h5 class="footer-col-title" >Contacta con nosotros aquí</h5></a>
         <ul class="nav flex-column">
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
             <a href="#" class="nav-link p-0 text-muted">
-                <div class="d-flex flex-column flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
-                    <label for="newsletter1" class="visually-hidden" style="color:white">Escríbenos</label>
+                <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+                    
                     <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
 
-                    <button class="btn " type="button" style="color: white;">Suscribirse</button>
+                    <button class="btn " type="button" style="color: white;">Enviar</button>
                 </div>
             </a>
             </li>

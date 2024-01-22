@@ -7,11 +7,56 @@ use App\Models\Home;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
-
+use App\Models\Documentonew;
+use App\Models\TramitesDigitales
+;
 class HomeController extends Controller
 {
     public function index()
     {
+         // Verificar si ya existe un registro
+        $existeRegistro = DB::table('home')->exists();
+
+        // Si no existe un registro, realiza la inserción
+        if (!$existeRegistro) {
+            DB::table('home')->insert([
+                'id' => '1',
+                'titulobanner' => 'Tu Titulo',
+                'descripcionbanner' => 'Tu Descripción',
+                'minibanners1' => 'public/minibanners/default_image.png',
+                'url_minibanner1' => '#',
+                'minibanners2' => 'public/minibanners/default_image.png',
+                'url_minibanner2' => '#',
+                'minibanners3' => 'public/minibanners/default_image.png',
+                'url_minibanner3' => '#',
+                'minibanners4' => 'public/minibanners/default_image.png',
+                'url_minibanner4' => '#',
+                'minibanners5' => 'public/minibanners/default_image.png',
+                'url_minibanner5' => '#',
+                'minibanners6' => 'public/minibanners/default_image.png',
+                'url_minibanner6' => '#',
+                'minibanners7' => 'public/minibanners/default_image.png',
+                'url_minibanner7' => '#',
+                'minibanners8' => 'public/minibanners/default_image.png',
+                'url_minibanner8' => '#',
+                'minibanners9' => 'public/minibanners/default_image.png',
+                'url_minibanner9' => '#',
+                'minibanners10' => 'public/minibanners/default_image.png',
+                'url_minibanner10' => '#',
+                'minibanners11' => 'public/minibanners/default_image.png',
+                'url_minibanner11' => '#',
+                'minibanners12' => 'public/minibanners/default_image.png',
+                'url_minibanner12' => '#',
+            ]);
+
+            
+        }
+
+       
+    
+    
+
+     
         $home = Home::where('id', 1)->first();
         $tramitesDigitales = DB::table('tramites_digitales')->latest()->take(12)->get();
         $salaprensa = Salaprensa::latest()->take(12)->get();
@@ -22,7 +67,7 @@ class HomeController extends Controller
     { 
        
         $home = Home::where('id', 1)->first();
-
+        
         if (!$home) {
             abort(404); // O redirige a otra página, según tus necesidades
         }
@@ -278,5 +323,37 @@ class HomeController extends Controller
         abort(404); // O redirige a una página de error según tus necesidades
     }
 }
+
+
+public function buscador(Request $request)
+{
+    $query = $request->input('q');
+
+    // Convertir la consulta a minúsculas (puedes usar strtoupper para convertir a mayúsculas)
+    $queryLower = strtolower($query);
+
+   // Pagina los resultados de cada tabla por separado
+$resultados1 = Salaprensa::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(categoria) like ?', ["%$queryLower%"])
+->paginate(10);
+
+$resultados2 = TramitesDigitales::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(tags) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
+->paginate(10);
+
+$resultados3 = Documentonew::whereRaw('LOWER(tipo_documento) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(provincia) like ?', ["%$queryLower%"])
+->orWhereRaw('LOWER(comuna) like ?', ["%$queryLower%"])
+->paginate(10);
+
+// Combina los resultados paginados de todas las tablas en una sola colección
+$resultados = $resultados1->merge($resultados2)->merge($resultados3);
+
+// Redirige a la vista 'buscador' con los resultados paginados y la variable $query
+return view('Home.buscador', ['resultados' => $resultados, 'query' => $query]);
+}
+
 
 }

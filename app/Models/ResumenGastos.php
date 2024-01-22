@@ -17,6 +17,7 @@ class ResumenGastos extends Model{
         'nombre',
         'portada',
         'publicacion',
+        'categoria'
     ];
 
     public function documentonew()

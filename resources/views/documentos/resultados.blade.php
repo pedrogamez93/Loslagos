@@ -43,15 +43,17 @@
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
     @foreach($documentos as $documento)
-    <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
-    <div class="row divtitulodocsdes" >
-       
-            <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-            <p>{{ $documento->archivo }}</p>
-       
-    </div>
-    </a>
-@endforeach
+        @if($documento->portada == 'si')
+            <li class="mt-3">
+                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+                    <div class="row divtitulodocsdes">
+                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                        <p>{{ $documento->archivo }}</p>
+                    </div>
+                </a>
+            </li>
+          @endif
+     @endforeach
 
     </div>
 </div>

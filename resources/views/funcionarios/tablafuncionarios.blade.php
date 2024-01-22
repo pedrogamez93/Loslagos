@@ -124,6 +124,7 @@ input:required {
                 @endforeach
             </tbody>
         </table>
+        {{ $funcionarios->links('pagination::bootstrap-4') }}
         </div>
       </div>
     </div>

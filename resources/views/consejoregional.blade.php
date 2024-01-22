@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <style>
     .second{
+       /* width: 100%;*/
         height: 450px;
         color: #fff; /* Cambia esto al color de texto que desees */
         padding: 20px; /* Añade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
+        /*position: fixed;*/
         top: 0; /* Lo fija en la parte superior */
         left: 0; /* Lo fija en la parte izquierda */
         z-index: 1000;
+    }
+    .top-bar{
+        border-bottom: 1px solid #FFFFFF;
+    }
+    nav ul {
+        list-style: none; 
+        padding: 0; 
+        display: flex; 
+    }
+
+    nav li {
+        margin-right: 20px; 
+    }
+
+    nav a {
+        text-decoration: none; 
     }
     p.style-bread{
         font-family:'Inter';
@@ -31,13 +49,13 @@
         color: #565656;
     }
     p.style-down{
-        width: 580px;
         font-family: 'Inter';
         font-Weight: 500;
         font-Size: 16px;
         Line-height: 24px;
         color: #565656;
         text-align: justify;
+        white-space: pre-wrap;
     }
     p.style-btn {
         padding: 7px 27px;
@@ -71,43 +89,88 @@
         background-color: #00548F;
         color:#FFFFFF;
     }
+    /*css contenido*/
     h1.mititulo{
         font-family: 'Inter';
         font-Weight: 700;
         font-Size: 30px;
         color: #565656;
     }
-    p.mi-style-onep{
+    .accordion-item {
+    		border: none !important;
+		}
+		button.accordion-button {
+    		background-color: rgba(0, 0, 0, 0) !important;
+		}
+        button.accordion-button.collapsed {
+            padding: 10px 20px 10px 0px !important;
+        }
+        
+        .accordion-button:focus, .accordion-button:not(.collapsed) {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        button.accordion-button::before, button.accordion-button::after{
+            border: none !important;
+        }
+
+    p.title-acord-one{
+		font-family: 'Inter';
+		font-Weight: 700;
+		font-Size: 30px;
+		color: #565656;0
+	}
+
+    p.title-acord{
+			font-family: 'Inter';
+			font-Weight: 700;
+			font-Size: 20px;
+			color: #565656;
+		}
+	.bajada-acord{
+			font-family: 'Inter';
+			font-Weight: 500;
+			font-Size: 16px;
+			Line-height: 19.36px;
+			color: #565656;
+			text-align: justify;
+            white-space: pre-wrap;
+	}
+
+    p.title-categ{
         font-family: 'Inter';
         font-Weight: 700;
-        font-Size: 16px;
-        color: #565656;
-        padding-bottom: 2%;
+        font-Size: 20px;
+        line-height: 24.2px;
+        color: #F59120
     }
-    p.mi-style-onet{
+
+    h2.mi-style-h2{
         font-family: 'Inter';
-        font-Weight: 500;
-        font-Size: 16px;
+        font-Weight: 600;
+        font-Size: 20px;
+        font-style: italic;
+        line-height: 24.2px;
+        color: #F59120;
+        
+    }
+    .mi-documento{
+        display: flex;
+    }
+    p.mistyle-final-pcateg{
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19.36px;
         color: #565656;
-        padding-bottom: 2%;
     }
-    .contenido-ley{
-        border: 1px solid #F59120;
+    h2.h2-seccion-btn-extras{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-Size: 16px;
+        line-height: 19.36px;
+        color: #565656;
     }
-    .card {
-    border: none !important;
-}
-h5.card-title{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 20px;
-    Line-height: 24.2px;
-    color: #565656;
-}
-    img.img-fluid.icon-style {
-    width: 90px;
-    height: 75px;
-}
     a.final-btn{
         padding: 10px 20px;
         border-Radius: 100px;
@@ -115,6 +178,17 @@ h5.card-title{
         color: #FFFFFF;
         font-Weight: 700;
     }
+    footer{
+        height:535px;
+        background-color: #389144;
+    }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -144,8 +218,9 @@ h5.card-title{
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Consejo Regional</p>
-
-                            <p style="Width:623px;">Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
                 </div>   
@@ -175,7 +250,7 @@ h5.card-title{
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 3rem;">
+                        <div class="col-md-12" style="padding: 0 0 0 2rem;">
                             <h1 class="mititulo mt-2 mb-2">Introducción</h1>
                         </div>
                     </div>
@@ -188,8 +263,8 @@ h5.card-title{
                                     {{-- Mostrar información del consejo --}}
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{ $consejo->bajada }}</p>
+                                            <div class="col-md-6"  style="padding: 0 0 0 1.5rem;">
+                                                <p class="style-down">{{ $consejo->bajada }}</p>
 
                                                 {{-- Acordeón para las secciones --}}
                                                     @foreach ($consejo->secciones as $seccion)
@@ -197,13 +272,14 @@ h5.card-title{
                                                             <div class="accordion-item">
                                                                 <h2 class="accordion-header" id="heading{{ $seccion->id }}">
                                                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $seccion->id }}" aria-expanded="false" aria-controls="collapse{{ $seccion->id }}">
-                                                                        <p class="title-acord">{{ $seccion->titulo_seccion }}</p>
+                                                                        <img style="width: 30px; height: 29px;" src="{{ asset('storage/images/check2.png') }}" alt="Descripción de la imagen">
+                                                                        <p class="title-acord" style="padding-left: 0.5rem"> {{ $seccion->titulo_seccion }}</p>
                                                                     </button>
                                                                 </h2>
                                                                 <div id="collapse{{ $seccion->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $seccion->id }}" data-bs-parent="#consejoAccordion{{ $seccion->id }}">
                                                                     <div class="accordion-body">
                                                                         <div class="bajada-acord">
-                                                                            {{ $seccion->bajada_seccion }}
+                                                                        {{ trim($seccion->bajada_seccion) }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -216,7 +292,7 @@ h5.card-title{
                                             </div>
                                             <div class="col-md-6">
                                                 @if($consejo->img)
-                                                    <img src="{{ asset($consejo->img) }}" alt="Imagen del Consejo Regional" style="Width:499px; Height:567px;">
+                                                    <img src="{{ asset($consejo->img) }}" alt="Imagen del Consejo Regional">
                                                 @endif
                                             </div>
                                         </div>
@@ -234,5 +310,12 @@ h5.card-title{
         document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
         document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
     });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.bajada-acord').forEach(function(element) {
+        element.textContent = element.textContent.trim();
+    });
+});
 </script>
 @endsection

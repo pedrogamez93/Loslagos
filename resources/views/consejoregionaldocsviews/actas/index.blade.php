@@ -55,6 +55,25 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    p.p-doc-tit{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 20px;
+        color: #565656;
+    }
+    p.p-doc-baj{
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #565656;  
+    }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -82,8 +101,9 @@
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Consejo Regional</p>
-
-                            <p style="Width:623px;">Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
                 </div>   
@@ -110,7 +130,31 @@
     <div class="container second mb-5">
         <div class="row">
             <div class="col-md-12">
-
+                <div class="container">
+                    <div class="row">
+                        @foreach ($actas as $acta)
+                            @if ($acta->documentonew)
+                                <div class="col-md-3 mb-4">
+                                    <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;"><!-- Añade flexbox aquí -->
+                                        <a href="{{ route('actas.showActa', $acta->id) }}" target="_blank" class="d-flex align-items-center"> <!-- Añade flexbox al enlace -->
+                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;"> <!-- Añade margen a la imagen -->
+                                            <div> <!-- Contenedor para los textos -->
+                                                <p class="p-doc-tit">{{ $acta->documentonew->tema }}</p>
+                                                <p class="p-doc-baj">Fecha y Hora: {{ $acta->documentonew->fecha_hora }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <!-- Enlaces de paginación -->
+                    <div class="row">
+                        <div class="col-12">
+                            {{ $actas->links() }} <!-- Muestra los enlaces de paginación -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

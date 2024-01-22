@@ -78,7 +78,7 @@
                                         <option value="Provincia de Osorno" {{ $articulo->provincia == 'Provincia de Osorno' ? 'selected' : '' }}>Provincia de Osorno</option>
                                         <option value="Provincia de Llaquihue" {{ $articulo->provincia == 'Provincia de Llaquihue' ? 'selected' : '' }}>Provincia de Llaquihue</option>
                                         <option value="Provincia de Chiloe" {{ $articulo->provincia == 'Provincia de Chiloe' ? 'selected' : '' }}>Provincia de Chiloe</option>
-                                        <option value="Provincia de Palema" {{ $articulo->provincia == 'Provincia de Palema' ? 'selected' : '' }}>Provincia de Palema</option>
+                                        <option value="Provincia de Palena" {{ $articulo->provincia == 'Provincia de Palena' ? 'selected' : '' }}>Provincia de Palena</option>
                                     </select>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div class="col-md-4 superficie">
                                     <b>&nbsp;</b>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control"  value="{{ $articulo->superficie }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="superficie" name="superficie_nueva" class="form-control"  value="{{ $articulo->superficie_nueva }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
                                     </div>
                                 </div>
                                 <div class="col-md-4 purbana">

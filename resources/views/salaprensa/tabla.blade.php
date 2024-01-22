@@ -68,6 +68,11 @@ input:required {
     color: red;
     margin-right: 4px;
 }
+
+.shadow-sm{
+display: none;
+}
+
 </style>
 
 
@@ -90,41 +95,41 @@ input:required {
         @endif
 
         <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Categoria</th>
-                    <th>Descripcion</th>
-                    <th>imagen</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($saladeprensa as $saladeprensa)
-                    <tr>
-                        <td>{{ $saladeprensa->id }}</td>
-                        <td>{{ $saladeprensa->titulo }}</td>
-                        <td>{{ $saladeprensa->categoria }}</td>
-                        <td>{{ $saladeprensa->descripcion }}</td>
-                        <td> 
-                            <img  style="max-height:120px; max-width:120px" 
-                            src="{{ asset($saladeprensa->archivo_path) }}" >
-                        </td>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <th>imagen</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($saladeprensa as $item)
+            <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ Str::limit($item->titulo, 250) }}</td>
+                <td>{{ $item->categoria }}</td>
+                <td>{{ Str::limit($item->descripcion, 250) }}</td>
+                <td>
+                    <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($item->archivo_path)]) }}" class="card-img-top image-container img-fluid mx-auto d-block" alt="Imagen de la noticia" style="max-height:120px; max-width:120px">
+                </td>
+                <td>
+                    <a href="{{ route('salaprensa.edit', ['id' => $item->id]) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{ route('salaprensa.destroy', ['id' => $item->id]) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-                        <td>
-                           
-                            <a href="{{ route('salaprensa.edit', ['id' => $saladeprensa->id]) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('salaprensa.destroy', ['id' => $saladeprensa->id]) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+{{ $saladeprensa->links('pagination::bootstrap-4') }}
+
         </div>
       </div>
     </div>

@@ -44,7 +44,7 @@ class SalaprensaController extends Controller
         
         // Manejo del archivo
         if ($request->hasFile('archivo_path')) {
-            $archivoPath = $request->file('archivo_path')->store('salaprensa', 'public');
+            $archivoPath = $request->file('archivo_path')->store('saladeprensa', 'public');
             $datosd['archivo_path'] = $archivoPath;
         }
 
@@ -61,7 +61,7 @@ class SalaprensaController extends Controller
     
     public function indexTabla()
         {
-            $saladeprensa['saladeprensa'] = Salaprensa::orderBy('created_at', 'asc')->paginate(20);
+            $saladeprensa['saladeprensa'] = Salaprensa::orderBy('created_at', 'asc')->paginate(7);
             return view('salaprensa.tabla', $saladeprensa);
         }
 
@@ -127,6 +127,12 @@ class SalaprensaController extends Controller
         return redirect()->route('salaprensa.vernoticia')->with('success', 'Noticia eliminada exitosamente');
     }
     
+    public function show($id)
+    {
+        $noticia = Salaprensa::findOrFail($id);
+        return view('salaprensa.show', compact('noticia'));
+    }
 
 
+    
 }

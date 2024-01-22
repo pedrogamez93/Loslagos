@@ -49,7 +49,6 @@
         color: #565656;
     }
     p.style-down{
-        width: 580px;
         font-family: 'Inter';
         font-Weight: 500;
         font-Size: 16px;
@@ -121,7 +120,7 @@
 			font-family: 'Inter';
 			font-Weight: 700;
 			font-Size: 20px;
-			color: #565656;0
+			color: #565656;
 		}
 	.bajada-acord{
 			font-family: 'Inter';
@@ -130,6 +129,7 @@
 			Line-height: 19.36px;
 			color: #565656;
 			text-align: justify;
+            white-space: pre-wrap;
 	}
 
     p.title-categ{
@@ -177,6 +177,13 @@
         height:535px;
         background-color: #389144;
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
 <head>
@@ -190,33 +197,6 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-    <!-- <header>
-        Contenido del encabezado barra de arriba logo, menu, etc...
-        <div class="container top-bar">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-2">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                </div>
-                <div class="col-md-8" style="align-self: center;">
-                    <nav style="margin-left: 5rem;">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/acerca">Gobierno Regional</a></li>
-                            <li><a href="/contacto">Concejo Regional</a></li>
-                            <li><a href="/contacto">Region de Los Lagos</a></li>
-                            <li><a href="/contacto">Directorio de Funciones</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-2" style="align-self: center;">
-                    <a href="" class="style-btn"><p class="style-btn">Infórmate aquí</p></a>
-                </div>
-            </div>
-        </div>
-
-Contenido del encabezado principal breadcumbs, titulo, bajadas
-</header>
-Contenido principal de tu página -->
 <div class="container-fluid" style="background-color:#00548F;">
     <div class="row">
         <div class="col-md-12">
@@ -231,8 +211,9 @@ Contenido principal de tu página -->
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Gobierno Regional</p>
-
-                            <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                         </div>
                     </div>
                 </div>   
@@ -283,7 +264,7 @@ Contenido principal de tu página -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <p class="title-acord">{{ $asamblea->titulo_two ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_two ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionTwo">
@@ -298,7 +279,7 @@ Contenido principal de tu página -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTree">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
-                                    <p class="title-acord">{{ $asamblea->titulo_tree ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_tree ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseTree" class="accordion-collapse collapse" aria-labelledby="headingTree" data-bs-parent="#accordionTree">
@@ -313,7 +294,7 @@ Contenido principal de tu página -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <p class="title-acord">{{ $asamblea->titulo_four ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_four ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFour">
@@ -328,7 +309,7 @@ Contenido principal de tu página -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    <p class="title-acord">{{ $asamblea->titulo_five ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_five ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFive">
@@ -343,7 +324,7 @@ Contenido principal de tu página -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSix">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                    <p class="title-acord">{{ $asamblea->titulo_six ?? '' }}</p>
+                                    <p class="title-acord">. {{ $asamblea->titulo_six ?? '' }}</p>
                                     </button>
                                     </h2>
                                     <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionSix">

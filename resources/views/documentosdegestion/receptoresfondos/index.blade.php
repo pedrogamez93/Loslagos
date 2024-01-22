@@ -191,6 +191,13 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    @media only screen and (max-width: 600px) {
+    /* Estilos para pantallas móviles aquí */
+    p.one-title{
+        font-size:30px !important;
+        padding-bottom: 0px!important;
+    }
+}
 </style>
 <html>
     <head>
@@ -218,8 +225,9 @@
                             <div class="row" style="padding: 10px 0px 0px 25px;">
                                 <div class="col-md-12">
                                     <p class="one-title pb-5">Gobierno Regional</p>
-
-                                    <p style="Width:623px;">El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                                 </div>
                             </div>
                         </div>   
@@ -249,10 +257,37 @@
                         </div>
                         <div class="container content mt-5 mb-5">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8" style="padding: 0px 35px 0px 40px;">
+                                    <h1 class="mititulo mb-4">Registro Receptores Fondos Públicos del Gobierno Regional de Los Lagos, Ley N°19.862</h1>
+                                    
+                                    <p class="bajada-acord">Se crea el Registro de Personas Jurídicas Receptoras de Fondos Públicos a
+                                        cargo del Departamento Jurídico.
+                                        <br>
+                                        <br>
+                                        Las personas jurídicas que postulen y/o reciban fondos del Gobierno Regional por transferencia, deberán estar inscritas en el Registro de Personas Receptoras de Fondos Públicos, con anterioridad a su solicitud, de conformidad a la ley N° 19.862 y su reglamento.
+                                        Se dispondrá de un Formulario de Inscripción en la Oficina de Partes del Gobierno Regional, el cual tambien estará disponible para descarga en el enlace que más adelante se dispone.
+                                    </p>
 
+                                    <p class="mt-5 mb-4" style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 30px; color: #F59120;">Documentos</p>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            @foreach ($documentosReceptoresFondos as $documento)
+                                                <div class="col-md-6">
+                                                    <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                            <p class="ms-3">{{ $documento->titulo }}</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @if ($loop->iteration % 2 == 0)
+                                                    <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
                                     <div>
                                         <h2 class="mi-style mb-4" style="width: 322px;">Selecciona una Categoría para los Documentos de Gestión</h2>
