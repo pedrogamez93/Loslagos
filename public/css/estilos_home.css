@@ -41,6 +41,9 @@
     
   }
 
+  footer{
+    border-radius: 0px 150px 0px 0px !important;
+  }
  
 #banner {
     background-color: #D9D9D9 !important; /* Color gris */
