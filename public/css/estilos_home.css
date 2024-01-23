@@ -333,8 +333,8 @@ line-height: normal;
 .tituloprensa {
   position: relative !important;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: break-spaces;
+  /* text-overflow: ellipsis; */
   color: #FFF;
   font-family: 'Inter';
   font-size: 20px;
