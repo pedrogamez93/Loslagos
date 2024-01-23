@@ -219,7 +219,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
         </div>
         <div class="col-md-3">
         @isset($home->minibanners10) <a href="{{$home->minibanners10}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3"></a> @endisset
-        @isset($home->minibanners11) <a href="{{$home->minibanners11}}"><img src="{{ route('mostrar.imagen, ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners11) <a href="{{$home->minibanners11}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners12) <a href="{{$home->minibanners12}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3"></a> @endisset
         </div>
     </div>
