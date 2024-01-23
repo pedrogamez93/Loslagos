@@ -27,6 +27,9 @@
     nav a {
         text-decoration: none; 
     }
+    .nav-head {
+    background-color: #00548f !important;
+    }
     p.style-bread{
         font-family:'Inter';
         font-Weight: 500;
@@ -395,10 +398,5 @@
 </main>
 </body>
 </html>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
-    });
-</script>
 @endsection
 
