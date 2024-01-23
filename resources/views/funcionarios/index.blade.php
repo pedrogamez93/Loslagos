@@ -9,7 +9,7 @@
 @endpush
     
 <div id="banner" class=" h-500  text-light colorB" style="">
-    <div>
+    <div class="container">
         <h5>Home / Gobierno Regional</h5>
         <h1 class="titulofun" style="text-align: left;">Funcionarios </h1>
         <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
@@ -17,7 +17,7 @@
 </div>
 
 <div class="contenido h-800 colorB" style=" ">
-    <div class="row py-5">
+    <div class="container py-3">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
         <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>
             <h4 class="tituloform">Nuestro Directorio</h4>

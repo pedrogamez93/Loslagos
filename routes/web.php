@@ -62,6 +62,8 @@ Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 
+
+
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
@@ -72,6 +74,7 @@ Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name(
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
+Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
 /*FUNCIONARIOS */
 

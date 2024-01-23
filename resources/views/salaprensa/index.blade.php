@@ -9,7 +9,7 @@
 @endpush
 
 <div id="banner" class="h-500 text-light d-flex align-items-center" style="background: #00548F !important; height: 502px; display: flex; padding-left: 50px;">
-    <div>
+    <div class="container">
         <h5>Home / Gobierno Regional</h5>
         <h1 class="titulobannernoticia" style="text-align: left;">Sala de prensa </h1>
         <p>Infórmate aquí de las noticias más recientes del Gore</p>
@@ -17,7 +17,8 @@
 </div>
 
 <div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
-    <div class="row py-5 px-5">
+    <div class="row  px-5" style="padding-right: 10rem!important;
+    padding-left: 10rem!important;">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
             <h4 class="tituloform mb-5">Sala de Prensa</h4>
 
