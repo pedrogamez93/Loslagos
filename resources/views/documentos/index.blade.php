@@ -10,7 +10,7 @@
     
 <div id="banner" class=" h-500  text-light d-flex align-items-center" style="background-color: #F59120 !important; height: 502px; display: flex;
     padding-left: 50px;">
-    <div>
+    <div class="container">
         <h5>Home / Gobierno Regional</h5>
         <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
@@ -18,7 +18,8 @@
 </div>
 
 <div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="height: 800px; margin-top: -7vh;border-radius: 70px 0px 0px 0px;">
-    <div class="row py-5 px-5">
+    <div class="row py-5 " style="    padding-right: 10rem!important;
+    padding-left: 10rem!important;">
         <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">

@@ -49,21 +49,18 @@ public function store(Request $request)
         // Iniciar una transacción
         DB::beginTransaction();
     
-        $documento = Documentonew::create($request->except(['_token']));
-
-       if ($request->hasFile('archivo')) {
-           
-
-        $archivoPath = $request->file('archivo')->store('documentos', 'public');
-      $documento['archivo'] = $archivoPath;
-    }
-
- 
-
        
+        $archivoPath = null; // Inicializa la variable $archivoPath
+
+        if ($request->hasFile('archivo')) {
+            $archivoPath = $request->file('archivo')->store('public/documentos');
+        }
         
-       
-        
+        // Crear el objeto $documento después de asignar la ruta relativa
+        $documento = Documentonew::create(array_merge(
+            $request->except(['_token']),
+            ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
+        ));
 
 
         // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
