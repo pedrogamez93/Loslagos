@@ -1,15 +1,9 @@
-<!-- Jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap CSS y JS -->
-<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!DOCTYPE html>
 <style>
     header{
        /* width: 100%;*/
         height: 450px;
-        background-color: #F59120;
+        background-color: #00548F;
         color: #fff; /* Cambia esto al color de texto que desees */
         padding: 20px; /* Añade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
@@ -83,7 +77,6 @@
         font-Size: 50px;
         line-height: 60.51px;
         color: #FFFFFF;
-        overflow-wrap: break-word;
     }
     .cat{
         margin-top: -5rem;
@@ -102,7 +95,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
+        
     }
 
     #categorylist li:first-child {
@@ -148,95 +141,31 @@
         background-color: #00548F;
         color:#FFFFFF;
     }
-    h1.mititulo{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        color: #565656;
-    }
-    p.mi-style-onep{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 16px;
-        color: #565656;
-        padding-bottom: 2%;
-    }
-    p.mi-style-onet{
-        font-family: 'Inter';
-        font-Weight: 500;
-        font-Size: 16px;
-        color: #565656;
-        padding-bottom: 2%;
-    }
-    .contenido-ley{
-        border: 1px solid #F59120;
-    }
-    .card {
-    border: none !important;
-}
-h5.card-title{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 20px;
-    Line-height: 24.2px;
-    color: #565656;
-}
-    img.img-fluid.icon-style.mr-3 {
-    width: 90px;
-    height: 75px;
-}
-    a.final-btn{
-        padding: 10px 20px;
-        border-Radius: 100px;
-        background-color: #F59120;
-        color: #FFFFFF;
-        font-Weight: 700;
-    }
     footer{
         height:535px;
         background-color: #389144;
     }
-    /*aqui estilos del admin pila no te enredes arriba los del header front*/
-    h1 , h2{
-        color: #565656;
+    .descripB{
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color:#fff;
+
     }
-    .principal{
-        padding: 10px 0px 20px 60px;       
-    }
-    .first-form{
-        border: 1px solid #CCCCCC;
-        border-radius: 10px;
-    }
-    input.form-control{
-    color: #565656;
-    font-size: 16px;
-    font-weight: 700;
-    font-style: italic;
-    }
-    .style-label{
-    color: #565656;
-    font-size: 16px;
-    font-weight: 700;
-    }
-    .style-col-menu{
-        background-color: #0c1e35;
-    }
-    button.btn.btn-link {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-family: unset;
-    font-weight: 700;
-    }
-    li.style-li{
-        list-style: none;
-        padding-bottom: 10px;
-    }
-    a.style-a-menu{
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 500;   
-    }
-    .title-descargas{
+
+    .backgroundB{
+          background-color: #F59120 !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
+        }
+        .colorB{
+            background-color:#F59120;
+        }
+        .nav-head{
+            background-color:#F59120 !important;
+        }   
+        .title-descargas{
     font-family: 'Inter';
     font-Weight: 700;
     font-Size: 20px;
@@ -325,33 +254,51 @@ h5.card-title{
     
     }
 </style>
-<header>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Región de los Lagos</title>
+    <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
+    <!-- Jquery -->
+
+</head>
+<body>
 @extends('layouts.app')
 @section('content')
 @push('styles')
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-
-        <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
-        <div class="container content-breadc pt-4 pb-3" style="padding: 10px 60px 20px 60px;">
-            <div class="row">
-                <div class="col-md-12">
+<div class="container-fluid colorB">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container pt-5 pb-5">
+                <div class="row" >
+                    <div class="col-md-12" >
                     <p class="style-bread">Home / Gobierno Regional  <span style="font-Weight: 700;"></span></p>
-                </div>
+                    </div>
+                    <div class="col-md-12 pt-5 pb-5">
+                        <p class="one-title pb-4">{{ $programa->titulo }}</p>
+
+                        <p style="Width:623px;"  class="mb-3 descripB">{{ $programa->bajada }}</p>
+                    </div>
+                    
+                <div class="container pt-4">
+                    <div class="row">
+                        
+                    </div>
+                </div>   
             </div>
-        </div>   
-        <div class="container content-prin" style="padding: 10px 60px 20px 60px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="one-title pb-4">{{ $programa->titulo }}</p>
-                    <p style="">{{ $programa->bajada }}</p>
-                </div>
-            </div>
-        </div>   
-    </header>
-            
-    <div class="container principal mt-4 mb-4 pt-3 pb-3" style="padding: 10px 60px 20px 60px;">
+        </div>
+    </div>
+</div> 
+    <!-- Contenido principal de tu página -->
+    <main>
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                
+                        <div class="container principal mt-4 mb-4 pt-3 pb-3" >
         <div class="row">
             <div class="col-md-7 borde">
                     <div id="contenidoPrincipal">
@@ -398,7 +345,7 @@ h5.card-title{
                             <div class="fotografias-coleccion">
                                 <div class="coleccion-item">
                                     @if(count($coleccion->fotografias) > 0)
-                                    <!-- <img src="{{ asset($coleccion->fotografias[0]->ruta) }}" alt="Fotografía" style="display: none; height:100px;">-->
+                                    <img src="{{ asset($coleccion->fotografias[0]->ruta) }}" alt="Fotografía" style="display: none; height:100px;">
                                     @endif
 
                                     <h5 class="titulo-coleccion mb-4" onclick="mostrarFotografias(this)">{{ $coleccion->titulo_coleccion }}</h5>
@@ -428,9 +375,20 @@ h5.card-title{
                     @endforeach
             </div>  
         </div>  
+        </div>
+        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    </main>
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+</body>
+</html>
 
-</div>
+
+
 <script>
     function mostrarContenido(tipo) {
         // Oculta todos los contenidos
@@ -457,24 +415,6 @@ h5.card-title{
 
     });
 </script>
-<!--
-<script>
-    $(document).ready(function() {
-        // Oculta todas las fotografías al principio
-        $(".fotografias-coleccion").hide();
-
-        // Agrega un evento de clic al título de la colección
-        $(".titulo-coleccion").click(function() {
-            // Encuentra las fotografías asociadas a la colección clicada
-            var fotografiasColeccion = $(this).siblings(".fotografias-coleccion");
-
-            // Alternar la visibilidad de las fotografías
-            fotografiasColeccion.slideToggle();
-        });
-    });
-</script>
--->
-
 <script>
         function mostrarFotografias(titulo) {
             // Encuentra las imágenes asociadas al título clicado
