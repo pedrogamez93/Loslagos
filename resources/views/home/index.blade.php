@@ -12,7 +12,7 @@
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
 <main class="container" class="headercontent">
-    <div class="row p-5" class="centrar">
+    <div class="row p-5" class="centrar ">
         <div class="col colinputbuscador">
             <div id="divbuscador" class="input-group rounded">
                 <div class="position-absolute mt-2">
@@ -82,12 +82,13 @@
         
         <div>
           
-    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
-        Galeria Fotografica
-    </button>
-    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
-        Videos
-    </button>
+        <a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="galeria" style="border-radius: 100px;">
+    Galería fotográfica
+</a>
+
+<a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="videos" style="border-radius: 100px;"> 
+    Videos
+</a>
 </div>
 
     </div>
@@ -100,8 +101,8 @@
         <div class="carousel-item" style="position: relative;">
             <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
             <div class="carousel-caption">
-            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</p>
-            <p style="" class="descripcionprensa">{{ implode(' ', array_slice(str_word_count($registro->descripcion, 1), 0, 5)) }}</p>
+            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 5)) }}</p>
+            
             <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -129,7 +130,7 @@
   </div>
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 class="titleshome">Tramites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
     
 </div>
@@ -140,15 +141,17 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="mt-5 pb-5">
     <div id="thumbnail-slider2" class="carousel">
         @foreach($tramitesDigitales as $tramite)
-            <div class="carousel-item">
+        <a href="{{ route('tramites.show', $tramite->id) }}">    
+        <div class="carousel-item">
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'iconos', 'imagen' => basename($tramite->icono)]) }}" class="mb-3" style="width: 150px; height:130px" alt="{{ $tramite->titulo }}">
                 <div class="carousel-caption mb-3">
                     
                 </div>
                 <h5 class="titulotramites">{{ $tramite->titulo }}</h5>
-                <p style="" class="descripciontramites">{{ implode(' ', array_slice(str_word_count($tramite->descripcion, 1), 0, 4)) }}</p>
-                  
+               
+                 
             </div>
+            </a>
         @endforeach
     </div>
 </div>
@@ -159,29 +162,39 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 <!--Banner-->
 
-    <div class="bg-body-tertiary p-5 rounded mt-3 colorB">
-        <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
-        <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
-        <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>
-    </div>
+<div class="bg-body-tertiary p-5 rounded mt-3 colorB" style="padding: 0px !important; position: relative; overflow: hidden;">
+    <div style="background-image: url('{{ asset('img/bannerregion.png') }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                
+                display: flex;
+                flex-direction: column;
+                justify-content: center;" id="fondobanner"> 
+
+        <!-- Capa adicional con filtro de brillo -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+
+        <div class="container" id="contenidobannerregion" style="position: relative; z-index: 1;">
+            <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
+            <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
+            <a class="btn btn-outline-primary" href="regionlagos/introduccion" role="button" style="border-radius: 21px; color: white; border-color: white;">Ver todos los detalles</a>
+        </div>
+    </div>  
+</div>
 
 <!--Cuadro dentro del banner-->
 <div class="container" style="margin-top: -8vw;">
   <div class="row justify-content-end">
     <div class="col-md-4" style="margin-left: -3vw;">
-      <div class="card bg-gray-300 text-center" style="position: relative;">
-        <div class="card-body">
-          <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Resultados 2023</h5>
-          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Fondo comunidad (Evaluación)</p>
-        </div>
-      </div>
+     
     </div>
     <div class="col-md-4" style="margin-left: -3vw;">
-      <div class="card bg-gray-300 text-center" style="position: relative;">
-        <div class="card-body">
-        <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Fondo Comunidad</h5>
-          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Creando y Cuidando la Región</p>
-        </div>
+      <div class="  text-center" style="position: relative;">
+      <a href="https://fondocomunidad.goreloslagos.cl/login">
+      <img src="{{ asset('img/fondocomunidad.png') }}" alt="Fondo Comunidad">
+      </a>
       </div>
     </div>
   </div>
@@ -191,24 +204,24 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="container">
     <div class="row py-5 my-5">
         <div class="col-md-3">
-        @isset($home->minibanners1) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3">  @endisset
-        @isset($home->minibanners2) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners3) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners1) <a href="{{$home->url_minibanner1}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3"> </a> @endisset
+        @isset($home->minibanners2) <a href="{{$home->url_minibanner2}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners3) <a href="{{$home->url_minibanner3}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3"></a> @endisset
         </div>
         <div class="col-md-3">
-        @isset($home->minibanners4) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners5) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners6) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners4) <a href="{{$home->url_minibanner4}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners5) <a href="{{$home->url_minibanner5}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners6) <a href="{{$home->url_minibanner6}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3"></a> @endisset
         </div>
         <div class="col-md-3">
-        @isset($home->minibanners7) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners8) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners9) <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners7) <a href="{{$home->url_minibanner7}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners8) <a href="{{$home->url_minibanner8}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners9) <a href="{{$home->url_minibanner9}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3"> </a>@endisset
         </div>
         <div class="col-md-3">
-        @isset($home->minibanners10)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners11)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"> @endisset
-        @isset($home->minibanners12)<img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3"> @endisset
+        @isset($home->minibanners10) <a href="{{$home->url_minibanner10}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners11) <a href="{{$home->url_minibanner11}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"></a> @endisset
+        @isset($home->minibanners12) <a href="{{$home->url_minibanner12}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3"></a> @endisset
         </div>
     </div>
 </div>
@@ -217,6 +230,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 </div>
 </div>
+
 
 
 

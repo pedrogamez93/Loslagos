@@ -187,6 +187,19 @@ ul {
 ul li {
     margin-bottom: 5px !important; /* Espaciado entre elementos de la lista */
 }
+    .container-fluid.color{
+            background-color:#00548F;
+    }
+    .nav-head {
+        background-color: #00548f !important;
+    }
+    .container-fluid.nav-head {
+    background-color: #00548f;
+    }
+    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f;
+    }
+
 @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -208,7 +221,7 @@ ul li {
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
@@ -233,7 +246,7 @@ ul li {
     </div>
 </div>  
 <main>
-    <div class="container-fluid cat">
+    <div class="container-fluid color cat">
         <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
@@ -305,12 +318,4 @@ ul li {
 </main>
 </body>
 </html>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-      
-        document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
-        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
-    });
-</script>
-
 @endsection

@@ -7,22 +7,23 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div id="banner" class=" h-500  text-light" style="background-color: #F59120 !important; height: 502px; display: flex;
+<div id="banner" class=" h-500  text-light colorB" style=" height: 502px; display: flex;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
     padding-left: 50px;">
-    <div>
-        <h5>Home / Gobierno Regional</h5>
+    <div class="container">
+        <h5>Home / Documentos</h5>
         <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p >Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>
 </div>
 
-<div class="contenido" style=" margin-top: -7vh;
+<div class="contenido colorB" style=" margin-top: -7vh;
     background-color: white;
     border-top-left-radius: 80px;">
-<div class="row py-5 px-5">
+<div class="row py-5 px-5" style="    padding-right: 10rem!important;
+    padding-left: 10rem!important;">
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
          <form action="{{ url('/documentos/buscar') }}" method="POST">
@@ -42,10 +43,10 @@
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-    @foreach($documentos as $documento)
+    @foreach($documentos as $documento) 
         @if($documento->portada == 'si')
             <li class="mt-3">
-                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
                     <div class="row divtitulodocsdes">
                         <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
                         <p>{{ $documento->archivo }}</p>
@@ -58,7 +59,8 @@
     </div>
 </div>
 
-    <div style="padding: 40px;">
+    <div style="padding-right: 10rem!important;
+    padding-left: 10rem!important;">
         <!-- ... tu código existente ... -->
 
 
@@ -66,25 +68,30 @@
             <p>No se encontraron documentos que coincidan con los criterios de búsqueda.</p>
         @else
             <table class="table">
-                <thead>
+                <thead class="colorB">
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th class="colorB"></th>
+                        <th class="colorB"></th>
+                        <th class="colorB"></th>
                       
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($documentos as $documento)
-                        <tr>
-                            <a href="{{ $documento->archivo_path }}"> 
-                                <td style="width: 5%;"> <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;"></td>
-                                <td> {{ $documento->id }} {{ $documento->archivo }}</td>
-                             
-                                
-                            </a>
-                        </tr>
-                    @endforeach
+                @foreach($documentos as $documento)
+    <tr >
+   
+        <td class="colorB">
+        <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
+                
+        </td>
+        <td class="colorB">
+        <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">    
+        {{ $documento->id }} {{ $documento->tipo_documento }}</td>
+        </a>
+    </tr>
+@endforeach
+
                 </tbody>
             </table>
         @endif
@@ -95,8 +102,8 @@
    
     document.addEventListener("DOMContentLoaded", function() {
       
-        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120', 'important');
-        document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120', 'important');
+        document.querySelector('.nav-head').style.setProperty('background-color', '#F59120');
+        document.querySelector('.backgroundB').style.setProperty('background-color', '#F59120');
     });
 </script>
 

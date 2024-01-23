@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $inversiones->titulo }}" disabled>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo sección" value="{{ $inversiones->titulo }}" disabled>
                                     </div>
                                 </div>
                             </div>

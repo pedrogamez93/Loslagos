@@ -55,46 +55,49 @@ use App\Http\Controllers\DocumentonewController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
-Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create');
+Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
 Route::post('/home/store', [HomeController::class, 'store']);
-Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
+Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 
+
+
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
-Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
-Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
+Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
+Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
 Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
-Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit');
-Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
-Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
-Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
-Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
+Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
+Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
+Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
+Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
+Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download')->middleware('auth');
+Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo')->middleware('auth');
 
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
 Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
-Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
-Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
-Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
-Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
-Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create')->middleware('auth');
+Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store')->middleware('auth');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
-Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
-Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
-Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
+Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update')->middleware('auth');
+Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia')->middleware('auth');
+Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy')->middleware('auth');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
@@ -103,12 +106,12 @@ Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('s
 
 //Sala de prensa
 Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
-Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create');;
-Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
-Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
-Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');
-Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia');
-Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy');
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create')->middleware('auth');
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store')->middleware('auth');
+Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit')->middleware('auth');
+Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update')->middleware('auth');
+Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia')->middleware('auth');
+Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy')->middleware('auth');
 Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 //Route::resource('/', HomeController::class);
@@ -116,107 +119,108 @@ Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen
 
 
 /*RUTAS CRUD INIT*/
-Route::resource('introducciones', IntroduccionController::class);
+Route::resource('introducciones', IntroduccionController::class)->middleware('auth');
 Route::get('/images/{imagen}', [IntroduccionController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('comofuncionagrs', ComofuncionaGrController::class);
+Route::resource('comofuncionagrs', ComofuncionaGrController::class)->middleware('auth');
 Route::get('/images/{imagen}', [ComofuncionaGrController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('estrategias', EstrategiasController::class);
+Route::resource('estrategias', EstrategiasController::class)->middleware('auth');
 Route::get('/images/{imagen}', [EstrategiasController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('inversiones', InversionesPublicController::class);
+Route::resource('inversiones', InversionesPublicController::class)->middleware('auth');
 Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('mision', MisionGobController::class);
+Route::resource('mision', MisionGobController::class)->middleware('auth');
 Route::get('/images/{imagen}', [MisionGobController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('leygobiernoregional', LeygbsController::class);
+Route::resource('leygobiernoregional', LeygbsController::class)->middleware('auth');
 
-Route::resource('organigrama', OrganigramaController::class);
+Route::resource('organigrama', OrganigramaController::class)->middleware('auth');
 Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy']);
-Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit');
-Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update');
-Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc');
-Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento');
+Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy'])->middleware('auth');
+Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit')->middleware('auth');
+Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update')->middleware('auth');
+Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc')->middleware('auth');
+Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento')->middleware('auth');
 
 
-Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
-Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento');
-Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea');
+Route::resource('asambleaclimatica', AsambleaClimaticaController::class)->middleware('auth');
+Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento')->middleware('auth');
+Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea')->middleware('auth');
 
-Route::resource('audienciasdepartes', AudienciasController::class);
-Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia');
-Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia');
+Route::resource('audienciasdepartes', AudienciasController::class)->middleware('auth');
+Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia')->middleware('auth');
+Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia')->middleware('auth');
 
-Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
-Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo');
+Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class)->middleware('auth');
+Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo')->middleware('auth');
 
-Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
+Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class)->middleware('auth');
 
-Route::resource('comiteciencias', ComiteCienciasController::class);
-Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
+Route::resource('comiteciencias', ComiteCienciasController::class)->middleware('auth');
+Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento'])->middleware('auth');
 
-Route::resource('concursospublicos', ConcursosPublicosController::class);
-Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
+Route::resource('concursospublicos', ConcursosPublicosController::class)->middleware('auth');
+Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento'])->middleware('auth');
 
-Route::resource('presidenteconcejo', PresidenteConcejoController::class);
+Route::resource('presidenteconcejo', PresidenteConcejoController::class)->middleware('auth');
 
-Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class);
-Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show');
+Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
-Route::resource('consejeroschiloe', ConsejerosChiloeController::class);
-Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show');
+Route::resource('consejeroschiloe', ConsejerosChiloeController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
 Route::resource('consejerososorno', ConsejerosOsornoController::class);
 Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->name('consejeros.show');
 
-Route::resource('consejerospalena', ConsejerosPalenaController::class);
-Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show');
+Route::resource('consejerospalena', ConsejerosPalenaController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
 
-Route::resource('concejoregional', ConcejoRegionalController::class);
-Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
+Route::resource('concejoregional', ConcejoRegionalController::class)->middleware('auth');
+Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar')->middleware('auth');
 
-Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit')->middleware('auth');
 
-Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion');
+Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion')->middleware('auth');
 
-Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update')->middleware('auth');
 
-Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion');
+Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion')->middleware('auth');
 
 //Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
 //Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
 //Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
-Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
-Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
-Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica');
-Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol');
+Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class)->middleware('auth');
+Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update')->middleware('auth');
+Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica')->middleware('auth');
+Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol')->middleware('auth');
 
 // Rutas para los disenopoliticoregionales
-Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');
-Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta');
-Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update');
+Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario')->middleware('auth');
+Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta')->middleware('auth');
+Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update')->middleware('auth');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
-Route::resource('tramites', TramitesDigitalesController::class);
+Route::resource('tramites', TramitesDigitalesController::class)->middleware('auth');
 Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
-Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
+Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show')->middleware('auth');
 
 //Route::put('/tramites/{tramite}/edit', [TramitesDigitalesController::class, 'edit'])->name('tramites.update');
 
-Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
+Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update')->middleware('auth');
 
-Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
-Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
-Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy')->middleware('auth');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc')->middleware('auth');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn')->middleware('auth');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -308,108 +312,108 @@ Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegi
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
-Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index');
-Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create');
-Route::post('/IntroduccionRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@store')->name('IntroduccionRegionLagos.store');
-Route::get('/IntroduccionRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@edit')->name('IntroduccionRegionLagos.edit');
-Route::put('/IntroduccionRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@update')->name('IntroduccionRegionLagos.update');
+Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
+Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create')->middleware('auth');
+Route::post('/IntroduccionRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@store')->name('IntroduccionRegionLagos.store')->middleware('auth');
+Route::get('/IntroduccionRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@edit')->name('IntroduccionRegionLagos.edit')->middleware('auth');
+Route::put('/IntroduccionRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@update')->name('IntroduccionRegionLagos.update')->middleware('auth');
 
-Route::get('/InformaciondelaRegion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexAntecedentes')->name('AntecedentesRegionLagos.indexAntecedentes');
-Route::get('/InformaciondelaRegion/createAntecedentes', 'App\Http\Controllers\IntroduccionRegionLagosController@createAntecedentes')->name('AntecedentesRegionLagos.createAntecedentes');
-Route::post('/InformaciondelaRegion/storeAntecedentes', 'App\Http\Controllers\IntroduccionRegionLagosController@storeAntecedentes')->name('AntecedentesRegionLagos.storeAntecedentes');
-Route::get('/InformaciondelaRegion/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editAntecedentes')->name('AntecedentesRegionLagos.editAntecedentes');
-Route::put('/InformaciondelaRegion/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAntecedentes')->name('AntecedentesRegionLagos.updateAntecedentes');
-Route::get('/InformaciondelaRegion/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAntecedentes')->name('AntecedentesRegionLagos.showAntecedentes');
-Route::delete('/InformaciondelaRegion/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAntecedentes')->name('AntecedentesRegionLagos.destroyAntecedentes');
+Route::get('/InformaciondelaRegion', 'App\Http\Controllers\IntroduccionRegionLagosController@indexAntecedentes')->name('AntecedentesRegionLagos.indexAntecedentes')->middleware('auth');
+Route::get('/InformaciondelaRegion/createAntecedentes', 'App\Http\Controllers\IntroduccionRegionLagosController@createAntecedentes')->name('AntecedentesRegionLagos.createAntecedentes')->middleware('auth');
+Route::post('/InformaciondelaRegion/storeAntecedentes', 'App\Http\Controllers\IntroduccionRegionLagosController@storeAntecedentes')->name('AntecedentesRegionLagos.storeAntecedentes')->middleware('auth');
+Route::get('/InformaciondelaRegion/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editAntecedentes')->name('AntecedentesRegionLagos.editAntecedentes')->middleware('auth');
+Route::put('/InformaciondelaRegion/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAntecedentes')->name('AntecedentesRegionLagos.updateAntecedentes')->middleware('auth');
+Route::get('/InformaciondelaRegion/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAntecedentes')->name('AntecedentesRegionLagos.showAntecedentes')->middleware('auth');
+Route::delete('/InformaciondelaRegion/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAntecedentes')->name('AntecedentesRegionLagos.destroyAntecedentes')->middleware('auth');
 
-Route::get('/CargoRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexCargos')->name('CargoRegionLagos.indexCargos');
-Route::get('/CargoRegionLagos/createCargo', 'App\Http\Controllers\IntroduccionRegionLagosController@createCargos')->name('CargoRegionLagos.createCargo');
-Route::post('/CargoRegionLagos/storeCargo', 'App\Http\Controllers\IntroduccionRegionLagosController@storeCargos')->name('CargoRegionLagos.storeCargo');
-Route::get('/CargoRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editCargos')->name('CargoRegionLagos.editCargo');
-Route::put('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateCargos')->name('CargoRegionLagos.updateCargo');
-Route::get('/CargoRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showCargos')->name('CargoRegionLagos.showCargo');
-Route::delete('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyCargos')->name('CargoRegionLagos.destroyCargo');
+Route::get('/CargoRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexCargos')->name('CargoRegionLagos.indexCargos')->middleware('auth');
+Route::get('/CargoRegionLagos/createCargo', 'App\Http\Controllers\IntroduccionRegionLagosController@createCargos')->name('CargoRegionLagos.createCargo')->middleware('auth');
+Route::post('/CargoRegionLagos/storeCargo', 'App\Http\Controllers\IntroduccionRegionLagosController@storeCargos')->name('CargoRegionLagos.storeCargo')->middleware('auth');
+Route::get('/CargoRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editCargos')->name('CargoRegionLagos.editCargo')->middleware('auth');
+Route::put('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateCargos')->name('CargoRegionLagos.updateCargo')->middleware('auth');
+Route::get('/CargoRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showCargos')->name('CargoRegionLagos.showCargo')->middleware('auth');
+Route::delete('/CargoRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyCargos')->name('CargoRegionLagos.destroyCargo')->middleware('auth');
 
-Route::get('/AutoridadesRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexAutoridades')->name('AutoridadesRegionLagos.indexAutoridades');
-Route::get('/AutoridadesRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createAutoridades')->name('AutoridadesRegionLagos.createAutoridades');
-Route::post('/AutoridadesRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeAutoridades')->name('AutoridadesRegionLagos.storeAutoridades');
-Route::get('/AutoridadesRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editAutoridades')->name('AutoridadesRegionLagos.editAutoridades');
-Route::put('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAutoridades')->name('AutoridadesRegionLagos.updateAutoridades');
-Route::get('/AutoridadesRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAutoridades')->name('AutoridadesRegionLagos.showAutoridades');
-Route::delete('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAutoridades')->name('AutoridadesRegionLagos.destroyAutoridades');
+Route::get('/AutoridadesRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexAutoridades')->name('AutoridadesRegionLagos.indexAutoridades')->middleware('auth');
+Route::get('/AutoridadesRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createAutoridades')->name('AutoridadesRegionLagos.createAutoridades')->middleware('auth');
+Route::post('/AutoridadesRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeAutoridades')->name('AutoridadesRegionLagos.storeAutoridades')->middleware('auth');
+Route::get('/AutoridadesRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editAutoridades')->name('AutoridadesRegionLagos.editAutoridades')->middleware('auth');
+Route::put('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAutoridades')->name('AutoridadesRegionLagos.updateAutoridades')->middleware('auth');
+Route::get('/AutoridadesRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAutoridades')->name('AutoridadesRegionLagos.showAutoridades')->middleware('auth');
+Route::delete('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAutoridades')->name('AutoridadesRegionLagos.destroyAutoridades')->middleware('auth');
 
-Route::get('/EstadisticasRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexEstadisticas')->name('EstadisticasRegionLagos.indexEstadisticas');
-Route::get('/EstadisticasRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createEstadisticas')->name('EstadisticasRegionLagos.createEstadisticas');
-Route::post('/EstadisticasRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeEstadisticas')->name('EstadisticasRegionLagos.storeEstadisticas');
-Route::get('/EstadisticasRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editEstadisticas')->name('EstadisticasRegionLagos.editEstadisticas');
-Route::put('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateEstadisticas')->name('EstadisticasRegionLagos.updateEstadisticas');
-Route::get('/EstadisticasRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showEstadisticas')->name('EstadisticasRegionLagos.showEstadisticas');
-Route::delete('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyEstadisticas')->name('EstadisticasRegionLagos.destroyEstadisticas');
+Route::get('/EstadisticasRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexEstadisticas')->name('EstadisticasRegionLagos.indexEstadisticas')->middleware('auth');
+Route::get('/EstadisticasRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createEstadisticas')->name('EstadisticasRegionLagos.createEstadisticas')->middleware('auth');
+Route::post('/EstadisticasRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeEstadisticas')->name('EstadisticasRegionLagos.storeEstadisticas')->middleware('auth');
+Route::get('/EstadisticasRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editEstadisticas')->name('EstadisticasRegionLagos.editEstadisticas')->middleware('auth');
+Route::put('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateEstadisticas')->name('EstadisticasRegionLagos.updateEstadisticas')->middleware('auth');
+Route::get('/EstadisticasRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showEstadisticas')->name('EstadisticasRegionLagos.showEstadisticas')->middleware('auth');
+Route::delete('/EstadisticasRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyEstadisticas')->name('EstadisticasRegionLagos.destroyEstadisticas')->middleware('auth');
 
-Route::get('/DinamicaEconomicaRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.indexDinamicaEconomica');
-Route::post('/DinamicaEconomicaRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.storeDinamicaEconomica');
-Route::get('/DinamicaEconomicaRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.createDinamicaEconomica');
-Route::get('/DinamicaEconomicaRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.editDinamicaEconomica');
-Route::put('/DinamicaEconomicaRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.updateDinamicaEconomica');
-Route::delete('/DinamicaEconomicaRegionLagos/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica');
+Route::get('/DinamicaEconomicaRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.indexDinamicaEconomica')->middleware('auth');
+Route::post('/DinamicaEconomicaRegionLagos/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.storeDinamicaEconomica')->middleware('auth');
+Route::get('/DinamicaEconomicaRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.createDinamicaEconomica')->middleware('auth');
+Route::get('/DinamicaEconomicaRegionLagos/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.editDinamicaEconomica')->middleware('auth');
+Route::put('/DinamicaEconomicaRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.updateDinamicaEconomica')->middleware('auth');
+Route::delete('/DinamicaEconomicaRegionLagos/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyRegionlagosDinamicaE')->name('DinamicaEconomicaRegionLagos.destroyDinamicaEconomica')->middleware('auth');
 
-Route::get('/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.index');
-Route::post('/ExportacionSegunBloqueEconomico/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.store');
-Route::get('/ExportacionSegunBloqueEconomico/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.create');
-Route::get('/ExportacionSegunBloqueEconomico/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.edit');
-Route::put('/ExportacionSegunBloqueEconomico/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.update');
-Route::delete('/ExportacionSegunBloqueEconomico/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.destroy');
+Route::get('/ExportacionSegunBloqueEconomico', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.index')->middleware('auth');
+Route::post('/ExportacionSegunBloqueEconomico/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.store')->middleware('auth');
+Route::get('/ExportacionSegunBloqueEconomico/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.create')->middleware('auth');
+Route::get('/ExportacionSegunBloqueEconomico/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.edit')->middleware('auth');
+Route::put('/ExportacionSegunBloqueEconomico/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.update')->middleware('auth');
+Route::delete('/ExportacionSegunBloqueEconomico/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunBloqueEconomico')->name('ExportacionSegunBloqueEconomico.destroy')->middleware('auth');
 
-Route::get('/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.index');
-Route::post('/ExportacionSegunRamaActividad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.store');
-Route::get('/ExportacionSegunRamaActividad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.create');
-Route::get('/ExportacionSegunRamaActividad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.edit');
-Route::put('/ExportacionSegunRamaActividad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.update');
-Route::delete('/ExportacionSegunRamaActividad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.destroy');
+Route::get('/ExportacionSegunRamaActividad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.index')->middleware('auth');
+Route::post('/ExportacionSegunRamaActividad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.store')->middleware('auth');
+Route::get('/ExportacionSegunRamaActividad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.create')->middleware('auth');
+Route::get('/ExportacionSegunRamaActividad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.edit')->middleware('auth');
+Route::put('/ExportacionSegunRamaActividad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.update')->middleware('auth');
+Route::delete('/ExportacionSegunRamaActividad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyExportacionSegunRamaActividad')->name('ExportacionSegunRamaActividad.destroy')->middleware('auth');
 
-Route::get('/ActividadesEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexActividadesEconomica')->name('ActividadEconomica.index');
-Route::post('/ActividadesEconomica/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeActividadesEconomica')->name('ActividadEconomica.store');
-Route::get('/ActividadesEconomica/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createActividadesEconomica')->name('ActividadEconomica.create');
-Route::get('/ActividadesEconomica/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editActividadesEconomica')->name('ActividadEconomica.edit');
-Route::put('/ActividadesEconomica/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateActividadesEconomica')->name('ActividadEconomica.update');
-Route::delete('/ActividadesEconomica/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomica')->name('ActividadEconomica.destroy');
-Route::get('/ActividadesEconomicaI/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomicaI')->name('ActividadEconomicaI.destroy');
-Route::get('/ActividadesEconomica/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showActividadesEconomica')->name('ActividadEconomica.show');
+Route::get('/ActividadesEconomica', 'App\Http\Controllers\IntroduccionRegionLagosController@indexActividadesEconomica')->name('ActividadEconomica.index')->middleware('auth');
+Route::post('/ActividadesEconomica/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeActividadesEconomica')->name('ActividadEconomica.store')->middleware('auth');
+Route::get('/ActividadesEconomica/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createActividadesEconomica')->name('ActividadEconomica.create')->middleware('auth');
+Route::get('/ActividadesEconomica/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editActividadesEconomica')->name('ActividadEconomica.edit')->middleware('auth');
+Route::put('/ActividadesEconomica/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateActividadesEconomica')->name('ActividadEconomica.update')->middleware('auth');
+Route::delete('/ActividadesEconomica/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomica')->name('ActividadEconomica.destroy')->middleware('auth');
+Route::get('/ActividadesEconomicaI/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyActividadesEconomicaI')->name('ActividadEconomicaI.destroy')->middleware('auth');
+Route::get('/ActividadesEconomica/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showActividadesEconomica')->name('ActividadEconomica.show')->middleware('auth');
 
-Route::get('/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFNDR')->name('FNDR.index');
-Route::post('/FNDR/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFNDR')->name('FNDR.store');
-Route::get('/FNDR/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFNDR')->name('FNDR.create');
-Route::get('/FNDR/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFNDR')->name('FNDR.edit');
-Route::put('/FNDR/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFNDR')->name('FNDR.update');
-Route::delete('/FNDR/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyFNDR')->name('FNDR.destroy');
+Route::get('/FNDR', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFNDR')->name('FNDR.index')->middleware('auth');
+Route::post('/FNDR/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFNDR')->name('FNDR.store')->middleware('auth');
+Route::get('/FNDR/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFNDR')->name('FNDR.create')->middleware('auth');
+Route::get('/FNDR/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFNDR')->name('FNDR.edit')->middleware('auth');
+Route::put('/FNDR/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFNDR')->name('FNDR.update')->middleware('auth');
+Route::delete('/FNDR/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyFNDR')->name('FNDR.destroy')->middleware('auth');
 
-Route::get('/InversionesD', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesG')->name('InversionesD.index');
-Route::post('/InversionesD/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionesG')->name('InversionesD.store');
-Route::get('/InversionesD/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionesG')->name('InversionesD.create');
-Route::get('/InversionesD/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionesG')->name('InversionesD.edit');
-Route::put('/InversionesD/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionesG')->name('InversionesD.update');
-Route::delete('/InversionesD/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionesG')->name('InversionesD.destroy');
+Route::get('/InversionesD', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionesG')->name('InversionesD.index')->middleware('auth');
+Route::post('/InversionesD/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionesG')->name('InversionesD.store')->middleware('auth');
+Route::get('/InversionesD/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionesG')->name('InversionesD.create')->middleware('auth');
+Route::get('/InversionesD/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionesG')->name('InversionesD.edit')->middleware('auth');
+Route::put('/InversionesD/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionesG')->name('InversionesD.update')->middleware('auth');
+Route::delete('/InversionesD/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionesG')->name('InversionesD.destroy')->middleware('auth');
 
-Route::get('/InversionPublicaEfectiva', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectiva')->name('InversionPublicaEfectiva.index');
-Route::post('/InversionPublicaEfectiva/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionPublicaEfectiva')->name('InversionPublicaEfectiva.store');
-Route::get('/InversionPublicaEfectiva/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionPublicaEfectiva')->name('InversionPublicaEfectiva.create');
-Route::get('/InversionPublicaEfectiva/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionPublicaEfectiva')->name('InversionPublicaEfectiva.edit');
-Route::put('/InversionPublicaEfectiva/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionPublicaEfectiva')->name('InversionPublicaEfectiva.update');
-Route::delete('/InversionPublicaEfectiva/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionPublicaEfectiva')->name('InversionPublicaEfectiva.destroy');
+Route::get('/InversionPublicaEfectiva', 'App\Http\Controllers\IntroduccionRegionLagosController@indexInversionPublicaEfectiva')->name('InversionPublicaEfectiva.index')->middleware('auth');
+Route::post('/InversionPublicaEfectiva/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeInversionPublicaEfectiva')->name('InversionPublicaEfectiva.store')->middleware('auth');
+Route::get('/InversionPublicaEfectiva/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createInversionPublicaEfectiva')->name('InversionPublicaEfectiva.create')->middleware('auth');
+Route::get('/InversionPublicaEfectiva/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editInversionPublicaEfectiva')->name('InversionPublicaEfectiva.edit')->middleware('auth');
+Route::put('/InversionPublicaEfectiva/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateInversionPublicaEfectiva')->name('InversionPublicaEfectiva.update')->middleware('auth');
+Route::delete('/InversionPublicaEfectiva/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteInversionPublicaEfectiva')->name('InversionPublicaEfectiva.destroy')->middleware('auth');
 
-Route::get('/FinanciamientoporProvincias', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvincias')->name('FinanciamientoporProvincias.index');
-Route::post('/FinanciamientoporProvincias/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFinanciamientoporProvincias')->name('FinanciamientoporProvincias.store');
-Route::get('/FinanciamientoporProvincias/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFinanciamientoporProvincias')->name('FinanciamientoporProvincias.create');
-Route::get('/FinanciamientoporProvincias/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFinanciamientoporProvincias')->name('FinanciamientoporProvincias.edit');
-Route::put('/FinanciamientoporProvincias/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFinanciamientoporProvincias')->name('FinanciamientoporProvincias.update');
-Route::delete('/FinanciamientoporProvincias/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteFinanciamientoporProvincias')->name('FinanciamientoporProvincias.destroy');
+Route::get('/FinanciamientoporProvincias', 'App\Http\Controllers\IntroduccionRegionLagosController@indexFinanciamientoporProvincias')->name('FinanciamientoporProvincias.index')->middleware('auth');
+Route::post('/FinanciamientoporProvincias/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeFinanciamientoporProvincias')->name('FinanciamientoporProvincias.store')->middleware('auth');
+Route::get('/FinanciamientoporProvincias/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createFinanciamientoporProvincias')->name('FinanciamientoporProvincias.create')->middleware('auth');
+Route::get('/FinanciamientoporProvincias/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editFinanciamientoporProvincias')->name('FinanciamientoporProvincias.edit')->middleware('auth');
+Route::put('/FinanciamientoporProvincias/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateFinanciamientoporProvincias')->name('FinanciamientoporProvincias.update')->middleware('auth');
+Route::delete('/FinanciamientoporProvincias/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deleteFinanciamientoporProvincias')->name('FinanciamientoporProvincias.destroy')->middleware('auth');
 
-Route::get('/PoliticaPrivacidad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidad')->name('PoliticaPrivacidad.index');
-Route::post('/PoliticaPrivacidad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storePoliticaPrivacidad')->name('PoliticaPrivacidad.store');
-Route::get('/PoliticaPrivacidad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createPoliticaPrivacidad')->name('PoliticaPrivacidad.create');
-Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editPoliticaPrivacidad')->name('PoliticaPrivacidad.edit');
-Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update');
-Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy');
+Route::get('/PoliticaPrivacidad', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidad')->name('PoliticaPrivacidad.index')->middleware('auth');
+Route::post('/PoliticaPrivacidad/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storePoliticaPrivacidad')->name('PoliticaPrivacidad.store')->middleware('auth');
+Route::get('/PoliticaPrivacidad/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createPoliticaPrivacidad')->name('PoliticaPrivacidad.create')->middleware('auth');
+Route::get('/PoliticaPrivacidad/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editPoliticaPrivacidad')->name('PoliticaPrivacidad.edit')->middleware('auth');
+Route::put('/PoliticaPrivacidad/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updatePoliticaPrivacidad')->name('PoliticaPrivacidad.update')->middleware('auth');
+Route::delete('/PoliticaPrivacidad/delete/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@deletePoliticaPrivacidad')->name('PoliticaPrivacidad.destroy')->middleware('auth');
 
 //Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 

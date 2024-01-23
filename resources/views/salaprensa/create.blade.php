@@ -103,10 +103,10 @@ input:required {
             <input class="form-control mt-2" type="text" name="titulo" placeholder="Título" required>
                        
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-                <option selected>Seleccione Categoria</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
+                <option selected>Tipo</option>
+                <option value="Noticia"> Noticia</option>
+                <option value="Video"> Video </option>
+                <option value="Galeria fotografica">Galeria fotografica</option>
             </select>
 
             <div class="mb-3 mt-4">
