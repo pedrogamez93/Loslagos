@@ -72,6 +72,7 @@ Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name(
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
+Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
 /*FUNCIONARIOS */
 

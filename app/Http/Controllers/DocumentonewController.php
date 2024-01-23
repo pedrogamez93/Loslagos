@@ -250,4 +250,31 @@ public function store(Request $request)
     }
     
 
+    public function descargarArchivo($archivo)
+    {
+        $rutaArchivo = "public/documentos/$archivo";
+    
+        // Verificar si el archivo existe
+        if (Storage::exists($rutaArchivo)) {
+            // Obtener el contenido del archivo
+            $contenido = Storage::get($rutaArchivo);
+    
+            // Obtener el tipo MIME del archivo
+            $tipoMime = Storage::mimeType($rutaArchivo);
+    
+            // Configurar las cabeceras para la descarga
+            $cabeceras = [
+                'Content-Type' => $tipoMime,
+                'Content-Disposition' => "attachment; filename=$archivo",
+            ];
+    
+            // Devolver la respuesta con el contenido del archivo y las cabeceras
+            return response($contenido, 200, $cabeceras);
+        } else {
+            // Manejar el caso en que el archivo no existe
+            return response()->json(['error' => 'El archivo no existe.'], 404);
+        }
+    }
+
+
 }
