@@ -147,7 +147,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
                     
                 </div>
                 <h5 class="titulotramites">{{ $tramite->titulo }}</h5>
-                <p style="" class="descripciontramites">{{ implode(' ', array_slice(str_word_count($tramite->descripcion, 1), 0, 4)) }}</p>
+               
                  
             </div>
             </a>
