@@ -167,10 +167,10 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
                 background-position: center;
                 background-repeat: no-repeat;
                 position: relative;
-                height: 25vw;
+                
                 display: flex;
                 flex-direction: column;
-                justify-content: center;">
+                justify-content: center;" id="fondobanner"> 
 
         <!-- Capa adicional con filtro de brillo -->
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>

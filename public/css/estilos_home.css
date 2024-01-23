@@ -428,8 +428,27 @@ line-height: normal;
     border-bottom-left-radius: 20px !important;
 }
 
+
+#fondobanner{
+  height: 25vw;
+}
 /* TELEFONO */
 @media screen and (max-width: 600px) {
+  #fondobanner{
+    height: 100vw;
+  }
+
+  .bannerinferior{
+    color: white;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 65%;
+    text-align: -webkit-left;
+  }
+
   #columnaimg{
 display: none;
   }
