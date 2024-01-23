@@ -37,7 +37,7 @@
                                                 <a class="style-a-menu" href="{{ url('/introducciones') }}">Qué es el Gobierno Regional</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/comofuncionagrs') }}">Como Funciona</a>
+                                                <a class="style-a-menu" href="{{ url('/comofuncionagrs') }}">Cómo funciona</a>
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/estrategias') }}">Estrategias</a>
@@ -46,7 +46,7 @@
                                                 <a class="style-a-menu" href="{{ url('/inversiones') }}">Inversiones</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/mision') }}">Mision</a>
+                                                <a class="style-a-menu" href="{{ url('/mision') }}">Misión</a>
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/leygobiernoregional') }}">Ley</a>
@@ -75,10 +75,10 @@
                                             </ul>
                                             <ul style="padding: 0px">
                                                 <li class="style-li">
-                                                    <a class="style-a-menu" href="javascript:void(0);">Asamblea Climatica</a>
+                                                    <a class="style-a-menu" href="javascript:void(0);">Asamblea Climática</a>
                                                     <ul class="submenu">
                                                         <li class="style-li">
-                                                            <a class="style-a-menu" href="{{ url('/asambleaclimatica') }}">Asamblea Climatica</a>
+                                                            <a class="style-a-menu" href="{{ url('/asambleaclimatica') }}">Asamblea Climática</a>
                                                         </li>
                                                         <li class="style-li">
                                                             <a class="style-a-menu" href="{{ url('/audienciasdepartes/') }}">Audiencias de Partes</a>
@@ -87,13 +87,13 @@
                                                 </li>
                                             </ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/disenopoliticoregionales') }}">Política Sostenibilidad Hidrica</a>
+                                                <a class="style-a-menu" href="{{ url('/disenopoliticoregionales') }}">Política de Sostenibilidad Hídrica</a>
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/politicapersonasmayores') }}">Política Personas Mayores</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}">Planificacion institucional</a>
+                                                <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}"> Planificación Institucional</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -102,7 +102,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                        Concejo Regional
+                                        Consejo Regional
                                     </button>
                                     </h2>
                                     <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -112,7 +112,7 @@
                                             <a class="style-a-menu" href="{{ route('concejoregional.index') }}">Introducción</a>
                                         </li>
                                         <li class="style-li">
-                                            <a class="style-a-menu" href="{{ route('presidenteconcejo.index') }}">Presidente del Concejo</a>
+                                            <a class="style-a-menu" href="{{ route('presidenteconcejo.index') }}">Presidente del Consejo</a>
                                         </li>
                                         <li class="style-li">
                                             <a class="style-a-menu" href="{{ route('consejerososorno.index') }}">Consejeros de Osorno</a>

@@ -173,6 +173,12 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
+    .container-fluid.nav-head {
+    background-color: #00548f !important;
+}
+nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f !important;
+}
     footer{
         height:535px;
         background-color: #389144;
@@ -388,8 +394,6 @@
 </html>
 <script>  
     document.addEventListener("DOMContentLoaded", function() {
-      
-        document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
         document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
     });
 </script>
