@@ -278,24 +278,24 @@
         <h5 class="footer-col-title">Menú</h5>
         <ul class="nav flex-column">
             <li class="nav-item mb-2 text-light">
-                <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
+                <a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Gobierno Regional</a>
             </li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/consejoregional/introduccion') }}" class="nav-link p-0 text-muted">Consejo Regional</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/regionlagos/introduccion') }}" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de Funcionarios</a></li>
         </ul>
     </div>
 
     <div class="col mb-3">
         <h5 class="footer-col-title" >Enlaces directos</h5>
         <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Creando y Cuidando la Región</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información de la región</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Organigrama</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trámites</a></li>
+            <li class="nav-item mb-2"><a href="https://fondocomunidad.goreloslagos.cl/login" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
+           
+            <li class="nav-item mb-2"><a href="{{ url('/regionlagos/antecedentesregion') }}" class="nav-link p-0 text-muted">Información de la región</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/organigrama') }}" class="nav-link p-0 text-muted">Organigrama</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="nav-link p-0 text-muted">Trámites</a></li>
         </ul>
     </div>
 

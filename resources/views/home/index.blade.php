@@ -83,7 +83,7 @@
         <div>
           
     <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
-        Galeria Fotografica
+    Galería fotográfica
     </button>
     <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
         Videos
