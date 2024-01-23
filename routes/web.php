@@ -207,19 +207,19 @@ Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
-Route::resource('tramites', TramitesDigitalesController::class)->middleware('auth');
+Route::resource('tramites', TramitesDigitalesController::class);
 Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
-Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show')->middleware('auth');
+Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
 
 //Route::put('/tramites/{tramite}/edit', [TramitesDigitalesController::class, 'edit'])->name('tramites.update');
 
-Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update')->middleware('auth');
+Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
 
-Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy')->middleware('auth');
-Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc')->middleware('auth');
-Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn')->middleware('auth');
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
 
 Route::middleware([
     'auth:sanctum',
