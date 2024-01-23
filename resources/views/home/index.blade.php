@@ -129,7 +129,7 @@
   </div>
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 class="titleshome">Tramites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
    
     
 </div>
@@ -178,9 +178,9 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
         <div class="container" id="contenidobannerregion" style="position: relative; z-index: 1;">
             <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
             <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
-            <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px; color: white; border-color: white;">Ver todos los detalles</a>
+            <a class="btn btn-outline-primary" href="regionlagos/introduccion" role="button" style="border-radius: 21px; color: white; border-color: white;">Ver todos los detalles</a>
         </div>
-    </div>
+    </div>  
 </div>
 
 <!--Cuadro dentro del banner-->
