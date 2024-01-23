@@ -441,11 +441,11 @@ display: none;
   
   #formbuscador{
     position: absolute;
-    margin-top: 30vw;
+    margin-top: calc(80vw + 70%);
   }
 
   #header{
-height: 185vw;
+height: 240vw;
 background-color: #389144;
 
   }
