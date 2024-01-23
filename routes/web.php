@@ -119,107 +119,108 @@ Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen
 
 
 /*RUTAS CRUD INIT*/
-Route::resource('introducciones', IntroduccionController::class);
+Route::resource('introducciones', IntroduccionController::class)->middleware('auth');
 Route::get('/images/{imagen}', [IntroduccionController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('comofuncionagrs', ComofuncionaGrController::class);
+Route::resource('comofuncionagrs', ComofuncionaGrController::class)->middleware('auth');
 Route::get('/images/{imagen}', [ComofuncionaGrController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('estrategias', EstrategiasController::class);
+Route::resource('estrategias', EstrategiasController::class)->middleware('auth');
 Route::get('/images/{imagen}', [EstrategiasController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('inversiones', InversionesPublicController::class);
+Route::resource('inversiones', InversionesPublicController::class)->middleware('auth');
 Route::get('/images/{imagen}', [InversionesPublicController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('mision', MisionGobController::class);
+Route::resource('mision', MisionGobController::class)->middleware('auth');
 Route::get('/images/{imagen}', [MisionGobController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('leygobiernoregional', LeygbsController::class);
+Route::resource('leygobiernoregional', LeygbsController::class)->middleware('auth');
 
-Route::resource('organigrama', OrganigramaController::class);
+Route::resource('organigrama', OrganigramaController::class)->middleware('auth');
 Route::get('/images/{imagen}', [OrganigramaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy']);
-Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit');
-Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update');
-Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc');
-Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento');
+Route::resource('dptogestionpersonas', DptoGestionPersonasController::class)->except(['destroy'])->middleware('auth');
+Route::get('/dptogestionpersonas/{id}/edit', [DptoGestionPersonasController::class, 'edit'])->name('dptogestionpersonas.edit')->middleware('auth');
+Route::put('/dptogestionpersonas/{dptogestionpersona}', [DptoGestionPersonasController::class, 'update'])->name('dptogestionpersonas.update')->middleware('auth');
+Route::delete('/dptogestionpersonas/{dptogestionpersona}/documentos/{documentoId}', [DptoGestionPersonasController::class, 'deleteDocumento'])->name('eliminardoc')->middleware('auth');
+Route::delete('/dptogestionpersonas/{departamentoId}', [DptoGestionPersonasController::class, 'deleteDepartamento'])->name('eliminar_departamento')->middleware('auth');
 
 
-Route::resource('asambleaclimatica', AsambleaClimaticaController::class);
-Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento');
-Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea');
+Route::resource('asambleaclimatica', AsambleaClimaticaController::class)->middleware('auth');
+Route::delete('/asambleaclimatica/{asambleaId}/documentos/{documentoId}', [AsambleaClimaticaController::class, 'deleteDocumento'])->name('eliminar_documento')->middleware('auth');
+Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasamblea'])->name('ruta_eliminar_asamblea')->middleware('auth');
 
-Route::resource('audienciasdepartes', AudienciasController::class);
-Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia');
-Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia');
+Route::resource('audienciasdepartes', AudienciasController::class)->middleware('auth');
+Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia')->middleware('auth');
+Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia')->middleware('auth');
 
-Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class);
-Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo');
+Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class)->middleware('auth');
+Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo')->middleware('auth');
 
-Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class);
+Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class)->middleware('auth');
 
-Route::resource('comiteciencias', ComiteCienciasController::class);
-Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento']);
+Route::resource('comiteciencias', ComiteCienciasController::class)->middleware('auth');
+Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::class, 'eliminarDocumento'])->middleware('auth');
 
-Route::resource('concursospublicos', ConcursosPublicosController::class);
-Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento']);
+Route::resource('concursospublicos', ConcursosPublicosController::class)->middleware('auth');
+Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento'])->middleware('auth');
 
-Route::resource('presidenteconcejo', PresidenteConcejoController::class);
+Route::resource('presidenteconcejo', PresidenteConcejoController::class)->middleware('auth');
 
-Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class);
-Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show');
+Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
-Route::resource('consejeroschiloe', ConsejerosChiloeController::class);
-Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show');
+Route::resource('consejeroschiloe', ConsejerosChiloeController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
 Route::resource('consejerososorno', ConsejerosOsornoController::class);
 Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->name('consejeros.show');
 
-Route::resource('consejerospalena', ConsejerosPalenaController::class);
-Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show');
+Route::resource('consejerospalena', ConsejerosPalenaController::class)->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
 
-Route::resource('concejoregional', ConcejoRegionalController::class);
-Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar');
+Route::resource('concejoregional', ConcejoRegionalController::class)->middleware('auth');
+Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar')->middleware('auth');
 
-Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit');
+Route::get('/concejoregional/{concejoId}/edit', [ConcejoRegionalController::class, 'edit'])->name('concejoregional.edit')->middleware('auth');
 
-Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion');
+Route::get('/editar-seccion/{seccionId}', [ConcejoRegionalController::class, 'editarSeccion'])->name('editar.seccion')->middleware('auth');
 
-Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update');
+Route::put('/concejoregional/{concejoId}/update', [ConcejoRegionalController::class, 'update'])->name('concejoregional.update')->middleware('auth');
 
-Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion');
+Route::put('/seccion/{seccionId}/actualizar', [ConcejoRegionalController::class, 'updateSeccion'])->name('nombre.ruta.actualizar.seccion')->middleware('auth');
 
 //Route::get('/concejoregional/{concejoId}/edit/{seccionId}', 'ConcejoRegionalController@edit')->name('concejoregional.edit');
 //Route::put('concejoregional/{concejoId}/seccion/{seccionId}', 'ConcejoRegionalController@update')->name('concejoregional.update');
 //Route::delete('/concejoregional/{concejoId}/secciones/{seccionId}', 'ConcejoRegionalController@destroySeccion')->name('concejoregional.destroySeccion');
 
-Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class);
-Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update');
-Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica');
-Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol');
+Route::resource('politicapersonasmayores', PoliticaPersonasMayoresController::class)->middleware('auth');
+Route::put('/politicapersonasmayores/{id}', [PoliticaPersonasMayoresController::class, 'update'])->name('politicapersonasmayores.update')->middleware('auth');
+Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [PoliticaPersonasMayoresController::class, 'destroyDocPolitica'])->name('eliminar_doc_politica')->middleware('auth');
+Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol')->middleware('auth');
 
 // Rutas para los disenopoliticoregionales
-Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario');
-Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta');
-Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update');
+Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario')->middleware('auth');
+Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta')->middleware('auth');
+Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update')->middleware('auth');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
-Route::resource('tramites', TramitesDigitalesController::class);
+Route::resource('tramites', TramitesDigitalesController::class)->middleware('auth');
 Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
-Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
+Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show')->middleware('auth');
 
 //Route::put('/tramites/{tramite}/edit', [TramitesDigitalesController::class, 'edit'])->name('tramites.update');
 
-Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
+Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update')->middleware('auth');
 
-Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
-Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
-Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy')->middleware('auth');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc')->middleware('auth');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn')->middleware('auth');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

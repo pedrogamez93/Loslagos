@@ -19,11 +19,6 @@
         padding: 0; 
         display: flex; 
     }
-
-    nav li {
-        margin-right: 20px; 
-    }
-
     nav a {
         text-decoration: none; 
     }
