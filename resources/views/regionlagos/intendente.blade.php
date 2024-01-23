@@ -432,11 +432,6 @@ a.a3 {
                                         <p class="descripcion-B">{{ $introduccion->biografia }}</p>
                                         
                                     </div>
-                                    <div class="col-md-12">
-                                        <p class="style-B pt-4 pb-4">Datos Relacionados</p>
-                                        <p class="descripcion-B">{{ $introduccion->biografia }}</p>
-                                        
-                                    </div>
                                     <div class="col-md-5 fotoA d-block d-lg-none">
                                         <img src="{{ asset($introduccion->foto) }}" alt="Imagen actual" style="max-width: 674px; max-height: 443px;">    
                                     </div>
