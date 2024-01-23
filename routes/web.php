@@ -57,7 +57,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
 Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create');
 Route::post('/home/store', [HomeController::class, 'store']);
-Route::get('/home/actualizar', [HomeController::class, 'actualizar']);
+Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar');;
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');

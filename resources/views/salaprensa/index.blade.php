@@ -27,11 +27,11 @@
         <div class="col-md-3 mb-4">
             <div class="card card-noticias" >
              
-                <img src="{{ route('mostrar.imagen', ['carpeta' => 'salaprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
+                <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
                 
                 <div class="card-img-overlay">
                     <div class="card-body text-white">
-                        <p class="card-text noticia-categoria mb-2">{{ $noticia->categoria }}</p>
+                       
                         <h5 class="card-title titulonoticia mb-4">{{ $noticia->titulo }}</h5>
                       <!-- Cambia el enlace existente en index.blade.php -->
 <a href="{{ route('salaprensa.show', ['id' => $noticia->id]) }}" style="padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>

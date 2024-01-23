@@ -100,8 +100,8 @@
         <div class="carousel-item" style="position: relative;">
             <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
             <div class="carousel-caption">
-            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 4)) }}</p>
-            <p style="" class="descripcionprensa">{{ implode(' ', array_slice(str_word_count($registro->descripcion, 1), 0, 5)) }}</p>
+            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 5)) }}</p>
+            
             <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -140,15 +140,17 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="mt-5 pb-5">
     <div id="thumbnail-slider2" class="carousel">
         @foreach($tramitesDigitales as $tramite)
-            <div class="carousel-item">
+        <a href="{{ route('tramites.show', $tramite->id) }}">    
+        <div class="carousel-item">
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'iconos', 'imagen' => basename($tramite->icono)]) }}" class="mb-3" style="width: 150px; height:130px" alt="{{ $tramite->titulo }}">
                 <div class="carousel-caption mb-3">
                     
                 </div>
                 <h5 class="titulotramites">{{ $tramite->titulo }}</h5>
                 <p style="" class="descripciontramites">{{ implode(' ', array_slice(str_word_count($tramite->descripcion, 1), 0, 4)) }}</p>
-                  
+                 
             </div>
+            </a>
         @endforeach
     </div>
 </div>
@@ -159,29 +161,39 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 <!--Banner-->
 
-    <div class="bg-body-tertiary p-5 rounded mt-3 colorB">
-        <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
-        <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
-        <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px;">Ver todos los detalles</a>
+<div class="bg-body-tertiary p-5 rounded mt-3 colorB" style="padding: 0px !important; position: relative; overflow: hidden;">
+    <div style="background-image: url('{{ asset('img/bannerregion.png') }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                height: 25vw;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;">
+
+        <!-- Capa adicional con filtro de brillo -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+
+        <div class="container" id="contenidobannerregion" style="position: relative; z-index: 1;">
+            <h1 class="bannerinferior">Ahora puedes estar actualizado sobre nuestra región</h1>
+            <p class="contenidobannerinferior">En búsqueda del desarrollo equitativo del territorio, propendiendo a la participación ciudadana y a la conservación del medio ambiente.</p>
+            <a class="btn btn-outline-primary" href="/docs/5.3/components/navbar/" role="button" style="border-radius: 21px; color: white; border-color: white;">Ver todos los detalles</a>
+        </div>
     </div>
+</div>
 
 <!--Cuadro dentro del banner-->
 <div class="container" style="margin-top: -8vw;">
   <div class="row justify-content-end">
     <div class="col-md-4" style="margin-left: -3vw;">
-      <div class="card bg-gray-300 text-center" style="position: relative;">
-        <div class="card-body">
-          <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Resultados 2023</h5>
-          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Fondo comunidad (Evaluación)</p>
-        </div>
-      </div>
+     
     </div>
     <div class="col-md-4" style="margin-left: -3vw;">
-      <div class="card bg-gray-300 text-center" style="position: relative;">
-        <div class="card-body">
-        <h5 class="card-title" style="position: absolute; bottom: 15%; left: 0; width: 100%;">Fondo Comunidad</h5>
-          <p class="card-text" style="position: absolute; bottom: 1%; left: 0; width: 100%;">Creando y Cuidando la Región</p>
-        </div>
+      <div class="  text-center" style="position: relative;">
+      <a href="https://fondocomunidad.goreloslagos.cl/login">
+      <img src="{{ asset('img/fondocomunidad.png') }}" alt="Fondo Comunidad">
+      </a>
       </div>
     </div>
   </div>

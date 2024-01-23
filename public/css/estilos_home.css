@@ -149,7 +149,7 @@ width: 100%;
 
 
 .bannerinferior{
-  color: #565656;
+  color: white;
 
 font-family: Inter;
 font-size: 50px;
@@ -161,7 +161,7 @@ text-align: -webkit-left;
 
 }
 .contenidobannerinferior{
-  color: #565656;
+  color: white;
 
 font-family: Inter;
 font-size: 16px;
@@ -178,11 +178,11 @@ border-color: #d9d9d9;
 }
 
 .bg-body-tertiary{
-  background: rgba(217, 217, 217, 0.50);
+  
 }
 
 .bg-body-tertiary {
-  height: 413px;
+  /* height: 413px; */
   width: 100vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
   margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
   margin-right: calc(-50vw + 50%);
@@ -215,12 +215,7 @@ border-color: #d9d9d9;
 
 /* Media query para pantallas grandes (computadoras) */
 @media only screen and (min-width: 1024px) {
-  .bannerinferior,
-  .contenidobannerinferior,
-  .btn-outline-primary {
-      margin-left: calc(1vw + 5%);
-      margin-right: calc(10vw + 10%);
-  }
+ 
 }
 
  /* Agrega estilos para el margen entre los slides */
@@ -288,6 +283,11 @@ line-height: normal;
 
 .carousel-item img {
   max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
+  
+}
+
+#thumbnail-slider .carousel-item:last-child{
+  min-width: 300px !important;
 }
 
 .carousel-caption {
@@ -319,7 +319,7 @@ line-height: normal;
 }
 
 .carousel-item {
-  max-height: 300px; /* Establece la altura máxima que desees */
+  max-height: 280px; /* Establece la altura máxima que desees */
   overflow: hidden;
 }
 
@@ -327,7 +327,7 @@ line-height: normal;
   overflow: visible;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 80%;
+  height: 55%;
 }
 
 .tituloprensa {
@@ -518,3 +518,6 @@ background-color: #389144;
   opacity: 0.5;
   transition: opacity 0.6s ease;
 }
+
+
+

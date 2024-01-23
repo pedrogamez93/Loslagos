@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" disabled>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo sección" disabled>
                                     </div>
                                 </div>
                             </div>
