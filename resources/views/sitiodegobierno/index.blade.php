@@ -8,19 +8,19 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
 
-<div id="banner" class="h-500 text-light d-flex align-items-center" style="background: #00548F !important; height: 502px; display: flex; padding-left: 50px;">
+<div id="banner" class="h-500 text-light d-flex align-items-center colorB" style="background: #00548F; height: 502px; display: flex; padding-left: 50px;">
     <div class="container">
-        <h5>Home / Gobierno Regional</h5>
+        <h5>Home / Sitios de Gobierno</h5>
         <h1 class="titulodoc">Sitios de Gobierno </h1>
         <p>Infórmate aquí de las noticias más recientes del Gore</p>
     </div>
 </div>
 
-<div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
+<div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6 colorB" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
     <div class="row py-5 px-5" style="padding-right: 10rem!important;
     padding-left: 10rem!important;">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
-            <h4 class="tituloform mb-5">Sitios de Gobierno</h4>
+            <h4 class="tituloform mb-5 colorB">Sitios de Gobierno</h4>
 
             <!-- Aquí se colocan las noticias -->
             <div class="row">
@@ -37,7 +37,8 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <p class="card-text noticia-categoria">{{ $sitio->categoria }}</p>
-                            <h3 class="card-title titulonoticia">{{ $sitio->titulo }}</h3>
+                            <h3 id="titulositio" class="card-title ">{{ $sitio->titulo }}</h3>
+                            <h5 id="descripcionsitio" class="card-title ">{{ $sitio->descripcion }}</h5>
                             <a href="{{ $sitio->url }}" class="btn btn-primary">Ir ahora</a>
                         </div>
                     </div>
@@ -65,8 +66,8 @@
    
    document.addEventListener("DOMContentLoaded", function() {
      
-       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F', 'important');
-       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F', 'important');
+       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F');
+       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F');
    });
 </script> 
 

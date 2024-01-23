@@ -35,3 +35,24 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+
+
+#titulositio{
+  
+
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+#descripcionsitio{
+
+    color: #565656;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: normal;
+}

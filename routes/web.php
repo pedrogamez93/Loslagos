@@ -55,9 +55,9 @@ use App\Http\Controllers\DocumentonewController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
-Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create');
+Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
 Route::post('/home/store', [HomeController::class, 'store']);
-Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar');;
+Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
 Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
@@ -66,38 +66,38 @@ Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscado
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
-Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');
-Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');;
+Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
+Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
 Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
-Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit');
-Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update');
-Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos');
-Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy');
-Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
-Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
+Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
+Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
+Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
+Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
+Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download')->middleware('auth');
+Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo')->middleware('auth');
 
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
 Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
-Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
-Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios');
+Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
-Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
-Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create');
-Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store');
+Route::get('/saladeprensa/create', [SalaprensaController::class, 'create'])->name('salaprensa.create')->middleware('auth');
+Route::post('/saladeprensasubir', [SalaprensaController::class, 'store'])->name('salaprensa.store')->middleware('auth');
 Route::get('/saladeprensa/{id}/edit', [SalaprensaController::class, 'edit'])->name('salaprensa.edit');
-Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update');
-Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia');
-Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy');
+Route::put('/saladeprensa/{id}', [SalaprensaController::class, 'update'])->name('salaprensa.update')->middleware('auth');
+Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTabla'])->name('salaprensa.vernoticia')->middleware('auth');
+Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy')->middleware('auth');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
@@ -106,12 +106,12 @@ Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('s
 
 //Sala de prensa
 Route::get('/sitiodegobierno', [SitiosController::class, 'index']);
-Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create');;
-Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store');
-Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit');
-Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update');
-Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia');
-Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy');
+Route::get('/sitiodegobierno/create', [SitiosController::class, 'create'])->name('sitiodegobierno.create')->middleware('auth');
+Route::post('/sitiossubir', [SitiosController::class, 'store'])->name('sitiodegobierno.store')->middleware('auth');
+Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->name('sitiodegobierno.edit')->middleware('auth');
+Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update')->middleware('auth');
+Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia')->middleware('auth');
+Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy')->middleware('auth');
 Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
 //Route::resource('/', HomeController::class);
@@ -207,19 +207,19 @@ Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
-Route::resource('tramites', TramitesDigitalesController::class)->middleware('auth');
+Route::resource('tramites', TramitesDigitalesController::class);
 Route::get('/iconos/{icono}', [TramitesDigitalesController::class, 'mostrarImagen'])->name('icono.mostrar');
 
 //Route::get('/tramites/{id}', 'TramitesDigitalesController@show')->name('tramites.show');
-Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show')->middleware('auth');
+Route::get('/tramites/{id}', [TramitesDigitalesController::class, 'show'])->name('tramites.show');
 
 //Route::put('/tramites/{tramite}/edit', [TramitesDigitalesController::class, 'edit'])->name('tramites.update');
 
-Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update')->middleware('auth');
+Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update'])->name('tramites.update');
 
-Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy')->middleware('auth');
-Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc')->middleware('auth');
-Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn')->middleware('auth');
+Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
+Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
+Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
 
 Route::middleware([
     'auth:sanctum',
@@ -459,7 +459,8 @@ Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasControll
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 Route::get('/programas/{id}', [ProgramasController::class, 'show'])->name('programas.show');
 
-
+Route::get('/imagenes_programas/{imagen}', [ProgramasController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/directorio_destino/{nombreArchivo}', [ProgramasController::class, 'mostrarFotografia'])->name('nombreArchivo.mostrar');
 
 //PREGUNTAS FRECUENTES
 Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);

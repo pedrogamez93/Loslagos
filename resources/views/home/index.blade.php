@@ -12,7 +12,7 @@
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
 <main class="container" class="headercontent">
-    <div class="row p-5" class="centrar">
+    <div class="row p-5" class="centrar ">
         <div class="col colinputbuscador">
             <div id="divbuscador" class="input-group rounded">
                 <div class="position-absolute mt-2">
@@ -141,7 +141,12 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 <div class="mt-5 pb-5">
     <div id="thumbnail-slider2" class="carousel">
         @foreach($tramitesDigitales as $tramite)
-        <a href="{{ route('tramites.show', $tramite->id) }}">    
+        @if(isset($tramite->url_single))
+         <a href="{{ $tramite->url_single }}" >
+            @else
+             <a href="{{ route('tramites.show', $tramite->id) }}" >
+              @endif
+         
         <div class="carousel-item">
                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'iconos', 'imagen' => basename($tramite->icono)]) }}" class="mb-3" style="width: 150px; height:130px" alt="{{ $tramite->titulo }}">
                 <div class="carousel-caption mb-3">

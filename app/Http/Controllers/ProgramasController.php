@@ -55,11 +55,6 @@ class ProgramasController extends Controller
           //  'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
         ]);
 
-
-        // Procesar la imagen si está presente
-        if ($request->hasFile('imagen')) {
-            $iconoPath = $request->file('imagen')->store('imagenes_programas' , 'public');
-        }
         
         $programas = Programas::create($data);
         $programasid = $programas->id;
@@ -67,7 +62,12 @@ class ProgramasController extends Controller
         $seleccion_btn = $request->input('si_btn');
         $seleccion_coleccion = $request->input('si_coleccion');
 
-        // Procesar documentos (individuales y comprimidos)
+        // Procesar la imagen si está presente
+        if ($request->hasFile('imagen')) {
+            $iconoPath = $request->file('imagen')->store('imagenes_programas' , 'public');
+            $programas->update(['imagen' => $iconoPath]);
+        }
+        /*// Procesar documentos (individuales y comprimidos)
         $nombreDocumento = $request->input('nombreDocumento') ?? [];
 
         $urlDocumento = $request->file('urlDocumento');
@@ -75,7 +75,7 @@ class ProgramasController extends Controller
 
         foreach ($urlDocumento ?? [] as $key => $documento) {
              $nombreDocumento = $nombreDocumento[$key]?? 'documento_' . ($key + 1);
-             $urlDocumento = $documento->store('documentosdeprograma');
+             $urlDocumento = $documento->store('documentosdeprograma', 'public');
 
             // Almacena en la base de datos
              ProgramasDocumentos::create([
@@ -83,7 +83,30 @@ class ProgramasController extends Controller
                 'urlDocumento' => $urlDocumento,
                 'programa_id' => $programasid,
             ]);
+        }*/
+
+
+        try {
+            // Procesar documentos (individuales y comprimidos)
+            $nombreDocumento = $request->input('nombreDocumento');
+            $urlDocumento = $request->file('urlDocumento') ?? [];
+    
+            foreach ($urlDocumento ?? [] as $key => $documento) {
+                $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
+                $urlDocumento = $documento->store('documentosprogramas');
+                
+                // Almacena en la base de datos
+                    ProgramasDocumentos::create([
+                    'programa_id' => $programas->id,
+                    'nombreDocumento' => $nombreDocumento,
+                    'urlDocumento' => $urlDocumento,
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+            \Log::error('Error al procesar documentos: ' . $e->getMessage());
         }
+
         
           //DESCRIPCION
         if ($seleccion=="option1"){
@@ -133,7 +156,11 @@ class ProgramasController extends Controller
                 }
                 return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
     }
+    public function mostrarImagen($imagen) {
+        return response()->file(storage_path('app/public/imagenes_programas/' . $imagen));
+    }
 
+    
     /**
      * Display the specified resource.
      *

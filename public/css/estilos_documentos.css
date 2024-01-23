@@ -35,3 +35,12 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+
+
+#banner{
+
+    background-color: #F59120 ; 
+    height: 502px;
+     display: flex;
+        padding-left: 50px;
+}
