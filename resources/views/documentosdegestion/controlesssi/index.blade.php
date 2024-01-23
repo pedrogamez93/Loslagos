@@ -191,6 +191,18 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    .container-fluid.color{
+            background-color:#00548F;
+    }
+    .nav-head {
+        background-color: #00548f !important;
+    }
+    .container-fluid.nav-head {
+    background-color: #00548f;
+    }
+    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f;
+    }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -211,7 +223,7 @@
             <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         @endpush
-        <div class="container-fluid" style="background-color:#00548F;">
+        <div class="container-fluid color">
             <div class="row">
                 <div class="col-md-12">
                     <div class="container second content-breadc pt-5 pb-5">
@@ -261,25 +273,25 @@
                                     <h1 class="mititulo">Políticas y Procedimientos Sistema Seguridad de la Información</h1>
 
                                     <div class="container">
-    <div class="row">
-        @foreach ($documentosControlesSSI as $documento)
-            <div class="col-md-6">
-                <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                    <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
-                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
-                        <p class="p-doc mt-2 mb-2 ms-3" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; color:#565656;">{{ $documento->titulo }}</p>
-                    </a>
-                </div>
-            </div>
-            @if ($loop->iteration % 2 == 0)
-                <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
-            @endif
-        @endforeach
-    </div>
+                                        <div class="row">
+                                            @foreach ($documentosControlesSSI as $documento)
+                                                <div class="col-md-6">
+                                                    <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                            <p class="p-doc mt-2 mb-2 ms-3" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; color:#565656;">{{ $documento->titulo }}</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @if ($loop->iteration % 2 == 0)
+                                                    <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                @endif
+                                            @endforeach
+                                        </div>
 
-    <!-- Paginación -->
-    {{ $documentosControlesSSI->links() }}
-</div>
+                                        <!-- Paginación -->
+                                        {{ $documentosControlesSSI->links() }}
+                                    </div>
                                 </div>
 
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
@@ -296,10 +308,5 @@
         </main>
     </body>
 </html>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
-        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
-    });
-</script>
+
 @endsection

@@ -5,7 +5,7 @@ body {
   }
   
   body.high-contrast,.high-contrast footer,.high-contrast  .backgroundB,.high-contrast  .cat,.high-contrast .modal-content,.high-contrast .flex-column,.high-contrast .high-contrast,
-  .high-contrast .nav-link,.high-contrast  .colorB,.high-contrast .nav-head,.high-contrast .esquina-curva,.high-contrast .enlaces  {
+  .high-contrast .nav-link,.high-contrast  .colorB,.high-contrast .nav-head,.high-contrast .esquina-curva,.high-contrast .enlaces,.high-contrast header,.high-contrast .color  {
     color: #fff !important; /* Cambiar a color de texto alto contraste */
     background: #000 !important; /* Cambiar a color de fondo alto contraste */
   }

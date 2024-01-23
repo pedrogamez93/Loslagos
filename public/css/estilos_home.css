@@ -14,8 +14,9 @@
     src: url('/fonts/Inter-ExtraBold.ttf') format('truetype');
     font-weight: 800; /* Indica que esta es la versión ExtraBold */
   }
-
-
+  nav.navbar{
+    padding: 8px 0px !important;
+  }
   *,
   ::before,
   ::after {
@@ -41,6 +42,9 @@
     
   }
 
+  footer{
+    border-radius: 0px 150px 0px 0px !important;
+  }
  
 #banner {
     background-color: #D9D9D9 !important; /* Color gris */
@@ -149,7 +153,7 @@ width: 100%;
 
 
 .bannerinferior{
-  color: #565656;
+  color: white;
 
 font-family: Inter;
 font-size: 50px;
@@ -161,7 +165,7 @@ text-align: -webkit-left;
 
 }
 .contenidobannerinferior{
-  color: #565656;
+  color: white;
 
 font-family: Inter;
 font-size: 16px;
@@ -178,11 +182,11 @@ border-color: #d9d9d9;
 }
 
 .bg-body-tertiary{
-  background: rgba(217, 217, 217, 0.50);
+  
 }
 
 .bg-body-tertiary {
-  height: 413px;
+  /* height: 413px; */
   width: 100vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
   margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
   margin-right: calc(-50vw + 50%);
@@ -215,12 +219,7 @@ border-color: #d9d9d9;
 
 /* Media query para pantallas grandes (computadoras) */
 @media only screen and (min-width: 1024px) {
-  .bannerinferior,
-  .contenidobannerinferior,
-  .btn-outline-primary {
-      margin-left: calc(1vw + 5%);
-      margin-right: calc(10vw + 10%);
-  }
+ 
 }
 
  /* Agrega estilos para el margen entre los slides */
@@ -288,6 +287,11 @@ line-height: normal;
 
 .carousel-item img {
   max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
+  
+}
+
+#thumbnail-slider .carousel-item:last-child{
+  min-width: 300px !important;
 }
 
 .carousel-caption {
@@ -298,7 +302,7 @@ line-height: normal;
 }
 
 .titulotramites {
-  width: 200px;
+  width: 250px;
   font-size: 1.5rem;
   margin-bottom: 5px;
 }
@@ -327,14 +331,14 @@ line-height: normal;
   overflow: visible;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 80%;
+  height: 55%;
 }
 
 .tituloprensa {
   position: relative !important;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: break-spaces;
+  /* text-overflow: ellipsis; */
   color: #FFF;
   font-family: 'Inter';
   font-size: 20px;
@@ -428,8 +432,27 @@ line-height: normal;
     border-bottom-left-radius: 20px !important;
 }
 
+
+#fondobanner{
+  height: 25vw;
+}
 /* TELEFONO */
 @media screen and (max-width: 600px) {
+  #fondobanner{
+    height: 100vw;
+  }
+
+  .bannerinferior{
+    color: white;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 65%;
+    text-align: -webkit-left;
+  }
+
   #columnaimg{
 display: none;
   }
@@ -441,11 +464,11 @@ display: none;
   
   #formbuscador{
     position: absolute;
-    margin-top: 30vw;
+    margin-top: calc(80vw + 70%);
   }
 
   #header{
-height: 185vw;
+height: 240vw;
 background-color: #389144;
 
   }
@@ -518,3 +541,6 @@ background-color: #389144;
   opacity: 0.5;
   transition: opacity 0.6s ease;
 }
+
+
+

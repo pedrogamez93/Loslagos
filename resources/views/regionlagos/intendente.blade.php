@@ -43,9 +43,7 @@
         display: flex; 
     }
 
-    nav li {
-        margin-right: 20px; 
-    }
+
 
     nav a {
         text-decoration: none; 
@@ -431,11 +429,6 @@ a.a3 {
                                     </div>
                                     <div class="col-md-12">
                                         <p class="style-B pt-4 pb-4">Biografía</p>
-                                        <p class="descripcion-B">{{ $introduccion->biografia }}</p>
-                                        
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p class="style-B pt-4 pb-4">Datos Relacionados</p>
                                         <p class="descripcion-B">{{ $introduccion->biografia }}</p>
                                         
                                     </div>

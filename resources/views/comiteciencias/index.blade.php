@@ -94,9 +94,9 @@
                             @endif
                         @endforeach
                     </div>
-                    <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar Comite</button>
+                    <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar Cómite</button>
                 </div>
-                <button class="mt-4 mb-4 btn btn-primary crear-concurso" type="button"  id="boton-crear">Crear nuevo Comite</button>
+                <button class="mt-4 mb-4 btn btn-primary crear-concurso" type="button"  id="boton-crear">Crear nuevo Cómite</button>
             </div>
         </div>
     </div>

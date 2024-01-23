@@ -184,10 +184,10 @@ public function indexTabla()
 
          // Manejo del archivo
          if ($request->hasFile('foto')) {
-            $archivoPath = $request->file('foto')->store('funcionarios', 'public');
+            $archivoPath = $request->file('foto')->store('public/funcionarios');
             $datosf['foto'] = $archivoPath;
         }
-
+        
 
 
         $datosf['created_at'] = now();
@@ -205,7 +205,7 @@ public function indexTabla()
 
     $request->validate([
         'nombre' => 'nullable',
-        
+        'sexo'  => 'nullable',
         'division'  => 'nullable',
         'departamento' => 'nullable'
     ]);
@@ -215,6 +215,7 @@ public function indexTabla()
     
 
     $division = $request->input('division');
+    $sexo = $request->input('sexo');
     $departamento = $request->input('departamento');
 
     $funcionarios = Funcionario::query();
@@ -231,6 +232,10 @@ public function indexTabla()
 
     if ($departamento) {
         $funcionarios->where('departamento', $departamento);
+    }
+
+    if ($sexo) {
+        $funcionarios->where('sexo', $sexo);
     }
 
     $funcionarios = $funcionarios->get();

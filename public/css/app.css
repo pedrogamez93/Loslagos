@@ -711,14 +711,24 @@ select {
 @media (min-width: 1280px) {
 
   .container {
-    max-width: 1280px;
+    max-width: 1140px;
   }
 }
+@media (min-width: 1400px){
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1320px;
+  }
+}
+/*
 @media (min-width: 1536px) {
 
   .container {
     max-width: 1536px;
   }
+}
+*/
+nav.navbar{
+  padding: 8px 0px !important;
 }
 .prose {
   color: var(--tw-prose-body);
