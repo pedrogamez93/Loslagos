@@ -88,7 +88,7 @@
 </head>
 <body id="app-layout"  class=" " style="">
 <div class="container-fluid nav-head">
-<nav class="navbar navbar-expand-lg  backgroundB container" >
+<nav class="navbar navbar-expand-lg px-5 backgroundB container" >
   
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
@@ -278,24 +278,24 @@
         <h5 class="footer-col-title">Menú</h5>
         <ul class="nav flex-column">
             <li class="nav-item mb-2 text-light">
-                <a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Gobierno Regional</a>
+                <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
             </li>
-            <li class="nav-item mb-2"><a href="{{ url('/consejoregional/introduccion') }}" class="nav-link p-0 text-muted">Consejo Regional</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/regionlagos/introduccion') }}" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de Funcionarios</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Consejo Regional</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
         </ul>
     </div>
 
     <div class="col mb-3">
         <h5 class="footer-col-title" >Enlaces directos</h5>
         <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="https://fondocomunidad.goreloslagos.cl/login" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
-           
-            <li class="nav-item mb-2"><a href="{{ url('/regionlagos/antecedentesregion') }}" class="nav-link p-0 text-muted">Información de la región</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/organigrama') }}" class="nav-link p-0 text-muted">Organigrama</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="nav-link p-0 text-muted">Trámites</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Fondo comunidad (Evaluación)</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Creando y Cuidando la Región</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Información de la región</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Directorio de funcionarios</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qué es el Gobierno Regional</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Organigrama</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Trámites</a></li>
         </ul>
     </div>
 
@@ -306,12 +306,12 @@
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
-            <a href="{{ url('/contactanos') }}" class="nav-link p-0 text-muted">
+            <a href="#" class="nav-link p-0 text-muted">
                 <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
                     
                     
 
-                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contáctanos</a>
+                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contactanos</a>
                 </div>
             </a>
             </li>
@@ -336,7 +336,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
    jQuery(document).ready(function(){

@@ -15,7 +15,7 @@
     font-weight: 800; /* Indica que esta es la versión ExtraBold */
   }
   nav.navbar{
-    padding: 8px 0px;
+    padding: 8px 0px !important;
   }
   *,
   ::before,
