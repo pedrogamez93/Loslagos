@@ -37,7 +37,8 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <p class="card-text noticia-categoria">{{ $sitio->categoria }}</p>
-                            <h3 class="card-title titulonoticia">{{ $sitio->titulo }}</h3>
+                            <h3 id="titulositio" class="card-title ">{{ $sitio->titulo }}</h3>
+                            <h5 id="descripcionsitio" class="card-title ">{{ $sitio->descripcion }}</h5>
                             <a href="{{ $sitio->url }}" class="btn btn-primary">Ir ahora</a>
                         </div>
                     </div>
