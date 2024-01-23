@@ -319,7 +319,7 @@ line-height: normal;
 }
 
 .carousel-item {
-  max-height: 280px; /* Establece la altura máxima que desees */
+  max-height: 300px; /* Establece la altura máxima que desees */
   overflow: hidden;
 }
 
