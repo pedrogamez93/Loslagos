@@ -10,13 +10,14 @@
     
 <div id="banner" class=" h-500  text-light colorB" style="">
     <div class="container">
-        <h5>Home / Gobierno Regional</h5>
+        <h5>Home / Directorio funcionarios</h5>
         <h1 class="titulofun" style="text-align: left;">Funcionarios </h1>
-        <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
+        <p>Proveer servicios de información de los funcionarios públicos de la Región De Los Lagos</p>
     </div>
 </div>
 
-<div class="contenido h-800 colorB" style=" ">
+<div class="contenido h-800 colorB" style="padding-right: 10rem!important;
+    padding-left: 10rem!important; ">
     <div class="container py-3">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
         <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>

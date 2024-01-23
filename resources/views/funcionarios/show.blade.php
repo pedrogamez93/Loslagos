@@ -10,26 +10,27 @@
 @endpush
     
 
-    <div id="banner" class=" h-500  text-light" style="background-color: #389144 !important; height: 502px; display: flex;
+    <div id="banner" class=" h-500  text-light colorB" style="background-color: #389144; height: 502px; display: flex;
         flex-wrap: wrap;
         align-content: center;
         align-items: center;
         padding-left: 50px;">
-        <div>
-            <h5>Home / Gobierno Regional</h5>
+        <div class="container">
+            <h5>Home / Directorio funcionarios</h5>
             <h1 class="titulofun" style="text-align: left;">Funcionarios </h1>
-            <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
+            <p>Proveer servicios de información de los funcionarios públicos de la Región De Los Lagos</p>
         </div>
     </div>
 
-    <div class="contenido" style=" margin-top: -6vh;
+    <div class="contenido colorB" style=" margin-top: -6vh;
     background-color: white;
-    border-top-left-radius: 90px;">
+    border-top-left-radius: 90px; padding-right: 10rem!important;
+    padding-left: 10rem!important;">
         <div class="row py-5">
             <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
-            <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>
-                <h4 class="tituloform">Nuestro Directorio</h4>
-                <p class="parrafo2 p-1">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>
+            <p class="parrafo1 p-1 colorB">Infórmate sobre nuestra Región...</p>
+                <h4 class="tituloform colorB">Nuestro Directorio</h4>
+                <p class="parrafo2 p-1 colorB">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>
                 <form action="{{ url('/funcionarios/buscar') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
@@ -90,15 +91,15 @@
         <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="Imagen del Funcionario" style="border-radius: 0px 0px 100px 0px;min-height: 100%;">
     </div>
     <div class="col-6" style="margin-top: -16px;">
-        <p class="fs-1 nombredetallado">{{ $funcionario->nombre }}</p>
-        <p><span class="spandetallado">Division:</span> {{ $funcionario->nombre }}</p>
-        <p><span class="spandetallado">Departamento:</span> {{ $funcionario->apellido }}</p>
-        <p><span class="spandetallado">Cargo:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado">Direccion:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado">Fono:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado">Correo Electrónico:</span> {{ $funcionario->email }}</p>
-        <p><span class="spandetallado">Region:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado">Provincia</span>{{ $funcionario->cargo }}</p>
+        <p class="fs-1 nombredetallado colorB">{{ $funcionario->nombre }}</p>
+        <p><span class="spandetallado colorB">Division:</span> {{ $funcionario->nombre }}</p>
+        <p><span class="spandetallado colorB">Departamento:</span> {{ $funcionario->apellido }}</p>
+        <p><span class="spandetallado colorB">Cargo:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado colorB">Direccion:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado colorB">Fono:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado colorB">Correo Electrónico:</span> {{ $funcionario->email }}</p>
+        <p><span class="spandetallado colorB">Region:</span> {{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado colorB">Provincia</span>{{ $funcionario->cargo }}</p>
       
       
     </div>

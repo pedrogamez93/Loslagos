@@ -12,8 +12,8 @@
     align-content: center;
     align-items: center;
     padding-left: 50px;">
-    <div>
-        <h5>Home / Gobierno Regional</h5>
+    <div class="container ">
+        <h5>Home / Documentos</h5>
         <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
         <p >Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
     </div>

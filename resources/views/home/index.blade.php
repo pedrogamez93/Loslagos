@@ -12,7 +12,7 @@
 <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
 <main class="container" class="headercontent">
-    <div class="row p-5" class="centrar">
+    <div class="row p-5" class="centrar ">
         <div class="col colinputbuscador">
             <div id="divbuscador" class="input-group rounded">
                 <div class="position-absolute mt-2">

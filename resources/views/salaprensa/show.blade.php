@@ -8,15 +8,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
 
-<div id="banner" class="h-500 text-light d-flex align-items-center" style="background: #00548F !important; height: 502px; display: flex; padding-left: 50px;">
-    <div>
-        <h5>Home / Gobierno Regional</h5>
+<div id="banner" class="h-500 text-light d-flex align-items-center colorB" style="background: #00548F ; height: 502px; display: flex; padding-left: 50px;">
+    <div class="container">
+        <h5>Home / Salsa de prensa</h5>
         <h1 class="titulobannernoticia" style="text-align: left;">Sala de prensa </h1>
-        <p>Infórmate aquí de las noticias más recientes del Gore</p>
+        <p>Visualiza aquí las noticias, fotografías y videos relacionados a nuestra región</p>
     </div>
 </div>
 
-<div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
+<div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6 colorB" style="min-height: 800px; margin-top: -7vh; border-radius: 70px 0px 0px 0px;">
     <div class="row py-5 px-5">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
            
@@ -24,7 +24,7 @@
             <!-- Aquí se colocan las noticias -->
             <div class="row">
             <div class="container">
-    <h1 class="tituloform mb-1">{{ $noticia->titulo }}</h1>
+    <h1 class="tituloform mb-1 colorB">{{ $noticia->titulo }}</h1>
     <p class="mb-5" style="color: #565656; font-family: Inter; font-size: 16px; font-style: italic; font-weight: 600; line-height: normal;">{{ $noticia->categoria }}</p>
 
     <div class="text-center">
@@ -32,7 +32,7 @@
        
     </div>
 
-    <p class="mt-5" style="color: #565656; font-family: Inter; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; white-space: pre-line;">{{ $noticia->descripcion }}</p>
+    <p class="mt-5 colorB" style="color: #565656; font-family: Inter; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; white-space: pre-line;">{{ $noticia->descripcion }}</p>
 </div>
 
 </div>
@@ -53,8 +53,8 @@
    
    document.addEventListener("DOMContentLoaded", function() {
      
-       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F', 'important');
-       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F', 'important');
+       document.querySelector('.nav-head').style.setProperty('background-color', '#00548F' );
+       document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F');
    });
 </script> 
 
