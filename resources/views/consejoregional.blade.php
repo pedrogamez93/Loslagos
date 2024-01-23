@@ -182,6 +182,18 @@
         height:535px;
         background-color: #389144;
     }
+    .container-fluid.color{
+            background-color:#00548F;
+    }
+    .nav-head {
+        background-color: #00548f !important;
+    }
+    .container-fluid.nav-head {
+    background-color: #00548f;
+    }
+    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f;
+    }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -204,7 +216,7 @@
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid color">
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
@@ -305,12 +317,7 @@
     </main>
 </body>
 </html>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.nav-head').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
-        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
-    });
-</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.bajada-acord').forEach(function(element) {

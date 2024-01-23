@@ -143,6 +143,18 @@ h5.card-title{
         color: #FFFFFF;
         font-Weight: 700;
     }
+    .container-fluid.color{
+            background-color:#00548F;
+    }
+    .nav-head {
+        background-color: #00548f !important;
+    }
+    .container-fluid.nav-head {
+    background-color: #00548f;
+    }
+    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f;
+    }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -171,7 +183,7 @@ h5.card-title{
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid" style="background-color:#00548F;">
+<div class="container-fluid color">
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
@@ -298,12 +310,6 @@ h5.card-title{
     </main>
 </body>
 </html>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-      
-        document.querySelector('.navbar').style.cssText = 'background-color: #00548F !important; border-bottom: 1px solid #FFFFFF;';
-    });
-</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

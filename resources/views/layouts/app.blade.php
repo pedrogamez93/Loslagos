@@ -309,13 +309,24 @@
             <a href="#" class="nav-link p-0 text-muted">
                 <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
                     
-                    <input id="newsletter12" type="text" class="form-control" placeholder="Escríbenos" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20); color: white;">
+                    
 
-                    <button class="btn " type="button" style="color: white;">Enviar</button>
+                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contactanos</a>
                 </div>
             </a>
             </li>
             <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+            <li class="nav-item mt-3">
+                <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
+                    <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="https://twitter.com/GoreLosLagos" style="padding-right: 20px;">
+                    <img src="{{ asset('img/twitter.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
+                    <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
+                </a>
+            </li>
         </ul>
     </div>
 </footer>
