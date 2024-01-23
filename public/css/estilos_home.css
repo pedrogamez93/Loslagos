@@ -14,8 +14,9 @@
     src: url('/fonts/Inter-ExtraBold.ttf') format('truetype');
     font-weight: 800; /* Indica que esta es la versión ExtraBold */
   }
-
-
+  nav.navbar{
+    padding: 8px 0px;
+  }
   *,
   ::before,
   ::after {

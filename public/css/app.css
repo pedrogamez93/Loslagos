@@ -711,7 +711,7 @@ select {
 @media (min-width: 1280px) {
 
   .container {
-    max-width: 1280px;
+    max-width: 1140px;
   }
 }
 @media (min-width: 1400px){
@@ -727,6 +727,9 @@ select {
   }
 }
 */
+nav.navbar{
+  padding: 8px 0px;
+}
 .prose {
   color: var(--tw-prose-body);
   max-width: 65ch;

@@ -88,7 +88,7 @@
 </head>
 <body id="app-layout"  class=" " style="">
 <div class="container-fluid nav-head">
-<nav class="navbar navbar-expand-lg px-5 backgroundB container" >
+<nav class="navbar navbar-expand-lg  backgroundB container" >
   
   <a class="navbar-brand" href="{{ url('/') }}">
   <img src="{{ asset('storage/img/Logo-Gore-Blanco.png') }}" alt="Logo Gore Blanco">
