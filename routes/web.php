@@ -459,7 +459,8 @@ Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasControll
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 Route::get('/programas/{id}', [ProgramasController::class, 'show'])->name('programas.show');
 
-
+Route::get('/imagenes_programas/{imagen}', [ProgramasController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/directorio_destino/{nombreArchivo}', [ProgramasController::class, 'mostrarFotografia'])->name('nombreArchivo.mostrar');
 
 //PREGUNTAS FRECUENTES
 Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);

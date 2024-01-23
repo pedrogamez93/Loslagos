@@ -67,7 +67,7 @@
           font-style: normal;
           line-height: 40px;
           font-family: 'Inter' !important;
-          background: url("/asset/storage/app/public/img/arrow.png") no-repeat;
+          background: url("storage/images/arrow.png") no-repeat;
           background-position: 97% 50%;
           padding: 4px 60px 4px 20px;
         }
@@ -200,18 +200,18 @@
             <hr size="5px">
 
            <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
-                <img src="" alt="icon">
+                <img src="{{ asset('storage/images/icon-plataforma-1.png') }}" alt="icon" style="margin-right: 10px;">
                 <small class="ms-2">Plataforma <br><strong>Ley del Lobby</strong></small>  
             </li>
 
             <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
-              <img src="" alt="icon">
+              <img src="{{ asset('storage/images/icon-plataforma-2.png') }}" alt="icon" style="margin-right: 10px;">
               <small class="ms-2">Transparencia activa <br><strong>Ley de Transparencia</strong></small>
 
             </li>
 
             <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
-              <img src="" alt="icon">
+              <img src="{{ asset('storage/images/icon-plataforma-3.png') }}" alt="icon" style="margin-right: 10px;">
               <small class="ms-2">Solicitar información <br><strong>Ley de Transparencia</strong></small>
 
             </li>

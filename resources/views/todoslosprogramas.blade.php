@@ -1,9 +1,14 @@
+
+
+
+
+
 <!DOCTYPE html>
 <style>
     header{
        /* width: 100%;*/
         height: 450px;
-        background-color: #F59120;
+        background-color: #00548F;
         color: #fff; /* Cambia esto al color de texto que desees */
         padding: 20px; /* Añade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
@@ -77,7 +82,6 @@
         font-Size: 50px;
         line-height: 60.51px;
         color: #FFFFFF;
-        word-break: break-word !important;
     }
     .cat{
         margin-top: -5rem;
@@ -96,7 +100,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 5rem !important;
+        
     }
 
     #categorylist li:first-child {
@@ -142,55 +146,31 @@
         background-color: #00548F;
         color:#FFFFFF;
     }
-    h1.mititulo{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        color: #565656;
-    }
-    p.mi-style-onep{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 16px;
-        color: #565656;
-        padding-bottom: 2%;
-    }
-    p.mi-style-onet{
-        font-family: 'Inter';
-        font-Weight: 500;
-        font-Size: 16px;
-        color: #565656;
-        padding-bottom: 2%;
-    }
-    .contenido-ley{
-        border: 1px solid #F59120;
-    }
-    .card {
-    border: none !important;
-}
-h5.card-title{
-    font-family: 'Inter';
-    font-Weight: 700;
-    font-Size: 20px;
-    Line-height: 24.2px;
-    color: #565656;
-}
-    img.img-fluid.icon-style {
-    width: 90px;
-    height: 75px;
-}
-    a.final-btn{
-        padding: 10px 20px;
-        border-Radius: 100px;
-        background-color: #F59120;
-        color: #FFFFFF;
-        font-Weight: 700;
-    }
     footer{
         height:535px;
         background-color: #389144;
     }
-  .container-grid{
+    .descripB{
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        color:#fff;
+
+    }
+
+    .backgroundB{
+          background-color: #F59120 !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
+        }
+        .colorB{
+            background-color:#F59120;
+        }
+        .nav-head{
+            background-color:#F59120 !important;
+        }
+        .container-grid{
     width: 100%;
     margin: 40px auto;
     display: grid !important;
@@ -256,83 +236,58 @@ h5.card-title{
     font-Weight: 700;
     font-Size: 16px;
     color: #00548F;
-}
+}   
 </style>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Programas</title>
-   
+    <title>Región de los Lagos</title>
+    <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
+    <!-- Jquery -->
+
 </head>
 <body>
-    <header>
-    @extends('layouts.app')
+@extends('layouts.app')
 @section('content')
 @push('styles')
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-        <!-- Contenido del encabezado barra de arriba logo, menu, etc...
-        <div class="container top-bar">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-2">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="logo" style="max-width: 218px; max-height: 61px;">
-                </div>
-                <div class="col-md-8" style="align-self: center;">
-                    <nav style="margin-left: 5rem;">
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/acerca">Gobierno Regional</a></li>
-                            <li><a href="/contacto">Concejo Regional</a></li>
-                            <li><a href="/contacto">Region de Los Lagos</a></li>
-                            <li><a href="/contacto">Directorio de Funciones</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-2" style="align-self: center;">
-                    <a href="" class="style-btn"><p class="style-btn">Infórmate aquí</p></a>
-                </div>
+<div class="container-fluid colorB">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container pt-5 pb-5">
+                <div class="row" >
+                    <div class="col-md-12" >
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/todoslosprogramas">Programas</a></span></p>
+                    </div>
+                    <div class="col-md-12 pt-5 pb-5">
+                        <p class="one-title pb-4">Programas</p>
+
+                        <p style="Width:623px;"  class="mb-3 descripB">Los programas son una serie de actividades planeadas que involucran un accionar más amplio que un proyecto</p>
+                    </div>
+                    
+                <div class="container pt-4">
+                    <div class="row">
+                        
+                    </div>
+                </div>   
             </div>
         </div>
--->
-        <!-- Contenido del encabezado principal breadcumbs, titulo, bajadas-->
-        <div class="container content-breadc pt-4 pb-3">
-            <div class="row" style="padding: 10px 0px 20px 55px;">
-                <div class="col-md-12">
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/todoslosprogramas">Programas</a></span></p>
-                </div>
-            </div>
-        </div>   
-        <div class="container content-prin">
-            <div class="row" style="padding: 10px 0px 20px 50px;">
-                <div class="col-md-12">
-                    <p class="one-title pb-4" style="overflow-wrap: break-word;">Programas</p>
-
-                    <p>Los programas son una serie de actividades planeadas que involucran un accionar más amplio que un proyecto</p>
-                </div>
-            </div>
-        </div>   
-    </header>
+    </div>
+</div> 
     <!-- Contenido principal de tu página -->
     <main>
-        <div class="container cat">
-            <div class="row">
-                <div class="col-md-12 pt-4 pb-4" style="padding: 10px 60px 20px 60px;">
-                    <p class="title-cat">Programas de la Región</p>
-                </div>
-            </div>
-        </div>
-        <div class="container set pb-4">
-     
-    </div>
-        <div class="container titulo">
-            <div class="row">
-                <div class="col-md-12 container-grid" style="padding: 10px 60px 20px 60px;       
-">
+    <div class="container-fluid cat">
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 container-grid pt-5 pb-5">
                         @foreach($programas as $programa)
                             <div class="programa ">
                                 <a href="{{ route('programas.show', $programa) }}">
-                                    <img src="{{ asset('storage').'/' .$programa->imagen }}" alt="Imagen-programa">
+                                    <img src="{{ asset($programa->imagen) }}" alt="Imagen-programa">
                                 </a>
                                 <div class="info">
                                     <a href="{{ route('programas.show', $programa) }}"><h2 class="title-programa">{{ $programa->titulo }}</h2></a>
@@ -354,18 +309,17 @@ h5.card-title{
                             </div>
                         @endforeach
                     </>
+                                   </div>
+                    </div>
                 </div>
+                
+                </div>
+                
             </div>
-        </div> 
+        </div>
+    </div>
     </main>
-
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-      
-        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
-        document.querySelector('.nav-head').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
-    });
-</script>
-@endsection
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
+@endsection
