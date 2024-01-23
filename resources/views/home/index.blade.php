@@ -82,12 +82,13 @@
         
         <div>
           
-    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;">
+        <a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="galeria" style="border-radius: 100px;">
     Galería fotográfica
-    </button>
-    <button type="button" class="btn btn-outline-warning text-truncate d-sm-inline" style="border-radius: 100px;"> 
-        Videos
-    </button>
+</a>
+
+<a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="videos" style="border-radius: 100px;"> 
+    Videos
+</a>
 </div>
 
     </div>
@@ -229,6 +230,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 </div>
 </div>
+
 
 
 

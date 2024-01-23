@@ -62,6 +62,8 @@ Route::put('/home/update', [HomeController::class, 'update']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 
+
+
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create');

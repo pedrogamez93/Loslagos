@@ -306,12 +306,12 @@
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 text-muted">
+            <a href="{{ url('/contactanos') }}" class="nav-link p-0 text-muted">
                 <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
                     
                     
 
-                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contactanos</a>
+                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contáctanos</a>
                 </div>
             </a>
             </li>
@@ -336,6 +336,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
    jQuery(document).ready(function(){

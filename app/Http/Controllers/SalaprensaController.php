@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Salaprensa;
 use Illuminate\Support\Facades\Storage;
 
+
 class SalaprensaController extends Controller
 {
     public function index()

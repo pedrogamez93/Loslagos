@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
 use App\Models\Documentonew;
-use App\Models\TramitesDigitales
-;
+use App\Models\TramitesDigitales;
+
+
 class HomeController extends Controller
 {
     public function index()
@@ -354,6 +355,9 @@ $resultados = $resultados1->merge($resultados2)->merge($resultados3);
 // Redirige a la vista 'buscador' con los resultados paginados y la variable $query
 return view('Home.buscador', ['resultados' => $resultados, 'query' => $query]);
 }
+
+
+
 
 
 }
