@@ -177,11 +177,11 @@
         background-color:#00548F;
     }
     .container-fluid.nav-head {
-    background-color: #00548f !important;
-}
-nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
-    background-color: #00548f !important;
-}
+    background-color: #00548f;
+    }
+    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+    background-color: #00548f;
+    }
     footer{
         height:535px;
         background-color: #389144;
