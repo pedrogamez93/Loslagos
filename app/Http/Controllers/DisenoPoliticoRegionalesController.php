@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DisenoPoliticoRegionales;
@@ -39,11 +40,11 @@ class DisenoPoliticoRegionalesController extends Controller
             'titulo_seccion_form' => 'nullable|string',
             'titulo_seccion_encue' => 'nullable|string',
             'bajada_seccion_encue' => 'nullable|string',
-            'nombre_form.*' => 'required|string|max:255',
-            'url_form.*' => 'required|url',
-            'nombre_encuesta.*' => 'required|string|max:255',
-            'nombre_btn_encuesta.*' => 'required|string|max:255',
-            'url_btn_encuesta.*' => 'required|url',
+            'nombre_form.*' => 'nullable||string|max:255',
+            'url_form.*' => 'nullable||url',
+            'nombre_encuesta.*' => 'nullable||string|max:255',
+            'nombre_btn_encuesta.*' => 'nullable||string|max:255',
+            'url_btn_encuesta.*' => 'nullable||url',
         ]);
     
         // Crear el diseño político regional
@@ -105,7 +106,8 @@ class DisenoPoliticoRegionalesController extends Controller
             // Obtén las encuestas relacionadas
             $encuestas = $ultimoRegistro->btnEncuestas;
     
-            return view('disenopoliticoregionales.edit', compact('ultimoRegistro', 'formularios', 'encuestas'));
+            // Retorna la vista con el registro y su ID
+            return view('disenopoliticoregionales.edit', compact('ultimoRegistro', 'formularios', 'encuestas', 'id'));
         } else {
             // No hay registro con el ID proporcionado, puedes manejar esto según tus necesidades
             return view('disenopoliticoregionales.edit')->with('message', 'No se encontró el registro con el ID proporcionado.');
@@ -126,49 +128,60 @@ class DisenoPoliticoRegionalesController extends Controller
             'url_btn_encuesta.*' => 'nullable|url',
         ]);
     
-        // Obtener el registro existente
-        $ultimoRegistro = DisenoPoliticoRegionales::findOrFail($id);
-    
-        // Eliminar formularios y encuestas asociadas existentes
-        $ultimoRegistro->btnForms()->delete();
-        $ultimoRegistro->btnEncuestas()->delete();
-    
-        // Actualizar los campos del registro
-        $ultimoRegistro->fill([
-            'titulo' => $request->input('titulo'),
-            'bajada' => $request->input('bajada'),
-            'titulo_seccion_form' => $request->input('titulo_seccion_form', ''),  // Proporcionar un valor predeterminado
-            'titulo_seccion_encue' => $request->input('titulo_seccion_encue', ''),
-            'bajada_seccion_encue' => $request->input('bajada_seccion_encue', ''),
-        ])->save();
+            // Obtén el registro que se va a actualizar
+            $ultimoRegistro = DisenoPoliticoRegionales::findOrFail($id);
+
+            // Actualiza solo si se reciben datos para cada campo
+            if ($request->has('titulo')) {
+                $ultimoRegistro->titulo = $request->input('titulo');
+            }
+            if ($request->has('bajada')) {
+                $ultimoRegistro->bajada = $request->input('bajada');
+            }
+            if ($request->has('titulo_seccion_form')) {
+                $ultimoRegistro->titulo_seccion_form = $request->input('titulo_seccion_form');
+            }
+            if ($request->has('titulo_seccion_encue')) {
+                $ultimoRegistro->titulo_seccion_encue = $request->input('titulo_seccion_encue');
+            }
+            if ($request->has('bajada_seccion_encue')) {
+                $ultimoRegistro->bajada_seccion_encue = $request->input('bajada_seccion_encue');
+            }
+
+            // Guarda los cambios en el registro
+            $ultimoRegistro->save();
+
     
         // Crear formularios asociados actualizados
         $nombreBtnForms = $request->input('nombre_btn_form');
         $urlBtnForms = $request->input('url_btn_form');
-    
+
         if (!is_null($nombreBtnForms) && is_iterable($nombreBtnForms)) {
             foreach ($nombreBtnForms as $index => $nombreBtnForm) {
-                if (array_key_exists($index, $urlBtnForms)) {
-                    $ultimoRegistro->btnForms()->updateOrCreate([
+                if (array_key_exists($index, $urlBtnForms) && !empty($nombreBtnForm) && !empty($urlBtnForms[$index])) {
+                    DisenoPoliticoRegionalesBtnforms::create([
                         'nombre_btn_form' => $nombreBtnForm,
                         'url_btn_form' => $urlBtnForms[$index],
+                        'diseno_politico_regionales_id' => $ultimoRegistro->id,
                     ]);
                 }
             }
         }
-    
+
         // Crear encuestas asociadas actualizadas
         $nombreEncuestas = $request->input('nombre_encuesta');
         $nombreBtnEncuestas = $request->input('nombre_btn_encuesta');
         $urlBtnEncuestas = $request->input('url_btn_encuesta');
-    
+
         if (!is_null($nombreEncuestas) && is_iterable($nombreEncuestas)) {
             foreach ($nombreEncuestas as $index => $nombreEncue) {
-                if (array_key_exists($index, $nombreBtnEncuestas) && array_key_exists($index, $urlBtnEncuestas)) {
-                    $ultimoRegistro->btnEncuestas()->updateOrCreate([
+                if (array_key_exists($index, $nombreBtnEncuestas) && array_key_exists($index, $urlBtnEncuestas)
+                    && !empty($nombreEncue) && !empty($nombreBtnEncuestas[$index]) && !empty($urlBtnEncuestas[$index])) {
+                    DisenoPoliticoRegionalesBtnEncuestas::create([
                         'nombre_encuesta' => $nombreEncue,
                         'nombre_btn_encuesta' => $nombreBtnEncuestas[$index],
                         'url_btn_encuesta' => $urlBtnEncuestas[$index],
+                        'diseno_politico_regionales_id' => $ultimoRegistro->id,
                     ]);
                 }
             }

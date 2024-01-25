@@ -146,46 +146,51 @@ input:required {
 </div>
 
 <script>
-    $(document).ready(function () {
-        // Manejador de clic en el botón "Agregar más" para formularios
-        $("#clonar").on("click", function () {
-            // Clona el contenedor y sus campos
-            var clone = $(".agregando-btn-form:last").clone();
-
-            // Genera un nuevo identificador único
-            var nuevoId = Date.now();
-
-            // Asigna el nuevo identificador a los campos clonados
-            clone.find("input[name='nombre_btn_form[]']").attr('id', 'nombre_btn_form_' + nuevoId);
-            clone.find("input[name='url_btn_form[]']").attr('id', 'url_btn_form_' + nuevoId);
-
-            // Limpia los valores de los campos clonados
-            clone.find(".campo").val('');
-
-            // Inserta el clon justo debajo del contenedor original
-            clone.insertAfter(".agregando-btn-form:last");
+$(document).ready(function () {
+    // Función para agregar botón de eliminar a un contenedor clonado
+    function agregarBotonEliminar(clone) {
+        var botonEliminar = $('<button/>', {
+            text: 'Eliminar',
+            class: 'btn btn-danger eliminar',
+            type: 'button',
+            click: function() {
+                // Elimina el contenedor cuando se hace clic en el botón de eliminar
+                $(this).closest('.container').remove();
+            }
         });
 
-        // Manejador de clic en el botón "Agregar más" para encuestas
-        $("#clonarencuesta").on("click", function () {
-            // Clona el contenedor de encuestas y sus campos
-            var clone = $(".agregando-btn-encuestas:last").clone();
+        // Elimina cualquier botón de eliminar existente en el clon
+        clone.find('.eliminar').remove();
 
-            // Genera un nuevo identificador único
-            var nuevoId = Date.now();
+        // Agrega el botón de eliminar al clon
+        clone.append($('<div/>', {
+            class: 'text-right mt-2 mb-2'
+        }).append(botonEliminar));
+    }
 
-            // Asigna el nuevo identificador a los campos clonados
-            clone.find("input[name='nombre_encuesta[]']").attr('id', 'nombre_encuesta_' + nuevoId);
-            clone.find("input[name='nombre_btn_encuesta[]']").attr('id', 'nombre_btn_encuesta_' + nuevoId);
-            clone.find("input[name='url_btn_encuesta[]']").attr('id', 'url_btn_encuesta_' + nuevoId);
-
-            // Limpia los valores de los campos clonados
-            clone.find(".campoencuesta").val('');
-
-            // Inserta el clon justo debajo del contenedor original de encuestas
-            clone.insertAfter(".agregando-btn-encuestas:last");
-        });
+    // Clonar y agregar botones de formularios
+    $("#clonar").on("click", function () {
+        var clone = $(".agregando-btn-form:last").clone();
+        var nuevoId = Date.now();
+        clone.find("input[name='nombre_btn_form[]']").attr('id', 'nombre_btn_form_' + nuevoId);
+        clone.find("input[name='url_btn_form[]']").attr('id', 'url_btn_form_' + nuevoId);
+        clone.find(".campo").val('');
+        clone.insertAfter(".agregando-btn-form:last");
+        agregarBotonEliminar(clone);
     });
+
+    // Clonar y agregar botones de encuestas
+    $("#clonarencuesta").on("click", function () {
+        var clone = $(".agregando-btn-encuestas:last").clone();
+        var nuevoId = Date.now();
+        clone.find("input[name='nombre_encuesta[]']").attr('id', 'nombre_encuesta_' + nuevoId);
+        clone.find("input[name='nombre_btn_encuesta[]']").attr('id', 'nombre_btn_encuesta_' + nuevoId);
+        clone.find("input[name='url_btn_encuesta[]']").attr('id', 'url_btn_encuesta_' + nuevoId);
+        clone.find(".campoencuesta").val('');
+        clone.insertAfter(".agregando-btn-encuestas:last");
+        agregarBotonEliminar(clone);
+    });
+});
 </script>
 
 <script>
