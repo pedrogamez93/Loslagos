@@ -89,6 +89,15 @@ input:required {
                             <h1>Tramites Digitales</h1> 
                         </div>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <!-- Formulario para la creación de un nuevo trámite -->
                     <form action="{{ route('tramites.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -202,7 +211,6 @@ input:required {
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
         $('#agregarMas').click(function() {

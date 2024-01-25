@@ -20,8 +20,19 @@
     <div class="row  px-5" style="padding-right: 10rem!important;
     padding-left: 10rem!important;">
         <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
-            <h4 class="tituloform mb-5 colorB">Sala de Prensa</h4>
-
+        <div>   
+        <h4 class="tituloform mb-5 colorB">Sala de Prensa</h4>
+        
+        <div>
+                <a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="galeria" style="border-radius: 100px;">
+            Galería fotográfica
+                </a>
+            <a href="{{ url('/saladeprensa') }}" type="button" class="btn btn-outline-warning text-truncate d-sm-inline change-category" data-category="videos" style="border-radius: 100px;"> 
+            Videos
+            </a>
+        </div>
+       
+  </div>
             <!-- Aquí se colocan las noticias -->
             <div class="row">
     @foreach($noticias as $noticia)
