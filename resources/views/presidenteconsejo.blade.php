@@ -215,22 +215,22 @@ h5.card-title{
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container p-0">
         <div class="row">
             <div class="col-md-12">
                 <div class="container set pb-4">
                 <p></p>
                 </div>
-                <div class="container titulo">
+                <div class="container titulo p-0">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="mititulo mt-2 mb-2">Presidente del Consejo</h1>
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container p-0">
                     <div class="row">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6 mb-4 p-0">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -240,7 +240,7 @@ h5.card-title{
                                             <p class="itemss">Partido Político: <span style="font-family: 'Inter'; font-weight: 400; font-size: 16px;">{{ $presidente->partidopolitico ?? '' }}</span></p>
                                         </div>
                                         <h1 class="mititulo mt-4 mb-4">Datos del Servicio</h1>
-                                        <div class="container items">
+                                        <div class="container items p-0">
                                             <div class="itemss">
                                                     <img src="{{ asset('storage/images/check2.png') }}" alt="Descripción de la imagen">
                                                     <p class="itemss">Cargo: <span style="font-family: 'Inter'; font-weight: 400; font-size: 16px;">{{ $presidente->cargo ?? '' }}</span></p>
