@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
 use App\Models\Documentonew;
 use App\Models\TramitesDigitales;
+use Illuminate\Support\Facades\Log;
+
 
 
 class HomeController extends Controller
@@ -114,6 +116,14 @@ class HomeController extends Controller
             'url_minibanner11' => 'nullable',
             'minibanner12' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'url_minibanner12' => 'nullable',
+            'minibanner13' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'url_minibanner13' => 'nullable',
+        'minibanner14' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'url_minibanner14' => 'nullable',
+        'minibanner15' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'url_minibanner15' => 'nullable',
+        'minibanner16' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'url_minibanner16' => 'nullable',
 
             // Repite este patrón para minibanner4, minibanner5, ... hasta minibanner12
         ]);
@@ -121,68 +131,15 @@ class HomeController extends Controller
         $input = $request->all();
     
   
-        if ($request->hasFile('minibanner1')) {
-            $path = $request->file('minibanner1')->store('public/minibanners');
-            $input['minibanners1'] = $path;
-        }
+        for ($i = 13; $i <= 16; $i++) {
+            $minibannerField = "minibanner$i";
+            $urlMinibannerField = "url_minibanner$i";
     
-       
-        if ($request->hasFile('minibanner2')) {
-            $path = $request->file('minibanner2')->store('public/minibanners');
-            $input['minibanners2'] = $path;
+            if ($request->hasFile($minibannerField)) {
+                $path = $request->file($minibannerField)->store('public/minibanners');
+                $input[$minibannerField] = $path;
+            }
         }
-    
-      
-        if ($request->hasFile('minibanner3')) {
-            $path = $request->file('minibanner3')->store('public/minibanners');
-            $input['minibanners3'] = $path;
-        }
-       
-        if ($request->hasFile('minibanner4')) {
-            $path = $request->file('minibanner4')->store('public/minibanners');
-            $input['minibanners4'] = $path;
-        }
-        
-        if ($request->hasFile('minibanner5')) {
-            $path = $request->file('minibanner5')->store('public/minibanners');
-            $input['minibanners5'] = $path;
-        }
-    
-        if ($request->hasFile('minibanner6')) {
-            $path = $request->file('minibanner6')->store('public/minibanners');
-            $input['minibanners6'] = $path;
-        }
-       
-         if ($request->hasFile('minibanner7')) {
-            $path = $request->file('minibanner7')->store('public/minibanners');
-            $input['minibanners7'] = $path;
-        }
-      
-         if ($request->hasFile('minibanner8')) {
-            $path = $request->file('minibanner8')->store('public/minibanners');
-            $input['minibanners8'] = $path;
-        }
-    
-         if ($request->hasFile('minibanner9')) {
-            $path = $request->file('minibanner9')->store('public/minibanners');
-            $input['minibanners9'] = $path;
-        }
-       
-         if ($request->hasFile('minibanner10')) {
-            $path = $request->file('minibanner10')->store('public/minibanners');
-            $input['minibanners10'] = $path;
-        }
-     
-         if ($request->hasFile('minibanner11')) {
-            $path = $request->file('minibanner11')->store('public/minibanners');
-            $input['minibanners11'] = $path;
-        }
-        
-         if ($request->hasFile('minibanner12')) {
-            $path = $request->file('minibanner12')->store('public/minibanners');
-            $input['minibanners12'] = $path;
-        }
-    
         
         Home::create($input);
     
@@ -195,8 +152,8 @@ class HomeController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'titulobanner' => 'required',
-            'descripcionbanner' => 'required',
+            'titulobanner' => 'nullable',
+            'descripcionbanner' => 'nullable',
             // Agrega reglas de validación para cada minibanner
             'minibanner1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'url_minibanner1' => 'nullable',
@@ -222,96 +179,60 @@ class HomeController extends Controller
             'url_minibanner11' => 'nullable',
             'minibanner12' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'url_minibanner12' => 'nullable',
-
-            // Repite este patrón para minibanner4, minibanner5, ... hasta minibanner12
+            'minibanner13' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url_minibanner13' => 'nullable',
+            'minibanner14' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url_minibanner14' => 'nullable',
+            'minibanner15' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url_minibanner15' => 'nullable',
+            'minibanner16' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url_minibanner16' => 'nullable',
         ]);
     
         $input = $request->all();
+    $home = Home::where('id', 1)->first();
 
-      
-        $home = Home::where('id', 1)->first();
-  
-        if ($request->hasFile('minibanner1')) {
-            
-            Storage::delete($home->minibanners1);
-            $path = $request->file('minibanner1')->store('public/minibanners');
-            $input['minibanners1'] = $path;
+    $changes = [];
 
-        }
+  // Repite este patrón para minibanner1 hasta minibanner16
+for ($i = 1; $i <= 16; $i++) {
+    $minibannerField = "minibanners$i";
+    $urlMinibannerField = "url_minibanner$i";
+
+    if ($request->hasFile($minibannerField)) {
+        // Elimina la imagen anterior
+        Storage::delete($home->$minibannerField);
     
-       
-        if ($request->hasFile('minibanner2')) {
-            Storage::delete($home->minibanner2);
-            $path = $request->file('minibanner2')->store('public/minibanners');
-            $input['minibanner2'] = $path;
-        }
+        // Almacena la nueva imagen
+        $path = $request->file($minibannerField)->store('public/minibanners');
+        $input[$minibannerField] = $path;
     
-      
-        if ($request->hasFile('minibanner3')) {
-            Storage::delete($home->minibanner3);
-            $path = $request->file('minibanner3')->store('public/minibanners');
-            $input['minibanner3'] = $path;
-        }
-       
-        if ($request->hasFile('minibanner4')) {
-            Storage::delete($home->minibanner4);
-            $path = $request->file('minibanner4')->store('public/minibanners');
-            $input['minibanner4'] = $path;
-        }
-        
-        if ($request->hasFile('minibanner5')) {
-            Storage::delete($home->minibanner5);
-            $path = $request->file('minibanner5')->store('public/minibanners');
-            $input['minibanner5'] = $path;
-        }
-    
-        if ($request->hasFile('minibanner6')) {
-            Storage::delete($home->minibanner6);
-            $path = $request->file('minibanner6')->store('public/minibanners');
-            $input['minibanner6'] = $path;
-        }
-       
-         if ($request->hasFile('minibanner7')) {
-            Storage::delete($home->minibanner7);
-            $path = $request->file('minibanner7')->store('public/minibanners');
-            $input['minibanner7'] = $path;
-        }
-      
-         if ($request->hasFile('minibanner8')) {
-            Storage::delete($home->minibanner8);
-            $path = $request->file('minibanner8')->store('public/minibanners');
-            $input['minibanner8'] = $path;
-        }
-    
-         if ($request->hasFile('minibanner9')) {
-            Storage::delete($home->minibanner9);
-            $path = $request->file('minibanner9')->store('public/minibanners');
-            $input['minibanner9'] = $path;
-        }
-       
-         if ($request->hasFile('minibanner10')) {
-            Storage::delete($home->minibanner10);
-            $path = $request->file('minibanner10')->store('public/minibanners');
-            $input['minibanner10'] = $path;
-        }
-     
-         if ($request->hasFile('minibanner11')) {
-            Storage::delete($home->minibanner11);
-            $path = $request->file('minibanner11')->store('public/minibanners');
-            $input['minibanner11'] = $path;
-        }
-        
-         if ($request->hasFile('minibanner12')) {
-            Storage::delete($home->minibanner12);
-            $path = $request->file('minibanner12')->store('public/minibanners');
-            $input['minibanner12'] = $path;
-        }
-    
-        
-        $home->update($input);
-    
-        return redirect('/home/actualizar')->with('success', 'Registro actualizado correctamente.');
+        // Limpia la URL si hay una imagen nueva
+        //$input[$urlMinibannerField] = null;
+       // $changes[$urlMinibannerField] = $request->$urlMinibannerField;
+        $changes[$minibannerField] = $path;
+
     }
+    elseif ($request->input($urlMinibannerField) !== null) {
+        // Si no hay nueva imagen, pero hay una URL proporcionada, guarda la URL
+       // $input[$urlMinibannerField] = $request->$urlMinibannerField;
+
+        // Limpia la dirección de la imagen si hay una URL nueva
+        //$input[$minibannerField] = null;
+        $changes[$urlMinibannerField] = $request->input($urlMinibannerField);
+    }
+}
+
+
+
+if (!empty($changes)) {
+   
+    $home->update($changes);
+}
+
+
+    return redirect('/home/actualizar')->with('success', 'Registro actualizado correctamente.');
+}
 
     
     public function mostrarImagen($carpeta, $imagen)

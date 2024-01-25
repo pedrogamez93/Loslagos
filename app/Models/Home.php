@@ -39,6 +39,14 @@ class Home extends Model
         'url_minibanner11',
         'minibanners12',
         'url_minibanner12',
+        'minibanners13',
+        'url_minibanner13',
+        'minibanners14',
+        'url_minibanner14',
+        'minibanners15',
+        'url_minibanner15',
+        'minibanners16',
+        'url_minibanner16',
     ];
 
 }
