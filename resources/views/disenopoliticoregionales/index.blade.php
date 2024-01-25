@@ -107,7 +107,7 @@
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="editor" name="bajada" value="" disabled>{{ $ultimoRegistro->bajada }}</textarea>
 
-                            <label class="style-label mt-4" for="tituloseccion">Título Sección documentos:</label>
+                            <label class="style-label mt-4" for="tituloseccion">Título Sección formularios:</label>
                             <input class="form-control mt-2 mb-4" type="text" name="titulo_secciontwo" value="{{ $ultimoRegistro->titulo_seccion_form }}" disabled>
                                           
                             <!-- Mostrar formularios -->
@@ -161,7 +161,7 @@
                                 <p>No hay encuestas disponibles.</p>
                             @endif
 
-                        <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar diseño</button>
+                            <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar" data-id="{{ $ultimoRegistro->id }}">Editar diseño</button>
                         <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
                 </div>
             </div>
@@ -188,11 +188,13 @@
 </script>
 
 <script>
+var editarUrlBase = "{{ route('disenopoliticoregionales.edit', ['id' => 'PLACEHOLDER']) }}";
+
 $(document).ready(function () {
-    // Agrega un evento de clic al botón
     $("#boton-editar").on("click", function () {
-        // Redirige a la página de edición con el ID del elemento actual
-        window.location.href = "";
+        var id = $(this).data('id');
+        var urlEditar = editarUrlBase.replace('PLACEHOLDER', id);
+        window.location.href = urlEditar;
     });
 });
 </script>

@@ -204,6 +204,7 @@ Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class,
 Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario')->middleware('auth');
 Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta')->middleware('auth');
 Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update')->middleware('auth');
+Route::get('/disenopoliticoregionales/{id}/edit', 'DisenoPoliticoRegionalesController@edit')->name('disenopoliticoregionales.edit');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
