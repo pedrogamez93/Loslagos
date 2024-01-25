@@ -126,7 +126,7 @@
 <main>
     <div class="container-fluid cat">
         <div class="row">
-            <div class="col-md-12 pt-4 pb-4 p-0">
+            <div class="col-md-12 pt-4 pb-4 p-0 ">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 p-0">
