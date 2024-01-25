@@ -132,18 +132,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
-                <div class="row" style="padding: 10px 0px 20px 55px;">
-                    <div class="col-md-12" style="padding: 0;">
+                <div class="row">
+                    <div class="col-md-12 p-0">
                         <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/consejoregional/actas"> Consejo Regional</a> / <span style="font-Weight: 700;"><a href=""></a></span></p>
                     </div>
                 </div>
                     
-                <div class="container content-prin pt-4">
-                    <div class="row" style="padding: 10px 0px 0px 25px;">
-                        <div class="col-md-12">
+                <div class="container content-prin pt-4 p-0">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
                             <p class="one-title pb-5">Consejo Regional</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0">
                             <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
@@ -159,9 +159,9 @@
                 <div class="container set pb-4">
                    
                 </div>
-                <div class="container content mt-5 mb-5">
+                <div class="container content mt-5 mb-5 p-0">
                     <div class="row">
-                        <div class="col-md-8" style="padding: 0 1rem 0 3rem;">
+                        <div class="col-md-8">
                             <div class="bajada">
                                 <div class="container">
                                 <p class="style-tag">Infórmate sobre nuestra Región...</p>

@@ -142,18 +142,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
-                <div class="row" style="padding: 10px 0px 20px 55px;">
-                    <div class="col-md-12" style="padding: 0;">
+                <div class="row">
+                    <div class="col-md-12 p-0">
                         <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/leygobiernoregional">Ley Gobierno Regional</a></span></p>
                     </div>
                 </div>
                     
-                <div class="container content-prin pt-4">
-                    <div class="row" style="padding: 10px 0px 0px 25px;">
-                        <div class="col-md-12">
+                <div class="container content-prin pt-4 p-0">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
                             <p class="one-title pb-5">Gobierno Regional</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0">
                             <p>El Gobierno Regional (GORE) es un organismo autónomo, que tiene por objetivo la administración de la región, impulsando su desarrollo económico, cultural y social</p>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
+                        <div class="col-md-12">
                             <p class="title-cat">Selecciona una Categoría</p>
                         </div>
                     </div>
@@ -178,13 +178,13 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="container set pb-4">
+            <div class="col-md-12 p-0">
+                <div class="container set pb-4 p-0">
                     @include('layouts.listacategorias')
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 3rem;">
+                        <div class="col-md-12" >
                             <p style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 16px; color: #00548F;">Infórmate sobre nuestra Región...</p>
                             <h1 class="mititulo mt-4">Ley</h1>
                         </div>

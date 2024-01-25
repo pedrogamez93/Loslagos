@@ -91,18 +91,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
-                <div class="row" style="padding: 10px 0px 20px 55px;">
-                    <div class="col-md-12" style="padding: 0;">
+                <div class="row">
+                    <div class="col-md-12 p-0">
                     <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/consejoregional/introduccion"><span> Consejo Regional</span></a> /<a href="/consejoregional/tablassesionesconsejo"> <span style="font-Weight: 700;">Tabla de Sesiones Consejo Regional de Los Lagos</span></a></p>
                     </div>
                 </div>
                     
-                <div class="container content-prin pt-4">
-                    <div class="row" style="padding: 10px 0px 0px 25px;">
-                        <div class="col-md-12">
+                <div class="container content-prin pt-4 p-0">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
                             <p class="one-title pb-5">Consejo Regional</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0">
                             <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
@@ -114,10 +114,10 @@
 <main>
     <div class="container-fluid cat">
         <div class="row">
-            <div class="col-md-12 pt-4 pb-4">
+            <div class="col-md-12 pt-4 pb-4 p-0">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
+                        <div class="col-md-12 p-0">
                         <p class="style-tag">Infórmate sobre nuestra Región...</p>
 
                         <h1 class="mititulo mt-4 mb-4">Tabla de Sesiones Consejo Regional de Los Lagos</h1>
