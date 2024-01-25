@@ -187,8 +187,8 @@ h5.card-title{
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
-                <div class="row" style="padding: 10px 0px 20px 55px;">
-                    <div class="col-md-12" style="padding: 0;">
+                <div class="row">
+                    <div class="col-md-12 p-0">
                         <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/consejoregional/introduccion"><span> Consejo Regional</span></a> /<a href="/consejoregional/consejerososorno"> <span style="font-Weight: 700;">Consejeros Llanquihue</span></a></p>
                     </div>
                 </div>
@@ -223,11 +223,11 @@ h5.card-title{
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 p-0">
                 <div class="container set pb-4 p-0">
                 <p></p>
                 </div>
-                <div class="container titulo">
+                <div class="container titulo p-0">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="mititulo mt-2 mb-2">Consejeros</h1>

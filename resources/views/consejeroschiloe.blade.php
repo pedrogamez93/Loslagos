@@ -191,12 +191,12 @@ h5.card-title{
                     </div>
                 </div>
                     
-                <div class="container content-prin pt-4">
+                <div class="container content-prin pt-4 p-0">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 p-0">
                             <p class="one-title pb-5">Consejo Regional</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0">
                             <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
@@ -225,7 +225,7 @@ h5.card-title{
                 <div class="container set pb-4">
                 <p></p>
                 </div>
-                <div class="container titulo">
+                <div class="container titulo p-0">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="mititulo mt-2 mb-2">Consejeros</h1>

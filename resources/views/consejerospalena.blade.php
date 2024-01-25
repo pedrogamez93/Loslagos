@@ -227,7 +227,7 @@ h5.card-title{
                 <div class="container set pb-4  p-0">
                 <p></p>
                 </div>
-                <div class="container titulo">
+                <div class="container titulo p-0">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="mititulo mt-2 mb-2">Consejeros</h1>
