@@ -213,7 +213,7 @@ h5.card-title{
             <div class="col-md-12 pt-5 pb-2 p-0">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 p-0">
                         <p class="style-tag">Infórmate sobre nuestra Región...</p>
                         </div>
                     </div>
@@ -244,12 +244,12 @@ h5.card-title{
                         <div class="col-md-4 mb-4">
                             <div class="card h-100">
                                 <div class="row g-0">
-                                    <div class="col-md-4" style="text-align: -webkit-right;">
+                                    <div class="col-md-3" style="text-align: -webkit-right;">
                                         <a href="{{ route('consejerospalena.show', $consejero->id) }}">
                                             <img src="{{ asset($consejero->imagen) }}" alt="Imagen del Consejero" style="width: 100px;height: 100px;border-radius: 100%;">
                                         </a>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <div class="card-body">
                                             <a class="name" href="{{ route('consejerospalena.show', $consejero->id) }}">
                                                 <p class="name">{{ $consejero->nombres }} {{ $consejero->apellidos }}</p>

@@ -11,7 +11,7 @@
 
     #categorylist {
         display: table;
-        padding-left: 2rem !important;
+        /*padding-left: 2rem !important;*/
     }
 
     #categorylist li:first-child {
