@@ -235,11 +235,11 @@ h5.card-title{
                     </div>
                 </div>
                 
-                <div class="container mt-4">
+                <div class="container mt-4 p-0">
                     <div class="row">
                         <!-- Iterar sobre cada consejero y mostrar sus datos -->
                         @foreach($consejeros as $consejero)
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-4 mb-4 p-0">
                             <div class="card h-100">
                                 <div class="row g-0">
                                     <div class="col-md-3" style="text-align: -webkit-right;">
