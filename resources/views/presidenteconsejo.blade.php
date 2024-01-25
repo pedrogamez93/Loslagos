@@ -181,18 +181,18 @@ h5.card-title{
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
-                <div class="row" style="padding: 10px 0px 20px 55px;">
+                <div class="row">
                     <div class="col-md-12" style="padding: 0;">
                         <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/consejoregional/introduccion"><span> Consejo Regional</span></a> /<a href="/consejoregional/presidenteconsejo"> <span style="font-Weight: 700;">Presidente del Consejo</span></a></p>
                     </div>
                 </div>
                     
-                <div class="container content-prin pt-4">
-                    <div class="row" style="padding: 10px 0px 0px 25px;">
-                        <div class="col-md-12">
+                <div class="container content-prin pt-4 p-0">
+                    <div class="row">
+                        <div class="col-md-12 p-0">
                             <p class="one-title pb-5">Consejo Regional</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0">
                             <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
                         </div>
                     </div>
@@ -207,7 +207,7 @@ h5.card-title{
             <div class="col-md-12 pt-5 pb-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
+                        <div class="col-md-12 p-0">
                         <p class="style-tag">Presidente Consejo...</p>
                         </div>
                     </div>
@@ -223,14 +223,14 @@ h5.card-title{
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 3rem;">
+                        <div class="col-md-12">
                             <h1 class="mititulo mt-2 mb-2">Presidente del Consejo</h1>
                         </div>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 mb-4" style="padding: 0 0 0 2.5rem;">
+                        <div class="col-md-6 mb-4">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
