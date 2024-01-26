@@ -252,6 +252,8 @@ Route::delete('galerias/{galeria}', [GaleriaController::class, 'destroy'])->name
 Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])->name('imagenes.destroy');
 Route::get('/galerias/{id}/edit', 'GaleriaController@edit')->name('galerias.edit');
 
+Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

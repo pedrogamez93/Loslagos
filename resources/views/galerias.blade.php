@@ -42,7 +42,7 @@
         font-Size: 16px;
         color: #00548F;
     }
-    h1.titles{
+    p.title-cat{
         font-family: 'Inter';
         font-Weight: 700;
         font-Size: 30px;
@@ -161,24 +161,45 @@ button {
         color: #FFFFFF !important;
         font-Weight: 700 !important;
     }
-    .slick-slider .item {
-    width: 284px; /* Ancho del ítem */
-    padding: 10px; /* Espaciado interno */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    .galerias-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 
-    .slick-slider .item img {
-        width: 100%; /* Asegura que la imagen ocupe todo el ancho del ítem */
-        height: 284px; /* Altura fija para la imagen */
-        object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio, recortando lo que sobre */
+    .galeria-item {
+        width: 284px;
+        height: 284px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
     }
-    .slick-slide img {
-    display: block;
-    width: 384px;
-    height: 284px;
-    object-fit: cover;
-}
 
+    .galeria-info {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .imagenes-count {
+        align-self: flex-end;
+        font-family: Inter !important;
+        font-Weight: 700;
+    }
+
+    .titulo-galeria {
+        align-self: flex-end;
+        font-family: Inter !important;
+        font-Weight: 700;
+    }
 </style>
 <html>
     <head>
@@ -186,21 +207,6 @@ button {
         <title>Región de los Lagos</title>
         <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
         <!-- Jquery -->
-<!-- Incluir jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Incluir Owl Carousel CSS y JS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
-<!-- Fancybox CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-<!-- Fancybox JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
     </head>
     <body>
@@ -244,29 +250,34 @@ button {
                                     <div class="container int p-0">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h1 class="titles">Galerias</h1>
+                                                <p class="title-cat">Galerias</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="container mt-5">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="container">
-                                                    {{-- Título de la Galería --}}
-                                                    <h1 class="titles mb-4">{{ $galeria->nombre }}</h1>
-
-                                                    <div class="slick-slider">
-                                                        @foreach ($galeria->imagenes as $imagen)
-                                                            <div>
-                                                                {{-- Enlace para abrir la imagen en Fancybox --}}
-                                                                <a href="{{ asset('storage/' . $imagen->archivo) }}" data-fancybox="gallery">
-                                                                    <img src="{{ asset('storage/' . $imagen->archivo) }}" alt="{{ $imagen->nombre }}" class="img-fluid">
-                                                                </a>
+                                            <div class="col-md-8">
+                                                <div class="galerias-grid">
+                                                    @foreach ($galerias as $galeria)
+                                                        @php
+                                                            $imagenPrimera = $galeria->imagenes->first();
+                                                        @endphp
+                                                        {{-- Enlace a la vista de edición de la galería --}}
+                                                        <a href="{{ route('galerias.show', $galeria->id) }}" class="galeria-link">
+                                                            <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
+                                                                <div class="galeria-info">
+                                                                    <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
+                                                                    <h2 class="titulo-galeria">{{ $galeria->nombre }}</h2>
+                                                                </div>
                                                             </div>
-                                                        @endforeach
-                                                    </div>
-                                                    </div>
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                                <div class="col-md-4">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -278,28 +289,6 @@ button {
                 </div>
             </div>
         </main>
-        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        <!-- Tu script personalizado para inicializar Owl Carousel y Fancybox -->
-        <script>
-            $(document).ready(function(){
-                $('.slick-slider').slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 300,
-                    slidesToShow: 3, // Ajusta según el espacio disponible y el tamaño del ítem
-                    slidesToScroll: 1,
-                    autoplay: true, // Habilitar autoplay
-                    autoplayTimeout: 3000, // Tiempo en milisegundos antes de pasar a la siguiente imagen
-                    autoplayHoverPause: true,
-                    // Añadir otras opciones de Slick aquí si es necesario
-                });
-
-                // Inicializar Fancybox para la galería
-                $('[data-fancybox="gallery"]').fancybox({
-                    // Opciones de Fancybox aquí si es necesario
-                });
-            });
-        </script>
     </body>
 </html>
 @endsection

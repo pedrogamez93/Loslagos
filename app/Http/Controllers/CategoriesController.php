@@ -38,6 +38,8 @@ use App\Models\ConsejerosOsorno;
 use App\Models\ConsejerosPalena;
 use App\Models\Evento;
 use App\Models\Biblioteca;
+use App\Models\Galeria;
+use App\Models\Imagen;
 
 class CategoriesController extends Controller{
     
@@ -267,6 +269,12 @@ class CategoriesController extends Controller{
         $biblioteca = Biblioteca::all();
         
         return view('biblioteca', ['biblioteca' => $biblioteca]);
+    }
+
+    public function galeriaIndex() {
+        $galerias = Galeria::all();
+        
+        return view('galerias', ['galerias' => $galerias]);
     }
 
 }
