@@ -50,6 +50,11 @@ class HomeController extends Controller
                 'url_minibanner11' => '#',
                 'minibanners12' => 'public/minibanners/default_image.png',
                 'url_minibanner12' => '#',
+                'slider1' => 'public/minibanners/default_image.png',
+                'slider2' => 'public/minibanners/default_image.png',
+                'slider3' => 'public/minibanners/default_image.png',
+                'slider4' => 'public/minibanners/default_image.png',
+                'slider5' => 'public/minibanners/default_image.png',
             ]);
 
             
