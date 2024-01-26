@@ -18,12 +18,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
- 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <!-- Agrega tu hoja de estilo CSS personalizada para manejar cambios de accesibilidad -->
  <link rel="stylesheet" href="{{ asset('css/accessibility.css') }}">
 
 <!-- Agrega tu script JavaScript personalizado para manejar cambios de accesibilidad -->
 <script src="{{ asset('js/accessibility.js') }}" defer></script>
+
+
+
+
     <style>
         body {
             font-family: 'Lato';
@@ -330,12 +334,47 @@
         </ul>
     </div>
 </footer>
+
+
+
+
+
   
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  var mySwiper = new Swiper('.mySwiper', {
+    // Parámetros opcionales
+    loop: true,
+    autoplay: {
+      delay: 5500,
+      disableOnInteraction: false,
+    },
+
+    // Si activaste la paginación, navegación o scrollbar, añade esto:
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
+</script>
+
+
+   
 
     <script>
    jQuery(document).ready(function(){

@@ -86,6 +86,52 @@ class HomeController extends Controller
         return view('home.create', compact('home'));
     }
 
+
+    public function slider()
+    { 
+       
+        $home = Home::where('id', 1)->first();
+        
+        return view('home.slider', compact('home'));
+    }
+
+    public function updateSlider(Request $request)
+{
+    $request->validate([
+        'slider1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'slider2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'slider3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'slider4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'slider5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    ]);
+
+    $home = Home::where('id', 1)->first();
+    $changes = [];
+
+    // Repite este patrón para slider1 hasta slider5
+    for ($i = 1; $i <= 5; $i++) {
+        $sliderField = "slider$i";
+
+        if ($request->hasFile($sliderField)) {
+            // Elimina la imagen anterior
+            Storage::delete($home->$sliderField);
+
+            // Almacena la nueva imagen
+            $path = $request->file($sliderField)->store('public/sliders');
+            $changes[$sliderField] = $path;
+        }
+    }
+
+    if (!empty($changes)) {
+        $home->update($changes);
+    }
+
+    return redirect('/home/slider')->with('success', 'Registro actualizado correctamente.');
+}
+
+
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -193,6 +239,17 @@ class HomeController extends Controller
     $home = Home::where('id', 1)->first();
 
     $changes = [];
+
+
+    if ($request->has('titulobanner')) {
+        $changes['titulobanner'] = $request->titulobanner;
+    }
+
+    if ($request->has('descripcionbanner')) {
+        $changes['descripcionbanner'] = $request->descripcionbanner;
+    }
+
+    
 
   // Repite este patrón para minibanner1 hasta minibanner16
 for ($i = 1; $i <= 16; $i++) {
