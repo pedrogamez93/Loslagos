@@ -43,6 +43,7 @@ use App\Http\Controllers\SitiosController;
 use App\Http\Controllers\DocumentonewController;
 
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\BibliotecaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -236,6 +237,12 @@ Route::get('/agenda', [CategoriesController::class, 'agendaindex'])->name('agend
 Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
 
 Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+
+//RUTAS PARA LA BIBLIOTECA
+
+Route::resource('biblioteca', BibliotecaController::class);
+
+Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
 
 Route::middleware([
     'auth:sanctum',

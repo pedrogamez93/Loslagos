@@ -37,6 +37,7 @@ use App\Models\ConsejerosLlanquihue;
 use App\Models\ConsejerosOsorno;
 use App\Models\ConsejerosPalena;
 use App\Models\Evento;
+use App\Models\Biblioteca;
 
 class CategoriesController extends Controller{
     
@@ -260,6 +261,12 @@ class CategoriesController extends Controller{
     
         // Pasa los eventos a la vista
         return view('agenda', ['eventos' => $eventos]);
+    }
+
+    public function bibliotecaIndex() {
+        $biblioteca = Biblioteca::all();
+        
+        return view('biblioteca', ['biblioteca' => $biblioteca]);
     }
 
 }
