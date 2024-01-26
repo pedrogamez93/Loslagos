@@ -44,6 +44,7 @@ use App\Http\Controllers\DocumentonewController;
 
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\BibliotecaController;
+use App\Http\Controllers\GaleriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -243,6 +244,13 @@ Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene
 Route::resource('biblioteca', BibliotecaController::class);
 
 Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
+
+//RUTAS PARA GALERIA
+
+Route::resource('galerias', GaleriaController::class);
+Route::delete('galerias/{galeria}', [GaleriaController::class, 'destroy'])->name('galerias.destroy');
+Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])->name('imagenes.destroy');
+Route::get('/galerias/{id}/edit', 'GaleriaController@edit')->name('galerias.edit');
 
 Route::middleware([
     'auth:sanctum',
