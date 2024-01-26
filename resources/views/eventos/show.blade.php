@@ -50,7 +50,6 @@
         color: #565656;
     }
     p.style-down{
-        width: 580px;
         font-family: 'Inter';
         font-Weight: 500;
         font-Size: 16px;
@@ -82,68 +81,6 @@
         margin-top: -5rem;
         background-color: #FFFFFF;
         border-radius: 100px 0 0 0;
-    }
-    /*lista categorias*/
-    .lista-categorias {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    #categoriasToggle {
-        display: none;
-    }
-
-    #categorylist {
-        display: table;
-        
-    }
-
-    #categorylist li:first-child {
-        position: relative;
-    }
-
-    #categorylist li {
-        margin-right: 30px;
-        margin-top: 10px;
-        float: left;
-    }
-
-    #categorylist li a {
-        box-sizing: border-box;
-        font-family: 'Inter';
-        background: none repeat scroll 0 0 #E5E8ED;;
-        border: 1px solid #E5E8ED;
-        border-radius: 8px;
-        color: #565656;
-        display: block;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 4px 12px;
-        margin-top: 5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-decoration: none;
-    }
-
-    #categorylist li a:hover{
-        background-color: #64C69F;
-        color: #FFFFFF;
-    }
-
-    #categoriasToggle {
-        display: none;
-    }
-    .enlaces{
-        Width: 392px !important;
-        Height: 292px!important;
-        border-radius: 10px;
-        background-color: #00548F;
-        color:#FFFFFF;
-    }
-    footer{
-        height:535px;
-        background-color: #389144;
     }
     .descripB{
         font-family: Inter;
@@ -245,7 +182,7 @@ button {
                     <div class="container pt-5 pb-5">
                         <div class="row" >
                             <div class="col-md-12" >
-                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a> / <span style="font-Weight: 700;"><a href="#">Eventos</a></span></p>
+                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style=""><a href="/agenda">Agenda</a></span>/ <span style=""><a href="/agenda">Eventos</a></span>/ <span style="font-Weight: 700;"><a href="#">{{ $evento->titulo_evento }}</a></span></p>
                             </div>
                             <div class="col-md-12 pt-5 pb-5">
                                 <p class="one-title pb-4">Formulación Política de Turismo</p>
@@ -274,7 +211,7 @@ button {
                                     <div class="container int p-0">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p class="title-cat">Formulario de Contacto</p>
+                                                <p class="title-cat">{{ $evento->titulo_evento }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -282,19 +219,29 @@ button {
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h1>{{ $evento->titulo_evento }}</h1>
-                                                <p>{{ $evento->descripcion }}</p>
-                                                <p>Lugar: {{ $evento->lugar }}</p>
-                                                <p>Inicio: {{ $evento->fecha_inicio }}</p>
-                                                <p>Término: {{ $evento->fecha_termino }}</p>
-
-                                                <div class="">
-                                                    @if($evento->imagen)
-                                                        <img src="{{ asset($evento->imagen) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
-                                                    @else
-                                                        <p>No hay imaigen.</p>
-                                                    @endif
+                                
+                                                <p class="style-down mt-4">{{ $evento->descripcion }}</p>
+                                             
+                                                <div class="row mt-4 mb-4">
+                                                    <p><strong>Inicio:</strong> {{ $evento->fecha_inicio }}</p>
+                                                    <p><strong>Término:</strong> {{ $evento->fecha_termino }}</p>
                                                 </div>
+
+                                                <div class="row mt-4">
+                                                    <div class="col-md-6">
+                                                        @if($evento->imagen)
+                                                            <div class="evento-imagen">
+                                                                <img src="{{ asset('storage/' . $evento->imagen) }}" alt="Imagen del evento" style="max-width: 50%;">
+                                                            </div>
+                                                        @else
+                                                            <p>No hay imagen</p>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {!! $evento->lugar !!}
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>

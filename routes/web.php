@@ -232,6 +232,10 @@ Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('evento
 
 Route::get('/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
 
+Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
+
+Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -183,7 +183,7 @@ button {
                     <div class="container pt-5 pb-5">
                         <div class="row" >
                             <div class="col-md-12" >
-                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="#">Eventos</a></span></p>
+                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="/agenda">Agenda</a></span></p>
                             </div>
                             <div class="col-md-12 pt-5 pb-5">
                                 <p class="one-title pb-4">Formulación Política de Turismo</p>
@@ -236,7 +236,10 @@ button {
                                                                     <strong>Término:</strong> {{ $evento->fecha_termino->locale('es')->format('l d-m-Y H:i') }}
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <h3>{{ $evento->titulo_evento }}</h3>
+                                                                    <p><strong>Título:</strong></p>
+                                                                    <p>{{ $evento->titulo_evento }}</p>
+
+                                                                    <p><strong>Descripción:</strong></p>
                                                                     <p>{{ $evento->descripcion }}</p>
                                                                 </div>
                                                             </div>
