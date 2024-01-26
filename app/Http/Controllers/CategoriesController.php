@@ -36,6 +36,7 @@ use App\Models\ConsejerosChiloe;
 use App\Models\ConsejerosLlanquihue;
 use App\Models\ConsejerosOsorno;
 use App\Models\ConsejerosPalena;
+use App\Models\Evento;
 
 class CategoriesController extends Controller{
     
@@ -250,6 +251,15 @@ class CategoriesController extends Controller{
             // por ejemplo, mostrando un mensaje o redirigiendo a otra página
             return view('consejerospalena')->with('message', 'No se encontraron datos del consejero');
         }
+    }
+
+    public function agendaindex(){
+
+        // Obtiene todos los eventos
+        $eventos = Evento::orderBy('fecha_inicio', 'asc')->get();
+    
+        // Pasa los eventos a la vista
+        return view('agenda', ['eventos' => $eventos]);
     }
 
 }
