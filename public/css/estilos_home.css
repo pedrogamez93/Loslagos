@@ -523,8 +523,8 @@ background-color: #389144;
 /* Estilo para el div con esquina izquierda superior curva */
 .esquina-curva {
   position: relative;
-  top: -99px;
-  height: 100px;
+  top: -48px;
+  height: 55px;
   width: 100%;
   z-index: 999;
   background: linear-gradient(to bottom right, #389144 0%, #fff 0%);

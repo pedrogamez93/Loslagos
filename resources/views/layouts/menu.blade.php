@@ -193,7 +193,10 @@
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('Home.actualizar') }}">Editar</a>
+                                                <a class="style-a-menu" href="{{ route('Home.actualizar') }}">Editar Titulo, Descripcion y minibanners</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Home.slider') }}">Editar Sliders</a>
                                             </li>
                                             
                                         </ul>

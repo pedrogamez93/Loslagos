@@ -5,72 +5,126 @@
 @section('content')
 @push('styles')
     <link href="{{ asset('css/estilos_home.css') }}" rel="stylesheet">
+    <style>
+  .mySwiper {
+      width: 100%;
+      height: max-content;
+  }
+
+  .swiper-slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+  }
+  .mySwiper {
+      position: relative;
+   
+     
+  }
+
+  .cover-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10; /* Asegura que esté sobre el slider */
+  }
+</style>
 @endpush
 
-  <div id="header" class="d-flex h-300 text-center colorB" style="">
+<div class="swiper mySwiper">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
-<div class="mt-5 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <main class="container" class="headercontent">
+      <div class="row p-5" class="centrar ">
+          <div class="col colinputbuscador">
+              <div id="divbuscador" class="input-group rounded">
+                 
   
-<main class="container" class="headercontent">
-    <div class="row p-5" class="centrar ">
-        <div class="col colinputbuscador">
-            <div id="divbuscador" class="input-group rounded">
-                <div class="position-absolute mt-2">
-                    <span class="" style="background-color: transparent; border: none; ">
-                        <!-- <i class="bi bi-search"></i> -->
-                    </span>
-                </div>
-
-                @if ($home)
-                    <h1 class="titulohome">{{$home->titulobanner}}</h1>
-                    <p class="descripcionhome">{{$home->descripcionbanner}}</p>
-                @else
-                    <h1 class="titulohome">Titulo</h1>
-                    <p class="descripcionhome">Descripcion</p>
-                @endif
-
-                <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
-                    
-                    
-                <div id="divformbuscador" class="input-group input-group-rounded">
-    <div class="input-group-prepend">
-        <span class="input-group-text" style="position: absolute;
-    background-color: transparent !important;
-    border: none;height: -webkit-fill-available;">
-        <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
-        </span>
-    </div>
-    <input class="input-group-field" id="inputbucador" name="q" type="search" placeholder="Buscar aquí">
-    <div class="input-group-append">
-        <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
-    </div>
-</div>
-
-
-   
-</form>
-            </div>
-        </div>
-
-        <div id="columnaimg" class="col">
-        <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" class="img-fluid">
-        </div>
-        <div class="col-md-6">
-            <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" class="img-fluid">
-        </div>
-    </div>
-</div>
-
-        </div>
-    </div>
-</main>
- 
-</div>
-
+                  @if ($home)
+                      <h1 class="titulohome">{{$home->titulobanner}}</h1>
+                      <p class="descripcionhome">{{$home->descripcionbanner}}</p>
+                  @else
+                      <h1 class="titulohome">Titulo</h1>
+                      <p class="descripcionhome">Descripcion</p>
+                  @endif
+  
+                  <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
+                      
+                      
+                  <div id="divformbuscador" class="input-group input-group-rounded">
+      <div class="input-group-prepend">
+          <span class="input-group-text" style="position: absolute;
+      background-color: transparent !important;
+      border: none;height: -webkit-fill-available;">
+          <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
+          </span>
+      </div>
+      <input class="input-group-field" id="inputbucador" name="q" type="search" placeholder="Buscar aquí">
+      <div class="input-group-append">
+          <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+      </div>
   </div>
+  
+  
+     
+  </form>
+              </div>
+          </div>
+  
+          <div id="columnaimg" class="col">
+          <div class="container">
+      <!--<div class="row">
+          <div class="col-md-6">
+              <img src="{{ asset('storage/img/Rectangle13.png') }}" alt="Rectangle13" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+              <img src="{{ asset('storage/img/Rectangle14.png') }}" alt="Rectangle14" class="img-fluid">
+          </div>
+      </div> -->
+  </div>
+  
+          </div>
+      </div>
+  </main>
+   
+  </div>
+    </div>
+
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        @isset($home->slider1)
+        <div class="swiper-slide">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider1)]) }}" class="img-fluid mb-3"> 
+        </div>
+        @endisset
+        @isset($home->slider2)
+        <div class="swiper-slide">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider2)]) }}" class="img-fluid mb-3">
+        </div>
+        @endisset
+        @isset($home->slider3)
+        <div class="swiper-slide">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider3)]) }}" class="img-fluid mb-3">
+        </div>
+        @endisset
+        @isset($home->slider4)
+        <div class="swiper-slide">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider4)]) }}" class="img-fluid mb-3">
+        </div>
+        @endisset
+        @isset($home->slider5) 
+        <div class="swiper-slide">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider5)]) }}" class="img-fluid mb-3"> 
+        </div>
+        @endisset
+       
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+</div>
+ 
 
  <div class="esquina-curva colorB"> </div>
 <!--seccion de sala de prensa y tramite -->
@@ -245,5 +299,13 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 
 
+
+
+@push('scripts')
+
+
+
+
+@endpush
 
 @endsection
