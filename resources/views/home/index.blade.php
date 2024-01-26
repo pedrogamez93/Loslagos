@@ -15,6 +15,10 @@
       width: 100%;
       height: auto;
       object-fit: cover;
+      min-height: 800px;
+      max-height: 800px ;
+      filter: brightness(70%);
+
   }
   .mySwiper {
       position: relative;
@@ -96,27 +100,27 @@
         <!-- Slides -->
         @isset($home->slider1)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider1)]) }}" class="img-fluid mb-3"> 
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider1)]) }}" > 
         </div>
         @endisset
         @isset($home->slider2)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider2)]) }}" class="img-fluid mb-3">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider2)]) }}" >
         </div>
         @endisset
         @isset($home->slider3)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider3)]) }}" class="img-fluid mb-3">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider3)]) }}" >
         </div>
         @endisset
         @isset($home->slider4)
         <div class="swiper-slide">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider4)]) }}" class="img-fluid mb-3">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider4)]) }}" >
         </div>
         @endisset
         @isset($home->slider5) 
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider5)]) }}" class="img-fluid mb-3"> 
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider5)]) }}" > 
         </div>
         @endisset
        
@@ -305,17 +309,33 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 
 <script>
-window.onload = function() {
-    document.querySelectorAll('.swiper-slide img').forEach(img => {
-        var aspectRatio = img.naturalWidth / img.naturalHeight;
+$(document).ready(function() {
+    $('.swiper-slide img').each(function() {
+        var img = $(this);
 
-        // Si la imagen es mucho más ancha que alta (por ejemplo, más de 3 veces más ancha)
-        if (aspectRatio > 3) {
-            img.style.objectFit = 'contain';
-            img.style.height = 'auto';
+        // Función para ajustar el estilo
+        function adjustImageStyle() {
+            var aspectRatio = img[0].naturalWidth / img[0].naturalHeight;
+
+            if (aspectRatio > 3) {
+                img.css({
+                    'object-fit': 'contain',
+                    'height': 'auto',
+                    'width': '100%'
+                });
+            }
+        }
+
+        // Ajusta la imagen si ya está cargada
+        if (img[0].complete) {
+            adjustImageStyle();
+        } else {
+            // Ajusta la imagen una vez se haya cargado
+            img.on('load', adjustImageStyle);
         }
     });
-};
+});
+
 </script>
 
 
