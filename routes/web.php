@@ -61,9 +61,10 @@ Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create
 Route::post('/home/store', [HomeController::class, 'store']);
 Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
 Route::put('/home/update', [HomeController::class, 'update']);
+Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
-
+Route::get('/home/slider', [HomeController::class, 'slider'])->name('Home.slider');
 
 
 /*DOCUMENTOS */
