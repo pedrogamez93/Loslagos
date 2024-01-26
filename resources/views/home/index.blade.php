@@ -8,7 +8,7 @@
     <style>
   .mySwiper {
       width: 100%;
-      height: max-content;
+      height: 800px;
   }
 
   .swiper-slide img {
