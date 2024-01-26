@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use App\Models\Evento;
+
+
+class EventoController extends Controller{
+
+    public function index(){
+
+        // Obtiene todos los eventos
+        $eventos = Evento::orderBy('fecha_inicio', 'asc')->get();
+    
+        // Verifica si hay eventos
+        if ($eventos->isEmpty()) {
+            // Redirige a la vista de creación si no hay eventos
+            return redirect()->route('eventos.create');
+        }
+    
+        // Pasa los eventos a la vista
+        return view('eventos.index', ['eventos' => $eventos]);
+    }
+
+    public function create(){
+
+        return view('eventos.create');
+    }
+
+    public function store(Request $request){
+
+        // Validar los datos del formulario
+     
+        $request->validate([
+            'titulo_evento' => 'required|max:255',
+            'descripcion' => 'nullable|max:1000',
+            'lugar' => 'nullable|max:255',
+            'imagen' => 'nullable|image|max:2048', // Asegúrate de ajustar las reglas según tus necesidades
+            'fecha_inicio' => 'nullable|date_format:Y-m-d\TH:i',
+            'fecha_termino' => 'nullable|date_format:Y-m-d\TH:i|after_or_equal:fecha_inicio',
+        ]);
+
+        // Procesar fechas
+        $fechaInicio = $request->input('fecha_inicio')
+        ? Carbon::createFromFormat('Y-m-d\TH:i', $request->input('fecha_inicio'))
+        : null;
+    
+        $fechaTermino = $request->input('fecha_termino')
+        ? Carbon::createFromFormat('Y-m-d\TH:i', $request->input('fecha_termino'))
+        : null;
+    
+        // Registrar las fechas en los logs
+        //Log::info('Fecha de inicio procesada: ', ['fecha_inicio' => $fechaInicio]);
+        //Log::info('Fecha de término procesada: ', ['fecha_termino' => $fechaTermino]);
+
+        // Crear el evento
+        $evento = new Evento;
+        $evento->titulo_evento = $request->input('titulo_evento');
+        $evento->descripcion = $request->input('descripcion');
+        $evento->lugar = $request->input('lugar');
+        $evento->fecha_inicio = $fechaInicio;
+        $evento->fecha_termino = $fechaTermino;
+
+        // Procesar la imagen
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            $imagenPath = $request->imagen->store('eventos_imagenes', 'public');
+            $evento->imagen = $imagenPath;
+        }
+
+        $evento->save();
+
+        // Redirigir a alguna parte con un mensaje de éxito
+        return redirect()->route('eventos.index')->with('success', 'Evento creado exitosamente.');
+    }
+
+    public function destroy(Evento $evento){
+
+    $evento->delete();
+
+    return redirect()->route('eventos.index')->with('success', 'Evento eliminado exitosamente.');
+    }
+
+    public function show($id){
+
+    // Buscar el evento por su ID
+    $evento = Evento::findOrFail($id);
+
+    // Pasar el evento a la vista
+    return view('eventos.show', ['evento' => $evento]);
+    
+    }
+}

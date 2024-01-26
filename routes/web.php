@@ -42,6 +42,8 @@ use App\Http\Controllers\DocumentosDeGestionController;
 use App\Http\Controllers\SitiosController;
 use App\Http\Controllers\DocumentonewController;
 
+use App\Http\Controllers\EventoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -154,9 +156,6 @@ Route::resource('audienciasdepartes', AudienciasController::class)->middleware('
 Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia')->middleware('auth');
 Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia')->middleware('auth');
 
-Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class)->middleware('auth');
-Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo')->middleware('auth');
-
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class)->middleware('auth');
 
 Route::resource('comiteciencias', ComiteCienciasController::class)->middleware('auth');
@@ -179,7 +178,6 @@ Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->nam
 Route::resource('consejerospalena', ConsejerosPalenaController::class)->middleware('auth');
 Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show')->middleware('auth');
 
-
 Route::resource('concejoregional', ConcejoRegionalController::class)->middleware('auth');
 Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar')->middleware('auth');
 
@@ -201,10 +199,12 @@ Route::delete('/ultimoRegistro/{ultimoRegistroId}/documentos/{documentoId}', [Po
 Route::delete('/ultimoRegistro/{id}', [PoliticaPersonasMayoresController::class, 'destroypolitica'])->name('ruta_eliminar_pol')->middleware('auth');
 
 // Rutas para los disenopoliticoregionales
+Route::resource('disenopoliticoregionales', DisenoPoliticoRegionalesController::class)->middleware('auth');
+Route::delete('/eliminar-diseno/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarDisenoCompleto'])->name('eliminar_diseno_completo')->middleware('auth');
 Route::delete('/eliminar/formulario/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarFormulario'])->name('eliminar.formulario')->middleware('auth');
 Route::delete('/eliminar/encuesta/{id}', [DisenoPoliticoRegionalesController::class, 'eliminarEncuesta'])->name('eliminar.encuesta')->middleware('auth');
 Route::put('/disenopoliticoregionales/{id}', [DisenoPoliticoRegionalesController::class, 'update'])->name('disenopoliticoregionales.update')->middleware('auth');
-Route::get('/disenopoliticoregionales/{id}/edit', 'DisenoPoliticoRegionalesController@edit')->name('disenopoliticoregionales.edit');
+Route::get('/disenopoliticoregionales/{id}/edit', [DisenoPoliticoRegionalesController::class, 'edit'])->name('disenopoliticoregionales.edit')->middleware('auth');
 //Route::match(['put', 'patch'], '/disenopoliticoregionales/{disenopoliticoregionales}', 'App\Http\Controllers\DisenoPoliticoRegionalesController@update')->name('disenopoliticoregionales.update');
 
 // Rutas para los tr�mites
@@ -221,6 +221,16 @@ Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update']
 Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
 Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
 Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
+
+//RUTAS PARA LOS EVENTOS DE LA AGENDA
+
+Route::resource('eventos', EventoController::class);
+
+Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
+
+Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
+
+Route::get('/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
 
 Route::middleware([
     'auth:sanctum',
