@@ -304,6 +304,19 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 @push('scripts')
 
 
+<script>
+window.onload = function() {
+    document.querySelectorAll('.swiper-slide img').forEach(img => {
+        var aspectRatio = img.naturalWidth / img.naturalHeight;
+
+        // Si la imagen es mucho más ancha que alta (por ejemplo, más de 3 veces más ancha)
+        if (aspectRatio > 3) {
+            img.style.objectFit = 'contain';
+            img.style.height = 'auto';
+        }
+    });
+};
+</script>
 
 
 @endpush
