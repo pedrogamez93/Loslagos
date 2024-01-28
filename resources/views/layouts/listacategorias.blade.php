@@ -11,6 +11,7 @@
 
     #categorylist {
         display: table;
+        list-style-type: none !important;
         
     }
 
@@ -59,7 +60,13 @@
 
     #categoriasToggle {
         display: none;
-    }    
+    }
+    nav ul {
+        list-style-type: none !important;
+        list-style: none; 
+        padding: 0; 
+        display: flex; 
+    }   
 </style>
 
 <div class="lista-categorias">

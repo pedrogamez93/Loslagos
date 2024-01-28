@@ -11,6 +11,12 @@
         left: 0; /* Lo fija en la parte izquierda */
         z-index: 1000;
     }
+    nav ul {
+        list-style-type: none !important;
+        list-style: none; 
+        padding: 0; 
+        display: flex; 
+    }
     p.style-bread{
         font-family:'Inter';
         font-Weight: 500;
