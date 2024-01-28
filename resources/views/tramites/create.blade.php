@@ -89,7 +89,7 @@ input:required {
                             <h1>Tramites Digitales</h1> 
                         </div>
                     </div>
-                    @if ($errors->any())
+                    <!--@if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -97,7 +97,7 @@ input:required {
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif-->
                     <!-- Formulario para la creación de un nuevo trámite -->
                     <form action="{{ route('tramites.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf

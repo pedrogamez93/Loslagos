@@ -45,7 +45,10 @@ use App\Http\Controllers\DocumentonewController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\BibliotecaController;
 use App\Http\Controllers\GaleriaController;
-
+use App\Http\Controllers\SeminarioController;
+use App\Http\Controllers\DifusionController;
+use App\Http\Controllers\PresentacionesController;
+use App\Http\Controllers\ImagenRegionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -250,9 +253,45 @@ Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesContr
 Route::resource('galerias', GaleriaController::class);
 Route::delete('galerias/{galeria}', [GaleriaController::class, 'destroy'])->name('galerias.destroy');
 Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])->name('imagenes.destroy');
-Route::get('/galerias/{id}/edit', 'GaleriaController@edit')->name('galerias.edit');
+Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
 
 Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
+
+//RUTAS PARA SEMINARIO
+
+Route::resource('seminarios', SeminarioController::class);
+
+Route::get('/seminarios/edit/{id}', [SeminarioController::class, 'edit'])->name('seminarios.edit');
+
+Route::delete('/documentos/{id}', [SeminarioController::class, 'destroyDocumento'])->name('documentos.destroy');
+
+Route::delete('/galerias/{galeria}', [SeminarioController::class, 'eliminarGaleria'])->name('galerias.eliminar');
+
+Route::get('/galerias/{id}', [SeminarioController::class, 'show'])->name('galerias.show');
+
+Route::get('/seminario-internacional', [CategoriesController::class, 'seminarioIndex'])->name('seminario.internacional');
+
+//RUTAS PARA DIFUSION
+
+Route::resource('difusion', DifusionController::class);
+
+Route::delete('/difusion-docs/{id}', [DifusionController::class, 'destroyDocs'])->name('difusion-docs.destroy');
+
+Route::get('/politica-turismo/difusion', 'App\Http\Controllers\CategoriesController@difusionindex');
+
+//RUTAS PARA PRESENTACIONES
+
+Route::resource('presentaciones', PresentacionesController::class);
+
+Route::get('/politica-turismo/presentaciones', 'App\Http\Controllers\CategoriesController@presentacionIndex');
+
+//RUTAS PARA IMAGENREGION
+
+Route::resource('imagenregion', ImagenRegionController::class);
+
+Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
+
+Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
 
 Route::middleware([
     'auth:sanctum',
