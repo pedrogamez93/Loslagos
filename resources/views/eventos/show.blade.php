@@ -231,7 +231,7 @@ button {
                                                     <div class="col-md-6">
                                                         @if($evento->imagen)
                                                             <div class="evento-imagen">
-                                                                <img src="{{ route('eventos.mostrar.imagene', ['imagen' => $evento->imagen]) }}" alt="Imagen del evento" style="max-width: 50%;">
+                                                                <img src="{{ asset('storage/' . $evento->imagen) }}" alt="Imagen del evento" style="max-width: 50%;">
                                                             </div>
                                                         @else
                                                             <p>No hay imagen</p>
