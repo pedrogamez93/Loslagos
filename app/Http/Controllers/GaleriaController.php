@@ -143,4 +143,9 @@ class GaleriaController extends Controller{
     
     }
 
+    public function mostrargaleriaImagen($imagen) {
+        return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen));
+    }
+
+
 }

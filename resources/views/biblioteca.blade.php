@@ -250,7 +250,7 @@ button {
                                             @include('layouts.menupoliticaturismo')
                                         </div>
                                             <div class="col-md-8">
-                                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border: 1px solid #F59120; border-radius: 5px; padding: 20px;">
                                                     @foreach ($biblioteca as $arti)
                                                         <a href="{{ asset('storage/' . $arti->urldocs) }}" target="_blank" style="display: flex; align-items: center; text-align: left;">
                                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="margin-right: 10px;">    

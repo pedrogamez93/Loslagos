@@ -273,6 +273,8 @@ Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('gal
 
 Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
 
+Route::get('/galerias/{imagen}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
+
 //RUTAS PARA SEMINARIO
 
 Route::resource('seminarios', SeminarioController::class);
