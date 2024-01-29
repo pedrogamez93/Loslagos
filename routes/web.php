@@ -45,10 +45,16 @@ use App\Http\Controllers\DocumentonewController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\BibliotecaController;
 use App\Http\Controllers\GaleriaController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\SeminarioController;
 use App\Http\Controllers\DifusionController;
 use App\Http\Controllers\PresentacionesController;
 use App\Http\Controllers\ImagenRegionController;
+=======
+
+use App\Http\Controllers\SesionController;
+
+>>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -122,7 +128,19 @@ Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'
 Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy')->middleware('auth');
 Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-//Route::resource('/', HomeController::class);
+
+
+// Ruta para mostrar todas las sesiones (index)
+Route::get('/sesiones', [SesionController::class, 'index'])->name('sesiones.index');
+
+// Ruta para mostrar el formulario de creación de sesiones (create)
+Route::get('/sesiones/crear', [SesionController::class, 'create'])->name('sesiones.create');
+
+// Ruta para almacenar una nueva sesión (store)
+Route::post('/sesiones', [SesionController::class, 'store'])->name('sesiones.store');
+
+
+
 
 
 
