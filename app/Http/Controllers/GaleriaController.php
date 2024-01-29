@@ -107,7 +107,7 @@ class GaleriaController extends Controller{
 
     }
 
-    public function destroy($id){
+    public function galeriadestroy($id){
 
     $galeria = Galeria::with('imagenes')->findOrFail($id);
 

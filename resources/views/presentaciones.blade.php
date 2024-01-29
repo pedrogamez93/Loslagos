@@ -212,6 +212,34 @@ button {
         font-family: Inter !important;
         font-Weight: 700;
     }
+    .borderR{
+            border-left: 2px solid #F59120;
+        }
+    .infoR {
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #F59120;
+}
+.enlaceM {
+        color: #565656;
+    }
+    .enlaceM:hover {
+        font-Weight: 700;
+    }
+    .enlaceM{
+        padding: 10px 0px;
+        width: fit-content;
+    }
+    .borderM {
+            border-top: 2px solid #F59120;
+            border-bottom: 2px solid #F59120;
+            padding: 24px 0px;
+            margin-bottom: 20px;
+        }
 </style>
 <html>
     <head>
@@ -269,6 +297,9 @@ button {
 
                                     <div class="container">
                                         <div class="row">
+                                            <div class="col-md-4 borderM d-block d-lg-none">
+                                                @include('layouts.menupoliticaturismo')
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="migrid mt-5" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; float: inline-start; border: 1px solid #F59120; padding:20px; border-radius:5px;">
                                                     @foreach ($presentacion as $arti)
@@ -280,8 +311,8 @@ button {
                                                 </div>           
                                             </div>
 
-                                            <div class="col-md-4">
-
+                                            <div class="col-md-4 borderR d-none d-lg-block">
+                                                    @include('layouts.menupoliticaturismo')
                                             </div>
 
                                             </div>

@@ -57,7 +57,7 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Agregar galeria</h1>
+                        <h1>Editar Galería</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -98,6 +98,7 @@
                        
                         {{-- Mostrar imágenes existentes --}}
                         <div class="row">
+                        <h1>Imagenes presentes en la Galería</h1>
                             @foreach ($galeria->imagenes as $imagen)
                                 <div class="col-md-3 mb-4">
                                     <div class="image-container">
@@ -114,14 +115,14 @@
 
                 </div>
                 {{-- Opcional: Botón para eliminar la galería --}}
-                    <form action="{{ route('galerias.destroy', $galeria->id) }}" method="POST">
+                <form action="{{ route('galerias-back.destroy', $galeria->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger mt-4" onclick="return confirm('¿Estás seguro de querer eliminar esta galería?')">Eliminar Galería</button>
-                    </form>
-
-                <button onclick="window.location='{{ route('galerias.index') }}'" class="btn btn-secondary mt-4">Volver</button>
+                </form>
+                
             </div>
+            <button onclick="window.location='{{ route('galerias.index') }}'" class="btn btn-secondary mt-4">Volver</button>
         </div>
     </div>
 </div>

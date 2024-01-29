@@ -149,6 +149,9 @@ button {
     border: none;
     cursor: pointer;
 }
+.mi-bajada{
+    text-align: justify;
+}
 
 /* Estilo para ocultar campos específicos */
 .campoOculto {
@@ -191,10 +194,12 @@ button {
 
     .imagenes-count {
         align-self: flex-end;
+        font-weight: 700;
     }
 
     .titulo-galeria {
         align-self: flex-end;
+        font-weight: 700;
     }
     h2.mih2{
         font-family: 'Inter';
@@ -202,6 +207,34 @@ button {
         font-size: 20px;
         color: #565656;
     }
+    .borderR{
+            border-left: 2px solid #F59120;
+        }
+    .infoR {
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #F59120;
+}
+.enlaceM {
+        color: #565656;
+    }
+    .enlaceM:hover {
+        font-Weight: 700;
+    }
+    .enlaceM{
+        padding: 10px 0px;
+        width: fit-content;
+    }
+    .borderM {
+            border-top: 2px solid #F59120;
+            border-bottom: 2px solid #F59120;
+            padding: 24px 0px;
+            margin-bottom: 20px;
+        }
 </style>
 <html>
     <head>
@@ -259,53 +292,56 @@ button {
 
                                     <div class="container mt-5">
                                         <div class="row">
+                                            <div class="col-md-4 borderM d-block d-lg-none">
+                                                @include('layouts.menupoliticaturismo')
+                                            </div>
                                             <div class="col-md-8">
-
-                                            <div class="style-cont mi-bajada">{!! $lastRegistro->bajada ?? '' !!}</div>
-
+                                                <div class="mi-bajada">
+                                                    {!! $lastRegistro->bajada ?? '' !!}
+                                                </div>
                                                 <!-- Mostrar documentos -->
                                                 <h2 class="mih2 mt-4 mb-4">Documentos:</h2> 
-                                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                                                        @forelse($documentos as $documento)
+                                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                                    @forelse($documentos as $documento)
                                                         <div class="mi-documento mt-3 mb-3">
                                                             <a href="{{ $documento['url_doc'] }}" target="_blank" title="Ver documento: {{ $documento['nombre_doc'] }}" style="display: flex; align-items: center; text-align: left;">
                                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="margin-right: 10px;">
                                                                 <span class="mi-span">{{ $documento['nombre_doc'] }}</span>
                                                             </a>
                                                         </div>
-                                                        @empty
-                                                        <p>No hay documentos disponibles.</p>
-                                                        @endforelse
-                                                    </div>
-
-                                                <div class="container secciongalerias">
-                                                    <h2 class="mih2 mt-4 mb-4">Galerias:</h2> 
-                                                    <div class="galerias-grid">
-                                                    @forelse($galerias as $galeria)
-                                                        @php
-                                                            $imagenPrimera = $galeria->imagenes->first();
-                                                        @endphp
-                                                        {{-- Enlace a la vista de edición de la galería --}}
-                                                        <a href="{{ route('seminarios.show', $galeria->id) }}" class="galeria-link">
-                                                            <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
-                                                                <div class="galeria-info">
-                                                                    <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
-                                                                    <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
-                                                                </div>
-                                                            </div>
-                                                        </a>
                                                     @empty
-                                                        <p>No hay galerías disponibles.</p>
-                                                    @endforelse
+                                                    <p>No hay documentos disponibles.</p>
+                                                     @endforelse
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
-
+                                            <div class="col-md-4 borderR d-none d-lg-block">
+                                                    @include('layouts.menupoliticaturismo')
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="container secciongalerias">
+                                                    <h2 class="mih2 mt-4 mb-4">Galerias:</h2> 
+                                                        <div class="galerias-grid">
+                                                            @forelse($galerias as $galeria)
+                                                             
+                                                                @php
+                                                                    $imagenPrimera = $galeria->imagenes->first();
+                                                                @endphp
+                                                                {{-- Enlace a la vista de edición de la galería --}}
+                                                                <a href="{{ route('seminarios.show', $galeria->id) }}" class="galeria-link">
+                                                                    <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
+                                                                        <div class="galeria-info">
+                                                                            <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
+                                                                            <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            @empty
+                                                                <p>No hay galerías disponibles.</p>
+                                                            @endforelse
+                                                        </div>
+                                                </div>
                             </div>
                         </div>
                     </div>

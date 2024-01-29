@@ -236,11 +236,11 @@ Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('
 
 Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
 
-Route::get('/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
-
 Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
 
 Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+
+Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
 //Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
 
 //RUTAS PARA LA BIBLIOTECA
@@ -252,7 +252,8 @@ Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesContr
 //RUTAS PARA GALERIA
 
 Route::resource('galerias', GaleriaController::class);
-Route::delete('galerias/{galeria}', [GaleriaController::class, 'destroy'])->name('galerias.destroy');
+
+Route::delete('galerias-back/{galeria}', [GaleriaController::class, 'galeriadestroy'])->name('galerias-back.destroy');
 Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])->name('imagenes.destroy');
 Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
 
