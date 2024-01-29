@@ -45,16 +45,12 @@ use App\Http\Controllers\DocumentonewController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\BibliotecaController;
 use App\Http\Controllers\GaleriaController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\SeminarioController;
 use App\Http\Controllers\DifusionController;
 use App\Http\Controllers\PresentacionesController;
 use App\Http\Controllers\ImagenRegionController;
-=======
 
 use App\Http\Controllers\SesionController;
-
->>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
