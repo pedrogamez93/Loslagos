@@ -40,24 +40,7 @@ class ImagenRegionController extends Controller {
         'bajada' => $request->bajada
     ]);
 
-    if ($request->hasFile('urldoc')) {
-        $documentos = $request->file('urldoc');
-        $nombresDocumentos = $request->input('nombredoc');
-
-        foreach ($documentos as $key => $documento) {
-             $path = $documento->store('documento', 'public');
-             $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
-            
-            // Crear registro en la base de datos
-            $doc = ImagenRegionDocs::create([
-                'imagenregion_id' => $difusion->id,
-                'nombredoc' => $nombre,
-                'urldoc' => $path,
-            ]);
-        }
-    }
-
-   /* if ($request->has('nombredoc')) {
+    if ($request->has('nombredoc')) {
         foreach ($request->nombredoc as $key => $nombredoc) {
             if ($request->hasFile('urldoc')) {
                 $file = $request->urldoc[$key];
@@ -70,7 +53,7 @@ class ImagenRegionController extends Controller {
                 ]);
             }
         }
-    }*/
+    }
 
     return redirect()->route('imagenregion.index');
 
