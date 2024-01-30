@@ -442,7 +442,7 @@ class PoliticadeturismoController extends Controller
         ]);
     
         if ($request->hasFile('url')) {
-            $imagenPath = $request->file('url')->store('public/productosdelapoliticadeturismo');
+            $imagenPath = $request->file('url')->store('productosdelapoliticadeturismo', 'public');
             $data['url'] = $imagenPath;
         }
         PoliticaRegionalTurismo::create($data);
@@ -489,7 +489,7 @@ class PoliticadeturismoController extends Controller
         ]);
     
         if ($request->hasFile('url')) {
-            $imagenPath = $request->file('url')->store('public/productosdelapoliticadeturismo');
+            $imagenPath = $request->file('url')->store('productosdelapoliticadeturismo', 'public');
             $data['url'] = $imagenPath;
         }
 
