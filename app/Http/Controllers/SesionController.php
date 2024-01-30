@@ -85,8 +85,10 @@ class SesionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sesion = Sesion::with('documentos')->findOrFail($id);
+        return view('sesiones_consejo.edit', compact('sesion'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -96,9 +98,47 @@ class SesionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+{
+
+    $sesion = Sesion::findOrFail($id);
+
+    // Valida y actualiza la información de la sesión
+    $validatedData = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha_hora' => 'required|date',
+        'lugar' => 'required|string|max:255',
+        // Agrega validaciones para los documentos si es necesario
+    ]);
+
+    $sesion->update($validatedData);
+
+
+    
+    $sesion = Sesion::findOrFail($id);
+    $sesion->update($request->all());
+
+    // Manejar la eliminación de documentos
+    if ($request->has('documentos_eliminados')) {
+        foreach ($request->documentos_eliminados as $documento_id) {
+            Documento_Sesion::destroy($documento_id);
+        }
     }
+
+    
+    // Manejar la adición de nuevos documentos
+    if ($request->hasFile('nuevos_documentos')) {
+        foreach ($request->file('nuevos_documentos') as $documento) {
+            $path = $documento->store('public/documentos_sesiones');
+            $sesion->documentos()->create([
+                'nombre' => $documento->getClientOriginalName(),
+                'url' => $path
+            ]);
+        }
+    }
+
+    return redirect()->route('sesiones.index')->with('success', 'Sesión actualizada con éxito');
+}
+
 
     /**
      * Remove the specified resource from storage.
