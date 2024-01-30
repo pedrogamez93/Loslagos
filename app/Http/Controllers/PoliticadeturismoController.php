@@ -10,7 +10,7 @@ use App\Models\LamzamientoPoliticaTurismo;
 use App\Models\PoliticaRegionalTurismo;
 use App\Models\TrabajoParticipativoMetodologia;
 use App\Models\TrabajoParticipativoMetodologiaI;
-use App\Models\trabajoparticipativotalleresprovinciales;
+use App\Models\TrabajoParticipativoTalleresProvinciales;
 use App\Models\trabajoparticipativotalleresprovincialesI;
 use App\Models\MesaPublicoPrivada;
 use App\Models\MesaPublicoPrivadaI;
@@ -671,7 +671,7 @@ class PoliticadeturismoController extends Controller
     }
     public function indexTrabajoParticipativoTalleresProvincialesWeb()
     {
-        $datosPrincipales  = TrabajoParticipativoTalleresProvinciales::with('trabajoparticipativotalleresprovincialesI')->get();
+        $datosPrincipales  = TrabajoParticipativoTalleresProvinciales::with('TrabajoParticipativoTalleresProvincialesI')->get();
         return view('politicadeturismo.trabajoparticipativotalleresprovinciales.trabajoparticipativotalleresprovinciales', compact('datosPrincipales'));
         
         
