@@ -82,6 +82,13 @@
         .nav-head{
           background-color: #389144;
         }
+
+        .navbar-toggler-icon {
+    color: white !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
         
 #newsletter12::placeholder {
   color: #ffff !important; /* Puedes ajustar el color según tus preferencias */

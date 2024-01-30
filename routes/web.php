@@ -137,10 +137,10 @@ Route::get('/sesiones/crear', [SesionController::class, 'create'])->name('sesion
 Route::post('/sesiones', [SesionController::class, 'store'])->name('sesiones.store');
 
 // Ruta para mostrar el formulario de edición
-Route::get('/sesiones/{sesion}/editar', [SesionController::class, 'edit'])->name('sesiones.edit');
+//Route::get('/sesiones/{sesion}/editar', [SesionController::class, 'edit'])->name('sesiones.edit');
 
 // Ruta para actualizar los datos de la sesión
-Route::put('/sesiones/{sesion}', [SesionController::class, 'update'])->name('sesiones.update');
+//Route::put('/sesiones/{sesion}', [SesionController::class, 'update'])->name('sesiones.update');
 
 
 
