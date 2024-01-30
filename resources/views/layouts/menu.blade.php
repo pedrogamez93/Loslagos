@@ -233,10 +233,10 @@
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('sesiones.create') }}">Agregar nuevo</a>
+                                               
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('sesiones.edit') }}">Ver sesiones</a>
+                                               
                                             </li>
                                         </ul>
                                     </div>

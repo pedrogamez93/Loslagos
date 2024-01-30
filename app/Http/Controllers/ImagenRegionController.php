@@ -44,7 +44,7 @@ class ImagenRegionController extends Controller {
         foreach ($request->nombredoc as $key => $nombredoc) {
             if ($request->hasFile('urldoc')) {
                 $file = $request->urldoc[$key];
-                $urldoc = $file->store('public/documentos');
+                $urldoc = $file->store('documentos', 'public');
 
                 ImagenRegionDocs::create([
                     'nombredoc' => $nombredoc,
@@ -79,7 +79,7 @@ class ImagenRegionController extends Controller {
         foreach ($request->nombredoc as $key => $nombredoc) {
             if ($request->hasFile('urldoc')) {
                 $file = $request->urldoc[$key];
-                $urldoc = $file->store('public/documentos');
+                $urldoc = $file->store('documentos', 'public');
 
                 ImagenRegionDocs::create([
                     'nombredoc' => $nombredoc,
