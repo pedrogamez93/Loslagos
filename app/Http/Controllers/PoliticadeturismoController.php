@@ -415,7 +415,7 @@ class PoliticadeturismoController extends Controller
     {
         $mostrarpolitica = PoliticaRegionalTurismo::all();
         $primerArticulo = $mostrarpolitica->first();
-        return view('politicadeturismo.politicaregionalturismo.lanzamientopoliticaturismo', compact('primerArticulo'));
+        return view('politicadeturismo.lanzamientopoliticaturismo', compact('primerArticulo'));
         
 
     }
