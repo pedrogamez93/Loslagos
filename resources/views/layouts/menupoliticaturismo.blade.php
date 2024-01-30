@@ -17,12 +17,12 @@
                                                         </h2>
                                                         <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
-                                                            <p class="enlaceM"><a class="ml-3" href="">Introducción</a></p>
-                                                            <p class="enlaceM"><a class="ml-3" href="">Productos Política de Turismo</a></p>                                                    
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('PoliticadeturismoWeb.show') }}">Introducción</a></p>
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('ProductosdelaPoliticadeTurismoWeb.show') }}">Productos Política de Turismo</a></p>                                            
                                                         </div>
                                                         </div>
                                                     </div>
-                                                    <p class="enlaceM"><a href="" class="active">Lanzamiento Política Turismo</a></p>
+                                                    <p class="enlaceM"><a href="{{ route('LanzamientoPoliticaWeb.show') }}" class="active">Lanzamiento Política Turismo</a></p>
                                                     <div class="accordion-item border-0">
                                                         <h2 class="accordion-header">
                                                         <button class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOnee" aria-expanded="false" aria-controls="flush-collapseOnee">
@@ -31,8 +31,8 @@
                                                         </h2>
                                                         <div id="flush-collapseOnee" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
-                                                            <p class="enlaceM"><a class="ml-3" href="#">Metodología</a></p>
-                                                            <p class="enlaceM"><a class="ml-3" href="#">Talleres Provinciales</a></p>                                                    
+                                                        <p class="enlaceM"><a class="ml-3" href="{{ route('TrabajoParticipativoMetodologiaWeb.show') }}">Metodología</a></p>
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('TrabajoParticipativoTalleresProvincialesWeb.show') }}">Talleres Provinciales</a></p>                                                   
                                                         </div>
                                                         </div>
                                                     </div>
@@ -44,9 +44,9 @@
                                                         </h2>
                                                         <div id="flush-collapseOneee" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
-                                                            <p class="enlaceM"><a class="ml-3" href="#">Mesa Pública-Privada</a></p>
-                                                            <p class="enlaceM"><a class="ml-3" href="#">Comité Técnico de Gestión</a></p>                                                    
-                                                            <p class="enlaceM"><a class="ml-3" href="#">Subcomisiones</a></p>                                                    
+                                                        <p class="enlaceM"><a class="ml-3" href="{{ route('MesaPublicoPrivadaWeb.show') }}">Mesa Pública-Privada</a></p>
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('ComiteTecnicodeGestion.show') }}">Comité Técnico de Gestión</a></p>                                                    
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('ComiteTecnicodeGestion.show') }}">Subcomisiones</a></p>                                                   
                                                         </div>
                                                         </div>
                                                     </div>
