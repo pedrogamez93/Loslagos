@@ -702,7 +702,7 @@ class PoliticadeturismoController extends Controller
         ]);
         
         
-        $Productos =  trabajoparticipativotalleresprovinciales::create([
+        $Productos =  TrabajoParticipativoTalleresProvinciales::create([
             'titulo' => $request->input('titulo'),
             'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('descripcion'),
@@ -719,7 +719,7 @@ class PoliticadeturismoController extends Controller
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos
-                $doc = trabajoparticipativotalleresprovincialesI::create([
+                $doc = TrabajoParticipativoTalleresProvincialesI::create([
                     'TrabajoParticipativoTalleresProvincialesI_id' => $Productos->id,
                     'nombreA' => $nombre,
                     'archivo' => $path,
