@@ -438,6 +438,11 @@ line-height: normal;
 }
 /* TELEFONO */
 @media screen and (max-width: 600px) {
+
+  #containersalaprensa{
+    flex-wrap: wrap;
+  }
+
   #fondobanner{
     height: 100vw;
   }
@@ -458,13 +463,14 @@ display: none;
   }
 
   #btnbuscador{
-    height: 11.5vw;
+    height: 12.5vw;
     border-radius: 1px 20px 20px 1px;
   }
   
   #formbuscador{
     position: absolute;
     margin-top: calc(80vw + 70%);
+    left: -8vw;
   }
 
   #header{

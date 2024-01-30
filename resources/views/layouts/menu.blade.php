@@ -225,6 +225,26 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                                       Sesiones de consejo
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                               
+                                            </li>
+                                            <li class="style-li">
+                                               
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
                                         Formularios
                                     </button>

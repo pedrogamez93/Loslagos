@@ -135,7 +135,7 @@
 <div class="container-fluid">
 
   <div class="container " > 
-     <div  class=" d-flex justify-content-between">
+     <div id="containersalaprensa" class=" d-flex justify-content-between">
         <h3 class="titleshome">Sala de prensa</h3>
         
         <div>
