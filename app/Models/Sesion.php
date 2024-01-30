@@ -9,7 +9,8 @@ class Sesion extends Model
 {
     use HasFactory;
 
-    protected $table = 'sesiones'; // Especifica el nombre de la tabla
+    protected $table = 'sesiones';
+    protected $fillable = ['nombre', 'fecha_hora', 'lugar']; // Añade todos los campos que quieras asignar masivamente
 
     public function documentos()
     {
