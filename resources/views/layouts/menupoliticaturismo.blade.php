@@ -46,7 +46,7 @@
                                                         <div class="accordion-body p-0">
                                                         <p class="enlaceM"><a class="ml-3" href="{{ route('MesaPublicoPrivadaWeb.show') }}">Mesa Pública-Privada</a></p>
                                                             <p class="enlaceM"><a class="ml-3" href="{{ route('ComiteTecnicodeGestion.show') }}">Comité Técnico de Gestión</a></p>                                                    
-                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('ComiteTecnicodeGestion.show') }}">Subcomisiones</a></p>                                                   
+                                                            <p class="enlaceM"><a class="ml-3" href="{{ route('Subcomisiones.show') }}">Subcomisiones</a></p>                                                   
                                                         </div>
                                                         </div>
                                                     </div>
