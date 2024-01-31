@@ -161,7 +161,7 @@
             <div class="carousel-caption">
             <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 5)) }}</p>
             
-            <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">ir ahora <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">Ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     @endforeach
@@ -188,12 +188,12 @@
   </div>
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los trámites</a></h3>
    
     
 </div>
 <p class="home-descripcion">
-Actividades planeadas que involucran un accionar más amplio que un proyecto...
+Actividades planeadas que involucran un accionar más amplio que un proyecto
         </p>
     
 <div class="mt-5 pb-5">
