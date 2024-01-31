@@ -274,7 +274,8 @@
     </div>
   </div>
 </div>
-<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top" style="">
+
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="" id="footerdesktop">
     <div class="col mb-3">
 
         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -317,7 +318,87 @@
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
+
+            <p>Ubicación: Av. Décima Región 480, 4to Piso</p>
+            <p>Teléfono: (65) 2283153-2283109</p>
+            <p>Correo: info@goreloslagos.cl</p>
             <a href="#" class="nav-link p-0 text-muted">
+                <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+                    
+                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contactanos</a>
+                </div>
+            </a>
+            </li>
+            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+            <li class="nav-item mt-3">
+                <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
+                    <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="https://twitter.com/GoreLosLagos" style="padding-right: 20px;">
+                    <img src="{{ asset('img/twitter.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
+                    <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Footer para móviles -->
+<footer class="mobile-footer d-block d-md-none" id="footermobil" style="border-radius: 0px 80px 0px 0px !important;">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Primera columna: Menú -->
+            <div class="col-6">
+            <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+            <img src="{{ asset('storage/img/logo_gore_vertical-blanco.png') }}" alt="Logo GORE Vertical Blanco" width="100">
+        </a>
+                <h5>Menú</h5>
+                <ul class="nav flex-column">
+              
+       
+                    <li class="nav-item"><a href="#" class="nav-link">Gobierno Regional</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Consejo Regional</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Región de los Lagos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Directorio de Funciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Segunda columna: Enlaces directos -->
+            <div class="col-6">
+            <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none mt-4">
+            <img src="{{ asset('storage/img/Logo-Core-blanco.png') }}" alt="Logo Core Blanco" width="150">
+        </a>
+              
+                <h5 class="mt-5">Enlaces directos</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a href="#" class="nav-link">Fondo comunidad (Evaluación)</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Creando y Cuidando la Región</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Información de la región</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Directorio de funcionarios</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Qué es el Gobierno Regional</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Organigrama</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Trámites</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mb-3">
+    <a style="text-decoration: none;
+    color: white;" href="{{ url('/contactanos') }}"><h5 class="footer-col-title" >Contacta con nosotros aquí</h5></a>
+        <ul class="nav flex-column">
+            
+            <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
+            <li class="nav-item mb-2">
+
+            <p>Ubicación: Av. Décima Región 480, 4to Piso</p>
+            <p>Teléfono: (65) 2283153-2283109</p>
+            <p>Correo: info@goreloslagos.cl</p>
+            <a href="#" class="nav-link p-0 text-muted">
+
+            
                 <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
                     
                     
@@ -340,7 +421,10 @@
             </li>
         </ul>
     </div>
+
+
 </footer>
+
 
 
 
@@ -450,6 +534,41 @@
         ]
         });
     });
+
+
+    jQuery(document).ready(function(){
+      $('#thumbnail-slider3').slick({
+            slidesToShow: 4, // Cambia según tus preferencias
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000, // Tiempo en milisegundos entre cada cambio de slide
+            dots: true,
+            responsive: [
+            {
+              breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1 // Agrega esta línea para que también se desplace 1 slide en dispositivos móviles
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+        });
+    });
+
 </script>
 
 

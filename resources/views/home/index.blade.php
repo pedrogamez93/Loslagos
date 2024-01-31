@@ -268,7 +268,166 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 </div>
 
 
-<div class="container">
+<div class="mt-5 pb-5" id="mibannermobil">
+    <div id="thumbnail-slider3" class="carousel">
+        
+             <a href="" >
+            <div class="carousel-item">
+                    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                    <div class="carousel-caption mb-3">                       
+                    </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+            </a>
+
+            <a href="" >
+                 <div class="carousel-item">
+                    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                        <div class="carousel-caption mb-3">                       
+                        </div>
+                        <h5 class=""></h5>                                    
+                 </div>
+            </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="mb-3" style="width: 100%; height:auto"" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners13)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners14)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners15)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="" >                 
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners16)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                
+
+      
+    </div>
+</div>
+
+
+<div class="container" id="minibanners">
     <div class="row py-5 my-5" style="display: flex;
     justify-content: center;">
         <div class="col-lg-2">
@@ -298,6 +457,9 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
        
     </div>
 </div>
+
+
+
 
 
 

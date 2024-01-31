@@ -439,6 +439,15 @@ line-height: normal;
 /* TELEFONO */
 @media screen and (max-width: 600px) {
 
+
+  #minibanners{
+    display: none;
+  }
+
+  #footerdesktop{
+    display: none !important;
+  }
+
   #containersalaprensa{
     flex-wrap: wrap;
   }
@@ -500,6 +509,15 @@ background-color: #389144;
 
 /* PC */
 @media screen and (min-width: 800px) {
+
+  #minibanners{
+    display: block;
+  }
+
+  #mibannermobil{
+    display: none;
+  }
+
   #header{
     height: 800px;
     background-color: #389144;
