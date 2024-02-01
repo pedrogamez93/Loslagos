@@ -439,6 +439,26 @@ line-height: normal;
 /* TELEFONO */
 @media screen and (max-width: 600px) {
 
+  .titulohome{
+    font-family: Inter;
+font-size: 25px;
+font-weight: 700;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+
+  }
+.descripcionhome{
+
+
+  font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
+}
+
 
   #minibanners{
     display: none;
