@@ -61,7 +61,7 @@
       <div class="input-group-prepend">
           <span class="input-group-text" style="position: absolute;
       background-color: transparent !important;
-      border: none;height: -webkit-fill-available;">
+      border: none;">
           <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
           </span>
       </div>
