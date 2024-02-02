@@ -55,9 +55,19 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Autoridades</h1>
-                <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
 
+                <h1>Listado de Autoridades</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="" method="GET">
+                            <input type="text" name="query" placeholder="Buscar...">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>

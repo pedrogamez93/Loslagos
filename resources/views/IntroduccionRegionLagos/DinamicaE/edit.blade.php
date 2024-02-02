@@ -103,7 +103,14 @@
                                     </div>
                                 </div>
                             </div>
-                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Actualizar</button>
+                            <div class="row">
+                                <div class="col-md-6 pt-0 pb-3">
+                                    <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                                </div>
+                                <div class="col-md-6 pt-0 pb-3 d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="{{ route('DinamicaEconomicaRegionLagos.indexDinamicaEconomica') }}" class="btn btn-secondary">Volver</a>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>
