@@ -10,3 +10,6 @@ body {
     background: #000 !important; /* Cambiar a color de fondo alto contraste */
   }
   p{text-align: justify !important;}
+  li {
+    text-align: justify;
+}
