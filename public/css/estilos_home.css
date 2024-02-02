@@ -187,7 +187,7 @@ border-color: #d9d9d9;
 
 .bg-body-tertiary {
   /* height: 413px; */
-  width: 100vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
+  width: 99vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
   margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
   margin-right: calc(-50vw + 50%);
   border-radius: 0; /* Elimina el borde redondeado que puede tener el banner */
