@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo1" class="form-control" placeholder="Titulo seccion 1" required>
+                                        <input type="text" id="titulo" name="titulo1" class="form-control" placeholder="Título sección 1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo2" class="form-control" placeholder="Titulo seccion 2" required>
+                                        <input type="text" id="titulo" name="titulo2" class="form-control" placeholder="Título sección 2" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo3" class="form-control" placeholder="Titulo seccion 3" required>
+                                        <input type="text" id="titulo" name="titulo3" class="form-control" placeholder="Título sección 3" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo3acordeon1" class="form-control" placeholder="Titulo de Acordeon 1" required>
+                                        <input type="text" id="titulo" name="titulo3acordeon1" class="form-control" placeholder="Título de Acordeon 1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo3acordeon2" class="form-control" placeholder="Titulo de Acordeon 2" required>
+                                        <input type="text" id="titulo" name="titulo3acordeon2" class="form-control" placeholder="Título de Acordeon 2" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
