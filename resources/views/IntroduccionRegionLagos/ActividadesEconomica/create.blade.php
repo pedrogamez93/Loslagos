@@ -68,12 +68,12 @@
                             <div class="row">
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="nombre" class="form-control" placeholder="Titulo seccion" required>
+                                        <input type="text" id="titulo" name="nombre" class="form-control" placeholder="Título sección" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 tag-comentario">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="descripcion" class="form-control" placeholder="Subtitulo seccion" value="" required>
+                                        <input type="text" id="tag_comentario" name="descripcion" class="form-control" placeholder="Subtítulo sección" value="" required>
                                     </div>
                                 </div>
                                 

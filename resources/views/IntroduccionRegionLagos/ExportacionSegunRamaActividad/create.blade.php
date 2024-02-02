@@ -71,19 +71,19 @@
                             <div class="row">
                                 <div class="col-md-6 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" required>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" placeholder="Subtitulo" required>
+                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" placeholder="Subtítulo" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control" placeholder="Descripcion 1" required>
+                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control" placeholder="Descripción 1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">
