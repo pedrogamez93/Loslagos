@@ -61,7 +61,7 @@
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Introduccion Region de los Lagos</h1>
+                        <h1>Introduccion Región de los Lagos</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" required>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título sección" required>
                                     </div>
                                 </div>
                             </div>

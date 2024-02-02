@@ -58,7 +58,7 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Actualizar Información  Region de los Lagos</h1>
+                        <h1>Actualizar Información Región de los Lagos</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="nombreseccion" class="form-control" placeholder="Titulo seccion" value="{{ $Introduccion->nombreseccion }}"  required>
+                                        <input type="text" id="titulo" name="nombreseccion" class="form-control" placeholder="Título sección" value="{{ $Introduccion->nombreseccion }}"  required>
                                     </div>
                                 </div>
                             </div>
