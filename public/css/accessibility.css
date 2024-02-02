@@ -9,4 +9,4 @@ body {
     color: #fff !important; /* Cambiar a color de texto alto contraste */
     background: #000 !important; /* Cambiar a color de fondo alto contraste */
   }
-  p{text-align: justify;}
+  p{text-align: justify !important;}
