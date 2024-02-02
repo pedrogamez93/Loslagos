@@ -397,9 +397,9 @@ a.active {
                                     </div>
                                     <div class="col-md-7 info">
                                         <p class="style-nombre pb-4">{{ $introduccion->nombre }}</p>
-                                        <p>Lugar y fecha de Nacimiento: {{ $introduccion->lugar_fecha_nacimiento }}</p>
+                                        <!--<p>Lugar y fecha de Nacimiento: {{ $introduccion->lugar_fecha_nacimiento }}</p>-->
                                         <p>Actividad o Profesión: {{ $introduccion->actividad_profesion }}</p>
-                                        <p>Partido Político: {{ $introduccion->partido_politico }}</p>
+                                        <!--<p>Partido Político: {{ $introduccion->partido_politico }}</p>-->
                                         <h3>Datos del servicio</h3>
                                         <p>Cargo: {{ $introduccion->cargo }}</p>
                                         <p>Institución: {{ $introduccion->institucion }}</p>
