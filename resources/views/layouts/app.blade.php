@@ -210,18 +210,18 @@
             </li>        
             <hr size="5px">
 
-           <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+           <li class="nav-item col col-md-auto  p-3" style="display:flex">
                 <img src="{{ asset('storage/images/icon-plataforma-1.png') }}" alt="icon" style="margin-right: 10px;">
                 <small class="ms-2">Plataforma <br><strong>Ley del Lobby</strong></small>  
             </li>
 
-            <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+            <li class="nav-item col col-md-auto  p-3" style="display:flex">
               <img src="{{ asset('storage/images/icon-plataforma-2.png') }}" alt="icon" style="margin-right: 10px;">
               <small class="ms-2">Transparencia activa <br><strong>Ley de Transparencia</strong></small>
 
             </li>
 
-            <li class="nav-item col-6 col-md-auto p-3" style="display:flex">
+            <li class="nav-item col col-md-auto  p-3" style="display:flex">
               <img src="{{ asset('storage/images/icon-plataforma-3.png') }}" alt="icon" style="margin-right: 10px;">
               <small class="ms-2">Solicitar información <br><strong>Ley de Transparencia</strong></small>
 
