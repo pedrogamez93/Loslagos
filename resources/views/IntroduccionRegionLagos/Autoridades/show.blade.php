@@ -62,9 +62,9 @@
                         <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
                     </div>
                     <div class="col-md-6">
-                        <form action="" method="GET">
-                            <input type="text" name="query" placeholder="Buscar...">
-                            <button type="submit">Buscar</button>
+                        <form action="{{ route('buscarAutoridades.show') }}" method="GET">
+                            <input type="text" name="query" placeholder="Buscar..." class="form-control" style="float: left;width: auto;">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
                         </form>
                     </div>
                 </div>

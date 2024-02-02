@@ -437,6 +437,7 @@ Route::get('/AutoridadesRegionLagos/edit/{id}', 'App\Http\Controllers\Introducci
 Route::put('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAutoridades')->name('AutoridadesRegionLagos.updateAutoridades')->middleware('auth');
 Route::get('/AutoridadesRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAutoridades')->name('AutoridadesRegionLagos.showAutoridades')->middleware('auth');
 Route::delete('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAutoridades')->name('AutoridadesRegionLagos.destroyAutoridades')->middleware('auth');
+Route::get('/AutoridadesRegionLagos/buscar', 'App\Http\Controllers\IntroduccionRegionLagosController@buscarAutoridades')->name('buscarAutoridades.show');
 
 Route::get('/EstadisticasRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexEstadisticas')->name('EstadisticasRegionLagos.indexEstadisticas')->middleware('auth');
 Route::get('/EstadisticasRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createEstadisticas')->name('EstadisticasRegionLagos.createEstadisticas')->middleware('auth');

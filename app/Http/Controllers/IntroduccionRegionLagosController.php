@@ -351,6 +351,20 @@ public function updateAutoridades(Request $request, $id)
         return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('error', 'Artículo no encontrado');
     }
 } 
+public function buscarAutoridades(Request $request)
+{
+    $query = $request->input('query');
+    
+    // Obtén todos los registros si no hay consulta, o filtra según la consulta
+    $articulo  = empty($query) ? Autoridades::all() : Autoridades::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('nombre', 'LIKE', "%$query%")
+                     ->orWhere('actividad_profesion', 'LIKE', "%$query%")
+                     ->orWhere('cargo', 'LIKE', "%$query%");
+        // Agrega más campos según sea necesario
+    })->get();
+
+    return view('IntroduccionRegionLagos.Autoridades.show', compact('articulo'));
+}
     // Fin Autoridades
     // Inicio Estadistica
     public function indexEstadisticas()
