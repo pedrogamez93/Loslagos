@@ -62,7 +62,7 @@
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario de editar Introducción Región de los Lagos</h1>
+                        <h1>Formulario de editar Introducción Región de Los Lagos</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">

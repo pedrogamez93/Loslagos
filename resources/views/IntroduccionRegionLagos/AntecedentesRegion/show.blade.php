@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Información de los Región</h1>
+                <h1>Listado de Información de Los Región</h1>
                 <a href="{{ route('AntecedentesRegionLagos.createAntecedentes') }}" class="btn btn-primary">Crear</a>
 
                 <table class="table">
