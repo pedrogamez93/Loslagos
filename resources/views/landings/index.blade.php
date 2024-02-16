@@ -76,7 +76,7 @@
                             <h1>Listado de Landings Pages</h1>
                         </div>
                         <div class="col text-start">
-                            <a href="{{ route('landings.create') }}" class="btn btn-success" style="font-weight: 600;">Agregar Nuevo Landing Page</a>
+                            <a href="{{ route('landings.create') }}" class="btn btn-success" style="font-weight: 600;">Agregar Nuevo Landing Page.</a>
                         </div>
                         @if(count($landings) > 0)
                             <div class="container">
