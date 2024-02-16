@@ -161,13 +161,13 @@ button {
         color: #FFFFFF !important;
         font-Weight: 700 !important;
     }
-    .slick-slider .item {
+    .slick-slider.mioev .item {
     width: 284px; /* Ancho del ítem */
     padding: 10px; /* Espaciado interno */
     box-sizing: border-box; /* Incluye el padding en el ancho total */
     }
 
-    .slick-slider .item img {
+    .slick-slider.mioev .item img {
         width: 100%; /* Asegura que la imagen ocupe todo el ancho del ítem */
         height: 284px; /* Altura fija para la imagen */
         object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio, recortando lo que sobre */
@@ -256,7 +256,7 @@ button {
                                                     {{-- Título de la Galería --}}
                                                     <h1 class="titles mb-4">{{ $galeria->nombre }}</h1>
 
-                                                    <div class="slick-slider">
+                                                    <div class="slick-slider mioev">
                                                         @foreach ($galeria->imagenes as $imagen)
                                                             <div>
                                                                 {{-- Enlace para abrir la imagen en Fancybox --}}
@@ -282,7 +282,7 @@ button {
         <!-- Tu script personalizado para inicializar Owl Carousel y Fancybox -->
         <script>
             $(document).ready(function(){
-                $('.slick-slider').slick({
+                $('.slick-slider.mioev').slick({
                     dots: true,
                     infinite: true,
                     speed: 300,

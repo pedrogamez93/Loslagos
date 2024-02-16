@@ -52,6 +52,8 @@ use App\Http\Controllers\PresentacionesController;
 use App\Http\Controllers\ImagenRegionController;
 
 use App\Http\Controllers\SesionController;
+
+use App\Http\Controllers\LandingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -316,6 +318,22 @@ Route::resource('imagenregion', ImagenRegionController::class);
 Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
 
 Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
+
+//RUTAS PARA LAS LANDING DINAMICAS
+
+Route::resource('landings', LandingController::class);
+
+// Ruta para eliminar una imagen
+Route::delete('/landing-image/{id}', [LandingController::class, 'deleteImage'])->name('landing-image.destroy');
+
+// Ruta para eliminar un botón externo
+Route::delete('/landing-button/{id}', [LandingController::class, 'deleteButton'])->name('landing-button.destroy');
+
+// Ruta para eliminar un documento
+Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocument'])->name('landing-document.destroy');
+
+//FIN RUTAS PARA LAS LANDING DINAMICAS
+
 
 Route::middleware([
     'auth:sanctum',
