@@ -434,12 +434,18 @@
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
+    <script>
+// Función para mostrar el modal al cargar la página
+    $(document).ready(function() {
+        $('#miModal').modal('show');
+    });
+</script>
 <script>
   var mySwiper = new Swiper('.mySwiper', {
     // Parámetros opcionales
