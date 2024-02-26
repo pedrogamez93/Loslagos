@@ -100,8 +100,12 @@
                                 <p  class="tituloresultadobuscador1 colorB">{{ $funcionario->nombre }}</p>
                                 <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>
                                 <p class="textoresultadobuscador1 colorB">Cargo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->cargo }}</span></p>
-                                <p class="textoresultadobuscador1 colorB">E-mail: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->email }}</span></p>
-                                </div>
+                                <p class="textoresultadobuscador1 colorB">departamento: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->departamento }}</span></p>   
+                                <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->correo }}</span></p>
+                                <p class="textoresultadobuscador1 colorB">Division: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->division }}</span></p>
+                                <p class="textoresultadobuscador1 colorB">Direccion: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->direccion }}</span></p>
+                               
+                            </div>
                             
                         
                         </div>

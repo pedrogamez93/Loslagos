@@ -290,7 +290,7 @@
         <h5 class="footer-col-title">Menú</h5>
         <ul class="nav flex-column">
             <li class="nav-item mb-2 text-light">
-                <a href="#" class="nav-link p-0 text-muted">Gobierno Regional</a>
+                <a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Gobierno Regional</a>
             </li>
             <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Consejo Regional</a></li>
             <li class="nav-item mb-2"><a href="{{ url('/regionlagos/introduccion') }}" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
@@ -317,7 +317,7 @@
         <ul class="nav flex-column">
             
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
-            <li class="nav-item mb-2">
+            <li >
 
            
             <a href="#" class="nav-link p-0 text-muted">
@@ -334,8 +334,8 @@
             <p>Teléfono: (65) 2283153-2283109</p>
             <p>Correo: info@goreloslagos.cl</p>
             </li>
-            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted" style="    font-weight: 100 !important;">Copyright © GORE Los Lagos 2023</a></li>
-            <li class="nav-item mt-3">
+            <li class="nav-item"><a href="#" class="nav-link p-0 text-muted" style="    font-weight: 100 !important;">Copyright © GORE Los Lagos 2023</a></li>
+            <li class="nav-item mt-3" style="display: flex;">
                 <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
                     <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
                 </a>
@@ -412,8 +412,7 @@
                 </div>
             </a>
             </li>
-            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
-            <li class="nav-item mt-3">
+            <li class="nav-item mt-1"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
                 <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
                     <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
                 </a>
