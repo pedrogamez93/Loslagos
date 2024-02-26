@@ -13,16 +13,19 @@ use Illuminate\Pagination\Paginator;
 class LandingController extends Controller{
 
     public function index() {
-        $landings = Landing::all();
-
-        if ($landings->isEmpty()) {
-            // Redirecciona al método 'create' para crear una nueva landing
-            return redirect()->route('landings.create');
-        }
-
-        // Retorna a la vista 'landings.index' pasando las instancias de 'landing'
+        $landings = Landing::paginate(10); // Simplemente paginas los landings
+    
         return view('landings.index', compact('landings'));
-        
+    }
+
+    public function search(Request $request) {
+        $searchTerm = $request->input('query');
+    
+        $landings = Landing::where('titulo', 'ILIKE', "%{$searchTerm}%")
+                            ->orWhere('descripcion', 'LIKE', "%{$searchTerm}%") // Si deseas buscar en otros campos
+                            ->get(['id', 'titulo']); // Ajusta según los datos que necesites
+    
+        return response()->json($landings);
     }
 
     public function create() {

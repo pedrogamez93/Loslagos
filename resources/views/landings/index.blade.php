@@ -55,6 +55,31 @@
         font-Size: 20px;
         color: #565656;
     }
+    #searchResults {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#searchResults li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #EEE;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#searchResults li:last-child {
+    border-bottom: none;
+}
+
+#searchResults li:hover {
+    background-color: #F6F6F6;
+} 
 </style>
 <div class="container-fluid body">
     <div class="row">
@@ -78,6 +103,14 @@
                         <div class="col text-start">
                             <a href="{{ route('landings.create') }}" class="btn btn-success" style="font-weight: 600;">Agregar Nuevo Landing Page.</a>
                         </div>
+                        {{-- Agregar un buscador arriba --}}
+
+                        <!-- Input para el autocompletado -->
+                        <input type="text" id="searchBox" class="form-control" placeholder="Buscar por título..." />
+
+                        <!-- Lista para mostrar los resultados del autocompletado -->
+                        <ul id="searchResults" class="list-unstyled"></ul>
+
                         @if(count($landings) > 0)
                             <div class="container">
                                 <ul style="padding-left: 0;">
@@ -105,6 +138,10 @@
                                     @endforeach
                                 </ul>
                             </div>
+                            {{-- Agregar paginación abajo --}}
+                            <div class="mt-4">
+                                {{ $landings->appends(request()->except('page'))->links() }}
+                            </div>
                         @else
                             <p>No hay Landings Pages disponibles.</p>
                         @endif
@@ -114,3 +151,26 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#searchBox').on('keyup', function() {
+        var query = $(this).val();
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            url: "{{ route('landings.search') }}",
+            type: "GET",
+            data: {'query': query},
+            success: function(data) {
+                $('#searchResults').empty();
+                $.each(data, function(index, landing) {
+                    $('#searchResults').append('<li><a href="/landings/' + landing.id + '">' + landing.titulo + '</a></li>');
+                });
+            }
+        });
+    });
+});
+</script>

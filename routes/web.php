@@ -330,6 +330,9 @@ Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesCon
 
 Route::resource('landings', LandingController::class);
 
+// En routes/web.php
+Route::get('/search-landings', [LandingController::class, 'search'])->name('landings.search');
+
 // Ruta para eliminar una imagen
 Route::delete('/landing-image/{id}', [LandingController::class, 'deleteImage'])->name('landing-image.destroy');
 
