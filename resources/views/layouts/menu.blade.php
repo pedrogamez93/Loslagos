@@ -198,6 +198,9 @@
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('Home.slider') }}">Editar Sliders</a>
                                             </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Home.banners') }}">Editar Banners</a>
+                                            </li>
                                             
                                         </ul>
                                     </div>
