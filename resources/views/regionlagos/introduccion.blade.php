@@ -261,7 +261,7 @@
             </div>
             @else
             <div class="modal-body p-0">
-                <img src="{{ asset($popupUnico->image_url) }}" alt="Imagen actual" >   
+                <a href="{{ $popupUnico->url }}"><img src="{{ asset($popupUnico->image_url) }}" alt="Imagen actual" ></a>
             </div>
             @endif
         <div class="modal-footer">
