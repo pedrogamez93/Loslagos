@@ -20,11 +20,19 @@ class LandingController extends Controller{
 
     public function search(Request $request) {
         $searchTerm = $request->input('query');
-    
+        
         $landings = Landing::where('titulo', 'ILIKE', "%{$searchTerm}%")
-                            ->orWhere('descripcion', 'LIKE', "%{$searchTerm}%") // Si deseas buscar en otros campos
-                            ->get(['id', 'titulo']); // Ajusta según los datos que necesites
-    
+                            ->orWhere('descripcion', 'LIKE', "%{$searchTerm}%")
+                            ->get()
+                            ->map(function ($landing) {
+                                return [
+                                    'id' => $landing->id,
+                                    'titulo' => $landing->titulo,
+                                    // Genera la URL de edición utilizando la ruta 'landings.edit'
+                                    'edit_url' => route('landings.edit', ['landing' => $landing->id]),
+                                ];
+                            });
+        
         return response()->json($landings);
     }
 

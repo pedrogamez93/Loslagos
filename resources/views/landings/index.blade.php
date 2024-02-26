@@ -106,10 +106,21 @@
                         {{-- Agregar un buscador arriba --}}
 
                         <!-- Input para el autocompletado -->
-                        <input type="text" id="searchBox" class="form-control" placeholder="Buscar por título..." />
-
-                        <!-- Lista para mostrar los resultados del autocompletado -->
-                        <ul id="searchResults" class="list-unstyled"></ul>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="searchBox" class="form-control" placeholder="Buscar por título..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <!-- Lista para mostrar los resultados del autocompletado -->
+                                <ul id="searchResults" class="list-unstyled"></ul>
+                                </div>
+                            </div>
+                        </div>
 
                         @if(count($landings) > 0)
                             <div class="container">
@@ -156,21 +167,39 @@
 
 <script>
 $(document).ready(function() {
-    $('#searchBox').on('keyup', function() {
+    $('#searchBox').on('input', function() {
         var query = $(this).val();
 
-        // Realizar la solicitud AJAX
-        $.ajax({
-            url: "{{ route('landings.search') }}",
-            type: "GET",
-            data: {'query': query},
-            success: function(data) {
-                $('#searchResults').empty();
-                $.each(data, function(index, landing) {
-                    $('#searchResults').append('<li><a href="/landings/' + landing.id + '">' + landing.titulo + '</a></li>');
-                });
-            }
-        });
+        // Verifica si la query no está vacía para evitar búsquedas innecesarias
+        if(query.length > 2) { // Por ejemplo, solo busca si el usuario ha escrito al menos 3 caracteres
+            $.ajax({
+                url: '/search-landings', // Utiliza la ruta definida en Laravel
+                type: 'GET',
+                data: { 'query': query },
+                success: function(data) {
+                    $('#searchResults').empty(); // Limpia los resultados anteriores
+
+                    $.each(data, function(i, item) {
+                        // Construye cada enlace con la URL de edición y lo agrega a los resultados
+                        var link = $('<a>').attr('href', item.edit_url).text(item.titulo);
+                        var listItem = $('<li>').append(link);
+                        $('#searchResults').append(listItem);
+                    });
+
+                    if(data.length === 0) {
+                        // Si no hay resultados, muestra un mensaje
+                        $('#searchResults').append('<li>No se encontraron resultados</li>');
+                    }
+                },
+                error: function() {
+                    // Manejo de error en la solicitud AJAX
+                    $('#searchResults').empty(); // Limpia resultados antiguos
+                    $('#searchResults').append('<li>Error al buscar</li>');
+                }
+            });
+        } else {
+            $('#searchResults').empty();
+        }
     });
 });
 </script>
