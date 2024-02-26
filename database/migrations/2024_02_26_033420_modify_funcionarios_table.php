@@ -14,7 +14,6 @@ class ModifyFuncionariosTable extends Migration
     {
         Schema::table('funcionarios', function (Blueprint $table) {
             $table->string('nombre')->nullable()->change();
-            $table->string('actividad')->nullable()->change();
             $table->string('division')->nullable()->change();
             $table->string('departamento')->nullable()->change();
             $table->string('cargo')->nullable()->change();
