@@ -290,30 +290,54 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto
   <div class="row justify-content-center">
     <div class="col-md-3">
       <div class="text-center" style="position: relative;">
-        <a href="{{$home->bannerurl1}}">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner1)]) }}" > 
-        </a>
+        @if($home->banner1)
+          <a href="{{$home->bannerurl1}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner1)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
       </div>
     </div>
     <div class="col-md-3">
       <div class="text-center" style="position: relative;">
-      <a href="{{$home->bannerurl2}}">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner2)]) }}" > 
-        </a>
+        @if($home->banner2)
+          <a href="{{$home->bannerurl2}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner2)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
       </div>
     </div>
     <div class="col-md-3">
       <div class="text-center" style="position: relative;">
-      <a href="{{$home->bannerurl3}}">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner3)]) }}" > 
-        </a>
+        @if($home->banner3)
+          <a href="{{$home->bannerurl3}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner3)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
       </div>
     </div>
     <div class="col-md-3">
       <div class="text-center" style="position: relative;">
-      <a href="{{$home->bannerurl4}}">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner4)]) }}" > 
-        </a>
+        @if($home->banner4)
+          <a href="{{$home->bannerurl4}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner4)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
       </div>
     </div>
   </div>
