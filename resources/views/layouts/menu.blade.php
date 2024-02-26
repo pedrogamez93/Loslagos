@@ -351,25 +351,25 @@
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('Politicadeturismo.create') }}">Política de Turismo</a>
+                                                <a class="style-a-menu" href="{{ route('Politicadeturismo.index') }}">Política de Turismo</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Lanzamiento Politica Turismo</a>
+                                                <a class="style-a-menu" href="{{ route('PoliticaRegionalTurismo.index') }}">Lanzamiento Politica Turismo</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Trabajo Participativo Metodología</a>
+                                                <a class="style-a-menu" href="{{ route('TrabajoParticipativoMetodologia.index') }}">Trabajo Participativo Metodología</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Trabajo Participativo Talleres Provinciales</a>
+                                                <a class="style-a-menu" href="{{ route('TrabajoParticipativoTalleresProvinciales.index') }}">Trabajo Participativo Talleres Provinciales</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Mesa Pública-Privada</a>
+                                                <a class="style-a-menu" href="{{ route('MesaPublicoPrivada.index') }}">Mesa Pública-Privada</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Comité Técnico de Gestión</a>
+                                                <a class="style-a-menu" href="{{ route('ComiteTecnicodeGestion.index') }}">Comité Técnico de Gestión</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Subcomisiones</a>
+                                                <a class="style-a-menu" href="{{ route('Subcomisiones.index') }}">Subcomisiones</a>
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Imagen Región</a>
