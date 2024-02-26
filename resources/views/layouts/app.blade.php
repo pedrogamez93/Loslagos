@@ -413,7 +413,7 @@
             </a>
             </li>
             <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
-            <li class="nav-item mt-3">
+            <li class="nav-item mt-3" style="display: flex;">
                 <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
                     <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
                 </a>
