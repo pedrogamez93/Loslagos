@@ -356,6 +356,22 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapstene" aria-expanded="false" aria-controls="flush-collapstene">
+                                        Configuración
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapstene" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                                <a class="style-a-menu"  href="{{ route('popups.index') }}">Popups </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                     
                                     @if(auth()->check())
                                     <form action="{{ route('logout') }}" method="POST" style="background: #0c1e35;">
