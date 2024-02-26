@@ -116,58 +116,51 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/') }}" style="color:white">Home </a>
       </li>
-      <li class="nav-item dropdown" data-menu-ubicacion="gobierno-regional">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGobiernoRegional" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-                Gobierno Regional
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownGobiernoRegional" id="menuDropdown_gobierno-regional">
-                <!-- Enlaces estáticos -->
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/documentosdegestion') }}">Documentos de Gestión</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climática</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Política de Sostenibilidad Hídrica</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Política de Personas Mayores</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnología e Innovación</a>
-            </div>
-        </li>
-
-        <!-- Pestaña "Consejo Regional" -->
-        <li class="nav-item dropdown" data-menu-ubicacion="consejo-regional">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConsejoRegional" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-                Consejo Regional
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownConsejoRegional" id="menuDropdown_consejo-regional">
-                <!-- Enlaces estáticos -->
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introducción</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/actas') }}">Actas</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/certificadosdeacuerdos') }}">Certificados de Acuerdos</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/resumendegastos') }}">Resumen de Gastos</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/tablassesionesconsejo') }}">Tabla de Sesiones Consejo Regional de Los Lagos</a>
-            </div>
-        </li>
-
-        <!-- Pestaña "Región Los Lagos" -->
-        <li class="nav-item dropdown" data-menu-ubicacion="region-los-lagos">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRegionLosLagos" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
-                Región Los Lagos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownRegionLosLagos" id="menuDropdown_region-los-lagos">
-                <!-- Enlaces estáticos -->
-                <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/introduccion') }}">Introducción</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/antecedentesregion') }}">Información de la Región</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/autoridades/Gobernador%20Regional') }}">Autoridades</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/PoblacionSuperficie') }}">Estadísticas</a>
-                <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/InversionesD') }}">Inversiones</a>
-            </div>
-        </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Gobierno Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/acerca') }}">Acerca del Gobierno Regional </a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/leygobiernoregional') }}">Gobierno Regional Ley</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/organigrama') }}">Organigrama</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/documentosdegestion') }}">Documentos de Gestión</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/tramitesdigitales') }}">Trámites Digitales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/asambleaclimatica') }}">Asamblea Climática</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/politicasostenibilidadhidrica') }}">Política de Sostenibilidad Hídrica</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/disenopoliticapersonasmayores') }}">Política de Personas Mayores</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/planificacioninstitucional') }}">Planificación Institucional</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/concursopublico') }}">Concurso Público</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/gobiernoregional/comitecienciastecnologias') }}">Comité Ciencia Tecnología e Innovación</a>
+          </div>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Consejo Regional
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/introduccion') }}">Introducción</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/presidenteconsejo') }}">Presidente del Consejo</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/consejerososorno') }}">Consejeros Regionales</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/actas') }}">Actas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/certificadosdeacuerdos') }}">Certificados de Acuerdos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/resumendegastos') }}">Resumen de Gastos</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/consejoregional/tablassesionesconsejo') }}">Tabla de Sesiones Consejo Regional de Los Lagos</a>
+          </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+              Región los Lagos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/introduccion') }}">Introducción </a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/antecedentesregion') }}">Información de la Región</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/autoridades/Gobernador%20Regional') }}">Autoridades</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/PoblacionSuperficie') }}">Estadísticas</a>
+              <a class="dropdown-item style-a-menu" href="{{ url('/regionlagos/InversionesD') }}">Inversiones</a>
+          </div>
+      </li>
 
       <li class="nav-item active">
         <a class="nav-link"  style="color:white, margin-right: 12px;" href="{{ url('/funcionario') }}"> Directorio de Funcionarios </a>
@@ -326,17 +319,22 @@
             <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
             <li class="nav-item mb-2">
 
+           
+            <a href="#" class="nav-link p-0 text-muted">
+                <div class="d-flex  flex-sm-row w-100 gap-2 mb-4" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+                    
+                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;    width: 110%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;">Escribenos <span>Enviar</span></a>
+                </div>
+            </a>
+
             <p>Ubicación: Av. Décima Región 480, 4to Piso</p>
             <p>Teléfono: (65) 2283153-2283109</p>
             <p>Correo: info@goreloslagos.cl</p>
-            <a href="#" class="nav-link p-0 text-muted">
-                <div class="d-flex  flex-sm-row w-100 gap-2" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
-                    
-                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;">Contactanos</a>
-                </div>
-            </a>
             </li>
-            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+            <li class="nav-item mt-3"><a href="#" class="nav-link p-0 text-muted" style="    font-weight: 100 !important;">Copyright © GORE Los Lagos 2023</a></li>
             <li class="nav-item mt-3">
                 <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
                     <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
@@ -431,6 +429,13 @@
 
 
 </footer>
+
+
+
+
+
+
+  
     <!-- JavaScripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -469,6 +474,9 @@
     },
   });
 </script>
+
+
+   
 
     <script>
    jQuery(document).ready(function(){
@@ -574,47 +582,7 @@
 
 </script>
 
-<!-- enlaces dinámicos PILA-->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    function cargarEnlacesDinamicos(menuUbicacion) {
-        var menuDropdown = document.getElementById('menuDropdown_' + menuUbicacion);
 
-        if (menuDropdown) {
-            // Seleccionar y eliminar solo los enlaces dinámicos
-            var elementosDinamicos = menuDropdown.querySelectorAll('.dinamico');
-            elementosDinamicos.forEach(function(elemento) {
-                menuDropdown.removeChild(elemento);
-            });
 
-            // Asumiendo que $landings incluye una propiedad 'habilitado' que es true o false
-            var landings = {!! json_encode($landings) !!}.filter(function(landing) {
-                return landing.menu_ubicacion === menuUbicacion && landing.habilitado === true;
-            });
-
-            if (landings.length > 0) {
-                landings.forEach(function(landing) {
-                    var menuItem = document.createElement('a');
-                    menuItem.setAttribute('class', 'dropdown-item style-a-menu dinamico'); // Añadir clase 'dinamico'
-                    menuItem.setAttribute('href', '/landings/' + landing.id);
-                    menuItem.innerText = landing.titulo;
-
-                    menuDropdown.appendChild(menuItem);
-                });
-            }
-        } else {
-            console.log('No se encontró el menú desplegable para:', menuUbicacion);
-        }
-    }
-
-    var tabs = document.querySelectorAll('.nav-item.dropdown');
-    tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-            var menuUbicacion = tab.dataset.menuUbicacion;
-            cargarEnlacesDinamicos(menuUbicacion);
-        });
-    });
-});
-</script>
 </body>
 </html>

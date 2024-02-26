@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use League\Csv\Reader;
+use Illuminate\Support\Facades\Log;
 class FuncionarioController extends Controller
 {
 
@@ -366,5 +367,73 @@ public function edit($id)
     }
 
 
+    public function getcargarMasiva()
+    {
+
+      
+
+        return view('funcionarios.cargamasiva');
+    }
+
+
+    public function cargamasiva(Request $request)
+    {
+        try {
+            // Validar que se haya enviado un archivo CSV
+            $request->validate([
+                'csv_file' => 'required|mimes:csv,txt',
+            ]);
+    
+            // Obtener el archivo CSV cargado
+            $archivo = $request->file('csv_file');
+           
+            // Leer el contenido del archivo CSV
+            $reader = Reader::createFromPath($archivo->getPathname(), 'r');
+            $reader->setHeaderOffset(0); // Saltar la primera fila (cabeceras)
+    
+            // Recorrer cada fila del archivo CSV
+            foreach ($reader as $fila) {
+                // Convertir los valores de la fila a UTF-8
+                $fila = array_map(function($value) {
+                    return mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1');
+                }, $fila);
+            
+
+                Funcionario::create([
+                    'nombre' => $fila['nombre'] ?? 'No especificado',
+                    'actividad' => $fila['actividad'] ?? 'No especificado',
+                    'division' => $fila['division'] ?? 'No especificado',
+                    'departamento' => $fila['departamento'] ?? 'No especificado',
+                    'cargo' => $fila['cargo'] ?? 'No especificado',
+                    'direccion' => $fila['direccion'] ?? 'No especificado',
+                    'telefono' => $fila['telefono'] ?? 0000,
+                    'email' => $fila['email'] ?? 'No especificado',
+                    'region' => $fila['region'] ?? 'No especificado',
+                    'provincia' => $fila['provincia'] ?? 'No especificado',
+                    'comuna' => $fila['comuna'] ?? 'No especificado',
+                    'foto' => $fila['foto'] ?? 'No especificado',
+                    'partido_politico' => $fila['partido_politico'] ?? 'No especificado',
+                    'biografia' => $fila['biografia'] ?? 'No especificado',
+                    'funciones' => $fila['funciones'] ?? 'No especificado',
+                    'Tfuncionario' => $fila['Tfuncionario'] ?? 'No especificado',
+                    'fecha_nacimiento' => $fila['fecha_nacimiento'] ?? null,
+                    'lugar_nacimiento' => $fila['lugar_nacimiento'] ?? 'No especificado',
+                    'sexo' => $fila['sexo'] ?? 'No especificado',
+                    'foto_url' => $fila['foto_url'] ?? 'foto',
+                   
+                ]);
+
+                
+            }
+    
+            // Redireccionar con un mensaje de éxito
+            return redirect()->back()->with('success', 'Los funcionarios han sido registrados exitosamente.');
+        } catch (\Exception $e) {
+            // Manejar el error y mostrar un mensaje de error
+            Log::error('Error al procesar el archivo CSV: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al procesar el archivo CSV: ' . $e->getMessage());
+        }
+    }
+    
     
 }
