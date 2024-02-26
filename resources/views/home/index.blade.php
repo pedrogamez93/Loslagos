@@ -198,7 +198,7 @@
     display: flex;
     justify-content: center;
     align-items: center;">
-    <div id="thumbnail-slider2" class="carousel">
+    <div  >
        
     <form action="{{ url('/buscador') }}" method="GET" id="formbuscador" >              
                         <div id="divformbuscador" class="input-group input-group-rounded" style="">
