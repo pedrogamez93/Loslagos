@@ -274,6 +274,9 @@
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Funcionarios</a>
                                             </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('funcionarios.cargamasiva') }}">Carga masiva</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     </div>

@@ -408,8 +408,10 @@ line-height: normal;
 
 .input-group {
   display: flex;
-  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  max-width: 550px; /* Ajusta el ancho máximo según tus necesidades */
+  width: 45rem;
   margin: 0 auto; /* Centra el grupo de entrada en la pantalla */
+  
 }
 
 .input-group-field {
