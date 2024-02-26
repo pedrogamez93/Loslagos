@@ -362,11 +362,11 @@
                 <h5>Menú</h5>
                 <ul class="nav flex-column">
               
-       
-                    <li class="nav-item"><a href="#" class="nav-link">Gobierno Regional</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Consejo Regional</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Región de los Lagos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Directorio de Funciones</a></li>
+             
+                    <li class="nav-item"><a href="{{ url('/gobiernoregional/acerca') }}"  class="nav-link">Gobierno Regional</a></li>
+                    <li class="nav-item"><a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link">Consejo Regional</a></li>
+                    <li class="nav-item"><a href="{{ url('/regionlagos/introduccion') }}" class="nav-link">Región de los Lagos</a></li>
+                    <li class="nav-item"><a href="{{ url('/funcionario') }}" class="nav-link">Directorio de Funciones</a></li>
                 </ul>
             </div>
 
@@ -378,7 +378,7 @@
               
                 <h5 class="mt-5">Enlaces directos</h5>
                 <ul class="nav flex-column">
-                  <li class="nav-item"><a href="#" class="nav-link">Fondo comunidad (Evaluación)</a></li>
+                  <li class="nav-item"><a href="https://fondocomunidad.goreloslagos.cl/login" class="nav-link">Fondo comunidad (Evaluación)</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Creando y Cuidando la Región</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Información de la región</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Directorio de funcionarios</a></li>
