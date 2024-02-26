@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
 use App\Models\Documentonew;
 use App\Models\TramitesDigitales;
+use App\Models\popup;
 use Illuminate\Support\Facades\Log;
 
-
+ 
 
 class HomeController extends Controller
 {
@@ -68,7 +69,18 @@ class HomeController extends Controller
         $home = Home::where('id', 1)->first();
         $tramitesDigitales = DB::table('tramites_digitales')->latest()->take(12)->get();
         $salaprensa = Salaprensa::latest()->take(12)->get();
-        return view('home.index', compact('home','tramitesDigitales','salaprensa'));
+        $popup = popup::all();
+        $popupUnico = $popup->first();
+
+        if ($popupUnico) {
+            $idpopup = $popupUnico->id;
+            // Resto del código si $popupUnico no es null
+        } else {
+            // Manejar el caso en el que $popupUnico es null
+            $idpopup = null; // O cualquier otro valor predeterminado que desees
+        }
+
+        return view('home.index', compact('home','tramitesDigitales','salaprensa','popupUnico'));
     }
 
     public function actualizar()

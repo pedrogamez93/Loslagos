@@ -285,39 +285,50 @@ button {
                     <form action="{{ route('contactanos.store') }}" method="POST" id="myForm">
                         @csrf
                             <!-- Campos comunes -->
-                            <label>Nombre:</label>
-                            <input type="text" name="nombre" required>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Nombre:</label>
+                                        <input type="text" name="nombre" class="form-control" required>
 
-                            <label>Apellido:</label>
-                            <input type="text" name="apellido" required>
+                                        <label>Apellido:</label>
+                                        <input type="text" name="apellido" class="form-control" required>
 
-                            <label>Email:</label>
-                            <input type="email" name="email" required>
+                                        <label>Email:</label>
+                                        <input type="email" name="email" class="form-control" required>
 
-                            <label>Sexo:</label>
-                            <select name="sexo" required>
-                                <!-- Opciones para sexo -->
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                            </select>
+                                        <label>Sexo:</label>
+                                        <select name="sexo" class="form-control" required>
+                                            <!-- Opciones para sexo -->
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Dirección:</label>
+                                        <input type="text" name="direccion" class="form-control" required>
 
-                            <label>Dirección:</label>
-                            <input type="text" name="direccion" required>
+                                        <label>Provincia:</label>
+                                        <input type="text" name="provincia" class="form-control" required>
 
-                            <label>Provincia:</label>
-                            <input type="text" name="provincia" required>
+                                        <label>Comuna:</label>
+                                        <input type="text" name="comuna" class="form-control" required>
 
-                            <label>Comuna:</label>
-                            <input type="text" name="comuna" required>
+                                        <label>Teléfono:</label>
+                                        <input type="tel" name="telefono" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <label>Teléfono:</label>
-                            <input type="tel" name="telefono" required>
 
                             <!-- Campo "Tipo de Mensaje" -->
                             <label>Tipo de Mensaje:</label>
                             <select name="tipo_mensaje" id="tipoMensaje" >
                                 <option value="consulta">Consulta</option>
-                                <option value="sugerencias">Sugerencia o Reclamo</option>
+                                <option value="sugerencias">Sugerencia</option>
+                                <option value="consulta">Reclamo</option>
+                                <option value="consulta">Otro</option>
+
                             </select>
 
                             <!-- Campos específicos para "Consulta" -->
@@ -330,6 +341,18 @@ button {
                             <div id="campoSugerencias" class="campoOculto">
                                 <!-- Agrega aquí los campos específicos para "Sugerencias" -->
                                 <!-- Ejemplo: -->
+
+
+
+
+
+
+
+
+                                <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        
                                 <label>Fecha de Nacimiento:</label>
                                 <input type="date" name="date">
 
@@ -490,8 +513,12 @@ button {
                                     <option value="VENDEDOR(A)">VENDEDOR(A)</option>                                                   
                                     <option value="OTRA">OTRA</option>
                                 </select>
+                                    
 
-                                <label>Institución a la que desea enviar mensaje:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                    <label>Institución a la que desea enviar mensaje:</label>
                                 <select name="intitucion_a_enviar" >
                                 <option value="">Seleccione</option>
                                 
@@ -635,6 +662,27 @@ button {
                                     <option value="expresar_condolencias">EXPRESAR CONDOLENCIAS</option>                                                   
                                     <option value="expresar_felicitaciones">EXPRESAR FELICITACIONES</option>
                                 </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               
 
                                 <label>Solicita Respuestas:</label>
                                 <select name="solicita_respuestas" >

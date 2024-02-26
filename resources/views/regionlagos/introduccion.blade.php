@@ -245,6 +245,41 @@
         </div>
     </div>
     </main>
+    @if ($popupUnico)
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <!-- Agrega la clase `modal-dialog-centered` para centrar el modal -->
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="miModalLabel"><b>{{ $popupUnico->title }}</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+            @if ($popupUnico->description!="")
+            <div class="modal-body">
+                {!! $popupUnico->description ?? '' !!}
+            </div>
+            @else
+            <div class="modal-body p-0">
+                <a href="{{ $popupUnico->url }}"><img src="{{ asset($popupUnico->image_url) }}" alt="Imagen actual" ></a>
+            </div>
+            @endif
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    @endif
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    // Función para mostrar el modal al cargar la página
+        $(document).ready(function() {
+            $('#miModal').modal('show');
+        });
+    </script>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
