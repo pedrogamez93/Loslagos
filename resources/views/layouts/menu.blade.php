@@ -343,6 +343,58 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapstenP" aria-expanded="false" aria-controls="flush-collapstenP">
+                                        Política de Turismo
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapstenP" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Politicadeturismo.create') }}">Política de Turismo</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Lanzamiento Politica Turismo</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Trabajo Participativo Metodología</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Trabajo Participativo Talleres Provinciales</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Mesa Pública-Privada</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Comité Técnico de Gestión</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Subcomisiones</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Imagen Región</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Presentaciones</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Difusión</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Galería de fotos</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Biblioteca</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Agenda</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsten" aria-expanded="false" aria-controls="flush-collapsten">
                                         Preguntas Frecuentes
                                     </button>
