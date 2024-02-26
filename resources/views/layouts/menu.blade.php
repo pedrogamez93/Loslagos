@@ -372,22 +372,38 @@
                                                 <a class="style-a-menu" href="{{ route('Subcomisiones.index') }}">Subcomisiones</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Imagen Región</a>
+                                                <a class="style-a-menu" href="{{ url('/imagenregion') }}">Imagen Región</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Presentaciones</a>
+                                                <a class="style-a-menu" href="{{ url('/presentaciones') }}">Presentaciones</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Difusión</a>
+                                                <a class="style-a-menu" href="{{ url('/difusion') }}">Difusión</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Galería de fotos</a>
+                                                <a class="style-a-menu" href="{{ url('/seminarios') }}">Seminario Internacional</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Biblioteca</a>
+                                                <a class="style-a-menu" href="{{ url('/galerias') }}">Galería de fotos</a>
+                                            </li>
+                                            
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/biblioteca') }}">Seminario Internacional Biblioteca</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Seminario Internacional Agenda</a>
+                                                <ul style="padding: 0px">
+                                                    <li class="style-li">
+                                                        <a class="style-a-menu" href="javascript:void(0);">Seminario Internacional Agenda</a>
+                                                        <ul class="submenu">
+                                                            <li class="style-li" style="padding-top: 5px;">
+                                                                <a class="style-a-menu" href="{{ url('/eventos') }}">Todos los Eventos</a>
+                                                            </li>
+                                                            <li class="style-li">
+                                                                <a class="style-a-menu" href="{{ url('/eventos/create') }}">Nuevo Evento</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </div>
