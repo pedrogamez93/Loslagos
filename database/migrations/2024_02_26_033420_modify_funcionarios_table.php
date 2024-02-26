@@ -13,6 +13,7 @@ class ModifyFuncionariosTable extends Migration
     public function up()
     {
         Schema::table('funcionarios', function (Blueprint $table) {
+            // Cambiar las columnas existentes para hacerlas nulas
             $table->string('nombre')->nullable()->change();
             $table->string('actividad')->nullable()->change();
             $table->string('division')->nullable()->change();
