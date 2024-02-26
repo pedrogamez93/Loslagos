@@ -381,8 +381,12 @@
                                                 <a class="style-a-menu" href="{{ url('/difusion') }}">Difusión</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/seminarios') }}">Seminario Internacional Galería de fotos</a>
+                                                <a class="style-a-menu" href="{{ url('/seminarios') }}">Seminario Internacional</a>
                                             </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/galerias') }}">Galería de fotos</a>
+                                            </li>
+                                            
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/biblioteca') }}">Seminario Internacional Biblioteca</a>
                                             </li>
