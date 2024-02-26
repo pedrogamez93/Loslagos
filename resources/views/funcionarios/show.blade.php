@@ -71,7 +71,7 @@
 
         <div class="row">
     <div class="col-3">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="Imagen del Funcionario" style="border-radius: 0px 0px 100px 0px;min-height: 100%;">
+        
     </div>
     <div class="col-6" style="margin-top: -16px;">
         <p class="fs-1 nombredetallado colorB">{{ $funcionario->nombre }}</p>
