@@ -496,6 +496,11 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+@push('scripts')
+
+
 <script>
 // Función para mostrar el modal al cargar la página
     $(document).ready(function() {
@@ -504,11 +509,6 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto
 </script>
 <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 <script>
-
-@push('scripts')
-
-
-
 $(document).ready(function() {
     $('.swiper-slide img').each(function() {
         var img = $(this);
