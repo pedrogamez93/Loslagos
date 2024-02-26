@@ -106,14 +106,14 @@
                         {{-- Agregar un buscador arriba --}}
 
                         <!-- Input para el autocompletado -->
-                        <div class="container">
+                        <div class="container mt-3">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="text" id="searchBox" class="form-control" placeholder="Buscar por título..." />
                                 </div>
                             </div>
                         </div>
-                        <div class="container">
+                        <div class="container mt-1">
                             <div class="row">
                                 <div class="col-md-6">
                                 <!-- Lista para mostrar los resultados del autocompletado -->
