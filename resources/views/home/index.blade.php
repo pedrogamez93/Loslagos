@@ -492,6 +492,7 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto
         </div>
     </div>
     </div>
+    @endif
 
 
 
