@@ -54,6 +54,9 @@ use App\Http\Controllers\ImagenRegionController;
 use App\Http\Controllers\SesionController;
 
 use App\Http\Controllers\LandingController;
+
+use App\Http\Controllers\PopupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -685,3 +688,11 @@ Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulari
 Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
     //DESCARGAR FORMULARIOS CSV
 Route::get('/descargar-csv', [FormController::class, 'descargarCSV'])->name('descargar.csv');
+
+Route::resource('/popups', PopupController::class);
+
+Route::get('/popups', 'App\Http\Controllers\PopupController@index')->name('popups.index')->middleware('auth');
+Route::get('/popups/create', 'App\Http\Controllers\PopupController@create')->name('popups.create')->middleware('auth');
+Route::post('/popups/store', 'App\Http\Controllers\PopupController@store')->name('popups.store')->middleware('auth');
+Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->name('popups.edit')->middleware('auth');
+Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');

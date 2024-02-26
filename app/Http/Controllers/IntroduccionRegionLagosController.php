@@ -18,6 +18,7 @@ use App\Models\InversionPublicaEfectivaSector;
 use App\Models\FinanciamientoporProvincias;
 use App\Models\Inversiones;
 use App\Models\PoliticaPrivacidad;
+use App\Models\popup;
 
 
 use Carbon\Carbon;
@@ -1251,8 +1252,19 @@ if ($articulo) {
             // La consulta devolvió al menos un registro
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
+            $popup = popup::all();
+            $popupUnico = $popup->first();
+
+            if ($popupUnico) {
+                $idpopup = $popupUnico->id;
+                // Resto del código si $popupUnico no es null
+            } else {
+                // Manejar el caso en el que $popupUnico es null
+                $idpopup = null; // O cualquier otro valor predeterminado que desees
+            }
             $introduccion  = IntroduccionRegionLagos::find($id);
-            return view('regionlagos.introduccion', compact('introduccion'));
+            $popupD  = popup::find($idpopup);
+            return view('regionlagos.introduccion', compact('introduccion','popupUnico'));
             
         } else {
             // La consulta no devolvió ningún registro
