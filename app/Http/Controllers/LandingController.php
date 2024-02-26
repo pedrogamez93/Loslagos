@@ -8,6 +8,7 @@ use App\Models\Landing;
 use App\Models\LandingBtns;
 use App\Models\LandingDocs;
 use App\Models\LandingImages;
+use Illuminate\Pagination\Paginator;
 
 class LandingController extends Controller{
 
@@ -209,18 +210,22 @@ class LandingController extends Controller{
     }
 
     public function show($id) {
-
-    try {
-        // Buscar la Landing Page por su ID junto con sus imágenes, botones externos y documentos relacionados
-        $landing = Landing::with(['images', 'btns', 'documentos'])->findOrFail($id);
-
-        // Pasar la Landing Page a la vista
-        return view('landings.show', compact('landing'));
-    } catch (\Exception $e) {
-        // Manejar una excepción si la Landing Page no se encuentra
-        return abort(404); // Puedes personalizar el código de respuesta según tus necesidades
-    }
-
+        try {
+            // Buscar la Landing Page por su ID
+            $landing = Landing::findOrFail($id);
+    
+            // Cargar relaciones botones y documentos
+            $landing->load(['btns', 'documentos']);
+    
+            // Paginar las imágenes relacionadas
+            $images = $landing->images()->paginate(12);  // Ajusta el número según tus necesidades
+    
+            // Pasar la Landing Page y las imágenes paginadas a la vista
+            return view('landings.show', compact('landing', 'images'));
+        } catch (\Exception $e) {
+            // Manejar una excepción si la Landing Page no se encuentra
+            return abort(404); // Puedes personalizar el código de respuesta según tus necesidades
+        }
     }
 
     public function cargarMenu() {

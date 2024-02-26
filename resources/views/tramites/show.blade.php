@@ -172,10 +172,6 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
-    footer{
-        height:535px;
-        background-color: #389144;
-    }
     a.mifinal-a{
         width: 146px;
         height: 40px;
