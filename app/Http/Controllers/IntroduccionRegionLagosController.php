@@ -1254,7 +1254,7 @@ if ($articulo) {
             $id = $primerArticulo->id;
             $popup = popup::all();
             $popupUnico = $popup->first();
-
+ 
             if ($popupUnico) {
                 $idpopup = $popupUnico->id;
                 // Resto del código si $popupUnico no es null
