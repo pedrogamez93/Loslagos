@@ -500,6 +500,14 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto
 @push('scripts')
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    // Función para mostrar el modal al cargar la página
+        $(document).ready(function() {
+            $('#miModal').modal('show');
+        });
+    </script>
+    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 <script>
 $(document).ready(function() {
     $('.swiper-slide img').each(function() {
