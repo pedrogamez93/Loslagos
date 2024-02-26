@@ -194,7 +194,7 @@
 
   <div class="mt-5 pb-5" style="background-color: #F1F1F1;
     height: 15rem;
-    width: 110% !important;
+    width: 100% !important;
     display: flex;
     justify-content: center;
     align-items: center;">
