@@ -34,12 +34,10 @@
                 <form action="{{ url('/funcionarios/buscar') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                        <div class="col-md-6">
-                            <select class="form-select mt-4" aria-label="Default select example" name="institucion" id="institucion">
-                                    <option selected>Seleccione la Institución</option>
-                                    <option value="Categoria 1">Gobierno Regional de Los Lagos</option>
-                                
-                                </select>
+                <div class="col-md-6">
+                        <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
+                    <option value="" disabled selected>Seleccione Departamento</option>
+                    </select>
                         </div>
                         <div class="col-md-6">
                         <select class="form-select mt-4" aria-label="Default select example" id="division" name="division" >
@@ -52,22 +50,7 @@
                         </div>
 
                 </div>
-                <div class="row">
-                        <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
-                    <option value="" disabled selected>Seleccione Departamento</option>
-                    </select>
-                        </div>
-                        <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="sexo" name="sexo">
-                            <option selected>Seleccione Sexo</option>
-                            <option value="Categoria 1">Masculino</option>
-                            <option value="Categoria 2">Femenino</option>
-                        
-                        </select>
-                        </div>
-
-                </div>
+                
                 
                 
                 
@@ -99,7 +82,7 @@
         <p><span class="spandetallado colorB">Fono:</span> {{ $funcionario->cargo }}</p>
         <p><span class="spandetallado colorB">Correo Electrónico:</span> {{ $funcionario->email }}</p>
         <p><span class="spandetallado colorB">Region:</span> {{ $funcionario->cargo }}</p>
-        <p><span class="spandetallado colorB">Provincia</span>{{ $funcionario->cargo }}</p>
+        <p><span class="spandetallado colorB">Provincia: </span>{{ $funcionario->cargo }}</p>
       
       
     </div>
