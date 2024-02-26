@@ -179,10 +179,6 @@
         color: #FFFFFF;
         font-Weight: 700;
     }
-    footer{
-        height:535px;
-        background-color: #389144;
-    }
     a.mifinal-a{
         width: 146px;
         height: 40px;
@@ -230,21 +226,19 @@
         color: white; /* Color del texto */
         border-radius: 5px; /* Bordes redondeados */
     }
-    .slick-slider.mioe .item {
-    width: 284px; /* Ancho del ítem */
-    padding: 10px; /* Espaciado interno */
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
-    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
 
-    .slick-slider.mioe .item img {
-        width: 100%; /* Asegura que la imagen ocupe todo el ancho del ítem */
-        height: 284px; /* Altura fija para la imagen */
-        object-fit: cover; /* Ajusta la imagen para cubrir todo el espacio, recortando lo que sobre */
-    }
-    .slick-slide img {
-    display: block;
-    width: 384px;
-    height: 284px;
+.grid-item {
+    /* Estilos para cada ítem, si necesitas */
+}
+
+img.mi-img-landing {
+    height: 200px;
+    width: 100%;
     object-fit: cover;
 }
 a.mifinal-a{
@@ -257,6 +251,9 @@ a.mifinal-a{
     font-size: 16px;
     line-height: 19.36px;
     text-align: Center;
+}
+p.text-sm.text-gray-700.leading-5 {
+    display: none;
 }
 </style>
 <html>
@@ -367,16 +364,24 @@ a.mifinal-a{
                                 @endforeach
                             @endif
 
-                            @if($landing->images->isNotEmpty())
-                                <p class="finalp mb-4 mt-5">Imagenes</p>
-                                <div class="slick-slider mioe mt-4">
-                                    @foreach ($landing->images as $image)
-                                        <div>
+                            @if($images->isNotEmpty())
+                                <p class="finalp mb-4 mt-5">Imágenes</p>
+                                <div class="grid-container mt-4 mb-5">
+                                    @foreach ($images as $image)
+                                        <div class="grid-item">
                                             <a href="{{ Storage::url($image->ruta_imagen) }}" data-fancybox="gallery1">
-                                                <img src="{{ Storage::url($image->ruta_imagen) }}" alt="{{ $image->nombre }}" class="img-fluid">
+                                                <img class="mi-img-landing" src="{{ Storage::url($image->ruta_imagen) }}" alt="{{ $image->nombre }}">
                                             </a>
                                         </div>
                                     @endforeach
+                                </div>
+                                <!-- Mostrar links de paginación para las imágenes -->
+                                <div>
+                                    Mostrando {{ $images->firstItem() }} a {{ $images->lastItem() }} de {{ $images->total() }} resultados
+                                </div>
+
+                                <div class="pagi mb-5">
+                                    {{ $images->links() }}
                                 </div>
                             @endif
 
