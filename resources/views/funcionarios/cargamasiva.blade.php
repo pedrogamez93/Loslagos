@@ -101,11 +101,20 @@
                     <form action="{{ url('/funcionarios/cargamasiva') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
+                            
                                 <label for="archivo" class="form-label">Seleccione un archivo CSV:</label>
                                 <input type="file" class="form-control" id="csv_file" name="csv_file" accept=".csv" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Subir Archivo</button>
                         </form>
+
+
+                        <div class="row">
+                        <div class="col">
+                            <label class="form-label"> Descargar planilla de ejemplo</label>
+                            <a href="{{ route('descargar.planilla') }}" class="btn btn-info" style="color:white"> Descarga</a>
+                        </div>
+                         </div>
                 </div>
             </div>
         </div>
