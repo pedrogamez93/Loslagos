@@ -12,7 +12,7 @@
 }
 .style-col-menu{
     background-color: #0c1e35;
-    height: 100vh;
+   /* height: 100vh;*/
 }
 </style>
 <div class="row">
