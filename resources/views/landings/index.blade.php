@@ -154,7 +154,7 @@
                                 {{ $landings->appends(request()->except('page'))->links() }}
                             </div>
                         @else
-                            <p>No hay Landings Pages disponibles.</p>
+                            <p class="mip mt-4">No hay Landings Pages disponibles.</p>
                         @endif
                     </div>
                 </div>
