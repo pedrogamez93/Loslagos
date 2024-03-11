@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -10,6 +12,8 @@
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <!-- Incluye los archivos JS de CKEditor -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 <style>
     h1 , h2{
         color: #565656;
@@ -111,7 +115,7 @@ input:required {
                        
                         <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
                         <textarea class="form-control mt-2 mt-5" id="editor" name="descripcion" placeholder="Bajada o Descripción"></textarea>
-
+ 
                         <div class="row mt-4">
                                 <div class="col-md-6">
                                 <p class="style-label">Fecha Apertura:<input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura_datepicker"></p>
@@ -211,6 +215,7 @@ input:required {
         </div>
     </div>
 </div>
+</html>
 <script>
     $(document).ready(function() {
         $('#agregarMas').click(function() {
@@ -310,7 +315,7 @@ input:required {
 
   } );
 </script>
-<script>
+<!--<script>
     document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
             .create(document.querySelector('#editor'))
@@ -318,6 +323,20 @@ input:required {
                 console.error(error);
             });
     });
+</script>-->
+<script>
+  tinymce.init({
+    selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+    plugins: 'advlist link image lists',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>
 
 <script>

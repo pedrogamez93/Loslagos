@@ -227,7 +227,7 @@ ul li {
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid">
+<div class="container-fluid color">
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
@@ -252,7 +252,7 @@ ul li {
     </div>
 </div>  
 <main>
-    <div class="container-fluid color cat">
+    <div class="container-fluid cat">
         <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
