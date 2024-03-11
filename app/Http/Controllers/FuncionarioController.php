@@ -126,14 +126,23 @@ class FuncionarioController extends Controller
     public function index() 
     {
      
-        $divisiones = $this->divisiones; 
-        $departamentos = $this->departamentos;
+        // Obtener divisiones y departamentos únicos de los funcionarios
+    $divisiones = Funcionario::distinct()->pluck('division');
+    $departamentos = Funcionario::distinct()->pluck('departamento');
+
+       // $divisiones = $this->divisiones; 
+       // $departamentos = $this->departamentos;
        
+    // También puedes agruparlos si es necesario
+    // $divisiones = Funcionario::groupBy('division')->pluck('division');
+    // $departamentos = Funcionario::groupBy('departamento')->pluck('departamento');
 
+    // Obtener todos los funcionarios
     $funcionarios = Funcionario::all();
-
     return view('funcionarios.index', compact('funcionarios', 'divisiones', 'departamentos'));
+   
 }
+
 
 public function indexTabla()
 {

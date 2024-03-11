@@ -109,6 +109,10 @@ Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
+Route::get('/descargar-planilla', function () {
+    $pathToFile = public_path('storage/funcionarioplanilla.csv');
+    return response()->download($pathToFile);
+})->name('descargar.planilla');
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');

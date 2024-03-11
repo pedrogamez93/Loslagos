@@ -28,7 +28,11 @@
             <div class="row">
             <div class="col-md-6">
                     <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
-                <option value="" disabled selected>Seleccione Departamento</option>
+               
+                    <option value="" disabled selected>Seleccione Departamento</option>
+                    @foreach ($departamentos as $departamento)
+                    <option value="{{ $departamento }}">{{ $departamento }}</option>
+                    @endforeach
                 </select>
                     </div>
 
@@ -62,13 +66,13 @@
 
 <script>
     // En tu script JavaScript
-    document.addEventListener('DOMContentLoaded', function () {
+   /* document.addEventListener('DOMContentLoaded', function () {
         var divisionSelect = document.getElementById('division');
         var departamentoSelect = document.getElementById('departamento');
 
         divisionSelect.addEventListener('change', function () {
             var selectedDivision = this.value;
-            var departamentos = <?php echo json_encode($departamentos); ?>;
+            var departamentos = <?php //echo json_encode($departamentos); ?>;
 
             // Limpiar opciones anteriores
             departamentoSelect.innerHTML = '<option value="" disabled selected>Seleccione Departamento</option>';
@@ -86,7 +90,7 @@
                 departamentoSelect.disabled = true; // Deshabilitar si no hay departamentos
             }
         });
-    });
+    }); */
 </script>
 
 @endsection
