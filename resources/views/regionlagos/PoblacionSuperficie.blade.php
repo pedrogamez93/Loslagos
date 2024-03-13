@@ -268,7 +268,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Región de los Lagos</title>
+    <title>Región de Los Lagos</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
 
 </head>

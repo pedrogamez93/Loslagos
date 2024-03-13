@@ -18,6 +18,7 @@ use App\Models\InversionPublicaEfectivaSector;
 use App\Models\FinanciamientoporProvincias;
 use App\Models\Inversiones;
 use App\Models\PoliticaPrivacidad;
+use App\Models\popup;
 
 
 use Carbon\Carbon;
@@ -351,6 +352,20 @@ public function updateAutoridades(Request $request, $id)
         return redirect()->route('AutoridadesRegionLagos.indexAutoridades')->with('error', 'Artículo no encontrado');
     }
 } 
+public function buscarAutoridades(Request $request)
+{
+    $query = $request->input('query');
+    
+    // Obtén todos los registros si no hay consulta, o filtra según la consulta
+    $articulo  = empty($query) ? Autoridades::all() : Autoridades::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('nombre', 'LIKE', "%$query%")
+                     ->orWhere('actividad_profesion', 'LIKE', "%$query%")
+                     ->orWhere('cargo', 'LIKE', "%$query%");
+        // Agrega más campos según sea necesario
+    })->get();
+
+    return view('IntroduccionRegionLagos.Autoridades.show', compact('articulo'));
+}
     // Fin Autoridades
     // Inicio Estadistica
     public function indexEstadisticas()
@@ -1237,8 +1252,19 @@ if ($articulo) {
             // La consulta devolvió al menos un registro
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
+            $popup = popup::all();
+            $popupUnico = $popup->first();
+ 
+            if ($popupUnico) {
+                $idpopup = $popupUnico->id;
+                // Resto del código si $popupUnico no es null
+            } else {
+                // Manejar el caso en el que $popupUnico es null
+                $idpopup = null; // O cualquier otro valor predeterminado que desees
+            }
             $introduccion  = IntroduccionRegionLagos::find($id);
-            return view('regionlagos.introduccion', compact('introduccion'));
+            $popupD  = popup::find($idpopup);
+            return view('regionlagos.introduccion', compact('introduccion','popupUnico'));
             
         } else {
             // La consulta no devolvió ningún registro

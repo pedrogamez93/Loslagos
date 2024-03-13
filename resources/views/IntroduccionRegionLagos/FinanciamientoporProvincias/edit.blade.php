@@ -70,7 +70,7 @@
                             <div class="row">
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" value="{{ $articulo->titulo }}" class="form-control" placeholder="Titulo seccion" required>
+                                        <input type="text" id="titulo" name="titulo" value="{{ $articulo->titulo }}" class="form-control" placeholder="Título sección" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 tag-comentario">

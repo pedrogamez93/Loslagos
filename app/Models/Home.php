@@ -52,6 +52,14 @@ class Home extends Model
         'slider3',
         'slider4',
         'slider5',
+        'banner1',
+        'banner2',
+        'banner3',
+        'banner4',
+        'bannerurl1',
+        'bannerurl2',
+        'bannerurl3',
+        'bannerurl4',
     ];
 
 }

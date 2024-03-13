@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Salaprensa;
 use App\Models\Documentonew;
 use App\Models\TramitesDigitales;
+use App\Models\popup;
 use Illuminate\Support\Facades\Log;
 
-
+ 
 
 class HomeController extends Controller
 {
@@ -50,6 +51,28 @@ class HomeController extends Controller
                 'url_minibanner11' => '#',
                 'minibanners12' => 'public/minibanners/default_image.png',
                 'url_minibanner12' => '#',
+                'minibanners13' => 'public/minibanners/default_image.png',
+                'url_minibanner13' => '#',
+                'minibanners14' => 'public/minibanners/default_image.png',
+                'url_minibanner14' => '#',
+                'minibanners15' => 'public/minibanners/default_image.png',
+                'url_minibanner15' => '#',
+                'minibanners16' => 'public/minibanners/default_image.png',
+                'url_minibanner16' => '#',
+                
+                'slider1' => 'public/sliders/default_image.png',
+                'slider2' => 'public/sliders/default_image.png',
+                'slider3' => 'public/sliders/default_image.png',
+                'slider4' => 'public/sliders/default_image.png',
+                'slider5' => 'public/sliders/default_image.png',
+                'banner1' => 'public/banners/default_image.png',
+                'banner2' => 'public/banners/default_image.png',
+                'banner3' => 'public/banners/default_image.png',
+                'banner4' => 'public/banners/default_image.png',
+                'bannerurl1' => '#',
+                'bannerurl2' => '#',
+                'bannerurl3' => '#',
+                'bannerurl4' => '#',
             ]);
 
             
@@ -63,7 +86,18 @@ class HomeController extends Controller
         $home = Home::where('id', 1)->first();
         $tramitesDigitales = DB::table('tramites_digitales')->latest()->take(12)->get();
         $salaprensa = Salaprensa::latest()->take(12)->get();
-        return view('home.index', compact('home','tramitesDigitales','salaprensa'));
+        $popup = popup::all();
+        $popupUnico = $popup->first();
+
+        if ($popupUnico) {
+            $idpopup = $popupUnico->id;
+            // Resto del código si $popupUnico no es null
+        } else {
+            // Manejar el caso en el que $popupUnico es null
+            $idpopup = null; // O cualquier otro valor predeterminado que desees
+        }
+
+        return view('home.index', compact('home','tramitesDigitales','salaprensa','popupUnico'));
     }
 
     public function actualizar()
@@ -86,7 +120,61 @@ class HomeController extends Controller
         return view('home.create', compact('home'));
     }
 
+    //Banners
 
+    public function banners()
+    { 
+       
+        $home = Home::where('id', 1)->first();
+        
+        return view('home.banners', compact('home'));
+    }
+ 
+    public function updatebanners(Request $request)
+    {
+        $request->validate([
+            'banner1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bannerurl1' => 'nullable|url',
+            'bannerurl2' => 'nullable|url',
+            'bannerurl3' => 'nullable|url',
+            'bannerurl4' => 'nullable|url',
+        ]);
+    
+        $home = Home::where('id', 1)->first();
+        $changes = [];
+    
+        // Iterar sobre los campos de banner1 hasta banner4 y bannerurl1 hasta bannerurl4
+        for ($i = 1; $i <= 4; $i++) {
+            $bannerField = "banner$i";
+            $bannerUrlField = "bannerurl$i";
+    
+            if ($request->hasFile($bannerField)) {
+                // Eliminar la imagen anterior
+                Storage::delete($home->$bannerField);
+    
+                // Almacenar la nueva imagen
+                $path = $request->file($bannerField)->store('public/banners');
+                $changes[$bannerField] = $path;
+            }
+    
+            // Verificar si hay una nueva URL para el banner
+            if ($request->filled($bannerUrlField)) {
+                $changes[$bannerUrlField] = $request->input($bannerUrlField);
+            }
+        }
+    
+        if (!empty($changes)) {
+            $home->update($changes);
+        }
+    
+        return redirect('/home/banners')->with('success', 'Registro actualizado correctamente.');
+    }
+    
+
+    //Sliders
     public function slider()
     { 
        

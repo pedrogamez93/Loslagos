@@ -161,6 +161,34 @@ button {
         color: #FFFFFF !important;
         font-Weight: 700 !important;
     }
+    .borderR{
+            border-left: 2px solid #F59120;
+        }
+    .infoR {
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #F59120;
+}
+.enlaceM {
+        color: #565656;
+    }
+    .enlaceM:hover {
+        font-Weight: 700;
+    }
+    .enlaceM{
+        padding: 10px 0px;
+        width: fit-content;
+    }
+    .borderM {
+            border-top: 2px solid #F59120;
+            border-bottom: 2px solid #F59120;
+            padding: 24px 0px;
+            margin-bottom: 20px;
+        }
 </style>
 <html>
     <head>
@@ -183,7 +211,7 @@ button {
                     <div class="container pt-5 pb-5">
                         <div class="row" >
                             <div class="col-md-12" >
-                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="#">Eventos</a></span></p>
+                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="/agenda">Agenda</a></span></p>
                             </div>
                             <div class="col-md-12 pt-5 pb-5">
                                 <p class="one-title pb-4">Formulación Política de Turismo</p>
@@ -218,6 +246,9 @@ button {
 
                                     <div class="container mt-5">
                                         <div class="row">
+                                        <div class="col-md-4 borderM d-block d-lg-none">
+                                            @include('layouts.menupoliticaturismo')
+                                        </div>
                                             <div class="col-md-8">
                                                 @php
                                                 $eventosAgrupadosPorMes = $eventos->groupBy(function ($evento) {
@@ -230,13 +261,16 @@ button {
                                                     @foreach ($eventosDelMes as $evento)
                                                         {{-- Enlace que envuelve todo el contenido del evento --}}
                                                         <a href="{{ route('eventos.show', $evento->id) }}" class="evento-link">
-                                                            <div class="row mt-4 mb-3" style="border: 1px solid #F59120;padding: 20px;">
+                                                            <div class="row mt-4 mb-3" style="border: 1px solid #F59120;margin: 20px;">
                                                                 <div class="col-md-6" style="align-self: center; text-align-last: center;">
                                                                     <strong>Inicio:</strong> {{ $evento->fecha_inicio->locale('es')->format('l d-m-Y H:i') }}<br>
                                                                     <strong>Término:</strong> {{ $evento->fecha_termino->locale('es')->format('l d-m-Y H:i') }}
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <h3>{{ $evento->titulo_evento }}</h3>
+                                                                    <p><strong>Título:</strong></p>
+                                                                    <p>{{ $evento->titulo_evento }}</p>
+
+                                                                    <p><strong>Descripción:</strong></p>
                                                                     <p>{{ $evento->descripcion }}</p>
                                                                 </div>
                                                             </div>
@@ -245,8 +279,8 @@ button {
                                                 @endforeach
                                             </div>
 
-                                            <div class="col-md-4">
-
+                                            <div class="col-md-4 borderR d-none d-lg-block">
+                                                    @include('layouts.menupoliticaturismo')
                                             </div>
                                         </div>
                                     </div>

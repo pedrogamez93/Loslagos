@@ -61,16 +61,16 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Titulo</th>
-                            <th>Subtitulo</th>
+                            <th>Título</th>
+                            <th>Subtítulo</th>
                             <th>
-                                Descripcion 1
+                            Descripción 1
                             </th>
                             <th>
                                 Varlo 1
                             </th>
                             <th>
-                                Descripcion 2
+                            Descripción 2
                             </th>
                             <th>
                                 Varlo 2

@@ -11,6 +11,12 @@
         left: 0; /* Lo fija en la parte izquierda */
         z-index: 1000;
     }
+    nav ul {
+        list-style-type: none !important;
+        list-style: none; 
+        padding: 0; 
+        display: flex; 
+    }
     p.style-bread{
         font-family:'Inter';
         font-Weight: 500;
@@ -221,7 +227,7 @@ ul li {
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
-<div class="container-fluid">
+<div class="container-fluid color">
     <div class="row">
         <div class="col-md-12">
             <div class="container second content-breadc pt-5 pb-5">
@@ -246,7 +252,7 @@ ul li {
     </div>
 </div>  
 <main>
-    <div class="container-fluid color cat">
+    <div class="container-fluid cat">
         <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">

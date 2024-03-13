@@ -72,19 +72,19 @@
                             <div class="row">
                                 <div class="col-md-6 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" value="{{ $articulo->titulo }}" placeholder="Titulo" required>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" value="{{ $articulo->titulo }}" placeholder="Título" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" value="{{ $articulo->subtitulo }}" placeholder="Subtitulo" required>
+                                        <input type="text" id="subtitulo" name="subtitulo" class="form-control" value="{{ $articulo->subtitulo }}" placeholder="Subtítulo" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 provincia">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control" value="{{ $articulo->descripcion1 }}" placeholder="Descripcion 1" required>
+                                        <input type="text" id="descripcion1" name="descripcion1" class="form-control" value="{{ $articulo->descripcion1 }}" placeholder="Descripción 1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">

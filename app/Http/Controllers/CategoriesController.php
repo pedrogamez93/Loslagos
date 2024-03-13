@@ -37,6 +37,18 @@ use App\Models\ConsejerosLlanquihue;
 use App\Models\ConsejerosOsorno;
 use App\Models\ConsejerosPalena;
 use App\Models\Evento;
+use App\Models\Biblioteca;
+use App\Models\Galeria;
+use App\Models\Imagen;
+use App\Models\Seminario;
+use App\Models\DocumentoSeminario;
+use App\Models\GaleriaSeminario;
+use App\Models\ImagenSeminario;
+use App\Models\DifusionDocs;
+use App\Models\Difusion;
+use App\Models\Presentaciones;
+use App\Models\ImagenRegion;
+use App\Models\ImagenRegionDocs;
 
 class CategoriesController extends Controller{
     
@@ -261,5 +273,63 @@ class CategoriesController extends Controller{
         // Pasa los eventos a la vista
         return view('agenda', ['eventos' => $eventos]);
     }
+
+    public function bibliotecaIndex() {
+        $biblioteca = Biblioteca::all();
+        
+        return view('biblioteca', ['biblioteca' => $biblioteca]);
+    }
+
+    public function galeriaIndex() {
+        $galerias = Galeria::all();
+        
+        return view('galerias', ['galerias' => $galerias]);
+    }
+
+    public function seminarioIndex() {
+        // Obtén el último registro de seminario con documentos y galerías (incluyendo imágenes de las galerías)
+        $lastRegistro = Seminario::with(['documentos', 'galerias.imagenes'])->latest()->first();
+    
+        if (!$lastRegistro) {
+            // Manejar el caso en que no haya seminarios
+            return view('seminariointernacional', ['mensaje' => 'No hay seminarios disponibles.']);
+        }
+    
+        // Pasar los datos a la vista
+        return view('seminariointernacional', [
+            'galerias' => $lastRegistro->galerias,
+            'documentos' => $lastRegistro->documentos,
+            'lastRegistro' => $lastRegistro
+        ]);
+    }
+
+    public function difusionindex() {
+
+        $difusion = Difusion::with('documentos')->latest()->first();
+
+        if (!$difusion) {
+            return redirect()->route('difusion.create');
+        }
+
+        return view('difusion', compact('difusion'));
+    }
+
+    public function presentacionIndex() {
+        $presentacion = Presentaciones::all();
+        
+        return view('presentaciones', ['presentacion' => $presentacion]);
+    }
+
+    public function imagenregionindex() {
+
+        $imagenregion = ImagenRegion::with('documentos')->latest()->first();
+
+        if (!$imagenregion) {
+            return redirect()->route('imagenregion.create');
+        }
+
+        return view('imagenregion', compact('imagenregion'));
+    }
+
 
 }

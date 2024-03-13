@@ -8,13 +8,17 @@
     <style>
   .mySwiper {
       width: 100%;
-      height: max-content;
+      height: 800px;
   }
 
   .swiper-slide img {
       width: 100%;
       height: auto;
       object-fit: cover;
+      min-height: 800px;
+      max-height: 800px ;
+      filter: brightness(70%);
+
   }
   .mySwiper {
       position: relative;
@@ -50,14 +54,14 @@
                       <p class="descripcionhome">Descripcion</p>
                   @endif
   
-                  <form action="{{ url('/buscador') }}" method="GET" id="formbuscador">
+                  <form action="{{ url('/buscador') }}" method="GET" id="formbuscador" style="display: none;">
                       
                       
                   <div id="divformbuscador" class="input-group input-group-rounded">
       <div class="input-group-prepend">
           <span class="input-group-text" style="position: absolute;
       background-color: transparent !important;
-      border: none;height: -webkit-fill-available;">
+      border: none;">
           <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
           </span>
       </div>
@@ -96,27 +100,27 @@
         <!-- Slides -->
         @isset($home->slider1)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider1)]) }}" class="img-fluid mb-3"> 
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider1)]) }}" > 
         </div>
         @endisset
         @isset($home->slider2)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider2)]) }}" class="img-fluid mb-3">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider2)]) }}" >
         </div>
         @endisset
         @isset($home->slider3)
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider3)]) }}" class="img-fluid mb-3">
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider3)]) }}" >
         </div>
         @endisset
         @isset($home->slider4)
         <div class="swiper-slide">
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider4)]) }}" class="img-fluid mb-3">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider4)]) }}" >
         </div>
         @endisset
         @isset($home->slider5) 
         <div class="swiper-slide">
-       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider5)]) }}" class="img-fluid mb-3"> 
+       <img src="{{ route('mostrar.imagen', ['carpeta' => 'sliders', 'imagen' => basename($home->slider5)]) }}" > 
         </div>
         @endisset
        
@@ -131,7 +135,7 @@
 <div class="container-fluid">
 
   <div class="container " > 
-     <div  class=" d-flex justify-content-between">
+     <div id="containersalaprensa" class=" d-flex justify-content-between">
         <h3 class="titleshome">Sala de prensa</h3>
         
         <div>
@@ -157,11 +161,15 @@
             <div class="carousel-caption">
             <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 5)) }}</p>
             
-            <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">ir ahora <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">Ir ahora <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     @endforeach
 </div>
+
+
+
+
 
 
 
@@ -182,14 +190,48 @@
 
     </div>
   </div>
+
+
+  <div class="mt-5 pb-5" style="background-color: #F1F1F1;
+    height: 15rem;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;">
+    <div  >
+       
+    <form action="{{ url('/buscador') }}" method="GET" id="formbuscador" >              
+                        <div id="divformbuscador" class="input-group input-group-rounded" style="">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="position: absolute;
+            background-color: transparent !important;
+            border: none;">
+                <i class="bi bi-search"></i> <!-- Assuming you are using Font Awesome for icons -->
+                </span>
+            </div>
+            <input class="input-group-field" id="inputbucador" name="q" type="search" placeholder="Buscar aquí">
+            <div class="input-group-append">
+                <input type="submit" class="button secondary" value="Buscar" id="btnbuscador">
+            </div>
+        </div>
+        </form>
+
+</div>
+
+  </div>
+
+
+
+
+
 <div class="container mt-5">
 <div class="d-flex justify-content-between">
-    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los Trámites</a></h3>
+    <h3 class="titleshome">Trámites Digitales  <a href="{{ url('/gobiernoregional/tramitesdigitales') }}" class="btn btn-primary btn-vertodos" style=" margin-right: 2vw;">Ver todos los trámites</a></h3>
    
     
 </div>
 <p class="home-descripcion">
-Actividades planeadas que involucran un accionar más amplio que un proyecto...
+Actividades planeadas que involucran un accionar más amplio que un proyecto
         </p>
     
 <div class="mt-5 pb-5">
@@ -244,43 +286,246 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 </div>
 
 <!--Cuadro dentro del banner-->
-<div class="container" style="margin-top: -8vw;">
-  <div class="row justify-content-end">
-    <div class="col-md-4" style="margin-left: -3vw;">
-     
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <div class="text-center" style="position: relative;">
+        @if($home->banner1)
+          <a href="{{$home->bannerurl1}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner1)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
+      </div>
     </div>
-    <div class="col-md-4" style="margin-left: -3vw;">
-      <div class="  text-center" style="position: relative;">
-      <a href="https://fondocomunidad.goreloslagos.cl/login">
-      <img src="{{ asset('img/fondocomunidad.png') }}" alt="Fondo Comunidad">
-      </a>
+    <div class="col-md-3">
+      <div class="text-center" style="position: relative;">
+        @if($home->banner2)
+          <a href="{{$home->bannerurl2}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner2)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="text-center" style="position: relative;">
+        @if($home->banner3)
+          <a href="{{$home->bannerurl3}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner3)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="text-center" style="position: relative;">
+        @if($home->banner4)
+          <a href="{{$home->bannerurl4}}">
+            <img src="{{ route('mostrar.imagen', ['carpeta' => 'banners', 'imagen' => basename($home->banner4)]) }}" > 
+          </a>
+        @else
+          <a href="#">
+            <img src="assets/storage/app/public/banners/default_image.png" > 
+          </a>
+        @endif
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="container">
-    <div class="row py-5 my-5">
-        <div class="col-md-3">
+
+<div class="mt-5 pb-5" id="mibannermobil">
+    <div id="thumbnail-slider3" class="carousel">
+        
+             <a href="{{$home->minibanners1}}" >
+            <div class="carousel-item">
+                    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                    <div class="carousel-caption mb-3">                       
+                    </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+            </a>
+
+            <a href="{{$home->minibanners2}}" >
+                 <div class="carousel-item">
+                    <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                        <div class="carousel-caption mb-3">                       
+                        </div>
+                        <h5 class=""></h5>                                    
+                 </div>
+            </a>
+
+
+            <a href="{{$home->minibanners3}}" >           
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners4}}" >              
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+
+                <a href="{{$home->minibanners5}}" >              
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="mb-3" style="width: 100%; height:auto"" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners6}}" >               
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners7}}" >              
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners8}}" >              
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners9}}" >              
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners10}}" >               
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+                <a href="{{$home->minibanners11}}" >                
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners12}}" >               
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners13)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners13}}" >            
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners14)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners14}}" >               
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners15)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                <a href="{{$home->minibanners15}}" >                
+                    <div class="carousel-item">
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners16)]) }}" class="mb-3" style="width: 100%; height:auto" alt="">
+                            <div class="carousel-caption mb-3">                        
+                        </div>
+                        <h5 class=""></h5>                                    
+                    </div>
+                </a>
+
+
+                
+
+      
+    </div>
+</div>
+
+
+<div class="container" id="minibanners">
+    <div class="row py-5 my-5" style="display: flex;
+    justify-content: center;">
+        <div class="col-lg-2">
         @isset($home->minibanners1) <a href="{{$home->url_minibanner1}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners1)]) }}" class="img-fluid mb-3"> </a> @endisset
         @isset($home->minibanners2) <a href="{{$home->url_minibanner2}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners2)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners3) <a href="{{$home->url_minibanner3}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners3)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners4) <a href="{{$home->url_minibanner4}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners4)]) }}" class="img-fluid mb-3"></a> @endisset   
     </div>
-        <div class="col-md-3">
+        <div class="col-lg-2">
         @isset($home->minibanners5) <a href="{{$home->url_minibanner5}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners5)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners6) <a href="{{$home->url_minibanner6}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners6)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners7) <a href="{{$home->url_minibanner7}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners7)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners8) <a href="{{$home->url_minibanner8}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners8)]) }}" class="img-fluid mb-3"></a> @endisset   
     </div>
-        <div class="col-md-3">
+        <div class="col-lg-2">
         @isset($home->minibanners9) <a href="{{$home->url_minibanner9}}"> <img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners9)]) }}" class="img-fluid mb-3"> </a>@endisset
         @isset($home->minibanners10) <a href="{{$home->url_minibanner10}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners10)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners11) <a href="{{$home->url_minibanner11}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners11)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners12) <a href="{{$home->url_minibanner12}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners12)]) }}" class="img-fluid mb-3"></a> @endisset   
     </div>
-        <div class="col-md-3">
+        <div class="col-lg-2">
         @isset($home->minibanners13) <a href="{{$home->url_minibanner13}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners13)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners14) <a href="{{$home->url_minibanner14}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners14)]) }}" class="img-fluid mb-3"></a> @endisset
         @isset($home->minibanners15) <a href="{{$home->url_minibanner15}}"><img src="{{ route('mostrar.imagen', ['carpeta' => 'minibanners', 'imagen' => basename($home->minibanners15)]) }}" class="img-fluid mb-3"></a> @endisset
@@ -292,10 +537,39 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 
 
 
+
+
+
 </div>
 </div>
 
 
+@if ($popupUnico)
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <!-- Agrega la clase `modal-dialog-centered` para centrar el modal -->
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="miModalLabel"><b>{{ $popupUnico->title }}</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+            @if ($popupUnico->description!="")
+            <div class="modal-body">
+                {!! $popupUnico->description ?? '' !!}
+            </div>
+            @else
+            <div class="modal-body p-0">
+                <a href="{{ $popupUnico->url }}"><img src="{{ asset($popupUnico->image_url) }}" alt="Imagen actual" style=" width: -webkit-fill-available; "></a>
+            </div>
+            @endif
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    @endif
 
 
 
@@ -304,6 +578,37 @@ Actividades planeadas que involucran un accionar más amplio que un proyecto...
 @push('scripts')
 
 
+
+<!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+<script>
+$(document).ready(function() {
+    $('.swiper-slide img').each(function() {
+        var img = $(this);
+
+        // Función para ajustar el estilo
+        function adjustImageStyle() {
+            var aspectRatio = img[0].naturalWidth / img[0].naturalHeight;
+
+            if (aspectRatio > 3) {
+                img.css({
+                    'object-fit': 'contain',
+                    'height': 'auto',
+                    'width': '100%'
+                });
+            }
+        }
+
+        // Ajusta la imagen si ya está cargada
+        if (img[0].complete) {
+            adjustImageStyle();
+        } else {
+            // Ajusta la imagen una vez se haya cargado
+            img.on('load', adjustImageStyle);
+        }
+    });
+});
+
+</script>
 
 
 @endpush

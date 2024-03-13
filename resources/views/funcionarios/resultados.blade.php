@@ -33,12 +33,10 @@
                 <form action="{{ url('/funcionarios/buscar') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                        <div class="col-md-6">
-                            <select class="form-select mt-4" aria-label="Default select example" name="institucion" id="institucion">
-                                    <option selected>Seleccione la Institución</option>
-                                    <option value="Categoria 1">Gobierno Regional de Los Lagos</option>
-                                
-                                </select>
+                <div class="col-md-6">
+                        <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
+                    <option value="" disabled selected>Seleccione Departamento</option>
+                    </select>
                         </div>
                         <div class="col-md-6">
                         <select class="form-select mt-4" aria-label="Default select example" id="division" name="division" >
@@ -51,22 +49,7 @@
                         </div>
 
                 </div>
-                <div class="row">
-                        <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
-                    <option value="" disabled selected>Seleccione Departamento</option>
-                    </select>
-                        </div>
-                        <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="sexo" name="sexo">
-                            <option selected>Seleccione Sexo</option>
-                            <option value="Categoria 1">Masculino</option>
-                            <option value="Categoria 2">Femenino</option>
-                        
-                        </select>
-                        </div>
-
-                </div>
+               
                 
                 
                 
@@ -100,8 +83,12 @@
                                 <p  class="tituloresultadobuscador1 colorB">{{ $funcionario->nombre }}</p>
                                 <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>
                                 <p class="textoresultadobuscador1 colorB">Cargo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->cargo }}</span></p>
-                                <p class="textoresultadobuscador1 colorB">E-mail: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->email }}</span></p>
-                                </div>
+                                <p class="textoresultadobuscador1 colorB">departamento: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->departamento }}</span></p>   
+                                <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->correo }}</span></p>
+                                <p class="textoresultadobuscador1 colorB">Division: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->division }}</span></p>
+                                <p class="textoresultadobuscador1 colorB">Direccion: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->direccion }}</span></p>
+                               
+                            </div>
                             
                         
                         </div>

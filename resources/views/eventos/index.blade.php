@@ -85,6 +85,9 @@
                                             <p>{{ $evento->descripcion }}</p>
                                         </div>
                                         <div class="col-md-3" style="align-self: center;">
+
+                                            <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-success mb-3">Editar evento</a>
+
                                             {{-- Formulario para eliminar el evento --}}
                                             <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST">
                                                 @csrf

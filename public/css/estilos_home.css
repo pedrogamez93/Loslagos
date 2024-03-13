@@ -187,7 +187,7 @@ border-color: #d9d9d9;
 
 .bg-body-tertiary {
   /* height: 413px; */
-  width: 100vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
+  width: 99vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
   margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
   margin-right: calc(-50vw + 50%);
   border-radius: 0; /* Elimina el borde redondeado que puede tener el banner */
@@ -408,8 +408,10 @@ line-height: normal;
 
 .input-group {
   display: flex;
-  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  max-width: 550px; /* Ajusta el ancho máximo según tus necesidades */
+  width: 45rem;
   margin: 0 auto; /* Centra el grupo de entrada en la pantalla */
+  
 }
 
 .input-group-field {
@@ -438,6 +440,40 @@ line-height: normal;
 }
 /* TELEFONO */
 @media screen and (max-width: 600px) {
+
+  .titulohome{
+    font-family: Inter;
+font-size: 25px;
+font-weight: 700;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+
+  }
+.descripcionhome{
+
+
+  font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+
+  #minibanners{
+    display: none;
+  }
+
+  #footerdesktop{
+    display: none !important;
+  }
+
+  #containersalaprensa{
+    flex-wrap: wrap;
+  }
+
   #fondobanner{
     height: 100vw;
   }
@@ -458,13 +494,14 @@ display: none;
   }
 
   #btnbuscador{
-    height: 11.5vw;
+    height: 45px;
     border-radius: 1px 20px 20px 1px;
   }
   
   #formbuscador{
     position: absolute;
     margin-top: calc(80vw + 70%);
+    left: -8vw;
   }
 
   #header{
@@ -494,6 +531,15 @@ background-color: #389144;
 
 /* PC */
 @media screen and (min-width: 800px) {
+
+  #minibanners{
+    display: block;
+  }
+
+  #mibannermobil{
+    display: none;
+  }
+
   #header{
     height: 800px;
     background-color: #389144;

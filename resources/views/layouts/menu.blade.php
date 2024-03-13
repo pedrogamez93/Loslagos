@@ -12,7 +12,7 @@
 }
 .style-col-menu{
     background-color: #0c1e35;
-    height: 100vh;
+   /* height: 100vh;*/
 }
 </style>
 <div class="row">
@@ -133,7 +133,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Región de los Lagos
+                                        Región de Los Lagos
                                     </button>
                                     </h2>
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -198,6 +198,9 @@
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('Home.slider') }}">Editar Sliders</a>
                                             </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Home.banners') }}">Editar Banners</a>
+                                            </li>
                                             
                                         </ul>
                                     </div>
@@ -225,6 +228,26 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                                       Sesiones de consejo
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                               
+                                            </li>
+                                            <li class="style-li">
+                                               
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
                                         Formularios
                                     </button>
@@ -248,11 +271,14 @@
                                     <div id="flush-collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li class="style-li">
+                                            <!-- <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('funcionarios.create') }}">Agregar nuevo</a>
-                                            </li>
+                                            </li> -->
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Funcionarios</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('funcionarios.cargamasiva') }}">Carga masiva</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -317,6 +343,74 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapstenP" aria-expanded="false" aria-controls="flush-collapstenP">
+                                        Política de Turismo
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapstenP" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Politicadeturismo.index') }}">Política de Turismo</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('PoliticaRegionalTurismo.index') }}">Lanzamiento Politica Turismo</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('TrabajoParticipativoMetodologia.index') }}">Trabajo Participativo Metodología</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('TrabajoParticipativoTalleresProvinciales.index') }}">Trabajo Participativo Talleres Provinciales</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('MesaPublicoPrivada.index') }}">Mesa Pública-Privada</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('ComiteTecnicodeGestion.index') }}">Comité Técnico de Gestión</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('Subcomisiones.index') }}">Subcomisiones</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/imagenregion') }}">Imagen Región</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/presentaciones') }}">Presentaciones</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/difusion') }}">Difusión</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/seminarios') }}">Seminario Internacional</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/galerias') }}">Galería de fotos</a>
+                                            </li>
+                                            
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/biblioteca') }}">Seminario Internacional Biblioteca</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <ul style="padding: 0px">
+                                                    <li class="style-li">
+                                                        <a class="style-a-menu" href="javascript:void(0);">Seminario Internacional Agenda</a>
+                                                        <ul class="submenu">
+                                                            <li class="style-li" style="padding-top: 5px;">
+                                                                <a class="style-a-menu" href="{{ url('/eventos') }}">Todos los Eventos</a>
+                                                            </li>
+                                                            <li class="style-li">
+                                                                <a class="style-a-menu" href="{{ url('/eventos/create') }}">Nuevo Evento</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsten" aria-expanded="false" aria-controls="flush-collapsten">
                                         Preguntas Frecuentes
                                     </button>
@@ -333,6 +427,34 @@
                                         </ul>
                                     </div>
                                     </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapstene" aria-expanded="false" aria-controls="flush-collapstene">
+                                        Configuración
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapstene" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li class="style-li">
+                                                <a class="style-a-menu"  href="{{ route('popups.index') }}">Popups </a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="javascript:void(0);">Landings page</a>
+                                                <ul class="submenu">
+                                                    <li class="style-li" style="padding-top: 5px;">
+                                                        <a class="style-a-menu" href="{{ url('/landings/create') }}">Todas las landings</a>
+                                                    </li>
+                                                    <li class="style-li">
+                                                        <a class="style-a-menu" href="{{ url('/landings/') }}">Nueva landing</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                    
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">

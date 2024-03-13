@@ -41,8 +41,21 @@ use App\Http\Controllers\DocumentosDeGestionController;
 
 use App\Http\Controllers\SitiosController;
 use App\Http\Controllers\DocumentonewController;
+use App\Http\Controllers\PoliticadeturismoController;
 
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\BibliotecaController;
+use App\Http\Controllers\GaleriaController;
+use App\Http\Controllers\SeminarioController;
+use App\Http\Controllers\DifusionController;
+use App\Http\Controllers\PresentacionesController;
+use App\Http\Controllers\ImagenRegionController;
+
+use App\Http\Controllers\SesionController;
+
+use App\Http\Controllers\LandingController;
+
+use App\Http\Controllers\PopupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +78,8 @@ Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 Route::get('/home/slider', [HomeController::class, 'slider'])->name('Home.slider');
-
+Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
+Route::put('/home/updatebanners', [HomeController::class, 'updatebanners']);
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
@@ -85,13 +99,20 @@ Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
 Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
+Route::get('/funcionarios/cargamasiva', [FuncionarioController::class, 'getcargarMasiva'])->name('funcionarios.cargamasiva')->middleware('auth');
+Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
-Route::get('/funcionarios/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
+Route::get('/descargar-planilla', function () {
+    $pathToFile = public_path('storage/funcionarioplanilla.csv');
+    return response()->download($pathToFile);
+})->name('descargar.planilla');
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
@@ -117,7 +138,24 @@ Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'
 Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy')->middleware('auth');
 Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
 
-//Route::resource('/', HomeController::class);
+
+
+// Ruta para mostrar todas las sesiones (index)
+Route::get('/sesiones', [SesionController::class, 'index'])->name('sesiones.index');
+
+// Ruta para mostrar el formulario de creación de sesiones (create)
+Route::get('/sesiones/crear', [SesionController::class, 'create'])->name('sesiones.create');
+
+// Ruta para almacenar una nueva sesión (store)
+Route::post('/sesiones', [SesionController::class, 'store'])->name('sesiones.store');
+
+// Ruta para mostrar el formulario de edición
+//Route::get('/sesiones/{sesion}/editar', [SesionController::class, 'edit'])->name('sesiones.edit');
+
+// Ruta para actualizar los datos de la sesión
+//Route::put('/sesiones/{sesion}', [SesionController::class, 'update'])->name('sesiones.update');
+
+
 
 
 
@@ -231,7 +269,85 @@ Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('
 
 Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
 
-Route::get('/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
+Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
+
+Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+
+Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
+//Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+
+//RUTAS PARA LA BIBLIOTECA
+
+Route::resource('biblioteca', BibliotecaController::class);
+
+Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
+
+//RUTAS PARA GALERIA
+
+Route::resource('galerias', GaleriaController::class);
+
+Route::delete('galerias-back/{galeria}', [GaleriaController::class, 'galeriadestroy'])->name('galerias-back.destroy');
+Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])->name('imagenes.destroy');
+Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
+
+Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
+
+Route::get('/galerias/{imagen}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
+
+//RUTAS PARA SEMINARIO
+
+Route::resource('seminarios', SeminarioController::class);
+
+Route::get('/seminarios/edit/{id}', [SeminarioController::class, 'edit'])->name('seminarios.edit');
+
+Route::delete('/documentos/{id}', [SeminarioController::class, 'destroyDocumento'])->name('documentos.destroy');
+
+Route::delete('/galerias/{galeria}', [SeminarioController::class, 'eliminarGaleria'])->name('galerias.eliminar');
+
+Route::get('/galerias/{id}', [SeminarioController::class, 'show'])->name('galerias.show');
+
+Route::get('/seminario-internacional', [CategoriesController::class, 'seminarioIndex'])->name('seminario.internacional');
+
+//RUTAS PARA DIFUSION
+
+Route::resource('difusion', DifusionController::class);
+
+Route::delete('/difusion-docs/{id}', [DifusionController::class, 'destroyDocs'])->name('difusion-docs.destroy');
+
+Route::get('/politica-turismo/difusion', 'App\Http\Controllers\CategoriesController@difusionindex');
+
+//RUTAS PARA PRESENTACIONES
+
+Route::resource('presentaciones', PresentacionesController::class);
+
+Route::get('/politica-turismo/presentaciones', 'App\Http\Controllers\CategoriesController@presentacionIndex');
+
+//RUTAS PARA IMAGENREGION
+
+Route::resource('imagenregion', ImagenRegionController::class);
+
+Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
+
+Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
+
+//RUTAS PARA LAS LANDING DINAMICAS
+
+Route::resource('landings', LandingController::class);
+
+// En routes/web.php
+Route::get('/search-landings', [LandingController::class, 'search'])->name('landings.search');
+
+// Ruta para eliminar una imagen
+Route::delete('/landing-image/{id}', [LandingController::class, 'deleteImage'])->name('landing-image.destroy');
+
+// Ruta para eliminar un botón externo
+Route::delete('/landing-button/{id}', [LandingController::class, 'deleteButton'])->name('landing-button.destroy');
+
+// Ruta para eliminar un documento
+Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocument'])->name('landing-document.destroy');
+
+//FIN RUTAS PARA LAS LANDING DINAMICAS
+
 
 Route::middleware([
     'auth:sanctum',
@@ -353,6 +469,7 @@ Route::get('/AutoridadesRegionLagos/edit/{id}', 'App\Http\Controllers\Introducci
 Route::put('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateAutoridades')->name('AutoridadesRegionLagos.updateAutoridades')->middleware('auth');
 Route::get('/AutoridadesRegionLagos/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showAutoridades')->name('AutoridadesRegionLagos.showAutoridades')->middleware('auth');
 Route::delete('/AutoridadesRegionLagos/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyAutoridades')->name('AutoridadesRegionLagos.destroyAutoridades')->middleware('auth');
+Route::get('/AutoridadesRegionLagos/buscar', 'App\Http\Controllers\IntroduccionRegionLagosController@buscarAutoridades')->name('buscarAutoridades.show');
 
 Route::get('/EstadisticasRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@indexEstadisticas')->name('EstadisticasRegionLagos.indexEstadisticas')->middleware('auth');
 Route::get('/EstadisticasRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createEstadisticas')->name('EstadisticasRegionLagos.createEstadisticas')->middleware('auth');
@@ -456,9 +573,92 @@ Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\Introduccio
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
 Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
 
+//RUTAS POLITICAS DE TURISMO BACK
+Route::get('/programas/Politicadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismo')->name('Politicadeturismo.index')->middleware('auth');
+Route::post('/Politicadeturismo/store', 'App\Http\Controllers\PoliticadeturismoController@storePoliticadeturismo')->name('Politicadeturismo.store')->middleware('auth');
+
+Route::get('/programas/Politicadeturismo/create', 'App\Http\Controllers\PoliticadeturismoController@createPoliticadeturismo')->name('Politicadeturismo.create')->middleware('auth');
+Route::get('/programas/Politicadeturismo/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editPoliticadeturismo')->name('Politicadeturismo.edit')->middleware('auth');
+Route::put('/programas/Politicadeturismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updatePoliticadeturismo')->name('Politicadeturismo.update')->middleware('auth');
+//RUTAS POLITICAS DE TURISMO FRONTEND
+Route::get('/formulacionpoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismoWeb')->name('PoliticadeturismoWeb.show');
+//RUTAS Productos de la Política de Turismo
+/*
+Route::get('/programas/ProductosdelaPoliticadeTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.index')->middleware('auth');
+Route::post('/programas/ProductosdelaPoliticadeTurismo/store', 'App\Http\Controllers\PoliticadeturismoController@storeProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.store')->middleware('auth');
+Route::get('/programas/ProductosdelaPoliticadeTurismo/create', 'App\Http\Controllers\PoliticadeturismoController@createProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.create')->middleware('auth');
+Route::get('/programas/ProductosdelaPoliticadeTurismo/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.edit')->middleware('auth');
+Route::put('/programas/ProductosdelaPoliticadeTurismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.update')->middleware('auth');
+*/
+//RUTAS Lanzamiento Política
+
+Route::get('/productosdelapoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismoWeb')->name('ProductosdelaPoliticadeTurismoWeb.show');
+
+Route::get('/programas/LanzamientoPolitica', 'App\Http\Controllers\PoliticadeturismoController@indexLanzamientoPolitica')->name('LanzamientoPolitica.index')->middleware('auth');
+Route::post('/programas/LanzamientoPolitica/store', 'App\Http\Controllers\PoliticadeturismoController@storeLanzamientoPolitica')->name('LanzamientoPolitica.store')->middleware('auth');
+Route::get('/programas/LanzamientoPolitica/create', 'App\Http\Controllers\PoliticadeturismoController@createLanzamientoPolitica')->name('LanzamientoPolitica.create')->middleware('auth');
+Route::get('/programas/LanzamientoPolitica/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editLanzamientoPolitica')->name('LanzamientoPolitica.edit')->middleware('auth');
+Route::put('/programas/LanzamientoPolitica/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateLanzamientoPolitica')->name('LanzamientoPolitica.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/LanzamientoPolitica', 'App\Http\Controllers\PoliticadeturismoController@indexLanzamientoPoliticaWeb')->name('LanzamientoPoliticaWeb.show');
+
+Route::get('/programas/PoliticaRegionalTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticaRegionalTurismo')->name('PoliticaRegionalTurismo.index')->middleware('auth');
+Route::post('/programas/PoliticaRegionalTurismo/store', 'App\Http\Controllers\PoliticadeturismoController@storePoliticaRegionalTurismo')->name('PoliticaRegionalTurismo.store')->middleware('auth');
+Route::get('/programas/PoliticaRegionalTurismo/create', 'App\Http\Controllers\PoliticadeturismoController@createPoliticaRegionalTurismo')->name('PoliticaRegionalTurismo.create')->middleware('auth');
+Route::get('/programas/PoliticaRegionalTurismo/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editPoliticaRegionalTurismo')->name('PoliticaRegionalTurismo.edit')->middleware('auth');
+Route::put('/programas/PoliticaRegionalTurismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updatePoliticaRegionalTurismo')->name('PoliticaRegionalTurismo.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/PoliticaRegionalTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticaRegionalTurismoWeb')->name('PoliticaRegionalTurismoWeb.show');
+
+Route::get('/programas/TrabajoParticipativoMetodologia', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.index')->middleware('auth');
+Route::post('/programas/TrabajoParticipativoMetodologia/store', 'App\Http\Controllers\PoliticadeturismoController@storeTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.store')->middleware('auth');
+Route::get('/programas/TrabajoParticipativoMetodologia/create', 'App\Http\Controllers\PoliticadeturismoController@createTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.create')->middleware('auth');
+Route::get('/programas/TrabajoParticipativoMetodologia/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.edit')->middleware('auth');
+Route::put('/programas/TrabajoParticipativoMetodologia/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/TrabajoParticipativoMetodologia', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoMetodologiaWeb')->name('TrabajoParticipativoMetodologiaWeb.show');
+
+Route::get('/programas/TrabajoParticipativoTalleresProvinciales', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.index')->middleware('auth');
+Route::post('/programas/TrabajoParticipativoTalleresProvinciales/store', 'App\Http\Controllers\PoliticadeturismoController@storeTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.store')->middleware('auth');
+Route::get('/programas/TrabajoParticipativoTalleresProvinciales/create', 'App\Http\Controllers\PoliticadeturismoController@createTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.create')->middleware('auth');
+Route::get('/programas/TrabajoParticipativoTalleresProvinciales/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.edit')->middleware('auth');
+Route::put('/programas/TrabajoParticipativoTalleresProvinciales/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/TrabajoParticipativoTalleresProvinciales', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoTalleresProvincialesWeb')->name('TrabajoParticipativoTalleresProvincialesWeb.show');
+
+Route::get('/programas/MesaPublicoPrivada', 'App\Http\Controllers\PoliticadeturismoController@indexMesaPublicoPrivada')->name('MesaPublicoPrivada.index')->middleware('auth');
+Route::post('/programas/MesaPublicoPrivada/store', 'App\Http\Controllers\PoliticadeturismoController@storeMesaPublicoPrivada')->name('MesaPublicoPrivada.store')->middleware('auth');
+Route::get('/programas/MesaPublicoPrivada/create', 'App\Http\Controllers\PoliticadeturismoController@createMesaPublicoPrivada')->name('MesaPublicoPrivada.create')->middleware('auth');
+Route::get('/programas/MesaPublicoPrivada/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editMesaPublicoPrivada')->name('MesaPublicoPrivada.edit')->middleware('auth');
+Route::put('/programas/MesaPublicoPrivada/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateMesaPublicoPrivada')->name('MesaPublicoPrivada.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/MesaPublicoPrivada', 'App\Http\Controllers\PoliticadeturismoController@indexMesaPublicoPrivadaWeb')->name('MesaPublicoPrivadaWeb.show');
+
+Route::get('/programas/ComiteTecnicodeGestion', 'App\Http\Controllers\PoliticadeturismoController@indexComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.index')->middleware('auth');
+Route::post('/programas/ComiteTecnicodeGestion/store', 'App\Http\Controllers\PoliticadeturismoController@storeComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.store')->middleware('auth');
+Route::get('/programas/ComiteTecnicodeGestion/create', 'App\Http\Controllers\PoliticadeturismoController@createComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.create')->middleware('auth');
+Route::get('/programas/ComiteTecnicodeGestion/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.edit')->middleware('auth');
+Route::put('/programas/ComiteTecnicodeGestion/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/ComiteTecnicodeGestion', 'App\Http\Controllers\PoliticadeturismoController@indexComiteTecnicodeGestionWeb')->name('ComiteTecnicodeGestion.show');
+
+Route::get('/programas/Subcomisiones', 'App\Http\Controllers\PoliticadeturismoController@indexSubcomisiones')->name('Subcomisiones.index')->middleware('auth');
+Route::post('/programas/Subcomisiones/store', 'App\Http\Controllers\PoliticadeturismoController@storeSubcomisiones')->name('Subcomisiones.store')->middleware('auth');
+Route::get('/programas/Subcomisiones/create', 'App\Http\Controllers\PoliticadeturismoController@createSubcomisiones')->name('Subcomisiones.create')->middleware('auth');
+Route::get('/programas/Subcomisiones/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editSubcomisiones')->name('Subcomisiones.edit')->middleware('auth');
+Route::put('/programas/Subcomisiones/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateSubcomisiones')->name('Subcomisiones.update')->middleware('auth');
+
+//RUTAS Lanzamiento Política FRONTEND
+Route::get('/Subcomisiones', 'App\Http\Controllers\PoliticadeturismoController@indexSubcomisionesWeb')->name('Subcomisiones.show');
 
 
-//PROGRAMAS
+//PROGRAMAS 
 Route::resource('programas', ProgramasController::class);
 
 Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
@@ -499,3 +699,11 @@ Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulari
 Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
     //DESCARGAR FORMULARIOS CSV
 Route::get('/descargar-csv', [FormController::class, 'descargarCSV'])->name('descargar.csv');
+
+Route::resource('/popups', PopupController::class);
+
+Route::get('/popups', 'App\Http\Controllers\PopupController@index')->name('popups.index')->middleware('auth');
+Route::get('/popups/create', 'App\Http\Controllers\PopupController@create')->name('popups.create')->middleware('auth');
+Route::post('/popups/store', 'App\Http\Controllers\PopupController@store')->name('popups.store')->middleware('auth');
+Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->name('popups.edit')->middleware('auth');
+Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');
