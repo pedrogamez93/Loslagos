@@ -21,7 +21,7 @@ class ModifyFuncionariosTable extends Migration
             $table->string('cargo')->nullable()->change();
             $table->string('direccion')->nullable()->change();
             $table->string('telefono')->nullable()->change();
-            $table->string('e-mail')->nullable()->change();
+            $table->string('email')->nullable()->change();
             $table->string('region')->nullable()->change();
             $table->string('provincia')->nullable()->change();
             $table->string('comuna')->nullable()->change();
