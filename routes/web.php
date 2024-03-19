@@ -57,6 +57,10 @@ use App\Http\Controllers\LandingController;
 
 use App\Http\Controllers\PopupController;
 
+use App\Http\Controllers\FondofndrController;
+
+use App\Http\Controllers\HomefndrController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -707,3 +711,17 @@ Route::get('/popups/create', 'App\Http\Controllers\PopupController@create')->nam
 Route::post('/popups/store', 'App\Http\Controllers\PopupController@store')->name('popups.store')->middleware('auth');
 Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->name('popups.edit')->middleware('auth');
 Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');
+
+
+
+Route::resource('homefndr', HomefndrController::class);
+
+
+// Ruta para mostrar el formulario de edición
+Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit');
+
+// Ruta para procesar el formulario de edición y actualizar el registro
+Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update');
+
+Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
+
