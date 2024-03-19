@@ -57,8 +57,6 @@ use App\Http\Controllers\LandingController;
 
 use App\Http\Controllers\PopupController;
 
-use App\Http\Controllers\FondofndrController;
-
 use App\Http\Controllers\HomefndrController;
 
 /*
@@ -351,6 +349,10 @@ Route::delete('/landing-button/{id}', [LandingController::class, 'deleteButton']
 Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocument'])->name('landing-document.destroy');
 
 //FIN RUTAS PARA LAS LANDING DINAMICAS
+
+//RUTAS PARA LOS FONDOSFNDR
+
+Route::resource('fondosfndr', FondosFndrController::class);
 
 
 Route::middleware([
