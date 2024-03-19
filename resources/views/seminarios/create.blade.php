@@ -316,19 +316,36 @@ $(document).ready(function() {
 
     // Delegación del evento de clic para agregar imágenes
     $(document).on('click', '.add-image', function() {
-        var galeriaContainer = $(this).closest('.galeria-container');
-        var galeriaIndex = galeriaContainer.data('galeria-index');
-        var imagenesContainer = galeriaContainer.find('.imagenes-container');
+    var galeriaContainer = $(this).closest('.galeria-container');
+    var imagenesContainer = galeriaContainer.find('.imagenes-container');
+    var galeriaIndex = galeriaContainer.data('galeria-index');
 
-        // Mostrar el contenedor de imágenes si está oculto
-        if (!imagenesContainer.is(':visible')) {
-            imagenesContainer.show();
-            return; // No clonar campos si es el primer clic y el contenedor estaba oculto
-        }
+    // Verifica si hay al menos un campo para clonar
+    if(imagenesContainer.find('.imagen-field').length === 0) {
+        // No hay campos de imagen, por lo tanto, crea uno desde cero
+        var nuevoCampoImagen = $('<div class="form-group imagen-field mb-4">' +
+                                    '<label class="form-label style-label">Nombre de la Imagen</label>' +
+                                    '<input class="form-control mb-2" type="text" name="nombre_imagen[' + galeriaIndex + '][]" placeholder="Nombre de la imagen">' +
+                                    '<label class="form-label style-label">Cargar Imágenes</label>' +
+                                    '<input class="form-control mb-4" type="file" name="archivo[' + galeriaIndex + '][]" accept="image/*">' +
+                                    '<button type="button" class="btn btn-danger remove-image">Eliminar</button>' +
+                                 '</div>');
+        // Agrega eventos al botón de eliminar en el nuevo campo
+        nuevoCampoImagen.find('.remove-image').on('click', function() {
+            $(this).closest('.imagen-field').remove();
+        });
 
-        var imagenIndex = imagenesContainer.find('.imagen-field').length;
-        agregarImagen(galeriaIndex, imagenesContainer, imagenIndex);
-    });
+        imagenesContainer.append(nuevoCampoImagen);
+    } else {
+        // Clona el último campo de imagen
+        var ultimoCampoImagen = imagenesContainer.find('.imagen-field:last').clone(true);
+        ultimoCampoImagen.find("input[type='text'], input[type='file']").val('');
+        imagenesContainer.append(ultimoCampoImagen);
+    }
+
+    // Asegúrate de mostrar el contenedor de imágenes si estaba oculto
+    imagenesContainer.show();
+});
 
     // Función para agregar un nuevo conjunto de campos de imagen
     function agregarImagen(galeriaIndex, imagenesContainer, imagenIndex) {
