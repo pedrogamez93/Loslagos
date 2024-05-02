@@ -143,23 +143,19 @@ Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen
 
 
 // Ruta para mostrar todas las sesiones (index)
-Route::get('/sesiones', [SesionController::class, 'index'])->name('sesiones.index');
+//Route::get('/sesiones', [SesionController::class, 'index'])->name('sesiones.index');
 
 // Ruta para mostrar el formulario de creación de sesiones (create)
-Route::get('/sesiones/crear', [SesionController::class, 'create'])->name('sesiones.create');
+//Route::get('/sesiones/crear', [SesionController::class, 'create'])->name('sesiones.create');
 
 // Ruta para almacenar una nueva sesión (store)
-Route::post('/sesiones', [SesionController::class, 'store'])->name('sesiones.store');
+//Route::post('/sesiones', [SesionController::class, 'store'])->name('sesiones.store');
 
 // Ruta para mostrar el formulario de edición
 //Route::get('/sesiones/{sesion}/editar', [SesionController::class, 'edit'])->name('sesiones.edit');
 
 // Ruta para actualizar los datos de la sesión
 //Route::put('/sesiones/{sesion}', [SesionController::class, 'update'])->name('sesiones.update');
-
-
-
-
 
 /*RUTAS CRUD INIT*/
 Route::resource('introducciones', IntroduccionController::class)->middleware('auth');
@@ -445,6 +441,17 @@ Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegi
 
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
+
+/*TABLAS SESIONES DEL CONSEJO*/
+Route::resource('sesiones-consejo', SesionController::class);
+
+Route::get('/sesiones-consejo', [SesionController::class, 'index'])->name('sesionesConsejo.index');
+
+Route::get('/sesiones-consejo/create', [SesionController::class, 'create'])->name('sesionesConsejo.create');
+
+Route::post('/sesiones-consejo', [SesionController::class, 'store'])->name('sesiones.store');
+
+/*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
 Route::get('/IntroduccionRegionLagos/create', 'App\Http\Controllers\IntroduccionRegionLagosController@create')->name('IntroduccionRegionLagos.create')->middleware('auth');

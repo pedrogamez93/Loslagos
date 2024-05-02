@@ -1,199 +1,100 @@
-@extends('layouts.app')
-
-@section('content')
-
-
-@push('styles')
-    <style>
-    .sesiones-menu {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap CSS y JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- DATEPICKER-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<!-- Incluye los archivos JS de CKEditor -->
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<style>
+    h1 , h2{
+        color: #565656;
     }
-
-    .sesiones-menu li {
-        padding: 10px;
-        margin-right: 10px;
-        background-color: #f0f0f0;
-        cursor: pointer;
+    .principal{
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;       
     }
-
-    .sesiones-menu li:hover {
-        background-color: #ddd;
+    .first-form{
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;
     }
-
-    /* Añade aquí más estilos si lo necesitas */
-    .container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.tabs {
-    overflow: hidden;
-   
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 10px;
-}
-
-.tab-button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: background-color 0.3s;
-    border-radius: 5px 5px 0 0;
+    input.form-control{
     color: #565656;
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-.tab-button:hover {
-  
-    border: 1px solid #00548F;
-    border-radius: 20px;
-    color: #00548F;
-
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-   
-}
-
-
-.tab-content {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #F59120;
-   
-    margin-bottom: 10px;
-}
-
-/* Estilo para la pestaña activa */
-.tab-active {
-    display: block;
-}
-
-.textdocs{
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
+    }
+    .style-label, p.style-label{
     color: #565656;
-
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+    font-size: 16px;
+    font-weight: 700;
+    }
+    .style-col-menu{
+        background-color: #0c1e35;
+    }
+    button.btn.btn-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: unset;
+    font-weight: 700;
+    }
+    li.style-li{
+        list-style: none;
+        padding-bottom: 10px;
+    }
+    a.style-a-menu{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;   
+    }
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
+    height: 350px;
+    }
+    p.ck-placeholder {
+    height: 350px;
 }
 
+input:required {
+    border: 1px solid red; /* Borde rojo para indicar campo obligatorio */
+}
+
+/* Estilo para el asterisco */
+.required::before {
+    content: '*';
+    color: red;
+    margin-right: 4px;
+}
 </style>
+<div class="container-fluid body" onload="formatDateOnInit()">
+    <div class="row">
+        <div class="col-md-2 style-col-menu">
+            <div class="container menu">
+            @include('layouts.menu')
+            </div>
+        </div>
+        <div class="col-md-10">
+        <div class="container principal mt-4 mb-4 pt-3 pb-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Tablas de Sesiones del Consejo Regional de Los Lagos</h1>
+                    </div>
+                </div>
+                <div class="container first-form pt-2 pb-2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1></h1> 
+                        </div>
+                    </div>
 
-@endpush
 
-
-<div id="banner" class="h-500 text-light d-flex colorB" style="background: #00548F ; height: 502px; display: flex; padding-left: 50px;">
-    <div class="container" style="display: flex;
-    text-align: left;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;">
-        <h5>Home / Sala de prensa</h5>
-        <h1 class="titulobannernoticia" >Consejo Regional </h1>
-        <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
+</div>
+            </div>
+        </div>
     </div>
 </div>
 
-
-<div class="container my-5" >
-    <h1>Tabla de Sesiones Consejo Regional de Los Lagos</h1>
-    <div class="tabs mb-5">
-        @foreach ($sesiones as $index => $sesion)
-            <button class="tab-button" onclick="openSesion(event, 'sesion{{$index}}')">{{ $sesion->nombre }}</button>
-        @endforeach
-    </div>
-    @foreach ($sesiones as $index => $sesion)
-        <div id="sesion{{$index}}" class="tab-content" >
-          
-        
-        <h3 >{{ $sesion->nombre}}</h3>
-       <div class="datoscore" style="text-align:left !important;border-top: solid 1px #F59120 ;padding-top: 10px;">
-                <p>Próxima Sesión:</p>
-                <p>Hora: {{ $sesion->fecha_hora }} hrs.</p>
-                <p>Lugar: {{ $sesion->lugar }}</p>
-        </div>
-        
-        <div class="mt-3" style="    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    border-top: solid 1px #F59120 ;
-    padding-top: 20px;
-    padding-bottom: 20px;">
-        @foreach ($sesion->documentos as $documento)
-               <a href="{{ Storage::url($documento->url) }}" style="text-decoration:none;"  class="textdocs">
-
-          Documento {{ $loop->iteration }}
-                <img src="{{ asset('storage/img/iconodocpdf.png') }}">
-
-               </a>
-            @endforeach
-        </div>
-   
-            
-        </div>
-    @endforeach
-</div>
-
-
-
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector('.nav-head').style.setProperty('background-color', '#00548F');
-        document.querySelector('.backgroundB').style.setProperty('background-color', '#00548F');
-
-});
-
-    document.querySelectorAll('.sesiones-menu li').forEach(item => {
-        item.addEventListener('click', function() {
-            const sesionId = this.getAttribute('data-sesion-id');
-            document.querySelectorAll('.sesion-documentos').forEach(div => {
-                div.style.display = 'none'; // Oculta todos los documentos
-            });
-            document.getElementById('sesion-documentos-' + sesionId).style.display = 'block'; // Muestra los documentos de la sesión seleccionada
-        });
-    });
-
-    function openSesion(evt, sesionName) {
-    var i, tabcontent, tabbuttons;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tabbuttons = document.getElementsByClassName("tab-button");
-    for (i = 0; i < tabbuttons.length; i++) {
-        tabbuttons[i].className = tabbuttons[i].className.replace(" tab-active", "");
-    }
-    document.getElementById(sesionName).style.display = "block";
-    evt.currentTarget.className += " tab-active";
-}
-
-// Opcional: activar la primera pestaña por defecto
-if(document.getElementsByClassName("tab-button").length > 0){
-    document.getElementsByClassName("tab-button")[0].click();
-}
-
-
-
-</script>
-
-@endsection
 

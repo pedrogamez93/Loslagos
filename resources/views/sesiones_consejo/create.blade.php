@@ -80,7 +80,7 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario subida de documentos de sesion</h1>
+                        <h1>Formulario Tabla de Sesiones Consejo Regional de Los Lagos</h1>
                         @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -94,7 +94,7 @@ input:required {
                             <h1></h1> 
                         </div>
                     </div>
-<form action="/sesiones" method="post" enctype="multipart/form-data">
+<form action="{{ route('sesiones.store') }}" method="post" enctype="multipart/form-data">
     @csrf <!-- Token CSRF para la seguridad en Laravel -->
 
     <!-- Campo para el nombre de la sesión -->

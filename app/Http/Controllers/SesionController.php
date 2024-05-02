@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 use App\Models\Sesion;
 use App\Models\Documento_Sesion;
@@ -17,8 +18,18 @@ class SesionController extends Controller
      */
     public function index()
     {
-        $sesiones = Sesion::with('documentos')->get(); // Asegúrate de que la relación se llame 'documentos'
-        return view('sesiones_consejo.index', compact('sesiones'));
+        // Obtener todas las sesiones ordenadas por fecha de forma descendente
+        $sesiones = Sesion::with('documentos')->orderBy('fecha_hora', 'desc')->get();
+    
+        // Separar las sesiones por año y mes
+        $sesionesSeparadas = $sesiones->groupBy(function($item) {
+            return Carbon::parse($item->fecha_hora)->format('Y-m');
+        });
+    
+        // Obtener la sesión más reciente para mostrarla como "Próxima Sesión"
+        $proximaSesion = $sesiones->first();
+    
+        return view('sesiones_consejo.index', compact('proximaSesion', 'sesionesSeparadas'));
     }
 
     /**
@@ -60,7 +71,7 @@ class SesionController extends Controller
             }
         }
     
-        return redirect()->route('sesiones.index')->with('success', 'Sesión creada con éxito');
+        return redirect()->route('sesiones_consejo.index')->with('success', 'Sesión creada con éxito');
     }
     
     
@@ -136,7 +147,7 @@ class SesionController extends Controller
         }
     }
 
-    return redirect()->route('sesiones.index')->with('success', 'Sesión actualizada con éxito');
+    return redirect()->route('sesiones_consejo.index')->with('success', 'Sesión actualizada con éxito');
 }
 
 
