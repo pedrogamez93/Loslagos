@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -86,7 +89,22 @@ input:required {
                 <div class="container first-form pt-2 pb-2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1></h1> 
+                            <h1></h1>
+                            @foreach($sesionesAgrupadas as $anioMes => $sesiones)
+                                @php
+                                    // Obtener el año y el mes
+                                    [$anio, $mes] = explode('-', $anioMes);
+                                    $nombreMes = Carbon::createFromFormat('m', $mes)->monthName;
+                                @endphp
+
+                                <h2>Tablas de Sesiones Año: {{ $anio }}</h2>
+                                <h3>Tablas de Sesiones Mes: {{ $nombreMes }}</h3>
+                                <ul>
+                                    @foreach($sesiones as $sesion)
+                                        <li>{{ $sesion->nombre }}</li>
+                                    @endforeach
+                                </ul>
+                            @endforeach
                         </div>
                     </div>
 

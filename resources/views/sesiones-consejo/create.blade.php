@@ -94,7 +94,7 @@ input:required {
                             <h1></h1> 
                         </div>
                     </div>
-<form action="{{ route('sesiones.store') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('sesionesConsejo.store') }}" method="post" enctype="multipart/form-data">
     @csrf <!-- Token CSRF para la seguridad en Laravel -->
 
     <!-- Campo para el nombre de la sesión -->
@@ -118,8 +118,13 @@ input:required {
     <div id="documentos-container">
         <!-- Campo para subir documentos -->
         <div class="mb-3">
-            <label for="documento0" class="form-label">Documento</label>
-            <input type="file" class="form-control" id="documento0" name="documento[]">
+            <label for="documento0" class="form-label mb-2">Nombre Documento</label>
+            <input type="text" class="form-control mt-2 mb-2" id="nombredoc" name="nombredoc[]">
+            <input type="file" class="form-control" id="documento0" name="url[]">
+            <div class="mb-3">
+                <label for="fechaHoradoc" class="form-label mt-2">Fecha y Hora del documento</label>
+                <input type="datetime-local" class="form-control mt-2" id="fechaHoradoc" name="fechadoc[]">
+            </div>
         </div>
     </div>
 
@@ -139,7 +144,9 @@ input:required {
         newField.classList.add('mb-3');
         newField.innerHTML = `
             <label for="documento${documentCounter}" class="form-label">Documento ${documentCounter + 1}</label>
+            <input type="text" class="form-control mb-2" id="nombredoc${documentCounter}" name="nombredoc[]">
             <input type="file" class="form-control" id="documento${documentCounter}" name="documento[]">
+            <input type="datetime-local" class="form-control" id="fechadoc${documentCounter}" name="fechadoc[]">
         `;
         document.getElementById('documentos-container').appendChild(newField);
         documentCounter++;

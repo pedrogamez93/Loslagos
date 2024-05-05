@@ -10,8 +10,8 @@ class Sesion extends Model
     use HasFactory;
 
     protected $table = 'sesiones';
-    protected $fillable = ['nombre', 'fecha_hora', 'lugar']; // Añade todos los campos que quieras asignar masivamente
-
+    protected $fillable = ['nombre', 'lugar']; // Añade todos los campos que quieras asignar masivamente
+    protected $dates = ['fecha_hora'];
     public function documentos()
     {
         return $this->hasMany(Documento_Sesion::class);

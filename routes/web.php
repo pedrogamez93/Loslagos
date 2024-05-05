@@ -443,14 +443,17 @@ Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\Conse
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 /*TABLAS SESIONES DEL CONSEJO*/
-Route::resource('sesiones-consejo', SesionController::class);
+Route::resource('sesiones-consejo', SesionController::class)->names([
+    'index'   => 'sesionesConsejo.index',
+    'create'  => 'sesionesConsejo.create',
+    'store'   => 'sesionesConsejo.store',
+    'show'    => 'sesionesConsejo.show',
+    'edit'    => 'sesionesConsejo.edit',
+    'update'  => 'sesionesConsejo.update',
+    'destroy' => 'sesionesConsejo.destroy',
+]);
 
-Route::get('/sesiones-consejo', [SesionController::class, 'index'])->name('sesionesConsejo.index');
-
-Route::get('/sesiones-consejo/create', [SesionController::class, 'create'])->name('sesionesConsejo.create');
-
-Route::post('/sesiones-consejo', [SesionController::class, 'store'])->name('sesiones.store');
-
+Route::get('/sesiones/{anio}', 'ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('sesiones_por_anio');
 /*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
