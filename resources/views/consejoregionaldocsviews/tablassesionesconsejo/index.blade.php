@@ -84,6 +84,14 @@
     nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
     background-color: #00548f;
     }
+    .active-link {
+        color: #00548F;
+        border-radius: 100px;
+        border: 1px solid #00548F;
+        font-weight: 700;
+        background-color: #FFFFFF;
+        padding: 6px 4px;
+    }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -100,6 +108,7 @@
 <body>
 @extends('layouts.app')
 @section('content')
+
 @push('styles')
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -144,22 +153,50 @@
             </div>
         </div>
     </div>
-    <div class="container second mb-5">
+    <div class="container mb-5">
         <div class="row">
         <div class="col-md-12">
             <div class="container butonano" style="color: black;">
                 <div class="row">
-                    <div class="col-md-12">
-                    @foreach($anios as $anio)
-                        <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">Tablas Sesiones Año {{ $anio }}</a>
-                    @endforeach
+                    <!-- Columna para 'Próxima Sesión', siempre visible -->
+                    <div class="col-md-2">
+                    <a href="{{ route('tablassesionesconsejo.Indextablassesionesconsejo') }}" class="{{ request()->routeIs('tablassesionesconsejo.Indextablassesionesconsejo') || request()->fullUrlIs(route('tablassesionesconsejo.Indextablassesionesconsejo') . '/*') ? 'active-link' : '' }}">Próxima Sesión</a>
                     </div>
+                    
+                    <!-- Columnas para cada año -->
+                    @php $counter = 1; @endphp
+                    @foreach($anios as $anio)
+                        @if($counter % 4 == 0 && $counter != 0) <!-- Cada 4 años se cierra una fila y se abre una nueva -->
+                            </div><div class="row">
+                            <div class="col-md-2">
+                            <a href="{{ route('tablassesionesconsejo.Indextablassesionesconsejo') }}" class="{{ request()->routeIs('tablassesionesconsejo.Indextablassesionesconsejo') || request()->fullUrlIs(route('tablassesionesconsejo.Indextablassesionesconsejo') . '/*') ? 'active-link' : '' }}">Próxima Sesión</a>
+                            </div>
+                        @endif
+                        <div class="col-md-2">
+                            <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">Tabla Sesión Año {{ $anio }}</a>
+                        </div>
+                        @php $counter++; @endphp
+                    @endforeach
                 </div>
             </div>
 
             {{-- Mostrar la próxima sesión --}}
             @if($proximaSesion)
-                <p style="color: #565656;">TABLA CORE</p>
+                            <div class="container" style="text-align-last: center;
+    padding-top: 1rem;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+    margin-bottom: -3rem;
+    border-top: 1px solid #F59120;
+    border-left: 1px solid #F59120;
+    border-right: 1px solid #F59120;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p style="color: #565656; font-Weight: 700;
+        font-Size: 20px;">TABLA CORE</p>
+                                    </div>
+                                </div>
+                            </div>
                 <div class="container proximasesion mt-5 mb-5" style="border: 1px solid #F59120;
     padding: 50px;">
                     <div class="row">
@@ -172,42 +209,6 @@
                     </div>
                 </div>
             @endif
-
-   <!-- {{-- Mostrar las sesiones agrupadas por año y mes --}}
-    @foreach($sesionesAgrupadas as $anioMes => $sesiones)
-        @php
-            // Obtener el año y el mes
-            [$anio, $mes] = explode('-', $anioMes);
-            $nombreMes = Carbon::createFromFormat('m', $mes)->monthName;
-        @endphp
-
-        <h2 class="mi-style">Tablas de Sesiones Año: {{ $anio }}</h2>
-        <h3 class="mi-style">Tablas de Sesiones Mes: {{ $nombreMes }}</h3>
-        <ul>
-        @foreach($sesiones as $sesion)
-            <li class="mi-style">
-                {{ $sesion->nombre }}
-
-                {{-- Verificar si la sesión tiene documentos --}}
-                @if($sesion->documentos->isNotEmpty())
-                    <ul>
-                        {{-- Iterar sobre los documentos de la sesión --}}
-                        @foreach($sesion->documentos as $documento)
-                            <li>
-                                <a href="{{ $documento->url }}" target="_blank">
-                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="PDF Icon" style="display: inline-block; vertical-align: middle;">
-                                    <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#black;">
-                                        {{ $documento->nombredoc }}
-                                    </p>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </li>
-        @endforeach
-        </ul>
-    @endforeach -->
 </div>
         </div>
     </div>

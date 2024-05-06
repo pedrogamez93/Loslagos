@@ -453,7 +453,7 @@ Route::resource('sesiones-consejo', SesionController::class)->names([
     'destroy' => 'sesionesConsejo.destroy',
 ]);
 
-Route::get('/sesiones/{anio}', 'ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('sesiones_por_anio');
+Route::get('/sesiones/{anio}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showFiltroAno')->name('sesiones_por_anio');
 /*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');

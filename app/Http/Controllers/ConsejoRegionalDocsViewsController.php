@@ -56,7 +56,7 @@ class ConsejoRegionalDocsViewsController extends Controller
 
     public function Indextablassesionesconsejo(){
 
-            // Obtener todas las sesiones ordenadas por fecha
+    // Obtener todas las sesiones ordenadas por fecha
     $sesiones = Sesion::with('documentos')->orderBy('fecha_hora', 'desc')->get();
 
     // Agrupar las sesiones por año y mes
@@ -82,4 +82,21 @@ class ConsejoRegionalDocsViewsController extends Controller
     ]);
 
     }
+
+    public function showFiltroAno($anio)
+    {
+        // Obtener los años únicos de la tabla documentos_sesiones
+        $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
+                                 ->groupBy('anio')
+                                 ->pluck('anio'); // Usar pluck para obtener solo los valores 'anio'
+    
+        $documentos = Documento_Sesion::select('documentos_sesiones.*', DB::raw('EXTRACT(MONTH FROM fechadoc) as mes'))
+                                      ->whereRaw("EXTRACT(YEAR FROM fechadoc) = ?", [$anio])
+                                      ->orderByRaw("EXTRACT(MONTH FROM fechadoc) DESC")
+                                      ->get()
+                                      ->groupBy('mes'); // Agrupamos los documentos por mes
+    
+        return view('consejoregionaldocsviews.tablassesionesconsejo.show', compact('documentos', 'anios'));
+    }
+
 }
