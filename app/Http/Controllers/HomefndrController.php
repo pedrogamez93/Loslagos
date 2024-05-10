@@ -4,23 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\homefndr;
+use App\Models\FondosFndr;
+use App\Models\SeccionesFndr;
+use App\Models\DocsSeccionesFndr;
 
 
 class HomefndrController extends Controller
 {
     public function index()
-{
-    // Intentar obtener el último registro de Homefndr
-    $ultimoHomefndr = Homefndr::latest()->first();
+    {
+        // Intentar obtener el último registro de Homefndr
+        $ultimoHomefndr = Homefndr::latest()->first();
 
-    // Si no hay registros, redirigir a la vista de creación
-    if (!$ultimoHomefndr) {
-        return redirect()->route('homefndr.create');
+        // Si no hay registros, redirigir a la vista de creación
+        if (!$ultimoHomefndr) {
+            return redirect()->route('homefndr.create');
+        }
+
+        // Si hay un registro, pasarlo a la vista
+        return view('homefndr.index', compact('ultimoHomefndr'));
     }
 
-    // Si hay un registro, pasarlo a la vista
-    return view('homefndr.index', compact('ultimoHomefndr'));
-}
 
     public function create()
     {
@@ -83,10 +87,11 @@ public function homefndrsindex()
 {
     // Intentar obtener el último registro de Homefndr
     $ultimoHomefndr = Homefndr::latest()->first();
+    $fondos = FondosFndr::all();
 
 
     // Si hay un registro, pasarlo a la vista
-    return view('homefndrs.index', compact('ultimoHomefndr'));
+    return view('homefndrs.index', compact('ultimoHomefndr', 'fondos'));
 }
 
 }

@@ -258,7 +258,7 @@ ul li {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
-                            <p class="title-cat">Introducción</p>
+                            <p class="title-cat">Fondos Concursables FNDR</p>
                         </div>
                     </div>
                 </div>
@@ -279,15 +279,15 @@ ul li {
                                            <!-- <h1>Último Registro de Homefndr</h1>-->
                                             @if($ultimoHomefndr)
                                                 <div class="mb-3">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ $ultimoHomefndr->titulo }}</h5>
+                                                    
+                                                        <h3 class="mb-3">{{ $ultimoHomefndr->titulo }}</h3>
                                                         @if($ultimoHomefndr->bajada)
-                                                            <h6 class="card-subtitle mb-2 text-muted">{{ $ultimoHomefndr->bajada }}</h6>
+                                                            <h6 class="mb-3">{{ $ultimoHomefndr->bajada }}</h6>
                                                         @endif
                                                         @if($ultimoHomefndr->descripcion)
-                                                            <p class="card-text">{{!! $ultimoHomefndr->descripcion !!}}</p>
+                                                            <p class="mb-3 mt-3">{!! $ultimoHomefndr->descripcion !!}</p>
                                                         @endif
-                                                    </div>
+                                                   
                                                 </div>
                                             @endif
                                         </div>
@@ -298,7 +298,15 @@ ul li {
 
                         <div class="col-md-4" style="border-left: 2px solid #F59120;">
                             <p class="title-categ pb-4">Fondos Concursables</p>
-                            
+   
+                            <ul>
+                                @foreach($fondos as $fondo)
+                                    <li>
+                                        <a href="{{ route('fondosfndr.show', $fondo->id) }}">{{ $fondo->titulo }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+
                         </div>
                     </div>
                 </div>

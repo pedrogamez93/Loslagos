@@ -14,11 +14,6 @@ class FondosFndrController extends Controller
     public function index()
     {
         $fondos = FondosFndr::all(); // Obtiene todos los fondos
-
-        if ($fondos->isEmpty()) {
-            // Redirecciona al método 'create'
-            return redirect()->route('fondosfndr.create');
-        }
     
         return view('fondosfndr.index', compact('fondos'));
     }
@@ -57,9 +52,9 @@ class FondosFndrController extends Controller
                 'titulo_seccion' => $tituloSeccion,
             ]);
     
-            if (!is_null($request->titulo_documento[$key])) {
-                foreach ($request->titulo_documento[$key] as $key2 => $tituloDocumento) {
-                    // Verificar si se ha proporcionado un archivo para este documento
+            foreach ($request->titulo_documento as $key => $tituloDocumentos) {
+                // Verificar si se ha proporcionado un archivo para este documento
+                foreach ($tituloDocumentos as $key2 => $tituloDocumento) {
                     if (!is_null($tituloDocumento) && isset($request->ruta_documento[$key][$key2])) {
                         $documento = new DocsSeccionesFndr();
                         $documento->titulo_documento = $tituloDocumento;
@@ -69,10 +64,68 @@ class FondosFndrController extends Controller
                     }
                 }
             }
+            
+            
         }
     
         // Redireccionar a la vista deseada con un mensaje de éxito
-        return redirect()->route('fondos.index')->with('success', 'Fondos creados exitosamente.');
+        return redirect()->route('fondosfndr.index')->with('success', 'Fondo FNDR creado exitosamente.');
     }
+
+    public function show($id)
+    {
+        // Encuentra el fondo por su ID con sus secciones y documentos relacionados cargados
+        $fondo = FondosFndr::with('secciones.documentos')->findOrFail($id);
+    
+        // Pasa el fondo a la vista show.blade.php
+        return view('fondosfndr.show', compact('fondo'));
+    }
+    
+
+
+    public function edit($id)
+    {
+        $fondo = FondosFndr::findOrFail($id);
+        return view('fondosfndr.edit', compact('fondo'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $fondo = FondosFndr::findOrFail($id);
+        $fondo->titulo = $request->titulo;
+        $fondo->bajada = $request->bajada;
+        $fondo->descripcion = $request->descripcion;
+        // Actualiza otros campos según sea necesario
+
+        $fondo->save();
+
+        return redirect()->route('fondosfndr.index')->with('success', 'Fondo FNDR actualizado exitosamente');
+    }
+
+    public function destroy($id)
+    {
+        $fondo = FondosFndr::findOrFail($id);
+        $fondo->delete();
+
+        return redirect()->route('fondosfndr.index')->with('success', 'Fondo FNDR eliminado exitosamente');
+    }
+
+    public function destroyDocumento($id)
+{
+    dd($id);
+    // Encuentra el documento por su ID
+    $documento = DocsSeccionesFndr::findOrFail($id);
+    dd($documento);
+
+    // Elimina el archivo físico del servidor
+    if (file_exists(public_path($documento->ruta_documento))) {
+        unlink(public_path($documento->ruta_documento));
+    }
+
+    // Elimina el registro de la base de datos
+    $documento->delete();
+
+    return redirect()->back()->with('success', 'Documento eliminado correctamente');
+}
 
 }

@@ -59,6 +59,7 @@ use App\Http\Controllers\PopupController;
 
 use App\Http\Controllers\HomefndrController;
 
+use App\Http\Controllers\FondosFndrController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -353,6 +354,15 @@ Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocume
 //RUTAS PARA LOS FONDOSFNDR
 
 Route::resource('fondosfndr', FondosFndrController::class);
+Route::get('/fondosfndr/{id}', [FondosFndrController::class, 'show'])->name('fondosfndr.show');
+Route::get('/fondosfndr', [FondosFndrController::class, 'index'])->name('fondosfndr.index');
+
+
+Route::put('/fondosfndr/{fondo}', [FondosFndrController::class, 'update'])->name('fondos.update');
+
+Route::delete('/documentos/{documento}', 'FondosFndrController@destroyDocumento')->name('documentos.destroy');
+
+
 
 
 Route::middleware([
