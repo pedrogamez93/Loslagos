@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Carbon;
 use App\Models\Sesion;
 use App\Models\Documento_Sesion;
 
@@ -12,13 +12,27 @@ class SesionController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Ordena y agrupa las sesiones por fecha, y muestra la próxima sesión.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $sesiones = Sesion::with('documentos')->get(); // Asegúrate de que la relación se llame 'documentos'
-        return view('sesiones_consejo.index', compact('sesiones'));
+        // Obtener todas las sesiones ordenadas por fecha
+        $sesiones = Sesion::with('documentos')->orderBy('fecha_hora', 'desc')->get();
+    
+        // Agrupar las sesiones por año y mes
+        $sesionesAgrupadas = $sesiones->groupBy(function($sesion) {
+            return Carbon::parse($sesion->fecha_hora)->format('Y-m');
+        });
+    
+        // Obtener la próxima sesión (la primera sesión en la lista ordenada)
+        $proximaSesion = $sesiones->first();
+    
+        return view('sesiones-consejo.index', [
+            'proximaSesion' => $proximaSesion,
+            'sesionesAgrupadas' => $sesionesAgrupadas
+        ]);
     }
 
     /**
@@ -28,43 +42,61 @@ class SesionController extends Controller
      */
     public function create()
     {
-        return view('sesiones_consejo.create');
+        return view('sesiones-consejo.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     * Valida los datos de entrada, registra la sesión y maneja la carga de múltiples documentos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // Registro de la sesión
-        $sesion = new Sesion();
-        $sesion->nombre = $request->nombre;
-        $sesion->fecha_hora = $request->fecha_hora;
-        $sesion->lugar = $request->lugar;
-        $sesion->save();
+        //dd($request->all());
+       
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'fecha_hora' => 'required|date',
+            'lugar' => 'required|string|max:255',
+            'nombredoc.*' => 'string|max:255',
+            'url.*' => 'file|mimes:pdf|max:10240',
+            'fechadoc.*' => 'nullable|date',
+        ]);
+
+        $sesion = Sesion::create([
+            'nombre' => $validatedData['nombre'],
+            'fecha_hora' => $validatedData['fecha_hora'],
+            'lugar' => $validatedData['lugar'],
+        ]);
     
-        // Manejo de múltiples archivos
-        if ($request->hasFile('documento')) {
-            foreach ($request->file('documento') as $documento) {
+        $nombresDocumentos = $request->input('nombredoc');
+    
+        if ($request->hasFile('url')) {
+            foreach ($request->file('url') as $key => $documento) {
                 if ($documento->isValid()) {
                     $path = $documento->store('public/documentos_sesiones');
-                    $doc = new Documento_Sesion();
-                    $doc->sesion_id = $sesion->id;
-                    $doc->nombre = $documento->getClientOriginalName();
-                    $doc->url = $path;
+    
+                    // Obtener el nombre del documento correspondiente
+                    $nombreDocumento = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : '';
+    
+                    // Obtener el valor de fechadoc
+                    $fechadoc = isset($validatedData['fechadoc'][$key]) ? $validatedData['fechadoc'][$key] : null;
+                   
+                    $doc = new Documento_Sesion([
+                        'sesion_id' => $sesion->id,
+                        'nombredoc' => $nombreDocumento,
+                        'url' => $path,
+                        'fechadoc' => $fechadoc, // Corregimos la coma aquí
+                    ]);
                     $doc->save();
                 }
             }
         }
     
-        return redirect()->route('sesiones.index')->with('success', 'Sesión creada con éxito');
+        return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión creada con éxito');
     }
-    
-    
-    
 
     /**
      * Display the specified resource.
@@ -74,7 +106,8 @@ class SesionController extends Controller
      */
     public function show($id)
     {
-        //
+        $sesion = Sesion::with('documentos')->findOrFail($id);
+        return view('sesionesConsejo.show', compact('sesion'));
     }
 
     /**
@@ -86,68 +119,58 @@ class SesionController extends Controller
     public function edit($id)
     {
         $sesion = Sesion::with('documentos')->findOrFail($id);
-        return view('sesiones_consejo.edit', compact('sesion'));
+        return view('sesionesConsejo.edit', compact('sesion'));
     }
-    
 
     /**
      * Update the specified resource in storage.
+     * Valida y actualiza la información de la sesión, maneja la eliminación y adición de documentos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-{
+    {
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'fecha_hora' => 'required|date',
+            'lugar' => 'required|string|max:255',
+        ]);
 
-    $sesion = Sesion::findOrFail($id);
+        $sesion = Sesion::findOrFail($id);
+        $sesion->update($validatedData);
 
-    // Valida y actualiza la información de la sesión
-    $validatedData = $request->validate([
-        'nombre' => 'required|string|max:255',
-        'fecha_hora' => 'required|date',
-        'lugar' => 'required|string|max:255',
-        // Agrega validaciones para los documentos si es necesario
-    ]);
-
-    $sesion->update($validatedData);
-
-
-    
-    $sesion = Sesion::findOrFail($id);
-    $sesion->update($request->all());
-
-    // Manejar la eliminación de documentos
-    if ($request->has('documentos_eliminados')) {
-        foreach ($request->documentos_eliminados as $documento_id) {
-            Documento_Sesion::destroy($documento_id);
+        if ($request->has('documentos_eliminados')) {
+            Documento_Sesion::destroy($request->documentos_eliminados);
         }
-    }
 
-    
-    // Manejar la adición de nuevos documentos
-    if ($request->hasFile('nuevos_documentos')) {
-        foreach ($request->file('nuevos_documentos') as $documento) {
-            $path = $documento->store('public/documentos_sesiones');
-            $sesion->documentos()->create([
-                'nombre' => $documento->getClientOriginalName(),
-                'url' => $path
-            ]);
+        if ($request->hasFile('nuevos_documentos')) {
+            foreach ($request->file('nuevos_documentos') as $documento) {
+                $path = $documento->store('public/documentos_sesiones');
+                $sesion->documentos()->create([
+                    'nombre' => $documento->getClientOriginalName(),
+                    'url' => $path
+                ]);
+            }
         }
+
+        return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión actualizada con éxito');
     }
-
-    return redirect()->route('sesiones.index')->with('success', 'Sesión actualizada con éxito');
-}
-
 
     /**
      * Remove the specified resource from storage.
+     * Elimina una sesión y sus documentos asociados.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $sesion = Sesion::with('documentos')->findOrFail($id);
+        $sesion->documentos()->delete();
+        $sesion->delete();
+
+        return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión eliminada con éxito');
     }
 }
