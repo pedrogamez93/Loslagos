@@ -464,10 +464,10 @@
                                                 <a class="style-a-menu" href="javascript:void(0);">Landings page</a>
                                                 <ul class="submenu">
                                                     <li class="style-li" style="padding-top: 5px;">
-                                                        <a class="style-a-menu" href="{{ url('/landings/create') }}">Todas las landings</a>
+                                                        <a class="style-a-menu" href="{{ url('/landings/') }}">Todas las landings</a>
                                                     </li>
                                                     <li class="style-li">
-                                                        <a class="style-a-menu" href="{{ url('/landings/') }}">Nueva landing</a>
+                                                        <a class="style-a-menu" href="{{ url('/landings/create') }}">Nueva landing</a>
                                                     </li>
                                                 </ul>
                                             </li>
