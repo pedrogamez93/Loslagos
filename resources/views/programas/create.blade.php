@@ -100,10 +100,10 @@ input:required {
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
                         <textarea class="form-control mt-2 mb-4" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
-
+<!--
                         <label class="style-label mt-3" for="icono">Agregar imagen:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-                     
+                     -->
                 
 <!--TEXTOS ACORDEÓN-->
                         <div class="container">

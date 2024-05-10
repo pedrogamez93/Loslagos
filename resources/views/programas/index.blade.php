@@ -108,9 +108,9 @@
                                             </td>-->
                                             <td>
                 
-<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
+<!--<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
     Editar
-</a>
+</a>-->
             
 
             <form action="{{ url('/programas/'.$programa->id) }}" method="post">

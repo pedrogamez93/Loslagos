@@ -84,10 +84,10 @@
                             
                             <label class="style-label mb-2" for="bajada_programa" >Bajada programa:</label>
                             <textarea class="form-control mt-2"  style="height: 250px"  id="editor-bajada" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
-
+                            <!--
                             <label class="style-label" for="icono">Imagen:</label>
                             <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-
+                            -->
                                                   <button class="btn btn-success mt-3" type="submit">Guardar cambios</button>
                         </form>
                         @if(session('mensaje'))

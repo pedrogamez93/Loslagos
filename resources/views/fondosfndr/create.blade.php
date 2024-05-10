@@ -89,6 +89,9 @@
                             <label class="style-label pt-3 pb-2" for="descripcion">Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="editor" name="descripcion"></textarea>
 
+                            <label class="style-label pt-3 pb-3" for="descripcion">Nota:</label>
+                            <textarea class="form-control mt-2 mb-4" id="editor2" name="nota"></textarea>
+       
                             <!-- Pregunta inicial si desea agregar una galería -->
                         <div class="container pregunta-galeria mt-4">
                             <label class="style-label mb-2">Agregar nueva seccion de documentos</label>
@@ -110,7 +113,7 @@
                         <div class="secciones-container">
                             <!-- Contenedor de galería (oculto inicialmente) -->
                             <div class="seccion-container mt-4" style="display: none;" data-seccion-index="0">
-                                <div class="form-group mt-4 mb-4">
+                                <div class="form-group mt-4 mb-2">
                                     <label for="nombre" class="form-label style-label">Titulo de la sección</label>
                                     <input type="hidden" name="seccion_identificador[]" value="">
                                     <input type="text" id="nombre" name="titulo_seccion[]" class="form-control" placeholder="Titulo de la sección">
@@ -119,24 +122,22 @@
                                 <!-- Contenedor para los campos de imágenes (oculto inicialmente) -->
                                 <div class="documentos-container" style="display: none;">
                                     <div class="form-group documento-field mb-4">
-                                        <label for="nombreDocumentos0" class="form-label style-label">Nombre del documento</label>
-                                        <input class="form-control mb-2" type="text" name="titulo_documento[0][]" multiple id="tituloDocumentos0" placeholder="Nombre del documento">
-                                        <label for="docuemntos0" class="form-label style-label">Cargar mas documentos</label>
-                                        <input class="form-control mb-4" type="file" name="ruta_documento[0][]" multiple id="ruta0" accept=".pdf, .doc, .docx, .zip, .rar">
-                                        <button type="button" class="btn btn-danger remove-documento">Eliminar</button>
+                                        <label for="nombreDocumentos0" class="form-label style-label"></label>
+                                        <input class="form-control" type="text" name="titulo_documento[0][]" multiple id="tituloDocumentos0" placeholder="Nombre del documento">
+                                        <label for="docuemntos0" class="form-label style-label"></label>
+                                        <input class="form-control mb-2" type="file" name="ruta_documento[0][]" multiple id="ruta0" accept=".pdf, .doc, .docx, .zip, .rar">
+                                        <button type="button" class="btn btn-danger remove-documento">Eliminar documento</button>
                                     </div>
                                 </div>
                                 <!-- Botón para añadir campos de imágenes (oculto inicialmente) -->
-                                <button type="button" class="btn btn-secondary mt-2 add-documento">Añadir más documentos</button>
+                                <button type="button" class="btn btn-secondary add-documento">Agregar documento</button>
                             </div>
 
                             <!-- Botón para agregar más galerías -->
-                            <button type="button" class="btn btn-secondary mt-2 agregar-seccion">Agregar otra sección</button>
+                            <button type="button" class="btn btn-secondary mt-5 agregar-seccion">Agregar otra sección</button>
                         </div>
 
-                            <label class="style-label pt-3 pb-3" for="descripcion">Nota:</label>
-                            <textarea class="form-control mt-2 mb-4" id="editor2" name="nota"></textarea>
-
+                           
 
                             <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
                         </form>
@@ -244,6 +245,8 @@ $(document).ready(function() {
         $(this).closest('.documentos-container').remove();
     });
 });
+
+
     </script>
 </body>
 </html>

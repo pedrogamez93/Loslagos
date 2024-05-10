@@ -57,8 +57,9 @@ use App\Http\Controllers\LandingController;
 
 use App\Http\Controllers\PopupController;
 
-use App\Http\Controllers\FondosFndrController;
+use App\Http\Controllers\HomefndrController;
 
+use App\Http\Controllers\FondosFndrController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -349,6 +350,15 @@ Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocume
 //RUTAS PARA LOS FONDOSFNDR
 
 Route::resource('fondosfndr', FondosFndrController::class);
+Route::get('/fondosfndr/{id}', [FondosFndrController::class, 'show'])->name('fondosfndr.show');
+Route::get('/fondosfndr', [FondosFndrController::class, 'index'])->name('fondosfndr.index');
+
+
+Route::put('/fondosfndr/{fondo}', [FondosFndrController::class, 'update'])->name('fondos.update');
+
+Route::delete('/documentos/{documento}', 'FondosFndrController@destroyDocumento')->name('documentos.destroy');
+
+
 
 
 Route::middleware([
@@ -723,3 +733,17 @@ Route::get('/popups/create', 'App\Http\Controllers\PopupController@create')->nam
 Route::post('/popups/store', 'App\Http\Controllers\PopupController@store')->name('popups.store')->middleware('auth');
 Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->name('popups.edit')->middleware('auth');
 Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');
+
+
+
+Route::resource('homefndr', HomefndrController::class);
+
+
+// Ruta para mostrar el formulario de edición
+Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit');
+
+// Ruta para procesar el formulario de edición y actualizar el registro
+Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update');
+
+Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
+
