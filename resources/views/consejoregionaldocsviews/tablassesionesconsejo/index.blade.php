@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <!DOCTYPE html>
 <style>
     .second{
@@ -55,6 +58,20 @@
         line-height: 24.2px;
         color: #F59120;
     }
+    h3.mi-style{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24.2px;
+        color: #F59120;
+    }
+    li.mi-style{
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24.2px;
+        color: black;
+    }
     .container-fluid.color{
             background-color:#00548F;
     }
@@ -66,6 +83,14 @@
     }
     nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
     background-color: #00548f;
+    }
+    .active-link {
+        color: #00548F;
+        border-radius: 100px;
+        border: 1px solid #00548F;
+        font-weight: 700;
+        background-color: #FFFFFF;
+        padding: 6px 4px;
     }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
@@ -83,6 +108,7 @@
 <body>
 @extends('layouts.app')
 @section('content')
+
 @push('styles')
     <link href="{{ asset('css/estilos_documentos.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -127,11 +153,63 @@
             </div>
         </div>
     </div>
-    <div class="container second mb-5">
+    <div class="container mb-5">
         <div class="row">
-            <div class="col-md-12">
-
+        <div class="col-md-12">
+            <div class="container butonano" style="color: black;">
+                <div class="row">
+                    <!-- Columna para 'Próxima Sesión', siempre visible -->
+                    <div class="col-md-2">
+                    <a href="{{ route('tablassesionesconsejo.Indextablassesionesconsejo') }}" class="{{ request()->routeIs('tablassesionesconsejo.Indextablassesionesconsejo') || request()->fullUrlIs(route('tablassesionesconsejo.Indextablassesionesconsejo') . '/*') ? 'active-link' : '' }}">Próxima Sesión</a>
+                    </div>
+                    
+                    <!-- Columnas para cada año -->
+                    @php $counter = 1; @endphp
+                    @foreach($anios as $anio)
+                        @if($counter % 4 == 0 && $counter != 0) <!-- Cada 4 años se cierra una fila y se abre una nueva -->
+                            </div><div class="row">
+                            <div class="col-md-2">
+                            <a href="{{ route('tablassesionesconsejo.Indextablassesionesconsejo') }}" class="{{ request()->routeIs('tablassesionesconsejo.Indextablassesionesconsejo') || request()->fullUrlIs(route('tablassesionesconsejo.Indextablassesionesconsejo') . '/*') ? 'active-link' : '' }}">Próxima Sesión</a>
+                            </div>
+                        @endif
+                        <div class="col-md-2">
+                            <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">Tabla Sesión Año {{ $anio }}</a>
+                        </div>
+                        @php $counter++; @endphp
+                    @endforeach
+                </div>
             </div>
+
+            {{-- Mostrar la próxima sesión --}}
+            @if($proximaSesion)
+                            <div class="container" style="text-align-last: center;
+    padding-top: 1rem;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+    margin-bottom: -3rem;
+    border-top: 1px solid #F59120;
+    border-left: 1px solid #F59120;
+    border-right: 1px solid #F59120;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p style="color: #565656; font-Weight: 700;
+        font-Size: 20px;">TABLA CORE</p>
+                                    </div>
+                                </div>
+                            </div>
+                <div class="container proximasesion mt-5 mb-5" style="border: 1px solid #F59120;
+    padding: 50px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="mi-style mt-2 mb-2">Próxima Sesión:</h2>
+                            <p style="color: #565656;"><span style="font-weight: 700;">Nombre sesion:</span> {{ $proximaSesion->nombre }}</p>
+                            <p style="color: #565656; padding: 10px 0px 10px 0px;"><span style="font-weight: 700;">Hora:</span> {{ $proximaSesion->fecha_hora->format('H:i') }}</p>
+                            <p style="color: #565656;"><span style="font-weight: 700;">Lugar:</span> {{ $proximaSesion->lugar }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endif
+</div>
         </div>
     </div>
 </main>

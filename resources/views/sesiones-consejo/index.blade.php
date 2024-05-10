@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -80,71 +83,31 @@ input:required {
         <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario subida de documentos de sesion</h1>
-                        @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                        <h1>Tablas de Sesiones del Consejo Regional de Los Lagos</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1></h1> 
+                            <h1></h1>
+                            @foreach($sesionesAgrupadas as $anioMes => $sesiones)
+                                @php
+                                    // Obtener el año y el mes
+                                    [$anio, $mes] = explode('-', $anioMes);
+                                    $nombreMes = Carbon::createFromFormat('m', $mes)->monthName;
+                                @endphp
+
+                                <h2>Tablas de Sesiones Año: {{ $anio }}</h2>
+                                <h3>Tablas de Sesiones Mes: {{ $nombreMes }}</h3>
+                                <ul>
+                                    @foreach($sesiones as $sesion)
+                                        <li>{{ $sesion->nombre }}</li>
+                                    @endforeach
+                                </ul>
+                            @endforeach
                         </div>
                     </div>
-<form action="/sesiones" method="post" enctype="multipart/form-data">
-    @csrf <!-- Token CSRF para la seguridad en Laravel -->
 
-    <!-- Campo para el nombre de la sesión -->
-    <div class="mb-3">
-        <label for="nombreSesion" class="form-label">Nombre de la Sesión</label>
-        <input type="text" class="form-control" id="nombreSesion" name="nombre" required>
-    </div>
-
-    <!-- Campo para la fecha y hora -->
-    <div class="mb-3">
-        <label for="fechaHora" class="form-label">Fecha y Hora</label>
-        <input type="datetime-local" class="form-control" id="fechaHora" name="fecha_hora" required>
-    </div>
-
-    <!-- Campo para el lugar -->
-    <div class="mb-3">
-        <label for="lugar" class="form-label">Lugar</label>
-        <input type="text" class="form-control" id="lugar" name="lugar" required>
-    </div>
-
-    <div id="documentos-container">
-        <!-- Campo para subir documentos -->
-        <div class="mb-3">
-            <label for="documento0" class="form-label">Documento</label>
-            <input type="file" class="form-control" id="documento0" name="documento[]">
-        </div>
-    </div>
-
-    <!-- Botón para agregar más documentos -->
-    <div class="mb-3">
-        <button type="button" id="add-document" class="btn btn-info mb-3">Agregar Otro Documento</button>
-    </div>
-    <!-- Botón para enviar el formulario -->
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
-
-
-<script>
-    let documentCounter = 1;
-    document.getElementById('add-document').addEventListener('click', function() {
-        const newField = document.createElement('div');
-        newField.classList.add('mb-3');
-        newField.innerHTML = `
-            <label for="documento${documentCounter}" class="form-label">Documento ${documentCounter + 1}</label>
-            <input type="file" class="form-control" id="documento${documentCounter}" name="documento[]">
-        `;
-        document.getElementById('documentos-container').appendChild(newField);
-        documentCounter++;
-    });
-</script>
 
 </div>
             </div>

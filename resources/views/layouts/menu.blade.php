@@ -209,40 +209,41 @@
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
-                                        Documentos
-                                    </button>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                                            Documentos
+                                        </button>
                                     </h2>
                                     <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('documentos.create') }}">Agregar nuevo</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li class="style-li">
+                                                    <a class="style-a-menu" href="{{ route('documentos.create') }}">Agregar nuevo</a>
+                                                </li>
+                                                <li class="style-li">
+                                                    <a class="style-a-menu" href="{{ route('documentos.verdocumentos') }}">Ver Documentos</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
-                                       Sesiones de consejo
-                                    </button>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsetable" aria-expanded="false" aria-controls="flush-collapsetable">
+                                            Tabla Sesiones del Consejo
+                                        </button>
                                     </h2>
-                                    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li class="style-li">
-                                               
-                                            </li>
-                                            <li class="style-li">
-                                               
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <div id="flush-collapsetable" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li class="style-li">
+                                                    <a class="style-a-menu" href="{{ route('sesionesConsejo.create') }}">Agregar nuevo</a>
+                                                </li>
+                                                <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('sesionesConsejo.index') }}">Ver Todas las Sesiones</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
 

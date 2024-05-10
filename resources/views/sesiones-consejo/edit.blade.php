@@ -95,7 +95,7 @@ input:required {
                         </div>
                     </div>
 {{-- Asegúrate de que la ruta del action y el método sean correctos --}}
-<form action="{{ route('sesiones.update', $sesion->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('sesionesConsejo.update', $sesion->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

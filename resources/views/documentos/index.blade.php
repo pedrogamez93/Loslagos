@@ -41,8 +41,10 @@
         <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes decargar:</h4>
 
         <ul class="list-unstyled">
-    @foreach($documentos as $documento)
-        @if($documento->portada == 'si')
+        @php $contador = 0; @endphp
+@foreach($documentos as $documento)
+    @if($documento->portada == 'si')
+        @if($contador < 5)
             <li class="mt-3">
                 <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
                     <div class="row divtitulodocsdes">
@@ -51,8 +53,13 @@
                     </div>
                 </a>
             </li>
-          @endif
-     @endforeach
+            @php $contador++; @endphp
+        @else
+            @break
+        @endif
+    @endif
+@endforeach
+
         </ul>
 
 

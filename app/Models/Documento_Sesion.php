@@ -10,7 +10,7 @@ class Documento_Sesion extends Model
     use HasFactory;
 
     protected $table = 'documentos_sesiones';
-    protected $fillable = ['sesion_id', 'nombre', 'url']; // Asegúrate de que estos sean los campos correctos
+    protected $fillable = ['sesion_id', 'nombredoc', 'url', 'fechadoc']; // Asegúrate de que estos sean los campos correctos
 
     public function sesion()
     {
