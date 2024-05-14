@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS y JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 
     <style>
     h1 , h2{
@@ -105,10 +107,13 @@
                     <tr>
                         <td>{{ $fondo->titulo }}</td>
                         <td>{{ $fondo->bajada }}</td>
-                        <td>{{ $fondo->descripcion }}</td>
-                        <td>{{ $fondo->nota }}</td>
+
+                        <td>{!! $fondo->descripcion ?? '' !!}</td>
+
+                        <td>{!! $fondo->nota ?? '' !!}</td>
+
                         <td>
-                            <!--<a href="{{ route('fondosfndr.edit', $fondo) }}" class="btn btn-primary">Editar</a>-->
+                            <a href="{{ route('fondosfndr.edit', $fondo) }}" class="btn btn-primary mb-2">Editar</a>
                             <form action="{{ route('fondosfndr.destroy', $fondo) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
@@ -129,7 +134,33 @@
 
                         </div>
                     </div>
-                
-               
+</html>     
+    <script>
+        tinymce.init({
+            selector: '#desc', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+
+        tinymce.init({
+            selector: '#nota', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>       
                
                 

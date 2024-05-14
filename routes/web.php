@@ -694,6 +694,20 @@ Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasControll
 
 //Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
 
+// Rutas para eliminar botones, descripciones, documentos y fotografías
+Route::delete('/programa/boton/{id}', [ProgramasController::class, 'destroyBoton'])->name('programa.boton.destroy');
+Route::delete('/programa/descripcion/{id}', [ProgramasController::class, 'destroyDescripcion'])->name('programa.descripcion.destroy');
+Route::delete('/programa/documento/{id}', [ProgramasController::class, 'destroyDocumento'])->name('programa.documento.destroy');
+Route::delete('/programa/fotografia/{id}', [ProgramasController::class, 'destroyFotografia'])->name('programa.fotografia.destroy');
+
+Route::post('/programas/{programa}/agregar-descripcion', [ProgramasController::class, 'agregarDescripcion'])->name('programas.agregar-descripcion');
+
+Route::post('/programas/{programa}/agregar-documento', [ProgramasController::class, 'agregarDocumento'])->name('programas.agregar-documento');
+Route::post('/programas/{programa}/agregar-fotografia', [ProgramasController::class, 'agregarFotografia'])->name('programas.agregar-fotografia');
+Route::post('/programas/{programa}/agregar-boton', [ProgramasController::class, 'agregarBoton'])->name('programas.agregar-boton');
+
+
+
 //Route::get('/programas/{programa}', 'TodosLosProgramasController@show')->name('programas.show');
 Route::get('/programas/{id}', [ProgramasController::class, 'show'])->name('programas.show');
 
@@ -746,4 +760,11 @@ Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::clas
 Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update');
 
 Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
+Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');
+//Route::post('/programas/{programa}/agregar-documento', [ProgramasController::class, 'agregarDocumento'])->name('programas.agregar-documento');
+Route::post('/fondos/{fondo}/agregar-documento', [FondosFndrController::class, 'agregarDocumento'])->name('fondos.agregar-documento');
+
+
+
+
 
