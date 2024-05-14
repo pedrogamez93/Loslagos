@@ -609,13 +609,13 @@ Route::put('/programas/Politicadeturismo/{id}', 'App\Http\Controllers\Politicade
 //RUTAS POLITICAS DE TURISMO FRONTEND
 Route::get('/formulacionpoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismoWeb')->name('PoliticadeturismoWeb.show');
 //RUTAS Productos de la Política de Turismo
-/*
+
 Route::get('/programas/ProductosdelaPoliticadeTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.index')->middleware('auth');
 Route::post('/programas/ProductosdelaPoliticadeTurismo/store', 'App\Http\Controllers\PoliticadeturismoController@storeProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.store')->middleware('auth');
 Route::get('/programas/ProductosdelaPoliticadeTurismo/create', 'App\Http\Controllers\PoliticadeturismoController@createProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.create')->middleware('auth');
 Route::get('/programas/ProductosdelaPoliticadeTurismo/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.edit')->middleware('auth');
 Route::put('/programas/ProductosdelaPoliticadeTurismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.update')->middleware('auth');
-*/
+
 //RUTAS Lanzamiento Política
 
 Route::get('/productosdelapoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismoWeb')->name('ProductosdelaPoliticadeTurismoWeb.show');
