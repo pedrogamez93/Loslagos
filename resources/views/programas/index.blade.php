@@ -91,7 +91,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Título</th>
-                                        <th>Bajada encabezado</th>
+                                        <!--<th>Bajada encabezado</th>-->
                                         <!--<th>Imagen</th>-->
                                         <th>Acciones</th>
 
@@ -102,15 +102,15 @@
                                         <tr>
                                             <td>{{ $programa->id }}</td>
                                             <td>{{ $programa->titulo }}</td>
-                                            <td>{{ $programa->bajada }}</td>
+                                            <!--<td>{{ $programa->bajada }}</td>-->
                                             <!--<td>
                                                 <img src="{{ asset('storage/' . $programa->imagen) }}" alt="Imagen del Programa" style="max-width: 100px;">
                                             </td>-->
                                             <td>
                 
-<!--<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
+<a href="{{ url('/programas/' .$programa->id. '/edit') }}" class="mb-2 btn btn-primary">
     Editar
-</a>-->
+</a>
             
 
             <form action="{{ url('/programas/'.$programa->id) }}" method="post">
