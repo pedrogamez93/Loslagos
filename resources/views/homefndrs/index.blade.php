@@ -61,6 +61,10 @@
         font-Size: 16px;
         border-radius: 100px;
     }
+    .style-cont a{
+        color: blue !important;
+    text-decoration: underline !important;
+    }
     p.one-title{
         font-family:'Inter';
         font-Weight: 700;

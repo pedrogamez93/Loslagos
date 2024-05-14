@@ -319,8 +319,8 @@
                         <div class="container">
         <h1 class="titulo-fondo">{{ $fondo->titulo }}</h1>
         <p class="pt-2 pb-2">{{ $fondo->bajada }}</p>
-        <p class="pt-2 pb-2">{{ $fondo->descripcion }}</p>
-        <p class="pt-2 pb-3">{{ $fondo->nota }}</p>
+        <p class="pt-2 pb-3">{!! $fondo->descripcion ?? '' !!}</p>
+        <p class="pt-2 pb-3">{!! $fondo->nota ?? '' !!}</p>
 
         <!--SECCIONES-->
         <ul>

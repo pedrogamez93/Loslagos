@@ -81,11 +81,7 @@ input:required {
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Crear programa</h2> 
-                        </div>
-                    </div>
+                   
                     <!-- Formulario para la creación de un nuevo programa -->
                     <form action="{{ route('programas.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -100,10 +96,10 @@ input:required {
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
                         <textarea class="form-control mt-2 mb-4" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
-<!--
-                        <label class="style-label mt-3" for="icono">Agregar imagen:</label>
+
+                        <label class="style-label mt-3" for="icono">Agregar imagen destacada:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-                     -->
+                     
                 
 <!--TEXTOS ACORDEÓN-->
                         <div class="container">
@@ -200,7 +196,7 @@ input:required {
 
                     <!--Colecciones-->
                     <div class="container pregunta-doc mt-4">
-                        <label class="style-label mb-2 mt-3">Deseas agregar colecciones?</label>
+                        <label class="style-label mb-2 mt-3">Deseas agregar una colección?</label>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-check form-check-inline">
@@ -221,7 +217,7 @@ input:required {
                             <input class="form-control mt-2 mb-4" type="file" name="ruta[]" accept=".png, .jpg, .jpeg" multiple>
                             <input class="form-control mt-2 mb-2" type="text" name="titulo_coleccion[]" placeholder="Nombre de la colección">
                         </div>
-                        <button type="button" class="btn btn-primary agregar-coleccion">Agregar otra colección</button>
+                        <!--<button type="button" class="btn btn-primary agregar-coleccion">Agregar otra colección</button>-->
                     </div>
 
                             

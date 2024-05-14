@@ -18,4 +18,6 @@ class DocsSeccionesFndr extends Model
     {
         return $this->belongsTo(SeccionesFndr::class, 'seccion_fndr_id');
     }
+
+    
 }

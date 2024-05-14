@@ -191,10 +191,22 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $programa=Programas::findOrfail($id);
-        return view('programas.edit', compact('programa') );
+{
+    $programa = Programas::findOrFail($id);
+    $botones = $programa->botones;
+    $descripciones = $programa->descripcion;
+    $documentos = $programa->documentos;
+    $colecciones = $programa->colecciones;
+
+    // Obtener las fotografías de cada colección
+    foreach ($colecciones as $coleccion) {
+        $coleccion->fotografias;
     }
+
+    return view('programas.edit', compact('programa', 'botones', 'descripciones', 'documentos', 'colecciones'));
+}
+
+
 
     /**
      * Update the specified resource in storage.
@@ -214,6 +226,164 @@ class ProgramasController extends Controller
 
 
     }
+
+    public function agregarDescripcion(Request $request, $id)
+{
+    // Validación de los datos del formulario si es necesario
+
+    // Buscar el programa por ID
+    $programa = Programas::find($id);
+    $seleccion = $request->input('si_descripcion');
+
+    // Verificar si el programa existe
+    if ($programa) {
+        if ($seleccion == "si") { // Corregir aquí para que coincida con el valor del formulario
+            $titulo_descripcion = $request->input('titulo_descripcion', []);
+            $bajada_descripcion = $request->input('bajada_descripcion', []);
+
+            foreach ($titulo_descripcion as $key => $titulo) { // No necesitas el operador de fusión de null aquí
+                ProgramasDescripciones::create([
+                    'titulo_descripcion' => $titulo,
+                    'bajada_descripcion' => $bajada_descripcion[$key], // Accede al mismo índice en el array de bajada_descripcion
+                    'programa_id' => $programa->id
+                ]);
+            }
+
+            return redirect()->back()->with('success', 'Texto descriptivo agregado correctamente.');
+        } else {
+            // No se seleccionó agregar descripción, puedes agregar un mensaje de error si lo deseas
+            return redirect()->back()->with('error', 'No se seleccionó agregar descripción.');
+        }
+    }
+
+    return redirect()->back()->with('error', 'No se encontró el programa.');
+}
+
+
+
+public function agregarBoton(Request $request, $id)
+{
+    // Buscar el programa por ID
+    $programa = Programas::find($id);
+    $seleccion = $request->input('si_boton');
+
+    // Verificar si el programa existe
+    if ($programa) {
+        if ($seleccion == "si") {
+            
+
+// Obtener los datos del formulario
+$textos_boton = $request->input('nombrebtn', []);
+$urls_boton = $request->input('urlbtn', []);
+
+
+            // Verificar si se han proporcionado datos para los botones
+            if (!empty($textos_boton) && !empty($urls_boton)) {
+                // Iterar sobre los botones proporcionados
+                foreach ($textos_boton as $key => $texto) {
+                    // Crear un nuevo botón en la base de datos
+                    Programasbtn::create([
+                        'nombrebtn' => $texto,
+                        'urlbtn' => $urls_boton[$key],
+                        'programa_id' => $programa->id
+
+                    ]);
+                }
+
+                return redirect()->back()->with('success', 'Botones agregados correctamente.');
+            } else {
+                // No se proporcionaron datos para los botones
+                return redirect()->back()->with('error', 'Por favor, proporcione al menos un botón para agregar.');
+            }
+        } else {
+            // No se seleccionó agregar botones
+            return redirect()->back()->with('info', 'No se seleccionó agregar botones.');
+        }
+    }
+
+    return redirect()->back()->with('error', 'No se encontró el programa.');
+}
+
+
+
+
+
+public function agregarDocumento(Request $request, $id)
+{
+    // Buscar el programa por ID
+    $programa = Programas::find($id);
+
+    // Verificar si el programa existe
+    if ($programa) {
+        // Obtener los archivos cargados
+        $documentos = $request->file('urlDocumento');
+
+        // Verificar si se han cargado archivos
+        if ($documentos) {
+            foreach ($documentos as $documento) {
+                // Guardar cada archivo en la carpeta deseada y registrar la información en la base de datos
+                $documento_path = $documento->store('documentos');
+                ProgramasDocumentos::create([
+                    'nombreDocumento' => $documento->getClientOriginalName(),
+                    'urlDocumento' => $documento_path,
+                    'programa_id' => $programa->id
+                ]);
+            }
+            return redirect()->back()->with('success', 'Documentos agregados correctamente.');
+        } else {
+            return redirect()->back()->with('error', 'No se seleccionaron documentos para agregar.');
+        }
+    }
+
+    return redirect()->back()->with('error', 'No se encontró el programa.');
+}
+
+
+public function agregarFotografia(Request $request, $id)
+{
+    // Buscar el programa por ID
+    $programa = Programas::find($id);
+    $seleccion = $request->input('si_fotografia');
+
+    // Verificar si el programa existe
+    if ($programa) {
+        if ($seleccion == "si") {
+            // Obtener las fotografías cargadas
+            $fotografias = $request->file('fotografias');
+
+            // Verificar si se han cargado fotografías
+            if ($fotografias) {
+                // Asumiendo que el programa tiene una colección existente
+                $coleccion = $programa->colecciones()->first(); // Obtener la primera colección asociada al programa
+
+                if ($coleccion) {
+                    foreach ($fotografias as $fotografia) {
+                        // Guardar cada fotografía en la carpeta deseada y registrar la información en la base de datos
+                        $fotografia_path = $fotografia->store('fotografias');
+                        // Agregar la fotografía a la colección existente
+                        $coleccion->fotografias()->create([
+                            'nombre' => $fotografia->getClientOriginalName(),
+                            'ruta' => $fotografia_path,
+                        ]);
+                    }
+                    return redirect()->back()->with('success', 'Fotografías agregadas correctamente a la colección.');
+                } else {
+                    return redirect()->back()->with('error', 'No se encontró una colección asociada al programa.');
+                }
+            } else {
+                return redirect()->back()->with('error', 'No se seleccionaron fotografías para agregar.');
+            }
+        } else {
+            // No se seleccionó agregar fotografías
+            return redirect()->back()->with('info', 'No se seleccionó agregar fotografías.');
+        }
+    }
+
+    return redirect()->back()->with('error', 'No se encontró el programa.');
+}
+
+    
+
 
     /**
      * Remove the specified resource from storage.
@@ -254,6 +424,43 @@ class ProgramasController extends Controller
     }
 
     return redirect()->route('programas.index')->with('error', 'No se encontró el programa.');
+}
+
+public function destroyBoton($id)
+{
+    $boton = Programasbtn::findOrFail($id);
+    $boton->delete();
+
+    return redirect()->back()->with('success', 'Botón eliminado correctamente.');
+}
+
+
+
+// Método para eliminar una descripción
+public function destroyDescripcion($id)
+{
+    $descripcion = ProgramasDescripciones::findOrFail($id);
+    $descripcion->delete();
+
+    return redirect()->back()->with('success', 'Descripción eliminada correctamente.');
+}
+
+// Método para eliminar un documento
+public function destroyDocumento($id)
+{
+    $documento = ProgramasDocumentos::findOrFail($id);
+    $documento->delete();
+
+    return redirect()->back()->with('success', 'Documento eliminado correctamente.');
+}
+
+// Método para eliminar una fotografía
+public function destroyFotografia($id)
+{
+    $fotografia = ProgramasFotografias::findOrFail($id);
+    $fotografia->delete();
+
+    return redirect()->back()->with('success', 'Fotografía eliminada correctamente.');
 }
 
     

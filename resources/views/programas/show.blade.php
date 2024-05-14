@@ -302,7 +302,10 @@
         <div class="row">
             <div class="col-md-7 borde">
                     <div id="contenidoPrincipal">
-                        <p class="bajada-programa">{!! $programa->bajada_programa ?? '' !!}</p>
+                        <div class=""> {!! $programa->bajada_programa ?? '' !!} </div>
+                        <p>{!! $programa->bajada_programa ?? '' !!}</p>
+                       
+
                         <!--ACORDEON DESCRIPCIONES-->
                             <div class="accordion mt-5" id="accordionExample">
                                 <?php $i=0;?>
@@ -344,15 +347,16 @@
                         @foreach($programa->colecciones as $coleccion)
                             <div class="fotografias-coleccion">
                                 <div class="coleccion-item">
+                                <h5 class="titulo-coleccion mb-4" onclick="mostrarFotografias(this)">{{ $coleccion->titulo_coleccion }}</h5>
+
                                     @if(count($coleccion->fotografias) > 0)
-                                    <img src="{{ asset($coleccion->fotografias[0]->ruta) }}" alt="Fotografía" style="display: none; height:100px;">
+                                    <img src="{{ asset($coleccion->fotografias[0]->ruta) }}" alt="Fotografía" style=" height:100px;">
                                     @endif
 
-                                    <h5 class="titulo-coleccion mb-4" onclick="mostrarFotografias(this)">{{ $coleccion->titulo_coleccion }}</h5>
 
                                     @if(count($coleccion->fotografias) > 1)
                                         @foreach($coleccion->fotografias->slice(1) as $fotografia)
-                                        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía" style="display: none; height:100px;margin: 10px 0;;">
+                                        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía" style=" height:100px;margin: 10px 0;;">
                                         @endforeach
                                     @endif
                                 </div>
@@ -415,13 +419,5 @@
 
     });
 </script>
-<script>
-        function mostrarFotografias(titulo) {
-            // Encuentra las imágenes asociadas al título clicado
-            var fotografias = $(titulo).siblings('img');
 
-            // Muestra u oculta las imágenes al hacer clic en el título
-            fotografias.slideToggle();
-        }
-    </script>
 @endsection
