@@ -696,12 +696,12 @@ button {
                                 <textarea name="mensaje_sugerencia_reclamo" rows="4" cols="50" ></textarea>
                             </div>
                             
- <div class="form-group row pb-4">                      
-    <div class="col-xs-2">  
-                <label for="captcha">Resuelve la siguiente suma: <span id="captchaQuestion"></span></label>
-            <input type="text" id="captcha" name="captcha" class="form-control" required style="width: 30%;">
-         </div>
-</div>
+            <div class="form-group row pb-4">                      
+                <div class="col-xs-2">  
+                        <label for="captcha">Resuelve la siguiente suma: <span id="captchaQuestion"></span></label>
+                        <input type="text" id="captcha" name="captcha" class="form-control" required style="width: 30%;">
+                    </div>
+            </div>
                             <button type="submit" class="btn-enviar pt-2">Enviar</button>
                         </form>
 
