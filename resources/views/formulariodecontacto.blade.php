@@ -696,7 +696,12 @@ button {
                                 <textarea name="mensaje_sugerencia_reclamo" rows="4" cols="50" ></textarea>
                             </div>
                             
-
+ <div class="form-group row pb-4">                      
+    <div class="col-xs-2">  
+                <label for="captcha">Resuelve la siguiente suma: <span id="captchaQuestion"></span></label>
+            <input type="text" id="captcha" name="captcha" class="form-control" required style="width: 30%;">
+         </div>
+</div>
                             <button type="submit" class="btn-enviar pt-2">Enviar</button>
                         </form>
 
@@ -762,4 +767,36 @@ button {
 
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Generar dos números aleatorios entre 1 y 10
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+
+        // Mostrar la pregunta en el formulario
+        document.getElementById('captchaQuestion').textContent = `${num1} + ${num2} = ?`;
+
+        // Obtener el formulario
+        const form = document.getElementById('myForm');
+
+        // Agregar un evento de validación al formulario
+        form.addEventListener('submit', function (event) {
+            // Obtener la respuesta del usuario
+            const userAnswer = parseInt(document.getElementById('captcha').value, 10);
+            const correctAnswer = num1 + num2;
+
+            // Validar la respuesta
+            if (userAnswer !== correctAnswer) {
+                // Mostrar un mensaje de error
+                alert('La respuesta a la pregunta de seguridad es incorrecta. Por favor, inténtelo de nuevo.');
+
+                // Prevenir el envío del formulario
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+
 @endsection

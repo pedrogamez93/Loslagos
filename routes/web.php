@@ -82,7 +82,7 @@ Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostra
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 Route::get('/home/slider', [HomeController::class, 'slider'])->name('Home.slider');
 Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
-Route::put('/home/updatebanners', [HomeController::class, 'updatebanners']);
+Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
 /*DOCUMENTOS */
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
