@@ -38,9 +38,9 @@ class ConsejoRegionalDocsViewsController extends Controller
 
     public function Indexcertificadosdeacuerdos()
     {
-        // Obtener todos los acuerdos y su relación con Documentonew
-        $acuerdos = Acuerdo::with('documentonew')->get();
-
+        // Obtener todos los acuerdos con paginación y su relación con Documentonew
+        $acuerdos = Acuerdo::with('documentonew')->paginate(10); // 10 acuerdos por página
+    
         // Pasar los acuerdos a la vista
         return view('consejoregionaldocsviews.certificadosdeacuerdos.index', ['acuerdos' => $acuerdos]);
     }
