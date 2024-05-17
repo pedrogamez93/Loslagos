@@ -1266,10 +1266,7 @@ if ($articulo) {
             $popupD  = popup::find($idpopup);
             return view('regionlagos.introduccion', compact('introduccion','popupUnico'));
             
-        } else {
-            // La consulta no devolvió ningún registro
-            return view('IntroduccionRegionLagos.create');
-        }
+        } 
     }
     public function indexRegionlagosAntecedentesregion()
     {
