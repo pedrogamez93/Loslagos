@@ -353,6 +353,10 @@
                 <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
                     <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
                 </a>
+                <a href="https://www.youtube.com/@goreloslagos7458" style="padding-right: 20px;padding-top: 4px;">
+                    <img src="{{ asset('img/yt.png') }}" alt="" class="img-fluid">
+                </a>
+                
             </li>
         </ul>
     </div>
@@ -429,6 +433,9 @@
                 </a>
                 <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
                     <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
+                </a>
+                <a href="https://www.youtube.com/@goreloslagos7458" style="padding-right: 20px;padding-top: 4px;">
+                    <img src="{{ asset('img/yt.png') }}" alt="" class="img-fluid">
                 </a>
             </li>
         </ul>

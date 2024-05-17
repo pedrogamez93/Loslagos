@@ -25,10 +25,10 @@
             @csrf
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
-                <option value="Actas">Actas</option>
-                                    <option value="Acuerdos">Acuerdos</option>
-                                    <option value="Resumengastos">Resumen de Gastos</option>
-                                    <option value="Documentogeneral">Documento General</option>
+                <option value="Acta">Actas</option>
+                                    <option value="Acuerdo">Acuerdos</option>
+                                    <option value="Resúmen Gastos">Resumen de Gastos</option>
+                                    <option value="Documento general">Documento General</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
                 <div class="pt-5" style="direction: rtl;">
