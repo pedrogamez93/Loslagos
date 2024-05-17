@@ -142,7 +142,7 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = ProductosdelaPoliticadeTurismo::find($id);
-            return view('politicadeturismo.productosdelapoliticadeturismo.edit', compact('articulo'));
+            return view('politicadeturismo.productosdelapoliticadeturismo.create', compact('articulo'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -153,10 +153,10 @@ class PoliticadeturismoController extends Controller
     }
     public function indexProductosdelaPoliticadeTurismoWeb()
     {
-        /*$datosPrincipales  = ProductosdelaPoliticadeTurismo::with('ProductosdelaPoliticadeTurismoI')->get();
+        $datosPrincipales  = ProductosdelaPoliticadeTurismo::with('ProductosdelaPoliticadeTurismoI')->get();
         return view('politicadeturismo.productosdelapoliticadeturismo.ProductosdelaPoliticadeTurismo', compact('datosPrincipales'));
-        */
-        return view('politicadeturismo.productosdelapoliticadeturismo.ProductosdelaPoliticadeTurismo');
+        
+        //return view('politicadeturismo.productosdelapoliticadeturismo.ProductosdelaPoliticadeTurismo');
 
     }
 
@@ -177,23 +177,24 @@ class PoliticadeturismoController extends Controller
     {
         
         $data = $request->validate([
-            'nombre' => 'required',
             'titulo' => 'required',
-            'descripcion' => 'required',
-
+            'nombreA' => 'required',
+            'archivo' => 'required',
         ]);
-        
+      
         
         $Productos =  ProductosdelaPoliticadeTurismo::create([
-            'titulo' => $request->input('titulo'),
-            'nombre' => $request->input('nombre'),
-            'descripcion' => $request->input('descripcion'),
+            'titulo' => $request->input('nombre'),
+            /*'nombre' => $request->input('nombre'),
+            'url' => $request->input('url'),*/
         ]);
-    
+  
         // Verificar y almacenar documentos
         if ($request->hasFile('archivo')) {
             $documentos = $request->file('archivo');
-            $nombresDocumentos = $request->input('nombre');
+            $tituloP = $request->input('titulo');
+            $nombreA = $request->input('nombreA');
+            $nombresDocumentos = $request->input('archivo');
 
             foreach ($documentos as $key => $documento) {
                  $path = $documento->store('public/productosdelapoliticadeturismo');
@@ -201,13 +202,14 @@ class PoliticadeturismoController extends Controller
                 
                 // Crear registro en la base de datos
                 $doc = ProductosdelaPoliticadeTurismoI::create([
+                    'titulo' => $tituloP[$key],
+                    'nombre' => $nombreA[$key],
+                    'url' => $path,
                     'ProductosdelaPoliticadeTurismoI_id' => $Productos->id,
-                    'nombre' => $nombre,
-                    'archivo' => $path,
                 ]);
             }
         }
-        return redirect(route('politicadeturismo.productosdelapoliticadeturismo.show'))->with('success', 'Guardado exitosamente');
+        return redirect(route('politicadeturismo.create'))->with('success', 'Guardado exitosamente');
         
     }
 

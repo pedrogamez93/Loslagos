@@ -239,8 +239,35 @@
                             <div class="container int">
                                 <div class="row">
                                     <div class="col-md-12">
-                                   
-                                        
+                                    
+                                    <h2 class="title-cat mb-4">Productos Política de Turismo</h2>
+                                    @foreach ($datosPrincipales as $principal)
+                                    <div style=" border: 1px solid #f59120; padding: 10px; margin-bottom: 16px; "><h2>{!! $principal->titulo ?? '' !!}</h2>
+                                        @foreach ($principal->ProductosdelaPoliticadeTurismoI as $secundario)
+
+                                        <div class="col-md-6 p-3">
+                                            <div class="container int">
+                                                <div class="row">
+                                                <div class="col-md-12 p-0">
+                                                {{ $secundario->titulo }}
+                                                </div>
+                                                <div class="col-md-7 p-0">
+                                                {{ $secundario->nombre }}
+                                                </div>
+                                              <div class="col-md-2 p-0">
+                                              <a href="{{ $secundario->url }}"><img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco"></a>
+                                            </div>        
+                                                    
+                                        </div> 
+                                            </div>        
+                                        </div>        
+                                            <!-- Agrega aquí otros campos según tu modelo secundario -->
+                                        @endforeach
+                                        </div>
+                                    @endforeach
+
+
+                                    <p><b>Nota :</b></p> <p>Si no puede abrir directamente el documento, presione el botón derecho del mouse sobre el icono de descarga y luego seleccionar "Guardar destino como..." o "Guardar enlace como..." . Esto le permite guardar el documento directamente a su equipo.</p>
                                     </div>
                                 </div>
                             </div>

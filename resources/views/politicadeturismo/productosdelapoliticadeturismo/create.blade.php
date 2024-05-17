@@ -61,7 +61,7 @@
             <div class="container principal pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Registro de Política Regional de Turismo</h1>
+                        <h1>Registro de Productos de la Política de Turismo</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -70,22 +70,9 @@
                         @csrf 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-6 title">
+                                <div class="col-md-12 title">
                                     <div class="input-group mb-3">
                                         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre seccion" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 title">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 tag-comentario">
-                                    <div id="text">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor" name="descripcion"></textarea>
-
-                                        </div>
                                     </div>
                                 </div>
                                 
@@ -95,14 +82,19 @@
                                     <div class="documentos-container col-md-12 mt-3">
                                         <div class="documentos-input col-md-12">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12 title">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" required>
+                                                    <input type="text" id="titulo" name="titulo[]" class="form-control" placeholder="Titulo seccion" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="file" id="hombres" name="archivo[]" class="form-control" placeholder="Cargar archivo" required>
+                                                    <input type="text" id="nombreA" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="file" id="archivo" name="archivo[]" class="form-control" placeholder="Cargar archivo" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,11 +129,8 @@
 
             // Genera un nuevo nombre único para cada campo clonado
             var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
-            nuevoDocumentoInput.find("input[type='file']").attr('id', 'archivo_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'archivo[]');
-            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombreA' + nuevoId);
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombreA[]');
-
+            
+           
             // Agrega un botón de eliminar a la fila clonada
             var botonEliminar = $('<button/>', {
                 text: 'Eliminar',
