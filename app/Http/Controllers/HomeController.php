@@ -131,47 +131,57 @@ class HomeController extends Controller
     }
  
     public function updatebanners(Request $request)
-    {
-        $request->validate([
-            'banner1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'banner2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'banner3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'banner4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'bannerurl1' => 'nullable|url',
-            'bannerurl2' => 'nullable|url',
-            'bannerurl3' => 'nullable|url',
-            'bannerurl4' => 'nullable|url',
-        ]);
-    
-        $home = Home::where('id', 1)->first();
-        $changes = [];
-    
-        // Iterar sobre los campos de banner1 hasta banner4 y bannerurl1 hasta bannerurl4
-        for ($i = 1; $i <= 4; $i++) {
-            $bannerField = "banner$i";
-            $bannerUrlField = "bannerurl$i";
-    
-            if ($request->hasFile($bannerField)) {
-                // Eliminar la imagen anterior
-                Storage::delete($home->$bannerField);
-    
-                // Almacenar la nueva imagen
-                $path = $request->file($bannerField)->store('public/banners');
-                $changes[$bannerField] = $path;
-            }
-    
-            // Verificar si hay una nueva URL para el banner
-            if ($request->filled($bannerUrlField)) {
-                $changes[$bannerUrlField] = $request->input($bannerUrlField);
-            }
-        }
-    
-        if (!empty($changes)) {
-            $home->update($changes);
-        }
-    
-        return redirect('/home/banners')->with('success', 'Registro actualizado correctamente.');
+{
+    // $request->validate([
+    //     'banner1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'banner2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'banner3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'banner4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'bannerurl1' => 'nullable|url',
+    //     'bannerurl2' => 'nullable|url',
+    //     'bannerurl3' => 'nullable|url',
+    //     'bannerurl4' => 'nullable|url',
+    // ]);
+
+    $home = Home::where('id', 1)->first();
+
+    if (!$home) {
+        return redirect('/home/banners')->with('error', 'No se encontró el registro de la página principal.');
     }
+
+    $changes = [];
+    $updated = false;
+
+    for ($i = 1; $i <= 4; $i++) {
+        $bannerField = "banner$i";
+        $bannerUrlField = "bannerurl$i";
+
+        if ($request->hasFile($bannerField)) {
+            // Eliminar la imagen anterior si existe
+            if ($home->$bannerField) {
+                Storage::delete($home->$bannerField);
+            }
+
+            // Almacenar la nueva imagen
+            $path = $request->file($bannerField)->store('public/banners');
+            $changes[$bannerField] = $path;
+            $updated = true;
+        }
+
+        if ($request->filled($bannerUrlField)) {
+            $changes[$bannerUrlField] = $request->input($bannerUrlField);
+            $updated = true;
+        }
+    }
+
+    if ($updated && !empty($changes)) {
+        $home->update($changes);
+        return redirect('/home/banners')->with('success', 'Registro actualizado correctamente.');
+    } else {
+        return redirect('/home/banners')->with('info', 'No se realizaron cambios.');
+    }
+}
+
     
 
     //Sliders
