@@ -55,6 +55,9 @@
                                                 <a class="style-a-menu" href="{{ url('/organigrama') }}">Organigrama</a>
                                             </li>
                                             <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/documentosgestion') }}">Documentos de Gestión</a>
+                                            </li>
+                                            <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
                                             </li>
                                             <ul style="padding: 0px">
