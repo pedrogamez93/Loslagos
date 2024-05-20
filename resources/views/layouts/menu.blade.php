@@ -95,6 +95,12 @@
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}"> Planificación Institucional</a>
                                             </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/concursospublicos') }}">Concursos Publicos</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Comite de Ciencias</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     </div>
