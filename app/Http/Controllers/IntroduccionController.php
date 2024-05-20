@@ -61,11 +61,15 @@ class IntroduccionController extends Controller{
         }
     }
 
-    public function show($id) {
-    // Recupera el registro específico con el ID proporcionado y muestra una vista para verlo
-    $introduccion = Introduccion::find($id);
-    return view('introduccion.show', compact('introduccion'));
+    public function show($id)
+    {
+        $introduccion = Introduccion::find($id);
+        
+        if (!$introduccion) {
+            return redirect()->route('introduccion.index')->with('error', 'Introducción no encontrada');
+        }
 
+        return view('introduccion.show', compact('introduccion'));
     }
 
     public function edit($id) {
