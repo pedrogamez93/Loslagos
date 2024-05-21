@@ -27,7 +27,7 @@
                 <option value="">Seleccione Categoria</option>
                 <option value="Acta">Actas</option>
                                     <option value="Acuerdo">Acuerdos</option>
-                                    <option value="Resúmen Gastos">Resumen de Gastos</option>
+                                    <option value="Resumen Gastos">Resumen de Gastos</option>
                                     <option value="Documento general">Documento General</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
