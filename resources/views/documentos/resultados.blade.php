@@ -49,7 +49,7 @@
     @if($documento->portada == 'si')
         @if($contador < 5)
             <li class="mt-3">
-                <a href="{{ route('documentos.download', $documento->id) }}" >
+                <a href="{{ route('documentos.download', $documento->id) }}">
                     <div class="row divtitulodocsdes">
                         <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
                         <p>{{ $documento->archivo }}</p>
@@ -62,6 +62,7 @@
         @endif
     @endif
 @endforeach
+
 
 
         </ul>
