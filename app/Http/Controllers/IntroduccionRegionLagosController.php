@@ -385,12 +385,13 @@ public function buscarAutoridades(Request $request)
     {
         $data = $request->validate([
             'provincia' => 'required',
-            'superficie_nueva' => 'required',
+            'superficie' => 'required',
             'comuna' => 'required',
             'p_urbana_hombre' => 'required',
             'p_urbana_mujeres' => 'required',
             'p_rural_hombre' => 'required',
             'p_rural_mujeres' => 'required',
+            'superficie_nueva' => 'required',
         ]);
    
         Estadisticas::create($data);

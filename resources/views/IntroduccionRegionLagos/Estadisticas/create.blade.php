@@ -91,6 +91,7 @@
                                     <b>&nbsp;</b>
                                     <div class="input-group mb-3">
                                         <input type="text" id="superficie" name="superficie_nueva" class="form-control" placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="hidden" id="superficie1" name="superficie" value="1" class="form-control" placeholder="Superficie" >
                                     </div>
                                 </div>
                                 <div class="col-md-4 purbana">
