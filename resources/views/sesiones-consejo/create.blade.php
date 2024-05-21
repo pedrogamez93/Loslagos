@@ -94,7 +94,7 @@ input:required {
                             <h1></h1> 
                         </div>
                     </div>
-<form action="{{ route('sesionesConsejo.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('sesionesConsejo.store') }}" method="post" enctype="multipart/form-data">
     @csrf <!-- Token CSRF para la seguridad en Laravel -->
 
     <!-- Campo para el nombre de la sesión -->
@@ -117,13 +117,13 @@ input:required {
 
     <div id="documentos-container">
         <!-- Campo para subir documentos -->
-        <div class="mb-3">
-            <label for="documento0" class="form-label mb-2">Nombre Documento</label>
-            <input type="text" class="form-control mt-2 mb-2" id="nombredoc" name="nombredoc[]">
-            <input type="file" class="form-control" id="documento0" name="url[]">
+        <div class="mb-3" id="documento0">
+            <label for="nombredoc0" class="form-label">Nombre Documento</label>
+            <input type="text" class="form-control" id="nombredoc0" name="nombredoc[]">
+            <input type="file" class="form-control mt-3" id="url0" name="url[]">
             <div class="mb-3">
-                <label for="fechaHoradoc" class="form-label mt-2">Fecha y Hora del documento</label>
-                <input type="datetime-local" class="form-control mt-2" id="fechaHoradoc" name="fechadoc[]">
+                <label for="fechadoc0" class="form-label mt-3">Fecha y Hora del documento</label>
+                <input type="datetime-local" class="form-control" id="fechadoc0" name="fechadoc[]">
             </div>
         </div>
     </div>
@@ -136,21 +136,22 @@ input:required {
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
-
 <script>
-    let documentCounter = 1;
-    document.getElementById('add-document').addEventListener('click', function() {
-        const newField = document.createElement('div');
-        newField.classList.add('mb-3');
-        newField.innerHTML = `
-            <label for="documento${documentCounter}" class="form-label">Documento ${documentCounter + 1}</label>
-            <input type="text" class="form-control mb-2" id="nombredoc${documentCounter}" name="nombredoc[]">
-            <input type="file" class="form-control" id="documento${documentCounter}" name="documento[]">
-            <input type="datetime-local" class="form-control" id="fechadoc${documentCounter}" name="fechadoc[]">
-        `;
-        document.getElementById('documentos-container').appendChild(newField);
-        documentCounter++;
-    });
+document.getElementById('add-document').addEventListener('click', function() {
+    var container = document.getElementById('documentos-container');
+    var index = container.children.length;
+    var newDocument = `
+        <div class="mb-3" id="documento${index}">
+            <label for="nombredoc${index}" class="form-label">Nombre Documento</label>
+            <input type="text" class="form-control" id="nombredoc${index}" name="nombredoc[]">
+            <input type="file" class="form-control mt-3" id="url${index}" name="url[]">
+            <div class="mb-3">
+                <label for="fechadoc${index}" class="form-label mt-3">Fecha y Hora del documento</label>
+                <input type="datetime-local" class="form-control" id="fechadoc${index}" name="fechadoc[]">
+            </div>
+        </div>`;
+    container.insertAdjacentHTML('beforeend', newDocument);
+});
 </script>
 
 </div>

@@ -181,34 +181,43 @@
             </div>
 
             {{-- Mostrar la próxima sesión --}}
-            @if($proximaSesion)
-                            <div class="container" style="text-align-last: center;
-    padding-top: 1rem;
-    margin-top: 3rem;
-    padding-bottom: 1rem;
-    margin-bottom: -3rem;
-    border-top: 1px solid #F59120;
-    border-left: 1px solid #F59120;
-    border-right: 1px solid #F59120;">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p style="color: #565656; font-Weight: 700;
-        font-Size: 20px;">TABLA CORE</p>
-                                    </div>
-                                </div>
-                            </div>
-                <div class="container proximasesion mt-5 mb-5" style="border: 1px solid #F59120;
-    padding: 50px;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="mi-style mt-2 mb-2">Próxima Sesión:</h2>
-                            <p style="color: #565656;"><span style="font-weight: 700;">Nombre sesion:</span> {{ $proximaSesion->nombre }}</p>
-                            <p style="color: #565656; padding: 10px 0px 10px 0px;"><span style="font-weight: 700;">Hora:</span> {{ $proximaSesion->fecha_hora->format('H:i') }}</p>
-                            <p style="color: #565656;"><span style="font-weight: 700;">Lugar:</span> {{ $proximaSesion->lugar }}</p>
+@if($proximaSesion)
+    <div class="container" style="text-align-last: center; padding-top: 1rem; margin-top: 3rem; padding-bottom: 1rem; margin-bottom: -3rem; border-top: 1px solid #F59120; border-left: 1px solid #F59120; border-right: 1px solid #F59120;">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: #565656; font-weight: 700; font-size: 20px;">TABLA CORE</p>
+            </div>
+        </div>
+    </div>
+    <div class="container proximasesion mt-5 mb-5" style="border: 1px solid #F59120; padding: 50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mi-style mt-2 mb-2">Próxima Sesión:</h2>
+                <p style="color: #565656;"><span style="font-weight: 700;">Nombre sesión:</span> {{ $proximaSesion->nombre }}</p>
+                <p style="color: #565656; padding: 10px 0px 10px 0px;"><span style="font-weight: 700;">Hora:</span> {{ \Carbon\Carbon::parse($proximaSesion->fecha_hora)->format('H:i') }}</p>
+                <p style="color: #565656;"><span style="font-weight: 700;">Lugar:</span> {{ $proximaSesion->lugar }}</p>
+            </div>
+        </div>
+
+        {{-- Documentos adjuntos a la próxima sesión --}}
+        <div class="row mt-4" style="border-top: 1px solid #F59120; padding: 50px;">
+            <div class="col-md-12">
+                <!--<h3 class="mi-style mt-2 mb-2">Documentos Adjuntos:</h3>-->
+                <div class="row">
+                    @foreach($proximaSesion->documentos as $documento)
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ asset('storage/' . $documento->url) }}" target="_blank" style="display: block; text-align: center;">
+                                <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Documento PDF" style="display: inline-block; vertical-align: middle;">    
+                                <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 234px; text-align: left;">{{ $documento->nombredoc }}</span>
+                            </a>
+                           <!-- <p style="text-align: center;">{{ \Carbon\Carbon::parse($documento->fechadoc)->format('Y-m-d H:i') }}</p>-->
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endif
+            </div>
+        </div>
+    </div>
+@endif
 </div>
         </div>
     </div>
