@@ -207,18 +207,16 @@ public function store(Request $request)
     }
 
     public function download($id)
-{
-    $documento = Documentonew::findOrFail($id);
-    $filePath = base_path($documento->archivo);
+    {
+        $documento = Documentonew::findOrFail($id);
+        $filePath = storage_path('app/' . $documento->archivo);
 
-
-    dd($filePath);
-    if (file_exists($filePath)) {
-        return response()->download($filePath, basename($documento->archivo));
-    } else {
-        return redirect()->back()->with('error', 'El archivo no existe.');
+        if (file_exists($filePath)) {
+            return response()->download($filePath, basename($documento->archivo));
+        } else {
+            return redirect()->back()->with('error', 'El archivo no existe.');
+        }
     }
-}
 
     
 
