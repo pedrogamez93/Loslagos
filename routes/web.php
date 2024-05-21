@@ -95,7 +95,7 @@ Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexT
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
-
+Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
