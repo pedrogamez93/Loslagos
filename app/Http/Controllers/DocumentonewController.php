@@ -228,51 +228,45 @@ public function store(Request $request)
     
 
     public function buscar(Request $request)
-{
-    $request->validate([
-        'tipo_documento' => 'nullable',
-        'nombre' => 'nullable',
-    ]);
-
-    // Normaliza la entrada del usuario para el tipo de documento
-    $categoria = strtolower(trim($request->input('tipo_documento')));
-    $nombre = $request->input('nombre');
-
-    // Mapeo de categorías normalizadas a las originales
-    $categorias = [
-        'actas' => 'Actas',
-        'acuerdos' => 'Acuerdos',
-        'resumengastos' => 'Resumen de Gastos',
-        'documentogeneral' => 'Documento General',
-        'acta' => 'Actas',
-        'acuerdo' => 'Acuerdos',
-        'resumen de gastos' => 'Resumen de Gastos',
-        'documento general' => 'Documento General',
-        'resumendegastos' => 'Resumen de Gastos',
-        'documentogeneral' => 'Documento General',
-    ];
-
-    // Busca la categoría normalizada
-    $categoriaNormalizada = $categorias[$categoria] ?? null;
-
-    $documentos = Documentonew::query();
-
-    if ($categoriaNormalizada) {
-        $documentos->where('tipo_documento', $categoriaNormalizada);
+    {
+        $request->validate([
+            'tipo_documento' => 'nullable',
+            'nombre' => 'nullable',
+        ]);
+    
+        $categoria = $request->input('tipo_documento');
+        $nombre = $request->input('nombre');
+    
+        // Normalizar las categorías para la búsqueda
+        $categoriaNormalizada = $this->normalizarTexto($categoria);
+    
+        // Buscar documentos
+        $documentos = Documentonew::query();
+    
+        if ($categoria) {
+            $documentos->whereRaw("LOWER(unaccent(tipo_documento)) = ?", [strtolower($categoriaNormalizada)]);
+        }
+    
+        if ($nombre) {
+            $documentos->whereRaw("LOWER(unaccent(archivo)) LIKE ?", ["%".strtolower($this->normalizarTexto($nombre))."%"]);
+        }
+    
+        $documentos = $documentos->get();
+    
+        if ($documentos->isEmpty()) {
+            return view('documentos.sinResultados');
+        }
+    
+        return view('documentos.resultados', compact('documentos'));
     }
-
-    if ($nombre) {
-        $documentos->where('archivo', 'LIKE', "%$nombre%");
+    
+    private function normalizarTexto($texto)
+    {
+        $buscar = array('Á', 'É', 'Í', 'Ó', 'Ú', 'á', 'é', 'í', 'ó', 'ú', 'ñ', 'Ñ');
+        $reemplazar = array('A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u', 'n', 'N');
+        return str_replace($buscar, $reemplazar, $texto);
     }
-
-    $documentos = $documentos->get();
-
-    if ($documentos->isEmpty()) {
-        return view('documentos.sinResultados');
-    }
-
-    return view('documentos.resultados', compact('documentos'));
-}
+    
 
     public function descargarArchivo($archivo)
 {
