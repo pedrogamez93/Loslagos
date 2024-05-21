@@ -209,19 +209,15 @@ public function store(Request $request)
     public function download($id)
     {
         $documento = Documentonew::findOrFail($id);
-
-        // Obtener la ruta del archivo almacenado en storage
-        $filePath = storage_path("app/public/{$documento->archivo}");
-
-        // Verificar si el archivo existe
+        $filePath = storage_path("app/{$documento->archivo}");
+    
         if (Storage::exists("public/{$documento->archivo}")) {
-            // Descargar el archivo
-            return response()->download($filePath, $documento->archivo);
+            return response()->download($filePath, basename($documento->archivo));
         } else {
-            // Manejar el caso en el que el archivo no existe
             return redirect()->back()->with('error', 'El archivo no existe.');
         }
     }
+    
 
     public function buscar(Request $request)
     {
@@ -251,30 +247,23 @@ public function store(Request $request)
     
 
     public function descargarArchivo($archivo)
-    {
-        $rutaArchivo = "public/documentos/$archivo";
-    
-        // Verificar si el archivo existe
-        if (Storage::exists($rutaArchivo)) {
-            // Obtener el contenido del archivo
-            $contenido = Storage::get($rutaArchivo);
-    
-            // Obtener el tipo MIME del archivo
-            $tipoMime = Storage::mimeType($rutaArchivo);
-    
-            // Configurar las cabeceras para la descarga
-            $cabeceras = [
-                'Content-Type' => $tipoMime,
-                'Content-Disposition' => "attachment; filename=$archivo",
-            ];
-    
-            // Devolver la respuesta con el contenido del archivo y las cabeceras
-            return response($contenido, 200, $cabeceras);
-        } else {
-            // Manejar el caso en que el archivo no existe
-            return response()->json(['error' => 'El archivo no existe.'], 404);
-        }
+{
+    $rutaArchivo = "public/documentos/$archivo";
+
+    if (Storage::exists($rutaArchivo)) {
+        $contenido = Storage::get($rutaArchivo);
+        $tipoMime = Storage::mimeType($rutaArchivo);
+        $cabeceras = [
+            'Content-Type' => $tipoMime,
+            'Content-Disposition' => "attachment; filename=$archivo",
+        ];
+
+        return response($contenido, 200, $cabeceras);
+    } else {
+        return response()->json(['error' => 'El archivo no existe.'], 404);
     }
+}
+
 
 
 }
