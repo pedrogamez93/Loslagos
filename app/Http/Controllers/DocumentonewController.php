@@ -267,6 +267,7 @@ public function store(Request $request)
         return str_replace($buscar, $reemplazar, $texto);
     }
     
+    
 
     public function descargarArchivo($archivo)
 {
