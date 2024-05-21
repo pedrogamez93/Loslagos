@@ -17,51 +17,56 @@
 </div>
 
 <div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6 colorB" style="height: 800px; margin-top: -7vh;border-radius: 70px 0px 0px 0px;">
-    <div class="row py-5 colorB" style="padding-right: 10rem!important; padding-left: 10rem!important;">
+    <div class="row py-5 colorB" style="    padding-right: 10rem!important;
+    padding-left: 10rem!important;">
         <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">
-                @csrf
+            @csrf
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
-                    <option value="">Seleccione Categoria</option>
-                    <option value="Actas">Actas</option>
-                    <option value="Acuerdos">Acuerdos</option>
-                    <option value="Resúmen Gastos">Resumen de Gastos</option>
-                    <option value="Documento general">Documento General</option>
+                <option value="">Seleccione Categoria</option>
+                <option value="Acta">Actas</option>
+                                    <option value="Acuerdo">Acuerdos</option>
+                                    <option value="Resúmen Gastos">Resumen de Gastos</option>
+                                    <option value="Documento general">Documento General</option>
                 </select>
                 <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
                 <div class="pt-5" style="direction: rtl;">
-                    <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
+                <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
                 </div>
-            </form>
+                </form>
         </div>
 
-        <div id="Docsparadesc" class="col-md-4 col-lg-3 pt-3 ps-4" style="border-left: 3px solid #F59120;">
-            <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes descargar:</h4>
-            <ul class="list-unstyled">
-                @php $contador = 0; @endphp
-                @foreach($documentos as $documento)
-                    @if($documento->portada == 'si')
-                        @if($contador < 5)
-                            <li class="mt-3">
-                                <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
-                                    <div class="row divtitulodocsdes">
-                                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                                        <p>{{ $documento->archivo }}</p>
-                                    </div>
-                                </a>
-                            </li>
-                            @php $contador++; @endphp
-                        @else
-                            @break
-                        @endif
-                    @endif
-                @endforeach
-            </ul>
+        <div id="Docsparadesc" class="col-md-4 col-lg-3 pt-3 ps-4" style="border-left: 3px solid #F59120; ">
+        <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes decargar:</h4>
+
+        <ul class="list-unstyled">
+        @php $contador = 0; @endphp
+@foreach($documentos as $documento)
+    @if($documento->portada == 'si')
+        @if($contador < 5)
+            <li class="mt-3">
+                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+                    <div class="row divtitulodocsdes">
+                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                        <p>{{ $documento->archivo }}</p>
+                    </div>
+                </a>
+            </li>
+            @php $contador++; @endphp
+        @else
+            @break
+        @endif
+    @endif
+@endforeach
+
+        </ul>
+
+
+
         </div>
     </div>
 </div>
-
 
 <script>
    
