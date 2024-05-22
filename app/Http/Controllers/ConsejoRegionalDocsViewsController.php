@@ -73,6 +73,9 @@ public function Indexcertificadosdeacuerdos(Request $request)
         $query->where('codigo_bip', 'like', '%' . $request->input('codigo_bip') . '%');
     }
 
+    // Ordenar los acuerdos por fecha en orden descendente
+    $query->orderBy('fecha', 'desc');
+
     // Obtener los acuerdos paginados
     $acuerdos = $query->paginate(10);
 
