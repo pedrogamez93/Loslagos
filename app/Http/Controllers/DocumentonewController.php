@@ -74,14 +74,18 @@ public function store(Request $request)
                 break;
 
             case 'Acuerdos':
-                $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
+                $lastAcuerdoId = Acuerdo::max('id') + 1;
+                $acuerdo = new Acuerdo(['id' => $lastAcuerdoId,'documentonew_id' => $documento->id]);
                 $acuerdo->save();
                 // Establece la relación en el modelo Documentonew
                 $documento->acuerdo()->save($acuerdo);
                 break;
 
                 case 'Resumengastos':
+
+                    $lastResumengastosId = ResumenGastos::max('id') + 1;
                     $resumengastos = new ResumenGastos([
+                        'id' => $lastResumengastosId,
                         'documentonew_id' => $documento->id,
                         'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
                         'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
@@ -95,7 +99,10 @@ public function store(Request $request)
                 
 
                 case 'Documentogeneral':
+
+                    $lastDocumentogeneralId = DocumentoGeneral::max('id') + 1;
                     $documentogeneral = new DocumentoGeneral([
+                        'id' => $lastDocumentogeneralId,
                         'documentonew_id' => $documento->id,
                         'categoria' => $request->input('categoria'),
                         'titulo' => $request->input('titulo'),

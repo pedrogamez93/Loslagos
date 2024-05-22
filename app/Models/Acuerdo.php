@@ -14,6 +14,7 @@ class Acuerdo extends Model
 
 
     protected $fillable = [
+        'id',
         'documentonew_id',
         'numero',
         'fecha',

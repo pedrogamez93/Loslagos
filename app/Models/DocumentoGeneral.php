@@ -14,6 +14,7 @@ class DocumentoGeneral extends Model
 
 
     protected $fillable = [
+        'id',
         'documentonew_id',
         'categoria',
         'titulo',
