@@ -263,7 +263,14 @@ public function store(Request $request)
         }
     
         if ($nombre) {
-            $documentos->where('archivo', 'LIKE', "%$nombre%");
+            $documentos = Documentonew::where(function ($query) use ($nombre) {
+                $query->where('archivo', 'LIKE', "%$nombre%")
+                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
+                      ->orWhere('tema', 'LIKE', "%$nombre%")
+                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
+                      ->orWhere('provincia', 'LIKE', "%$nombre%")
+                      ->orWhere('comuna', 'LIKE', "%$nombre%");
+            });
         }
     
         // Clonar la consulta antes de la paginación
