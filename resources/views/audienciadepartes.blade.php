@@ -217,7 +217,7 @@ ul li {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Gobierno Regional</title>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>

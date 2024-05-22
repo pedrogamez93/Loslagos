@@ -138,7 +138,7 @@ h5.card-title{
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Gobierno Regional</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 </head>

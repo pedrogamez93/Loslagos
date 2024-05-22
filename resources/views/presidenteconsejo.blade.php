@@ -166,7 +166,7 @@ h5.card-title{
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Presidente Consejo</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 </head>
@@ -276,7 +276,7 @@ h5.card-title{
                         </div>
                         <div class="col-md-6 muestraimagen mb-4">
                         @if($presidente && $presidente->imagen)
-                        <img src="{{ asset($presidente->imagen) }}" style="width:300px;height: 300px;" alt="Imagen del presidente">
+                        <img src="{{ asset($presidente->imagen) }}" style="width:300px;height: 300px; object-fit: cover;" alt="Imagen del presidente">
                         @else
                         <p>No hay imagen disponible</p>
                         @endif

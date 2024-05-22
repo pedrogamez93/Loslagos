@@ -166,7 +166,7 @@ h5.card-title{
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Consejero de Llanquihue</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -298,7 +298,7 @@ h5.card-title{
                         </div>
                         <div class="col-md-6 muestraimagen mb-4">
                         @if($consejero && $consejero->imagen)
-                        <img src="{{ asset($consejero->imagen) }}" style="width:300px;height: 300px;" alt="Imagen del presidente">
+                        <img src="{{ asset($consejero->imagen) }}" style="width:300px;height: 300px; object-fit: cover;" alt="Imagen del presidente">
                         @else
                         <p>No hay imagen disponible</p>
                         @endif
