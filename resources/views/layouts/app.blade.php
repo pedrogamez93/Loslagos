@@ -187,6 +187,7 @@
             <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
             <a class="dropdown-item style-a-menu" href="{{ url('/homefndrs') }}">Fondos concursables</a>
             <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
+            <a class="dropdown-item style-a-menu" href="{{ url('/formulacionpoliticadeturismo') }}">Politica de Turismo</a>
         <div class="linea-separadora"></div>
             <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
 
@@ -211,6 +212,7 @@
                     <a class="dropdown-item style-a-menu"  href="{{ url('/regionlagos/PoliticaPrivacidad') }}">Politicas de privacidad</a>
                     <a class="dropdown-item style-a-menu" href="{{ url('/todoslosprogramas') }}">Programas</a>
                     <a class="dropdown-item style-a-menu" href="{{ url('/preguntasfrecuentes') }}">Preguntas frecuentes</a>
+                    <a class="dropdown-item style-a-menu" href="{{ url('/formulacionpoliticadeturismo') }}">Politica de Turismo</a>
                 <div class="linea-separadora"></div>
                     <a class="dropdown-item style-a-menu" href="{{ url('/contactanos') }}">Formulario de contacto</a>
 
