@@ -46,6 +46,7 @@ public function store(Request $request)
 {
 
     $lastActaId = Acta::max('id') + 1;
+    dd($lastActaId);
     try {
         // Iniciar una transacción
         DB::beginTransaction();
