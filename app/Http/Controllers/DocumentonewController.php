@@ -265,14 +265,16 @@ public function store(Request $request)
         $documentos->where('archivo', 'LIKE', "%$nombre%");
     }
 
-    $documentos = $documentos->get();
+    // Paginación
+    $documentos = $documentos->paginate(12);
 
     if ($documentos->isEmpty()) {
         return view('documentos.sinResultados');
     }
-
+    
     return view('documentos.resultados', compact('documentos'));
 }
+
 
     public function descargarArchivo($archivo)
 {

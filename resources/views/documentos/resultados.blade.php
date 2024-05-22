@@ -89,25 +89,29 @@
                 </thead>
                 <tbody>
                 @foreach($documentos as $documento)
-    <tr>
-        <td class="colorB">
-            <a href="{{ route('documentos.download', $documento->id) }}">
-                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
-            </a>
-        </td>
-        <td class="colorB">
-            <a href="{{ route('documentos.download', $documento->id) }}">
-                {{ $documento->id }} {{ $documento->tipo_documento }}
-            </a>
-        </td>
-    </tr>
-@endforeach
+                <tr>
+                    <td class="colorB">
+                        <a href="{{ route('documentos.download', $documento->id) }}">
+                            <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
+                        </a>
+                    </td>
+                    <td class="colorB">
+                        <a href="{{ route('documentos.download', $documento->id) }}">
+                            {{ $documento->id }} {{ $documento->tipo_documento }}
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
 
 
 
                 </tbody>
             </table>
         @endif
+
+        <div class="pagination">
+        {{ $documentos->links() }}
+    </div>
         <!-- ... tu código existente ... -->
     </div>
 
