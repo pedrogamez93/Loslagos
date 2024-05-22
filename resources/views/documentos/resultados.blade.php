@@ -88,16 +88,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($documentos as $documento)
+                @foreach($documentos as $documento2)
                 <tr>
                     <td class="colorB">
-                        <a href="{{ route('documentos.download', $documento->id) }}">
+                        <a href="{{ route('documentos.download', $documento2->id) }}">
                             <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
                         </a>
                     </td>
                     <td class="colorB">
-                        <a href="{{ route('documentos.download', $documento->id) }}">
-                            {{ $documento->id }} {{ $documento->tipo_documento }}
+                        <a href="{{ route('documentos.download', $documento2->id) }}">
+                            {{ $documento2->id }} {{ $documento2->tipo_documento }}
                         </a>
                     </td>
                 </tr>
