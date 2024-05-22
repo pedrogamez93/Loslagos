@@ -7,6 +7,7 @@ use App\Models\Documentonew;
 use App\Models\Acta;
 use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
@@ -228,63 +229,73 @@ public function store(Request $request)
 
     
 
-    public function buscar(Request $request)
-    {
-        $request->validate([
-            'tipo_documento' => 'nullable',
-            'nombre' => 'nullable',
-        ]);
-    
-        // Normaliza la entrada del usuario para el tipo de documento
-        $categoria = strtolower(trim($request->input('tipo_documento')));
-        $nombre = $request->input('nombre');
-    
-        // Mapeo de categorías normalizadas a las originales
-        // $categorias = [
-        //     'actas' => 'Actas',
-        //     'acuerdos' => 'Acuerdos',
-        //     'resumengastos' => 'Resumen de Gastos',
-        //     'documentogeneral' => 'Documento General',
-        //     'acta' => 'Actas',
-        //     'acuerdo' => 'Acuerdos',
-        //     'resumen de gastos' => 'Resumen de Gastos',
-        //     'documento general' => 'Documento General',
-        //     'resumendegastos' => 'Resumen de Gastos',
-        //     'documentogeneral' => 'Documento General',
-        // ];
-    
-        // Busca la categoría normalizada
-        $categoriaNormalizada = $categorias[$categoria] ?? null;
-    
-        $documentos = Documentonew::query();
-    
-        if ($categoriaNormalizada) {
-            $documentos->where('tipo_documento', $categoriaNormalizada);
-        }
-    
-        if ($nombre) {
-            $documentos = Documentonew::where(function ($query) use ($nombre) {
-                $query->where('archivo', 'LIKE', "%$nombre%")
-                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
-                      ->orWhere('tema', 'LIKE', "%$nombre%")
-                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                      ->orWhere('provincia', 'LIKE', "%$nombre%")
-                      ->orWhere('comuna', 'LIKE', "%$nombre%");
-            });
-        }
-    
-        // Clonar la consulta antes de la paginación
-        $documentos2 = clone $documentos;
-    
-        // Paginación
-        $documentos = $documentos->paginate(12);
-    
-        if ($documentos->isEmpty()) {
-            return view('documentos.sinResultados');
-        }
-    
-        return view('documentos.resultados', compact('documentos', 'documentos2'));
+public function buscar(Request $request)
+{
+    // Validación de la entrada del usuario
+    $request->validate([
+        'tipo_documento' => 'nullable',
+        'nombre' => 'nullable',
+    ]);
+
+    // Normaliza la entrada del usuario para el tipo de documento
+    $categoria = strtolower(trim($request->input('tipo_documento')));
+    $nombre = $request->input('nombre');
+
+    // Mapeo de categorías normalizadas a las originales
+    $categorias = [
+        'actas' => 'Actas',
+        'acuerdos' => 'Acuerdos',
+        'resumengastos' => 'Resumen de Gastos',
+        'documentogeneral' => 'Documento General',
+        'acta' => 'Actas',
+        'acuerdo' => 'Acuerdos',
+        'resumen de gastos' => 'Resumen de Gastos',
+        'documento general' => 'Documento General',
+        'resumendegastos' => 'Resumen de Gastos',
+        'documentogeneral' => 'Documento General',
+    ];
+
+    // Busca la categoría normalizada
+    $categoriaNormalizada = $categorias[$categoria] ?? null;
+
+    $documentos = Documentonew::query();
+
+    // Si hay una categoría normalizada, filtra por ella
+    if ($categoriaNormalizada) {
+        $documentos->where('tipo_documento', $categoriaNormalizada);
     }
+
+    // Si hay un nombre, añade filtros de búsqueda
+    if ($nombre) {
+        $documentos->where(function ($query) use ($nombre) {
+            $query->where('archivo', 'LIKE', "%$nombre%")
+                  ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
+                  ->orWhere('tema', 'LIKE', "%$nombre%")
+                  ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
+                  ->orWhere('provincia', 'LIKE', "%$nombre%")
+                  ->orWhere('comuna', 'LIKE', "%$nombre%");
+        });
+    }
+
+    // Clonar la consulta antes de la paginación
+    $documentos2 = clone $documentos;
+
+    // Añadir logs de depuración
+    \Log::info("Buscar documentos con categoría: $categoriaNormalizada y nombre: $nombre");
+
+    // Paginación
+    $documentos = $documentos->paginate(12);
+
+    // Si no se encuentran documentos, registrar en log y mostrar vista de sin resultados
+    if ($documentos->isEmpty()) {
+        \Log::info("No se encontraron documentos para la búsqueda con categoría: $categoriaNormalizada y nombre: $nombre");
+        return view('documentos.sinResultados');
+    }
+
+    // Devolver la vista con los documentos encontrados
+    return view('documentos.resultados', compact('documentos', 'documentos2'));
+}
+
     
 
     public function descargarArchivo($archivo)
