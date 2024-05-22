@@ -110,7 +110,7 @@
         @endif
 
         <div class="pagination mb-5 " style="justify-content: center;">
-        {{ $documentos->links('pagination::bootstrap-4') }}
+        {{ $documentos->links() }}
     </div>
         <!-- ... tu código existente ... -->
     </div>
