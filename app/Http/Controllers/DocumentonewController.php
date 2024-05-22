@@ -230,65 +230,55 @@ public function store(Request $request)
     
 
 public function buscar(Request $request)
-    {
-        // Validación de la entrada del usuario
-        $request->validate([
-            'tipo_documento' => 'nullable',
-            'nombre' => 'nullable',
-        ]);
+{
+    // Validación de la entrada del usuario
+    $request->validate([
+        'tipo_documento' => 'nullable',
+        'nombre' => 'nullable',
+    ]);
 
-        // Normaliza la entrada del usuario para el tipo de documento
-        $categoria = strtolower(trim($request->input('tipo_documento')));
-        $nombre = $request->input('nombre');
+    // Obtén las entradas del usuario tal como se ingresaron
+    $categoria = $request->input('tipo_documento');
+    $nombre = $request->input('nombre');
 
-        // // Mapeo de categorías normalizadas a las originales (en singular)
-        // $categorias = [
-        //     'acta' => 'Acta',
-        //     'acuerdo' => 'Acuerdo',
-        //     'resumen gasto' => 'Resumen de Gasto',
-        //     'documento general' => 'Documento General',
-        // ];
+    // Crear la consulta base
+    $documentos = Documentonew::query();
 
-        // Busca la categoría normalizada
-        $categoriaNormalizada = $categorias[$categoria] ?? null;
-
-        $documentos = Documentonew::query();
-
-        // Si hay una categoría normalizada, filtra por ella
-        if ($categoriaNormalizada) {
-            $documentos->where('tipo_documento', $categoriaNormalizada);
-        }
-
-        // Si hay un nombre, añade filtros de búsqueda
-        if ($nombre) {
-            $documentos->where(function ($query) use ($nombre) {
-                $query->where('archivo', 'LIKE', "%$nombre%")
-                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
-                      ->orWhere('tema', 'LIKE', "%$nombre%")
-                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                      ->orWhere('provincia', 'LIKE', "%$nombre%")
-                      ->orWhere('comuna', 'LIKE', "%$nombre%");
-            });
-        }
-
-        // Clonar la consulta antes de la paginación
-        $documentos2 = clone $documentos;
-
-        // Añadir logs de depuración
-        Log::info("Buscar documentos con categoría: " . json_encode($categoriaNormalizada) . " y nombre: " . json_encode($nombre));
-
-        // Paginación
-        $documentos = $documentos->paginate(12);
-
-        // Si no se encuentran documentos, registrar en log y mostrar vista de sin resultados
-        if ($documentos->isEmpty()) {
-            Log::info("No se encontraron documentos para la búsqueda con categoría: " . json_encode($categoriaNormalizada) . " y nombre: " . json_encode($nombre));
-            return view('documentos.sinResultados');
-        }
-
-        // Devolver la vista con los documentos encontrados
-        return view('documentos.resultados', compact('documentos', 'documentos2'));
+    // Si hay una categoría, filtra por ella
+    if ($categoria) {
+        $documentos->where('tipo_documento', $categoria);
     }
+
+    // Si hay un nombre, añade filtros de búsqueda
+    if ($nombre) {
+        $documentos->where(function ($query) use ($nombre) {
+            $query->where('archivo', 'LIKE', "%$nombre%")
+                  ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
+                  ->orWhere('tema', 'LIKE', "%$nombre%")
+                  ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
+                  ->orWhere('provincia', 'LIKE', "%$nombre%")
+                  ->orWhere('comuna', 'LIKE', "%$nombre%");
+        });
+    }
+
+    // Clonar la consulta antes de la paginación
+    $documentos2 = clone $documentos;
+
+    // Añadir logs de depuración
+    Log::info("Buscar documentos con categoría: " . json_encode($categoria) . " y nombre: " . json_encode($nombre));
+
+    // Paginación
+    $documentos = $documentos->paginate(12);
+
+    // Si no se encuentran documentos, registrar en log y mostrar vista de sin resultados
+    if ($documentos->isEmpty()) {
+        Log::info("No se encontraron documentos para la búsqueda con categoría: " . json_encode($categoria) . " y nombre: " . json_encode($nombre));
+        return view('documentos.sinResultados');
+    }
+
+    // Devolver la vista con los documentos encontrados
+    return view('documentos.resultados', compact('documentos', 'documentos2'));
+}
 
     public function descargarArchivo($archivo)
 {
