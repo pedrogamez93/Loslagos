@@ -54,68 +54,57 @@ public function store(Request $request)
             $archivoPath = $request->file('archivo')->store('public/documentos');
         }
         
-        // Obtener el último ID insertado y luego incrementarlo manualmente
-        $ultimoID = Documentonew::max('id') + 1;
-
-        // Crear el objeto $documento después de asignar la ruta relativa
+        
         $documento = Documentonew::create(array_merge(
             $request->except(['_token']),
-            ['id' => $ultimoID, 'archivo' => $archivoPath] // Asignar el nuevo ID
+            ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
         ));
 
-        // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
+        // Obtener el último ID insertado
+        $lastInsertedId = $documento->id;
+
         switch ($request->tipo_documento) {
             case 'Actas':
-                $acta = new Acta(['documentonew_id' => $documento->id]);
+                $acta = new Acta(['documentonew_id' => $lastInsertedId]);
                 $acta->save();
-                // Establece la relación en el modelo Documentonew
-                $documento->acta()->save($acta);
                 break;
 
             case 'Acuerdos':
-                $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
+                $acuerdo = new Acuerdo(['documentonew_id' => $lastInsertedId]);
                 $acuerdo->save();
-                // Establece la relación en el modelo Documentonew
-                $documento->acuerdo()->save($acuerdo);
                 break;
 
-                case 'Resumengastos':
-                    $resumengastos = new ResumenGastos([
-                        'documentonew_id' => $documento->id,
-                        'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
-                        'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
-                        'publicacion' => $request->input('publicacion'), // Ajusta con el nombre correcto del campo
-                        'categoria' => $request->input('categoria'),
-                    ]);
-                    $resumengastos->save();
-                    // Establece la relación en el modelo Documentonew
-                    $documento->resumenGastos()->save($resumengastos);
-                    break;
-                
+            case 'Resumengastos':
+                $resumengastos = new ResumenGastos([
+                    'documentonew_id' => $lastInsertedId,
+                    'nombre' => $request->input('nombre'),
+                    'portada' => $request->input('portada'),
+                    'publicacion' => $request->input('publicacion'),
+                    'categoria' => $request->input('categoria'),
+                ]);
+                $resumengastos->save();
+                break;
 
-                case 'Documentogeneral':
-                    $documentogeneral = new DocumentoGeneral([
-                        'documentonew_id' => $documento->id,
-                        'categoria' => $request->input('categoria'),
-                        'titulo' => $request->input('titulo'),
-                        'autor' => $request->input('autor'),
-                        'sector' => $request->input('sector'),
-                        'sub_sector' => $request->input('sub_sector'),
-                        'financiamiento' => $request->input('financiamiento'),
-                        'descripcion' => $request->input('descripcion'),
-                        'portada' => $request->input('portada'),
-                        'publicacion' => $request->input('publicacion'),
-                    ]);
-                    $documentogeneral->save();
-                    // Establece la relación en el modelo Documentonew
-                    $documento->documentoGeneral()->save($documentogeneral);
-                    break;
+            case 'Documentogeneral':
+                $documentogeneral = new DocumentoGeneral([
+                    'documentonew_id' => $lastInsertedId,
+                    'categoria' => $request->input('categoria'),
+                    'titulo' => $request->input('titulo'),
+                    'autor' => $request->input('autor'),
+                    'sector' => $request->input('sector'),
+                    'sub_sector' => $request->input('sub_sector'),
+                    'financiamiento' => $request->input('financiamiento'),
+                    'descripcion' => $request->input('descripcion'),
+                    'portada' => $request->input('portada'),
+                    'publicacion' => $request->input('publicacion'),
+                ]);
+                $documentogeneral->save();
+                break;
 
             default:
                 // Manejar otro tipo de documento si es necesario
                 break;
         }
-
         // Confirmar la transacción
         DB::commit();
 
