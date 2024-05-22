@@ -242,7 +242,7 @@ public function buscar(Request $request)
         $nombre = $request->input('nombre');
 
         // Mapeo de categorías normalizadas a las originales (en singular)
-        $nombre = [
+        $categorias = [
             'acta' => 'Acta',
             'acuerdo' => 'Acuerdo',
             'resumen gasto' => 'Resumen de Gasto',
