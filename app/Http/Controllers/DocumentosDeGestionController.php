@@ -17,13 +17,13 @@ class DocumentosDeGestionController extends Controller
     public function Index()
     {
         $categorias = [
-            'Cuenta PublicaRegional',
+            'Cuenta Pública Regional',
             'Estrategia Regional de Desarrollo 2030',
             'Estado Financieros Gobierno Regional de Los Lagos',
             'Boletin Informativo',
-            'Difusion Proyectos FNDR y Normativa Grafica GORE',
+            'Difusión Proyectos FNDR y Normativa Grafica GORE',
             'Estrategia, Politica y Planes Regionales',
-            'Convenios Internacinales',
+            'Convenios Internacionales',
             'Documentos de Consulta GORE LOS LAGOS'
         ];
     
