@@ -109,8 +109,8 @@
             </table>
         @endif
 
-        <div class="pagination">
-        {{ $documentos->links() }}
+        <div class="pagination mb-5">
+        {{ $documentos->links('pagination::bootstrap-4') }}
     </div>
         <!-- ... tu código existente ... -->
     </div>
