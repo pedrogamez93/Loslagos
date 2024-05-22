@@ -91,12 +91,12 @@
                 @foreach($documentos as $documento)
     <tr>
         <td class="colorB">
-            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+            <a href="{{ route('documentos.download', $documento->id) }}">
                 <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
             </a>
         </td>
         <td class="colorB">
-            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+            <a href="{{ route('documentos.download', $documento->id) }}">
                 {{ $documento->id }} {{ $documento->tipo_documento }}
             </a>
         </td>
