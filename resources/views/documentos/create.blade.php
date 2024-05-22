@@ -228,7 +228,7 @@ input:required {
                                         <option value="Presupuesto">Presupuesto</option>
                                         <option value="Receptores Fondos Publicos Ley 19.62">Receptores Fondos Publicos Ley 19.62</option>
                                         <option value="Unidad de Control">Unidad de Control</option>
-                                        <option value="Cuenta PublicaRegional">Cuenta PublicaRegional</option>
+                                        <option value="Cuenta Publica Regional">Cuenta Pública Regional</option>
                                         <option value="Estrategia Regional de Desarrollo 2030">Estrategia Regional de Desarrollo 2030</option>
                                         <option value="Estado Financieros Gobierno Regional de Los Lagos">Estado Financieros Gobierno Regional de Los Lagos</option>
                                         <option value="Boletin Informativo">Boletin Informativo</option>
