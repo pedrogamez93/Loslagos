@@ -45,24 +45,23 @@ class DocumentonewController extends Controller
 public function store(Request $request)
 {
     try {
-
-        
         // Iniciar una transacción
         DB::beginTransaction();
-    
-       
+
         $archivoPath = null; // Inicializa la variable $archivoPath
 
         if ($request->hasFile('archivo')) {
             $archivoPath = $request->file('archivo')->store('public/documentos');
         }
         
+        // Obtener el último ID insertado y luego incrementarlo manualmente
+        $ultimoID = Documentonew::max('id') + 1;
+
         // Crear el objeto $documento después de asignar la ruta relativa
         $documento = Documentonew::create(array_merge(
             $request->except(['_token']),
-            ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
+            ['id' => $ultimoID, 'archivo' => $archivoPath] // Asignar el nuevo ID
         ));
-
 
         // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
         switch ($request->tipo_documento) {
@@ -111,9 +110,6 @@ public function store(Request $request)
                     // Establece la relación en el modelo Documentonew
                     $documento->documentoGeneral()->save($documentogeneral);
                     break;
-                
-
-            // Agrega más casos según sea necesario
 
             default:
                 // Manejar otro tipo de documento si es necesario
