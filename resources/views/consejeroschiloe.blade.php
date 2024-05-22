@@ -128,8 +128,9 @@
     p .name, a .name{
         font-family: 'Inter'!important;
         font-weight: 700 !important;
-        font-size: 20px !important;
+        font-size: 19px !important;
         color: #565656 !important;
+        text-align: left !important; 
     }
 h5.card-title{
     font-family: 'Inter';
@@ -244,7 +245,7 @@ h5.card-title{
                                 <div class="row g-0">
                                     <div class="col-md-3" style="text-align: -webkit-right;">
                                         <a href="{{ route('consejeroschiloe.show', $consejero->id) }}">
-                                            <img src="{{ asset($consejero->imagen) }}" alt="Imagen del Consejero" style="width: 100px;height: 100px;border-radius: 100%;">
+                                            <img src="{{ asset($consejero->imagen) }}" alt="Imagen del Consejero" style="width: 100px;height: 100px;border-radius: 100%;object-fit: cover;">
                                         </a>
                                     </div>
                                     <div class="col-md-9">
