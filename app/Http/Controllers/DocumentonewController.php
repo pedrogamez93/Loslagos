@@ -44,6 +44,8 @@ class DocumentonewController extends Controller
     
 public function store(Request $request)
 {
+
+    $lastActaId = Acta::max('id') + 1;
     try {
         // Iniciar una transacción
         DB::beginTransaction();
@@ -63,12 +65,7 @@ public function store(Request $request)
         // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
         switch ($request->tipo_documento) {
             case 'Actas':
-                // Obtener el último ID de la tabla 'Actas' y sumarle 1
-                $lastActaId = Acta::max('id') + 1;
-                
-                // Crear el objeto Acta con el ID obtenido manualmente
-                $acta = new Acta(['id' => $lastActaId, 'documentonew_id' => $documento->id]);
-                
+                $acta = new Acta(['documentonew_id' => $documento->id]);
                 $acta->save();
                 // Establece la relación en el modelo Documentonew
                 $documento->acta()->save($acta);
@@ -112,6 +109,9 @@ public function store(Request $request)
                     // Establece la relación en el modelo Documentonew
                     $documento->documentoGeneral()->save($documentogeneral);
                     break;
+                
+
+            // Agrega más casos según sea necesario
 
             default:
                 // Manejar otro tipo de documento si es necesario
