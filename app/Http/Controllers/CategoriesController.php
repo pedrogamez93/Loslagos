@@ -96,29 +96,30 @@ class CategoriesController extends Controller{
         return view('leygobiernoregional', ['ley' => $ley]);
     }
 
-    public function downloadley($id)
+    public function downloadLey($id)
     {
-        // Busca el documento por su ID
-        $documento = Ley::findOrFail($id);
-
-        // Ruta relativa del archivo en el almacenamiento público
-        $fileRelativePath = 'documentos/' . $documento->archivo;
-
-        // Obtiene la ruta completa del archivo en el sistema de archivos
-        $filePath = Storage::disk('public')->path($fileRelativePath);
-
-        // Depurar y verificar la ruta del archivo
-        if (!file_exists($filePath)) {
-            dd($filePath); // Imprimir la ruta completa del archivo
-        }
-
-        // Verifica si el archivo existe en el sistema de archivos
-        if (Storage::disk('public')->exists($fileRelativePath)) {
+        try {
+            // Busca el documento por su ID
+            $documento = Ley::findOrFail($id);
+    
+            // Ruta relativa del archivo en el almacenamiento público
+            $fileRelativePath = 'documentos/' . $documento->archivo;
+    
+            // Obtiene la ruta completa del archivo en el sistema de archivos
+            $filePath = Storage::disk('public')->path($fileRelativePath);
+    
+            // Verifica si el archivo existe en el sistema de archivos
+            if (!Storage::disk('public')->exists($fileRelativePath)) {
+                // Lanza una excepción si el archivo no existe
+                throw new \Exception('El archivo no existe en el almacenamiento.');
+            }
+    
             // Retorna la respuesta de descarga
             return response()->download($filePath, basename($documento->archivo));
-        } else {
-            // Redirige de vuelta con un mensaje de error si el archivo no existe
-            return redirect()->back()->with('error', 'El archivo no existe.');
+    
+        } catch (\Exception $e) {
+            // Redirige de vuelta con un mensaje de error si ocurre algún problema
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
