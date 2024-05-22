@@ -289,7 +289,6 @@ public function buscar(Request $request)
         // Devolver la vista con los documentos encontrados
         return view('documentos.resultados', compact('documentos', 'documentos2'));
     }
-    
 
     public function descargarArchivo($archivo)
 {
