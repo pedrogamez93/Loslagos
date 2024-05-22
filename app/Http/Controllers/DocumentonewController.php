@@ -264,12 +264,7 @@ public function store(Request $request)
     
         if ($nombre) {
             $documentos = Documentonew::where(function ($query) use ($nombre) {
-                $query->where('archivo', 'LIKE', "%$nombre%")
-                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
-                      ->orWhere('tema', 'LIKE', "%$nombre%")
-                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                      ->orWhere('provincia', 'LIKE', "%$nombre%")
-                      ->orWhere('comuna', 'LIKE', "%$nombre%");
+                $query->where('archivo', 'LIKE', "%$nombre%");
             });
         }
     
