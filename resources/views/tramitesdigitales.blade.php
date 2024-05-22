@@ -199,7 +199,7 @@ h5.card-title{
                             <h1 class="mititulo mt-4 mb-2">Trámites Digitales</h1>
 
                             <div class="ve-tramites">
-                                <h1 class="style-h1 mt-2 mb-5">It is a long will be distracted by the readable content of a page...</h1>
+                                <h1 class="style-h1 mt-2 mb-5"></h1>
                                 <div class="row">
                                     @forelse($tramites as $index => $tramite)
                                     <div class="col-md-3 mb-4">
