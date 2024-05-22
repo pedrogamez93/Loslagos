@@ -99,8 +99,8 @@ class CategoriesController extends Controller{
         // Busca el documento por su ID
         $documento = Ley::findOrFail($id);
 
-        // Obtiene la ruta completa del archivo en el almacenamiento público
-        $filePath = storage_path('app/public/documentos/' . $documento->archivo);
+        // Ruta del archivo en el almacenamiento público
+        $filePath = storage_path('app/public/' . $documento->archivo);
 
         // Verifica si el archivo existe
         if (file_exists($filePath)) {
