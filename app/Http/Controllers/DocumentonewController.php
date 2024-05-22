@@ -242,16 +242,16 @@ public function buscar(Request $request)
     $nombre = $request->input('nombre');
 
     // Mapeo de categorías normalizadas a las originales
-    $categorias = [
-        'actas' => 'Actas',
-        'acuerdos' => 'Acuerdos',
-        'resumengastos' => 'Resumen de Gastos',
+    $nombre = [
+        'acta' => 'Actas',
+        'acuerdo' => 'Acuerdos',
+        'resumengasto' => 'Resumen de Gastos',
         'documentogeneral' => 'Documento General',
         'acta' => 'Actas',
         'acuerdo' => 'Acuerdos',
-        'resumen de gastos' => 'Resumen de Gastos',
+        'resumen de gasto' => 'Resumen de Gastos',
         'documento general' => 'Documento General',
-        'resumendegastos' => 'Resumen de Gastos',
+        'resumendegasto' => 'Resumen de Gastos',
         'documentogeneral' => 'Documento General',
     ];
 
