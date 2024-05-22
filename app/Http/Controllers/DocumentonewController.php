@@ -228,53 +228,56 @@ public function store(Request $request)
     
 
     public function buscar(Request $request)
-{
-    $request->validate([
-        'tipo_documento' => 'nullable',
-        'nombre' => 'nullable',
-    ]);
-
-    // Normaliza la entrada del usuario para el tipo de documento
-    $categoria = strtolower(trim($request->input('tipo_documento')));
-    $nombre = $request->input('nombre');
-
-    // Mapeo de categorías normalizadas a las originales
-    $categorias = [
-        'actas' => 'Actas',
-        'acuerdos' => 'Acuerdos',
-        'resumengastos' => 'Resumen de Gastos',
-        'documentogeneral' => 'Documento General',
-        'acta' => 'Actas',
-        'acuerdo' => 'Acuerdos',
-        'resumen de gastos' => 'Resumen de Gastos',
-        'documento general' => 'Documento General',
-        'resumendegastos' => 'Resumen de Gastos',
-        'documentogeneral' => 'Documento General',
-    ];
-
-    // Busca la categoría normalizada
-    $categoriaNormalizada = $categorias[$categoria] ?? null;
-
-    $documentos = Documentonew::query();
-
-    if ($categoriaNormalizada) {
-        $documentos->where('tipo_documento', $categoriaNormalizada);
-    }
-
-    if ($nombre) {
-        $documentos->where('archivo', 'LIKE', "%$nombre%");
-    }
-
-    // Paginación
-    $documentos = $documentos->paginate(12);
-
-    if ($documentos->isEmpty()) {
-        return view('documentos.sinResultados');
+    {
+        $request->validate([
+            'tipo_documento' => 'nullable',
+            'nombre' => 'nullable',
+        ]);
+    
+        // Normaliza la entrada del usuario para el tipo de documento
+        $categoria = strtolower(trim($request->input('tipo_documento')));
+        $nombre = $request->input('nombre');
+    
+        // Mapeo de categorías normalizadas a las originales
+        $categorias = [
+            'actas' => 'Actas',
+            'acuerdos' => 'Acuerdos',
+            'resumengastos' => 'Resumen de Gastos',
+            'documentogeneral' => 'Documento General',
+            'acta' => 'Actas',
+            'acuerdo' => 'Acuerdos',
+            'resumen de gastos' => 'Resumen de Gastos',
+            'documento general' => 'Documento General',
+            'resumendegastos' => 'Resumen de Gastos',
+            'documentogeneral' => 'Documento General',
+        ];
+    
+        // Busca la categoría normalizada
+        $categoriaNormalizada = $categorias[$categoria] ?? null;
+    
+        $documentos = Documentonew::query();
+    
+        if ($categoriaNormalizada) {
+            $documentos->where('tipo_documento', $categoriaNormalizada);
+        }
+    
+        if ($nombre) {
+            $documentos->where('archivo', 'LIKE', "%$nombre%");
+        }
+    
+        // Clonar la consulta antes de la paginación
+        $documentos2 = clone $documentos;
+    
+        // Paginación
+        $documentos = $documentos->paginate(12);
+    
+        if ($documentos->isEmpty()) {
+            return view('documentos.sinResultados');
+        }
+    
+        return view('documentos.resultados', compact('documentos', 'documentos2'));
     }
     
-    return view('documentos.resultados', compact('documentos'));
-}
-
 
     public function descargarArchivo($archivo)
 {

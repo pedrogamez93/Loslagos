@@ -45,23 +45,23 @@
 
     <ul class="list-unstyled">
     @php $contador = 0; @endphp
-@foreach($documentos as $documento)
-    @if($documento->portada == 'si')
-        @if($contador < 5)
-            <li class="mt-3">
-                <a href="{{ route('documentos.download', $documento->id) }}">
-                    <div class="row divtitulodocsdes">
-                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                        <p>{{ $documento->archivo }}</p>
-                    </div>
-                </a>
-            </li>
-            @php $contador++; @endphp
-        @else
-            @break
-        @endif
-    @endif
-@endforeach
+        @foreach($documentos2->get() as $documento)
+            @if($documento->portada == 'si')
+                @if($contador < 5)
+                    <li class="mt-3">
+                        <a href="{{ route('documentos.download', $documento->id) }}">
+                            <div class="row divtitulodocsdes">
+                                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                                <p>{{ $documento->archivo }}</p>
+                            </div>
+                        </a>
+                    </li>
+                    @php $contador++; @endphp
+                @else
+                    @break
+                @endif
+            @endif
+        @endforeach
 
 
 
@@ -109,7 +109,7 @@
             </table>
         @endif
 
-        <div class="pagination mb-5">
+        <div class="pagination mb-5 " style="justify-content: center;">
         {{ $documentos->links('pagination::bootstrap-4') }}
     </div>
         <!-- ... tu código existente ... -->
