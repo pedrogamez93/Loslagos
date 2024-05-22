@@ -429,7 +429,8 @@ $resultados3 = Documentonew::whereRaw('LOWER(tipo_documento) like ?', ["%$queryL
 $resultados = $resultados1->merge($resultados2)->merge($resultados3);
 
 // Redirige a la vista 'buscador' con los resultados paginados y la variable $query
-return view('Home.buscador', ['resultados' => $resultados, 'query' => $query]);
+return view('home.buscador', ['resultados' => $resultados, 'query' => $query]);
+
 
 }
 
