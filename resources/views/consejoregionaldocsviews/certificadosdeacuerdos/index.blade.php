@@ -84,13 +84,50 @@
     p.one-title{
         font-size:30px !important;
         padding-bottom: 0px!important;
+        }
     }
+
+    .form-control.filtro {
+    border-radius: 100px;
+    }
+    /* Cambiar el color del placeholder */
+.form-control.filtro::placeholder {
+    color: #00548F; /* Color gris claro para el placeholder */
+}
+
+/* Compatibilidad con diferentes navegadores */
+
+/* Internet Explorer 10-11 */
+.form-control.filtro:-ms-input-placeholder {
+    color: #00548F; 
+}
+
+/* Microsoft Edge */
+.form-control.filtro::-ms-input-placeholder {
+    color: #00548F; 
+}
+
+/* Mozilla Firefox 19+ */
+.form-control.filtro::-moz-placeholder {
+    color: #00548F; 
+    opacity: 1; /* Por defecto Firefox reduce la opacidad del placeholder */
+}
+
+/* Google Chrome, Safari y Opera */
+.form-control.filtro::-webkit-input-placeholder {
+    color: #00548F; 
+}
+
+button.btn.btn-primary {
+    border-radius: 100px;
+    background-color: #F59120;
+    border: 1px solid #F59120;
 }
 </style>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Certificados de Acuerdos</title>
 </head>
 <body>
 @extends('layouts.app')
@@ -136,24 +173,24 @@
                         </div>
                         <div class="container filtros">
                             <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="fecha_dia" class="form-label">Día</label>
-                                    <input type="number" name="fecha_dia" id="fecha_dia" class="form-control" value="{{ request('fecha_dia') }}">
+                                <div class="col-md-2 mb-3">
+                                    <!--<label for="fecha_dia" class="form-label">Día</label>-->
+                                    <input type="number" placeholder="Día" name="fecha_dia" id="fecha_dia" class="form-control filtro" value="{{ request('fecha_dia') }}">
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="fecha_mes" class="form-label">Mes</label>
-                                    <input type="number" name="fecha_mes" id="fecha_mes" class="form-control" value="{{ request('fecha_mes') }}">
+                                <div class="col-md-2 mb-3">
+                                    <!--<label for="fecha_mes" class="form-label">Mes</label>-->
+                                    <input type="number" placeholder="Mes" name="fecha_mes" id="fecha_mes" class="form-control filtro" value="{{ request('fecha_mes') }}">
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="fecha_ano" class="form-label">Año</label>
-                                    <input type="number" name="fecha_ano" id="fecha_ano" class="form-control" value="{{ request('fecha_ano') }}">
+                                <div class="col-md-2 mb-3">
+                                   <!-- <label for="fecha_ano" class="form-label">Año</label>-->
+                                    <input type="number" placeholder="Año" name="fecha_ano" id="fecha_ano" class="form-control filtro" value="{{ request('fecha_ano') }}">
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="codigo_bip" class="form-label">Código BIP</label>
-                                    <input type="text" name="codigo_bip" id="codigo_bip" class="form-control" value="{{ request('codigo_bip') }}">
+                                <div class="col-md-2 mb-3">
+                                   <!-- <label for="codigo_bip" class="form-label">Código BIP</label>-->
+                                    <input type="text"  placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+                                <div class="col-md-2 mb-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
                                 </div>
                             </form>
                         </div>
