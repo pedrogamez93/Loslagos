@@ -122,7 +122,7 @@ class CategoriesController extends Controller{
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-
+    
     public function organigramaIndex(){
 
         $organigrama = Organigramas::latest()->first();
