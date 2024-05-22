@@ -240,18 +240,18 @@ public function store(Request $request)
         $nombre = $request->input('nombre');
     
         // Mapeo de categorías normalizadas a las originales
-        $categorias = [
-            'actas' => 'Actas',
-            'acuerdos' => 'Acuerdos',
-            'resumengastos' => 'Resumen de Gastos',
-            'documentogeneral' => 'Documento General',
-            'acta' => 'Actas',
-            'acuerdo' => 'Acuerdos',
-            'resumen de gastos' => 'Resumen de Gastos',
-            'documento general' => 'Documento General',
-            'resumendegastos' => 'Resumen de Gastos',
-            'documentogeneral' => 'Documento General',
-        ];
+        // $categorias = [
+        //     'actas' => 'Actas',
+        //     'acuerdos' => 'Acuerdos',
+        //     'resumengastos' => 'Resumen de Gastos',
+        //     'documentogeneral' => 'Documento General',
+        //     'acta' => 'Actas',
+        //     'acuerdo' => 'Acuerdos',
+        //     'resumen de gastos' => 'Resumen de Gastos',
+        //     'documento general' => 'Documento General',
+        //     'resumendegastos' => 'Resumen de Gastos',
+        //     'documentogeneral' => 'Documento General',
+        // ];
     
         // Busca la categoría normalizada
         $categoriaNormalizada = $categorias[$categoria] ?? null;
@@ -264,11 +264,17 @@ public function store(Request $request)
     
         if ($nombre) {
             $documentos = Documentonew::where(function ($query) use ($nombre) {
-                $query->where('archivo', 'LIKE', "%$nombre%");
+                $query->where('archivo', 'LIKE', "%$nombre%")
+                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
+                      ->orWhere('tema', 'LIKE', "%$nombre%")
+                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
+                      ->orWhere('provincia', 'LIKE', "%$nombre%")
+                      ->orWhere('comuna', 'LIKE', "%$nombre%");
             });
         }
     
-       
+        // Clonar la consulta antes de la paginación
+        $documentos2 = clone $documentos;
     
         // Paginación
         $documentos = $documentos->paginate(12);
@@ -277,7 +283,7 @@ public function store(Request $request)
             return view('documentos.sinResultados');
         }
     
-        return view('documentos.resultados', compact('documentos'));
+        return view('documentos.resultados', compact('documentos', 'documentos2'));
     }
     
 
