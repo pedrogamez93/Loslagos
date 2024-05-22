@@ -229,7 +229,7 @@
                             <p class="mi-style-onet pb-4"><a style="color:#00548F; font-Weight:600;" href="{{ $ley->url }}">{{ $ley->url }}</a></p>
 
                             @if ($ley->enlacedoc)
-                                <a class="final-btn" href="{{ asset( $ley->enlacedoc) }}" target="_blank" style="position: absolute; margin-top: -1.5rem; right: 6.5rem;">Descarga Ley / PDF</a>
+                                <a class="final-btn" href="{{ route('ley.download', $ley->id) }}" target="_blank" style="position: absolute; margin-top: -1.5rem; right: 6.5rem;">Descarga Ley / PDF</a>
                             @else
                                 <p>No hay documento PDF disponible.</p>
                             @endif
