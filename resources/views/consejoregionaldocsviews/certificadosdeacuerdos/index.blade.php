@@ -172,22 +172,33 @@ button.btn.btn-primary {
                         <h1 class="mititulo mt-4 mb-4">Certificados de Acuerdos</h1>
                         </div>
                         <div class="container filtros">
-                            <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
+                        <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
                                 <div class="col-md-2 mb-3">
-                                    <!--<label for="fecha_dia" class="form-label">Día</label>-->
-                                    <input type="number" placeholder="Día" name="fecha_dia" id="fecha_dia" class="form-control filtro" value="{{ request('fecha_dia') }}">
+                                    <select name="fecha_dia" id="fecha_dia" class="form-control filtro">
+                                        <option value="">Día</option>
+                                        @for ($i = 1; $i <= 31; $i++)
+                                            <option value="{{ $i }}" {{ request('fecha_dia') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                                 <div class="col-md-2 mb-3">
-                                    <!--<label for="fecha_mes" class="form-label">Mes</label>-->
-                                    <input type="number" placeholder="Mes" name="fecha_mes" id="fecha_mes" class="form-control filtro" value="{{ request('fecha_mes') }}">
+                                    <select name="fecha_mes" id="fecha_mes" class="form-control filtro">
+                                        <option value="">Mes</option>
+                                        @foreach (['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] as $index => $mes)
+                                            <option value="{{ $index + 1 }}" {{ request('fecha_mes') == $index + 1 ? 'selected' : '' }}>{{ $mes }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-2 mb-3">
-                                   <!-- <label for="fecha_ano" class="form-label">Año</label>-->
-                                    <input type="number" placeholder="Año" name="fecha_ano" id="fecha_ano" class="form-control filtro" value="{{ request('fecha_ano') }}">
+                                    <select name="fecha_ano" id="fecha_ano" class="form-control filtro">
+                                        <option value="">Año</option>
+                                        @for ($i = 2010; $i <= date('Y'); $i++)
+                                            <option value="{{ $i }}" {{ request('fecha_ano') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                                 <div class="col-md-2 mb-3">
-                                   <!-- <label for="codigo_bip" class="form-label">Código BIP</label>-->
-                                    <input type="text"  placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
+                                    <input type="text" placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <button type="submit" class="btn btn-primary">Buscar</button>
