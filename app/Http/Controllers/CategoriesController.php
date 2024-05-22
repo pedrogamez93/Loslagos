@@ -49,6 +49,8 @@ use App\Models\Difusion;
 use App\Models\Presentaciones;
 use App\Models\ImagenRegion;
 use App\Models\ImagenRegionDocs;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoriesController extends Controller{
     
