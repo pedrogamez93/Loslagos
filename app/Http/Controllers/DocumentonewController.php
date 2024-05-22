@@ -268,8 +268,7 @@ public function store(Request $request)
             });
         }
     
-        // Clonar la consulta antes de la paginación
-        $documentos2 = clone $documentos;
+       
     
         // Paginación
         $documentos = $documentos->paginate(12);
@@ -278,7 +277,7 @@ public function store(Request $request)
             return view('documentos.sinResultados');
         }
     
-        return view('documentos.resultados', compact('documentos', 'documentos2'));
+        return view('documentos.resultados', compact('documentos'));
     }
     
 

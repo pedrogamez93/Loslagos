@@ -44,7 +44,7 @@
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
     <ul class="list-unstyled">
-    @php $contador = 0; @endphp
+    <!-- @php $contador = 0; @endphp
         @foreach($documentos2->get() as $documento)
             @if($documento->portada == 'si')
                 @if($contador < 5)
@@ -61,7 +61,7 @@
                     @break
                 @endif
             @endif
-        @endforeach
+        @endforeach -->
 
 
 
