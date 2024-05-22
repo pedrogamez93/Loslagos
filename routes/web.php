@@ -444,6 +444,7 @@ Route::get('/gobiernoregional/unidaddecontrol', 'App\Http\Controllers\Documentos
 /*DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 Route::get('/consejoregional/actas', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexactas')->name('actas.Indexactas');
 Route::get('/consejoregional/actas/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showActa')->name('actas.showActa');
+Route::get('/consejoregional/download/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@download')->name('actas.download');
 
 Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexcertificadosdeacuerdos')->name('certificadosdeacuerdos.Indexcertificadosdeacuerdos');
 
