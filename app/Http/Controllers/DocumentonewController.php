@@ -242,16 +242,16 @@ public function buscar(Request $request)
     $nombre = $request->input('nombre');
 
     // Mapeo de categorías normalizadas a las originales
-    $nombre = [
-        'acta' => 'Actas',
-        'acuerdo' => 'Acuerdos',
-        'resumengasto' => 'Resumen de Gastos',
+    $categorias = [
+        'actas' => 'Actas',
+        'acuerdos' => 'Acuerdos',
+        'resumengastos' => 'Resumen de Gastos',
         'documentogeneral' => 'Documento General',
         'acta' => 'Actas',
         'acuerdo' => 'Acuerdos',
-        'resumen de gasto' => 'Resumen de Gastos',
+        'resumen de gastos' => 'Resumen de Gastos',
         'documento general' => 'Documento General',
-        'resumendegasto' => 'Resumen de Gastos',
+        'resumendegastos' => 'Resumen de Gastos',
         'documentogeneral' => 'Documento General',
     ];
 
@@ -281,14 +281,14 @@ public function buscar(Request $request)
     $documentos2 = clone $documentos;
 
     // Añadir logs de depuración
-    \Log::info("Buscar documentos con categoría: $categoriaNormalizada y nombre: $nombre");
+    Log::info("Buscar documentos con categoría: " . json_encode($categoriaNormalizada) . " y nombre: " . json_encode($nombre));
 
     // Paginación
     $documentos = $documentos->paginate(12);
 
     // Si no se encuentran documentos, registrar en log y mostrar vista de sin resultados
     if ($documentos->isEmpty()) {
-        \Log::info("No se encontraron documentos para la búsqueda con categoría: $categoriaNormalizada y nombre: $nombre");
+        Log::info("No se encontraron documentos para la búsqueda con categoría: " . json_encode($categoriaNormalizada) . " y nombre: " . json_encode($nombre));
         return view('documentos.sinResultados');
     }
 
