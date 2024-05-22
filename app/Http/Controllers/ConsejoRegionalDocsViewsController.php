@@ -37,23 +37,23 @@ class ConsejoRegionalDocsViewsController extends Controller
 
 
     
-    public function downloadley($id)
-    {
-        // Busca el documento por su ID
-        $documento = Ley::findOrFail($id);
+    public function download($id)
+{
+    // Busca el documento por su ID
+    $documento = Documentonew::findOrFail($id);
 
-        // Obtiene la ruta completa del archivo en el almacenamiento público
-        $filePath = storage_path('app/public/documentos/' . $documento->archivo);
+    // Obtiene la ruta completa del archivo en el almacenamiento
+    $filePath = storage_path('app/documentos/' . $documento->archivo);
 
-        // Verifica si el archivo existe
-        if (file_exists($filePath)) {
-            // Retorna la respuesta de descarga
-            return response()->download($filePath, basename($documento->archivo));
-        } else {
-            // Redirige de vuelta con un mensaje de error si el archivo no existe
-            return redirect()->back()->with('error', 'El archivo no existe.');
-        }
+    // Verifica si el archivo existe
+    if (file_exists($filePath)) {
+        // Retorna la respuesta de descarga
+        return response()->download($filePath, basename($documento->archivo));
+    } else {
+        // Redirige de vuelta con un mensaje de error si el archivo no existe
+        return redirect()->back()->with('error', 'El archivo no existe.');
     }
+}
 
     public function Indexcertificadosdeacuerdos()
     {

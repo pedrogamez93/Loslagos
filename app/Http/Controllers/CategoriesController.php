@@ -101,11 +101,11 @@ class CategoriesController extends Controller{
         // Busca el documento por su ID
         $documento = Ley::findOrFail($id);
 
-        // Ruta del archivo en el almacenamiento público usando Storage
-        $filePath = Storage::disk('public')->path('documentos/' . $documento->archivo);
+        // Obtiene la ruta completa del archivo en el almacenamiento público
+        $filePath = storage_path('app/public/documentos/' . $documento->archivo);
 
         // Verifica si el archivo existe
-        if (Storage::disk('public')->exists('documentos/' . $documento->archivo)) {
+        if (file_exists($filePath)) {
             // Retorna la respuesta de descarga
             return response()->download($filePath, basename($documento->archivo));
         } else {
