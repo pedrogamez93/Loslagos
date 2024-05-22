@@ -105,7 +105,7 @@ class CategoriesController extends Controller{
         $filePath = Storage::disk('public')->path('documentos/' . $documento->archivo);
 
         // Verifica si el archivo existe
-        if (file_exists($filePath)) {
+        if (Storage::disk('public')->exists('documentos/' . $documento->archivo)) {
             // Retorna la respuesta de descarga
             return response()->download($filePath, basename($documento->archivo));
         } else {
