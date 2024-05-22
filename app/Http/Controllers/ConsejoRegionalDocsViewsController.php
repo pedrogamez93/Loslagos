@@ -55,14 +55,30 @@ class ConsejoRegionalDocsViewsController extends Controller
     }
 }
 
-    public function Indexcertificadosdeacuerdos()
-    {
-        // Obtener todos los acuerdos y su relación con Documentonew
-        $acuerdos = Acuerdo::with('documentonew')->get();
-        $acuerdos = Acuerdo::with('documentonew')->paginate(10); 
-        // Pasar los acuerdos a la vista
-        return view('consejoregionaldocsviews.certificadosdeacuerdos.index', ['acuerdos' => $acuerdos]);
+public function Indexcertificadosdeacuerdos(Request $request)
+{
+    $query = Acuerdo::with('documentonew');
+
+    // Aplicar filtros si están presentes en la solicitud
+    if ($request->filled('fecha_dia')) {
+        $query->whereDay('fecha', $request->input('fecha_dia'));
     }
+    if ($request->filled('fecha_mes')) {
+        $query->whereMonth('fecha', $request->input('fecha_mes'));
+    }
+    if ($request->filled('fecha_ano')) {
+        $query->whereYear('fecha', $request->input('fecha_ano'));
+    }
+    if ($request->filled('codigo_bip')) {
+        $query->where('codigo_bip', 'like', '%' . $request->input('codigo_bip') . '%');
+    }
+
+    // Obtener los acuerdos paginados
+    $acuerdos = $query->paginate(10);
+
+    // Pasar los acuerdos a la vista
+    return view('consejoregionaldocsviews.certificadosdeacuerdos.index', ['acuerdos' => $acuerdos]);
+}
 
     public function Indexresumendegastos()
     {

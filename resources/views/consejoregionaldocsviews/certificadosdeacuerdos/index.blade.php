@@ -134,32 +134,54 @@
 
                         <h1 class="mititulo mt-4 mb-4">Certificados de Acuerdos</h1>
                         </div>
+                        <div class="container filtros">
+                            <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="fecha_dia" class="form-label">Día</label>
+                                    <input type="number" name="fecha_dia" id="fecha_dia" class="form-control" value="{{ request('fecha_dia') }}">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="fecha_mes" class="form-label">Mes</label>
+                                    <input type="number" name="fecha_mes" id="fecha_mes" class="form-control" value="{{ request('fecha_mes') }}">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="fecha_ano" class="form-label">Año</label>
+                                    <input type="number" name="fecha_ano" id="fecha_ano" class="form-control" value="{{ request('fecha_ano') }}">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="codigo_bip" class="form-label">Código BIP</label>
+                                    <input type="text" name="codigo_bip" id="codigo_bip" class="form-control" value="{{ request('codigo_bip') }}">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="container">
-    <div class="row">
-        @foreach ($acuerdos as $acuerdo)
-            @if ($acuerdo->documentonew)
-                <div class="col-md-3 mb-4">
-                    <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
-                        <a href="{{ $acuerdo->documentonew->archivo }}" target="_blank" class="d-flex align-items-center">
-                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acuerdo" style="margin-right: 10px;">
-                            <div>
-                                <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
-                                <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
-                                <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                            <div class="row">
+                                @foreach ($acuerdos as $acuerdo)
+                                    @if ($acuerdo->documentonew)
+                                        <div class="col-md-3 mb-4">
+                                            <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
+                                                <a href="{{ $acuerdo->documentonew->archivo }}" target="_blank" class="d-flex align-items-center">
+                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acuerdo" style="margin-right: 10px;">
+                                                    <div>
+                                                        <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
+                                                        <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
+                                                        <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
-                        </a>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-       
-    </div>
-    <!-- Enlaces de paginación -->
-    <div class="d-flex justify-content-center">
-    {{ $acuerdos->links('pagination::bootstrap-4') }}
-    </div>
-</div>
+                        </div>
 
+                        <!-- Enlaces de paginación -->
+                        <div class="d-flex justify-content-center">
+                            {{ $acuerdos->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>
