@@ -241,13 +241,13 @@ public function buscar(Request $request)
         $categoria = strtolower(trim($request->input('tipo_documento')));
         $nombre = $request->input('nombre');
 
-        // Mapeo de categorías normalizadas a las originales (en singular)
-        $categorias = [
-            'acta' => 'Acta',
-            'acuerdo' => 'Acuerdo',
-            'resumen gasto' => 'Resumen de Gasto',
-            'documento general' => 'Documento General',
-        ];
+        // // Mapeo de categorías normalizadas a las originales (en singular)
+        // $categorias = [
+        //     'acta' => 'Acta',
+        //     'acuerdo' => 'Acuerdo',
+        //     'resumen gasto' => 'Resumen de Gasto',
+        //     'documento general' => 'Documento General',
+        // ];
 
         // Busca la categoría normalizada
         $categoriaNormalizada = $categorias[$categoria] ?? null;
