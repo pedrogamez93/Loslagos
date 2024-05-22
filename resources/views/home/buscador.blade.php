@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <!-- Muestra la información relevante de cada resultado -->
                                 <h5 class="card-title">Tipo: {{ $resultado instanceof \App\Models\Salaprensa ? 'Noticia' : ($resultado instanceof \App\Models\TramitesDigitales ? 'Trámite' : ($resultado instanceof \App\Models\Documentonew ? 'Documento' : 'Desconocido')) }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">ID: {{ $resultado->id }}</h6>
+                                <!-- <h6 class="card-subtitle mb-2 text-muted">ID: {{ $resultado->id }}</h6> -->
                                 <!-- Añade más campos según tus modelos -->
                                 <!-- Ejemplo con Salaprensa -->
                                 @if($resultado instanceof \App\Models\Salaprensa)
