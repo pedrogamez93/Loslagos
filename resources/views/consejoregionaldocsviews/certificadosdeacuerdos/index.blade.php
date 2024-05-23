@@ -129,7 +129,7 @@ button.btn.btn-primary {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Certificados de Acuerdos</title>
+    <title>Consejo Regional</title>
 </head>
 <body>
 @extends('layouts.app')
