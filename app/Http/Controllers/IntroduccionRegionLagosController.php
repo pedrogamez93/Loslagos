@@ -1300,7 +1300,7 @@ if ($articulo) {
             $dip = Autoridades::where('cargo', 'Diputados')->get();
             $ser = Autoridades::where('cargo', 'Seremis')->get();
             $serv = Autoridades::where('cargo', 'Servicios')->get();
-            $muni = Autoridades::where('cargo', 'Municipales')->get();
+            $muni = Autoridades::where('cargo', 'Municipalidades')->get();
             return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
             
         } 
@@ -1312,7 +1312,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
         
         return view('regionlagos.autoridades', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1323,7 +1323,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1334,7 +1334,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1345,7 +1345,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1356,7 +1356,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1367,7 +1367,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }

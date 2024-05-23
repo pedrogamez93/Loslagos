@@ -101,7 +101,7 @@
                                         <option value="Senador" {{ $articulo->cargo == 'Senador' ? 'selected' : '' }}>Senador</option>
                                         <option value="Seremis" {{ $articulo->cargo == 'Seremis' ? 'selected' : '' }}>Seremis</option>
                                         <option value="Servicios" {{ $articulo->cargo == 'Servicios' ? 'selected' : '' }}>Servicios</option>
-                                        <option value="Municipales" {{ $articulo->cargo == 'Municipales' ? 'selected' : '' }}>Municipales</option>
+                                        <option value="Municipalidades" {{ $articulo->cargo == 'Municipalidades' ? 'selected' : '' }}>Municipalidades</option>
                                     </select>
                                     </div>
                                 </div>

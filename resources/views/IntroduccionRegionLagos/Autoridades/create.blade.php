@@ -105,7 +105,7 @@
                                         <option value="Senador">Senador</option>
                                         <option value="Seremis">Seremis</option>
                                         <option value="Servicios">Servicios</option>
-                                        <option value="Municipales">Municipales</option>
+                                        <option value="Municipalidades">Municipalidades</option>
                                         
                                     </select>
                                 </div>
