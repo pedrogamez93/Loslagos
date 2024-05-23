@@ -89,10 +89,12 @@
 
     .form-control.filtro {
     border-radius: 100px;
+    color: #00548F; 
+    border: 1px solid #00548F;
     }
     /* Cambiar el color del placeholder */
 .form-control.filtro::placeholder {
-    color: #00548F; /* Color gris claro para el placeholder */
+    color: #00548F; 
 }
 
 /* Compatibilidad con diferentes navegadores */
