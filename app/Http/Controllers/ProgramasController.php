@@ -9,6 +9,8 @@ use App\Models\ProgramasColecciones;
 use App\Models\ProgramasDescripciones;
 use App\Models\ProgramasDocumentos;
 use App\Models\ProgramasFotografias;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ProgramasController extends Controller
@@ -216,16 +218,42 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-        $programa = request()->except(['_token' , '_method']);
-        Programas::where('id' , '=' ,$id)->update($programa);
+{
+    // Validar los datos entrantes
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'bajada' => 'nullable|string',
+        'bajada_programa' => 'nullable|string',
+        'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
 
-        $programa=Programas::findOrfail($id);
-        return redirect()->route('programas.index')->with('success', 'Programa editado exitosamente.');
+    // Encontrar el programa
+    $programa = Programas::findOrFail($id);
 
+    // Actualizar los campos del programa
+    $programa->titulo = $request->input('titulo');
+    $programa->bajada = $request->input('bajada');
+    $programa->bajada_programa = $request->input('bajada_programa');
 
+    // Procesar la imagen si está presente
+    if ($request->hasFile('imagen')) {
+        // Eliminar la imagen anterior si existe
+        if ($programa->imagen) {
+            Storage::delete('public/' . $programa->imagen);
+        }
+
+        // Guardar la nueva imagen
+        $iconoPath = $request->file('imagen')->store('imagenes_programas', 'public');
+        $programa->imagen = $iconoPath;
     }
+
+    // Guardar los cambios
+    $programa->save();
+
+    // Redirigir con mensaje de éxito
+    return redirect()->route('programas.index')->with('success', 'Programa editado exitosamente.');
+}
+
 
     public function agregarDescripcion(Request $request, $id)
 {

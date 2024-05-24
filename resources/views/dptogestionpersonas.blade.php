@@ -182,7 +182,7 @@
                                 <ul>
                                     @foreach ($documentosTodos as $documento)
                                         <li class="mi-list">
-                                            <a href="{{ asset('storage/' . $documento['ruta']) }}" target="_blank">
+                                            <a href="{{ route('dptogestionpersonas.download', $documento->id) }}" target="_blank">
                                                 <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                                 <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre }}</span>
                                             </a>

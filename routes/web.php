@@ -85,16 +85,19 @@ Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.bann
 Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
-Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
+
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
+
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
-Route::get('/documentos/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
+Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
 /*FUNCIONARIOS */
 
@@ -386,15 +389,19 @@ Route::get('/gobiernoregional/acerca/inversionpublica', 'App\Http\Controllers\Ca
 Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
 
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
-Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+// Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+//Route::get('/gobiernoregional/leygobiernoregional/descargar/{archivo}', 'App\Http\Controllers\CategoriesController@descargarArchivo')->name('ley.archivo');
 
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
 Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
+Route::get('/gobiernoregional/dptogestionpersonas/download/{id}', 'App\Http\Controllers\CategoriesController@downloaddptogestionpersonas')->name('dptogestionpersonas.download');
 
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
+Route::get('/gobiernoregional/asambleaclimatica/download/{id}', 'App\Http\Controllers\CategoriesController@downloadAsamblea')->name('downloadAsamblea');
 
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
@@ -721,10 +728,10 @@ Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
 //Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
 //Route::resource('preguntas', PreguntaController::class);
 
-Route::get('/preguntas', [PreguntaController::class, 'index']);
-Route::resource('preguntas', PreguntaController::class);
+Route::get('/preguntas', [PreguntaController::class, 'index'])->middleware('auth')->middleware('auth');
+Route::resource('preguntas', PreguntaController::class)->middleware('auth');
 
-Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit');
+Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit')->middleware('auth');
 
 Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
 
@@ -734,9 +741,9 @@ Route::get('/contactanos', 'App\Http\Controllers\FormController@index')->name('c
     //PROCESAR FORMULARIO Y ENVIAR CORREO ELECTRONICO
 Route::post('/contactanos/store', 'App\Http\Controllers\FormController@store')->name('contactanos.store');
     //FORMULARIOS ENVIADOS BACKEND
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
 
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
 Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulario'])->name('detalle.formulario');
 Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
     //DESCARGAR FORMULARIOS CSV
@@ -752,14 +759,14 @@ Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name(
 
 
 
-Route::resource('homefndr', HomefndrController::class);
+Route::resource('homefndr', HomefndrController::class)->middleware('auth');
 
 
 // Ruta para mostrar el formulario de edición
-Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit');
+Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit')->middleware('auth');
 
 // Ruta para procesar el formulario de edición y actualizar el registro
-Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update');
+Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update')->middleware('auth');
 
 Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
 Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');

@@ -52,6 +52,7 @@
     textarea.form-control.mt-2.mb-4 {
     height: 200px;
     }
+    
 </style>
 
 <div class="container-fluid body">
