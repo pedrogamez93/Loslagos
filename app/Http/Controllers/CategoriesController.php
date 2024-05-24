@@ -96,7 +96,7 @@ class CategoriesController extends Controller{
         return view('leygobiernoregional', ['ley' => $ley]);
     }
 
-    public function download($id)
+    public function downloadLey($id)
     {
         $leyencontrado = Ley::find($id);
     
