@@ -103,6 +103,9 @@ class CategoriesController extends Controller{
         if ($leyencontrado) {
             $rutaCompleta = storage_path('app/public' . $leyencontrado->enlacedoc);
     
+            // Log de la ruta completa para depuración
+            Log::info("Ruta completa del archivo: " . $rutaCompleta);
+    
             if (file_exists($rutaCompleta)) {
                 return response()->download($rutaCompleta);
             } else {
