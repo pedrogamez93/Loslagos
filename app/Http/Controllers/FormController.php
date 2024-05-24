@@ -27,7 +27,7 @@ class FormController extends Controller
 
 public function store (Request $request)
     {
-        
+        //dd($request->all());
         $data = $request->validate([
         'nombre' => 'required',
         'apellido' => 'required',
@@ -74,7 +74,7 @@ public function store (Request $request)
         $correo = new ContactanosMailable($nombre, $apellido, $email, $sexo, $direccion, $provincia, $comuna, $telefono, $tipo_mensaje, $mensaje,
          $date, $usted_escribe_como, $actividad_oficio, $intitucion_a_enviar, $tema_mensaje, $proposito_objetivo, $solicita_respuestas,
           $mensaje_sugerencia_reclamo);
-        Mail::to('ingluisguedez@gmail.com')->send($correo);
+        Mail::to('info@goreloslagos.cl')->send($correo);
 
         Formulario::create($data);
     

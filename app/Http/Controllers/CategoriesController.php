@@ -101,15 +101,18 @@ class CategoriesController extends Controller{
         $leyencontrado = Ley::find($id);
     
         // Log para depuración del documento
-        Log::info("leyes encontradas: " . json_encode($leyencontrado));
+        Log::info("Leyes encontradas: " . json_encode($leyencontrado));
     
         if ($leyencontrado) {
-            return $this->descargarArchivo($leyencontrado->archivo);
+            $rutaCompleta = $leyencontrado->enlacedoc;
+            $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
+    
+            return $this->descargarArchivo($archivo);
         } else {
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
-   
+    
     
     public function descargarArchivo($archivo)
     {
@@ -130,8 +133,8 @@ class CategoriesController extends Controller{
         // Log para depuración de la ruta del archivo
         Log::info("Ruta del archivo: '$rutaArchivo'");
     
-        // Verificar si el archivo existe
-        if (file_exists($rutaArchivo)) {
+        // Verificar si la ruta es un archivo y no un directorio
+        if (is_file($rutaArchivo)) {
             // Obtener el contenido del archivo
             $contenido = file_get_contents($rutaArchivo);
     
@@ -147,11 +150,13 @@ class CategoriesController extends Controller{
             // Devolver la respuesta con el contenido del archivo y las cabeceras
             return response($contenido, 200, $cabeceras);
         } else {
-            // Manejar el caso en que el archivo no existe
-            Log::error("El archivo no existe: $rutaArchivo");
-            return response()->json(['error' => 'El archivo no existe.'], 404);
+            // Manejar el caso en que la ruta no es un archivo o no existe
+            Log::error("El archivo no existe o es un directorio: $rutaArchivo");
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
         }
     }
+    
+    
     
     public function organigramaIndex(){
 
