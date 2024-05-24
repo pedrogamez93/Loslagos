@@ -40,62 +40,62 @@ class DocumentonewController extends Controller
 
 
     public function buscar(Request $request)
-{
-    $request->validate([
-        'tipo_documento' => 'nullable',
-        'nombre' => 'nullable',
-    ]);
-
-    $categoria = $request->input('tipo_documento');
-    $nombre = $request->input('nombre');
-
-    // Log para depuración de los parámetros recibidos
-    Log::info("Parámetros de búsqueda recibidos: tipo_documento = '$categoria', nombre = '$nombre'");
-
-    // Inicializar el query
-    $documentos = Documentonew::query();
-
-    // Aplicar filtro por categoría si está presente
-    if ($categoria) {
-        $documentos->where('tipo_documento', 'LIKE', "%$categoria%");
-        Log::info("Filtro aplicado: tipo_documento = $categoria");
+    {
+        $request->validate([
+            'tipo_documento' => 'nullable|string',
+            'nombre' => 'nullable|string',
+        ]);
+    
+        $categoria = trim($request->input('tipo_documento'));
+        $nombre = trim($request->input('nombre'));
+    
+        // Log para depuración de los parámetros recibidos
+        Log::info("Parámetros de búsqueda recibidos: tipo_documento = '$categoria', nombre = '$nombre'");
+    
+        // Inicializar el query
+        $documentos = Documentonew::query();
+    
+        // Aplicar filtro por categoría si está presente
+        if ($categoria) {
+            $documentos->whereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($categoria) . '%']);
+            Log::info("Filtro aplicado: tipo_documento = $categoria");
+        }
+    
+        // Aplicar filtro por nombre si está presente
+        if ($nombre) {
+            $documentos->where(function($query) use ($nombre) {
+                $query->whereRaw('LOWER(archivo) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(tema) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('CAST(numero_sesion AS TEXT) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(lugar) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(comuna) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(provincia) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($nombre) . '%']);
+            });
+            Log::info("Filtro aplicado: nombre = $nombre");
+        }
+    
+        // Paginar los resultados
+        $documentos = $documentos->paginate(15);
+        Log::info("Documentos encontrados: " . json_encode($documentos->items()));
+    
+        // Verificar si la búsqueda no arrojó resultados
+        if ($documentos->isEmpty()) {
+            Log::info("No se encontraron documentos que coincidan con los criterios de búsqueda.");
+            return view('documentos.sinResultados');
+        }
+    
+        // Nueva consulta para los últimos 5 archivos
+        $ultimosDocumentos = Documentonew::where('publicacion', 'si')
+                                        ->where('portada', 'si')
+                                        ->orderBy('created_at', 'desc')
+                                        ->take(5)
+                                        ->get();
+        Log::info("Últimos documentos encontrados: " . json_encode($ultimosDocumentos));
+    
+        return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
     }
-
-  // Aplicar filtro por nombre si está presente
-  if ($nombre) {
-    $documentos->where(function($query) use ($nombre) {
-        $query->whereRaw('LOWER(archivo) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(tema) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(numero_sesion) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(lugar) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(comuna) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(provincia) LIKE ?', ['%' . strtolower($nombre) . '%'])
-              ->orWhereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($nombre) . '%']);
-    });
-    Log::info("Filtro aplicado: nombre = $nombre");
-}
-
-    // Paginar los resultados
-    $documentos = $documentos->paginate(15);
-    Log::info("Documentos encontrados: " . json_encode($documentos->items()));
-
-    // Verificar si la búsqueda no arrojó resultados
-    if ($documentos->isEmpty()) {
-        Log::info("No se encontraron documentos que coincidan con los criterios de búsqueda.");
-        return view('documentos.sinResultados');
-    }
-
-    // Nueva consulta para los últimos 5 archivos
-    $ultimosDocumentos = Documentonew::where('publicacion', 'si')
-                                    ->where('portada', 'si')
-                                    ->orderBy('created_at', 'desc')
-                                    ->take(5)
-                                    ->get();
-    Log::info("Últimos documentos encontrados: " . json_encode($ultimosDocumentos));
-
-    return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
-}
-
+    
     
     
     
