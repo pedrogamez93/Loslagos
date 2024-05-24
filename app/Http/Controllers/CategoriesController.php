@@ -100,20 +100,11 @@ class CategoriesController extends Controller{
     {
         $leyencontrado = Ley::find($id);
     
-        // Log para depuración del documento
-        Log::info("Leyes encontradas: " . json_encode($leyencontrado));
-    
         if ($leyencontrado) {
-            $rutaCompleta = $leyencontrado->enlacedoc;
-            $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
-            $rutaArchivo = storage_path('app/public/documentos/' . $archivo);
+            $rutaCompleta = storage_path('app/public' . $leyencontrado->enlacedoc);
     
-            // Log para depuración de la ruta del archivo
-            Log::info("Ruta completa del archivo: " . $rutaArchivo);
-    
-            // Verificar si el archivo existe
-            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+            if (file_exists($rutaCompleta)) {
+                return response()->download($rutaCompleta);
             } else {
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
