@@ -241,25 +241,24 @@ class CategoriesController extends Controller{
         Log::info("Documento encontrado: " . json_encode($documento));
 
         if ($documento) {
-            // Asegurarse de usar la propiedad correcta para la ruta
-            $rutaCompleta = $documento->ruta_documento; // Usamos ruta_documento
+            // Usar la propiedad correcta para la ruta del documento
+            $rutaCompleta = $documento->ruta_documento;
 
-            // Log para depuración de la ruta completa
+            // Log para depuración de la ruta completa almacenada
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
 
-            // Eliminar el prefijo 'public/' de la ruta si existe
-            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
-
             // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
 
             // Log para depuración de la ruta completa del archivo
             Log::info("Ruta completa del archivo: " . $rutaArchivo);
 
-            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            // Verificar manualmente si el archivo existe
+            if (file_exists($rutaArchivo)) {
+                Log::info("El archivo existe: " . $rutaArchivo);
                 return response()->download($rutaArchivo);
             } else {
-                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                Log::info("El archivo no existe: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
@@ -267,7 +266,6 @@ class CategoriesController extends Controller{
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
-
     public function audienciadepartesIndex() {
         // Obtener el último registro de audiencia con documentos relacionados
         $audiencia = AudienciasPartes::with('documentos')->latest()->first();
