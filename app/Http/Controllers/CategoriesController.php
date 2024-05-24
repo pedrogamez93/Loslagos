@@ -28,7 +28,7 @@ use App\Models\ComiteCiencias;
 use App\Models\ComiteCienciasDocs;
 use App\Models\ConcursosPublicos;
 use App\Models\ConcursosPublicosDocs;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\ConsejoRegional;
 use App\Models\Seccion;
 use App\Models\presidenteconcejo;
@@ -96,30 +96,60 @@ class CategoriesController extends Controller{
         return view('leygobiernoregional', ['ley' => $ley]);
     }
 
-    public function downloadLey($id)
+    public function download($id)
     {
-        try {
-            // Busca el documento por su ID
-            $documento = Ley::findOrFail($id);
+        $leyencontrado = Ley::find($id);
     
-            // Ruta relativa del archivo en el almacenamiento público
-            $fileRelativePath = 'documentos/' . $documento->archivo;
+        // Log para depuración del documento
+        Log::info("leyes encontradas: " . json_encode($leyencontrado));
     
-            // Obtiene la ruta completa del archivo en el sistema de archivos
-            $filePath = Storage::disk('public')->path($fileRelativePath);
+        if ($leyencontrado) {
+            return $this->descargarArchivo($leyencontrado->archivo);
+        } else {
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+   
     
-            // Verifica si el archivo existe en el sistema de archivos
-            if (!Storage::disk('public')->exists($fileRelativePath)) {
-                // Lanza una excepción si el archivo no existe
-                throw new \Exception('El archivo no existe en el almacenamiento.');
-            }
+    public function descargarArchivo($archivo)
+    {
+        // Log para depuración del nombre del archivo original
+        Log::info("Nombre del archivo original: '$archivo'");
     
-            // Retorna la respuesta de descarga
-            return response()->download($filePath, basename($documento->archivo));
+        // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
+        $archivo = trim($archivo);
+        $archivo = str_replace("\t", "", $archivo);
+        $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
     
-        } catch (\Exception $e) {
-            // Redirige de vuelta con un mensaje de error si ocurre algún problema
-            return redirect()->back()->with('error', $e->getMessage());
+        // Log para depuración del nombre del archivo limpio
+        Log::info("Nombre del archivo limpio: '$archivo'");
+    
+        // Ajustar la ruta del archivo para reflejar la ubicación correcta
+        $rutaArchivo = storage_path("app/documentos/$archivo");
+    
+        // Log para depuración de la ruta del archivo
+        Log::info("Ruta del archivo: '$rutaArchivo'");
+    
+        // Verificar si el archivo existe
+        if (file_exists($rutaArchivo)) {
+            // Obtener el contenido del archivo
+            $contenido = file_get_contents($rutaArchivo);
+    
+            // Obtener el tipo MIME del archivo
+            $tipoMime = mime_content_type($rutaArchivo);
+    
+            // Configurar las cabeceras para la descarga
+            $cabeceras = [
+                'Content-Type' => $tipoMime,
+                'Content-Disposition' => "attachment; filename=$archivo",
+            ];
+    
+            // Devolver la respuesta con el contenido del archivo y las cabeceras
+            return response($contenido, 200, $cabeceras);
+        } else {
+            // Manejar el caso en que el archivo no existe
+            Log::error("El archivo no existe: $rutaArchivo");
+            return response()->json(['error' => 'El archivo no existe.'], 404);
         }
     }
     

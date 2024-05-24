@@ -389,7 +389,9 @@ Route::get('/gobiernoregional/acerca/inversionpublica', 'App\Http\Controllers\Ca
 Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
 
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
-Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+// Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+Route::get('/gobiernoregional/leygobiernoregional/descargar/{archivo}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.archivo');
 
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
