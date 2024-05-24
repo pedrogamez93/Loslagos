@@ -20,9 +20,9 @@ class DocumentosDeGestionController extends Controller
             'Cuenta Pública Regional',
             'Estrategia Regional de Desarrollo 2030',
             'Estado Financieros Gobierno Regional de Los Lagos',
-            'Boletin Informativo',
-            'Difusión Proyectos FNDR y Normativa Grafica GORE',
-            'Estrategia, Politica y Planes Regionales',
+            'Boletín Informativo',
+            'Difusión Proyectos FNDR y Normativa Gráfica GORE',
+            'Estrategia, Política y Planes Regionales',
             'Convenios Internacionales',
             'Documentos de Consulta GORE LOS LAGOS'
         ];
