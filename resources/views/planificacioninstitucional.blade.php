@@ -179,7 +179,7 @@
                             <h2 class="mistyle mb-5">Planificación Institucional</h2>
                                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;float: inline-start;">
                                     @foreach ($planificacion as $arti)
-                                        <a href="{{ asset('storage/' . $arti->urldocs) }}" target="_blank" style="display: block; text-align: center;">
+                                        <a href="{{ route('downloadPlanificacionInstitucionalDocs', $documento->id) }}" target="_blank" style="display: block; text-align: center;">
                                             <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                             <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 234px; text-align: left;">{{ $arti->titulo }}</span>
                                         </a>
