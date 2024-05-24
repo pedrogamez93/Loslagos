@@ -126,21 +126,25 @@ class DocumentonewController extends Controller
             // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
             switch ($request->tipo_documento) {
                 case 'Actas':
-                    $acta = new Acta(['documentonew_id' => $documento->id]);
+                    $lastActaId = Acta::max('id') + 1;
+                    $acta = new Acta(['id' => $lastActaId, 'documentonew_id' => $documento->id]);
                     $acta->save();
                     $documento->acta()->save($acta);
                     Log::info('Acta creada:', ['acta_id' => $acta->id]);
                     break;
     
                 case 'Acuerdos':
-                    $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
+                    $lastAcuerdoId = Acuerdo::max('id') + 1;
+                    $acuerdo = new Acuerdo(['id' => $lastAcuerdoId, 'documentonew_id' => $documento->id]);
                     $acuerdo->save();
                     $documento->acuerdo()->save($acuerdo);
                     Log::info('Acuerdo creado:', ['acuerdo_id' => $acuerdo->id]);
                     break;
     
                 case 'Resumengastos':
+                    $lastResumengastosId = ResumenGastos::max('id') + 1;
                     $resumengastos = new ResumenGastos([
+                        'id' => $lastResumengastosId,
                         'documentonew_id' => $documento->id,
                         'nombre' => $request->input('nombre'),
                         'portada' => $request->input('portada'),
@@ -153,7 +157,9 @@ class DocumentonewController extends Controller
                     break;
     
                 case 'Documentogeneral':
+                    $lastDocumentogeneralId = DocumentoGeneral::max('id') + 1;
                     $documentogeneral = new DocumentoGeneral([
+                        'id' => $lastDocumentogeneralId,
                         'documentonew_id' => $documento->id,
                         'categoria' => $request->input('categoria'),
                         'titulo' => $request->input('titulo'),
