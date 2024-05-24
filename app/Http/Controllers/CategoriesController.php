@@ -241,8 +241,9 @@ class CategoriesController extends Controller{
         Log::info("Documento encontrado: " . json_encode($documento));
 
         if ($documento) {
-            $rutaCompleta = $documento->ruta; // Esta es la ruta almacenada en la base de datos
-            
+            // Asegurarse de usar la propiedad correcta para la ruta
+            $rutaCompleta = $documento->ruta_documento; // Usamos ruta_documento
+
             // Log para depuración de la ruta completa
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
 
