@@ -161,7 +161,7 @@ class AsambleaClimaticaController extends Controller
 
         if ($request->hasFile('ruta_documento')) {
             foreach ($request->file('ruta_documento') as $key => $documento) {
-                $path = $documento->store('public/documentosasamblea');
+                $path = $documento->store('documentosasamblea');
                 $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
         
                 // Actualizar o crear nuevos registros de documentos
