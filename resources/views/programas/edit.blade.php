@@ -78,34 +78,26 @@
                     <form action="{{ route('programas.update', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-                            <label class="mt-3 style-label required" for="titulo">Título:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
 
-                            <label class="style-label mb-2" for="bajada">Bajada:</label>
-                            <textarea class="form-control mt-2" name="bajada" id="desc" placeholder="Bajada">{{ $programa->bajada }}</textarea>
-                            
-                            <label class="style-label mb-2" for="bajada_programa" >Bajada programa:</label>
-                            <textarea class="form-control mt-2"  style="height: 250px"  id="nota" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
-                            <!--
-                            <label class="style-label" for="icono">Imagen:</label>
-                            <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-                            -->
+    <label class="mt-3 style-label required" for="titulo">Título:</label>
+    <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
 
+    <label class="style-label mb-2" for="bajada">Bajada:</label>
+    <textarea class="form-control mt-2" name="bajada" id="desc editor" placeholder="Bajada">{{ $programa->bajada }}</textarea>
 
+    <label class="style-label mb-2 mt-3" for="bajada_programa">Bajada programa:</label>
+    <textarea class="form-control mt-2" style="height: 250px" id="nota editor2" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
 
-                           
+    <label class="style-label mt-3" for="imagen">Actualizar imagen:</label>
+    <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
 
+    @if ($programa->imagen)
+        <img src="{{ asset('storage/' . $programa->imagen) }}" alt="Imagen actual" style="max-width: 200px; margin-top: 10px;display: block;
+    padding-bottom: 20px;">
+    @endif
 
-
-
-
-
-
-
-                            
-                                                  <button class="btn btn-success mt-3" type="submit">Guardar cambios</button>
-
-                        </form>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>
 
 
                         
@@ -157,7 +149,6 @@
 
 
 <!--DOCUMENTOS-->
-            
 <form action="{{ route('programas.agregar-documento', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
                       <div class="documentos-container form-control">
@@ -216,11 +207,10 @@
 
 <!--COLECCIONES-->
 
-<label class="style-label" for="url">Deseas agregar nuevos fotografías:</label>
 <form action="{{ route('programas.agregar-fotografia', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="container pregunta-doc mt-4">
-        <label class="style-label mb-2 mt-3">Deseas agregar una colección?</label>
+        <label class="style-label mb-2 mt-3">¿Deseas agregar nuevas fotografías?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -249,8 +239,10 @@
 
 
 <!-- Mostrar botones -->
+<h3 class="mt-3 mb-2">Botones actuales</h3>   
+
 @foreach($botones as $boton)
-    <div  class="  container mt-3 mb-3" style="display: flex; gap:15px;">
+    <div  class="  container mt-1 mb-1" style="display: flex; gap:15px;">
         <a href="{{ $boton->urlbtn }}" class="btn">{{ $boton->nombrebtn }}</a>
         <form action="{{ route('programa.boton.destroy', $boton->id) }}" method="POST">
             @csrf
@@ -261,8 +253,10 @@
 @endforeach
 
 <!-- Mostrar descripciones -->
+<h3 class="mt-3 mb-2">Descripciones actuales</h3>   
+
 @foreach($descripciones as $descripcion)
-    <div class=" container mt-3 mb-3" style="display: flex; gap:15px;">
+    <div class=" container mt-1 mb-1" style="display: flex; gap:15px;">
         <h6><strong>{{ $descripcion->titulo_descripcion }}</strong></h6>
         <p>{{ $descripcion->bajada_descripcion }}</p>
         <form action="{{ route('programa.descripcion.destroy', $descripcion->id) }}" method="POST">
@@ -274,8 +268,10 @@
 @endforeach
 
 <!-- Mostrar documentos -->
+<h3 class="mt-3 mb-2">Documentos actuales</h3>   
+
 @foreach($documentos as $documento)
-    <div class="  container mt-3 mb-3 " style="display: flex; gap:15px;">
+    <div class="  container mt-1 mb-1 " style="display: flex; gap:15px;">
         <a href="{{ $documento->urlDocumento }}">{{ $documento->nombreDocumento }}</a>
         <form action="{{ route('programa.documento.destroy', $documento->id) }}" method="POST">
             @csrf
@@ -286,8 +282,10 @@
 @endforeach
 
 <!-- Mostrar colecciones -->
+<h3 class="mt-3 mb-2">Fotografías actuales</h3>   
+
 @foreach($colecciones as $coleccion)
-    <div class=" container mt-3 mb-3" >
+    <div class=" container mt-1 mb-1" >
         <h5>{{ $coleccion->titulo_coleccion }}</h5>
         <!-- Mostrar fotografías de la colección -->
         @foreach($coleccion->fotografias as $fotografia)
@@ -431,6 +429,34 @@
 
 </script>
 <script>
+
+
+tinymce.init({
+            selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+
+        tinymce.init({
+            selector: '#editor2', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+
 $(document).ready(function() {
     // Contador para IDs únicos
     var contador = 1;

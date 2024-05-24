@@ -197,6 +197,9 @@ ul {
 ul li {
     margin-bottom: 5px !important; /* Espaciado entre elementos de la lista */
 }
+li {
+    text-align: left !important;
+}
     .container-fluid.color{
             background-color: #F59120;
     }

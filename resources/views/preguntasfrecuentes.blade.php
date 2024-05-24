@@ -21,9 +21,6 @@
         display: flex; 
     }
 
-    nav li {
-        margin-right: 20px; 
-    }
 
     nav a {
         text-decoration: none; 
@@ -182,7 +179,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Región de los Lagos</title>
+    <title>Preguntas frecuentes</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 
