@@ -41,7 +41,6 @@ class DocumentonewController extends Controller
 
     public function buscar(Request $request)
 {
-    // Validar los inputs
     $request->validate([
         'tipo_documento' => 'nullable',
         'nombre' => 'nullable',
@@ -51,14 +50,14 @@ class DocumentonewController extends Controller
     $nombre = $request->input('nombre');
 
     // Log para depuración de los parámetros recibidos
-    Log::info("Parámetros de búsqueda recibidos: tipo_documento = $categoria, nombre = $nombre");
+    Log::info("Parámetros de búsqueda recibidos: tipo_documento = '$categoria', nombre = '$nombre'");
 
     // Inicializar el query
     $documentos = Documentonew::query();
 
     // Aplicar filtro por categoría si está presente
     if ($categoria) {
-        $documentos->where('tipo_documento', $categoria);
+        $documentos->where('tipo_documento', 'LIKE', "%$categoria%");
         Log::info("Filtro aplicado: tipo_documento = $categoria");
     }
 

@@ -27,18 +27,18 @@
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
          <form action="{{ url('/documentos/buscar') }}" method="POST">
-            @csrf
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-            <option value="">Seleccione Categoria</option>
-            <option value="Acta">Actas</option>
-                                    <option value="Acuerdo">Acuerdos</option>
-                                    <option value="Resumen Gastos">Resumen de Gastos</option>
-                                    <option value="Documento General">Documentos Generales</option>
-            </select>
-            <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
-            <div class="pt-5" style="direction: rtl;">
-            <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
-            </div>
+                @csrf
+                <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
+                    <option value="">Seleccione Categoria</option>
+                    <option value="Acta">Actas</option>
+                    <option value="Acuerdo">Acuerdos</option>
+                    <option value="Resumen Gastos">Resumen de Gastos</option>
+                    <option value="Documento General">Documentos Generales</option>
+                </select>
+                <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
+                <div class="pt-5" style="direction: rtl;">
+                    <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
+                </div>
             </form>
     </div>
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
