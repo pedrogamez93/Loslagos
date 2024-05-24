@@ -246,11 +246,8 @@ class CategoriesController extends Controller{
             $rutaCompleta = $documento->ruta_documento;
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
     
-            // Eliminar el prefijo 'public/' de la ruta si existe
-            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
-    
             // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
             Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
             // Verifica si el archivo existe
