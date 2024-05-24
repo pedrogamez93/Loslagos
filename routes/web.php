@@ -396,6 +396,7 @@ Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Cont
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
 Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
+Route::get('/gobiernoregional/dptogestionpersonas/download/{id}', 'App\Http\Controllers\CategoriesController@downloaddptogestionpersonas')->name('dptogestionpersonas.download');
 
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
