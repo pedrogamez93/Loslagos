@@ -255,34 +255,35 @@ public function store(Request $request)
     {
         // Log para depuración del nombre del archivo original
         Log::info("Nombre del archivo original: '$archivo'");
-    
+
         // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
         $archivo = trim($archivo);
         $archivo = str_replace("\t", "", $archivo);
         $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
-    
+
         // Log para depuración del nombre del archivo limpio
         Log::info("Nombre del archivo limpio: '$archivo'");
-    
+
         $rutaArchivo = "public/documentos/$archivo";
-    
+
         // Log para depuración de la ruta del archivo
         Log::info("Ruta del archivo: '$rutaArchivo'");
-    
+
+        dd($rutaArchivo);
         // Verificar si el archivo existe
         if (Storage::exists($rutaArchivo)) {
             // Obtener el contenido del archivo
             $contenido = Storage::get($rutaArchivo);
-    
+
             // Obtener el tipo MIME del archivo
             $tipoMime = Storage::mimeType($rutaArchivo);
-    
+
             // Configurar las cabeceras para la descarga
             $cabeceras = [
                 'Content-Type' => $tipoMime,
                 'Content-Disposition' => "attachment; filename=$archivo",
             ];
-    
+
             // Devolver la respuesta con el contenido del archivo y las cabeceras
             return response($contenido, 200, $cabeceras);
         } else {
