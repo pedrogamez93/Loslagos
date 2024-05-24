@@ -247,6 +247,9 @@ class CategoriesController extends Controller{
             // Log para depuración de la ruta completa almacenada
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
     
+            // Reemplazar cualquier barra invertida por barra inclinada
+            $rutaCompleta = str_replace('\\', '/', $rutaCompleta);
+    
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
     
@@ -277,7 +280,6 @@ class CategoriesController extends Controller{
         }
     }
 
-    
     public function audienciadepartesIndex() {
         // Obtener el último registro de audiencia con documentos relacionados
         $audiencia = AudienciasPartes::with('documentos')->latest()->first();
