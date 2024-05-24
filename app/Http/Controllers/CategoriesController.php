@@ -343,10 +343,10 @@ class CategoriesController extends Controller{
     
         if ($documento) {
             $rutaCompleta = $documento->urldocs; // Esta es la ruta almacenada en la base de datos
-            
+    
             // Eliminar el prefijo 'public/' de la ruta si existe
             $rutaRelativa = str_replace('public/', '', $rutaCompleta);
-            
+    
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
     
