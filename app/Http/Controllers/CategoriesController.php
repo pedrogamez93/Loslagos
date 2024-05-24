@@ -95,19 +95,23 @@ class CategoriesController extends Controller{
 
         return view('leygobiernoregional', ['ley' => $ley]);
     }
-
+    
     public function downloadLey($id)
     {
         $leyencontrado = Ley::find($id);
     
+        // Log para depuración del documento
+        Log::info("Leyes encontradas: " . json_encode($leyencontrado));
+    
         if ($leyencontrado) {
-            $rutaCompleta = storage_path('app/public' . $leyencontrado->enlacedoc);
+            $rutaCompleta = $leyencontrado->enlacedoc;
+            $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
+            
+            // Ajustar la ruta al archivo correctamente
+            $rutaArchivo = storage_path('app/public/documentos/' . $archivo);
     
-            // Log de la ruta completa para depuración
-            Log::info("Ruta completa del archivo: " . $rutaCompleta);
-    
-            if (file_exists($rutaCompleta)) {
-                return response()->download($rutaCompleta);
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
             } else {
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
