@@ -338,16 +338,30 @@ class CategoriesController extends Controller{
         // Encuentra el documento por su ID
         $documento = PlanificacionInstitucional::findOrFail($id);
     
-        // Genera la ruta completa del archivo
-        $filePath = storage_path('app/public/' . $documento->urldocs);
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
     
-        // Verifica si el archivo existe
-        if (!file_exists($filePath)) {
-            return redirect()->back()->with('error', 'El archivo no existe.');
+        if ($documento) {
+            $rutaCompleta = $documento->urldocs; // Esta es la ruta almacenada en la base de datos
+            
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
-    
-        // Devuelve el archivo para descargar
-        return response()->download($filePath, basename($filePath));
     }
     
 
