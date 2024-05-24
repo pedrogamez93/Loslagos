@@ -65,8 +65,16 @@ class DocumentonewController extends Controller
             return view('documentos.sinResultados');
         }
     
-        return view('documentos.resultados', compact('documentos'));
+        // Nueva consulta para los últimos 5 archivos
+        $ultimosDocumentos = Documentonew::where('publicacion', 'si')
+                                        ->where('portada', 'si')
+                                        ->orderBy('created_at', 'desc')
+                                        ->take(5)
+                                        ->get();
+    
+        return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
     }
+    
     
     
     

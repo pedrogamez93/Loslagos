@@ -86,18 +86,18 @@ Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->nam
 
 /*DOCUMENTOS */
 
-Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
-Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
-
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
+
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
 
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
-Route::get('/documentos/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
+Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
 /*FUNCIONARIOS */
 

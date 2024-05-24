@@ -43,9 +43,9 @@
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-    @php $contador = 0; @endphp
-@foreach($documentos as $documento) 
-    @if($documento->portada == 'si' && $contador < 5)
+  
+    @foreach ($ultimosDocumentos as $documento)
+   
         <li class="mt-3">
             <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
                 <div class="row divtitulodocsdes">
@@ -54,10 +54,13 @@
                 </div>
             </a>
         </li>
-        @php $contador++; @endphp
-    @endif
-@endforeach
+ 
 
+        @endforeach
+
+
+            
+          
 
     </div>
 </div>
@@ -102,7 +105,8 @@
                 </tbody>
             </table>
             <div class="pagination mb-5" style="justify-content: center;">
-                {{ $documentos->links() }}
+          
+                {!! $documentos->links() !!}
             </div>
         @endif
         <!-- ... tu código existente ... -->
