@@ -236,35 +236,24 @@ class CategoriesController extends Controller{
     public function downloadAsamblea($id)
     {
         // Encuentra el documento por su ID
-        $documento = AsambleaClimaticaDocs::find($id);
+        $documento = AsambleaClimaticaDocs::findOrFail($id);
     
-        // Log para depuración del documento
-        Log::info("Documento encontrado: " . json_encode($documento));
+        // Genera la ruta completa del archivo
+        $filePath = storage_path('app/public/' . $documento->ruta_documento);
     
-        if ($documento) {
-            // Obtén la ruta del documento almacenada en la base de datos
-            $rutaCompleta = $documento->ruta_documento;
-            Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
+        // Log para verificar la ruta completa
+        \Log::info('Ruta completa del archivo: ' . $filePath);
     
-            // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
-            Log::info("Ruta completa del archivo: " . $rutaArchivo);
-    
-            // Verifica si el archivo existe
-            if (file_exists($rutaArchivo)) {
-                Log::info("El archivo existe: " . $rutaArchivo);
-                return response()->download($rutaArchivo);
-            } else {
-                Log::error("El archivo no existe: " . $rutaArchivo);
-                $contenidoDirectorio = scandir(dirname($rutaArchivo));
-                Log::info("Contenido del directorio: " . json_encode($contenidoDirectorio));
-                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
-            }
-        } else {
-            Log::error("Documento no encontrado con id: " . $id);
-            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        // Verifica si el archivo existe
+        if (!file_exists($filePath) || !is_file($filePath)) {
+            \Log::error("El archivo no existe: " . $filePath);
+            return redirect()->back()->with('error', 'El archivo no existe.');
         }
+    
+        // Devuelve el archivo para descargar
+        return response()->download($filePath, basename($filePath));
     }
+    
 
     public function audienciadepartesIndex() {
         // Obtener el último registro de audiencia con documentos relacionados
