@@ -40,49 +40,63 @@ class DocumentonewController extends Controller
 
 
     public function buscar(Request $request)
-    {
-        $request->validate([
-            'tipo_documento' => 'nullable',
-            'nombre' => 'nullable',
-        ]);
-    
-        $categoria = $request->input('tipo_documento');
-        $nombre = $request->input('nombre');
-    
-        $documentos = Documentonew::query();
-    
-        if ($categoria) {
-            $documentos->where('tipo_documento', $categoria);
-        }
-    
-        if ($nombre) {
-            $documentos->where(function($query) use ($nombre) {
-                $query->where('archivo', 'LIKE', "%$nombre%")
-                      ->orWhere('tema', 'LIKE', "%$nombre%")
-                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                      ->orWhere('lugar', 'LIKE', "%$nombre%")
-                      ->orWhere('comuna', 'LIKE', "%$nombre%")
-                      ->orWhere('provincia', 'LIKE', "%$nombre%")
-                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%");
-            });
-        }
-    
-        $documentos = $documentos->paginate(15);
-    
-        if ($documentos->isEmpty()) {
-            return view('documentos.sinResultados');
-        }
-    
-        // Nueva consulta para los últimos 5 archivos
-        $ultimosDocumentos = Documentonew::where('publicacion', 'si')
-                                        ->where('portada', 'si')
-                                        ->orderBy('created_at', 'desc')
-                                        ->take(5)
-                                        ->get();
-    
-        return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
+{
+    // Validar los inputs
+    $request->validate([
+        'tipo_documento' => 'nullable',
+        'nombre' => 'nullable',
+    ]);
+
+    $categoria = $request->input('tipo_documento');
+    $nombre = $request->input('nombre');
+
+    // Log para depuración de los parámetros recibidos
+    Log::info("Parámetros de búsqueda recibidos: tipo_documento = $categoria, nombre = $nombre");
+
+    // Inicializar el query
+    $documentos = Documentonew::query();
+
+    // Aplicar filtro por categoría si está presente
+    if ($categoria) {
+        $documentos->where('tipo_documento', $categoria);
+        Log::info("Filtro aplicado: tipo_documento = $categoria");
     }
-    
+
+    // Aplicar filtro por nombre si está presente
+    if ($nombre) {
+        $documentos->where(function($query) use ($nombre) {
+            $query->where('archivo', 'LIKE', "%$nombre%")
+                  ->orWhere('tema', 'LIKE', "%$nombre%")
+                  ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
+                  ->orWhere('lugar', 'LIKE', "%$nombre%")
+                  ->orWhere('comuna', 'LIKE', "%$nombre%")
+                  ->orWhere('provincia', 'LIKE', "%$nombre%")
+                  ->orWhere('tipo_documento', 'LIKE', "%$nombre%");
+        });
+        Log::info("Filtro aplicado: nombre = $nombre");
+    }
+
+    // Paginar los resultados
+    $documentos = $documentos->paginate(15);
+    Log::info("Documentos encontrados: " . json_encode($documentos->items()));
+
+    // Verificar si la búsqueda no arrojó resultados
+    if ($documentos->isEmpty()) {
+        Log::info("No se encontraron documentos que coincidan con los criterios de búsqueda.");
+        return view('documentos.sinResultados');
+    }
+
+    // Nueva consulta para los últimos 5 archivos
+    $ultimosDocumentos = Documentonew::where('publicacion', 'si')
+                                    ->where('portada', 'si')
+                                    ->orderBy('created_at', 'desc')
+                                    ->take(5)
+                                    ->get();
+    Log::info("Últimos documentos encontrados: " . json_encode($ultimosDocumentos));
+
+    return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
+}
+
     
     
     
