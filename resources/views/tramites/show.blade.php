@@ -313,7 +313,7 @@
                                     @foreach ($tramite->documentos as $documento)
                                         @if (!empty($documento->nombre_documento) && !empty($documento->ruta_documento))
                                         <li class="mi-list mt-4">
-                                            <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank">
+                                            <a href="{{ route('downloadTramitesDigitalesDocs', $documento->id) }}" target="_blank">
                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                                 <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre_documento }}</span>
                                             </a>

@@ -262,7 +262,7 @@ Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update']
 Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
 Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
 Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
-
+Route::get('/tramites/documentos/download/{id}', 'App\Http\Controllers\TramitesDigitalesController@downloadTramitesDigitalesDocs')->name('downloadTramitesDigitalesDocs');
 //RUTAS PARA LOS EVENTOS DE LA AGENDA
 
 Route::resource('eventos', EventoController::class);
