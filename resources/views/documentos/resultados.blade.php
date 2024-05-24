@@ -89,7 +89,7 @@
                             </td>
                             <td class="colorB">
                                 <a href="{{ route('documentos.download', $documento2->id) }}">
-                                    ID: {{ $documento2->id }}<br>
+                                    Nombre de archivo: {{ $documento2->Archivo }}<br>
                                     Tipo de documento: {{ $documento2->tipo_documento }}<br>
                                     Provincia: {{ $documento2->provincia }}<br>
                                     Comuna: {{ $documento2->comuna }}<br>

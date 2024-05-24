@@ -246,52 +246,59 @@ public function store(Request $request)
     public function download($id)
     {
         $documento = Documentonew::find($id);
-        return $this->descargarArchivo($documento->nombre_archivo);
-    }
     
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            return $this->descargarArchivo($documento->archivo);
+        } else {
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
    
     
     public function descargarArchivo($archivo)
     {
         // Log para depuración del nombre del archivo original
         Log::info("Nombre del archivo original: '$archivo'");
-
+    
         // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
         $archivo = trim($archivo);
         $archivo = str_replace("\t", "", $archivo);
         $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
-
+    
         // Log para depuración del nombre del archivo limpio
         Log::info("Nombre del archivo limpio: '$archivo'");
-
-        $rutaArchivo = "public/documentos/$archivo";
-
+    
+        // Ajustar la ruta del archivo para reflejar la ubicación correcta
+        $rutaArchivo = storage_path("app/documentos/$archivo");
+    
         // Log para depuración de la ruta del archivo
         Log::info("Ruta del archivo: '$rutaArchivo'");
-
-        dd($rutaArchivo);
+    
         // Verificar si el archivo existe
-        if (Storage::exists($rutaArchivo)) {
+        if (file_exists($rutaArchivo)) {
             // Obtener el contenido del archivo
-            $contenido = Storage::get($rutaArchivo);
-
+            $contenido = file_get_contents($rutaArchivo);
+    
             // Obtener el tipo MIME del archivo
-            $tipoMime = Storage::mimeType($rutaArchivo);
-
+            $tipoMime = mime_content_type($rutaArchivo);
+    
             // Configurar las cabeceras para la descarga
             $cabeceras = [
                 'Content-Type' => $tipoMime,
                 'Content-Disposition' => "attachment; filename=$archivo",
             ];
-
+    
             // Devolver la respuesta con el contenido del archivo y las cabeceras
             return response($contenido, 200, $cabeceras);
         } else {
             // Manejar el caso en que el archivo no existe
+            Log::error("El archivo no existe: $rutaArchivo");
             return response()->json(['error' => 'El archivo no existe.'], 404);
         }
     }
-    
     
 
 
