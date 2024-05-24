@@ -236,29 +236,39 @@ class CategoriesController extends Controller{
     public function downloadAsamblea($id)
     {
         $documento = AsambleaClimaticaDocs::find($id);
-
+    
         // Log para depuración del documento
         Log::info("Documento encontrado: " . json_encode($documento));
-
+    
         if ($documento) {
             // Usar la propiedad correcta para la ruta del documento
             $rutaCompleta = $documento->ruta_documento;
-
+    
             // Log para depuración de la ruta completa almacenada
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
-
+    
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
-
+    
             // Log para depuración de la ruta completa del archivo
             Log::info("Ruta completa del archivo: " . $rutaArchivo);
-
+    
             // Verificar manualmente si el archivo existe
             if (file_exists($rutaArchivo)) {
                 Log::info("El archivo existe: " . $rutaArchivo);
+    
+                // Verificar los permisos del archivo
+                $permisos = substr(sprintf('%o', fileperms($rutaArchivo)), -4);
+                Log::info("Permisos del archivo: " . $permisos);
+    
                 return response()->download($rutaArchivo);
             } else {
                 Log::info("El archivo no existe: " . $rutaArchivo);
+    
+                // Verificar el contenido del directorio para ver si el archivo está ahí con un nombre diferente
+                $contenidoDirectorio = scandir(dirname($rutaArchivo));
+                Log::info("Contenido del directorio: " . json_encode($contenidoDirectorio));
+    
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
@@ -266,6 +276,8 @@ class CategoriesController extends Controller{
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+
+    
     public function audienciadepartesIndex() {
         // Obtener el último registro de audiencia con documentos relacionados
         $audiencia = AudienciasPartes::with('documentos')->latest()->first();
