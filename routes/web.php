@@ -409,6 +409,7 @@ Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Co
 Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controllers\CategoriesController@politicasostenibilidadhidricaIndex');
 
 Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controllers\CategoriesController@politicapersonasmayoresIndex');
+Route::get('/gobiernoregional/disenopoliticapersonasmayores/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadPoliticaPersonasMayoresDocs')->name('downloadPoliticaPersonasMayoresDocs');
 
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
 
