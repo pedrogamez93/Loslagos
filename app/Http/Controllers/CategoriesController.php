@@ -235,43 +235,32 @@ class CategoriesController extends Controller{
     
     public function downloadAsamblea($id)
     {
+        // Encuentra el documento por su ID
         $documento = AsambleaClimaticaDocs::find($id);
     
         // Log para depuración del documento
         Log::info("Documento encontrado: " . json_encode($documento));
     
         if ($documento) {
-            // Usar la propiedad correcta para la ruta del documento
+            // Obtén la ruta del documento almacenada en la base de datos
             $rutaCompleta = $documento->ruta_documento;
-    
-            // Log para depuración de la ruta completa almacenada
             Log::info("Ruta completa almacenada en la base de datos: " . $rutaCompleta);
     
-            // Reemplazar cualquier barra invertida por barra inclinada
-            $rutaCompleta = str_replace('\\', '/', $rutaCompleta);
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
     
             // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
-    
-            // Log para depuración de la ruta completa del archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
             Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
-            // Verificar manualmente si el archivo existe
+            // Verifica si el archivo existe
             if (file_exists($rutaArchivo)) {
                 Log::info("El archivo existe: " . $rutaArchivo);
-    
-                // Verificar los permisos del archivo
-                $permisos = substr(sprintf('%o', fileperms($rutaArchivo)), -4);
-                Log::info("Permisos del archivo: " . $permisos);
-    
                 return response()->download($rutaArchivo);
             } else {
-                Log::info("El archivo no existe: " . $rutaArchivo);
-    
-                // Verificar el contenido del directorio para ver si el archivo está ahí con un nombre diferente
+                Log::error("El archivo no existe: " . $rutaArchivo);
                 $contenidoDirectorio = scandir(dirname($rutaArchivo));
                 Log::info("Contenido del directorio: " . json_encode($contenidoDirectorio));
-    
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
