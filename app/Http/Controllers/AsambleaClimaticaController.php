@@ -72,11 +72,14 @@ class AsambleaClimaticaController extends Controller
                 // Procesar documentos (individuales y comprimidos)
                 $documentos = $request->file('ruta_documento');
                 $nombresDocumentos = $request->input('nombre_documento') ?? [];
-        
+            
                 foreach ($documentos ?? [] as $key => $documento) {
                     $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
-                    $rutaDocumento = $documento->store('documentosasamblea');
-        
+                    $rutaDocumento = $documento->store('public/documentosasamblea');
+            
+                    // Log para verificar la ruta del archivo almacenado
+                    \Log::info('Archivo almacenado en: ' . $rutaDocumento);
+            
                     // Almacena en la base de datos
                     AsambleaClimaticaDocs::create([
                         'asamblea_climaticas_id' => $nuevoAsamblea->id,
@@ -88,6 +91,7 @@ class AsambleaClimaticaController extends Controller
                 // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
                 \Log::error('Error al procesar documentos: ' . $e->getMessage());
             }
+            
 
             return redirect()->route('asambleaclimatica.index');
     }
@@ -161,14 +165,26 @@ class AsambleaClimaticaController extends Controller
 
         if ($request->hasFile('ruta_documento')) {
             foreach ($request->file('ruta_documento') as $key => $documento) {
-                $path = $documento->store('documentosasamblea');
-                $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
+                try {
+                    // Almacenar el archivo en el directorio 'public/documentosasamblea'
+                    $path = $documento->store('public/documentosasamblea');
+                    $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
         
-                // Actualizar o crear nuevos registros de documentos
-                AsambleaClimaticaDocs::updateOrCreate(
-                    ['asamblea_climaticas_id' => $asamblea->id, 'nombre_documento' => $nombre],
-                    ['ruta_documento' => $path, 'nombre_documento' => $nombre]
-                );
+                    // Log para verificar la ruta del archivo almacenado
+                    \Log::info('Archivo almacenado en: ' . $path);
+        
+                    // Actualizar o crear nuevos registros de documentos
+                    AsambleaClimaticaDocs::updateOrCreate(
+                        ['asamblea_climaticas_id' => $asamblea->id, 'nombre_documento' => $nombre],
+                        ['ruta_documento' => $path, 'nombre_documento' => $nombre]
+                    );
+        
+                    // Log para verificar la operación de base de datos
+                    \Log::info('Documento actualizado/creado: ' . $nombre);
+                } catch (\Exception $e) {
+                    // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+                    \Log::error('Error al procesar documentos: ' . $e->getMessage());
+                }
             }
         }
 
