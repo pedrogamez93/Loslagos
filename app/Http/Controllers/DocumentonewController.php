@@ -209,6 +209,7 @@ class DocumentonewController extends Controller
         return view('documentos.show', compact('documento'));
     }
 
+    
     public function indexTabla()
     {
         // Obtener todos los documentos con las relaciones cargadas
