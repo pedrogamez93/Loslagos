@@ -59,7 +59,7 @@ class DocumentonewController extends Controller
             $documentos->where(function($query) use ($nombre) {
                 $query->where('archivo', 'LIKE', "%$nombre%")
                       ->orWhere('tema', 'LIKE', "%$nombre%")
-                      ->orWhere('numero', 'LIKE', "%$nombre%")
+                      ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
                       ->orWhere('lugar', 'LIKE', "%$nombre%")
                       ->orWhere('comuna', 'LIKE', "%$nombre%")
                       ->orWhere('provincia', 'LIKE', "%$nombre%")
