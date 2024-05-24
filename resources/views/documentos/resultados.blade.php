@@ -27,13 +27,13 @@
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
          <form action="{{ url('/documentos/buscar') }}" method="POST">
-         @csrf
+            @csrf
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
             <option value="">Seleccione Categoria</option>
             <option value="Acta">Actas</option>
                                     <option value="Acuerdo">Acuerdos</option>
                                     <option value="Resumen Gastos">Resumen de Gastos</option>
-                                    <option value="Documento General">Documento General</option>
+                                    <option value="Documento General">Documentos Generales</option>
             </select>
             <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
             <div class="pt-5" style="direction: rtl;">
