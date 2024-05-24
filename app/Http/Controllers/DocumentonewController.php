@@ -67,13 +67,7 @@ class DocumentonewController extends Controller
             });
         }
     
-        // Obtener los resultados
-    $resultados = $documentos->paginate(10);
-
-    // Log para depuración de los resultados encontrados
-    Log::info("Documentos encontrados: " . json_encode($resultados));
-
-   
+        $documentos = $documentos->paginate(15);
     
         if ($documentos->isEmpty()) {
             return view('documentos.sinResultados');
@@ -86,8 +80,7 @@ class DocumentonewController extends Controller
                                         ->take(5)
                                         ->get();
     
-        // Devolver la vista con los resultados
-    return view('documentos.resultados', compact('resultados'));
+        return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
     }
     
     
