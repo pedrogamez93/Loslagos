@@ -85,10 +85,13 @@ Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.bann
 Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
 /*DOCUMENTOS */
+
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
+
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
-Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
+
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');

@@ -7,7 +7,6 @@ use App\Models\Documentonew;
 use App\Models\Acta;
 use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
-use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
@@ -40,17 +39,46 @@ class DocumentonewController extends Controller
     }
 
 
-
+    public function buscar(Request $request)
+    {
+        $request->validate([
+            'tipo_documento' => 'nullable',
+            'nombre' => 'nullable',
+        ]);
+    
+        $categoria = $request->input('tipo_documento');
+        $nombre = $request->input('nombre');
+    
+        $documentos = Documentonew::query();
+    
+        if ($categoria) {
+            $documentos->where('tipo_documento', $categoria);
+        }
+    
+        if ($nombre) {
+            $documentos->where('archivo', 'LIKE', "%$nombre%");
+        }
+    
+        $documentos = $documentos->paginate(52);
+    
+        if ($documentos->isEmpty()) {
+            return view('documentos.sinResultados');
+        }
+    
+        return view('documentos.resultados', compact('documentos'));
+    }
+    
+    
     
 public function store(Request $request)
 {
-
-    
- 
     try {
+
+        
         // Iniciar una transacción
         DB::beginTransaction();
-
+    
+       
         $archivoPath = null; // Inicializa la variable $archivoPath
 
         if ($request->hasFile('archivo')) {
@@ -63,29 +91,25 @@ public function store(Request $request)
             ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
         ));
 
+
         // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
         switch ($request->tipo_documento) {
             case 'Actas':
-                $lastActaId = Acta::max('id') + 1;
-                $acta = new Acta(['id' => $lastActaId,'documentonew_id' => $documento->id]);
+                $acta = new Acta(['documentonew_id' => $documento->id]);
                 $acta->save();
                 // Establece la relación en el modelo Documentonew
                 $documento->acta()->save($acta);
                 break;
 
             case 'Acuerdos':
-                $lastAcuerdoId = Acuerdo::max('id') + 1;
-                $acuerdo = new Acuerdo(['id' => $lastAcuerdoId,'documentonew_id' => $documento->id]);
+                $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
                 $acuerdo->save();
                 // Establece la relación en el modelo Documentonew
                 $documento->acuerdo()->save($acuerdo);
                 break;
 
                 case 'Resumengastos':
-
-                    $lastResumengastosId = ResumenGastos::max('id') + 1;
                     $resumengastos = new ResumenGastos([
-                        'id' => $lastResumengastosId,
                         'documentonew_id' => $documento->id,
                         'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
                         'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
@@ -99,10 +123,7 @@ public function store(Request $request)
                 
 
                 case 'Documentogeneral':
-
-                    $lastDocumentogeneralId = DocumentoGeneral::max('id') + 1;
                     $documentogeneral = new DocumentoGeneral([
-                        'id' => $lastDocumentogeneralId,
                         'documentonew_id' => $documento->id,
                         'categoria' => $request->input('categoria'),
                         'titulo' => $request->input('titulo'),
@@ -154,7 +175,7 @@ public function store(Request $request)
     {
         // Obtener todos los documentos con las relaciones cargadas
         $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
-                    ->paginate(15);
+                    ->paginate(10);
     
         // Retornar la vista con los documentos para mostrar en la tabla
         return view('documentos.tabladocumentos', compact('documentos'));
@@ -215,106 +236,49 @@ public function store(Request $request)
     }
 
     public function download($id)
-{
-    // Busca el documento por su ID
-    $documento = Documentonew::findOrFail($id);
+    {
+        $documento = Documentonew::findOrFail($id);
 
-    // Obtiene la ruta completa del archivo en el almacenamiento
-    $filePath = storage_path('app/documentos/' . $documento->archivo);
+        // Obtener la ruta del archivo almacenado en storage
+        $filePath = storage_path("app/public/{$documento->archivo}");
 
-    // Verifica si el archivo existe
-    if (file_exists($filePath)) {
-        // Retorna la respuesta de descarga
-        return response()->download($filePath, basename($documento->archivo));
-    } else {
-        // Redirige de vuelta con un mensaje de error si el archivo no existe
-        return redirect()->back()->with('error', 'El archivo no existe.');
+        // Verificar si el archivo existe
+        if (Storage::exists("public/{$documento->archivo}")) {
+            // Descargar el archivo
+            return response()->download($filePath, $documento->archivo);
+        } else {
+            // Manejar el caso en el que el archivo no existe
+            return redirect()->back()->with('error', 'El archivo no existe.');
+        }
     }
-}
-
+   
     
-
-    
-
-public function buscar(Request $request)
-{
-    // Validación de la entrada del usuario
-    $request->validate([
-        'tipo_documento' => 'nullable',
-        'nombre' => 'nullable',
-    ]);
-
-    // Obtén las entradas del usuario tal como se ingresaron
-    $categoria = $request->input('tipo_documento');
-    $nombre = $request->input('nombre');
-
-    // Crear la consulta base
-    $documentos = Documentonew::query();
-
-    // Si hay una categoría, filtra por ella
-    if ($categoria) {
-        $documentos->where('tipo_documento', $categoria);
-    }
-
-    // Si hay un nombre, añade filtros de búsqueda
-    if ($nombre) {
-        $documentos->where(function ($query) use ($nombre) {
-            $query->where('archivo', 'LIKE', "%$nombre%")
-                  ->orWhere('tipo_documento', 'LIKE', "%$nombre%")
-                  ->orWhere('tema', 'LIKE', "%$nombre%")
-                  ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                  ->orWhere('provincia', 'LIKE', "%$nombre%")
-                  ->orWhere('comuna', 'LIKE', "%$nombre%");
-        });
-    }
-
-    // Clonar la consulta antes de la paginación
-    $documentos2 = clone $documentos;
-
-    // Añadir logs de depuración
-    Log::info("Buscar documentos con categoría: " . json_encode($categoria) . " y nombre: " . json_encode($nombre));
-
-    // Paginación
-    $documentos = $documentos->paginate(12);
-
-    // Si no se encuentran documentos, registrar en log y mostrar vista de sin resultados
-    if ($documentos->isEmpty()) {
-        Log::info("No se encontraron documentos para la búsqueda con categoría: " . json_encode($categoria) . " y nombre: " . json_encode($nombre));
-        return view('documentos.sinResultados');
-    }
-
-    // Devolver la vista con los documentos encontrados
-    return view('documentos.resultados', compact('documentos', 'documentos2'));
-}
 
     public function descargarArchivo($archivo)
-{
-    // Define la ruta del archivo en el almacenamiento
-    $rutaArchivo = "public/documentos/$archivo";
-
-    // Verifica si el archivo existe en el almacenamiento
-    if (Storage::exists($rutaArchivo)) {
-        // Obtén el contenido del archivo
-        $contenido = Storage::get($rutaArchivo);
-
-        // Obtén el tipo MIME del archivo
-        $tipoMime = Storage::mimeType($rutaArchivo);
-
-        // Configura las cabeceras para la descarga
-        $cabeceras = [
-            'Content-Type' => $tipoMime,
-            'Content-Disposition' => "attachment; filename=\"$archivo\"",
-        ];
-
-        // Devuelve la respuesta con el contenido del archivo y las cabeceras
-        return response($contenido, 200, $cabeceras);
-    } else {
-        // Maneja el caso en que el archivo no existe
-        return redirect()->back()->with('error', 'El archivo no existe.');
-    }
-}
-
+    {
+        $rutaArchivo = "public/documentos/$archivo";
     
+        // Verificar si el archivo existe
+        if (Storage::exists($rutaArchivo)) {
+            // Obtener el contenido del archivo
+            $contenido = Storage::get($rutaArchivo);
+    
+            // Obtener el tipo MIME del archivo
+            $tipoMime = Storage::mimeType($rutaArchivo);
+    
+            // Configurar las cabeceras para la descarga
+            $cabeceras = [
+                'Content-Type' => $tipoMime,
+                'Content-Disposition' => "attachment; filename=$archivo",
+            ];
+    
+            // Devolver la respuesta con el contenido del archivo y las cabeceras
+            return response($contenido, 200, $cabeceras);
+        } else {
+            // Manejar el caso en que el archivo no existe
+            return response()->json(['error' => 'El archivo no existe.'], 404);
+        }
+    }
 
 
 }

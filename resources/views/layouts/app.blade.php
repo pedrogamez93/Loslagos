@@ -491,7 +491,36 @@
   });
 </script>
 
+<script>
+       $(document).ready(function () {
+            // Función para limpiar el texto
+            function limpiarTexto(texto) {
+                return texto.replace(/\\\\r\\\\n\\\\r\\\\n/g, "<br>").replace(/\\\\n/g, "<br>").replace(/\\\\r/g, "<br>");
+            }
 
+            // Función para recorrer todos los nodos de texto y limpiarlos
+            function limpiarNodosDeTexto(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const textoLimpio = limpiarTexto(node.textContent);
+                    const fragmento = document.createDocumentFragment();
+                    textoLimpio.split("<br>").forEach((parte, index) => {
+                        if (index > 0) {
+                            fragmento.appendChild(document.createElement('br'));
+                        }
+                        fragmento.appendChild(document.createTextNode(parte));
+                    });
+                    node.parentNode.replaceChild(fragmento, node);
+                } else {
+                    $(node).contents().each(function() {
+                        limpiarNodosDeTexto(this);
+                    });
+                }
+            }
+
+            // Iniciar la limpieza desde el body
+            limpiarNodosDeTexto(document.body);
+        });
+    </script>
    
 
     <script>

@@ -406,33 +406,19 @@ public function buscador(Request $request)
 {
     $query = $request->input('q');
 
-    // Convertir la consulta a minúsculas (puedes usar strtoupper para convertir a mayúsculas)
+    // Convertir la consulta a minúsculas
     $queryLower = strtolower($query);
 
-   // Pagina los resultados de cada tabla por separado
-$resultados1 = Salaprensa::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(categoria) like ?', ["%$queryLower%"])
-->paginate(10);
+    // Buscar en la tabla Salaprensa
+    $resultados = Salaprensa::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
+        ->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
+        ->orWhereRaw('LOWER(categoria) like ?', ["%$queryLower%"])
+        ->paginate(10);
 
-$resultados2 = TramitesDigitales::whereRaw('LOWER(titulo) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(tags) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(descripcion) like ?', ["%$queryLower%"])
-->paginate(10);
-
-$resultados3 = Documentonew::whereRaw('LOWER(tipo_documento) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(provincia) like ?', ["%$queryLower%"])
-->orWhereRaw('LOWER(comuna) like ?', ["%$queryLower%"])
-->paginate(10);
-
-// Combina los resultados paginados de todas las tablas en una sola colección
-$resultados = $resultados1->merge($resultados2)->merge($resultados3);
-
-// Redirige a la vista 'buscador' con los resultados paginados y la variable $query
-return view('home.buscador', ['resultados' => $resultados, 'query' => $query]);
-
-
+    // Redirigir a la vista 'buscador' con los resultados paginados y la variable $query
+    return view('home.buscador', ['resultados' => $resultados, 'query' => $query]);
 }
+
 
 
 

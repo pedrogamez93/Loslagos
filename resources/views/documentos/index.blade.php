@@ -25,7 +25,7 @@
             @csrf
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
-                <option value="Acta">Actas</option>
+                                    <option value="Acta">Actas</option>
                                     <option value="Acuerdo">Acuerdos</option>
                                     <option value="Resumen Gastos">Resumen de Gastos</option>
                                     <option value="Documento General">Documento General</option>
@@ -45,6 +45,7 @@
 @foreach($documentos as $documento)
     @if($documento->portada == 'si')
         @if($contador < 5)
+        
             <li class="mt-3">
                 <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
                     <div class="row divtitulodocsdes">

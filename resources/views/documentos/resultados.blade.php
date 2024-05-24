@@ -29,10 +29,10 @@
          <form action="{{ url('/documentos/buscar') }}" method="POST">
          @csrf
             <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-            <option value="Acta">Actas</option>
-                                    <option value="Acuerdo">Acuerdos</option>
-                                    <option value="Resumen Gastos">Resumen de Gastos</option>
-                                    <option value="Documento General">Documento General</option>
+            <option value="Actas">Actas</option>
+                                    <option value="Acuerdos">Acuerdos</option>
+                                    <option value="Resumengastos">Resumen de Gastos</option>
+                                    <option value="Documentogeneral">Documento General</option>
             </select>
             <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
             <div class="pt-5" style="direction: rtl;">
@@ -43,29 +43,21 @@
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-    <ul class="list-unstyled">
     @php $contador = 0; @endphp
-        @foreach($documentos2->get() as $documento)
-            @if($documento->portada == 'si')
-                @if($contador < 5)
-                    <li class="mt-3">
-                        <a href="{{ route('documentos.download', $documento->id) }}">
-                            <div class="row divtitulodocsdes">
-                                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                                <p>{{ $documento->archivo }}</p>
-                            </div>
-                        </a>
-                    </li>
-                    @php $contador++; @endphp
-                @else
-                    @break
-                @endif
-            @endif
-        @endforeach
+@foreach($documentos as $documento) 
+    @if($documento->portada == 'si' && $contador < 5)
+        <li class="mt-3">
+            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+                <div class="row divtitulodocsdes">
+                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                    <p>{{ $documento->archivo }}</p>
+                </div>
+            </a>
+        </li>
+        @php $contador++; @endphp
+    @endif
+@endforeach
 
-
-
-        </ul>
 
     </div>
 </div>
@@ -73,8 +65,6 @@
     <div style="padding-right: 10rem!important;
     padding-left: 10rem!important;">
         <!-- ... tu código existente ... -->
-
-
         @if($documentos->isEmpty())
             <p>No se encontraron documentos que coincidan con los criterios de búsqueda.</p>
         @else
@@ -84,34 +74,37 @@
                         <th class="colorB"></th>
                         <th class="colorB"></th>
                         <th class="colorB"></th>
-                      
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($documentos as $documento2)
-                <tr>
-                    <td class="colorB">
-                        <a href="{{ route('documentos.download', $documento2->id) }}">
-                            <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
-                        </a>
-                    </td>
-                    <td class="colorB">
-                        <a href="{{ route('documentos.download', $documento2->id) }}">
-                            {{ $documento2->id }} {{ $documento2->tipo_documento }}
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-
-
-
+                    @foreach($documentos as $documento2)
+                        <tr>
+                            <td class="colorB" style="padding-top: 4%;">
+                                <a href="{{ route('documentos.download', $documento2->id) }}">
+                                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
+                                </a>
+                            </td>
+                            <td class="colorB">
+                                <a href="{{ route('documentos.download', $documento2->id) }}">
+                                    ID: {{ $documento2->id }}<br>
+                                    Tipo de documento: {{ $documento2->tipo_documento }}<br>
+                                    Provincia: {{ $documento2->provincia }}<br>
+                                    Comuna: {{ $documento2->comuna }}<br>
+                                    Tema: {{ $documento2->tema }}<br>
+                                    Fecha: {{ date('Y-m-d', strtotime($documento2->fecha_hora)) }}<br>
+                                    Lugar: {{ $documento2->lugar ?? 'N/A' }}<br>
+                                    Número de sesión: {{ $documento2->numero_sesion }}<br>
+                                    Fecha y hora de sesión: {{ date('Y-m-d', strtotime($documento2->fecha_hora_sesion)) }}<br>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            <div class="pagination mb-5" style="justify-content: center;">
+                {{ $documentos->links() }}
+            </div>
         @endif
-
-        <div class="pagination mb-5 " style="justify-content: center;">
-        {{ $documentos->links('pagination::bootstrap-4') }}
-    </div>
         <!-- ... tu código existente ... -->
     </div>
 
