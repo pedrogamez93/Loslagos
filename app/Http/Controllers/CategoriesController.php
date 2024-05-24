@@ -232,6 +232,23 @@ class CategoriesController extends Controller{
         // Pasa la información a la vista
         return view('asambleaclimatica', ['asamblea' => $asamblea]);
     }
+    
+    public function downloadAsamblea($id)
+    {
+        // Encuentra el documento por su ID
+        $documento = AsambleaClimaticaDocs::findOrFail($id);
+
+        // Genera la ruta completa del archivo
+        $filePath = storage_path('app/public/' . $documento->ruta);
+
+        // Verifica si el archivo existe
+        if (!file_exists($filePath)) {
+            return redirect()->back()->with('error', 'El archivo no existe.');
+        }
+
+        // Devuelve el archivo para descargar
+        return response()->download($filePath, basename($filePath));
+    }
 
     public function audienciadepartesIndex() {
         // Obtener el último registro de audiencia con documentos relacionados

@@ -401,6 +401,7 @@ Route::get('/gobiernoregional/dptogestionpersonas/download/{id}', 'App\Http\Cont
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
+Route::get('/gobiernoregional/asambleaclimatica/download/{id}', 'App\Http\Controllers\CategoriesController@downloadAsamblea')->name('downloadAsamblea');
 
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
