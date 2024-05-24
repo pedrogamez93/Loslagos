@@ -492,10 +492,10 @@
 </script>
 
 <script>
-      $(document).ready(function () {
+       $(document).ready(function () {
             // Función para limpiar el texto
             function limpiarTexto(texto) {
-                return texto.replace(/\\r\\n/g, "<br>").replace(/\\n/g, "<br>").replace(/\\r/g, "<br>");
+                return texto.replace(/\\\\r\\\\n\\\\r\\\\n/g, "<br>").replace(/\\\\r\\\\n/g, "<br>").replace(/\\\\n/g, "<br>").replace(/\\\\r/g, "<br>");
             }
 
             // Función para recorrer todos los nodos de texto y limpiarlos
@@ -507,7 +507,7 @@
                         if (index > 0) {
                             fragmento.appendChild(document.createElement('br'));
                         }
-                        fragmento.appendChild(document.createTextNode(parte));
+                        fragmento.appendChild(document.createTextNode(parte.replace(/\\/g, '')));
                     });
                     node.parentNode.replaceChild(fragmento, node);
                 } else {
