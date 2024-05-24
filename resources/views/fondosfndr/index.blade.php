@@ -96,9 +96,7 @@
             <thead>
                 <tr>
                     <th>Título</th>
-                    <th>Bajada</th>
-                    <th>Descripción</th>
-                    <th>Nota</th>
+                
                     <th>Acciones</th> <!-- Nueva columna para acciones -->
                 </tr>
             </thead>
@@ -106,14 +104,10 @@
                 @foreach ($fondos as $fondo)
                     <tr>
                         <td>{{ $fondo->titulo }}</td>
-                        <td>{{ $fondo->bajada }}</td>
-
-                        <td>{!! $fondo->descripcion ?? '' !!}</td>
-
-                        <td>{!! $fondo->nota ?? '' !!}</td>
+                       
 
                         <td>
-                            <a href="{{ route('fondosfndr.edit', $fondo) }}" class="btn btn-primary mb-2">Editar</a>
+                            <a href="{{ route('fondosfndr.edit', $fondo) }}" class="btn btn-primary">Editar</a>
                             <form action="{{ route('fondosfndr.destroy', $fondo) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

@@ -21,9 +21,7 @@
         display: flex; 
     }
 
-    nav li {
-        margin-right: 20px; 
-    }
+   
 
     nav a {
         text-decoration: none; 
@@ -253,11 +251,32 @@
     color: #565656; 
     
     }
+    .fotografias-coleccion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.coleccion-item {
+    width: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 10px; /* Espacio entre las imágenes */
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100px; /* Altura fija */
+    object-fit: cover; /* Ajuste de imagen */
+}
 </style>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Región de los Lagos</title>
+    <title>Programas</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 
@@ -303,7 +322,6 @@
             <div class="col-md-7 borde">
                     <div id="contenidoPrincipal">
                         <div class=""> {!! $programa->bajada_programa ?? '' !!} </div>
-                        <p>{!! $programa->bajada_programa ?? '' !!}</p>
                        
 
                         <!--ACORDEON DESCRIPCIONES-->
@@ -313,11 +331,13 @@
                                     <div class="accordion-item">
                                                 <h2 class="accordion-header" id="headingOne">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                {{ $descripcion->titulo_descripcion }}                                </button>
+                                                
+                                                <div class=""><p> {!! $descripcion->titulo_descripcion ?? '' !!} </p></div>                                </button>
                                                 </h2>
                                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    {{ $descripcion->bajada_descripcion }}
+                                                    
+                                                    <div class=""><p> {!! $descripcion->bajada_descripcion ?? '' !!} </p></div>    
                                                 </div>
                                             </div>
                                     </div>
@@ -330,12 +350,11 @@
                         <h2 class="title-doc-fot">Documentos</h2>
                         <div class="container">
                             <div class="row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                                @foreach($programaDocumentos as $doc)
-                                <div class="col" style="display: flex;">
-                                    <img src="" alt="icon">
-                                    <a download href="{{ $doc->urlDocumento }}">{{ $doc->nombreDocumento }} </a>
-                                </div>
-                                @endforeach
+                            @foreach($programaDocumentos as $doc)
+    <div class="col" style="display: flex;">
+        <a href="{{ Storage::url($doc->urlDocumento) }}" download>{{ $doc->nombreDocumento }}</a>
+    </div>
+@endforeach
                             </div>
                         </div>
                     </div>
@@ -345,23 +364,16 @@
                         <h2 class="title-doc-fot">Fotografías</h2>
 
                         @foreach($programa->colecciones as $coleccion)
-                            <div class="fotografias-coleccion">
-                                <div class="coleccion-item">
-                                <h5 class="titulo-coleccion mb-4" onclick="mostrarFotografias(this)">{{ $coleccion->titulo_coleccion }}</h5>
-
-                                    @if(count($coleccion->fotografias) > 0)
-                                    <img src="{{ asset($coleccion->fotografias[0]->ruta) }}" alt="Fotografía" style=" height:100px;">
-                                    @endif
-
-
-                                    @if(count($coleccion->fotografias) > 1)
-                                        @foreach($coleccion->fotografias->slice(1) as $fotografia)
-                                        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía" style=" height:100px;margin: 10px 0;;">
-                                        @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
+        <div class="coleccion-item">
+            <div class="grid-container">
+                @foreach($coleccion->fotografias as $fotografia)
+                    <div class="grid-item">
+                        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía" style="width: 100%; height: auto;">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
                     </div>
 
                     

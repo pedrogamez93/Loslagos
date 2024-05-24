@@ -27,7 +27,7 @@ class FormController extends Controller
 
 public function store (Request $request)
     {
-        
+        //dd($request->all());
         $data = $request->validate([
         'nombre' => 'required',
         'apellido' => 'required',

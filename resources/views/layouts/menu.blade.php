@@ -324,43 +324,44 @@
                                     </div>
                                 </div>
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsenine" aria-expanded="false" aria-controls="flush-collapsenine">
-                                        Programas
-                                    </button>
-                                    </h2>
-                                    <div id="flush-collapsenine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li class="style-li" >
-                                                <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsenine" aria-expanded="false" aria-controls="flush-collapsenine">
-                                        Fondos 
-                                    </button>
-                                    </h2>
-                                    <div id="flush-collapsenine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li class="style-li" >
-                                                <a class="style-a-menu" href="{{ url('/fondosfndr') }}">Todos los Fondos</a>
-                                            </li>
-                                            <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/fondosfndr/create') }}">Nuevo Fondo</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    </div>
-                                </div>
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseProgramas" aria-expanded="false" aria-controls="flush-collapseProgramas">
+            Programas
+        </button>
+    </h2>
+    <div id="flush-collapseProgramas" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+            <ul>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/programas') }}">Todos los Programas</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/programas/create') }}">Nuevo Programa</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFondos" aria-expanded="false" aria-controls="flush-collapseFondos">
+            Fondos
+        </button>
+    </h2>
+    <div id="flush-collapseFondos" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+            <ul>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/fondosfndr') }}">Todos los Fondos</a>
+                </li>
+                <li class="style-li">
+                    <a class="style-a-menu" href="{{ url('/fondosfndr/create') }}">Nuevo Fondo</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapstenP" aria-expanded="false" aria-controls="flush-collapstenP">

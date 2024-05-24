@@ -719,10 +719,10 @@ Route::resource('preguntas-frecuentes', PreguntasFrecuentesController::class);
 //Route::get('/preguntas-frecuentes/{id}', [PreguntasFrecuentes::class, 'show'])->name('preguntas-frecuentes.show');
 //Route::resource('preguntas', PreguntaController::class);
 
-Route::get('/preguntas', [PreguntaController::class, 'index']);
-Route::resource('preguntas', PreguntaController::class);
+Route::get('/preguntas', [PreguntaController::class, 'index'])->middleware('auth')->middleware('auth');
+Route::resource('preguntas', PreguntaController::class)->middleware('auth');
 
-Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit');
+Route::get('/preguntas/{pregunta}/edit', [PreguntaController::class, 'edit'])->name('preguntas.edit')->middleware('auth');
 
 Route::get('/preguntasfrecuentes', 'App\Http\Controllers\PreguntasFrecuentesController@preguntasfrecuentesIndex');
 
@@ -732,9 +732,9 @@ Route::get('/contactanos', 'App\Http\Controllers\FormController@index')->name('c
     //PROCESAR FORMULARIO Y ENVIAR CORREO ELECTRONICO
 Route::post('/contactanos/store', 'App\Http\Controllers\FormController@store')->name('contactanos.store');
     //FORMULARIOS ENVIADOS BACKEND
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
 
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
 Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulario'])->name('detalle.formulario');
 Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
     //DESCARGAR FORMULARIOS CSV
@@ -750,14 +750,14 @@ Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name(
 
 
 
-Route::resource('homefndr', HomefndrController::class);
+Route::resource('homefndr', HomefndrController::class)->middleware('auth');
 
 
 // Ruta para mostrar el formulario de edición
-Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit');
+Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::class, 'edit'])->name('homefndr.edit')->middleware('auth');
 
 // Ruta para procesar el formulario de edición y actualizar el registro
-Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update');
+Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update')->middleware('auth');
 
 Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
 Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');
