@@ -156,15 +156,14 @@
         <div class="mt-5 pb-5">
     <div id="thumbnail-slider" class="carousel">
     @foreach($salaprensa as $registro)
-        <div class="carousel-item" style="position: relative;">
-            <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
-            <div class="carousel-caption">
-            <p style="" class="tituloprensa">{{ implode(' ', array_slice(str_word_count($registro->titulo, 1), 0, 5)) }}</p>
-            
+    <div class="carousel-item" style="position: relative;">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($registro->archivo_path)]) }}" class="img-fluid imagen-con-brillo" alt="{{ $registro->titulo }}" style="width: 300px; height: 292px; border-radius: 18px;">
+        <div class="carousel-caption">
+            <p class="tituloprensa">{{ Str::limit($registro->titulo, 50, '...') }}</p>
             <a href="{{ route('salaprensa.show', ['id' => $registro->id]) }}" style="right: 1px; bottom: 0px; position: absolute;" class="irnoticia" tabindex="-1">Ir ahora <i class="bi bi-arrow-right"></i></a>
-            </div>
         </div>
-    @endforeach
+    </div>
+@endforeach
 </div>
 
 
