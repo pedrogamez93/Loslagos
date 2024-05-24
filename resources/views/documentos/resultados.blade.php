@@ -98,7 +98,7 @@
                                     Fecha: {{ date('Y-m-d', strtotime($documento2->fecha_hora)) }}<br>
                                     Lugar: {{ $documento2->lugar ?? 'N/A' }}<br>
                                     Número de sesión: {{ $documento2->numero_sesion }}<br>
-                                    Fecha y hora de sesión: {{ date('Y-m-d', strtotime($documento2->fecha_hora_sesion)) }}<br>
+                                    
                                 </a>
                             </td>
                         </tr>
