@@ -54,7 +54,7 @@ class DptoGestionPersonasController extends Controller{
             $nombres = $request->input('nombres');
     
             foreach ($documentos as $key => $documento) {
-                $path = $documento->store('public/documentos/dptogestionpersonas');
+                $path = $documento->store('public/documentos');
                 $nombre = $nombres[$key]; // Obtenemos el nombre correspondiente
     
                 $departamento->documentos()->create([
@@ -101,7 +101,7 @@ class DptoGestionPersonasController extends Controller{
             $nombres = $request->input('nombres');
 
             foreach ($documentos as $key => $documento) {
-                $path = $documento->store('public/documentos/dptogestionpersonas');
+                $path = $documento->store('public/documentos');
                 $nombre = $nombres[$key]; // Obtenemos el nombre correspondiente
 
                 // Aquí, en lugar de crear, puedes querer actualizar o crear nuevos registros
