@@ -74,7 +74,7 @@
                                     <strong>Comuna:</strong> {{ $resultado->comuna }}<br>
                                 </p>
                                 <!-- Asumiendo que tienes una ruta show para Documentonew -->
-                                <a href="{{ route('documentonew.show', ['id' => $resultado->id]) }}" class="btn btn-primary">Ir al documento</a>
+                                <a href="{{ route('documentonew.show', ['id' => $resultado->id]) }}" class="btn ">Ir al documento</a>
                             @endif
                         </div>
                     </div>
