@@ -12,6 +12,7 @@ class Acta extends Model
     protected $table = 'actas';  // Asumiendo que la tabla de actas se llama 'actas'
 
     protected $fillable = [
+        'id',
         'documentonew_id', // Asegúrate de incluir la clave foránea
         // Agrega aquí los campos específicos de la tabla 'actas'
     ];

@@ -104,7 +104,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Tu Título Aquí</title>
+        <title>Consejo Regional</title>
     </head>
     <body>
         @extends('layouts.app')

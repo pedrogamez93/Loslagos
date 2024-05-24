@@ -13,6 +13,7 @@ class ResumenGastos extends Model{
     protected $table = 'resumen_gastos';  
 
     protected $fillable = [
+        'id',
         'documentonew_id',
         'nombre',
         'portada',

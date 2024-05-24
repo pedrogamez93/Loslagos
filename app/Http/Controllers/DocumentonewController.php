@@ -10,7 +10,7 @@ use App\Models\ResumenGastos;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class DocumentonewController extends Controller
@@ -39,7 +39,65 @@ class DocumentonewController extends Controller
     }
 
 
-
+    public function buscar(Request $request)
+    {
+        $request->validate([
+            'tipo_documento' => 'nullable|string',
+            'nombre' => 'nullable|string',
+        ]);
+    
+        $categoria = trim($request->input('tipo_documento'));
+        $nombre = trim($request->input('nombre'));
+    
+        // Log para depuración de los parámetros recibidos
+        Log::info("Parámetros de búsqueda recibidos: tipo_documento = '$categoria', nombre = '$nombre'");
+    
+        // Inicializar el query
+        $documentos = Documentonew::query();
+    
+        // Aplicar filtro por categoría si está presente
+        if ($categoria) {
+            $documentos->whereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($categoria) . '%']);
+            Log::info("Filtro aplicado: tipo_documento = $categoria");
+        }
+    
+        // Aplicar filtro por nombre si está presente
+        if ($nombre) {
+            $documentos->where(function($query) use ($nombre) {
+                $query->whereRaw('LOWER(archivo) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(tema) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('CAST(numero_sesion AS TEXT) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(lugar) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(comuna) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(provincia) LIKE ?', ['%' . strtolower($nombre) . '%'])
+                      ->orWhereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($nombre) . '%']);
+            });
+            Log::info("Filtro aplicado: nombre = $nombre");
+        }
+    
+        // Paginar los resultados
+        $documentos = $documentos->paginate(15);
+        Log::info("Documentos encontrados: " . json_encode($documentos->items()));
+    
+        // Verificar si la búsqueda no arrojó resultados
+        if ($documentos->isEmpty()) {
+            Log::info("No se encontraron documentos que coincidan con los criterios de búsqueda.");
+            return view('documentos.sinResultados');
+        }
+    
+        // Nueva consulta para los últimos 5 archivos
+        $ultimosDocumentos = Documentonew::where('publicacion', 'si')
+                                        ->where('portada', 'si')
+                                        ->orderBy('created_at', 'desc')
+                                        ->take(5)
+                                        ->get();
+        Log::info("Últimos documentos encontrados: " . json_encode($ultimosDocumentos));
+    
+        return view('documentos.resultados', compact('documentos', 'ultimosDocumentos'));
+    }
+    
+    
+    
     
 public function store(Request $request)
 {
@@ -208,59 +266,45 @@ public function store(Request $request)
 
     public function download($id)
     {
-        $documento = Documentonew::findOrFail($id);
-
-        // Obtener la ruta del archivo almacenado en storage
-        $filePath = storage_path("app/public/{$documento->archivo}");
-
-        // Verificar si el archivo existe
-        if (Storage::exists("public/{$documento->archivo}")) {
-            // Descargar el archivo
-            return response()->download($filePath, $documento->archivo);
+        $documento = Documentonew::find($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            return $this->descargarArchivo($documento->archivo);
         } else {
-            // Manejar el caso en el que el archivo no existe
-            return redirect()->back()->with('error', 'El archivo no existe.');
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
-
-    public function buscar(Request $request)
-    {
-        $request->validate([
-            'tipo_documento' => 'nullable',
-            'nombre' => 'nullable',
-        ]);
+   
     
-        $categoria = $request->input('tipo_documento');
-        $nombre = $request->input('nombre');
-    
-        $documentos = Documentonew::where('tipo_documento', $categoria);
-    
-        if ($nombre) {
-            $documentos->where('archivo', 'LIKE', "%$nombre%");
-        }
-    
-        $documentos = $documentos->get();
-    
-        if ($documentos->isEmpty()) {
-            // No se encontraron resultados, puedes redirigir o mostrar un mensaje en la vista
-            return view('documentos.sinResultados');
-        }
-    
-        return view('documentos.resultados', compact('documentos'));
-    }
-    
-
     public function descargarArchivo($archivo)
     {
-        $rutaArchivo = "public/documentos/$archivo";
+        // Log para depuración del nombre del archivo original
+        Log::info("Nombre del archivo original: '$archivo'");
+    
+        // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
+        $archivo = trim($archivo);
+        $archivo = str_replace("\t", "", $archivo);
+        $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
+    
+        // Log para depuración del nombre del archivo limpio
+        Log::info("Nombre del archivo limpio: '$archivo'");
+    
+        // Ajustar la ruta del archivo para reflejar la ubicación correcta
+        $rutaArchivo = storage_path("app/documentos/$archivo");
+    
+        // Log para depuración de la ruta del archivo
+        Log::info("Ruta del archivo: '$rutaArchivo'");
     
         // Verificar si el archivo existe
-        if (Storage::exists($rutaArchivo)) {
+        if (file_exists($rutaArchivo)) {
             // Obtener el contenido del archivo
-            $contenido = Storage::get($rutaArchivo);
+            $contenido = file_get_contents($rutaArchivo);
     
             // Obtener el tipo MIME del archivo
-            $tipoMime = Storage::mimeType($rutaArchivo);
+            $tipoMime = mime_content_type($rutaArchivo);
     
             // Configurar las cabeceras para la descarga
             $cabeceras = [
@@ -272,9 +316,11 @@ public function store(Request $request)
             return response($contenido, 200, $cabeceras);
         } else {
             // Manejar el caso en que el archivo no existe
+            Log::error("El archivo no existe: $rutaArchivo");
             return response()->json(['error' => 'El archivo no existe.'], 404);
         }
     }
+    
 
 
 }

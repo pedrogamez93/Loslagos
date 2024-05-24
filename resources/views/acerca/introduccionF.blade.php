@@ -128,7 +128,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Gobierno Regional</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 </head>
@@ -169,7 +169,7 @@
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 p-0" >
+                        <div class="col-md-12 p-0">
                             <p class="title-cat">Selecciona una Categoría</p>
                         </div>
                     </div>
@@ -177,21 +177,27 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12 p-0">
                 <div class="container set p-0">
                     @include('layouts.listacategorias')
                 </div>
+
                 <div class="container mt-5 mb-5 p-0">
                     <div class="row">
                         <div class="col-md-6 p-0">
                             <div class="container int">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="style-tag pt-4 pb-4">{{ $introduccion->tag_comentario }}</p>
-                                        <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
-                                        <p class="style-down pt-2 pb-2">{{ $introduccion->bajada }}</p>
+                                        @if($introduccion)
+                                            <p class="style-tag pt-4 pb-4">{{ $introduccion->tag_comentario }}</p>
+                                            <p class="title-cat pt-2 pb-2">{{ $introduccion->titulo }}</p>
+                                            <p class="style-down pt-2 pb-2">{{ $introduccion->bajada }}</p>
+                                        @else
+                                            <p>Información no disponible.</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +207,11 @@
                             <div class="container img">
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: -webkit-center;">
-                                        <img src="{{ asset($introduccion->img) }}" alt="Imagen actual">    
+                                        @if($introduccion)
+                                            <img src="{{ asset($introduccion->img) }}" alt="Imagen actual">
+                                        @else
+                                            <p>Imagen no disponible.</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -215,25 +225,26 @@
                                             </a>
                                         </div>
 
-                                    <div class="items">
-                                        <a href="/gobiernoregional/acerca/estrategiaregional">
-                                            <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
-                                            <p class="p-doc">Estrategia Regional de Desarrollo</p>
-                                        </a>
-                                    </div>
+                                        <div class="items">
+                                            <a href="/gobiernoregional/acerca/estrategiaregional">
+                                                <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                                <p class="p-doc">Estrategia Regional de Desarrollo</p>
+                                            </a>
+                                        </div>
 
-                                    <div class="items">
-                                        <a href="/gobiernoregional/acerca/inversionpublica">
-                                            <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
-                                            <p class="p-doc">Inversión Pública en la Región</p>
-                                        </a>
-                                    </div>
+                                        <div class="items">
+                                            <a href="/gobiernoregional/acerca/inversionpublica">
+                                                <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                                <p class="p-doc">Inversión Pública en la Región</p>
+                                            </a>
+                                        </div>
 
-                                    <div class="items">
-                                        <a href="/gobiernoregional/acerca/misiongobierno">
-                                            <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
-                                            <p class="p-doc">Misión</p>
-                                        </a>
+                                        <div class="items">
+                                            <a href="/gobiernoregional/acerca/misiongobierno">
+                                                <img src="{{ asset('storage/images/check.png') }}" alt="Descripción de la imagen">
+                                                <p class="p-doc">Misión</p>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -243,7 +254,6 @@
             </div>
         </div>
     </div>
-</div>     
 </main>
 </body>
 </html>

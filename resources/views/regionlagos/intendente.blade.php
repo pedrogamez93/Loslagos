@@ -360,7 +360,7 @@ a.a3 {
                                                         <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($ser as $autoridad2)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>
@@ -374,7 +374,7 @@ a.a3 {
                                                         <div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($serv as $autoridad3)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>
@@ -382,13 +382,13 @@ a.a3 {
                                                     <div class="accordion-item border-0">
                                                         <h2 class="accordion-header">
                                                         <button class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
-                                                            Municipales
+                                                            Municipalidades
                                                         </button>
                                                         </h2>
                                                         <div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($muni as $autoridad4)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>
@@ -488,7 +488,7 @@ a.a3 {
                                                         <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($ser as $autoridad2)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesSeremis.show', $autoridad2->nombre) }}">{{ $autoridad2->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>
@@ -502,7 +502,7 @@ a.a3 {
                                                         <div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($serv as $autoridad3)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesServicios.show', $autoridad3->nombre) }}">{{ $autoridad3->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>
@@ -510,13 +510,13 @@ a.a3 {
                                                     <div class="accordion-item border-0">
                                                         <h2 class="accordion-header">
                                                         <button class="accordion-button collapsed p-0 pt-3 pb-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
-                                                            Municipales
+                                                            Municipalidades
                                                         </button>
                                                         </h2>
                                                         <div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                                         <div class="accordion-body p-0">
                                                             @foreach($muni as $autoridad4)
-                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->nombre }}</a></p>
+                                                                <p class="enlaceM"><a class="ml-3" href="{{ route('BuscarAutoridadesMunicipalidades.show', $autoridad4->nombre) }}">{{ $autoridad4->institucion }}</a></p>
                                                             @endforeach
                                                         </div>
                                                         </div>

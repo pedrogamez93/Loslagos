@@ -94,7 +94,15 @@
                                 </div>
                                 <div class="col-md-4 tag-comentario">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="cargo" name="cargo" class="form-control" placeholder="Cargo" value="{{ $articulo->cargo }}" required>
+                                    <select id="cargo" name="cargo" class="form-control">
+                                        <option value="">Seleccione un Cargo</option>
+                                        <option value="Gobernador Regional" {{ $articulo->cargo == 'Gobernador Regional' ? 'selected' : '' }}>Gobernador Regional</option>
+                                        <option value="Diputados" {{ $articulo->cargo == 'Diputados' ? 'selected' : '' }}>Diputados</option>
+                                        <option value="Senador" {{ $articulo->cargo == 'Senador' ? 'selected' : '' }}>Senador</option>
+                                        <option value="Seremis" {{ $articulo->cargo == 'Seremis' ? 'selected' : '' }}>Seremis</option>
+                                        <option value="Servicios" {{ $articulo->cargo == 'Servicios' ? 'selected' : '' }}>Servicios</option>
+                                        <option value="Municipalidades" {{ $articulo->cargo == 'Municipalidades' ? 'selected' : '' }}>Municipalidades</option>
+                                    </select>
                                     </div>
                                 </div>
                             </div>

@@ -128,8 +128,9 @@
     p .name, a .name{
         font-family: 'Inter'!important;
         font-weight: 700 !important;
-        font-size: 20px !important;
+        font-size: 19px !important;
         color: #565656 !important;
+        text-align: left !important; 
     }
 h5.card-title{
     font-family: 'Inter';
@@ -172,7 +173,7 @@ h5.card-title{
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Consejo Regional</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 </head>
@@ -246,7 +247,7 @@ h5.card-title{
                                 <div class="row g-0">
                                     <div class="col-md-3" style="text-align: -webkit-right;">
                                         <a href="{{ route('consejerososorno.show', $consejero->id) }}">
-                                            <img src="{{ asset($consejero->imagen) }}" alt="Imagen del Consejero" style="width: 100px;height: 100px;border-radius: 100%;">
+                                            <img src="{{ asset($consejero->imagen) }}" alt="Imagen del Consejero" style="width: 100px;height: 100px;border-radius: 100%; object-fit: cover;">
                                         </a>
                                     </div>
                                     <div class="col-md-9">

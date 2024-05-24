@@ -84,13 +84,52 @@
     p.one-title{
         font-size:30px !important;
         padding-bottom: 0px!important;
+        }
     }
+
+    .form-control.filtro {
+    border-radius: 100px;
+    color: #00548F; 
+    border: 1px solid #00548F;
+    }
+    /* Cambiar el color del placeholder */
+.form-control.filtro::placeholder {
+    color: #00548F; 
+}
+
+/* Compatibilidad con diferentes navegadores */
+
+/* Internet Explorer 10-11 */
+.form-control.filtro:-ms-input-placeholder {
+    color: #00548F; 
+}
+
+/* Microsoft Edge */
+.form-control.filtro::-ms-input-placeholder {
+    color: #00548F; 
+}
+
+/* Mozilla Firefox 19+ */
+.form-control.filtro::-moz-placeholder {
+    color: #00548F; 
+    opacity: 1; /* Por defecto Firefox reduce la opacidad del placeholder */
+}
+
+/* Google Chrome, Safari y Opera */
+.form-control.filtro::-webkit-input-placeholder {
+    color: #00548F; 
+}
+
+button.btn.btn-primary {
+    border-radius: 100px;
+    background-color: #F59120;
+    border: 1px solid #F59120;
 }
 </style>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>Consejo Regional</title>
 </head>
 <body>
 @extends('layouts.app')
@@ -134,32 +173,65 @@
 
                         <h1 class="mititulo mt-4 mb-4">Certificados de Acuerdos</h1>
                         </div>
+                        <div class="container filtros">
+                        <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
+                                <div class="col-md-2 mb-3">
+                                    <select name="fecha_dia" id="fecha_dia" class="form-control filtro">
+                                        <option value="">Día</option>
+                                        @for ($i = 1; $i <= 31; $i++)
+                                            <option value="{{ $i }}" {{ request('fecha_dia') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <select name="fecha_mes" id="fecha_mes" class="form-control filtro">
+                                        <option value="">Mes</option>
+                                        @foreach (['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] as $index => $mes)
+                                            <option value="{{ $index + 1 }}" {{ request('fecha_mes') == $index + 1 ? 'selected' : '' }}>{{ $mes }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <select name="fecha_ano" id="fecha_ano" class="form-control filtro">
+                                        <option value="">Año</option>
+                                        @for ($i = 2010; $i <= date('Y'); $i++)
+                                            <option value="{{ $i }}" {{ request('fecha_ano') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <input type="text" placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="container">
-    <div class="row">
-        @foreach ($acuerdos as $acuerdo)
-            @if ($acuerdo->documentonew)
-                <div class="col-md-3 mb-4">
-                    <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
-                        <a href="{{ $acuerdo->documentonew->archivo }}" target="_blank" class="d-flex align-items-center">
-                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acuerdo" style="margin-right: 10px;">
-                            <div>
-                                <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
-                                <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
-                                <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                            <div class="row">
+                                @foreach ($acuerdos as $acuerdo)
+                                    @if ($acuerdo->documentonew)
+                                        <div class="col-md-3 mb-4">
+                                            <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
+                                                <a href="{{ $acuerdo->documentonew->archivo }}" target="_blank" class="d-flex align-items-center">
+                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acuerdo" style="margin-right: 10px;">
+                                                    <div>
+                                                        <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
+                                                        <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
+                                                        <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
-                        </a>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-       
-    </div>
-    <!-- Enlaces de paginación -->
-    <div class="d-flex justify-content-center">
-    {{ $acuerdos->links('pagination::bootstrap-4') }}
-    </div>
-</div>
+                        </div>
 
+                        <!-- Enlaces de paginación -->
+                        <div class="d-flex justify-content-center">
+                            {{ $acuerdos->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

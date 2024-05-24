@@ -27,43 +27,41 @@
     <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
          <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
          <form action="{{ url('/documentos/buscar') }}" method="POST">
-         @csrf
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-            <option value="Actas">Actas</option>
-                                    <option value="Acuerdos">Acuerdos</option>
-                                    <option value="Resumengastos">Resumen de Gastos</option>
-                                    <option value="Documentogeneral">Documento General</option>
-            </select>
-            <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
-            <div class="pt-5" style="direction: rtl;">
-            <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
-            </div>
+                @csrf
+                <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
+                    <option value="">Seleccione Categoria</option>
+                    <option value="Acta">Actas</option>
+                    <option value="Acuerdo">Acuerdos</option>
+                    <option value="Resumen Gastos">Resumen de Gastos</option>
+                    <option value="Documento General">Documentos Generales</option>
+                </select>
+                <input class="form-control mt-2" name="nombre" placeholder="Nombre del documento">
+                <div class="pt-5" style="direction: rtl;">
+                    <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
+                </div>
             </form>
     </div>
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-    <ul class="list-unstyled">
-        @php $contador = 0; @endphp
-@foreach($documentos as $documento)
-    @if($documento->portada == 'si')
-        @if($contador < 5)
-            <li class="mt-3">
-                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
-                    <div class="row divtitulodocsdes">
-                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                        <p>{{ $documento->archivo }}</p>
-                    </div>
-                </a>
-            </li>
-            @php $contador++; @endphp
-        @else
-            @break
-        @endif
-    @endif
-@endforeach
+  
+    @foreach ($ultimosDocumentos as $documento)
+   
+        <li class="mt-3">
+            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+                <div class="row divtitulodocsdes">
+                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                    <p>{{ $documento->archivo }}</p>
+                </div>
+            </a>
+        </li>
+ 
 
-        </ul>
+        @endforeach
+
+
+            
+          
 
     </div>
 </div>
@@ -71,8 +69,6 @@
     <div style="padding-right: 10rem!important;
     padding-left: 10rem!important;">
         <!-- ... tu código existente ... -->
-
-
         @if($documentos->isEmpty())
             <p>No se encontraron documentos que coincidan con los criterios de búsqueda.</p>
         @else
@@ -82,27 +78,37 @@
                         <th class="colorB"></th>
                         <th class="colorB"></th>
                         <th class="colorB"></th>
-                      
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($documentos as $documento)
-    <tr >
-   
-        <td class="colorB">
-        <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
-                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
-                
-        </td>
-        <td class="colorB">
-        <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">    
-        {{ $documento->id }} {{ $documento->tipo_documento }}</td>
-        </a>
-    </tr>
-@endforeach
-
+                    @foreach($documentos as $documento2)
+                        <tr>
+                            <td class="colorB" style="padding-top: 4%;">
+                            <a href="{{ route('documentos.download', $documento2->id) }}">
+                                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
+                            </a>
+                            </td>
+                            <td class="colorB">
+                                <a href="{{ route('documentos.download', $documento2->id) }}">
+                                    Nombre de archivo: {{ $documento2->archivo }}<br>
+                                    Tipo de documento: {{ $documento2->tipo_documento }}<br>
+                                    Provincia: {{ $documento2->provincia }}<br>
+                                    Comuna: {{ $documento2->comuna }}<br>
+                                    Tema: {{ $documento2->tema }}<br>
+                                    Fecha: {{ date('Y-m-d', strtotime($documento2->fecha_hora)) }}<br>
+                                    Lugar: {{ $documento2->lugar ?? 'N/A' }}<br>
+                                    Número de sesión: {{ $documento2->numero_sesion }}<br>
+                                    
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            <div class="pagination mb-5" style="justify-content: center;">
+          
+                {!! $documentos->links() !!}
+            </div>
         @endif
         <!-- ... tu código existente ... -->
     </div>

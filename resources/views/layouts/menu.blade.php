@@ -55,9 +55,6 @@
                                                 <a class="style-a-menu" href="{{ url('/organigrama') }}">Organigrama</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ url('/documentosgestion') }}">Documentos de Gestión</a>
-                                            </li>
-                                            <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/dptogestionpersonas') }}">Gestión y Desarrollo de Personas</a>
                                             </li>
                                             <ul style="padding: 0px">
@@ -94,6 +91,12 @@
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ url('/listplanificainstitucional') }}"> Planificación Institucional</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/concursospublicos') }}">Concursos Publicos</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ url('/comiteciencias') }}">Comite de Ciencias</a>
                                             </li>
                                         </ul>
                                     </div>

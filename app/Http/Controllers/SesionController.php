@@ -54,8 +54,7 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-       
+        // Validar los datos recibidos del formulario
         $validatedData = $request->validate([
             'nombre' => 'required|string|max:255',
             'fecha_hora' => 'required|date',
@@ -64,15 +63,38 @@ class SesionController extends Controller
             'url.*' => 'file|mimes:pdf|max:10240',
             'fechadoc.*' => 'nullable|date',
         ]);
-
-        $sesion = Sesion::create([
-            'nombre' => $validatedData['nombre'],
-            'fecha_hora' => $validatedData['fecha_hora'],
-            'lugar' => $validatedData['lugar'],
-        ]);
+    
+        // Convertir fecha_hora al formato correcto, si no es nula
+        $fecha_hora_convertida = $validatedData['fecha_hora'] ? date('Y-m-d H:i:s', strtotime($validatedData['fecha_hora'])) : null;
+    
+        // Depuración para verificar los datos antes de crear la sesión
+        \Log::info('Datos validados:', $validatedData);
+        \Log::info('Fecha Hora Convertida:', [$fecha_hora_convertida]);
+    
+        // Verificación adicional antes de la creación
+        if (is_null($fecha_hora_convertida)) {
+            \Log::error('Fecha Hora Convertida es nula');
+        } else {
+            \Log::info('Fecha Hora no es nula, se procede a la creación de la sesión');
+        }
+    
+        // Crear una nueva sesión con los datos validados y fecha_hora convertida
+        try {
+            $sesion = new Sesion();
+            $sesion->nombre = $validatedData['nombre'];
+            $sesion->fecha_hora = $fecha_hora_convertida;
+            $sesion->lugar = $validatedData['lugar'];
+            $sesion->save();
+    
+            \Log::info('Sesión creada con éxito:', ['id' => $sesion->id]);
+        } catch (\Exception $e) {
+            \Log::error('Error al crear la sesión:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            dd('Error al crear la sesión:', $e->getMessage(), $e->getTraceAsString());
+        }
     
         $nombresDocumentos = $request->input('nombredoc');
     
+        // Procesar y guardar los documentos subidos
         if ($request->hasFile('url')) {
             foreach ($request->file('url') as $key => $documento) {
                 if ($documento->isValid()) {
@@ -83,20 +105,28 @@ class SesionController extends Controller
     
                     // Obtener el valor de fechadoc
                     $fechadoc = isset($validatedData['fechadoc'][$key]) ? $validatedData['fechadoc'][$key] : null;
-                   
+    
+                    // Crear un nuevo Documento_Sesion
                     $doc = new Documento_Sesion([
                         'sesion_id' => $sesion->id,
                         'nombredoc' => $nombreDocumento,
                         'url' => $path,
-                        'fechadoc' => $fechadoc, // Corregimos la coma aquí
+                        'fechadoc' => $fechadoc,
                     ]);
                     $doc->save();
                 }
             }
         }
     
+        // Redirigir con un mensaje de éxito
         return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión creada con éxito');
     }
+    
+    
+    
+    
+    
+    
 
     /**
      * Display the specified resource.

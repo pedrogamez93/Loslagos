@@ -28,7 +28,7 @@ use App\Models\ComiteCiencias;
 use App\Models\ComiteCienciasDocs;
 use App\Models\ConcursosPublicos;
 use App\Models\ConcursosPublicosDocs;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\ConsejoRegional;
 use App\Models\Seccion;
 use App\Models\presidenteconcejo;
@@ -49,6 +49,8 @@ use App\Models\Difusion;
 use App\Models\Presentaciones;
 use App\Models\ImagenRegion;
 use App\Models\ImagenRegionDocs;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoriesController extends Controller{
     
@@ -94,6 +96,68 @@ class CategoriesController extends Controller{
         return view('leygobiernoregional', ['ley' => $ley]);
     }
 
+    public function download($id)
+    {
+        $leyencontrado = Ley::find($id);
+    
+        // Log para depuración del documento
+        Log::info("Leyes encontradas: " . json_encode($leyencontrado));
+    
+        if ($leyencontrado) {
+            $rutaCompleta = $leyencontrado->enlacedoc;
+            $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
+    
+            return $this->descargarArchivo($archivo);
+        } else {
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+    
+    
+    public function descargarArchivo($archivo)
+    {
+        // Log para depuración del nombre del archivo original
+        Log::info("Nombre del archivo original: '$archivo'");
+    
+        // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
+        $archivo = trim($archivo);
+        $archivo = str_replace("\t", "", $archivo);
+        $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
+    
+        // Log para depuración del nombre del archivo limpio
+        Log::info("Nombre del archivo limpio: '$archivo'");
+    
+        // Ajustar la ruta del archivo para reflejar la ubicación correcta
+        $rutaArchivo = storage_path("app/documentos/$archivo");
+    
+        // Log para depuración de la ruta del archivo
+        Log::info("Ruta del archivo: '$rutaArchivo'");
+    
+        // Verificar si la ruta es un archivo y no un directorio
+        if (is_file($rutaArchivo)) {
+            // Obtener el contenido del archivo
+            $contenido = file_get_contents($rutaArchivo);
+    
+            // Obtener el tipo MIME del archivo
+            $tipoMime = mime_content_type($rutaArchivo);
+    
+            // Configurar las cabeceras para la descarga
+            $cabeceras = [
+                'Content-Type' => $tipoMime,
+                'Content-Disposition' => "attachment; filename=$archivo",
+            ];
+    
+            // Devolver la respuesta con el contenido del archivo y las cabeceras
+            return response($contenido, 200, $cabeceras);
+        } else {
+            // Manejar el caso en que la ruta no es un archivo o no existe
+            Log::error("El archivo no existe o es un directorio: $rutaArchivo");
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+        }
+    }
+    
+    
+    
     public function organigramaIndex(){
 
         $organigrama = Organigramas::latest()->first();

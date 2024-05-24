@@ -385,12 +385,13 @@ public function buscarAutoridades(Request $request)
     {
         $data = $request->validate([
             'provincia' => 'required',
-            'superficie_nueva' => 'required',
+            'superficie' => 'required',
             'comuna' => 'required',
             'p_urbana_hombre' => 'required',
             'p_urbana_mujeres' => 'required',
             'p_rural_hombre' => 'required',
             'p_rural_mujeres' => 'required',
+            'superficie_nueva' => 'required',
         ]);
    
         Estadisticas::create($data);
@@ -1266,10 +1267,7 @@ if ($articulo) {
             $popupD  = popup::find($idpopup);
             return view('regionlagos.introduccion', compact('introduccion','popupUnico'));
             
-        } else {
-            // La consulta no devolvió ningún registro
-            return view('IntroduccionRegionLagos.create');
-        }
+        } 
     }
     public function indexRegionlagosAntecedentesregion()
     {
@@ -1302,7 +1300,7 @@ if ($articulo) {
             $dip = Autoridades::where('cargo', 'Diputados')->get();
             $ser = Autoridades::where('cargo', 'Seremis')->get();
             $serv = Autoridades::where('cargo', 'Servicios')->get();
-            $muni = Autoridades::where('cargo', 'Municipales')->get();
+            $muni = Autoridades::where('cargo', 'Municipalidades')->get();
             return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
             
         } 
@@ -1314,7 +1312,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
         
         return view('regionlagos.autoridades', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1325,7 +1323,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1336,7 +1334,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1347,7 +1345,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1358,7 +1356,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }
@@ -1369,7 +1367,7 @@ if ($articulo) {
         $dip = Autoridades::where('cargo', 'Diputados')->get();
         $ser = Autoridades::where('cargo', 'Seremis')->get();
         $serv = Autoridades::where('cargo', 'Servicios')->get();
-        $muni = Autoridades::where('cargo', 'Municipales')->get();
+        $muni = Autoridades::where('cargo', 'Municipalidades')->get();
 
         return view('regionlagos.intendente', compact('introduccion','sen','dip','ser','serv','muni'));
     }

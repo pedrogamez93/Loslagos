@@ -36,14 +36,52 @@ class ConsejoRegionalDocsViewsController extends Controller
     }
 
 
-    public function Indexcertificadosdeacuerdos()
-    {
-        // Obtener todos los acuerdos y su relación con Documentonew
-        $acuerdos = Acuerdo::with('documentonew')->get();
-        $acuerdos = Acuerdo::with('documentonew')->paginate(10); 
-        // Pasar los acuerdos a la vista
-        return view('consejoregionaldocsviews.certificadosdeacuerdos.index', ['acuerdos' => $acuerdos]);
+    
+    public function download($id)
+{
+    // Busca el documento por su ID
+    $documento = Documentonew::findOrFail($id);
+
+    // Obtiene la ruta completa del archivo en el almacenamiento
+    $filePath = storage_path('app/documentos/' . $documento->archivo);
+
+    // Verifica si el archivo existe
+    if (file_exists($filePath)) {
+        // Retorna la respuesta de descarga
+        return response()->download($filePath, basename($documento->archivo));
+    } else {
+        // Redirige de vuelta con un mensaje de error si el archivo no existe
+        return redirect()->back()->with('error', 'El archivo no existe.');
     }
+}
+
+public function Indexcertificadosdeacuerdos(Request $request)
+{
+    $query = Acuerdo::with('documentonew');
+
+    // Aplicar filtros si están presentes en la solicitud
+    if ($request->filled('fecha_dia')) {
+        $query->whereDay('fecha', $request->input('fecha_dia'));
+    }
+    if ($request->filled('fecha_mes')) {
+        $query->whereMonth('fecha', $request->input('fecha_mes'));
+    }
+    if ($request->filled('fecha_ano')) {
+        $query->whereYear('fecha', $request->input('fecha_ano'));
+    }
+    if ($request->filled('codigo_bip')) {
+        $query->where('codigo_bip', 'like', '%' . $request->input('codigo_bip') . '%');
+    }
+
+    // Ordenar los acuerdos por fecha en orden descendente
+    $query->orderBy('fecha', 'desc');
+
+    // Obtener los acuerdos paginados
+    $acuerdos = $query->paginate(10);
+
+    // Pasar los acuerdos a la vista
+    return view('consejoregionaldocsviews.certificadosdeacuerdos.index', ['acuerdos' => $acuerdos]);
+}
 
     public function Indexresumendegastos()
     {

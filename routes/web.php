@@ -85,16 +85,19 @@ Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.bann
 Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
 /*DOCUMENTOS */
-Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+
 Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
 Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
-Route::post('/documentos/buscar', [DocumentonewController::class, 'buscar']);
+
+Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
+Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
+
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
-Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download')->middleware('auth');
-Route::get('/descargar-archivo/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo')->middleware('auth');
+Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
+Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
 /*FUNCIONARIOS */
 
@@ -386,6 +389,9 @@ Route::get('/gobiernoregional/acerca/inversionpublica', 'App\Http\Controllers\Ca
 Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\CategoriesController@misiongobiernoGrIndex');
 
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
+// Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Controllers\CategoriesController@download')->name('ley.download');
+Route::get('/gobiernoregional/leygobiernoregional/descargar/{archivo}', 'App\Http\Controllers\CategoriesController@descargarArchivo')->name('ley.archivo');
 
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
@@ -444,6 +450,7 @@ Route::get('/gobiernoregional/unidaddecontrol', 'App\Http\Controllers\Documentos
 /*DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 Route::get('/consejoregional/actas', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexactas')->name('actas.Indexactas');
 Route::get('/consejoregional/actas/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showActa')->name('actas.showActa');
+Route::get('/consejoregional/download/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@download')->name('actas.download');
 
 Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexcertificadosdeacuerdos')->name('certificadosdeacuerdos.Indexcertificadosdeacuerdos');
 
