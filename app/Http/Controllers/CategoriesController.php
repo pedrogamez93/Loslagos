@@ -106,8 +106,17 @@ class CategoriesController extends Controller{
         if ($leyencontrado) {
             $rutaCompleta = $leyencontrado->enlacedoc;
             $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
+            $rutaArchivo = storage_path('app/public/documentos/' . $archivo);
     
-            return $this->descargarArchivo($archivo);
+            // Log para depuración de la ruta del archivo
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            // Verificar si el archivo existe
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
         } else {
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
