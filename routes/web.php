@@ -403,6 +403,7 @@ Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\Categori
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
 Route::get('/gobiernoregional/asambleaclimatica/download/{id}', 'App\Http\Controllers\CategoriesController@downloadAsamblea')->name('downloadAsamblea');
 
+
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
 Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controllers\CategoriesController@politicasostenibilidadhidricaIndex');
