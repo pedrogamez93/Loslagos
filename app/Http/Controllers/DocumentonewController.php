@@ -56,7 +56,15 @@ class DocumentonewController extends Controller
         }
     
         if ($nombre) {
-            $documentos->where('archivo', 'LIKE', "%$nombre%");
+            $documentos->where(function($query) use ($nombre) {
+                $query->where('archivo', 'LIKE', "%$nombre%")
+                      ->orWhere('tema', 'LIKE', "%$nombre%")
+                      ->orWhere('numero', 'LIKE', "%$nombre%")
+                      ->orWhere('lugar', 'LIKE', "%$nombre%")
+                      ->orWhere('comuna', 'LIKE', "%$nombre%")
+                      ->orWhere('provincia', 'LIKE', "%$nombre%")
+                      ->orWhere('tipo_documento', 'LIKE', "%$nombre%");
+            });
         }
     
         $documentos = $documentos->paginate(52);
