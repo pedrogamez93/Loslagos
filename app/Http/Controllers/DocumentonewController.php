@@ -10,7 +10,7 @@ use App\Models\ResumenGastos;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class DocumentonewController extends Controller
@@ -245,55 +245,52 @@ public function store(Request $request)
 
     public function download($id)
     {
-        $documento = Documentonew::findOrFail($id);
-
-        // Obtener la ruta del archivo almacenado en storage
-        $filePath = storage_path("app/public/{$documento->archivo}");
-
-        // Verificar si el archivo existe
-        if (Storage::exists("public/{$documento->archivo}")) {
-            // Descargar el archivo
-            return response()->download($filePath, $documento->archivo);
-        } else {
-            // Manejar el caso en el que el archivo no existe
-            return redirect()->back()->with('error', 'El archivo no existe.');
-        }
+        $documento = Documentonew::find($id);
+        return $this->descargarArchivo($documento->nombre_archivo);
     }
+    
    
     
     public function descargarArchivo($archivo)
-{
-    // Limpiar el nombre del archivo para eliminar espacios en blanco y caracteres especiales
-    $archivo = trim($archivo);
-    $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
-
-    $rutaArchivo = "public/documentos/$archivo";
+    {
+        // Log para depuración del nombre del archivo original
+        Log::info("Nombre del archivo original: '$archivo'");
     
-    // Log para depuración
-    Log::info("Ruta del archivo: $rutaArchivo");
-
-    // Verificar si el archivo existe
-    if (Storage::exists($rutaArchivo)) {
-        // Obtener el contenido del archivo
-        $contenido = Storage::get($rutaArchivo);
-
-        // Obtener el tipo MIME del archivo
-        $tipoMime = Storage::mimeType($rutaArchivo);
-
-        // Configurar las cabeceras para la descarga
-        $cabeceras = [
-            'Content-Type' => $tipoMime,
-            'Content-Disposition' => "attachment; filename=$archivo",
-        ];
-
-        // Devolver la respuesta con el contenido del archivo y las cabeceras
-        return response($contenido, 200, $cabeceras);
-    } else {
-        // Manejar el caso en que el archivo no existe
-        return response()->json(['error' => 'El archivo no existe.'], 404);
+        // Limpiar el nombre del archivo para eliminar espacios en blanco, tabulaciones y caracteres especiales
+        $archivo = trim($archivo);
+        $archivo = str_replace("\t", "", $archivo);
+        $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
+    
+        // Log para depuración del nombre del archivo limpio
+        Log::info("Nombre del archivo limpio: '$archivo'");
+    
+        $rutaArchivo = "public/documentos/$archivo";
+    
+        // Log para depuración de la ruta del archivo
+        Log::info("Ruta del archivo: '$rutaArchivo'");
+    
+        // Verificar si el archivo existe
+        if (Storage::exists($rutaArchivo)) {
+            // Obtener el contenido del archivo
+            $contenido = Storage::get($rutaArchivo);
+    
+            // Obtener el tipo MIME del archivo
+            $tipoMime = Storage::mimeType($rutaArchivo);
+    
+            // Configurar las cabeceras para la descarga
+            $cabeceras = [
+                'Content-Type' => $tipoMime,
+                'Content-Disposition' => "attachment; filename=$archivo",
+            ];
+    
+            // Devolver la respuesta con el contenido del archivo y las cabeceras
+            return response($contenido, 200, $cabeceras);
+        } else {
+            // Manejar el caso en que el archivo no existe
+            return response()->json(['error' => 'El archivo no existe.'], 404);
+        }
     }
-}
-
+    
     
 
 

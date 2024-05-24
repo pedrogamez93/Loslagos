@@ -83,9 +83,9 @@
                     @foreach($documentos as $documento2)
                         <tr>
                             <td class="colorB" style="padding-top: 4%;">
-                                <a href="{{ route('documentos.download', $documento2->id) }}">
-                                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
-                                </a>
+                            <a href="{{ route('documentos.download', $documento2->id) }}">
+                                <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 45px;">
+                            </a>
                             </td>
                             <td class="colorB">
                                 <a href="{{ route('documentos.download', $documento2->id) }}">
