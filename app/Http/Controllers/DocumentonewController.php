@@ -61,19 +61,19 @@ class DocumentonewController extends Controller
         Log::info("Filtro aplicado: tipo_documento = $categoria");
     }
 
-    // Aplicar filtro por nombre si está presente
-    if ($nombre) {
-        $documentos->where(function($query) use ($nombre) {
-            $query->where('archivo', 'LIKE', "%$nombre%")
-                  ->orWhere('tema', 'LIKE', "%$nombre%")
-                  ->orWhere('numero_sesion', 'LIKE', "%$nombre%")
-                  ->orWhere('lugar', 'LIKE', "%$nombre%")
-                  ->orWhere('comuna', 'LIKE', "%$nombre%")
-                  ->orWhere('provincia', 'LIKE', "%$nombre%")
-                  ->orWhere('tipo_documento', 'LIKE', "%$nombre%");
-        });
-        Log::info("Filtro aplicado: nombre = $nombre");
-    }
+  // Aplicar filtro por nombre si está presente
+  if ($nombre) {
+    $documentos->where(function($query) use ($nombre) {
+        $query->whereRaw('LOWER(archivo) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(tema) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(numero_sesion) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(lugar) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(comuna) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(provincia) LIKE ?', ['%' . strtolower($nombre) . '%'])
+              ->orWhereRaw('LOWER(tipo_documento) LIKE ?', ['%' . strtolower($nombre) . '%']);
+    });
+    Log::info("Filtro aplicado: nombre = $nombre");
+}
 
     // Paginar los resultados
     $documentos = $documentos->paginate(15);
