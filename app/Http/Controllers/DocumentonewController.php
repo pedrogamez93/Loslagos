@@ -98,59 +98,60 @@ class DocumentonewController extends Controller
     
     
     
+    public function store(Request $request)
+    {
+        // Registrar que el método store ha sido invocado
+        Log::info('Método store invocado.');
     
-public function store(Request $request)
-{
-    try {
-
-        
-        // Iniciar una transacción
-        DB::beginTransaction();
+        try {
+            // Iniciar una transacción
+            DB::beginTransaction();
     
-       
-        $archivoPath = null; // Inicializa la variable $archivoPath
-
-        if ($request->hasFile('archivo')) {
-            $archivoPath = $request->file('archivo')->store('public/documentos');
-        }
-        
-        // Crear el objeto $documento después de asignar la ruta relativa
-        $documento = Documentonew::create(array_merge(
-            $request->except(['_token']),
-            ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
-        ));
-
-
-        // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
-        switch ($request->tipo_documento) {
-            case 'Actas':
-                $acta = new Acta(['documentonew_id' => $documento->id]);
-                $acta->save();
-                // Establece la relación en el modelo Documentonew
-                $documento->acta()->save($acta);
-                break;
-
-            case 'Acuerdos':
-                $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
-                $acuerdo->save();
-                // Establece la relación en el modelo Documentonew
-                $documento->acuerdo()->save($acuerdo);
-                break;
-
+            $archivoPath = null; // Inicializa la variable $archivoPath
+    
+            if ($request->hasFile('archivo')) {
+                $archivoPath = $request->file('archivo')->store('public/documentos');
+                Log::info('Archivo subido:', ['path' => $archivoPath]);
+            } else {
+                Log::info('No se subió ningún archivo.');
+            }
+    
+            // Crear el objeto $documento después de asignar la ruta relativa
+            $documento = Documentonew::create(array_merge(
+                $request->except(['_token']),
+                ['archivo' => $archivoPath] // Utiliza url para obtener la ruta relativa
+            ));
+            Log::info('Documento creado:', ['documento_id' => $documento->id]);
+    
+            // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
+            switch ($request->tipo_documento) {
+                case 'Actas':
+                    $acta = new Acta(['documentonew_id' => $documento->id]);
+                    $acta->save();
+                    $documento->acta()->save($acta);
+                    Log::info('Acta creada:', ['acta_id' => $acta->id]);
+                    break;
+    
+                case 'Acuerdos':
+                    $acuerdo = new Acuerdo(['documentonew_id' => $documento->id]);
+                    $acuerdo->save();
+                    $documento->acuerdo()->save($acuerdo);
+                    Log::info('Acuerdo creado:', ['acuerdo_id' => $acuerdo->id]);
+                    break;
+    
                 case 'Resumengastos':
                     $resumengastos = new ResumenGastos([
                         'documentonew_id' => $documento->id,
-                        'nombre' => $request->input('nombre'), // Ajusta con el nombre correcto del campo
-                        'portada' => $request->input('portada'), // Ajusta con el nombre correcto del campo
-                        'publicacion' => $request->input('publicacion'), // Ajusta con el nombre correcto del campo
+                        'nombre' => $request->input('nombre'),
+                        'portada' => $request->input('portada'),
+                        'publicacion' => $request->input('publicacion'),
                         'categoria' => $request->input('categoria'),
                     ]);
                     $resumengastos->save();
-                    // Establece la relación en el modelo Documentonew
                     $documento->resumenGastos()->save($resumengastos);
+                    Log::info('Resumen de gastos creado:', ['resumengastos_id' => $resumengastos->id]);
                     break;
-                
-
+    
                 case 'Documentogeneral':
                     $documentogeneral = new DocumentoGeneral([
                         'documentonew_id' => $documento->id,
@@ -165,33 +166,35 @@ public function store(Request $request)
                         'publicacion' => $request->input('publicacion'),
                     ]);
                     $documentogeneral->save();
-                    // Establece la relación en el modelo Documentonew
                     $documento->documentoGeneral()->save($documentogeneral);
+                    Log::info('Documento general creado:', ['documentogeneral_id' => $documentogeneral->id]);
                     break;
-                
-
-            // Agrega más casos según sea necesario
-
-            default:
-                // Manejar otro tipo de documento si es necesario
-                break;
+    
+                // Agrega más casos según sea necesario
+    
+                default:
+                    Log::warning('Tipo de documento no manejado:', ['tipo_documento' => $request->tipo_documento]);
+                    break;
+            }
+    
+            // Confirmar la transacción
+            DB::commit();
+    
+            Log::info('Transacción completada exitosamente.');
+            return redirect()->route('documentos.create')->with('success', 'Documento creado exitosamente.');
+        } catch (\Exception $e) {
+            // Revertir la transacción en caso de error
+            DB::rollBack();
+    
+            Log::error('Error al crear el documento:', ['error' => $e->getMessage()]);
+    
+            // Imprimir mensaje de error en el navegador (puede ser removido en producción)
+            dd($e->getMessage());
+    
+            // Manejar el error de manera apropiada (puede loggearse, mostrarse al usuario, etc.)
+            return redirect()->back()->with('error', 'Error al crear el documento: ' . $e->getMessage());
         }
-
-        // Confirmar la transacción
-        DB::commit();
-
-        return redirect()->route('documentos.create')->with('success', 'Documento creado exitosamente.');
-    } catch (\Exception $e) {
-        // Revertir la transacción en caso de error
-        DB::rollBack();
-
-        // Imprimir mensaje de error en el navegador
-        dd($e->getMessage());
-
-        // Manejar el error de manera apropiada (puede loggearse, mostrarse al usuario, etc.)
-        return redirect()->back()->with('error', 'Error al crear el documento: ' . $e->getMessage());
     }
-}
 
     // Mostrar un documento específico
     public function show($id)
