@@ -261,11 +261,14 @@ public function store(Request $request)
     }
    
     
-
     public function descargarArchivo($archivo)
     {
-        $rutaArchivo = "public/documentos/$archivo";
+        // Limpiar el nombre del archivo para eliminar espacios en blanco y caracteres especiales
+        $archivo = trim($archivo);
+        $archivo = preg_replace('/[^A-Za-z0-9_\-\.]/', '', $archivo);
     
+        $rutaArchivo = "public/documentos/$archivo";
+        
         // Verificar si el archivo existe
         if (Storage::exists($rutaArchivo)) {
             // Obtener el contenido del archivo
@@ -287,6 +290,7 @@ public function store(Request $request)
             return response()->json(['error' => 'El archivo no existe.'], 404);
         }
     }
+    
 
 
 }
