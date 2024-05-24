@@ -104,11 +104,15 @@ class CategoriesController extends Controller{
         Log::info("Leyes encontradas: " . json_encode($leyencontrado));
     
         if ($leyencontrado) {
-            return $this->descargarArchivo($leyencontrado->archivo);
+            $rutaCompleta = $leyencontrado->enlacedoc;
+            $archivo = basename($rutaCompleta); // Obtener solo el nombre del archivo
+    
+            return $this->descargarArchivo($archivo);
         } else {
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
     
     public function descargarArchivo($archivo)
     {
@@ -151,6 +155,7 @@ class CategoriesController extends Controller{
             return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
         }
     }
+    
     
     
     public function organigramaIndex(){
