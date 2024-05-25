@@ -70,6 +70,8 @@ class LandingController extends Controller{
     if ($request->hasFile('ruta_imagen')) {
         foreach ($request->file('ruta_imagen') as $index => $file) {
             $path = $file->store('public/landing_images');
+            $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+            \Log::info('Imagen almacenada en: ' . $path);
             LandingImages::create([
                 'landing_id' => $landing->id,
                 'nombre_imagen' => $request->nombre_imagen[$index] ?? $file->getClientOriginalName(),
@@ -240,7 +242,6 @@ class LandingController extends Controller{
 
     public function showImage($filename)
     {
-        $filename = str_replace('public/', '', $filename); // Asegúrate de remover el prefijo 'public/' si está presente
         $path = storage_path('app/public/landing_images/' . $filename);
     
         if (!File::exists($path)) {
