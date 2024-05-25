@@ -410,7 +410,7 @@ public function edit($id)
 
                 Funcionario::create([
                     'nombre' => $fila['nombre'] ?? 'No especificado',
-                   
+                    'actividad' => $fila['actividad'] ?? 'No especificado',
                     'division' => $fila['division'] ?? 'No especificado',
                     'departamento' => $fila['departamento'] ?? 'No especificado',
                     'cargo' => $fila['cargo'] ?? 'No especificado',
