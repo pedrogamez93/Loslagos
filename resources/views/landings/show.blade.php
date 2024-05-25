@@ -331,7 +331,7 @@ p.text-sm.text-gray-700.leading-5 {
                             <div class="col-md-4">
                                 @foreach($landing->images as $image)
                                     <div>
-                                        <img src="{{ asset($image->ruta_imagen) }}"  alt="{{ $image->nombre_imagen }}">
+                                        <img src="{{ route('showImage', ['filename' => $image->ruta_imagen]) }}"  alt="{{ $image->nombre_imagen }}">
                                     </div>
                                     @break {{-- Sale del bucle después de imprimir la primera imagen --}}
                                 @endforeach
