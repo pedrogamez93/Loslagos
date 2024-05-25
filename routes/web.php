@@ -337,6 +337,7 @@ Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesCon
 Route::resource('landings', LandingController::class);
 Route::get('/landings/documentos/download/{id}', 'App\Http\Controllers\LandingController@downloaddocslanding')->name('downloaddocslanding');
 
+Route::get('/landing_images/{filename}', 'App\Http\Controllers\LandingController@showImage')->name('showImage');
 
 // En routes/web.php
 Route::get('/search-landings', [LandingController::class, 'search'])->name('landings.search');
