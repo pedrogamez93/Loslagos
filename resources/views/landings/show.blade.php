@@ -331,7 +331,7 @@ p.text-sm.text-gray-700.leading-5 {
                             <div class="col-md-4">
                                 @foreach($landing->images as $image)
                                     <div>
-                                        <img src="{{ route('showImage', ['filename' => $imageName]) }}" alt="{{ $image->nombre_imagen }}">
+                                        <img src="{{ route('showImage', ['filename' => $image->ruta_imagen]) }}" alt="{{ $image->nombre_imagen }}">
                                     </div>
                                     @break {{-- Sale del bucle después de imprimir la primera imagen --}}
                                 @endforeach
@@ -365,8 +365,8 @@ p.text-sm.text-gray-700.leading-5 {
                                 <div class="grid-container mt-4 mb-5">
                                     @foreach ($images as $image)
                                         <div class="grid-item">
-                                            <a href="{{ route('showImage', ['filename' => $imageName]) }}" data-fancybox="gallery1">
-                                                <img class="mi-img-landing" src="{{ route('showImage', ['filename' => $imageName]) }}" alt="{{ $image->nombre }}">
+                                            <a href="{{ route('showImage', ['filename' => $image->ruta_imagen]) }}" data-fancybox="gallery1">
+                                                <img class="mi-img-landing" src="{{ route('showImage', ['filename' => $image->ruta_imagen]) }}" alt="{{ $image->nombre }}">
                                             </a>
                                         </div>
                                     @endforeach

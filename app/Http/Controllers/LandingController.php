@@ -239,21 +239,22 @@ class LandingController extends Controller{
     }
 
     public function showImage($filename)
-{
-    $path = storage_path('app/public/landing_images/' . $filename);
-
-    if (!File::exists($path)) {
-        abort(404);
+    {
+        $filename = str_replace('public/', '', $filename); // Asegúrate de remover el prefijo 'public/' si está presente
+        $path = storage_path('app/public/landing_images/' . $filename);
+    
+        if (!File::exists($path)) {
+            abort(404);
+        }
+    
+        $file = File::get($path);
+        $type = File::mimeType($path);
+    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+    
+        return $response;
     }
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-}
 
     public function downloaddocslanding($id)
     {
