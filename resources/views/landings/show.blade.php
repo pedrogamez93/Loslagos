@@ -352,7 +352,7 @@ p.text-sm.text-gray-700.leading-5 {
                                 <p class="finalp mb-4 mt-5">Documentos</p>
                                 @foreach($landing->documentos as $documento)
                                     <div class="mi-documento mb-3">
-                                        <a href="{{ Storage::url($documento->ruta_documento) }}" target="_blank">
+                                        <a href="{{ route('downloaddocslanding', $documento->id) }}" target="_blank">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento->nombre_documento }}</p>
                                         </a>
