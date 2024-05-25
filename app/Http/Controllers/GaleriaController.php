@@ -150,17 +150,17 @@ class GaleriaController extends Controller{
     public function mostrargaleriaImagen($filename)
     {
         $path = storage_path('app/public/imagenes_galerias/' . $filename);
-
+    
         if (!File::exists($path)) {
             abort(404);
         }
-
+    
         $file = File::get($path);
         $type = File::mimeType($path);
-
+    
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
-
+    
         return $response;
     }
 

@@ -295,7 +295,7 @@ Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('gal
 Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
 
 //Route::get('/galerias/imagenes/{filename}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
-Route::get('/galerias/imagenes/{filename}', [CategoriesController::class, 'mostrargaleriaImagen'])->name('imagen.showga');
+Route::get('/galerias/{filename}', [CategoriesController::class, 'mostrargaleriaImagen'])->name('imagen.showga');
 
 //RUTAS PARA SEMINARIO
 
