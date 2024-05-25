@@ -247,7 +247,7 @@
                                     <div class="accordion-body documentos-container">
                                         @foreach ($comite->documentos as $documento)
                                         <div class="mi-documento mt-3 mb-3">
-                                            <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
+                                            <a href="{{ route('downloadcomitecienciastecnologias', $documento->id) }}" target="_blank">
                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                                     <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656; width: 950px;">{{ $documento->nombre_documento }}</p>
                                             </a>
