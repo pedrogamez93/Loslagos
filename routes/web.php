@@ -417,6 +417,7 @@ Route::get('/gobiernoregional/planificacioninstitucional/documentos/download/{id
 Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
 
 Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
+Route::get('/gobiernoregional/concursopublico/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadconcursopublico')->name('downloadconcursopublico');
 
 Route::get('/consejoregional/introduccion', 'App\Http\Controllers\CategoriesController@consejoregionalIndex');
 
