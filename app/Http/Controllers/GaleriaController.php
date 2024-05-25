@@ -147,7 +147,8 @@ class GaleriaController extends Controller{
         return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen));
     }*/
 
-    public function mostrargaleriaImagen($id) {
+    public function mostrargaleriaImagen($id)
+    {
         $imagen = Imagen::findOrFail($id);
         return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen->nombre_archivo));
     }
