@@ -108,19 +108,30 @@ class ConcursosPublicosController extends Controller
             // Procesar documentos (individuales y comprimidos)
             $documentos = $request->file('ruta_documento');
             $nombresDocumentos = $request->input('nombre_documento') ?? [];
-
+    
             foreach ($documentos ?? [] as $key => $documento) {
                 $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
-                $rutaDocumento = $documento->store('documentosconcurso');
-
-                // Actualizar o crear en la base de datos
-                $concurso->documentos()->updateOrCreate(
-                    ['nombre_documento' => $nombreDocumento],
-                    [
-                        'nombre_documento' => $nombreDocumento,
-                        'ruta_documento' => $rutaDocumento,
-                    ]
-                );
+                $rutaDocumento = $documento->store('public/documentosconcursos'); // Ajuste aquí
+    
+                // Formatear la ruta correctamente
+                $rutaDocumento = str_replace('public/', '', $rutaDocumento);
+                \Log::info('Ruta formateada correctamente: ' . $rutaDocumento);
+    
+                $absolutePath = storage_path('app/public/' . $rutaDocumento);
+                \Log::info('Ruta absoluta del archivo: ' . $absolutePath);
+    
+                if (file_exists($absolutePath)) {
+                    \Log::info('El archivo realmente existe en la ruta absoluta.');
+                } else {
+                    \Log::error('El archivo no se encuentra en la ruta absoluta.');
+                }
+    
+                // Almacena en la base de datos
+                ConcursosPublicosDocs::create([
+                    'concursos_publicos_id' => $nuevoConcurso->id,
+                    'nombre_documento' => $nombreDocumento,
+                    'ruta_documento' => $rutaDocumento,
+                ]);
             }
         } catch (\Exception $e) {
             // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
