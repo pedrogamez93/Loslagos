@@ -407,27 +407,50 @@ public function edit($id)
                 return mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1');
             }, $fila);
 
+            // Verificar y asignar valores predeterminados
+            $nombre = $fila['nombre'] ?? 'No especificado';
+            $actividad = $fila['actividad'] ?? 'No especificado';
+            $division = $fila['division'] ?? 'No especificado';
+            $departamento = $fila['departamento'] ?? 'No especificado';
+            $cargo = $fila['cargo'] ?? 'No especificado';
+            $direccion = $fila['direccion'] ?? 'No especificado';
+            $telefono = $fila['telefono'] ?? '0000';
+            $email = $fila['e-mail'] ?? 'No especificado';
+            $region = $fila['region'] ?? 'No especificado';
+            $provincia = $fila['provincia'] ?? 'No especificado';
+            $comuna = $fila['comuna'] ?? 'No especificado';
+            $foto = $fila['foto'] ?? 'No especificado';
+            $partido_politico = $fila['partido_politico'] ?? 'No especificado';
+            $biografia = $fila['biografia'] ?? 'No especificado';
+            $funciones = $fila['funciones'] ?? 'No especificado';
+            $Tfuncionario = $fila['Tfuncionario'] ?? 'No especificado';
+            $fecha_nacimiento = $fila['fecha_nacimiento'] ?? null;
+            $lugar_nacimiento = $fila['lugar_nacimiento'] ?? 'No especificado';
+            $sexo = $fila['sexo'] ?? 'No especificado';
+            $foto_url = $fila['foto_url'] ?? 'foto';
+
+            // Insertar en la base de datos
             Funcionario::create([
-                'nombre' => $fila['nombre'] ?? 'No especificado',
-                'actividad' => $fila['actividad'] ?? 'No especificado', 
-                'division' => $fila['division'] ?? 'No especificado',
-                'departamento' => $fila['departamento'] ?? 'No especificado',
-                'cargo' => $fila['cargo'] ?? 'No especificado',
-                'direccion' => $fila['direccion'] ?? 'No especificado',
-                'telefono' => $fila['telefono'] ?? '0000',
-                'email' => $fila['e-mail'] ?? 'No especificado', 
-                'region' => $fila['region'] ?? 'No especificado',
-                'provincia' => $fila['provincia'] ?? 'No especificado',
-                'comuna' => $fila['comuna'] ?? 'No especificado',
-                'foto' => $fila['foto'] ?? 'No especificado',
-                'partido_politico' => $fila['partido_politico'] ?? 'No especificado',
-                'biografia' => $fila['biografia'] ?? 'No especificado',
-                'funciones' => $fila['funciones'] ?? 'No especificado',
-                'Tfuncionario' => $fila['Tfuncionario'] ?? 'No especificado',
-                'fecha_nacimiento' => $fila['fecha_nacimiento'] ?? null,
-                'lugar_nacimiento' => $fila['lugar_nacimiento'] ?? 'No especificado',
-                'sexo' => $fila['sexo'] ?? 'No especificado',
-                'foto_url' => $fila['foto_url'] ?? 'foto',
+                'nombre' => $nombre,
+                'actividad' => $actividad,
+                'division' => $division,
+                'departamento' => $departamento,
+                'cargo' => $cargo,
+                'direccion' => $direccion,
+                'telefono' => $telefono,
+                'email' => $email,
+                'region' => $region,
+                'provincia' => $provincia,
+                'comuna' => $comuna,
+                'foto' => $foto,
+                'partido_politico' => $partido_politico,
+                'biografia' => $biografia,
+                'funciones' => $funciones,
+                'Tfuncionario' => $Tfuncionario,
+                'fecha_nacimiento' => $fecha_nacimiento,
+                'lugar_nacimiento' => $lugar_nacimiento,
+                'sexo' => $sexo,
+                'foto_url' => $foto_url,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
