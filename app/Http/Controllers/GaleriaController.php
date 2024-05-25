@@ -147,10 +147,21 @@ class GaleriaController extends Controller{
         return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen));
     }*/
 
-    public function mostrargaleriaImagen($id)
+    public function mostrargaleriaImagen($filename)
     {
-        $imagen = Imagen::findOrFail($id);
-        return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen->nombre_archivo));
+        $path = storage_path('app/public/imagenes_galerias/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 
 
