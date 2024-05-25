@@ -43,8 +43,22 @@ class PlanificacionInstitucionalController extends Controller
             \Log::info('Archivo recibido: ' . $request->file('urldocs')->getClientOriginalName());
     
             try {
-                $urlPath = $request->file('urldocs')->store('documentosPlanificacionIn');
+                $urlPath = $request->file('urldocs')->store('public/documentosPlanificacionIn');
                 \Log::info('Archivo guardado en: ' . $urlPath);
+    
+                // Asegúrate de que no hay barras invertidas en la ruta
+                $urlPath = str_replace('public/', '', $urlPath);
+                \Log::info('Ruta formateada correctamente: ' . $urlPath);
+    
+                $absolutePath = storage_path('app/public/' . $urlPath);
+                \Log::info('Ruta absoluta del archivo: ' . $absolutePath);
+    
+                if (file_exists($absolutePath)) {
+                    \Log::info('El archivo realmente existe en la ruta absoluta.');
+                } else {
+                    \Log::error('El archivo no se encuentra en la ruta absoluta.');
+                }
+    
                 $data['urldocs'] = $urlPath;
             } catch (\Exception $e) {
                 \Log::error('Error al guardar el archivo: ' . $e->getMessage());
@@ -63,6 +77,7 @@ class PlanificacionInstitucionalController extends Controller
     
         return redirect(route('listplanificainstitucional.index'))->with('success', 'Artículo creado con éxito');
     }
+    
 
     public function show(PlanificacionInstitucional $planificacion)
     {
