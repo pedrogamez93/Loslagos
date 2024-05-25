@@ -34,36 +34,49 @@ class ConcursosPublicosController extends Controller
             'tags' => 'nullable|string',
             'descripcion' => 'nullable|string',
         ]);
-
+    
         // Crear el concurso incluso si algunos campos están vacíos
-            $nuevoConcurso = ConcursosPublicos::create([
-                    'titulo' => $request->input('titulo'),
-                    'tags' => $request->input('tags'),
-                    'descripcion' => $request->input('descripcion'),
-            ]);
-
-            try {
-                // Procesar documentos (individuales y comprimidos)
-                $documentos = $request->file('ruta_documento');
-                $nombresDocumentos = $request->input('nombre_documento') ?? [];
-        
-                foreach ($documentos ?? [] as $key => $documento) {
-                    $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
-                    $rutaDocumento = $documento->store('documentosconcursos');
-        
-                    // Almacena en la base de datos
-                    ConcursosPublicosDocs::create([
-                        'concursos_publicos_id' => $nuevoConcurso->id,
-                        'nombre_documento' => $nombreDocumento,
-                        'ruta_documento' => $rutaDocumento,
-                    ]);
+        $nuevoConcurso = ConcursosPublicos::create([
+            'titulo' => $request->input('titulo'),
+            'tags' => $request->input('tags'),
+            'descripcion' => $request->input('descripcion'),
+        ]);
+    
+        try {
+            // Procesar documentos (individuales y comprimidos)
+            $documentos = $request->file('ruta_documento');
+            $nombresDocumentos = $request->input('nombre_documento') ?? [];
+    
+            foreach ($documentos ?? [] as $key => $documento) {
+                $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
+                $rutaDocumento = $documento->store('public/documentosconcursos'); // Ajuste aquí
+    
+                // Formatear la ruta correctamente
+                $rutaDocumento = str_replace('public/', '', $rutaDocumento);
+                \Log::info('Ruta formateada correctamente: ' . $rutaDocumento);
+    
+                $absolutePath = storage_path('app/public/' . $rutaDocumento);
+                \Log::info('Ruta absoluta del archivo: ' . $absolutePath);
+    
+                if (file_exists($absolutePath)) {
+                    \Log::info('El archivo realmente existe en la ruta absoluta.');
+                } else {
+                    \Log::error('El archivo no se encuentra en la ruta absoluta.');
                 }
-            } catch (\Exception $e) {
-                // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
-                \Log::error('Error al procesar documentos: ' . $e->getMessage());
+    
+                // Almacena en la base de datos
+                ConcursosPublicosDocs::create([
+                    'concursos_publicos_id' => $nuevoConcurso->id,
+                    'nombre_documento' => $nombreDocumento,
+                    'ruta_documento' => $rutaDocumento,
+                ]);
             }
-
-            return redirect()->route('concursospublicos.index');
+        } catch (\Exception $e) {
+            // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+            \Log::error('Error al procesar documentos: ' . $e->getMessage());
+        }
+    
+        return redirect()->route('concursospublicos.index');
     }
 
     public function edit($id)
