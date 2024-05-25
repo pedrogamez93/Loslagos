@@ -414,8 +414,6 @@ Route::get('/gobiernoregional/disenopoliticapersonasmayores/documentos/download/
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
 Route::get('/gobiernoregional/planificacioninstitucional/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadPlanificacionInstitucionalDocs')->name('downloadPlanificacionInstitucionalDocs');
 
-
-
 Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
 
 Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
