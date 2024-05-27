@@ -107,6 +107,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -164,11 +167,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12">
                 <div class="container set pb-4 p-0">
                     @include('layouts.listacategorias')
                 </div>
-                <div class="container content mt-5 mb-5 p-0">
+                <div class="container content mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="bajada">
