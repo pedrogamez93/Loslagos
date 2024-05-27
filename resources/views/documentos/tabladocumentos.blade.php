@@ -70,7 +70,6 @@ input:required {
 }
 </style>
 
-
 <div class="container-fluid body">
     <div class="row">
         <div class="col-md-2 style-col-menu">
@@ -78,7 +77,6 @@ input:required {
                 @include('layouts.menu')
             </div>
         </div>
-
         <div class="col-md-10">
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <h1>Lista de Documentos</h1>
@@ -90,35 +88,20 @@ input:required {
                 @endif
 
                 <!-- Formulario de Filtros -->
-                <form method="GET" action="{{ route('documentos.index') }}" class="mb-4">
-                    <div class="row">
+                <form method="GET" action="{{ route('documentos.verdocumentos') }}">
+                    <div class="row mb-4">
                         <div class="col-md-3">
-                            <label for="tipo_documento" class="form-label">Tipo de Documento</label>
-                            <select name="tipo_documento" id="tipo_documento" class="form-control">
-                                <option value="">Todos</option>
-                                <option value="Actas" {{ request('tipo_documento') == 'Actas' ? 'selected' : '' }}>Actas</option>
-                                <option value="Acuerdos" {{ request('tipo_documento') == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
-                                <option value="Resumengastos" {{ request('tipo_documento') == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
-                                <option value="Documentogeneral" {{ request('tipo_documento') == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
-                            </select>
+                            <input type="text" name="tipo_documento" class="form-control" placeholder="Tipo de Documento" value="{{ request('tipo_documento') }}">
                         </div>
                         <div class="col-md-3">
-                            <label for="tema" class="form-label">Tema</label>
-                            <input type="text" name="tema" id="tema" class="form-control" value="{{ request('tema') }}">
+                            <input type="text" name="tema" class="form-control" placeholder="Tema" value="{{ request('tema') }}">
                         </div>
                         <div class="col-md-3">
-                            <label for="lugar" class="form-label">Lugar</label>
-                            <input type="text" name="lugar" id="lugar" class="form-control" value="{{ request('lugar') }}">
+                            <input type="text" name="lugar" class="form-control" placeholder="Lugar" value="{{ request('lugar') }}">
                         </div>
                         <div class="col-md-3">
-                            <label for="fecha_creacion" class="form-label">Fecha de Creación</label>
-                            <input type="date" name="fecha_creacion" id="fecha_creacion" class="form-control" value="{{ request('fecha_creacion') }}">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">Filtrar</button>
-                            <a href="{{ route('documentos.index') }}" class="btn btn-secondary">Limpiar</a>
+                            <a href="{{ route('documentos.verdocumentos') }}" class="btn btn-secondary">Limpiar</a>
                         </div>
                     </div>
                 </form>
@@ -160,4 +143,3 @@ input:required {
         </div>
     </div>
 </div>
-
