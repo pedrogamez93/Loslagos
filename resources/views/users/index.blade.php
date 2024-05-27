@@ -75,7 +75,8 @@
                 @include('layouts.menu')
             </div>
         </div>
-<div class="col-md-10">
+<div class=" col-md-10">
+<div class="container principal mt-4 mb-4 pt-3 pb-3">
     <h1>Usuarios</h1>
     <a href="{{ route('users.create') }}" class="btn btn-primary">Crear Usuario</a>
     @if (session('success'))
@@ -117,6 +118,6 @@
         </tbody>
     </table>
 </div>
-
+</div>
     </div>
 </div>

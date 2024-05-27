@@ -462,6 +462,9 @@
                                     <div class="accordion-body">
                                         <ul>
                                             <li class="style-li">
+                                                <a class="style-a-menu"  href="{{ route('users.index') }}">Usuarios</a>
+                                            </li>
+                                            <li class="style-li">
                                                 <a class="style-a-menu"  href="{{ route('MapaWebB.show') }}">Mapa del Sitio </a>
                                             </li>
                                             <li class="style-li">

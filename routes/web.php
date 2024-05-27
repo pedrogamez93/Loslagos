@@ -100,8 +100,9 @@ Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::cla
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
-Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
 
+Route::delete('/documentos/eliminar/{documento}', [DocumentonewController::class, 'destroy'])->name('documentos.destroydoc')->middleware('auth');
+Route::post('/docdestruir/documento', [DocumentonewController::class, 'docdestruir'])->name('documentos.docdestruir');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
