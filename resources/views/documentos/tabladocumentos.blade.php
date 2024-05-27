@@ -94,6 +94,8 @@ input:required {
                 <tr>
                     <th>ID</th>
                     <th>Tipo de documento</th>
+                    <th>Tema</th>
+                    <th>Lugar</th>
                     <th>Fecha de creacion</th>
                     <th>Acciones</th>
                 </tr>
@@ -103,6 +105,8 @@ input:required {
                     <tr>
                         <td>{{ $documento->id }}</td>
                         <td>{{ $documento->tipo_documento }}</td>
+                        <td>{{ $documento->tema }}</td>
+                        <td>{{ $documento->lugar }}</td>
                         <td>{{ $documento->created_at }}</td>
                         <td>
                             <a  href="{{ url('storage/documentos/' . basename($documento->archivo)) }}" class="btn btn-primary" download>Descargar</a>
