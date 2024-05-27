@@ -186,7 +186,7 @@
                                 @foreach ($docsMes as $documento)
                                 <ul>            
                                     <li class="mt-3 mb-3">
-                                        <a href="{{ $documento->url }}" target="_blank">
+                                        <a href="{{ route('downloadshowtablassesionesconsejo', $documento->id) }}" target="_blank">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="PDF Icon" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#000;">
                                                 {{ $documento->nombredoc }}
