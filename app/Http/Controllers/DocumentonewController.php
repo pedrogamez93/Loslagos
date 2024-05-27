@@ -277,14 +277,13 @@ class DocumentonewController extends Controller
 
     
 
-        public function destroy($id)
-        {
-            $documento = Documentonew::findOrFail($id);
-            $documento->delete();
+            public function destroy($id)
+            {
+                $documento = Documentonew::findOrFail($id);
+                $documento->delete();
 
-            return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
-        }
-
+                return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
+            }
 
     public function download($id)
     {
