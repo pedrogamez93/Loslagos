@@ -125,11 +125,17 @@
     }
     a.location-movil {
     position: absolute;
-    top: 79.5rem;
+    top: 81rem;
     left: 7rem;
     }
     p.style-down {
         margin-bottom: 2rem;
+    }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
+    .container.enlaces{
+        margin-left: 2rem;
     }
 
 }

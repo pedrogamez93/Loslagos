@@ -122,6 +122,12 @@
     .container.img {
         margin-top: 14rem;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
+    .container.enlaces{
+        margin-left: 2rem;
+    }
 
 }
 </style>

@@ -133,6 +133,9 @@ h5.card-title{
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -195,7 +198,7 @@ h5.card-title{
                 </div>
                 <div class="container titulo p-0">
                     <div class="row">
-                        <div class="col-md-12 p-0">
+                        <div class="col-md-12">
                             <h1 class="mititulo mt-4 mb-2">Trámites Digitales</h1>
 
                             <div class="ve-tramites">

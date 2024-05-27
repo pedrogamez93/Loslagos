@@ -65,6 +65,7 @@
         margin-top: -5rem;
         background-color: #FFFFFF;
         border-radius: 100px 0 0 0;
+        
     }
     .enlaces{
         Width: 392px !important;
@@ -123,6 +124,13 @@
         margin-top: 14rem;
     }
 
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
+    .container.enlaces{
+        margin-left: 2rem;
+    }
+
 }
 </style>
 <html>
@@ -166,7 +174,7 @@
 </div>  
     
 <main>
-    <div class="container-fluid cat">
+    <div class="container-fluid cat" style="">
         <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 <div class="container">
@@ -188,7 +196,7 @@
                 <div class="container mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="container int p-0">
+                            <div class="container int">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p class="style-tag pt-4 pb-4">{{ $comofunciona->tag_comentario }}</p>
