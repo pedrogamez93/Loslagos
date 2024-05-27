@@ -310,7 +310,7 @@ input#email,input#password {
                                 <div class="form-check">
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link oContrasena" href="{{ route('password.request') }}">
-                                            {{ __('¿Olvidadte la contraseña?') }}
+                                            {{ __('¿Olvidaste la contraseña?') }}
                                         </a>
                                     @endif
                                 </div>
