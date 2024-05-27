@@ -206,7 +206,7 @@
                 <div class="row">
                     @foreach($proximaSesion->documentos as $documento)
                         <div class="col-md-4 mb-4">
-                            <a href="{{ asset('storage/' . $documento->url) }}" target="_blank" style="display: block; text-align: center;">
+                            <a href="{{ route('sesiones.download', ['id' => $documento->id]) }}" target="_blank" style="display: block; text-align: center;">
                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Documento PDF" style="display: inline-block; vertical-align: middle;">    
                                 <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 234px; text-align: left;">{{ $documento->nombredoc }}</span>
                             </a>
