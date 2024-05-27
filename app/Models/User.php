@@ -23,39 +23,17 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    use HasFactory, Notifiable;
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nombre', 'apellido', 'rut', 'email', 'password', 'rol',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+        'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'profile_photo_url',
     ];
 }

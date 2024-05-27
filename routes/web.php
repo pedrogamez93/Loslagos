@@ -60,6 +60,7 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\HomefndrController;
 
 use App\Http\Controllers\FondosFndrController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +72,9 @@ use App\Http\Controllers\FondosFndrController;
 |sdsdsd
 */
 Auth::routes();
+
+Route::resource('users', UserController::class);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
 Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
