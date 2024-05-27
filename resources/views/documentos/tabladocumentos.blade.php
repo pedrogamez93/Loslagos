@@ -128,7 +128,7 @@ input:required {
                                 <td>
                                     <a href="{{ route('documentos.download', ['id' => $documento->id]) }}" class="btn btn-primary" download>Descargar</a>
                                     <a href="{{ route('documentos.edit', ['id' => $documento->id]) }}" class="btn btn-warning">Editar</a>
-                                    <form action="{{ route('documentos.destroy', ['documento' => $documento->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('documentos.destroy', [ 'id' => $documento->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
