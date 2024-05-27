@@ -210,14 +210,26 @@ class DocumentonewController extends Controller
     }
 
     
-    public function indexTabla()
+    public function indexTabla(Request $request)
     {
-        // Obtener todos los documentos con las relaciones cargadas
-        $documentos = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
-                    ->paginate(10);
-    
-        // Retornar la vista con los documentos para mostrar en la tabla
+        $query = Documentonew::query();
+
+        if ($request->filled('tipo_documento')) {
+            $query->where('tipo_documento', 'like', '%' . $request->tipo_documento . '%');
+        }
+
+        if ($request->filled('tema')) {
+            $query->where('tema', 'like', '%' . $request->tema . '%');
+        }
+
+        if ($request->filled('lugar')) {
+            $query->where('lugar', 'like', '%' . $request->lugar . '%');
+        }
+
+        $documentos = $query->paginate(10);
+
         return view('documentos.tabladocumentos', compact('documentos'));
+  
     }
     
 
