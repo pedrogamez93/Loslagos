@@ -9,7 +9,8 @@
             padding: 10px 0; /* Ajusta el relleno según sea necesario */
         }
 </style>
-<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top">
+<-
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top ">
     
     <div class="col mb-3">
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -101,3 +102,6 @@
       </ul>
     </div>
   </footer>  
+  
+
+  
