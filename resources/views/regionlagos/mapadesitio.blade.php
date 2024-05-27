@@ -275,6 +275,10 @@
         .nav-head{
             background-color:#00548f !important;
         }   
+
+li {
+    text-align: left !important;
+}
 </style>
 <html>
     <head>
@@ -295,12 +299,12 @@
                     <div class="container pt-5 pb-5">
                         <div class="row" >
                             <div class="col-md-12" >
-                                <p class="style-bread"><a href="/">Home </a> / <span style="font-Weight: 700;"><a href="/gobiernoregional/asambleaclimatica">Región de Los Lagos</a></span></p>                    </div>
+                                <p class="style-bread"><a href="/">Home </a> / <span style="font-Weight: 700;"><a href="/mapa">Mapa del Sitio</a></span></p>                    </div>
                             </div>
                             <div class="col-md-12 pt-5 pb-5">
-                                <p class="one-title pb-4">Región de Los Lagos</p>
+                                <p class="one-title pb-4">Mapa del Sitio</p>
 
-                                <p style="Width:623px;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
+                                <p style="Width:auto;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
                             </div>
                             
                         <div class="container pt-4">

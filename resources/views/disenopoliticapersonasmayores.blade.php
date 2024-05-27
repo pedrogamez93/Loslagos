@@ -115,6 +115,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>

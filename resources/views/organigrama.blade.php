@@ -121,6 +121,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 45px;
+    }
 }
 </style>
 <html>
@@ -183,7 +186,7 @@
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12 p-0">
+                        <div class="col-md-12">
                             <p style="font-family: 'Inter'; font-weight: 600; font-style: italic; font-size: 16px; color: #00548F;">Infórmate sobre nuestra Región...</p>
                             <h1 class="mititulo mt-4">{{ $organigrama->titulo }}</h1>
                             <div class="mi-img pt-4 pb-5">
