@@ -275,6 +275,10 @@
         .nav-head{
             background-color:#00548f !important;
         }   
+
+li {
+    text-align: left !important;
+}
 </style>
 <html>
     <head>
