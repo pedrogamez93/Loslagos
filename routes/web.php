@@ -96,10 +96,12 @@ Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name(
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
 
+
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
 Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
 Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
+
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
@@ -472,6 +474,7 @@ Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\Cons
 Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexresumendegastos')->name('resumendegastos.Indexresumendegastos');
 
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
+Route::get('/consejoregional/tablassesionesconsejo/documentos/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadtablassesionesconsejo')->name('sesiones.download');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 /*TABLAS SESIONES DEL CONSEJO*/
@@ -486,6 +489,7 @@ Route::resource('sesiones-consejo', SesionController::class)->names([
 ]);
 
 Route::get('/sesiones/{anio}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showFiltroAno')->name('sesiones_por_anio');
+Route::get('/downloadshowtablassesionesconsejo/{id}', [SesionController::class, 'downloadshowtablassesionesconsejo'])->name('downloadshowtablassesionesconsejo');
 /*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
