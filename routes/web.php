@@ -95,6 +95,7 @@ Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name(
 
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
+Route::delete('/documentos/eliminar/{documento}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
 
 Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
 Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
@@ -487,6 +488,7 @@ Route::resource('sesiones-consejo', SesionController::class)->names([
 ]);
 
 Route::get('/sesiones/{anio}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showFiltroAno')->name('sesiones_por_anio');
+Route::get('/downloadshowtablassesionesconsejo/{id}', [SesionController::class, 'downloadshowtablassesionesconsejo'])->name('downloadshowtablassesionesconsejo');
 /*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
