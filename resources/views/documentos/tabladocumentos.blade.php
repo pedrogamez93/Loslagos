@@ -71,56 +71,93 @@ input:required {
 </style>
 
 
-    <div class="container-fluid body">
+<div class="container-fluid body">
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
-            @include('layouts.menu')
+                @include('layouts.menu')
             </div>
         </div>
 
         <div class="col-md-10">
-        <div class="container principal mt-4 mb-4 pt-3 pb-3">
-        <h1>Lista de Documentos</h1>
+            <div class="container principal mt-4 mb-4 pt-3 pb-3">
+                <h1>Lista de Documentos</h1>
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <!-- Formulario de Filtros -->
+                <form method="GET" action="{{ route('documentos.index') }}" class="mb-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="tipo_documento" class="form-label">Tipo de Documento</label>
+                            <select name="tipo_documento" id="tipo_documento" class="form-control">
+                                <option value="">Todos</option>
+                                <option value="Actas" {{ request('tipo_documento') == 'Actas' ? 'selected' : '' }}>Actas</option>
+                                <option value="Acuerdos" {{ request('tipo_documento') == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
+                                <option value="Resumengastos" {{ request('tipo_documento') == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
+                                <option value="Documentogeneral" {{ request('tipo_documento') == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tema" class="form-label">Tema</label>
+                            <input type="text" name="tema" id="tema" class="form-control" value="{{ request('tema') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="lugar" class="form-label">Lugar</label>
+                            <input type="text" name="lugar" id="lugar" class="form-control" value="{{ request('lugar') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="fecha_creacion" class="form-label">Fecha de Creación</label>
+                            <input type="date" name="fecha_creacion" id="fecha_creacion" class="form-control" value="{{ request('fecha_creacion') }}">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                            <a href="{{ route('documentos.index') }}" class="btn btn-secondary">Limpiar</a>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo de documento</th>
+                            <th>Tema</th>
+                            <th>Lugar</th>
+                            <th>Fecha de creación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($documentos as $documento)
+                            <tr>
+                                <td>{{ $documento->id }}</td>
+                                <td>{{ $documento->tipo_documento }}</td>
+                                <td>{{ $documento->tema }}</td>
+                                <td>{{ $documento->lugar }}</td>
+                                <td>{{ $documento->created_at }}</td>
+                                <td>
+                                    <a href="{{ url('storage/documentos/' . basename($documento->archivo)) }}" class="btn btn-primary" download>Descargar</a>
+                                    <a href="{{ route('documentos.edit', ['id' => $documento->id]) }}" class="btn btn-warning">Editar</a>
+                                    <form action="{{ route('documentos.destroy', ['documento' => $documento->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $documentos->links('pagination::bootstrap-4') }}
             </div>
-        @endif
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tipo de documento</th>
-                    <th>Fecha de creacion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($documentos as $documento)
-                    <tr>
-                        <td>{{ $documento->id }}</td>
-                        <td>{{ $documento->tipo_documento }}</td>
-                        <td>{{ $documento->created_at }}</td>
-                        <td>
-                            <a  href="{{ url('storage/documentos/' . basename($documento->archivo)) }}" class="btn btn-primary" download>Descargar</a>
-                            <a href="{{ route('documentos.edit', ['id' => $documento->id]) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('documentos.destroy', ['documento' => $documento->id]) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                            </form>
-                                                    </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{ $documentos->links('pagination::bootstrap-4') }}
         </div>
-      </div>
     </div>
- </div>
+</div>
 
- 

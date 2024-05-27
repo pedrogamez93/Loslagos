@@ -60,6 +60,7 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\HomefndrController;
 
 use App\Http\Controllers\FondosFndrController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +72,9 @@ use App\Http\Controllers\FondosFndrController;
 |sdsdsd
 */
 Auth::routes();
+
+Route::resource('users', UserController::class);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
 Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
@@ -615,7 +619,7 @@ Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\In
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
-Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
+
 
 //RUTAS POLITICAS DE TURISMO BACK
 Route::get('/programas/Politicadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismo')->name('Politicadeturismo.index')->middleware('auth');
@@ -767,6 +771,14 @@ Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->na
 Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');
 
 
+Route::get('/mapa/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createMapaWeb')->name('MapaWeb.create')->middleware('auth');
+Route::post('/mapa/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeMapaWeb')->name('MapaWeb.store')->middleware('auth');
+Route::get('/mapa/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showMapaWeb')->name('MapaWebB.show')->middleware('auth');
+Route::get('/mapa/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editMapaWeb')->name('MapaWeb.edit')->middleware('auth');
+Route::put('/mapa/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateMapaWeb')->name('MapaWeb.update')->middleware('auth');
+Route::delete('/mapa/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyMapaWeb')->name('MapaWeb.destroy')->middleware('auth');
+
+Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
 
 Route::resource('homefndr', HomefndrController::class)->middleware('auth');
 

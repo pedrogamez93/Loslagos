@@ -19,6 +19,8 @@ use App\Models\FinanciamientoporProvincias;
 use App\Models\Inversiones;
 use App\Models\PoliticaPrivacidad;
 use App\Models\popup;
+use App\Models\MapaSitio;
+
 
 
 use Carbon\Carbon;
@@ -1243,7 +1245,80 @@ if ($articulo) {
 }
 } 
 
+
 //Fin PoliticaPrivacidad
+
+public function indexMapaWeBack()
+{
+    $articulo = PoliticaPrivacidad::all();
+    if ($articulo->isNotEmpty()) {
+        // La consulta devolvió al menos un registro
+        $primerArticulo = $articulo->first();
+        $id = $primerArticulo->id;
+        $articulo = PoliticaPrivacidad::find($id);
+        return view('IntroduccionRegionLagos.PoliticaPrivacidad.edit', compact('articulo'));
+        
+    } else {
+        // La consulta no devolvió ningún registro
+        return view('IntroduccionRegionLagos.PoliticaPrivacidad.create');
+    }
+}
+public function storeMapaWeb(Request $request){
+    
+    $data = $request->validate([
+        'urlPadre' => 'required',
+        'nombreUrl' => 'required',
+        'url' => 'required',
+    ]);
+    $Inversion = MapaSitio::create($data);
+    return redirect(route('MapaWebB.show'))->with('success', 'Creado con éxito');
+
+}
+
+public function createMapaWeb()
+{
+    return view('MapaWeb.create');
+}
+public function editMapaWeb($id){
+    $articulo  = MapaSitio::findOrFail($id);
+    return view('MapaWeb.edit', compact('articulo'));
+}
+public function destroyMapaWeb($id)
+{
+    $articulo = MapaSitio::find($id);
+
+    if ($articulo) {
+        $articulo->delete();
+        return redirect()->route('MapaWebB.show')->with('success', 'Artículo eliminado con éxito');
+    } else {
+        return redirect()->route('MapaWebB.show')->with('error', 'Artículo no encontrado');
+    }
+}
+public function updateMapaWeb(Request $request, $id)
+{
+    $data = $request->validate([
+        'urlPadre' => 'required',
+        'nombreUrl' => 'required',
+        'url' => 'required',
+    ]);
+
+    $articulo = MapaSitio::find($id);
+
+    if ($articulo) {
+        
+        $articulo->update($data);
+        return redirect()->route('MapaWebB.show')->with('success', 'Artículo actualizado con éxito');
+    } else {
+        return redirect()->route('MapaWebB.show')->with('error', 'Artículo no encontrado');
+    }
+} 
+public function showMapaWeb()
+{
+    $articulo = MapaSitio::all();
+    return view('MapaWeb.show', compact('articulo'));
+}
+
+
 
     // frond de region los lagos
     public function indexRegionlagosIntro()
@@ -1471,7 +1546,13 @@ if ($articulo) {
     }
     public function indexMapaWeb()    
     {
-        return view('regionlagos.mapadesitio');
+        
+        $articulo1 = MapaSitio::where('urlPadre', 'Gobierno Regional')->get();
+        $articulo2 = MapaSitio::where('urlPadre', 'Consejo Regional')->get();
+        $articulo3 = MapaSitio::where('urlPadre', 'Región Los Lagos')->get();
+        $articulo4 = MapaSitio::where('urlPadre', 'Directorio de Funcionarios')->get();
+        $articulo5 = MapaSitio::where('urlPadre', 'Infórmate aquí')->get();
+        return view('regionlagos.mapadesitio', compact('articulo1','articulo2','articulo3','articulo4','articulo5'));
     }
 
     public function imagenesP($img)    
