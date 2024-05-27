@@ -290,7 +290,7 @@
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">Región de los Lagos</p>
 
-                        <p style="Width:623px;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
+                        <p style="Width:auto;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
                     </div>
                     
                 <div class="container pt-4">
