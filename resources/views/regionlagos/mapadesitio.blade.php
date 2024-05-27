@@ -193,7 +193,7 @@
     .mapa_sitio .seccion {
     display: block;
     float: left;
-    margin-right: 15px;
+    margin-right: 40px;
     width: 180px;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -213,13 +213,13 @@
     width: 14px !important;
 }
 .mapa_sitio .seccion .titulo_seccion_n3 .nombre {
-    background-color: #d0dcdd !important;
+    background-color: #00548f !important;
     float: left !important;
     height: 24px !important;
-    color: #4e7f83 !important;
+    color: #ffffff !important;
     text-align: center !important;
     padding-top: 4px !important;
-    width: 152px !important;
+    width: 176px !important;
     font-size: 13px !important;
 }
 .mapa_sitio .seccion .titulo_seccion_n3 .derecha {
@@ -242,7 +242,7 @@
     background-image: url(../img/mapa/mapa_ul_n1.gif) !important;
     background-repeat: repeat-y !important;
     background-position: left top !important;
-    padding-top: 10px !important;
+    padding-top: 30px !important;
     padding-right: 0px !important;
     padding-bottom: 0px !important;
     padding-left: 0px !important;
@@ -329,63 +329,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+
+                    
                         <div class="container content mt-5 mb-5">
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="mapa_sitio">
                                     <div class="seccion">
                                         <div class="titulo_seccion_n3"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/gobierno_regional/introduccion.html">Gobierno Regional</a></div>
+                                        <div class="nombre"><a href="javascript:void(0)">Gobierno Regional</a></div>
                                     <div class="derecha"><!----></div></div>
-                                        
+                                           
                                         <ul class="sub_1">
-                                            <li><a href="/gobierno_regional/introduccion.html">Introducción</a></li>
-                                            <li><a href="/gobierno_regional/que_es_gobierno_regional.html">Acerca del Gobierno Regional</a>
-                                            
-                                                <ul class="sub_2">
-                                                <li><a href="/gobierno_regional/funcionamiento_gobierno_regional.html">Cómo Funciona el Gobieno Regional</a></li>
-                                                <li><a href="/gobierno_regional/estrategia_regional_desarrollo.html">Estrategia Regional de desarrollo</a></li>
-                                                <li class="fin"><a href="/gobierno_regional/inversion_publica_region.html">Inversión Pública en la Región</a></li>
-                                                
-                                            </ul>
-                                            
-                                            
-                                            </li>
-                                            <li><a href="/gobierno_regional/mision.html">Misión</a></li>
-                                            <li><a href="/gobierno_regional/ley.html">Ley</a></li>
-                                            <li><a href="/gobierno_regional/organigrama.html">Organigrama</a></li>
-                                                
-                                            <li><a href="/gobierno_regional/documentos_gestion.html">Documentos de Gestión</a></li>
-                                        <li class="fin"><a href="/gobierno_regional/concurso_publico.html">Concurso Público</a></li>
-                                            
-                                    </ul>
+                                        @foreach($articulo1 as $arti)
+                                        <li><a href="{{ $arti->url }}">{{ $arti->nombreUrl }}</a></li>
+                                        @endforeach
+
+                                        </ul>
                                     
                                     
                                     </div>
                                 
                                 <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/consejo_regional/introduccion.html">Consejo Regional</a></div>
+                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="javascript:void(0)">Consejo Regional</a></div>
                                     <div class="derecha"><!----></div></div>
                                         
                                         <ul class="sub_1">
-                                            
-                                        <li><a href="/consejo_regional/introduccion.html">Introducción</a></li>
-                                        <li><a href="/consejo_regional/finalidad.html">Descripción General</a>
-                                            <ul class="sub_2">
-                                                <li><a href="/consejo_regional/finalidad.html">Finalidad</a></li>
-                                                <li><a href="/consejo_regional/integrantes_conformacion">Integrantes y Conformación</a></li>
-                                                <li><a href="/consejo_regional/duracion.html">Duración</a></li>
-                                                <li><a href="/consejo_regional/requisitos.html">Requisitos</a></li>
-                                                <li class="fin"><a href="/consejo_regional/funciones.html">Funciones</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/consejo/presidente_consejo">Presidente del Consejo</a> </li> 
-                                        <li><a href="/consejo/consejeros">Consejeros</a></li>
-                                        <li><a href="/consejo/actas">Actas</a></li>
-                                        <li><a href="/consejo/acuerdos">Acuerdos</a></li>
-                                        <li><a href="/consejo/certificados">Certificados</a></li>
-                                        <li class="fin"><a href="/consejo/resumen_gastos">Resumen de Gastos</a></li>
-                                    </ul>
+                                        @foreach($articulo2 as $arti)
+                                        <li><a href="{{ $arti->url }}">{{ $arti->nombreUrl }}</a></li>
+                                        @endforeach
+
+                                        </ul>
                                     
                                     
                                     </div>
@@ -393,60 +367,15 @@
                                 
                                 
                                 <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/region_lagos/introduccion.html">Región de los Lagos</a></div>
+                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="javascript:void(0)">Región Los Lagos</a></div>
                                     <div class="derecha"><!----></div></div>
                                         
                                         <ul class="sub_1">
-                                            
-                                        <li><a href="/region_lagos/introduccion.html">Introducción</a></li>
-                                        <li><a href="/region_lagos/antecedentes_region.html">Información de la Región</a>
-                                            <ul class="sub_2">
-                                                <li><a href="/region_lagos/antecedentes_region.html">Antecedentes de la Región</a></li>
-                                                <li><a href="/region_lagos/provincia_osorno.html">Provincia de Osorno</a></li>
-                                                <li><a href="/region_lagos/provincia_llanquihue.html">Provincia de Llanquihue</a></li>
-                                                <li><a href="/region_lagos/provincia_chiloe.html">Provincia de Chiloé</a></li>
-                                                <li class="fin"><a href="/region_lagos/provincia_palena.html">Provincia de Palena</a></li>
-                                            
-                                            </ul>
-                                            </li>
-                                        <li><a href="/region_lagos/autoridades.html">Autoridades</a>
-                                            <ul class="sub_2">
-                                                <li><a href="/region_lagos/autoridades.html">Intendente Regional</a></li>
-                                                <li><a href="/region_lagos/senadores.html">Senadores</a></li>
-                                                <li><a href="/region_lagos/diputados.html">Diputados</a></li>
-                                                <li><a href="/region_lagos/gobernadores.html">Gobernaciones</a></li>
-                                                <li><a href="/region_lagos/seremis.html">Seremis</a></li>
-                                                <li><a href="/region_lagos/servicios.html">Servicios</a></li>
-                                            <li class="fin"><a href="/region_lagos/municipalidades.html">Municipalidades</a></li>
-                                            </ul>
-                                        </li>   
-                                            <li><a href="/estadisticas/poblacion_superficie">Estadísticas</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/estadisticas/poblacion_superficie">Población y Superficie</a></li>
-                                                <li><a href="/estadisticas/dinamica_economica">Dinámica Económica</a></li>
-                                                <li><a href="/estadisticas/exportacion_rama_actividad">Exportación Según Rama Actividad</a></li>
-                                                <li><a href="/estadisticas/exportacion_bloque_economico">Exportación Según Bloque Económico</a></li>
-                                                <li><a href="/estadisticas/actividad_economica">Actividad Económica</a></li>
-                                                <li class="fin"><a href="/estadisticas/fndr">FNDR 2009</a></li>
-                                            
-                                            </ul>
-                                            </li>
-                                            <li class="fin"><a href="/region_lagos/inv_descripcion_general.html">Inversiones</a>
-                                            
-                                                    <ul class="sub_2">
-                                                <li><a href="/region_lagos/inv_descripcion_general.html">Descripción Genera</a></li>
-                                                <li><a href="/inversiones/sector">Inversión Pública Efectiva Según Sectores</a></li>
-                                                <!--<li><a href="/inversiones/fuente">Inversión Pública Efectiva Según Fuentes</a></li>-->
-                                                <li class="fin"><a href="/inversiones/provincia">Financiamiento por Provincias</a></li>
-                                                <!--<li><a href="/inversiones/comuna">Financiamiento por Comunas</a></li>-->
-                                                
-                                            
-                                            </ul>
-                                            
-                                            </li>
-                                            
-                                            
-                                    </ul>
+                                        @foreach($articulo3 as $arti)
+                                        <li><a href="{{ $arti->url }}">{{ $arti->nombreUrl }}</a></li>
+                                        @endforeach
+
+                                        </ul>
                                     
                                     
                                     </div>
@@ -455,8 +384,14 @@
                                 
                                 
                                 <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/funcionarios">Directorio de Funciones</a></div>
+                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="javascript:void(0)">Directorio de Funcionarios</a></div>
                                     <div class="derecha"><!----></div></div>
+                                    <ul class="sub_1">
+                                        @foreach($articulo4 as $arti)
+                                        <li><a href="{{ $arti->url }}">{{ $arti->nombreUrl }}</a></li>
+                                        @endforeach
+
+                                        </ul>
                                         
                                         
                                     
@@ -466,170 +401,21 @@
                                 <div class="div_color_sup"><!----></div>
                                 
                                 <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/documentos/portada">Documentos</a></div>
+                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="javascript:void(0)">Infórmate aquí
+        </a></div>
                                     <div class="derecha"><!----></div></div>
-                                        
+                                    <ul class="sub_1">
+                                        @foreach($articulo5 as $arti)
+                                        <li><a href="{{ $arti->url }}">{{ $arti->nombreUrl }}</a></li>
+                                        @endforeach
+
+                                        </ul>
                                         
                                     
                                     
                                     </div>
                                 
-                                <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/programas/introduccion.html">Programas</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                        
-                                        <ul class="sub_1">
-                                            <li><a href="/programas/introduccion.html">Introducción</a></li>
-                                        <li><a href="/programas/fril_finalidad_del_programa.html">FRIL</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/fril_finalidad_del_programa.html">Finalidad del Programa</a></li>
-                                                <li><a href="/programas/fril_documentos.html">Documentos</a></li>
-                                                <li><a href="/programas/fril_fotografias.html">Fotografías</a></li>
-                                                <li class="fin"><a href="http://www.regiondeloslagos.cl/fril/index.html" target="_blank">Ingreso Proyectos FRIL</a></li>
-                                            </ul>
-                                        
-                                        </li>
-                                            <li><a href="/programas/pvp_finalidad_programa.html">Puesta en Valor del Patrimonio</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/pvp_finalidad_programa.html">Finalidad del Programa</a></li>
-                                                <li class="fin"><a href="/programas/pvp_documentos.html">Documentos</a></li>
-                                                </ul>
-                                            
-                                            </li>
-                                        <li> <a href="/programas/pirdt.html">P.I.R.D.T.</a>
-                                        
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/pirdt.html">Objetivo</a></li>
-                                                <li class="fin"><a href="/programas/pirdt_fotografias.html">Fotografías</a></li>
-                                                </ul>
-                                        </li>
-                                        <li><a href="/programas/saneamiento_rural_objetivo.html">Saneamiento Rural</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/saneamiento_rural_objetivo.html">Objetivo</a></li>
-                                                <li><a href="/programas/saneamiento_rural_r_elegibilidad.html">Requisitos de Elegibilidad</a></li>
-                                                <li><a href="/programas/saneamiento_rural_documentos.html">Documentos</a></li>
-                                                <li class="fin"><a href="/programas/saneamiento_rural_fotografias.html">Fotografías</a></li>
-                                                </ul>
-                                        </li>
-                                        <li><a href="/programas/produccion_limpia_mision_vision.html">Producción Limpia</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/produccion_limpia_mision_vision.html">Misión y Visión</a></li>
-                                                <li><a href="/programas/produccion_limpia_integrantes.html">Integrantes</a></li>
-                                                <li class="fin"><a href="/programas/produccion_limpia_documentos.html">Documentos</a></li>
-                                                </ul>
-                                        
-                                        </li>
-                                        
-                                        <li><a href="/programas/pmu_finalidad.html">PMB</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/pmu_finalidad.html">Finalidad del Programa</a></li>
-                                                <li><a href="/programas/pmu_documentos.html">Documentos</a></li>
-                                                <li class="fin"><a href="/programas/pmu_fotografias.html">Fotografías</a></li>
-                                                </ul>
-                                        
-                                        </li>
-                                        
-                                            <li><a href="/programas/residuos_solidos_finalidad.html">Residuos Sólidos</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/residuos_solidos_finalidad.html">Finalidad del Programa</a></li>
-                                                <li><a href="/programas/residuos_solidos_documentos.html">Documentos</a></li>
-                                                <li class="fin"><a href="/programas/residuos_solidos_fotografias.html">Fotografías</a></li>
-                                                </ul>
-                                        
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li><a href="/programas/electrificacion_rural_finalidad.html">Electrificación Rural</a>
-                                                <ul class="sub_2">
-                                                <li><a href="/programas/electrificacion_rural_finalidad.html">Finalidad del Programa</a></li>
-                                                <li class="fin"><a href="/programas/electrificacion_rural_fotografias.html">Fotografías</a></li>
-                                                </ul>
-                                        
-                                        
-                                        </li>
-                                        <li class="fin"><a href="/programas/fondos_concursables.html">Fondos Concursables</a></li>
-                                    </ul>
-                                    
-                                    
-                                    </div>
-                                    
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/agenda/actividades">Agenda</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                        
-                                        </div>
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n3"><div class="izquieda"><!----></div><div class="nombre"><a href="/sala_prensa/noticias">Sala de Prensa</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                        
-                                        <ul class="sub_1">
-                                            
-                                        <li><a href="/sala_prensa/noticias">Noticias</a></li>
-                                            <li><a href="/sala_prensa/galerias">Galería Fotográfica</a></li>
-                                        <li class="fin"> <a href="/sala_prensa/videos">Videos</a></li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                    
-                                    </div>
-                                
-                                <div class="clear"><!----></div>
-                                <div class="div_color_sup"><!----></div>
-                                
-                                
-                                
-                                
-                                <div class="clear"><!----></div>
-                                    
-                                    <div class="seccion">
-                                    <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/contacto">Contáctenos</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                        
-                                        
-                                        
-                                    
-                                    
-                                    </div>
-                                    
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/mapa/mapa.html">Mapa del Sitio</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                        
-                                        
-                                    
-                                    
-                                    </div>
-                                    
-                                    
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/sitios_gobierno/sitios_de_gobierno.html">Sitios de Gobierno</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                    </div>
-                                    
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/politica_privacidad/politica_privacidad.html">Políticas de Privacidad</a></div>
-                                    <div class="derecha"><!----></div></div>
-                                    </div>
-                                    
-                                        <div class="seccion">
-                                        <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/descarga_programas/descarga_programas.html">Descarga de Programas</a></div>
-                                        <div class="derecha"><!----></div></div>
-                                    </div>
-                                    
-                                    <div class="seccion">
-                                        <div class="titulo_seccion_n4"><div class="izquieda"><!----></div>
-                                        <div class="nombre"><a href="/preguntas_frecuentes/preguntas_frecuentes.html">Preguntas Frecuentes</a></div>
-                                        <div class="derecha"><!----></div></div>
-                                    </div>
-                                    
-                                <div class="clear"><!----></div>
+                            
      </div>
                                 </div>
                             </div>
