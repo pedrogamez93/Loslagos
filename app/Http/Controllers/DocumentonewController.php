@@ -277,13 +277,55 @@ class DocumentonewController extends Controller
 
     
 
-            public function destroy($id)
-            {
-                $documento = Documentonew::findOrFail($id);
-                $documento->delete();
+public function destroy($documento)
+{
+    // Mensaje de depuración
+    Log::info("Intentando eliminar documento con ID: " . $documento);
 
-                return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
-            }
+    // Verificar si el documento existe
+    $documento = Documentonew::find($documento);
+
+    if (!$documento) {
+        // Mensaje de depuración
+        Log::error("Documento con ID: " . $documento . " no encontrado.");
+        return redirect()->route('documentos.verdocumentos')->with('error', 'Documento no encontrado');
+    }
+
+    // Eliminar el documento
+    $documento->delete();
+
+    // Mensaje de depuración
+    Log::info("Documento con ID: " . $documento . " eliminado exitosamente.");
+
+    return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
+}
+
+
+public function docdestruir($documento)
+{
+    // Mensaje de depuración
+    Log::info("Intentando eliminar documento con ID: " . $documento);
+
+    // Verificar si el documento existe
+    $documento = Documentonew::find($documento);
+
+    if (!$documento) {
+        // Mensaje de depuración
+        Log::error("Documento con ID: " . $documento . " no encontrado.");
+        return redirect()->route('documentos.verdocumentos')->with('error', 'Documento no encontrado');
+    }
+
+    // Eliminar el documento
+    $documento->delete();
+
+    // Mensaje de depuración
+    Log::info("Documento con ID: " . $documento . " eliminado exitosamente.");
+
+    return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
+}
+
+
+
 
     public function download($id)
     {
