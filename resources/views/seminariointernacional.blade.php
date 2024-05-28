@@ -304,7 +304,7 @@ button {
                                                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                                                     @forelse($documentos as $documento)
                                                         <div class="mi-documento mt-3 mb-3">
-                                                            <a href="{{ $documento['url_doc'] }}" target="_blank" title="Ver documento: {{ $documento['nombre_doc'] }}" style="display: flex; align-items: center; text-align: left;">
+                                                            <a href="{{ route('seminario.download', $documento->id) }}" target="_blank" title="Ver documento: {{ $documento['nombre_doc'] }}" style="display: flex; align-items: center; text-align: left;">
                                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="margin-right: 10px;">
                                                                 <span class="mi-span">{{ $documento['nombre_doc'] }}</span>
                                                             </a>

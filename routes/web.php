@@ -339,7 +339,7 @@ Route::delete('/galerias/{galeria}', [SeminarioController::class, 'eliminarGaler
 Route::get('/galerias/{id}', [SeminarioController::class, 'show'])->name('galerias.show');
 
 Route::get('/seminario-internacional', [CategoriesController::class, 'seminarioIndex'])->name('seminario.internacional');
-
+Route::get('/seminario/download/{id}', 'App\Http\Controllers\CategoriesController@downloadseminario')->name('seminario.download');
 //RUTAS PARA DIFUSION
 
 Route::resource('difusion', DifusionController::class);
