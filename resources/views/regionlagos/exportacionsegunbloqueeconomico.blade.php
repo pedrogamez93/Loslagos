@@ -257,7 +257,8 @@
         font-weight: 400;
         line-height: 24px;
         letter-spacing: 0em;
-        text-align: left;
+        text-align: left !important;
+        margin-bottom: 0px !important;
     }
     p.fechas {
         font-family: Inter;
@@ -493,7 +494,7 @@ p.valor1.mb-5 {
                                             <div class="col-md-12 cajaElementor mb-4 p-0">
                                                 <div class="container">
                                                 <div class="row">
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-5 p-0">
                                                         
                                                     </div>
                                                     <div class="col-md-7 totalE">
