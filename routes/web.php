@@ -303,7 +303,7 @@ Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('evento
 
 Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
 
-Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+Route::get('/imagenes/eventos/{filename}', 'App\Http\Controllers\EventoController@mostrarImagenEvento')->name('imagen.mostrarEvento');
 
 Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
 //Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
