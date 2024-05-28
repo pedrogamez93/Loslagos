@@ -363,6 +363,7 @@ Route::resource('imagenregion', ImagenRegionController::class);
 Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
 
 Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
+Route::get('/imagenregion/download/{id}', 'App\Http\Controllers\CategoriesController@downloadimagenregion')->name('imagenregion.download');
 
 //RUTAS PARA LAS LANDING DINAMICAS
 
