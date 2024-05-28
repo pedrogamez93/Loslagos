@@ -61,6 +61,8 @@ use App\Http\Controllers\HomefndrController;
 
 use App\Http\Controllers\FondosFndrController;
 use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,9 +77,9 @@ Auth::routes();
 
 
 //RUTA SOLO PARA ADMIN
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('users', UserController::class);
-
+Route::group(['middleware' => ['auth', 'checkrole:admin,editor']], function () {
+    Route::resource('users', UserController::class)->middleware('checkrole:admin');
+    // Otras rutas para 'admin' y 'editor'
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
@@ -400,9 +402,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
 
 
