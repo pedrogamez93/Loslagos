@@ -659,6 +659,7 @@ Route::get('/programas/Politicadeturismo/edit/{id}', 'App\Http\Controllers\Polit
 Route::put('/programas/Politicadeturismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updatePoliticadeturismo')->name('Politicadeturismo.update')->middleware('auth');
 //RUTAS POLITICAS DE TURISMO FRONTEND
 Route::get('/formulacionpoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismoWeb')->name('PoliticadeturismoWeb.show');
+Route::get('/lanzamientopolitica/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadLanzamientoPolitica')->name('lanzamientopolitica.download');
 //RUTAS Productos de la Política de Turismo
 
 Route::get('/programas/ProductosdelaPoliticadeTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.index')->middleware('auth');
