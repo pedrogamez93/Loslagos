@@ -259,7 +259,7 @@
                                                                 <img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco">
                                                             </div>        
                                                             <div class="col-md-10 p-0">
-                                                            <a href="{{ asset('storage/documentostramites/Zp9ILuRJ85QDRNfX9NZX4YFNN5H4eNnRXAmz8b3z.pdf') }}">{{ $secundario->nombreA }}</a>
+                                                            <a href="{{ asset('/storage/public/productosdelapoliticadeturismo/MC2q7EzkKqIWAfieYCamaEI50evlPc1zNXn3Wjsm.pdf') }}">{{ $secundario->nombreA }}</a>
                                                             </div>        
                                                         </div> 
                                                             </div>        
