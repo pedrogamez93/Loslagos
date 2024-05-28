@@ -263,8 +263,9 @@ button {
                                                         <a href="{{ route('eventos.show', $evento->id) }}" class="evento-link">
                                                             <div class="row mt-4 mb-3" style="border: 1px solid #F59120;margin: 20px;">
                                                                 <div class="col-md-6" style="align-self: center; text-align-last: center;">
-                                                                    <strong>Inicio:</strong> {{ $evento->fecha_inicio->locale('es')->format('l d-m-Y H:i') }}<br>
-                                                                    <strong>Término:</strong> {{ $evento->fecha_termino->locale('es')->format('l d-m-Y H:i') }}
+                                                                    <strong>Inicio:</strong> {{ \Carbon\Carbon::parse($evento->fecha_inicio)->locale('es')->isoFormat('dddd D-MM-YYYY HH:mm') }}<br>
+                                                                    <strong>Término:</strong> {{ \Carbon\Carbon::parse($evento->fecha_termino)->locale('es')->isoFormat('dddd D-MM-YYYY HH:mm') }}
+
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <p><strong>Título:</strong></p>
