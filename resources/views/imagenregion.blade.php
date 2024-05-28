@@ -307,7 +307,7 @@ button {
                                                 @if ($imagenregion->documentos->count() > 0)
                                                     <div class="migrid mt-5" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border: 1px solid #F59120; padding: 20px;">
                                                         @foreach ($imagenregion->documentos as $documento)
-                                                            <a href="{{ asset('storage/' . $documento->urldoc) }}" target="_blank" style="display: flex; align-items: center; text-align: left;">
+                                                            <a href="{{ route('imagenregion.download', $documento->id) }}" target="_blank" style="display: flex; align-items: center; text-align: left;">
                                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="margin-right: 10px;">    
                                                                 <span class="mi-span">{{ $documento->nombredoc }}</span>
                                                             </a>
