@@ -257,7 +257,7 @@ button {
                                                 @endphp
 
                                                 @foreach ($eventosAgrupadosPorMes as $mes => $eventosDelMes)
-                                                    <p class="title-cat">Mes de {{ $mes }}</p>
+                                                <p class="title-cat">Mes de {{ \Carbon\Carbon::parse($mes)->locale('es')->isoFormat('MMMM') }}</p>
                                                     @foreach ($eventosDelMes as $evento)
                                                         {{-- Enlace que envuelve todo el contenido del evento --}}
                                                         <a href="{{ route('eventos.show', $evento->id) }}" class="evento-link">
