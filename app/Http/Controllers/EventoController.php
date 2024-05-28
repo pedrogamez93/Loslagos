@@ -94,21 +94,30 @@ class EventoController extends Controller{
     }
 
     public function mostrarImagenEvento($filename)
-{
-    $path = storage_path('app/public/eventos_imagenes/' . $filename);
-
-    if (!File::exists($path)) {
-        abort(404);
+    {
+        $path = storage_path('app/public/eventos_imagenes/' . $filename);
+    
+        // Log de la ruta solicitada
+        Log::info("Solicitud para mostrar imagen: " . $filename);
+        Log::info("Ruta completa de la imagen: " . $path);
+    
+        if (!File::exists($path)) {
+            Log::error("El archivo no existe: " . $path);
+            abort(404, 'El archivo no existe.');
+        }
+    
+        $file = File::get($path);
+        $type = File::mimeType($path);
+    
+        Log::info("Tipo MIME del archivo: " . $type);
+    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+    
+        Log::info("Imagen mostrada correctamente: " . $filename);
+    
+        return $response;
     }
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-}
 
     public function edit($id){
 
