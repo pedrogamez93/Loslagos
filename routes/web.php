@@ -126,8 +126,8 @@ Route::get('/funcionario', [FuncionarioController::class, 'index']);
 
 Route::get('/funcionarios/cargamasiva', [FuncionarioController::class, 'getcargarMasiva'])->name('funcionarios.cargamasiva')->middleware('auth');
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-
-
+Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 Route::get('/descargar-planilla', function () {
@@ -139,12 +139,12 @@ Route::get('/descargar-planilla', function () {
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
     Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
-    Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+   
     Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
     Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
-Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 });
 
