@@ -73,59 +73,78 @@ use App\Http\Controllers\UserController;
 */
 Auth::routes();
 
-Route::resource('users', UserController::class);
 
+//RUTA SOLO PARA ADMIN
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('users', UserController::class);
+
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
 Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
 Route::post('/home/store', [HomeController::class, 'store']);
-Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
-Route::put('/home/update', [HomeController::class, 'update']);
-Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
+
+
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 Route::get('/home/slider', [HomeController::class, 'slider'])->name('Home.slider');
-Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
-Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
+//RUTA SOLO PARA ADMIN Y EDITOR
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::put('/home/update', [HomeController::class, 'update']);
+    Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
+    Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
+Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');
+Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
+});
 /*DOCUMENTOS */
 
-Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
-Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
+
 
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
 
 
-Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
-Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
-Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
-
-Route::delete('/documentos/eliminar/{documento}', [DocumentonewController::class, 'destroy'])->name('documentos.destroydoc')->middleware('auth');
-Route::post('/docdestruir/documento', [DocumentonewController::class, 'docdestruir'])->name('documentos.docdestruir');
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
+//RUTA SOLO PARA ADMIN Y EDITOR
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
+    Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
+    Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
+    Route::delete('/documentos/eliminar/{documento}', [DocumentonewController::class, 'destroy'])->name('documentos.destroydoc')->middleware('auth');
+    Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
+    Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
+    Route::post('/docdestruir/documento', [DocumentonewController::class, 'docdestruir'])->name('documentos.docdestruir');
+});
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
-Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
-Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
+
 Route::get('/funcionarios/cargamasiva', [FuncionarioController::class, 'getcargarMasiva'])->name('funcionarios.cargamasiva')->middleware('auth');
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
-Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
-Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
-Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
-Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
+
+
 Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 Route::get('/descargar-planilla', function () {
     $pathToFile = public_path('storage/funcionarioplanilla.csv');
     return response()->download($pathToFile);
 })->name('descargar.planilla');
+
+
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
+    Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
+    Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+    Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
+    Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
+Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
+});
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
@@ -137,6 +156,7 @@ Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTab
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy')->middleware('auth');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
+
 Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
 
 //Route::resource('/', HomeController::class);
