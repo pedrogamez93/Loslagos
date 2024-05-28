@@ -7,6 +7,8 @@ use App\Models\DocumentoSeminario;
 use App\Models\GaleriaSeminario;
 use App\Models\ImagenSeminario;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 
