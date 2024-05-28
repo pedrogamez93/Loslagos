@@ -225,6 +225,7 @@ Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasa
 Route::resource('audienciasdepartes', AudienciasController::class)->middleware('auth');
 Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia')->middleware('auth');
 Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia')->middleware('auth');
+Route::get('/download-audienciadepartes/{id}', 'App\Http\Controllers\CategoriesController@downloadAudienciadepartes')->name('downloadAudienciadepartes');
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class)->middleware('auth');
 
