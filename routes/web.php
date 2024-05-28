@@ -341,7 +341,7 @@ Route::get('/galerias/{id}', [SeminarioController::class, 'show'])->name('galeri
 
 Route::get('/seminario-internacional', [CategoriesController::class, 'seminarioIndex'])->name('seminario.internacional');
 Route::get('/seminario/download/{id}', 'App\Http\Controllers\CategoriesController@downloadseminario')->name('seminario.download');
-Route::get('/seminario-imagen/{filename}', 'App\Http\Controllers\SeminarioController@mostrarseminarioimagen')->name('seminario.imagen.mostrar');
+Route::get('/seminario-internacional/seminario-imagen/{filename}', 'App\Http\Controllers\SeminarioController@mostrarSeminarioImagen')->name('seminario.imagen.mostrar');
 
 //RUTAS PARA DIFUSION
 
