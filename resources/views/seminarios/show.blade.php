@@ -260,8 +260,8 @@ button {
                                                         @foreach ($galeria->imagenes as $imagen)
                                                             <div>
                                                                 {{-- Enlace para abrir la imagen en Fancybox --}}
-                                                                <a href="{{ route('seminario.imagen.mostrar', ['filename' => basename($imagenSeminario->archivo)]) }}" alt="{{ $imagenSeminario->nombre }}" data-fancybox="gallery">
-                                                                    <img src="{{ route('seminario.imagen.mostrar', ['filename' => basename($imagenSeminario->archivo)]) }}" alt="{{ $imagenSeminario->nombre }}" alt="{{ $imagen->nombre }}" class="img-fluid">
+                                                                <a href="{{ route('seminario.imagen.mostrar', ['filename' => basename($imagen->archivo)]) }}" alt="{{ $imagen->archivo }}" data-fancybox="gallery">
+                                                                    <img src="{{ route('seminario.imagen.mostrar', ['filename' => basename($imagen->archivo)]) }}" alt="{{ $imagen->archivo }}" alt="{{ $imagen->nombre }}" class="img-fluid">
                                                                 </a>
                                                             </div>
                                                         @endforeach
