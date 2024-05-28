@@ -246,7 +246,7 @@
                                         <p>{!! $primerArticulo->descripcion ?? '' !!}</p>
                                         <img class="imagenes-d pt-4" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco">
                                         <p style="margin-top: 34px;margin-left: 53px;">
-                                        <a href="{{ asset('storage/' . $primerArticulo->archivo) }}">{{$primerArticulo->nombreA}}</a>
+                                        <a href="{{ route('lanzamientopolitica.download', ['id' => $primerArticulo->id]) }}">{{$primerArticulo->nombreA}}</a>
                                         </p>
                                     </div>
                                 </div>
