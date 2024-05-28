@@ -347,6 +347,7 @@ Route::resource('difusion', DifusionController::class);
 Route::delete('/difusion-docs/{id}', [DifusionController::class, 'destroyDocs'])->name('difusion-docs.destroy');
 
 Route::get('/politica-turismo/difusion', 'App\Http\Controllers\CategoriesController@difusionindex');
+Route::get('/difusion/download/{id}', 'App\Http\Controllers\CategoriesController@downloadifusion')->name('difusion.download');
 
 //RUTAS PARA PRESENTACIONES
 
