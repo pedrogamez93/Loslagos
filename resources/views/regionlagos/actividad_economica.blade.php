@@ -280,7 +280,7 @@
         font-weight: 700;
         line-height: 25px;
         letter-spacing: 0em;
-        text-align: left;
+        text-align: left !important;
     }
     .backgroundB{
         background-color: #00548F !important;
