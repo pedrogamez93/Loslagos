@@ -657,7 +657,7 @@ class CategoriesController extends Controller{
 
     public function downloadpresentaciones($id)
 {
-    $documento = PresentacionesDocs::findOrFail($id);
+    $documento = Presentaciones::findOrFail($id);
 
     // Log para depuración del documento
     Log::info("Documento encontrado: " . json_encode($documento));
