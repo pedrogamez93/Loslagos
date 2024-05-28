@@ -112,11 +112,18 @@ class SitiosController extends Controller
     }
 
 
-    public function mostrarImagen($imagen)
-    {
-        return response()->file(storage_path('app/public/sitiodegobierno/' . $imagen));
+   
+
+    public function mostrarImagen($carpeta, $imagen)
+        {
+            $rutaCompleta = storage_path("app/public/{$carpeta}/{$imagen}");
         
-    }
+            if (file_exists($rutaCompleta)) {
+                return response()->file($rutaCompleta);
+            } else {
+                abort(404); // O redirige a una página de error según tus necesidades
+            }
+        }
 
     public function destroy($id)
 {
