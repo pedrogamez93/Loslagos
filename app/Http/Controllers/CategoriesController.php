@@ -273,6 +273,33 @@ class CategoriesController extends Controller{
         return view('audienciadepartes', ['audiencia' => $audiencia]);
     }
 
+    public function downloadAudienciadepartes($id)
+{
+    $documento = AudienciasPartesDocs::findOrFail($id);
+
+    // Log para depuración del documento
+    \Log::info("Documento encontrado: " . json_encode($documento));
+
+    if ($documento) {
+        $rutaCompleta = $documento->url_doc; // Esta es la ruta almacenada en la base de datos
+
+        // Construir la ruta completa al archivo
+        $rutaArchivo = storage_path('app/' . $rutaCompleta);
+
+        \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            return response()->download($rutaArchivo);
+        } else {
+            \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+        }
+    } else {
+        \Log::error("Documento no encontrado con id: " . $id);
+        return response()->json(['error' => 'Documento no encontrado.'], 404);
+    }
+}
+
     public function politicasostenibilidadhidricaIndex() {
         // Obtén el último registro de DiseñoPolíticaRegionales
         $ultimoRegistro = DisenoPoliticoRegionales::latest()->first();
@@ -530,6 +557,33 @@ class CategoriesController extends Controller{
         return view('biblioteca', ['biblioteca' => $biblioteca]);
     }
 
+    public function downloadbiblioteca($id)
+    {
+        $documento = Biblioteca::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->urldocs; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+
     public function galeriaIndex() {
         $galerias = Galeria::all();
         
@@ -553,6 +607,33 @@ class CategoriesController extends Controller{
         ]);
     }
 
+    public function downloadseminario($id)
+{
+    $documento = DocumentoSeminario::findOrFail($id);
+
+    // Log para depuración del documento
+    Log::info("Documento encontrado: " . json_encode($documento));
+
+    if ($documento) {
+        $rutaCompleta = $documento->url_doc; // Esta es la ruta almacenada en la base de datos
+
+        // Construir la ruta completa al archivo
+        $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
+
+        Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            return response()->download($rutaArchivo);
+        } else {
+            Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+        }
+    } else {
+        Log::error("Documento no encontrado con id: " . $id);
+        return response()->json(['error' => 'Documento no encontrado.'], 404);
+    }
+}
+
     public function difusionindex() {
 
         $difusion = Difusion::with('documentos')->latest()->first();
@@ -564,11 +645,70 @@ class CategoriesController extends Controller{
         return view('difusion', compact('difusion'));
     }
 
+    public function downloadifusion($id)
+    {
+        $documento = DifusionDocs::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->urldoc; // Esta es la ruta almacenada en la base de datos
+            
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+
+
     public function presentacionIndex() {
         $presentacion = Presentaciones::all();
         
         return view('presentaciones', ['presentacion' => $presentacion]);
     }
+
+    public function downloadpresentaciones($id)
+    {
+        $documento = Presentaciones::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->urldocs; // Esta es la ruta almacenada en la base de datos
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+    
 
     public function imagenregionindex() {
 
@@ -580,6 +720,38 @@ class CategoriesController extends Controller{
 
         return view('imagenregion', compact('imagenregion'));
     }
+
+    public function downloadimagenregion($id)
+    {
+        $documento = ImagenRegionDocs::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->urldoc; // Esta es la ruta almacenada en la base de datos
+            
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+    
+
 
 
 }
