@@ -619,31 +619,34 @@ class CategoriesController extends Controller{
     }
 
     public function downloadifusion($id)
-{
-    $documento = DifusionDocs::findOrFail($id);
-
-    // Log para depuración del documento
-    Log::info("Documento encontrado: " . json_encode($documento));
-
-    if ($documento) {
-        $rutaCompleta = $documento->urldoc; // Esta es la ruta almacenada en la base de datos
-
-        // Construir la ruta completa al archivo
-        $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
-
-        Log::info("Ruta completa del archivo: " . $rutaArchivo);
-
-        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-            return response()->download($rutaArchivo);
+    {
+        $documento = DifusionDocs::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->urldoc; // Esta es la ruta almacenada en la base de datos
+            
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
         } else {
-            Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
-            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
-    } else {
-        Log::error("Documento no encontrado con id: " . $id);
-        return response()->json(['error' => 'Documento no encontrado.'], 404);
     }
-}
 
 
     public function presentacionIndex() {
