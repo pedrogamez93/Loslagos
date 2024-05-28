@@ -532,7 +532,7 @@ class CategoriesController extends Controller{
 
     public function downloadbiblioteca($id)
     {
-        $documento = BibliotecaDocs::findOrFail($id);
+        $documento = Biblioteca::findOrFail($id);
     
         // Log para depuración del documento
         Log::info("Documento encontrado: " . json_encode($documento));
