@@ -303,7 +303,7 @@ button {
                                             <div class="col-md-8">
                                                 <div class="migrid mt-5" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; float: inline-start; border: 1px solid #F59120; padding:20px; border-radius:5px;">
                                                     @foreach ($presentacion as $arti)
-                                                        <a href="{{ asset('storage/' . $arti->urldocs) }}" target="_blank" style="display: flex; align-items: center; text-decoration: none; padding: 1rem; border: 1px solid #F59120; border-radius: 5px;">
+                                                        <a href="{{ route('presentaciones.download', $arti->id) }}" target="_blank" style="display: flex; align-items: center; text-decoration: none; padding: 1rem; border: 1px solid #F59120; border-radius: 5px;">
                                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="margin-right: 10px;">
                                                             <span class="mi-span" style="flex-grow: 1; text-align: left;">{{ $arti->titulo }}</span>
                                                         </a>
