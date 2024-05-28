@@ -214,7 +214,7 @@ class SeminarioController extends Controller {
         $galeria = GaleriaSeminario::with('imagenes')->findOrFail($id);
     
         // Pasa la galería a la vista junto con sus imágenes
-        return view('seminarios.show', ['galeria' => $galeria]);
+        return view('seminariointernacional', ['galeria' => $galeria]);
     }
 
     public function mostrarSeminarioImagen($filename)
