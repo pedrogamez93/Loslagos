@@ -110,7 +110,7 @@
                         <div class="mb-3 mt-4">
                             <label for="formFile" class="form-label">Suba aquí el documento correspondiente</label>
                             <input class="form-control" type="file" name="archivo_path" id="formFile">
-                            @if ($noticias->archivo_path)
+                            @if ($sitiodegobierno->archivo_path)
                                 <p>Archivo actual: <img src="{{ route('mostrar.imagen', ['carpeta' => 'sitiodegobierno', 'imagen' => basename($sitiodegobierno->archivo_path)]) }}" ></p>
                             @endif
 
