@@ -142,7 +142,7 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = ProductosdelaPoliticadeTurismo::find($id);
-            return view('politicadeturismo.productosdelapoliticadeturismo.create', compact('articulo'));
+            return view('politicadeturismo.productosdelapoliticadeturismo.edit', compact('articulo'));
             
         } else {
             // La consulta no devolvió ningún registro
