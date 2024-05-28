@@ -323,7 +323,7 @@ Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])-
 Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
 
 Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
-Route::get('/galeria-imagen/{filename}', 'App\Http\Controllers\GaleriaController@mostrargaleriaImagen')->name('galeria.imagen.mostrar');
+Route::get('/galerias/galeria-imagen/{filename}', 'App\Http\Controllers\GaleriaController@mostrargaleriaImagen')->name('galeria.imagen.mostrar');
 //Route::get('/galerias/imagenes/{filename}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
 //Route::get('/galerias/imagenes/{filename}', [CategoriesController::class, 'mostrargaleriaImagen'])->name('imagen.showga');
 
