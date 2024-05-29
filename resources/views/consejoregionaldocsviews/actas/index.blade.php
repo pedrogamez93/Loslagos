@@ -153,6 +153,7 @@
                                         <div> <!-- Contenedor para los textos -->
                                             <p class="p-doc-tit">{{ $acta->documentonew->tema }}</p>
                                             <p class="p-doc-baj">Fecha y Hora: {{ \Carbon\Carbon::parse($acta->documentonew->fecha_hora_sesion)->format('d-m-Y H:i') }}</p>
+                                            {{ $acta->documentonew->fecha_hora_sesion }}
                                         </div>
                                     </a>
                                 </div>
