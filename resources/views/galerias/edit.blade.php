@@ -102,7 +102,7 @@
                             @foreach ($galeria->imagenes as $imagen)
                                 <div class="col-md-3 mb-4">
                                     <div class="image-container">
-                                        <img src="{{ asset('storage/' . $imagen->archivo) }}" alt="{{ $imagen->nombre }}" class="img-fluid" style="max-width: 400px; width: 100%; height: 250px; object-fit: cover;">
+                                        <img src="{{ route('galeria.imagen.mostrar', ['filename' => basename($imagen->archivo)]) }}" alt="{{ $imagen->nombre }}" class="img-fluid" style="max-width: 400px; width: 100%; height: 250px; object-fit: cover;">
                                         <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST" class="mt-2">
                                             @csrf
                                             @method('DELETE')
