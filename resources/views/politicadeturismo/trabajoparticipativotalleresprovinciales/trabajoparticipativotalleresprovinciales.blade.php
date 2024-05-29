@@ -274,7 +274,7 @@
                                                                 <img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco">
                                                             </div>        
                                                             <div class="col-md-10 p-0">
-                                                            <a href="{{ route('lanzamientopolitica.download', ['id' => $secundario->id]) }}">{{ $secundario->nombreA }}</a>
+                                                            <a href="{{ route('TrabajoParticipativoTalleresProvinciales.download', ['id' => $secundario->id]) }}">{{ $secundario->nombreA }}</a>
                                                             </div>        
                                                         </div> 
                                                             </div>        
