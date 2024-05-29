@@ -21,7 +21,7 @@ class ConsejoRegionalDocsViewsController extends Controller
     {
         $actas = Acta::with('documentonew')
             ->join('documentosnew', 'actas.documentonew_id', '=', 'documentosnew.id')
-            ->orderBy('documentosnew.fecha_hora', 'desc') // Asegúrate de que la columna se llama 'fecha_hora'
+            ->orderBy('documentosnew.fecha_hora_sesion', 'desc') // Asegúrate de que la columna se llama 'fecha_hora'
             ->select('actas.*')
             ->paginate(8); // 8 actas por página
     

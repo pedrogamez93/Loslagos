@@ -152,7 +152,7 @@
                                         <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;"> <!-- Añade margen a la imagen -->
                                         <div> <!-- Contenedor para los textos -->
                                             <p class="p-doc-tit">{{ $acta->documentonew->tema }}</p>
-                                            <p class="p-doc-baj">Fecha y Hora: {{ \Carbon\Carbon::parse($acta->documentonew->fecha_hora)->format('d-m-Y H:i') }}</p>
+                                            <p class="p-doc-baj">Fecha y Hora: {{ \Carbon\Carbon::parse($acta->documentonew->fecha_hora_sesion)->format('d-m-Y H:i') }}</p>
                                         </div>
                                     </a>
                                 </div>

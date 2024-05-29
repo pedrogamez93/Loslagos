@@ -17,8 +17,7 @@
 </div>
 
 <div class="contenido bg-white rounded-left rounded-top-left-90 mt-n6 colorB" style="height: 800px; margin-top: -7vh;border-radius: 70px 0px 0px 0px;">
-    <div class="row py-5 colorB" style="    padding-right: 10rem!important;
-    padding-left: 10rem!important;">
+    <div class="row py-5 colorB seleccionycategoria" style="">
         <div id="divformulario" class="col-md-8 col-lg-9" style="padding: 4%;">
             <h4 class="tituloform">Selecciona la Categoría y Busca</h4>
             <form action="{{ url('/documentos/buscar') }}" method="POST">
