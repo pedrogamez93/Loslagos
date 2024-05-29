@@ -99,12 +99,12 @@
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
             <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" >
                        
-            <select class="form-select mt-4" aria-label="Default select example" name="actividad">
+            <!-- <select class="form-select mt-4" aria-label="Default select example" name="actividad">
                 <option selected>Actividad o Profesión</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
-            </select>
+            </select> -->
 
             <label for="region">Tipo de funcionario:</label>
                 <select class="form-select mt-4" id="Tfuncionario" name="Tfuncionario" onchange="cargarProvincias()">

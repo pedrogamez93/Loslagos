@@ -256,13 +256,34 @@ public function indexTabla()
 
 public function edit($id)
 {
+    try {
+        // Verificar si las divisiones y departamentos están definidas
+        if (!isset($this->divisiones) || !isset($this->departamentos)) {
+            throw new \Exception("Divisiones o departamentos no están definidos.");
+        }
 
-    $divisiones = $this->divisiones; 
-    $departamentos = $this->departamentos;
-    $funcionarios = Funcionario::findOrFail($id);
-    // Puedes necesitar cargar otras cosas según tus necesidades
-    return view('funcionarios.edit', compact('funcionarios', 'divisiones', 'departamentos'));
+        $divisiones = $this->divisiones; 
+        $departamentos = $this->departamentos;
+
+        // Verificar si se encuentra el funcionario con el ID proporcionado
+        $funcionarios = Funcionario::findOrFail($id);
+
+        // Verificar el contenido de las variables antes de pasar a la vista
+        logger()->info('Editando funcionario', [
+            'funcionario' => $funcionarios,
+            'divisiones' => $divisiones,
+            'departamentos' => $departamentos,
+        ]);
+
+        // Puedes necesitar cargar otras cosas según tus necesidades
+        return view('funcionarios.edit', compact('funcionarios', 'divisiones', 'departamentos'));
+    } catch (\Exception $e) {
+        // Registrar el error y redirigir con un mensaje de error
+        logger()->error('Error al editar funcionario', ['error' => $e->getMessage()]);
+        return redirect()->back()->with('error', 'Ocurrió un error al cargar la información del funcionario: ' . $e->getMessage());
+    }
 }
+
 
  public function update(Request $request, $id)
 {
