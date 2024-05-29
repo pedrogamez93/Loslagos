@@ -141,7 +141,7 @@ Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
    
     Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
-    Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+    Route::get('/funcionarios/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
 
