@@ -502,6 +502,7 @@ Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegi
 
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
 Route::get('/consejoregional/tablassesionesconsejo/documentos/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadtablassesionesconsejo')->name('sesiones.download');
+Route::get('actas/download/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadactas')->name('actas.download');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 /*TABLAS SESIONES DEL CONSEJO*/
