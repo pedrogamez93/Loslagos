@@ -659,7 +659,6 @@ Route::get('/programas/Politicadeturismo/edit/{id}', 'App\Http\Controllers\Polit
 Route::put('/programas/Politicadeturismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updatePoliticadeturismo')->name('Politicadeturismo.update')->middleware('auth');
 //RUTAS POLITICAS DE TURISMO FRONTEND
 Route::get('/formulacionpoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismoWeb')->name('PoliticadeturismoWeb.show');
-Route::get('/lanzamientopolitica/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadLanzamientoPolitica')->name('lanzamientopolitica.download');
 //RUTAS Productos de la Política de Turismo
 
 Route::get('/programas/ProductosdelaPoliticadeTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.index')->middleware('auth');
@@ -667,6 +666,11 @@ Route::post('/programas/ProductosdelaPoliticadeTurismo/store', 'App\Http\Control
 Route::get('/programas/ProductosdelaPoliticadeTurismo/create', 'App\Http\Controllers\PoliticadeturismoController@createProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.create')->middleware('auth');
 Route::get('/programas/ProductosdelaPoliticadeTurismo/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.edit')->middleware('auth');
 Route::put('/programas/ProductosdelaPoliticadeTurismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.update')->middleware('auth');
+Route::get('/programas/ProductosdelaPoliticadeTurismo/show', 'App\Http\Controllers\PoliticadeturismoController@showProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.show')->middleware('auth');
+Route::delete('/programas/ProductosdelaPoliticadeTurismo/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.destroy')->middleware('auth');
+Route::get('/programas/ProductosdelaPoliticadeTurismo/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyProductosdelaPoliticadeTurismoItems')->name('ProductosdelaPoliticadeTurismoItems.destroy')->middleware('auth');
+
+Route::get('/ProductosdelaPoliticadeTurismo/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.download');
 
 //RUTAS Lanzamiento Política
 
@@ -677,7 +681,7 @@ Route::post('/programas/LanzamientoPolitica/store', 'App\Http\Controllers\Politi
 Route::get('/programas/LanzamientoPolitica/create', 'App\Http\Controllers\PoliticadeturismoController@createLanzamientoPolitica')->name('LanzamientoPolitica.create')->middleware('auth');
 Route::get('/programas/LanzamientoPolitica/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editLanzamientoPolitica')->name('LanzamientoPolitica.edit')->middleware('auth');
 Route::put('/programas/LanzamientoPolitica/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateLanzamientoPolitica')->name('LanzamientoPolitica.update')->middleware('auth');
-
+Route::get('/lanzamientopolitica/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadLanzamientoPolitica')->name('lanzamientopolitica.download');
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/LanzamientoPolitica', 'App\Http\Controllers\PoliticadeturismoController@indexLanzamientoPoliticaWeb')->name('LanzamientoPoliticaWeb.show');
 
@@ -696,6 +700,8 @@ Route::get('/programas/TrabajoParticipativoMetodologia/create', 'App\Http\Contro
 Route::get('/programas/TrabajoParticipativoMetodologia/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.edit')->middleware('auth');
 Route::put('/programas/TrabajoParticipativoMetodologia/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.update')->middleware('auth');
 
+Route::get('/TrabajoParticipativoMetodologia/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.download');
+
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/TrabajoParticipativoMetodologia', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoMetodologiaWeb')->name('TrabajoParticipativoMetodologiaWeb.show');
 
@@ -704,6 +710,8 @@ Route::post('/programas/TrabajoParticipativoTalleresProvinciales/store', 'App\Ht
 Route::get('/programas/TrabajoParticipativoTalleresProvinciales/create', 'App\Http\Controllers\PoliticadeturismoController@createTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.create')->middleware('auth');
 Route::get('/programas/TrabajoParticipativoTalleresProvinciales/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.edit')->middleware('auth');
 Route::put('/programas/TrabajoParticipativoTalleresProvinciales/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.update')->middleware('auth');
+
+Route::get('/TrabajoParticipativoTalleresProvinciales/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.download');
 
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/TrabajoParticipativoTalleresProvinciales', 'App\Http\Controllers\PoliticadeturismoController@indexTrabajoParticipativoTalleresProvincialesWeb')->name('TrabajoParticipativoTalleresProvincialesWeb.show');
@@ -714,6 +722,8 @@ Route::get('/programas/MesaPublicoPrivada/create', 'App\Http\Controllers\Politic
 Route::get('/programas/MesaPublicoPrivada/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editMesaPublicoPrivada')->name('MesaPublicoPrivada.edit')->middleware('auth');
 Route::put('/programas/MesaPublicoPrivada/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateMesaPublicoPrivada')->name('MesaPublicoPrivada.update')->middleware('auth');
 
+Route::get('/MesaPublicoPrivada/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadMesaPublicoPrivada')->name('MesaPublicoPrivada.download');
+
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/MesaPublicoPrivada', 'App\Http\Controllers\PoliticadeturismoController@indexMesaPublicoPrivadaWeb')->name('MesaPublicoPrivadaWeb.show');
 
@@ -723,6 +733,8 @@ Route::get('/programas/ComiteTecnicodeGestion/create', 'App\Http\Controllers\Pol
 Route::get('/programas/ComiteTecnicodeGestion/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.edit')->middleware('auth');
 Route::put('/programas/ComiteTecnicodeGestion/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.update')->middleware('auth');
 
+Route::get('/ComiteTecnicodeGestion/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.download');
+
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/ComiteTecnicodeGestion', 'App\Http\Controllers\PoliticadeturismoController@indexComiteTecnicodeGestionWeb')->name('ComiteTecnicodeGestion.show');
 
@@ -731,6 +743,8 @@ Route::post('/programas/Subcomisiones/store', 'App\Http\Controllers\Politicadetu
 Route::get('/programas/Subcomisiones/create', 'App\Http\Controllers\PoliticadeturismoController@createSubcomisiones')->name('Subcomisiones.create')->middleware('auth');
 Route::get('/programas/Subcomisiones/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editSubcomisiones')->name('Subcomisiones.edit')->middleware('auth');
 Route::put('/programas/Subcomisiones/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateSubcomisiones')->name('Subcomisiones.update')->middleware('auth');
+
+Route::get('/Subcomisiones/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadSubcomisiones')->name('Subcomisiones.download');
 
 //RUTAS Lanzamiento Política FRONTEND
 Route::get('/Subcomisiones', 'App\Http\Controllers\PoliticadeturismoController@indexSubcomisionesWeb')->name('Subcomisiones.show');

@@ -67,39 +67,134 @@
                 </div>
                 <div class="container first-form pt-2 pb-2">
 
-                <form action="{{ route('Politicadeturismo.update', $articulo->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('ProductosdelaPoliticadeTurismo.update', $producto->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')        
                 @csrf
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12 tag-comentario">
+                <div class="row">
+                                <div class="col-md-12 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="titulo" class="form-control" placeholder="Título" value="{{ $articulo->titulo }}" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 tag-comentario">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="subtitulo" class="form-control" placeholder="Subtítulo" value="{{ $articulo->subtitulo }}" required>
+                                        <input type="text" id="tituloA" name="tituloA"  value="{{ $producto->titulo }}" class="form-control" placeholder="Nombre seccion" required>
+                                        <input type="hidden" id="idPrincipal" name="idPrincipal"  value="{{ $producto->id }}" class="form-control" placeholder="Nombre seccion" required>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 pb-3">
-                                    <div id="text">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Escribe tu contenido aquí" style="height: 250px"  id="editor" name="descripcion">{{ $articulo->descripcion }}</textarea>
-
+               @foreach ($items as $item)
+            <div class="form-group">
+                                <div class="row">
+                                    <div class="documentos-container1 col-md-12 mt-3">
+                                        <div class="documentos-input col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12 title">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="titulo" name="titulo[]"  value="{{ $item->titulo }}" class="form-control"  placeholder="Titulo seccion" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="nombreA" name="nombreA[]"  value="{{ $item->nombre }}" class="form-control" placeholder="Nombre del archivo" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                <a href="{{ route('ProductosdelaPoliticadeTurismo.download', ['id' => $item->id]) }}">Ver Documento</a>
+                                                <input type="file" id="archivo" name="archivo[]" class="form-control" placeholder="Cargar archivo" required>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                         </div>
                                     </div>
+                                    
+                                    <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
+                                        <a href="{{ route('ProductosdelaPoliticadeTurismoItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                        
+                
+            @endforeach
+                        <div class="form-group">
+                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="documentos-container col-md-12 mt-3">
+                                        <div class="documentos-input col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12 title">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="titulo" name="titulo[]" class="form-control"  placeholder="Titulo seccion" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="nombreA" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="file" id="archivo" name="archivo[]" class="form-control" placeholder="Cargar archivo" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
+                                        <button type="button" class="btn btn-success agregar-documento" id="agregarCampo">Agregar más campos</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
                         <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                    
                     </form>
                 </div>
             </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Agregar más documentos
+        $(".agregar-documento").click(function() {
+            var documentosContainer = $(".documentos-container");
+            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
+
+            // Limpia los valores en los campos clonados
+            nuevoDocumentoInput.find("input[type='file']").val('');
+            nuevoDocumentoInput.find("input[type='text']").val('');
+
+            // Genera un nuevo nombre único para cada campo clonado
+            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
+            
+           
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar-documento',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.documentos-input').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoDocumentoInput.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
+            // Agrega los campos clonados al contenedor
+            documentosContainer.append(nuevoDocumentoInput);
+        });
+
+        // Evento para eliminar filas existentes (manejador delegado)
+        $(document).on('click', '.eliminar-documento', function() {
+            $(this).closest('.documentos-input').remove();
+        });
+    });
+</script>
 <script>
         ClassicEditor
             .create(document.querySelector('#editor'), {

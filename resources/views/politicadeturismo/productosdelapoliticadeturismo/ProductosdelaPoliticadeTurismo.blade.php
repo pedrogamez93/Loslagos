@@ -255,7 +255,7 @@
                                                 {{ $secundario->nombre }}
                                                 </div>
                                               <div class="col-md-2 p-0">
-                                              <a href="{{ $secundario->url }}"><img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco"></a>
+                                              <a href="{{ route('ProductosdelaPoliticadeTurismo.download', ['id' => $secundario->id]) }}"><img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco"></a>
                                             </div>        
                                                     
                                         </div> 
