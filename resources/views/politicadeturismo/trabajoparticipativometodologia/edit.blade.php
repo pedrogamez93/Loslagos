@@ -61,7 +61,7 @@
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Actualizar Introduccion Política de Turismo</h1>
+                        <h1>Actualizar Trabajo Participativo: Metodología</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
@@ -74,11 +74,12 @@
                                 <div class="col-md-12 tag-comentario">
                                     <div class="input-group mb-3">
                                         <input type="text" id="tag_comentario" name="titulo" class="form-control" placeholder="Título" value="{{ $articulo->titulo }}" required>
+                                        <input type="hidden" id="idPrincipal" name="idPrincipal"  value="{{ $articulo->id }}" class="form-control" placeholder="Nombre seccion" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 tag-comentario">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="subtitulo" class="form-control" placeholder="Subtítulo" value="{{ $articulo->subtitulo }}" required>
+                                        <input type="text" id="tag_comentario" name="subtitulo" class="form-control" placeholder="Subtítulo" value="{{ $articulo->nombre }}" required>
                                     </div>
                                 </div>
                                 
@@ -93,12 +94,104 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="row">
+                                @foreach ($items as $item)
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <input type="text" id="titulo" name="nombreA[]" value="{{ $item->nombreA }}" class="form-control" placeholder="Nombre del archivo" required>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <a href="{{ route('TrabajoParticipativoMetodologia.download', ['id' => $item->id]) }}">Ver Documento</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
+                                            <a href="{{ route('TrabajoParticipativoMetodologiaItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
+                                            <div class="input-group mb-3">
+                                                <input type="file" id="hombres" name="archivo[]" value="{{ $item->archivo }}" class="form-control" placeholder="Cargar archivo" required>
+                                            </div>
+                                        </div>
+                                @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="documentos-container col-md-12 mt-3">
+                                        <div class="documentos-input col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <input type="file" id="hombres" name="archivo[]" class="form-control" placeholder="Cargar archivo" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
+                                        <button type="button" class="btn btn-success agregar-documento" id="agregarCampo">Agregar más campos</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         
                         <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
                     </form>
                 </div>
             </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // Agregar más documentos
+        $(".agregar-documento").click(function() {
+            var documentosContainer = $(".documentos-container");
+            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
+
+            // Limpia los valores en los campos clonados
+            nuevoDocumentoInput.find("input[type='file']").val('');
+            nuevoDocumentoInput.find("input[type='text']").val('');
+
+            // Genera un nuevo nombre único para cada campo clonado
+            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
+            nuevoDocumentoInput.find("input[type='file']").attr('id', 'archivo_' + nuevoId);
+            nuevoDocumentoInput.find("input[type='file']").attr('name', 'archivo[]');
+            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombreA_' + nuevoId);
+            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombreA[]');
+
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar-documento',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.documentos-input').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoDocumentoInput.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
+            // Agrega los campos clonados al contenedor
+            documentosContainer.append(nuevoDocumentoInput);
+        });
+
+        // Evento para eliminar filas existentes (manejador delegado)
+        $(document).on('click', '.eliminar-documento', function() {
+            $(this).closest('.documentos-input').remove();
+        });
+    });
+</script>
 <script>
         ClassicEditor
             .create(document.querySelector('#editor'), {

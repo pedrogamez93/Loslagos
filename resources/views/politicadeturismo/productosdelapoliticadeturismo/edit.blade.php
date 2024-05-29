@@ -71,14 +71,14 @@
                 @method('PUT')        
                 @csrf
                 <div class="row">
-                                <div class="col-md-12 title">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="tituloA" name="tituloA"  value="{{ $producto->titulo }}" class="form-control" placeholder="Nombre seccion" required>
-                                        <input type="hidden" id="idPrincipal" name="idPrincipal"  value="{{ $producto->id }}" class="form-control" placeholder="Nombre seccion" required>
-                                    </div>
-                                </div>
-                                
-                            </div>
+                    <div class="col-md-12 title">
+                        <div class="input-group mb-3">
+                            <input type="text" id="tituloA" name="tituloA"  value="{{ $producto->titulo }}" class="form-control" placeholder="Nombre seccion" required>
+                            <input type="hidden" id="idPrincipal" name="idPrincipal"  value="{{ $producto->id }}" class="form-control" placeholder="Nombre seccion" required>
+                        </div>
+                    </div>
+                    
+                </div>
                @foreach ($items as $item)
             <div class="form-group">
                                 <div class="row">
@@ -98,8 +98,10 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                 <a href="{{ route('ProductosdelaPoliticadeTurismo.download', ['id' => $item->id]) }}">Ver Documento</a>
-                                                <input type="file" id="archivo" name="archivo[]" class="form-control" placeholder="Cargar archivo" required>
                                                 </div>
+                                                <!--<div class="input-group mb-3">
+                                                <input type="file" id="archivo" name="archivo[]" class="form-control" placeholder="Cargar archivo" >
+                                                </div>-->
                                             </div>
                                             
                                         </div>
