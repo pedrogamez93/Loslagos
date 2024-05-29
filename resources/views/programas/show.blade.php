@@ -231,6 +231,7 @@
     }
     button.accordion-button {
     background: #ffffff !important;
+    margin-botton:20px;
     }
     .accordion-item, .accordion-button, .accordion-body{
     border: 0 solid #ffffff !important;
@@ -250,6 +251,9 @@
     Line-height: 36.36px;
     color: #565656; 
     
+    }
+    button.accordion-button{
+        padding: 0;
     }
     .fotografias-coleccion {
     display: flex;
@@ -294,7 +298,7 @@
             <div class="container pt-5 pb-5">
                 <div class="row" >
                     <div class="col-md-12" >
-                    <p class="style-bread">Home / Gobierno Regional  <span style="font-Weight: 700;"></span></p>
+                    <p class="style-bread">Home / Programas / <span style="font-Weight: 700;"> {{ $programa->titulo }}</span></p>
                     </div>
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">{{ $programa->titulo }}</p>
@@ -328,14 +332,14 @@
                             <div class="accordion mt-5" id="accordionExample">
                                 <?php $i=0;?>
                                 @foreach($programaDescripcion as $descripcion)
-                                    <div class="accordion-item">
+                                    <div class="accordion-item mb-2">
                                                 <h2 class="accordion-header" id="headingOne">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <button class="accordion-button mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                 
                                                 <div class=""><p> {!! $descripcion->titulo_descripcion ?? '' !!} </p></div>                                </button>
                                                 </h2>
                                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
+                                                <div class="accordion-body  p-0">
                                                     
                                                     <div class=""><p> {!! $descripcion->bajada_descripcion ?? '' !!} </p></div>    
                                                 </div>
@@ -345,36 +349,46 @@
                                 @endforeach
                     </div>
             </div>
-                    <!--DOCUMENTOS-->
-                    <div id="contenidoDocumentos" style="display: none;">
-                        <h2 class="title-doc-fot">Documentos</h2>
-                        <div class="container">
-                            <div class="row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                            @foreach($programaDocumentos as $doc)
-    <div class="col" style="display: flex;">
-        <a href="{{ Storage::url($doc->urlDocumento) }}" download>{{ $doc->nombreDocumento }}</a>
+                   <!--DOCUMENTOS-->
+                   <div id="contenidoDocumentos" style="display: none;">
+    <h2 class="title-doc-fot">Documentos</h2>
+    <div class="container">
+        <div class="row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            @php
+                // Invertir el arreglo de documentos
+                $programaDocumentos = $programaDocumentos->reverse();
+            @endphp
+            @foreach($programaDocumentos as $doc)
+                <div class="col" style="display: flex;">
+                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;">
+                    <a href="{{ route('documento.abrir', ['id' => $doc->id]) }}" target="_blank" style="align-self: center;">{{ $doc->nombreDocumento }}</a>
+                </div>
+            @endforeach
+        </div>
     </div>
-@endforeach
-                            </div>
-                        </div>
-                    </div>
+</div>
 
-                    <!--FOTOGRAFÍAS-->
-                    <div id="contenidoFotografias" style="display: none;">
-                        <h2 class="title-doc-fot">Fotografías</h2>
 
-                        @foreach($programa->colecciones as $coleccion)
+
+
+<!-- FOTOGRAFÍAS -->
+<div id="contenidoFotografias" style="display: none;">
+    <h2 class="title-doc-fot">Fotografías</h2>
+
+    @foreach($programa->colecciones as $coleccion)
         <div class="coleccion-item">
             <div class="grid-container">
                 @foreach($coleccion->fotografias as $fotografia)
                     <div class="grid-item">
-                        <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía" style="width: 100%; height: auto;">
+                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" alt="Fotografía" style="width: 100%; height: auto;">
                     </div>
                 @endforeach
             </div>
         </div>
     @endforeach
-                    </div>
+</div>
+
+
 
                     
     

@@ -21,9 +21,7 @@
         display: flex; 
     }
 
-    nav li {
-        margin-right: 20px; 
-    }
+  
 
     nav a {
         text-decoration: none; 
@@ -265,7 +263,6 @@ button {
     <!-- Contenido principal de tu página -->
     <main>
     <div class="container-fluid cat">
-        <div class="row">
             <div class="col-md-12 pt-4 pb-4">
                 
                 
@@ -282,19 +279,19 @@ button {
                             <div class="container titulo">
             <div class="row">
                 <div class="col-md-12 container-grid"><!-- resources/views/form.blade.php -->
-                    <form action="{{ route('contactanos.store') }}" method="POST" id="validacionForm">
+                    <form action="{{ route('contactanos.store') }}" method="POST" id="myForm">
                         @csrf
                             <!-- Campos comunes -->
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Nombre:<span style="color: red;">*</span></label>
-                                        <input type="text" name="nombre" class="form-control" required>
+                                        <input type="text" name="nombre" id="nombre" class="form-control" required>
                                         <div id="nombreError" class="alert alert-danger mt-2" style="display: none;">El campo nombre solo puede contener letras.</div>
 
 
                                         <label>Apellido:<span style="color: red;">*</span></label>
-                                        <input type="text" name="apellido" class="form-control" required>
+                                        <input type="text" name="apellido" id="apellido" class="form-control" required>
 
                                         <label>Email:<span style="color: red;">*</span></label>
                                         <input type="email" name="email" class="form-control" required>
@@ -308,16 +305,16 @@ button {
                                     </div>
                                     <div class="col-md-6">
                                         <label>Dirección:<span style="color: red;">*</span></label>
-                                        <input type="text" name="direccion" class="form-control" required>
+                                        <input type="text" name="direccion" id="direccion" class="form-control" required>
 
                                         <label>Provincia:<span style="color: red;">*</span></label>
-                                        <input type="text" name="provincia" class="form-control" required>
+                                        <input type="text" name="provincia" id="provincia" class="form-control" required>
 
                                         <label>Comuna:<span style="color: red;">*</span></label>
-                                        <input type="text" name="comuna" class="form-control" required>
+                                        <input type="text" name="comuna" id="comuna" class="form-control" required>
 
                                         <label>Teléfono:<span style="color: red;">*</span></label>
-                                        <input type="tel" name="telefono" class="form-control" required>
+                                        <input type="tel" name="telefono" id="telefono" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -335,8 +332,8 @@ button {
 
                             <!-- Campos específicos para "Consulta" -->
                             <div id="campoConsulta" class="campoOculto">
-                                <label>Mensaje:<span style="color: red;">*</span></label>
-                                <textarea name="mensaje" rows="4" cols="50" required></textarea>
+                                <label>Mensaje:</label>
+                                <textarea name="mensaje" rows="4" cols="50" ></textarea>
                             </div>
 
                             <!-- Campos específicos para "Sugerencias" -->
@@ -694,21 +691,22 @@ button {
                                     <option value="no">No</option>
                                 </select>
 
-                                <label>Mensaje:</span></label>
+                                <label>Mensaje:</label>
                                 <textarea name="mensaje_sugerencia_reclamo" rows="4" cols="50" ></textarea>
                             </div>
                             
             <div class="form-group row pb-4">                      
                 <div class="col-xs-2">  
-                        <label for="captcha">Resuelve la siguiente suma: <span id="captchaQuestion"></span></label>
+                        <label for="captcha">Resuelve la siguiente suma: <span id="captchaQuestion"></span></label><span style="color: red;">*</span>
                         <input type="text" id="captcha" name="captcha" class="form-control" required style="width: 30%;">
                     </div>
             </div>
                             <button type="submit" class="btn-enviar pt-2" id="enviarBtn">Enviar</button>
 
                         </form>
-<!-- Mensaje de éxito oculto inicialmente -->
-<div id="mensajeExito" class="alert alert-success mt-3" style="display: none;">¡El formulario se ha enviado con éxito!</div>
+                        <div id="successMessage" class="alert alert-success mt-3" style="display: none; color: green; margin-top: 10px;">
+    Formulario enviado exitosamente.
+</div>
 
 
 
@@ -749,31 +747,40 @@ button {
             }
         }
 
-        // Mostrar u ocultar campos especíasficos al cargar la página
+        // Mostrar u ocultar campos específicos al cargar la página
         toggleCampos();
 
         // Mostrar u ocultar campos específicos al cambiar el tipo de mensaje
         tipoMensaje.addEventListener('change', toggleCampos);
 
-        // Agregar un evento al formulario para realizar la validación antes de enviar
-        document.getElementById('myForm').addEventListener('submit', function (event) {
-            // Puedes agregar aquí la lógica de validación adicional si es necesario
+        // Función para validar campos de texto (solo letras)
+        function validarTexto(event) {
+            var soloLetras = /^[a-zA-Z\s]+$/;
+            if (!soloLetras.test(event.target.value)) {
+                event.target.setCustomValidity('Este campo solo puede contener letras.');
+            } else {
+                event.target.setCustomValidity('');
+            }
+        }
 
-            // No evita el envío del formulario, incluso si los campos ocultos no están llenos
-        });
-    });
-</script>
-<script>  
-    document.addEventListener("DOMContentLoaded", function() {
-      
-        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
-        document.querySelector('.nav-head').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
+        // Función para validar campo de teléfono (solo números)
+        function validarTelefono(event) {
+            var soloNumeros = /^[0-9]+$/;
+            if (!soloNumeros.test(event.target.value)) {
+                event.target.setCustomValidity('Este campo solo puede contener números.');
+            } else {
+                event.target.setCustomValidity('');
+            }
+        }
 
-    });
-</script>
+        // Agregar validaciones en tiempo real a los campos de texto y teléfono
+        document.getElementById('nombre').addEventListener('input', validarTexto);
+        document.getElementById('apellido').addEventListener('input', validarTexto);
+        document.getElementById('direccion').addEventListener('input', validarTexto);
+        document.getElementById('comuna').addEventListener('input', validarTexto);
+        document.getElementById('provincia').addEventListener('input', validarTexto);
+        document.getElementById('telefono').addEventListener('input', validarTelefono);
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
         // Generar dos números aleatorios entre 1 y 10
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
@@ -797,8 +804,44 @@ button {
 
                 // Prevenir el envío del formulario
                 event.preventDefault();
+                return;
             }
+
+            // Validar campos de texto (solo letras)
+            var soloLetras = /^[a-zA-Z\s]+$/;
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var direccion = document.getElementById('direccion').value;
+            var comuna = document.getElementById('comuna').value;
+            var provincia = document.getElementById('provincia').value;
+            if (!soloLetras.test(nombre) || !soloLetras.test(apellido) || !soloLetras.test(direccion) ||
+                !soloLetras.test(comuna) || !soloLetras.test(provincia)) {
+                alert('Los campos Nombre, Apellido, Dirección, Comuna y Provincia deben contener solo letras.');
+                event.preventDefault();
+                return;
+            }
+
+            // Validar campo de teléfono (solo números)
+            var soloNumeros = /^[0-9]+$/;
+            var telefono = document.getElementById('telefono').value;
+            if (!soloNumeros.test(telefono)) {
+                alert('El campo Teléfono debe contener solo números.');
+                event.preventDefault();
+                return;
+            }
+
+            // Mostrar mensaje de éxito
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Aquí puedes agregar lógica adicional para enviar el formulario si es necesario
         });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.navbar').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;';
+        document.querySelector('.nav-head').style.cssText = 'background-color: #F59120 !important; border-bottom: 1px solid #FFFFFF;border-bottom:none !important;';
     });
 </script>
 
@@ -813,75 +856,7 @@ button {
 
 
 
-<script>
-        // Expresiones regulares para la validación
-        const regexLetras = /^[a-zA-Z\s]+$/;
 
-        // Función para validar un campo individual
-        function validarCampo(campo, regex, mensajeError) {
-            const valor = campo.value.trim(); // Eliminar espacios en blanco al inicio y al final
-            const errorDiv = document.getElementById(campo.name + 'Error');
-            if (!regex.test(valor)) {
-                errorDiv.textContent = mensajeError;
-                errorDiv.style.display = 'block';
-                return false;
-            } else {
-                errorDiv.style.display = 'none';
-                return true;
-            }
-        }
-
-        // Validar todo el formulario antes de enviarlo
-        document.getElementById('validacionForm').addEventListener('submit', function(event) {
-            var formValid = true;
-
-            // Validar cada campo manualmente
-            const campos = [
-                { name: 'nombre', regex: regexLetras, mensaje: 'El campo nombre solo puede contener letras.' }
-                // Agrega más campos según sea necesario
-            ];
-
-            campos.forEach(function(campo) {
-                const input = document.querySelector(`[name="${campo.name}"]`);
-                if (!validarCampo(input, campo.regex, campo.mensaje)) {
-                    formValid = false;
-                }
-            });
-
-            // Si algún campo es inválido, prevenir el envío del formulario
-            if (!formValid) {
-                event.preventDefault();
-            } else {
-                // Si el formulario es válido, mostrar el mensaje de éxito
-                document.getElementById('mensajeExito').style.display = 'block';
-            }
-        });
-
-        // Añadir validación en tiempo real para cada campo
-        document.querySelector('input[name="nombre"]').addEventListener('input', function() {
-            const formValid = validarFormulario();
-            document.getElementById('enviarBtn').disabled = !formValid;
-            validarCampo(this, regexLetras, 'El campo nombre solo puede contener letras.');
-        });
-
-        // Función para validar todo el formulario en tiempo real
-        function validarFormulario() {
-            let formValid = true;
-            const campos = [
-                { name: 'nombre', regex: regexLetras, mensaje: 'El campo nombre solo puede contener letras.' }
-                // Agrega más campos según sea necesario
-            ];
-
-            campos.forEach(function(campo) {
-                const input = document.querySelector(`[name="${campo.name}"]`);
-                if (!validarCampo(input, campo.regex, campo.mensaje)) {
-                    formValid = false;
-                }
-            });
-
-            return formValid;
-        }
-    </script>
 
 
 

@@ -130,7 +130,7 @@ input:required {
 
                                 </div>
                             </div>
-                            <button type="button" id="agregarMas" class="btn btn-primary">Agregar otra descripción</button>
+                            <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripción</button>
                         </div>
 <!--FIN TEXTOS ACORDEÓN-->
                         

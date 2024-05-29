@@ -691,7 +691,13 @@ Route::put('/programas/Subcomisiones/{id}', 'App\Http\Controllers\Politicadeturi
 Route::get('/Subcomisiones', 'App\Http\Controllers\PoliticadeturismoController@indexSubcomisionesWeb')->name('Subcomisiones.show');
 
 
-//PROGRAMAS 
+//PROGRAMAS
+
+// routes/web.php
+
+Route::get('/documento/{id}', [ProgramasController::class, 'abrirDocumento'])->name('documento.abrir');
+
+
 Route::resource('programas', ProgramasController::class);
 
 Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->name('programas.update');
@@ -739,9 +745,9 @@ Route::get('/contactanos', 'App\Http\Controllers\FormController@index')->name('c
     //PROCESAR FORMULARIO Y ENVIAR CORREO ELECTRONICO
 Route::post('/contactanos/store', 'App\Http\Controllers\FormController@store')->name('contactanos.store');
     //FORMULARIOS ENVIADOS BACKEND
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
 
-Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios')->middleware('auth');
+Route::get('/verformularios', [FormController::class, 'verFormularios'])->name('verformularios');
 Route::get('/detalle/formulario/{id}', [FormController::class, 'detalleFormulario'])->name('detalle.formulario');
 Route::delete('/borrar/formulario/{id}', [FormController::class, 'borrarFormulario'])->name('borrar.formulario');
     //DESCARGAR FORMULARIOS CSV
@@ -770,6 +776,10 @@ Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('h
 Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');
 //Route::post('/programas/{programa}/agregar-documento', [ProgramasController::class, 'agregarDocumento'])->name('programas.agregar-documento');
 Route::post('/fondos/{fondo}/agregar-documento', [FondosFndrController::class, 'agregarDocumento'])->name('fondos.agregar-documento');
+
+
+Route::get('/documento/abrir/{id}', [FondosFndrController::class, 'abrirDocumento'])->name('documento.abrir');
+
 
 
 

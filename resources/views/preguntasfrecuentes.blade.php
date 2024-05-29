@@ -197,7 +197,7 @@
             <div class="container pt-5 pb-5">
                 <div class="row" >
                     <div class="col-md-12" >
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="#">Preguntas Frecuentes</a></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a> / <span style="font-Weight: 700;"><a>Preguntas Frecuentes</a></span></p>
                     </div>
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">Preguntas Frecuentes</p>

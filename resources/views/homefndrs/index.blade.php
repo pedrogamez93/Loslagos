@@ -240,7 +240,7 @@ li {
             <div class="container second content-breadc pt-5 pb-5">
                 <div class="row" style="padding: 10px 0px 20px 55px;">
                     <div class="col-md-12" style="padding: 0;">
-                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <a style="font-Weight: 700;" href ="">Fondos concursables</a></p>
+                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/ <a style="font-Weight: 700;" >Fondos concursables</a></p>
                     </div>
                 </div>
                     
