@@ -84,7 +84,7 @@
                             <label class="style-label" for="imagen">Imagen Actual</label>
                             {{-- Muestra la imagen actual si existe --}}
                             @if($evento->imagen)
-                                <img src="{{ asset('storage/' . $evento->imagen) }}" width="100" height="100">
+                                <img src="{{ route('imagen.mostrarEvento', ['filename' => basename($evento->imagen)]) }}" width="100" height="100">
                             @endif
                             <input class="form-control" type="file" name="imagen" accept=".png, .jpg, .jpeg">
                         </div>
