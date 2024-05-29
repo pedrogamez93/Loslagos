@@ -60,6 +60,9 @@ use App\Http\Controllers\PopupController;
 use App\Http\Controllers\HomefndrController;
 
 use App\Http\Controllers\FondosFndrController;
+use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,53 +75,78 @@ use App\Http\Controllers\FondosFndrController;
 */
 Auth::routes();
 
+
+//RUTA SOLO PARA ADMIN
+Route::group(['middleware' => ['auth', 'checkrole:admin,editor']], function () {
+    Route::resource('users', UserController::class)->middleware('checkrole:admin');
+    // Otras rutas para 'admin' y 'editor'
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('Home.index');
 Route::get('/home/create', [HomeController::class, 'create'])->name('Home.create')->middleware('auth');
 Route::post('/home/store', [HomeController::class, 'store']);
-Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
-Route::put('/home/update', [HomeController::class, 'update']);
-Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
+
+
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [HomeController::class, 'mostrarImagen'])->name('mostrar.imagen');
 Route::get('/buscador', [HomeController::class, 'buscador'])->name('Home.buscador');
 Route::get('/home/slider', [HomeController::class, 'slider'])->name('Home.slider');
-Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
-Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');;
 
+//RUTA SOLO PARA ADMIN Y EDITOR
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::put('/home/update', [HomeController::class, 'update']);
+    Route::put('/home/updateslider', [HomeController::class, 'updateslider']);
+    Route::get('/home/banners', [HomeController::class, 'banners'])->name('Home.banners');
+Route::put('/home/updatebanners', [HomeController::class, 'updatebanners'])->name('Home.updatebanners');
+Route::get('/home/actualizar', [HomeController::class, 'actualizar'])->name('Home.actualizar')->middleware('auth');
+});
 /*DOCUMENTOS */
 
-Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
-Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
+
 
 Route::get('/documentos', [DocumentonewController::class, 'index'])->name('documentos.index');
 Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::class, 'buscar'])->name('documentos.buscar');
 
-Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
-Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
-Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
-Route::delete('/documentos/eliminar/{id}', [DocumentonewController::class, 'destroy'])->name('documentos.destroy')->middleware('auth');
+
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
 
+//RUTA SOLO PARA ADMIN Y EDITOR
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');
+    Route::put('/documentos/{id}', [DocumentonewController::class, 'update'])->name('documentos.update')->middleware('auth');
+    Route::get('/documentos/ver-documentos', [DocumentonewController::class, 'indexTabla'])->name('documentos.verdocumentos')->middleware('auth');
+    Route::delete('/documentos/eliminar/{documento}', [DocumentonewController::class, 'destroy'])->name('documentos.destroydoc')->middleware('auth');
+    Route::get('/documentos/create', [DocumentonewController::class, 'create'])->name('documentos.create')->middleware('auth');
+    Route::post('/documentossubir', [DocumentonewController::class, 'store'])->name('documentos.store');
+    Route::post('/docdestruir/documento', [DocumentonewController::class, 'docdestruir'])->name('documentos.docdestruir');
+});
 /*FUNCIONARIOS */
 
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
-Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
-Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
-Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
+
 Route::get('/funcionarios/cargamasiva', [FuncionarioController::class, 'getcargarMasiva'])->name('funcionarios.cargamasiva')->middleware('auth');
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
-Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
-Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
-Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
+Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
-Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
 Route::get('/descargar-planilla', function () {
     $pathToFile = public_path('storage/funcionarioplanilla.csv');
     return response()->download($pathToFile);
 })->name('descargar.planilla');
+
+
+Route::middleware(['auth', 'role:admin,editor'])->group(function () {
+    Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
+    Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
+   
+    Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
+    Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
+Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
+
+Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
+});
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
@@ -130,6 +158,7 @@ Route::get('/saladeprensa/ver-noticias', [SalaprensaController::class, 'indexTab
 Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'destroy'])->name('salaprensa.destroy')->middleware('auth');
 //Route::get('/saladeprensa/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
+
 Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
 
 //Route::resource('/', HomeController::class);
@@ -142,8 +171,8 @@ Route::get('/sitiodegobierno/{id}/edit', [SitiosController::class, 'edit'])->nam
 Route::put('/sitiodegobierno/{id}', [SitiosController::class, 'update'])->name('sitiodegobierno.update')->middleware('auth');
 Route::get('/sitiodegobierno/ver-sitios', [SitiosController::class, 'indexTabla'])->name('sitiodegobierno.vernoticia')->middleware('auth');
 Route::delete('/sitiodegobierno/eliminar/{id}', [SitiosController::class, 'destroy'])->name('sitiodegobierno.destroy')->middleware('auth');
-Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
-
+// Route::get('/sitiodegobierno/{imagen}', [SitiosController::class, 'mostrarImagen'])->name('imagen.mostrar');
+Route::get('sitiodegobierno/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 
 
 // Ruta para mostrar todas las sesiones (index)
@@ -196,6 +225,7 @@ Route::delete('/asamblea/{id}', [AsambleaClimaticaController::class, 'destroyasa
 Route::resource('audienciasdepartes', AudienciasController::class)->middleware('auth');
 Route::delete('/audiencia/{audienciaId}/documentos/{documentoId}', [AudienciasController::class, 'destroyDocAudiencia'])->name('eliminar_doc_audiencia')->middleware('auth');
 Route::delete('/audiencia/{id}', [AudienciasController::class, 'destroyaudiencia'])->name('ruta_eliminar_audiencia')->middleware('auth');
+Route::get('/download-audienciadepartes/{id}', 'App\Http\Controllers\CategoriesController@downloadAudienciadepartes')->name('downloadAudienciadepartes');
 
 Route::resource('listplanificainstitucional', PlanificacionInstitucionalController::class)->middleware('auth');
 
@@ -262,7 +292,7 @@ Route::put('/tramites/{tramite}', [TramitesDigitalesController::class, 'update']
 Route::delete('/tramites/{id}', [TramitesDigitalesController::class, 'destroy'])->name('tramites.destroy');
 Route::delete('/tramites/docs/{docId}', [TramitesDigitalesController::class, 'destroyDoc'])->name('tramites.destroyDoc');
 Route::delete('/tramites/btns/{btnId}', [TramitesDigitalesController::class, 'destroyBtn'])->name('tramites.destroyBtn');
-
+Route::get('/tramites/documentos/download/{id}', 'App\Http\Controllers\TramitesDigitalesController@downloadTramitesDigitalesDocs')->name('downloadTramitesDigitalesDocs');
 //RUTAS PARA LOS EVENTOS DE LA AGENDA
 
 Route::resource('eventos', EventoController::class);
@@ -273,7 +303,7 @@ Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('evento
 
 Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
 
-Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
+Route::get('/imagenes/eventos/{filename}', 'App\Http\Controllers\EventoController@mostrarImagenEvento')->name('imagen.mostrarEvento');
 
 Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendaindex'])->name('agenda.index');
 //Route::get('/eventos/imagen/{imagen}', [EventoController::class, 'mostrarImagene'])->name('eventos.mostrar.imagene');
@@ -283,7 +313,7 @@ Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendainde
 Route::resource('biblioteca', BibliotecaController::class);
 
 Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
-
+Route::get('/download/biblioteca/{id}', 'App\Http\Controllers\CategoriesController@downloadbiblioteca')->name('download.biblioteca');
 //RUTAS PARA GALERIA
 
 Route::resource('galerias', GaleriaController::class);
@@ -293,8 +323,9 @@ Route::delete('imagenes/{imagen}', [GaleriaController::class, 'destroyImagen'])-
 Route::get('/galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
 
 Route::get('/politica-turismo/galerias', 'App\Http\Controllers\CategoriesController@galeriaIndex');
-
-Route::get('/galerias/{imagen}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
+Route::get('/galerias/galeria-imagen/{filename}', 'App\Http\Controllers\GaleriaController@mostrargaleriaImagen')->name('galeria.imagen.mostrar');
+//Route::get('/galerias/imagenes/{filename}', [GaleriaController::class, 'mostrargaleriaImagen'])->name('imagen.mostrar');
+//Route::get('/galerias/imagenes/{filename}', [CategoriesController::class, 'mostrargaleriaImagen'])->name('imagen.showga');
 
 //RUTAS PARA SEMINARIO
 
@@ -309,6 +340,8 @@ Route::delete('/galerias/{galeria}', [SeminarioController::class, 'eliminarGaler
 Route::get('/galerias/{id}', [SeminarioController::class, 'show'])->name('galerias.show');
 
 Route::get('/seminario-internacional', [CategoriesController::class, 'seminarioIndex'])->name('seminario.internacional');
+Route::get('/seminario/download/{id}', 'App\Http\Controllers\CategoriesController@downloadseminario')->name('seminario.download');
+Route::get('/seminario-internacional/seminario-imagen/{filename}', 'App\Http\Controllers\SeminarioController@mostrarSeminarioImagen')->name('seminario.imagen.mostrar');
 
 //RUTAS PARA DIFUSION
 
@@ -317,12 +350,14 @@ Route::resource('difusion', DifusionController::class);
 Route::delete('/difusion-docs/{id}', [DifusionController::class, 'destroyDocs'])->name('difusion-docs.destroy');
 
 Route::get('/politica-turismo/difusion', 'App\Http\Controllers\CategoriesController@difusionindex');
+Route::get('/difusion/download/{id}', 'App\Http\Controllers\CategoriesController@downloadifusion')->name('difusion.download');
 
 //RUTAS PARA PRESENTACIONES
 
 Route::resource('presentaciones', PresentacionesController::class);
 
 Route::get('/politica-turismo/presentaciones', 'App\Http\Controllers\CategoriesController@presentacionIndex');
+Route::get('/presentaciones/download/{id}', 'App\Http\Controllers\CategoriesController@downloadpresentaciones')->name('presentaciones.download');
 
 //RUTAS PARA IMAGENREGION
 
@@ -331,10 +366,14 @@ Route::resource('imagenregion', ImagenRegionController::class);
 Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
 
 Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
+Route::get('/imagenregion/download/{id}', 'App\Http\Controllers\CategoriesController@downloadimagenregion')->name('imagenregion.download');
 
 //RUTAS PARA LAS LANDING DINAMICAS
 
 Route::resource('landings', LandingController::class);
+Route::get('/landings/documentos/download/{id}', 'App\Http\Controllers\LandingController@downloaddocslanding')->name('downloaddocslanding');
+
+Route::get('/landing_images/{filename}', 'App\Http\Controllers\LandingController@showImage')->name('showImage');
 
 // En routes/web.php
 Route::get('/search-landings', [LandingController::class, 'search'])->name('landings.search');
@@ -369,9 +408,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
 
 
@@ -390,28 +427,35 @@ Route::get('/gobiernoregional/acerca/misiongobierno', 'App\Http\Controllers\Cate
 
 Route::get('/gobiernoregional/leygobiernoregional', 'App\Http\Controllers\CategoriesController@leygobiernoregIndex');
 // Route::get('/gobiernoregional/leygobiernoregional/downloadLey/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
-Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Controllers\CategoriesController@download')->name('ley.download');
-Route::get('/gobiernoregional/leygobiernoregional/descargar/{archivo}', 'App\Http\Controllers\CategoriesController@descargarArchivo')->name('ley.archivo');
+Route::get('/gobiernoregional/leygobiernoregional/download/{id}', 'App\Http\Controllers\CategoriesController@downloadLey')->name('ley.download');
+//Route::get('/gobiernoregional/leygobiernoregional/descargar/{archivo}', 'App\Http\Controllers\CategoriesController@descargarArchivo')->name('ley.archivo');
 
 Route::get('/gobiernoregional/organigrama', 'App\Http\Controllers\CategoriesController@organigramaIndex');
 
 Route::get('/gobiernoregional/dptogestionpersonas', 'App\Http\Controllers\CategoriesController@dptogestionpersonasIndex');
+Route::get('/gobiernoregional/dptogestionpersonas/download/{id}', 'App\Http\Controllers\CategoriesController@downloaddptogestionpersonas')->name('dptogestionpersonas.download');
 
 Route::get('/gobiernoregional/tramitesdigitales', 'App\Http\Controllers\CategoriesController@tramitesdigitalesIndex');
 
 Route::get('/gobiernoregional/asambleaclimatica', 'App\Http\Controllers\CategoriesController@asambleaclimaticaIndex');
+Route::get('/gobiernoregional/asambleaclimatica/download/{id}', 'App\Http\Controllers\CategoriesController@downloadAsamblea')->name('downloadAsamblea');
+
 
 Route::get('/gobiernoregional/asambleaclimatica/audienciadepartes', 'App\Http\Controllers\CategoriesController@audienciadepartesIndex');
 
 Route::get('/gobiernoregional/politicasostenibilidadhidrica', 'App\Http\Controllers\CategoriesController@politicasostenibilidadhidricaIndex');
 
 Route::get('/gobiernoregional/disenopoliticapersonasmayores', 'App\Http\Controllers\CategoriesController@politicapersonasmayoresIndex');
+Route::get('/gobiernoregional/disenopoliticapersonasmayores/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadPoliticaPersonasMayoresDocs')->name('downloadPoliticaPersonasMayoresDocs');
 
 Route::get('/gobiernoregional/planificacioninstitucional', 'App\Http\Controllers\CategoriesController@planificacioninstitucionalIndex');
+Route::get('/gobiernoregional/planificacioninstitucional/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadPlanificacionInstitucionalDocs')->name('downloadPlanificacionInstitucionalDocs');
 
 Route::get('/gobiernoregional/comitecienciastecnologias', 'App\Http\Controllers\CategoriesController@comitecienciastecnologiasIndex');
+Route::get('/gobiernoregional/comitecienciastecnologias/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadcomitecienciastecnologias')->name('downloadcomitecienciastecnologias');
 
 Route::get('/gobiernoregional/concursopublico', 'App\Http\Controllers\CategoriesController@concursopublicoIndex');
+Route::get('/gobiernoregional/concursopublico/documentos/download/{id}', 'App\Http\Controllers\CategoriesController@downloadconcursopublico')->name('downloadconcursopublico');
 
 Route::get('/consejoregional/introduccion', 'App\Http\Controllers\CategoriesController@consejoregionalIndex');
 
@@ -457,6 +501,7 @@ Route::get('/consejoregional/certificadosdeacuerdos', 'App\Http\Controllers\Cons
 Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indexresumendegastos')->name('resumendegastos.Indexresumendegastos');
 
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
+Route::get('/consejoregional/tablassesionesconsejo/documentos/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadtablassesionesconsejo')->name('sesiones.download');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 /*TABLAS SESIONES DEL CONSEJO*/
@@ -471,6 +516,7 @@ Route::resource('sesiones-consejo', SesionController::class)->names([
 ]);
 
 Route::get('/sesiones/{anio}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@showFiltroAno')->name('sesiones_por_anio');
+Route::get('/downloadshowtablassesionesconsejo/{id}', [SesionController::class, 'downloadshowtablassesionesconsejo'])->name('downloadshowtablassesionesconsejo');
 /*FIN TABLAS SESIONES DEL CONSEJO*/
 
 Route::get('/IntroduccionRegionLagos', 'App\Http\Controllers\IntroduccionRegionLagosController@index')->name('IntroduccionRegionLagos.index')->middleware('auth');
@@ -604,7 +650,7 @@ Route::get('/regionlagos/FinanciamientoporProvincias/', 'App\Http\Controllers\In
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/PoliticaPrivacidad/', 'App\Http\Controllers\IntroduccionRegionLagosController@indexPoliticaPrivacidadWeb')->name('PoliticaPrivacidadWeb.index');
 Route::get('/regionlagos/{titulo}', 'App\Http\Controllers\IntroduccionRegionLagosController@indexRegionlagosprovincias')->name('Regionlagosprovincias.show');
-Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
+
 
 //RUTAS POLITICAS DE TURISMO BACK
 Route::get('/programas/Politicadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismo')->name('Politicadeturismo.index')->middleware('auth');
@@ -615,6 +661,7 @@ Route::get('/programas/Politicadeturismo/edit/{id}', 'App\Http\Controllers\Polit
 Route::put('/programas/Politicadeturismo/{id}', 'App\Http\Controllers\PoliticadeturismoController@updatePoliticadeturismo')->name('Politicadeturismo.update')->middleware('auth');
 //RUTAS POLITICAS DE TURISMO FRONTEND
 Route::get('/formulacionpoliticadeturismo', 'App\Http\Controllers\PoliticadeturismoController@indexPoliticadeturismoWeb')->name('PoliticadeturismoWeb.show');
+Route::get('/lanzamientopolitica/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadLanzamientoPolitica')->name('lanzamientopolitica.download');
 //RUTAS Productos de la Política de Turismo
 
 Route::get('/programas/ProductosdelaPoliticadeTurismo', 'App\Http\Controllers\PoliticadeturismoController@indexProductosdelaPoliticadeTurismo')->name('ProductosdelaPoliticadeTurismo.index')->middleware('auth');
@@ -762,6 +809,14 @@ Route::get('/popups/edit/{id}', 'App\Http\Controllers\PopupController@edit')->na
 Route::put('/popups/{id}', 'App\Http\Controllers\PopupController@update')->name('popups.update')->middleware('auth');
 
 
+Route::get('/mapa/create', 'App\Http\Controllers\IntroduccionRegionLagosController@createMapaWeb')->name('MapaWeb.create')->middleware('auth');
+Route::post('/mapa/store', 'App\Http\Controllers\IntroduccionRegionLagosController@storeMapaWeb')->name('MapaWeb.store')->middleware('auth');
+Route::get('/mapa/show', 'App\Http\Controllers\IntroduccionRegionLagosController@showMapaWeb')->name('MapaWebB.show')->middleware('auth');
+Route::get('/mapa/edit/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@editMapaWeb')->name('MapaWeb.edit')->middleware('auth');
+Route::put('/mapa/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@updateMapaWeb')->name('MapaWeb.update')->middleware('auth');
+Route::delete('/mapa/{id}', 'App\Http\Controllers\IntroduccionRegionLagosController@destroyMapaWeb')->name('MapaWeb.destroy')->middleware('auth');
+
+Route::get('/mapa', 'App\Http\Controllers\IntroduccionRegionLagosController@indexMapaWeb')->name('MapaWeb.show');
 
 Route::resource('homefndr', HomefndrController::class)->middleware('auth');
 

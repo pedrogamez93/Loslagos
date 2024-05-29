@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use App\Models\Evento;
 
 
@@ -91,6 +93,32 @@ class EventoController extends Controller{
     // Pasar el evento a la vista
     return view('eventos.show', ['evento' => $evento]);
 
+    }
+
+    public function mostrarImagenEvento($filename)
+    {
+        $path = storage_path('app/public/eventos_imagenes/' . $filename);
+    
+        // Log de la ruta solicitada
+        //Log::info("Solicitud para mostrar imagen: " . $filename);
+        //Log::info("Ruta completa de la imagen: " . $path);
+    
+        if (!File::exists($path)) {
+            //Log::error("El archivo no existe: " . $path);
+            abort(404, 'El archivo no existe.');
+        }
+    
+        $file = File::get($path);
+        $type = File::mimeType($path);
+    
+       // Log::info("Tipo MIME del archivo: " . $type);
+    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+    
+        //Log::info("Imagen mostrada correctamente: " . $filename);
+    
+        return $response;
     }
 
     public function edit($id){

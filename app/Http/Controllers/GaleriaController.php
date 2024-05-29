@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Galeria;
 use App\Models\Imagen;
@@ -147,9 +149,28 @@ class GaleriaController extends Controller{
         return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen));
     }*/
 
-    public function mostrargaleriaImagen($id) {
-        $imagen = Imagen::findOrFail($id);
-        return response()->file(storage_path('app/public/imagenes_galerias/' . $imagen->nombre_archivo));
+    public function mostrargaleriaImagen($filename)
+    {
+        $path = storage_path('app/public/imagenes_galerias/' . $filename);
+    
+        // Log para depuración del archivo
+        \Log::info("Intentando mostrar la imagen: " . $filename);
+        \Log::info("Ruta completa de la imagen: " . $path);
+    
+        if (!File::exists($path)) {
+            \Log::error("La imagen no existe: " . $path);
+            abort(404, 'Imagen no encontrada');
+        }
+    
+        $file = File::get($path);
+        $type = File::mimeType($path);
+    
+        \Log::info("Mostrando la imagen: " . $filename . " con tipo MIME: " . $type);
+    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+    
+        return $response;
     }
 
 

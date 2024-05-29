@@ -41,8 +41,8 @@ class LandingController extends Controller{
         return view('landings.create');
     }
 
-    public function store(Request $request) {
-
+    public function store(Request $request)
+{
     $request->validate([
         'titulo' => 'required|string|max:255',
         'descripcion' => 'nullable|string',
@@ -70,6 +70,8 @@ class LandingController extends Controller{
     if ($request->hasFile('ruta_imagen')) {
         foreach ($request->file('ruta_imagen') as $index => $file) {
             $path = $file->store('public/landing_images');
+            $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+            \Log::info('Imagen almacenada en: ' . $path);
             LandingImages::create([
                 'landing_id' => $landing->id,
                 'nombre_imagen' => $request->nombre_imagen[$index] ?? $file->getClientOriginalName(),
@@ -93,6 +95,7 @@ class LandingController extends Controller{
     if ($request->hasFile('ruta_documento')) {
         foreach ($request->file('ruta_documento') as $index => $file) {
             $path = $file->store('public/landing_documents');
+            $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
             LandingDocs::create([
                 'landing_id' => $landing->id,
                 'nombre_documento' => $request->nombre_documento[$index] ?? $file->getClientOriginalName(),
@@ -102,8 +105,8 @@ class LandingController extends Controller{
     }
 
     return redirect()->route('landings.index')->with('success', 'Landing Page creada con éxito.');
+}
 
-    }
 
     public function edit($id)
     {
@@ -111,74 +114,72 @@ class LandingController extends Controller{
         return view('landings.edit', compact('landing'));
     }
 
-    public function update(Request $request, $id) {
-
-    $request->validate([
-        'titulo' => 'required|string|max:255',
-        'descripcion' => 'nullable|string',
-        'tags' => 'nullable|string',
-        'menu_ubicacion' => 'required|string',
-        'habilitado' => 'required|boolean',
-        'ruta_imagen.*' => 'nullable|image|mimes:jpeg,png,jpg',
-        'nombre_imagen.*' => 'nullable|string|max:255',
-        'nombre_btn.*' => 'nullable|string|max:255',
-        'url.*' => 'nullable|url',
-        'ruta_documento.*' => 'nullable|file|mimes:pdf,doc,docx,zip,rar',
-        'nombre_documento.*' => 'nullable|string|max:255',
-    ]);
-
-    // Buscar la Landing Page por ID
-    $landing = Landing::findOrFail($id);
-
-    // Actualizar la Landing Page
-    $landing->update([
-        'tags' => $request->tags,
-        'titulo' => $request->titulo,
-        'descripcion' => $request->descripcion,
-        'menu_ubicacion' => $request->menu_ubicacion,
-        'habilitado' => $request->habilitado,
-    ]);
-
-    // Actualizar imágenes
-    // Aquí podrías eliminar las imágenes antiguas si es necesario o simplemente agregar las nuevas
-    if ($request->hasFile('ruta_imagen')) {
-        foreach ($request->file('ruta_imagen') as $index => $file) {
-            $path = $file->store('public/landing_images');
-            LandingImages::create([
-                'landing_id' => $landing->id,
-                'nombre_imagen' => $request->nombre_imagen[$index] ?? $file->getClientOriginalName(),
-                'ruta_imagen' => $path,
-            ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'tags' => 'nullable|string',
+            'menu_ubicacion' => 'required|string',
+            'habilitado' => 'required|boolean',
+            'ruta_imagen.*' => 'nullable|image|mimes:jpeg,png,jpg',
+            'nombre_imagen.*' => 'nullable|string|max:255',
+            'nombre_btn.*' => 'nullable|string|max:255',
+            'url.*' => 'nullable|url',
+            'ruta_documento.*' => 'nullable|file|mimes:pdf,doc,docx,zip,rar',
+            'nombre_documento.*' => 'nullable|string|max:255',
+        ]);
+    
+        // Buscar la Landing Page por ID
+        $landing = Landing::findOrFail($id);
+    
+        // Actualizar la Landing Page
+        $landing->update([
+            'tags' => $request->tags,
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'menu_ubicacion' => $request->menu_ubicacion,
+            'habilitado' => $request->habilitado,
+        ]);
+    
+        // Actualizar imágenes
+        if ($request->hasFile('ruta_imagen')) {
+            foreach ($request->file('ruta_imagen') as $index => $file) {
+                $path = $file->store('public/landing_images');
+                $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+                LandingImages::create([
+                    'landing_id' => $landing->id,
+                    'nombre_imagen' => $request->nombre_imagen[$index] ?? $file->getClientOriginalName(),
+                    'ruta_imagen' => $path,
+                ]);
+            }
         }
-    }
-
-    // Actualizar botones externos
-    // Considera si necesitas eliminar los botones antiguos primero
-    if ($request->nombre_btn) {
-        foreach ($request->nombre_btn as $index => $nombre) {
-            LandingBtns::create([
-                'landing_id' => $landing->id,
-                'nombre_btn' => $nombre,
-                'url' => $request->url[$index],
-            ]);
+    
+        // Actualizar botones externos
+        if ($request->nombre_btn) {
+            foreach ($request->nombre_btn as $index => $nombre) {
+                LandingBtns::create([
+                    'landing_id' => $landing->id,
+                    'nombre_btn' => $nombre,
+                    'url' => $request->url[$index],
+                ]);
+            }
         }
-    }
-
-    // Actualizar documentos
-    // Considera eliminar documentos antiguos si es necesario
-    if ($request->hasFile('ruta_documento')) {
-        foreach ($request->file('ruta_documento') as $index => $file) {
-            $path = $file->store('public/landing_documents');
-            LandingDocs::create([
-                'landing_id' => $landing->id,
-                'nombre_documento' => $request->nombre_documento[$index] ?? $file->getClientOriginalName(),
-                'ruta_documento' => $path,
-            ]);
+    
+        // Actualizar documentos
+        if ($request->hasFile('ruta_documento')) {
+            foreach ($request->file('ruta_documento') as $index => $file) {
+                $path = $file->store('public/landing_documents');
+                $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+                LandingDocs::create([
+                    'landing_id' => $landing->id,
+                    'nombre_documento' => $request->nombre_documento[$index] ?? $file->getClientOriginalName(),
+                    'ruta_documento' => $path,
+                ]);
+            }
         }
-    }
-
-    return redirect()->route('landings.index')->with('success', 'Landing Page actualizada con éxito.');
-
+    
+        return redirect()->route('landings.index')->with('success', 'Landing Page actualizada con éxito.');
     }
 
     public function deleteImage($imageId) {
@@ -238,6 +239,40 @@ class LandingController extends Controller{
             return abort(404); // Puedes personalizar el código de respuesta según tus necesidades
         }
     }
+
+    public function showImage($filename)
+    {
+        return response()->file(storage_path('app/public/landing_images/' . $filename));
+    }
+
+    public function downloaddocslanding($id)
+    {
+        // Encuentra el documento por su ID
+        $documento = LandingDocs::findOrFail($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->ruta_documento; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+    
 
     public function cargarMenu() {
         // Solo obtener landings habilitados

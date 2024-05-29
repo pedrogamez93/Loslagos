@@ -126,6 +126,9 @@
         padding-bottom: 40px;
 
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>

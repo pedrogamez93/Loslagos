@@ -156,6 +156,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -210,11 +213,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12">
                 <div class="container set pb-4 p-0">
                     @include('layouts.listacategorias')
                 </div>
-                <div class="container content mt-5 mb-5 p-0">
+                <div class="container content mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-12">
 
@@ -252,7 +255,7 @@
                                     <div class="accordion-body documentos-container">
                                         @foreach ($concurso->documentos as $documento)
                                         <div class="mi-documento mt-3 mb-3">
-                                            <a href="{{ asset('storage/' . $documento['ruta_documento']) }}" target="_blank">
+                                            <a href="{{ route('downloadconcursopublico', $documento->id) }}" target="_blank">
                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                                     <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656; width: 950px;">{{ $documento->nombre_documento }}</p>
                                             </a>

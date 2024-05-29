@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>GORE Los lagos</title>
-
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
@@ -54,6 +54,7 @@
             bottom: 0;
             left: 0;
             padding: 5%; /* Ajusta el relleno según sea necesario */
+            height:auto !important;
         }
         .backgroundB{
           background-color: #389144 ;padding-left: 3vw;    border-bottom: 1px solid #fff;
@@ -285,7 +286,9 @@
   </div>
 </div>
 
-<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 border-top " style="" id="footerdesktop">
+<footer class="" style="" id="footerdesktop">
+<div class="container">
+    <div class="row">
     <div class="col mb-3">
 
         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -324,45 +327,48 @@
     <div class="col mb-3">
     <a style="text-decoration: none;
     color: white;" href="{{ url('/contactanos') }}"><h5 class="footer-col-title" >Contacta con nosotros aquí</h5></a>
-        <ul class="nav flex-column">
-            
-            <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
-            <li >
+    <ul class="nav flex-column">
 
-           
-            <a href="#" class="nav-link p-0 text-muted">
-                <div class="d-flex  flex-sm-row w-100 gap-2 mb-4" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
-                    
-                    <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;    width: 110%;
+    <li class="nav-item mb-4"><a href="#" class="nav-link p-0 text-muted">Comunícate con nosotros a través de nuestro correo electrónico y nos pondremos en contacto de inmediato</a></li>
+    <li >
+
+
+    <a href="#" class="nav-link p-0 text-muted">
+        <div class="d-flex  flex-sm-row w-100 gap-2 mb-4" style="border-radius: 100px; background: rgba(255, 255, 255, 0.20);">
+            
+            <a href="{{ url('/contactanos') }}" class="btn " type="button" style="color: white;    width: 110%;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;">Escribenos <span>Enviar</span></a>
-                </div>
-            </a>
+        </div>
+    </a>
 
-            <p>Ubicación: Av. Décima Región 480, 4to Piso</p>
-            <p>Teléfono: (65) 2283153-2283109</p>
-            <p>Correo: info@goreloslagos.cl</p>
-            </li>
-            <li class="nav-item"><a href="#" class="nav-link p-0 text-muted" style="    font-weight: 100 !important;">Copyright © GORE Los Lagos 2023</a></li>
-            <li class="nav-item mt-3" style="display: flex;">
-                <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
-                    <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
-                </a>
-                <a href="https://twitter.com/GoreLosLagos" style="padding-right: 20px;">
-                    <img src="{{ asset('img/twitter.png') }}" alt="" class="img-fluid">
-                </a>
-                <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
-                    <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
-                </a>
-                <a href="https://www.youtube.com/@goreloslagos7458" style="padding-right: 20px;padding-top: 4px;">
-                    <img src="{{ asset('img/yt.png') }}" alt="" class="img-fluid">
-                </a>
-                
-            </li>
-        </ul>
+    <p>Ubicación: Av. Décima Región 480, 4to Piso</p>
+    <p>Teléfono: (65) 2283153-2283109</p>
+    <p>Correo: info@goreloslagos.cl</p>
+    </li>
+    <li class="nav-item"><a href="#" class="nav-link p-0 text-muted" style="    font-weight: 100 !important;">Copyright © GORE Los Lagos 2023</a></li>
+    <li class="nav-item mt-3" style="display: flex;">
+        <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
+            <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
+        </a>
+        <a href="https://twitter.com/GoreLosLagos" style="padding-right: 20px;">
+            <img src="{{ asset('img/twitter.png') }}" alt="" class="img-fluid">
+        </a>
+        <a href="https://www.instagram.com/goreloslagos/" style="padding-right: 20px;">
+            <img src="{{ asset('img/insta.png') }}" alt="" class="img-fluid">
+        </a>
+        <a href="https://www.youtube.com/@goreloslagos7458" style="padding-right: 20px;padding-top: 4px;">
+            <img src="{{ asset('img/yt.png') }}" alt="" class="img-fluid">
+        </a>
+        
+    </li>
+    </ul>
+    </div>
+    </div>
     </div>
 </footer>
+
 
 <!-- Footer para móviles -->
 <footer class="mobile-footer d-block d-md-none" id="footermobil" style="border-radius: 0px 80px 0px 0px !important;">
@@ -427,6 +433,7 @@
             </a>
             </li>
             <li class="nav-item mt-1"><a href="#" class="nav-link p-0 text-muted">Copyright © GORE Los Lagos 2023</a></li>
+            <li class="nav-item mt-3" style="display: flex;">
                 <a href="https://www.facebook.com/GoreLosLagosOficial" style="padding-right: 20px;">
                     <img src="{{ asset('img/fb.png') }}" alt="" class="img-fluid">
                 </a>
@@ -439,6 +446,7 @@
                 <a href="https://www.youtube.com/@goreloslagos7458" style="padding-right: 20px;padding-top: 4px;">
                     <img src="{{ asset('img/yt.png') }}" alt="" class="img-fluid">
                 </a>
+                
             </li>
         </ul>
     </div>

@@ -14,15 +14,17 @@ use App\Models\Documento_Sesion;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Node\Block\Document;
-
+use Illuminate\Support\Facades\Log;
 class ConsejoRegionalDocsViewsController extends Controller
 {
     public function Indexactas()
     {
-        // Obtener todas las actas y su relación con Documentonew con paginación
-        $actas = Acta::with('documentonew')->paginate(8); // 8 actas por página
-
-        // Pasar las actas a la vista
+        $actas = Acta::with('documentonew')
+            ->join('documentosnew', 'actas.documentonew_id', '=', 'documentosnew.id')
+            ->orderBy('documentosnew.fecha_hora', 'desc') // Asegúrate de que la columna se llama 'fecha_hora'
+            ->select('actas.*')
+            ->paginate(8); // 8 actas por página
+    
         return view('consejoregionaldocsviews.actas.index', ['actas' => $actas]);
     }
 
@@ -120,6 +122,36 @@ public function Indexcertificadosdeacuerdos(Request $request)
     ]);
 
     }
+
+    public function downloadtablassesionesconsejo($id)
+{
+    $documento = Documento_Sesion::find($id);
+
+    // Log para depuración del documento
+    Log::info("Documento encontrado: " . json_encode($documento));
+
+    if ($documento) {
+        $rutaCompleta = $documento->url; // Esta es la ruta almacenada en la base de datos
+        
+        // Eliminar el prefijo 'public/' de la ruta si existe
+        $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+        
+        // Construir la ruta completa al archivo
+        $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+
+        Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            return response()->download($rutaArchivo);
+        } else {
+            Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+        }
+    } else {
+        Log::error("Documento no encontrado con id: " . $id);
+        return response()->json(['error' => 'Documento no encontrado.'], 404);
+    }
+}
 
     public function showFiltroAno($anio)
     {

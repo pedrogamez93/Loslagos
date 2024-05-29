@@ -253,11 +253,11 @@
     }
     p.mb-2.subtitulo {
         font-family: Inter;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 400;
         line-height: 24px;
         letter-spacing: 0em;
-        text-align: left;
+        text-align: left !important;
     }
     p.fechas {
         font-family: Inter;
@@ -356,7 +356,7 @@
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">Región de Los Lagos</p>
 
-                        <p style="Width:623px;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
+                        <p style="Width:auto;"  class="mb-3 descripB">Es considerada como la puerta del sur de nuestro país. Aquí comienza a sentirse de verdad el rigor del invierno</p>
                     </div>
                     
                 <div class="container pt-4">
@@ -434,17 +434,6 @@
     </div>     
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Pie de página &copy; {{ date('Y') }}</p>
-                </div>
-            </div>
-        </div>                    
-       
-        
-    </footer>
     <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
 </body>
 </html>

@@ -113,6 +113,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -169,17 +172,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12">
                 <div class="container set pb-4 p-0">
                     @include('layouts.listacategorias')
                 </div>
-                <div class="container content mt-5 mb-5 p-0">
+                <div class="container content mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="mistyle mb-5">Planificación Institucional</h2>
                                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;float: inline-start;">
                                     @foreach ($planificacion as $arti)
-                                        <a href="{{ asset('storage/' . $arti->urldocs) }}" target="_blank" style="display: block; text-align: center;">
+                                        <a href="{{ route('downloadPlanificacionInstitucionalDocs', $arti->id) }}" target="_blank" style="display: block; text-align: center;">
                                             <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                             <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 234px; text-align: left;">{{ $arti->titulo }}</span>
                                         </a>

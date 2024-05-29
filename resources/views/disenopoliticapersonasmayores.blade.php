@@ -115,6 +115,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -192,7 +195,7 @@
                                                     <ul>
                                                         @foreach ($docs as $documento)
                                                         <li class="mi-list mb-4">
-                                                            <a href="{{ asset('storage/' . $documento->urldocs) }}" target="_blank">
+                                                            <a href="{{ route('downloadPoliticaPersonasMayoresDocs', $documento->id) }}" target="_blank">
                                                                 <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                                                 <span class="mi-span" style="display: inline-block; vertical-align: middle; width: 257px;">{{ $documento->nombredocs }}</span>
                                                             </a>

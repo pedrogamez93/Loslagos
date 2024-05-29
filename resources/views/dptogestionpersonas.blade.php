@@ -107,6 +107,9 @@
         font-size:30px !important;
         padding-bottom: 0px!important;
     }
+    .container-fluid.cat{
+        padding-left: 30px;
+    }
 }
 </style>
 <html>
@@ -164,11 +167,11 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 p-0">
+            <div class="col-md-12">
                 <div class="container set pb-4 p-0">
                     @include('layouts.listacategorias')
                 </div>
-                <div class="container content mt-5 mb-5 p-0">
+                <div class="container content mt-5 mb-5">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="bajada">
@@ -182,7 +185,7 @@
                                 <ul>
                                     @foreach ($documentosTodos as $documento)
                                         <li class="mi-list">
-                                            <a href="{{ asset('storage/' . $documento['ruta']) }}" target="_blank">
+                                            <a href="{{ route('dptogestionpersonas.download', $documento->id) }}" target="_blank">
                                                 <img width=43px height=44px src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">    
                                                 <span class="mi-span" style="display: inline-block; vertical-align: middle;">{{ $documento->nombre }}</span>
                                             </a>

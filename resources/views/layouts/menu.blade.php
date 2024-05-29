@@ -378,7 +378,11 @@
                                                 <a class="style-a-menu" href="{{ route('Politicadeturismo.index') }}">Política de Turismo</a>
                                             </li>
                                             <li class="style-li">
-                                                <a class="style-a-menu" href="{{ route('PoliticaRegionalTurismo.index') }}">Lanzamiento Politica Turismo</a>
+                                                <a class="style-a-menu" href="{{ route('ProductosdelaPoliticadeTurismo.index') }}">Productos de la Política de Turismo</a>
+                                            </li>
+                                            
+                                            <li class="style-li">
+                                                <a class="style-a-menu" href="{{ route('LanzamientoPolitica.index') }}">Lanzamiento Politica Turismo</a>
                                             </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('TrabajoParticipativoMetodologia.index') }}">Trabajo Participativo Metodología</a>
@@ -461,6 +465,12 @@
                                     <div id="flush-collapstene" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
+                                            <li class="style-li">
+                                                <a class="style-a-menu"  href="{{ route('users.index') }}">Usuarios</a>
+                                            </li>
+                                            <li class="style-li">
+                                                <a class="style-a-menu"  href="{{ route('MapaWebB.show') }}">Mapa del Sitio </a>
+                                            </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu"  href="{{ route('popups.index') }}">Popups </a>
                                             </li>
