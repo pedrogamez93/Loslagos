@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 
 
 <style>
@@ -83,18 +83,17 @@
     <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
 
     <label class="style-label mb-2" for="bajada">Bajada:</label>
-    <textarea class="form-control mt-2" name="bajada" id="desc editor" placeholder="Bajada">{{ $programa->bajada }}</textarea>
+    <textarea class="form-control mt-2" name="bajada" id="desc" placeholder="Bajada">{{ $programa->bajada }}</textarea>
 
     <label class="style-label mb-2 mt-3" for="bajada_programa">Bajada programa:</label>
-    <textarea class="form-control mt-2" style="height: 250px" id="nota editor2" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
+    <textarea class="form-control mt-2" style="height: 250px" id="nota" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
 
-    <label class="style-label mt-3" for="imagen">Actualizar imagen:</label>
+    <label class="style-label mt-3" for="imagen">Agregar nueva imagen destacada:</label>
     <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
 
     @if ($programa->imagen)
-        <img src="{{ asset('storage/' . $programa->imagen) }}" alt="Imagen actual" style="max-width: 200px; margin-top: 10px;display: block;
-    padding-bottom: 20px;">
-    @endif
+    <img src="{{ asset($programa->imagen) }}" alt="Imagen actual" style="max-width: 200px; margin-top: 10px; display: block; padding-bottom: 20px;">
+@endif
 
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
 </form>
@@ -272,7 +271,7 @@
 
 @foreach($documentos as $documento)
     <div class="  container mt-1 mb-1 " style="display: flex; gap:15px;">
-        <a href="{{ $documento->urlDocumento }}">{{ $documento->nombreDocumento }}</a>
+        <a>{{ $documento->nombreDocumento }}</a>
         <form action="{{ route('programa.documento.destroy', $documento->id) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -282,20 +281,28 @@
 @endforeach
 
 <!-- Mostrar colecciones -->
-<h3 class="mt-3 mb-2">Fotografías actuales</h3>   
+<h3 class="mt-3 mb-2">Fotografías actuales</h3>
 
 @foreach($colecciones as $coleccion)
-    <div class=" container mt-1 mb-1" >
+    <div class="container mt-1 mb-1">
         <h5>{{ $coleccion->titulo_coleccion }}</h5>
         <!-- Mostrar fotografías de la colección -->
-        @foreach($coleccion->fotografias as $fotografia)
-            <img src="{{ asset($fotografia->ruta) }}" alt="Fotografía">
-            <form action="{{ route('programa.fotografia.destroy', $fotografia->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-        @endforeach
+        <div class="row">
+            @foreach($coleccion->fotografias as $fotografia)
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" class="card-img-top" alt="Fotografía">
+                        <div class="card-body text-center">
+                            <form action="{{ route('programa.fotografia.destroy', $fotografia->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endforeach
 

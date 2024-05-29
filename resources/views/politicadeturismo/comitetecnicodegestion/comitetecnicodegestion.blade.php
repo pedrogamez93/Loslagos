@@ -259,7 +259,7 @@
                                                                 <img class="imagenes-d pt-0" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco">
                                                             </div>        
                                                             <div class="col-md-10 p-0">
-                                                            <a href="{{ asset('/storage/public/productosdelapoliticadeturismo/MC2q7EzkKqIWAfieYCamaEI50evlPc1zNXn3Wjsm.pdf') }}">{{ $secundario->nombreA }}</a>
+                                                            <a href="{{ route('ComiteTecnicodeGestion.download', ['id' => $secundario->id]) }}">{{ $secundario->nombreA }}</a>
                                                             </div>        
                                                         </div> 
                                                             </div>        

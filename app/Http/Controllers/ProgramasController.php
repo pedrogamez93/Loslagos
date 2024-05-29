@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 
+
 class ProgramasController extends Controller
 {
     /**
@@ -64,50 +65,35 @@ class ProgramasController extends Controller
         $seleccion_btn = $request->input('si_btn');
         $seleccion_coleccion = $request->input('si_coleccion');
 
-        // Procesar la imagen si está presente
-        if ($request->hasFile('imagen')) {
-            $iconoPath = $request->file('imagen')->store('imagenes_programas' , 'public');
-            $programas->update(['imagen' => $iconoPath]);
-        }
-        /*// Procesar documentos (individuales y comprimidos)
-        $nombreDocumento = $request->input('nombreDocumento') ?? [];
+   // Procesar la imagen si está presente
+   if ($request->hasFile('imagen')) {
+    $iconoPath = $request->file('imagen')->store('imagenes_programas', 'public');
+    $programas->update(['imagen' => $iconoPath]);
+}
 
-        $urlDocumento = $request->file('urlDocumento');
-        //echo count($urlDocumento);
+try {
+    // Procesar documentos (individuales y comprimidos)
+    $nombresDocumentos = $request->input('nombreDocumento');
+    $urlDocumentos = $request->file('urlDocumento') ?? [];
 
-        foreach ($urlDocumento ?? [] as $key => $documento) {
-             $nombreDocumento = $nombreDocumento[$key]?? 'documento_' . ($key + 1);
-             $urlDocumento = $documento->store('documentosdeprograma', 'public');
+    foreach ($urlDocumentos as $key => $documento) {
+        // Obtener el nombre original del documento
+        $nombreOriginal = $documento->getClientOriginalName();
+        
+        // Guardar el documento con su nombre original
+        $urlDocumento = $documento->storeAs('documentosprogramas', $nombreOriginal);
 
-            // Almacena en la base de datos
-             ProgramasDocumentos::create([
-                'nombreDocumento' => $nombreDocumento,
-                'urlDocumento' => $urlDocumento,
-                'programa_id' => $programasid,
-            ]);
-        }*/
-
-
-        try {
-            // Procesar documentos (individuales y comprimidos)
-            $nombreDocumento = $request->input('nombreDocumento');
-            $urlDocumento = $request->file('urlDocumento') ?? [];
-    
-            foreach ($urlDocumento ?? [] as $key => $documento) {
-                $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
-                $urlDocumento = $documento->store('documentosprogramas');
-                
-                // Almacena en la base de datos
-                    ProgramasDocumentos::create([
-                    'programa_id' => $programas->id,
-                    'nombreDocumento' => $nombreDocumento,
-                    'urlDocumento' => $urlDocumento,
-                ]);
-            }
-        } catch (\Exception $e) {
-            // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
-            \Log::error('Error al procesar documentos: ' . $e->getMessage());
-        }
+        // Almacena en la base de datos
+        ProgramasDocumentos::create([
+            'programa_id' => $programas->id,
+            'nombreDocumento' => $nombreOriginal,
+            'urlDocumento' => $urlDocumento,
+        ]);
+    }
+} catch (\Exception $e) {
+    // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+    \Log::error('Error al procesar documentos: ' . $e->getMessage());
+}
 
         
           //DESCRIPCION
@@ -129,33 +115,34 @@ class ProgramasController extends Controller
                 }
             }
 
-                //colecciones
-                if ($seleccion_coleccion == "option1") {
-                    $titulo_coleccion = $request->input('titulo_coleccion', []);
-                
-                    foreach ($titulo_coleccion ?? [] as $key => $titulo) {
-                        $coleccionesid = ProgramasColecciones::create([
-                            'titulo_coleccion' => $titulo_coleccion[$key],
-                            'programa_id' => $programasid
-                        ]); // Ajusta según tus necesidades
-                
-                        $coleccionesid = $coleccionesid->id;
-                
-                        if ($request->hasFile('ruta')) {
-                            // Recorrer cada archivo asociado a la colección actual
-                            foreach ($request->file('ruta') ?? [] as $archivo) {
-                                // Realizar alguna operación con cada archivo, como almacenarlo, validar, etc.
-                                $nombreArchivo = $archivo->getClientOriginalName();
-                                $ruta = $archivo->storeAs('directorio_destino', $nombreArchivo);
-                
-                                $fotografiasid = ProgramasFotografias::create([
-                                    'ruta' => $ruta,
-                                    'coleccion_id' => $coleccionesid
-                                ]); // Ajusta según tus necesidades
-                            }
+            if ($seleccion_coleccion == "option1") {
+                $titulo_coleccion = $request->input('titulo_coleccion', []);
+            
+                foreach ($titulo_coleccion ?? [] as $key => $titulo) {
+                    $coleccionesid = ProgramasColecciones::create([
+                        'titulo_coleccion' => $titulo_coleccion[$key],
+                        'programa_id' => $programasid
+                    ]); // Ajusta según tus necesidades
+            
+                    $coleccionesid = $coleccionesid->id;
+            
+                    if ($request->hasFile('ruta')) {
+                        // Recorrer cada archivo asociado a la colección actual
+                        foreach ($request->file('ruta') ?? [] as $archivo) {
+                            // Realizar alguna operación con cada archivo, como almacenarlo, validar, etc.
+                            $nombreArchivo = $archivo->getClientOriginalName();
+                            $ruta = 'public/directorio_destino/' . $nombreArchivo;
+                            $archivo->move(public_path('directorio_destino'), $nombreArchivo);
+            
+                            $fotografiasid = ProgramasFotografias::create([
+                                'ruta' => $ruta,
+                                'coleccion_id' => $coleccionesid
+                            ]); // Ajusta según tus necesidades
                         }
                     }
                 }
+            }
+            
                 return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
     }
     public function mostrarImagen($imagen) {
@@ -192,6 +179,7 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function edit($id)
 {
     $programa = Programas::findOrFail($id);
@@ -386,12 +374,15 @@ public function agregarFotografia(Request $request, $id)
 
                 if ($coleccion) {
                     foreach ($fotografias as $fotografia) {
-                        // Guardar cada fotografía en la carpeta deseada y registrar la información en la base de datos
-                        $fotografia_path = $fotografia->store('fotografias');
+                        // Guardar cada fotografía en la carpeta 'public/directorio_destino'
+                        $nombreArchivo = $fotografia->getClientOriginalName();
+                        $ruta = 'directorio_destino/' . $nombreArchivo;
+                        $fotografia->move(public_path('directorio_destino'), $nombreArchivo);
+
                         // Agregar la fotografía a la colección existente
                         $coleccion->fotografias()->create([
-                            'nombre' => $fotografia->getClientOriginalName(),
-                            'ruta' => $fotografia_path,
+                            'nombre' => $nombreArchivo,
+                            'ruta' => $ruta,
                         ]);
                     }
                     return redirect()->back()->with('success', 'Fotografías agregadas correctamente a la colección.');
@@ -491,5 +482,27 @@ public function destroyFotografia($id)
     return redirect()->back()->with('success', 'Fotografía eliminada correctamente.');
 }
 
+
+ public function abrirDocumento($id)
+    {
+        // Encuentra el documento por ID
+        $documento = ProgramasDocumentos::find($id);
+        
+        if (!$documento) {
+            // Maneja el caso en que el documento no se encuentra
+            return response()->json(['error' => 'Documento no encontrado'], 404);
+        }
+
+        // Obtén la URL del documento
+        $path = storage_path('app/' . $documento->urlDocumento);
+
+        // Verifica si el archivo existe
+        if (!file_exists($path)) {
+            return response()->json(['error' => 'Archivo no encontrado en el servidor'], 404);
+        }
+
+        // Forzar la descarga del archivo
+        return response()->download($path, $documento->nombreDocumento);
+    }
     
 }
