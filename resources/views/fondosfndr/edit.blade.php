@@ -157,7 +157,7 @@
                     <ul>
                         @foreach($seccion->documentos as $documento)
                             <li style="margin: 10px 0;">
-                                {{ $documento->titulo_documento }} - <a href="{{ asset($documento->ruta_documento) }}" target="_blank">Ver Documento</a>
+                                {{ $documento->titulo_documento }} 
                                 <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')

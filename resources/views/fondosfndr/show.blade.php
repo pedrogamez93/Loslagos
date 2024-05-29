@@ -289,7 +289,7 @@
             <div class="container pt-5 pb-5">
                 <div class="row" >
                     <div class="col-md-12" >
-                    <p class="style-bread">Home / Gobierno Regional  <span style="font-Weight: 700;"></span></p>
+                    <p class="style-bread">Home / Fondos Concursables / <span style="font-Weight: 700;"> {{ $fondo->titulo }}</span></p>
                     </div>
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">{{ $fondo->titulo }}</p>
@@ -320,16 +320,22 @@
         <p class="pt-2 pb-3">{!! $fondo->nota ?? '' !!}</p>
 
         <!--SECCIONES-->
-        <ul>
-            @foreach ($fondo->secciones as $seccion)
-                <h2 class="titulo-seccion"><li>{{ $seccion->titulo_seccion }}</li></h2>
-                <ul>
-                    @foreach ($seccion->documentos as $documento)
-                        <li><a href="{{ asset($documento->ruta_documento) }}">{{ $documento->titulo_documento }}</a></li>
-                    @endforeach
-                </ul>
+        <!--DOCUMENTOS-->
+        
+        
+        
+    @foreach ($fondo->secciones as $seccion)
+        <h2 class="titulo-seccion mt-4 mb-3">{{ $seccion->titulo_seccion }}</h2>
+        
+            @php
+                $documentos = $seccion->documentos->reverse();
+            @endphp
+            @foreach ($documentos as $documento)
+            <div class="mt-3 mb-3" style="display: flex;"><img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;"><a href="{{ route('documento.abrir', $documento->id) }}" style="align-self: center;">{{ $documento->titulo_documento }}</a></div>
             @endforeach
-        </ul>
+        
+    @endforeach
+</ul>
     </div>
     <a href="/homefndrs" class="btn btn-secondary mt-5 mb-4">Volver</a>
 

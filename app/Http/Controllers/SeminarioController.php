@@ -7,6 +7,8 @@ use App\Models\DocumentoSeminario;
 use App\Models\GaleriaSeminario;
 use App\Models\ImagenSeminario;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -214,5 +216,30 @@ class SeminarioController extends Controller {
         // Pasa la galería a la vista junto con sus imágenes
         return view('seminarios.show', ['galeria' => $galeria]);
     }
+
+    public function mostrarSeminarioImagen($filename)
+    {
+        $path = storage_path('app/public/imagenes_galerias/' . $filename);
+    
+        // Log para depuración del archivo
+        \Log::info("Intentando mostrar la imagen: " . $filename);
+        \Log::info("Ruta completa de la imagen: " . $path);
+    
+        if (!File::exists($path)) {
+            \Log::error("La imagen no existe: " . $path);
+            abort(404, 'Imagen no encontrada');
+        }
+    
+        $file = File::get($path);
+        $type = File::mimeType($path);
+    
+        \Log::info("Mostrando la imagen: " . $filename . " con tipo MIME: " . $type);
+    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+    
+        return $response;
+    }
+
     
 }

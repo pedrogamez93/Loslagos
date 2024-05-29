@@ -256,18 +256,19 @@ button {
                                                     {{-- Título de la Galería --}}
                                                     <h1 class="titles mb-4">{{ $galeria->nombre }}</h1>
 
-                                                    <div class="slick-slider mioev">
-                                                        @foreach ($galeria->imagenes as $imagen)
-                                                            <div>
-                                                                {{-- Enlace para abrir la imagen en Fancybox --}}
-                                                               
-                                                                <a href="{{ route('imagen.showga', ['filename' => basename($imagen->archivo)]) }}" data-fancybox="gallery">
-                                                                    <img src="{{ route('imagen.showga', ['filename' => basename($imagen->archivo)]) }}" alt="{{ $imagen->nombre }}" class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                    </div>
+                                                        <div class="slick-slider mioev">
+                                                            @foreach ($galeria->imagenes as $imagen)
+                                                                <div>
+                                                                    {{-- Enlace para abrir la imagen en Fancybox --}}
+                                                                
+                                                                    <a href="{{ route('galeria.imagen.mostrar', ['filename' => basename($imagen->archivo)]) }}" data-fancybox="gallery">
+                                                                        <img src="{{ route('galeria.imagen.mostrar', ['filename' => basename($imagen->archivo)]) }}" alt="{{ $imagen->nombre }}" class="img-fluid">
+                                                                    </a>
+                                                                
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

@@ -217,7 +217,7 @@
   .programa img{
     width: 100%;
     height: 75.1%;
-    max-width: 960px;
+    
     max-width: auto;
     height: 211px;
     object-fit: cover;
@@ -257,7 +257,7 @@
             <div class="container pt-5 pb-5">
                 <div class="row" >
                     <div class="col-md-12" >
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="/todoslosprogramas">Programas</a></span></p>
+                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/ <span style="font-Weight: 700;"><a>Programas</a></span></p>
                     </div>
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">Programas</p>

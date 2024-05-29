@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 // Importa los modelos
 use App\Models\FondosFndr;
 use App\Models\SeccionesFndr;
@@ -50,26 +52,28 @@ class FondosFndrController extends Controller
         ]);
     
        // Procesar secciones y documentos
-foreach ($request->titulo_seccion as $key => $tituloSeccion) {
-    $seccion = SeccionesFndr::create([
-        'fondo_fndr_id' => $fondo->id,
-        'titulo_seccion' => $tituloSeccion,
-    ]);
-
-    if (isset($request->titulo_documento[$key])) {
-        $seccionId = $seccion->id; // Almacenar el ID de la sección actual
-
-        foreach ($request->titulo_documento[$key] as $key2 => $tituloDocumento) {
-            if (!is_null($tituloDocumento) && isset($request->ruta_documento[$key][$key2])) {
-                $documento = new DocsSeccionesFndr();
-                $documento->titulo_documento = $tituloDocumento;
-                $documento->ruta_documento = $request->ruta_documento[$key][$key2]->store('documentos');
-                $documento->seccion_fndr_id = $seccionId; // Usar el ID de la sección actual
-                $documento->save();
+       foreach ($request->titulo_seccion as $key => $tituloSeccion) {
+        $seccion = SeccionesFndr::create([
+            'fondo_fndr_id' => $fondo->id,
+            'titulo_seccion' => $tituloSeccion,
+        ]);
+    
+        if (isset($request->titulo_documento[$key])) {
+            $seccionId = $seccion->id;
+    
+            foreach ($request->titulo_documento[$key] as $key2 => $tituloDocumento) {
+                if (!is_null($tituloDocumento) && isset($request->ruta_documento[$key][$key2])) {
+                    $rutaDocumento = $request->ruta_documento[$key][$key2]->store('documentos', 'public');
+    
+                    $documento = new DocsSeccionesFndr();
+                    $documento->titulo_documento = $tituloDocumento;
+                    $documento->ruta_documento = $rutaDocumento;
+                    $documento->seccion_fndr_id = $seccionId;
+                    $documento->save();
+                }
             }
         }
     }
-}
 
 
         
@@ -165,7 +169,7 @@ public function agregarDocumento(Request $request, $fondo_id)
 if ($documentos) {
     foreach ($documentos as $documento) {
         // Guardar cada archivo en la carpeta deseada y registrar la información en la base de datos
-        $documento_path = $documento->store('documentos');
+        $documento_path = $documento->store('documentos', 'public');;
         DocsSeccionesFndr::create([
             'titulo_documento' => $documento->getClientOriginalName(), // Usando el nombre original como título
             'ruta_documento' => $documento_path,
@@ -188,6 +192,26 @@ if ($documentos) {
 
 
 
+
+public function abrirDocumento($id)
+{
+    $documento = DocsSeccionesFndr::findOrFail($id);
+
+    // La ruta debe ser storage_path('app/public/' . $documento->ruta_documento)
+    $filePath = storage_path('app/public/' . $documento->ruta_documento);
+
+    if (!file_exists($filePath)) {
+        dd('Archivo no encontrado: ' . $filePath);
+        abort(404, 'El documento no fue encontrado.');
+    }
+
+    // Obtener el nombre original del archivo y su extensión
+    $nombreArchivo = pathinfo($documento->ruta_documento, PATHINFO_FILENAME);
+    $extension = pathinfo($documento->ruta_documento, PATHINFO_EXTENSION);
+
+    // Descargar el archivo con su nombre original y extensión
+    return response()->download($filePath, $nombreArchivo . '.' . $extension);
+}
 
 
 

@@ -284,7 +284,7 @@
                                     @endphp
                                     <div class="galeria-container">
                                         <a href="{{ route('galerias.edit', $galeria->id) }}" class="galeria-link">
-                                            <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
+                                            <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? route('seminario.imagen.mostrar', ['filename' => basename($imagenPrimera->archivo)]) : asset('storage/images/default.jpg') }}');">
                                                 <div class="galeria-info">
                                                     <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
                                                     <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
