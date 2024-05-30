@@ -10,6 +10,8 @@ use App\Models\ProgramasDescripciones;
 use App\Models\ProgramasDocumentos;
 use App\Models\ProgramasFotografias;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
 
 
 
@@ -79,9 +81,17 @@ try {
     foreach ($urlDocumentos as $key => $documento) {
         // Obtener el nombre original del documento
         $nombreOriginal = $documento->getClientOriginalName();
-        
-        // Guardar el documento con su nombre original
-        $urlDocumento = $documento->storeAs('documentosprogramas', $nombreOriginal);
+
+        // Definir la ruta donde se guardará el documento
+        $ruta = 'public/documentosdelosprogramas';
+
+        // Crear la carpeta si no existe
+        if (!Storage::exists($ruta)) {
+            Storage::makeDirectory($ruta);
+        }
+
+        // Guardar el documento con su nombre original en la ruta definida
+        $urlDocumento = $documento->storeAs($ruta, $nombreOriginal);
 
         // Almacena en la base de datos
         ProgramasDocumentos::create([
@@ -94,6 +104,7 @@ try {
     // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
     \Log::error('Error al procesar documentos: ' . $e->getMessage());
 }
+
 
         
           //DESCRIPCION
@@ -336,11 +347,22 @@ public function agregarDocumento(Request $request, $id)
 
         // Verificar si se han cargado archivos
         if ($documentos) {
+            // Definir la ruta donde se guardarán los documentos
+            $ruta = 'public/documentosdelosprogramas';
+            
+            // Crear la carpeta si no existe
+            if (!Storage::exists($ruta)) {
+                Storage::makeDirectory($ruta);
+            }
+
             foreach ($documentos as $documento) {
-                // Guardar cada archivo en la carpeta deseada y registrar la información en la base de datos
-                $documento_path = $documento->store('documentos');
+                // Guardar cada archivo en la carpeta deseada con su nombre original
+                $nombreOriginal = $documento->getClientOriginalName();
+                $documento_path = $documento->storeAs($ruta, $nombreOriginal);
+
+                // Registrar la información en la base de datos
                 ProgramasDocumentos::create([
-                    'nombreDocumento' => $documento->getClientOriginalName(),
+                    'nombreDocumento' => $nombreOriginal,
                     'urlDocumento' => $documento_path,
                     'programa_id' => $programa->id
                 ]);
@@ -483,26 +505,29 @@ public function destroyFotografia($id)
 }
 
 
- public function abrirDocumento($id)
-    {
-        // Encuentra el documento por ID
-        $documento = ProgramasDocumentos::find($id);
-        
-        if (!$documento) {
-            // Maneja el caso en que el documento no se encuentra
-            return response()->json(['error' => 'Documento no encontrado'], 404);
-        }
+public function abrirDocumentoPrograma($id)
+{
+    $documento = ProgramasDocumentos::find($id);
 
-        // Obtén la URL del documento
-        $path = storage_path('app/' . $documento->urlDocumento);
-
-        // Verifica si el archivo existe
-        if (!file_exists($path)) {
-            return response()->json(['error' => 'Archivo no encontrado en el servidor'], 404);
-        }
-
-        // Forzar la descarga del archivo
-        return response()->download($path, $documento->nombreDocumento);
+    if (!$documento) {
+        return response()->json(['error' => 'Documento no encontrado'], 404);
     }
+
+    $rutaCompleta = $documento->urlDocumento;
+
+    Log::info("Ruta completa del documento: " . $rutaCompleta);
+
+    $rutaArchivo = storage_path('app/' . $rutaCompleta);
+
+    Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+    if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+        return response()->download($rutaArchivo, $documento->nombreDocumento);
+    } else {
+        Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+        return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+    }
+}
+
     
 }
