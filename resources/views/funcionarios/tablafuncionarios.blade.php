@@ -113,7 +113,9 @@ input:required {
 
                         <td>
                            
-                            <a href="{{ route('funcionarios.edit', ['id' => $funcionario->id]) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ route('funcionarios.edit', ['id' => $funcionario->id]) }}" class="btn btn-warning">Editar</a>
+                      
+
                             <form action="{{ route('funcionarios.destroy', ['id' => $funcionario->id]) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
