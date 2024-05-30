@@ -769,7 +769,7 @@ Route::put('/programas/{programa}', [ProgramasController::class, 'update'])->nam
 
 Route::get('/todoslosprogramas', 'App\Http\Controllers\TodosLosProgramasController@todoslosprogramasIndex');
 
-//Route::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
+//Routee::get('/todos-los-programas', 'TuControlador@mostrarTodosLosProgramas');
 
 // Rutas para eliminar botones, descripciones, documentos y fotografías
 Route::delete('/programa/boton/{id}', [ProgramasController::class, 'destroyBoton'])->name('programa.boton.destroy');
