@@ -99,7 +99,7 @@ input:required {
                         <input class="form-control mt-2 mb-4" type="text" name="titulo" placeholder="Título" required>
                        
                         <label class="style-label mb-2" for="bajada">Bajada encabezado:</label>
-                        <textarea class="form-control mt-2 mb-4" id="desc" name="bajada" placeholder="Bajada encabezado"></textarea>
+                        <textarea class="form-control mt-2 mb-4" id="" name="bajada" placeholder="Bajada encabezado"></textarea>
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
                         <textarea class="form-control mt-2 mb-4" id="nota" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
@@ -133,7 +133,7 @@ input:required {
                                 </div>
                                 <div class="col-md-12">
                                     <label class="style-label" for="url">Bajada:</label>
-                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor" name="bajada_descripcion[]"></textarea>
+                                    <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px"  id="editor-bajada-acor " name="bajada_descripcion[]"></textarea>
 
                                 </div>
                             </div>
@@ -252,6 +252,8 @@ input:required {
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
         });
+
+      
 
         tinymce.init({
             selector: '#nota', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
@@ -408,23 +410,6 @@ input:required {
 
 </script>
 
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor-bajada'), {
-        allowedContent: true
-    })
-    .catch(error => {
-        console.error(error);
-    });
-</script>
-<script>
-ClassicEditor
-    .create(document.querySelector('#editor-bajada-acord'), {
-        allowedContent: true
-    })
-    .catch(error => {
-        console.error(error);
-    });
-</script>
+
 
 

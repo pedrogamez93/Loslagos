@@ -75,6 +75,7 @@ public function store (Request $request)
          $date, $usted_escribe_como, $actividad_oficio, $intitucion_a_enviar, $tema_mensaje, $proposito_objetivo, $solicita_respuestas,
           $mensaje_sugerencia_reclamo);
         Mail::to('info@goreloslagos.cl')->send($correo);
+        //Mail::to('ingluisguedez@gmail.com')->send($correo);
 
         Formulario::create($data);
     
