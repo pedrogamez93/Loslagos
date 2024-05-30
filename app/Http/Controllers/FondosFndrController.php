@@ -10,6 +10,8 @@ use App\Models\FondosFndr;
 use App\Models\SeccionesFndr;
 use App\Models\DocsSeccionesFndr;
 use App\Models\Documento;
+use Illuminate\Support\Facades\Log; // Importar la clase Log
+
 
 use Illuminate\Support\Facades\DB;
 class FondosFndrController extends Controller
@@ -195,22 +197,38 @@ if ($documentos) {
 
 public function abrirDocumento($id)
 {
-    $documento = DocsSeccionesFndr::findOrFail($id);
+    $documento = DocsSeccionesFndr::find($id);
 
-    // La ruta debe ser storage_path('app/public/' . $documento->ruta_documento)
-    $filePath = storage_path('app/public/' . $documento->ruta_documento);
-
-    if (!file_exists($filePath)) {
-        dd('Archivo no encontrado: ' . $filePath);
-        abort(404, 'El documento no fue encontrado.');
+    if (!$documento) {
+        return response()->json(['error' => 'Documento no encontrado'], 404);
     }
 
-    // Obtener el nombre original del archivo y su extensión
-    $nombreArchivo = pathinfo($documento->ruta_documento, PATHINFO_FILENAME);
-    $extension = pathinfo($documento->ruta_documento, PATHINFO_EXTENSION);
+    $rutaCompleta = $documento->ruta_documento;
 
-    // Descargar el archivo con su nombre original y extensión
-    return response()->download($filePath, $nombreArchivo . '.' . $extension);
+    Log::info("Ruta completa del documento: " . $rutaCompleta);
+
+    $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
+
+    Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+    if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+        // Obtener la extensión del archivo
+        $extension = pathinfo($rutaCompleta, PATHINFO_EXTENSION);
+
+        // Verificar si la extensión es .docx y agregarla si es necesario
+        $nombreArchivoConExtension = $documento->titulo_documento;
+        if (strcasecmp($extension, 'docx') == 0) {
+            $nombreArchivoConExtension .= '.docx';
+        } else {
+            $nombreArchivoConExtension .= '.' . $extension;
+        }
+
+        // Descargar el archivo con su nombre original y extensión
+        return response()->download($rutaArchivo, $nombreArchivoConExtension);
+    } else {
+        Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+        return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+    }
 }
 
 

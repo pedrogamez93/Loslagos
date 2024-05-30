@@ -1,10 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar fondo</title>
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 
 
 <style>
@@ -92,10 +99,10 @@ input:required {
                         <input class="form-control mt-2 mb-4" type="text" name="titulo" placeholder="Título" required>
                        
                         <label class="style-label mb-2" for="bajada">Bajada encabezado:</label>
-                        <textarea class="form-control mt-2 mb-4" name="bajada" placeholder="Bajada encabezado"></textarea>
+                        <textarea class="form-control mt-2 mb-4" id="desc" name="bajada" placeholder="Bajada encabezado"></textarea>
 
                         <label class="style-label mb-2" for="bajada_programa">Bajada programa:</label>
-                        <textarea class="form-control mt-2 mb-4" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
+                        <textarea class="form-control mt-2 mb-4" id="nota" placeholder="Escribe la bajada del programa aquí" style="height: 250px"  id="editor-bajada" name="bajada_programa"></textarea>
 
                         <label class="style-label mt-3" for="icono">Agregar imagen destacada:</label>
                         <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
@@ -230,8 +237,34 @@ input:required {
     </div>
 </div>
 
+</html>
 
 <script>
+     tinymce.init({
+            selector: '#desc', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+
+        tinymce.init({
+            selector: '#nota', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            plugins: 'advlist link image lists',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
     $(document).ready(function() {
         // Agregar más documentos 
         $(".agregar-documento").click(function() {

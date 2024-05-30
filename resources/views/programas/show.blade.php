@@ -153,6 +153,7 @@
         color:#fff;
 
     }
+   
 
     .backgroundB{
           background-color: #F59120 !important;padding-left: 3vw;    border-bottom: 1px solid #fff;
@@ -303,7 +304,8 @@
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">{{ $programa->titulo }}</p>
 
-                        <p style="Width:623px;"  class="mb-3 descripB">{{ $programa->bajada }}</p>
+                        <p style="Width:623px;"  class="mb-3 descripB"> {!! $programa->bajada ?? '' !!} </p>
+                        
                     </div>
                     
                 <div class="container pt-4">
@@ -349,8 +351,8 @@
                                 @endforeach
                     </div>
             </div>
-                   <!--DOCUMENTOS-->
-                   <div id="contenidoDocumentos" style="display: none;">
+<!-- DOCUMENTOS -->
+<div id="contenidoDocumentos" style="display: none;">
     <h2 class="title-doc-fot">Documentos</h2>
     <div class="container">
         <div class="row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
@@ -361,7 +363,7 @@
             @foreach($programaDocumentos as $doc)
                 <div class="col" style="display: flex;">
                     <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;">
-                    <a href="{{ route('documento.abrir', ['id' => $doc->id]) }}" target="_blank" style="align-self: center;">{{ $doc->nombreDocumento }}</a>
+                    <a href="{{ route('documentosprogramas.abrir', ['id' => $doc->id]) }}" style="align-self: center;">{{ $doc->nombreDocumento }}</a>
                 </div>
             @endforeach
         </div>
