@@ -103,7 +103,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="file" id="hombres" name="archivo" class="form-control" placeholder="Cargar archivo"  value="{{ $articulo->archivo }}"  required>
+                                                
+                                                    
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                <a href="{{ route('lanzamientopolitica.download', ['id' => $articulo->id]) }}">Ver Documento</a>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                <input type="file" id="archivo" name="archivo" class="form-control" placeholder="Cargar archivo">
                                                 </div>
                                             </div>
                                         </div>
