@@ -505,6 +505,9 @@ public function destroyFotografia($id)
 }
 
 
+
+//funcion abrir documentos
+
 public function abrirDocumentoPrograma($id)
 {
     $documento = ProgramasDocumentos::find($id);
