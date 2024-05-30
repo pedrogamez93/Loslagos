@@ -191,7 +191,7 @@ if ($documentos) {
     return redirect()->back()->with('error', 'No se encontró el fondo.');
 }
 
-
+//funcion abrir documentos
 
 
 
