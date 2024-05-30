@@ -314,7 +314,7 @@
                 
                         <div class="container principal mt-4 mb-4 pt-3 pb-3" >
                         <div class="container">
-        <h1 class="titulo-fondo">{{ $fondo->titulo }}</h1>
+        <!--<h1 class="titulo-fondo">{{ $fondo->titulo }}</h1>-->
         <p class="pt-2 pb-2">{{ $fondo->bajada }}</p>
         <p class="pt-2 pb-3">{!! $fondo->descripcion ?? '' !!}</p>
         <p class="pt-2 pb-3">{!! $fondo->nota ?? '' !!}</p>

@@ -289,7 +289,7 @@
                                 </a>
                                 <div class="info">
                                     <a href="{{ route('programas.show', $programa) }}"><h2 class="title-programa">{{ $programa->titulo }}</h2></a>
-                                    <p class="bajada-programa">{{ $programa->bajada }}</p>
+                                    <p class="bajada-programa">{!! $programa->bajada ?? '' !!}</p>
                                     <span id="bajada-p">{!! $programa->bajada_programa ?? '' !!}  </span>
                                     <div class="linea"></div>
                                     <div class="container pt-2 mb-1">

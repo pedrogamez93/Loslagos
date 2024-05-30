@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Log; // Importar la clase Log
 
 
 use Illuminate\Support\Facades\DB;
+
+
+
 class FondosFndrController extends Controller
 {
     // Ejemplo de función para mostrar un listado de fondos
@@ -148,7 +151,7 @@ class FondosFndrController extends Controller
     }
 }
     
- 
+
 
 public function agregarDocumento(Request $request, $fondo_id)
 {
@@ -230,7 +233,6 @@ public function abrirDocumento($id)
         return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
     }
 }
-
 
 
 
