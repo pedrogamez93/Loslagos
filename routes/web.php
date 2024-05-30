@@ -713,7 +713,7 @@ Route::post('/programas/TrabajoParticipativoTalleresProvinciales/store', 'App\Ht
 Route::get('/programas/TrabajoParticipativoTalleresProvinciales/create', 'App\Http\Controllers\PoliticadeturismoController@createTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.create')->middleware('auth');
 Route::get('/programas/TrabajoParticipativoTalleresProvinciales/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.edit')->middleware('auth');
 Route::put('/programas/TrabajoParticipativoTalleresProvinciales/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.update')->middleware('auth');
-
+Route::get('/programas/TrabajoParticipativoTalleresProvinciales/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyTrabajoParticipativoTalleresProvincialesItems')->name('TrabajoParticipativoTalleresProvincialesItems.destroy')->middleware('auth');
 Route::get('/TrabajoParticipativoTalleresProvinciales/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadTrabajoParticipativoTalleresProvinciales')->name('TrabajoParticipativoTalleresProvinciales.download');
 
 //RUTAS Lanzamiento Política FRONTEND

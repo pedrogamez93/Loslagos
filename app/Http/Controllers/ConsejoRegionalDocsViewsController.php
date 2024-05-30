@@ -36,33 +36,33 @@ class ConsejoRegionalDocsViewsController extends Controller
         return view('consejoregionaldocsviews.actas.show', ['acta' => $acta]);
     }
 
-    public function downloadactas($id)
-{
-    $acta = Documentonew::findOrFail($id);
-
-    // Log para depuración del documento
-    \Log::info("Documento encontrado: " . json_encode($acta));
-
-    if ($acta) {
-        $rutaCompleta = $acta->archivo; // Esta es la ruta almacenada en la base de datos
-
-        // Construir la ruta completa al archivo
-        $rutaArchivo = storage_path('app/' . $rutaCompleta);
-
-        \Log::info("Ruta completa del archivo: " . $rutaArchivo);
-
-        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-            return response()->download($rutaArchivo);
+    public function downloadActas($id)
+    {
+        $documento = Documentonew::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            // Ajuste de la ruta eliminando el prefijo duplicado 'public/public/' y reemplazando '\' por '/'
+            $rutaCompleta = str_replace('public/public/', 'public/', $documento->archivo);
+            $rutaCompleta = str_replace('\\', '/', $rutaCompleta);
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
         } else {
-            \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
-            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
-    } else {
-        \Log::error("Documento no encontrado con id: " . $id);
-        return response()->json(['error' => 'Documento no encontrado.'], 404);
     }
-}
-
+    
 
     
     public function download($id)
