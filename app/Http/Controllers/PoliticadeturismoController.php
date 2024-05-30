@@ -731,7 +731,7 @@ class PoliticadeturismoController extends Controller
      */
     public function updateTrabajoParticipativoMetodologia(Request $request, $id)
     {
-        dd($request->all());
+        //dd($request->all());
         $data = $request->validate([
             'nombreA' => 'required',
         ]);
@@ -793,9 +793,20 @@ class PoliticadeturismoController extends Controller
     {
         //
     } 
+    public function destroyTrabajoParticipativoTalleresProvincialesItems($id)
+    {
+        $articulo = TrabajoParticipativoTalleresProvincialesI::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Archivo Eliminado');
+        } else {
+            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Archivo Eliminado');
+        }
+    }
     public function downloadTrabajoParticipativoTalleresProvinciales($id)
     {
-        $documento = TrabajoParticipativoMetodologiaI::findOrFail($id);
+        $documento = TrabajoParticipativoTalleresProvincialesI::findOrFail($id);
     
         // Log para depuración del documento
         \Log::info("Documento encontrado: " . json_encode($documento));
@@ -935,22 +946,25 @@ class PoliticadeturismoController extends Controller
     {
         $data = $request->validate([
             'titulo' => 'required',
-            'url' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
-
         ]);
     
-        if ($request->hasFile('url')) {
-            $imagenPath = $request->file('url')->store('public/productosdelapoliticadeturismo');
-            $data['url'] = $imagenPath;
-        }
+        if ($request->hasFile('archivo')) {
+            $documentos = $request->file('archivo');
+            $nombresDocumentos = $request->input('nombreA');
+            $idPrincipal = $request->input('idPrincipal');
 
-        $articulo = PoliticaRegionalTurismo::find($id);
-
-        if ($articulo) {
-            $articulo->update($data);
-            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Artículo actualizado con éxito');
-        } else {
-            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('error', 'Artículo no encontrado');
+            foreach ($documentos as $key => $documento) {
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
+                 $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
+                
+                // Crear registro en la base de datos
+                $doc = TrabajoParticipativoTalleresProvincialesI::create([
+                    'TrabajoParticipativoTalleresProvincialesI_id' => $idPrincipal,
+                    'nombreA' => $nombre,
+                    'archivo' => $path,
+                ]);
+            }
+            return redirect(route('TrabajoParticipativoTalleresProvinciales.index'))->with('success', 'Guardado exitosamente');
         }
     }
 
@@ -972,7 +986,9 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = MesaPublicoPrivada::find($id);
-            return view('politicadeturismo.mesapublicoprivada.edit', compact('articulo'));
+            $items = $articulo->MesaPublicoPrivadaI;
+            
+            return view('politicadeturismo.mesapublicoprivada.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -1162,7 +1178,10 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = ComiteTecnicodeGestion::find($id);
-            return view('politicadeturismo.comitetecnicodegestion.edit', compact('articulo'));
+            $items = $articulo->ComiteTecnicodeGestionI;
+            
+            
+            return view('politicadeturismo.comitetecnicodegestion.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -1326,7 +1345,9 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = Subcomisiones::find($id);
-            return view('politicadeturismo.subcomisiones.edit', compact('articulo'));
+            $items = $articulo->SubcomisionesI;
+            
+            return view('politicadeturismo.subcomisiones.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro

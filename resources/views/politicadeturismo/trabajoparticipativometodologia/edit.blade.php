@@ -110,9 +110,7 @@
                                         </div>
                                         <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
                                             <a href="{{ route('TrabajoParticipativoMetodologiaItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
-                                            <div class="input-group mb-3">
-                                                <input type="file" id="hombres" name="archivo[]" value="{{ $item->archivo }}" class="form-control" placeholder="Cargar archivo" required>
-                                            </div>
+                                            
                                         </div>
                                 @endforeach
                                 </div>
