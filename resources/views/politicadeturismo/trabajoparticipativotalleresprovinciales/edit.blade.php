@@ -84,13 +84,7 @@
                                 </div>
                                 
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 pb-3">
-                                @foreach ($items as $item)
-
-                                @endforeach
-                                </div>
-                            </div>
+                            
                             
                             <div class="form-group">
                                 <div class="col-md-12 pb-3">
@@ -124,7 +118,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
-                                                    <a href="{{ route('TrabajoParticipativoMetodologiaItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
+                                                    <a href="{{ route('TrabajoParticipativoTalleresProvincialesItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
                                                 </div>
                                         @endforeach
                                         </div>
