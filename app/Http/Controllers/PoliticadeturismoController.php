@@ -141,8 +141,8 @@ class PoliticadeturismoController extends Controller
             // La consulta devolvió al menos un registro
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
-            $articulo = ProductosdelaPoliticadeTurismo::find($id);
-            return view('politicadeturismo.productosdelapoliticadeturismo.edit', compact('articulo'));
+            $articulo1 = ProductosdelaPoliticadeTurismo::find($id);
+            return view('politicadeturismo.productosdelapoliticadeturismo.show', compact('articulo'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -163,7 +163,7 @@ class PoliticadeturismoController extends Controller
     
     public function createProductosdelaPoliticadeTurismo()
     {
-        return view('politicadeturismo.create');
+        return view('politicadeturismo.productosdelapoliticadeturismo.create');
 
     }
 
@@ -209,7 +209,7 @@ class PoliticadeturismoController extends Controller
                 ]);
             }
         }
-        return redirect(route('politicadeturismo.create'))->with('success', 'Guardado exitosamente');
+        return redirect(route('ProductosdelaPoliticadeTurismo.index'))->with('success', 'Guardado exitosamente');
         
     }
 
@@ -219,9 +219,10 @@ class PoliticadeturismoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showProductosdelaPoliticadeTurismo($id)
+    public function showProductosdelaPoliticadeTurismo(ProductosdelaPoliticadeTurismo $articulo)
     {
-        //
+        
+        //return view('politicadeturismo.ProductosdelaPoliticadeTurismo.show', compact('articulo'));
     }
 
     /**
@@ -232,8 +233,10 @@ class PoliticadeturismoController extends Controller
      */
     public function editProductosdelaPoliticadeTurismo($id)
     {
-        $articulo = PoliticaDeTurismo::find($id);
-        return view('politicadeturismo.edit', compact('articulo'));
+        $producto = ProductosdelaPoliticadeTurismo::findOrFail($id);
+        // Obtener los registros relacionados
+        $items = $producto->ProductosdelaPoliticadeTurismoI;
+        return view('politicadeturismo.ProductosdelaPoliticadeTurismo.edit', compact('producto', 'items'));
     }
 
     /**
@@ -246,20 +249,37 @@ class PoliticadeturismoController extends Controller
     public function updateProductosdelaPoliticadeTurismo(Request $request, $id)
     {
         $data = $request->validate([
-            'titulo' => 'required',
-            'subtitulo' => 'required',
-            'descripcion' => 'required',
+            'tituloA' => 'required',
         ]);
+        $articulo = ProductosdelaPoliticadeTurismo::find($id);
+        $articulo->update([
+            'titulo' => $data['tituloA'],
+        ]);
+        
+        $idPrincipal = $request->input('idPrincipal');
+        //ProductosdelaPoliticadeTurismoI::where('ProductosdelaPoliticadeTurismoI_id', $idPrincipal)->delete();
+        if ($request->hasFile('archivo')) {
+            $documentos = $request->file('archivo');
+            $tituloP = $request->input('titulo');
+            $nombreA = $request->input('nombreA');
+            $nombresDocumentos = $request->input('archivo');
 
-        $articulo = PoliticaDeTurismo::find($id);
-
-        if ($articulo) {
-            $articulo->update($data);
-            return redirect()->route('Politicadeturismo.index')->with('success', 'Artículo actualizado con éxito');
-        } else {
-            return redirect()->route('Politicadeturismo.index')->with('error', 'Artículo no encontrado');
+            foreach ($documentos as $key => $documento) {
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
+                 $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
+                
+                // Crear registro en la base de datos
+                $doc = ProductosdelaPoliticadeTurismoI::create([
+                    'titulo' => $tituloP[$key],
+                    'nombre' => $nombreA[$key],
+                    'url' => $path,
+                    'ProductosdelaPoliticadeTurismoI_id' => $idPrincipal,
+                ]);
+            }
         }
-    }
+        
+        return redirect()->route('ProductosdelaPoliticadeTurismo.edit', $idPrincipal)->with('success', 'Archivo Actualizado');
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -269,8 +289,53 @@ class PoliticadeturismoController extends Controller
      */
     public function destroyProductosdelaPoliticadeTurismo($id)
     {
-        //
+        $articulo = ProductosdelaPoliticadeTurismo::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('ProductosdelaPoliticadeTurismo.index')->with('success', 'Artículo eliminado con éxito');
+        } else {
+            return redirect()->route('ProductosdelaPoliticadeTurismo.index')->with('error', 'Artículo no encontrado');
+        }
     }
+    public function destroyProductosdelaPoliticadeTurismoItems($id)
+    {
+        $articulo = ProductosdelaPoliticadeTurismoI::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('ProductosdelaPoliticadeTurismo.edit', $articulo->ProductosdelaPoliticadeTurismoI_id)->with('success', 'Archivo Eliminado');
+        } else {
+            return redirect()->route('ProductosdelaPoliticadeTurismo.edit', $articulo->ProductosdelaPoliticadeTurismoI_id)->with('success', 'Archivo Eliminado');
+        }
+    }
+    public function downloadProductosdelaPoliticadeTurismo($id)
+    {
+        $documento = ProductosdelaPoliticadeTurismoI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->url; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
+    
     public function indexLanzamientoPolitica ()
     {
         $articulo = LamzamientoPoliticaTurismo::all();
@@ -389,22 +454,24 @@ class PoliticadeturismoController extends Controller
      */
     public function updateLanzamientoPolitica(Request $request, $id)
     {
+        //dd($request->all());
         $data = $request->validate([
             'titulo' => 'required',
             'nombre' => 'required',
             'descripcion' => 'required',
             'nombreA' => 'required',
-            'archivo' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
+            //'archivo' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
 
         ]);
-    
+        
         if ($request->hasFile('archivo')) {
             $imagenPath = $request->file('archivo')->store('public/productosdelapoliticadeturismo');
             $data['archivo'] = $imagenPath;
+            
         }
 
         $articulo = LamzamientoPoliticaTurismo::find($id);
-
+        
         if ($articulo) {
             $articulo->update($data);
             return redirect()->route('LanzamientoPolitica.index')->with('success', 'Artículo actualizado con éxito');
@@ -542,15 +609,28 @@ class PoliticadeturismoController extends Controller
     {
         //
     } 
+    public function destroyTrabajoParticipativoMetodologiaItems($id)
+    {
+        $articulo = TrabajoParticipativoMetodologiaI::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('TrabajoParticipativoMetodologia.index')->with('success', 'Archivo Eliminado');
+        } else {
+            return redirect()->route('TrabajoParticipativoMetodologia.index')->with('success', 'Archivo Eliminado');
+        }
+    }
     public function indexTrabajoParticipativoMetodologia ()
     {
-        $articulo = TrabajoParticipativoMetodologia::all();
-        if ($articulo->isNotEmpty()) {
+        $articulo1 = TrabajoParticipativoMetodologia::all();
+        if ($articulo1->isNotEmpty()) {
             // La consulta devolvió al menos un registro
-            $primerArticulo = $articulo->first();
+            $primerArticulo = $articulo1->first();
             $id = $primerArticulo->id;
-            $articulo = PoliticaRegionalTurismo::find($id);
-            return view('politicadeturismo.trabajoparticipativometodologia.edit', compact('articulo'));
+            $articulo = TrabajoParticipativoMetodologia::find($id);
+            // Obtener los registros relacionados
+            $items = $articulo->TrabajoParticipativoMetodologiaI;
+            return view('politicadeturismo.trabajoparticipativometodologia.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -603,7 +683,8 @@ class PoliticadeturismoController extends Controller
             $nombresDocumentos = $request->input('nombreA');
 
             foreach ($documentos as $key => $documento) {
-                 $path = $documento->store('productosdelapoliticadeturismo', 'public');
+                
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos
@@ -637,7 +718,7 @@ class PoliticadeturismoController extends Controller
      */
     public function editTrabajoParticipativoMetodologia($id)
     {
-        $articulo = PoliticaRegionalTurismo::find($id);
+        $articulo = TrabajoParticipativoMetodologiaI::find($id);
         return view('politicadeturismo.trabajoparticipativometodologia.edit', compact('articulo'));
     }
 
@@ -650,27 +731,58 @@ class PoliticadeturismoController extends Controller
      */
     public function updateTrabajoParticipativoMetodologia(Request $request, $id)
     {
+        //dd($request->all());
         $data = $request->validate([
-            'titulo' => 'required',
-            'url' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
-
+            'nombreA' => 'required',
         ]);
-    
-        if ($request->hasFile('url')) {
-            $imagenPath = $request->file('url')->store('public/productosdelapoliticadeturismo');
-            $data['url'] = $imagenPath;
-        }
+    // Verificar y almacenar documentos
+    if ($request->hasFile('archivo')) {
+        $documentos = $request->file('archivo');
+        $nombresDocumentos = $request->input('nombreA');
+        $idPrincipal = $request->input('idPrincipal');
 
-        $articulo = PoliticaRegionalTurismo::find($id);
-
-        if ($articulo) {
-            $articulo->update($data);
-            return redirect()->route('TrabajoParticipativoMetodologia.index')->with('success', 'Artículo actualizado con éxito');
-        } else {
-            return redirect()->route('TrabajoParticipativoMetodologia.index')->with('error', 'Artículo no encontrado');
+        foreach ($documentos as $key => $documento) {
+            
+             $path = $documento->store('public/productosdelapoliticadeturismo');
+             $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
+            
+            // Crear registro en la base de datos
+            $doc = TrabajoParticipativoMetodologiaI::create([
+                'TrabajoParticipativoMetodologiaI_id' => $idPrincipal,
+                'nombreA' => $nombresDocumentos[$key],
+                'archivo' => $path,
+            ]);
         }
     }
-
+    return redirect(route('TrabajoParticipativoMetodologia.index'))->with('success', 'Guardado exitosamente');
+        
+    }
+    public function downloadTrabajoParticipativoMetodologia($id)
+    {
+        $documento = TrabajoParticipativoMetodologiaI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -681,6 +793,43 @@ class PoliticadeturismoController extends Controller
     {
         //
     } 
+    public function destroyTrabajoParticipativoTalleresProvincialesItems($id)
+    {
+        $articulo = TrabajoParticipativoTalleresProvincialesI::find($id);
+    
+        if ($articulo) {
+            $articulo->delete();
+            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Archivo Eliminado');
+        } else {
+            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Archivo Eliminado');
+        }
+    }
+    public function downloadTrabajoParticipativoTalleresProvinciales($id)
+    {
+        $documento = TrabajoParticipativoTalleresProvincialesI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
     public function indexTrabajoParticipativoTalleresProvinciales ()
     {
         $articulo = TrabajoParticipativoTalleresProvinciales::all();
@@ -689,7 +838,10 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = TrabajoParticipativoTalleresProvinciales::find($id);
-            return view('politicadeturismo.trabajoparticipativotalleresprovinciales.edit', compact('articulo'));
+
+            
+            $items = $articulo->TrabajoParticipativoTalleresProvincialesI;
+            return view('politicadeturismo.trabajoparticipativotalleresprovinciales.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -744,7 +896,7 @@ class PoliticadeturismoController extends Controller
             $nombresDocumentos = $request->input('nombreA');
 
             foreach ($documentos as $key => $documento) {
-                 $path = $documento->store('productosdelapoliticadeturismo', 'public');
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos
@@ -776,11 +928,12 @@ class PoliticadeturismoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editTrabajoParticipativoTalleresProvinciales($id)
+    public function editTrabajoParticipativoTalleresProvinciales($id) 
     {
         $articulo = PoliticaRegionalTurismo::find($id);
         return view('politicadeturismo.trabajoparticipativometodologia.edit', compact('articulo'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -793,22 +946,25 @@ class PoliticadeturismoController extends Controller
     {
         $data = $request->validate([
             'titulo' => 'required',
-            'url' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
-
         ]);
     
-        if ($request->hasFile('url')) {
-            $imagenPath = $request->file('url')->store('public/productosdelapoliticadeturismo');
-            $data['url'] = $imagenPath;
-        }
+        if ($request->hasFile('archivo')) {
+            $documentos = $request->file('archivo');
+            $nombresDocumentos = $request->input('nombreA');
+            $idPrincipal = $request->input('idPrincipal');
 
-        $articulo = PoliticaRegionalTurismo::find($id);
-
-        if ($articulo) {
-            $articulo->update($data);
-            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('success', 'Artículo actualizado con éxito');
-        } else {
-            return redirect()->route('TrabajoParticipativoTalleresProvinciales.index')->with('error', 'Artículo no encontrado');
+            foreach ($documentos as $key => $documento) {
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
+                 $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
+                
+                // Crear registro en la base de datos
+                $doc = TrabajoParticipativoTalleresProvincialesI::create([
+                    'TrabajoParticipativoTalleresProvincialesI_id' => $idPrincipal,
+                    'nombreA' => $nombre,
+                    'archivo' => $path,
+                ]);
+            }
+            return redirect(route('TrabajoParticipativoTalleresProvinciales.index'))->with('success', 'Guardado exitosamente');
         }
     }
 
@@ -830,7 +986,9 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = MesaPublicoPrivada::find($id);
-            return view('politicadeturismo.mesapublicoprivada.edit', compact('articulo'));
+            $items = $articulo->MesaPublicoPrivadaI;
+            
+            return view('politicadeturismo.mesapublicoprivada.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -838,6 +996,32 @@ class PoliticadeturismoController extends Controller
         }
         
 
+    }
+    public function downloadMesaPublicoPrivada($id)
+    {
+        $documento = MesaPublicoPrivadaI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
     }
     public function indexMesaPublicoPrivadaWeb()
     {
@@ -882,7 +1066,7 @@ class PoliticadeturismoController extends Controller
             $nombresDocumentos = $request->input('nombreA');
 
             foreach ($documentos as $key => $documento) {
-                 $path = $documento->store('productosdelapoliticadeturismo', 'public');
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos
@@ -960,6 +1144,32 @@ class PoliticadeturismoController extends Controller
     {
         //
     } 
+    public function downloadComiteTecnicodeGestion($id)
+    {
+        $documento = ComiteTecnicodeGestionI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
     public function indexComiteTecnicodeGestion()
     {
         $articulo = ComiteTecnicodeGestion::all();
@@ -968,7 +1178,10 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = ComiteTecnicodeGestion::find($id);
-            return view('politicadeturismo.comitetecnicodegestion.edit', compact('articulo'));
+            $items = $articulo->ComiteTecnicodeGestionI;
+            
+            
+            return view('politicadeturismo.comitetecnicodegestion.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -1020,7 +1233,7 @@ class PoliticadeturismoController extends Controller
             $nombresDocumentos = $request->input('nombreA');
 
             foreach ($documentos as $key => $documento) {
-                 $path = $documento->store('productosdelapoliticadeturismo', 'public');
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos
@@ -1098,6 +1311,32 @@ class PoliticadeturismoController extends Controller
     {
         //
     } 
+    public function downloadSubcomisiones($id)
+    {
+        $documento = SubcomisionesI::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+    
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                return response()->download($rutaArchivo);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
+        } else {
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        }
+    }
     public function indexSubcomisiones()
     {
         $articulo = Subcomisiones::all();
@@ -1106,7 +1345,9 @@ class PoliticadeturismoController extends Controller
             $primerArticulo = $articulo->first();
             $id = $primerArticulo->id;
             $articulo = Subcomisiones::find($id);
-            return view('politicadeturismo.subcomisiones.edit', compact('articulo'));
+            $items = $articulo->SubcomisionesI;
+            
+            return view('politicadeturismo.subcomisiones.edit', compact('articulo','items'));
             
         } else {
             // La consulta no devolvió ningún registro
@@ -1158,7 +1399,7 @@ class PoliticadeturismoController extends Controller
             $nombresDocumentos = $request->input('nombreA');
 
             foreach ($documentos as $key => $documento) {
-                 $path = $documento->store('productosdelapoliticadeturismo', 'public');
+                 $path = $documento->store('public/productosdelapoliticadeturismo');
                  $nombre = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : 'documento_' . ($key + 1);
                 
                 // Crear registro en la base de datos

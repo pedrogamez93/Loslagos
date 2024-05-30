@@ -98,3 +98,27 @@ font-style: normal;
 font-weight: 700;
 line-height: 30px;
 }
+
+
+
+@media (min-width: 768px) {
+    .seleccionycategoria {
+        padding-right: 10rem !important;
+        padding-left: 10rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .seleccionycategoria {
+        padding-right: 3rem !important;
+        padding-left: 3rem !important;
+    }
+
+    #footerdesktop{
+        display: none;
+    }
+
+    .contenido{
+        margin-top: -10vh !important;
+    }
+}
