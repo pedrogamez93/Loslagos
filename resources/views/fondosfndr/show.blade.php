@@ -324,17 +324,20 @@
         
         
         
-    @foreach ($fondo->secciones as $seccion)
-        <h2 class="titulo-seccion mt-4 mb-3">{{ $seccion->titulo_seccion }}</h2>
-        
-            @php
-                $documentos = $seccion->documentos->reverse();
-            @endphp
-            @foreach ($documentos as $documento)
-            <div class="mt-3 mb-3" style="display: flex;"><img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;"><a href="{{ route('documento.abrir', $documento->id) }}" style="align-self: center;">{{ $documento->titulo_documento }}</a></div>
-            @endforeach
-        
+        @foreach ($fondo->secciones as $seccion)
+    <h2 class="titulo-seccion mt-4 mb-3">{{ $seccion->titulo_seccion }}</h2>
+    
+    @php
+        $documentos = $seccion->documentos->reverse();
+    @endphp
+    @foreach ($documentos as $documento)
+        <div class="mt-3 mb-3" style="display: flex;">
+            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Documento" style="margin-right: 10px;">
+            <a href="{{ route('documento.abrir', ['id' => $documento->id]) }}" style="align-self: center;">{{ $documento->titulo_documento }}</a>
+        </div>
     @endforeach
+@endforeach
+
 </ul>
     </div>
     <a href="/homefndrs" class="btn btn-secondary mt-5 mb-4">Volver</a>

@@ -742,7 +742,9 @@ Route::get('/Subcomisiones', 'App\Http\Controllers\PoliticadeturismoController@i
 
 // routes/web.php
 
-Route::get('/documento/{id}', [ProgramasController::class, 'abrirDocumento'])->name('documento.abrir');
+Route::get('/documentoprograma/abrir/{id}', [ProgramasController::class, 'abrirDocumentoPrograma'])->name('documentosprogramas.abrir');
+
+
 
 
 Route::resource('programas', ProgramasController::class);
