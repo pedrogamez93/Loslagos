@@ -37,7 +37,7 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.index', ['documentosPorCategoria' => $documentosPorCategoria]);
     }
 
-    public function download($id)
+   /* public function download($id)
 {
     try {
         $documento = Documentonew::findOrFail($id);
@@ -52,7 +52,7 @@ class DocumentosDeGestionController extends Controller
         Log::error('Error al descargar el archivo:', ['error' => $e->getMessage()]);
         return redirect()->back()->with('error', 'Error al descargar el archivo: ' . $e->getMessage());
     }
-}
+}*/
 
     public function Indexcomisionregbordecostero()
     {

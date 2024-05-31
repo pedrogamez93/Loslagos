@@ -484,7 +484,7 @@ Route::get('/consejoregional/consejerospalena', 'App\Http\Controllers\Categories
 
 /* DOCUMENTOS DE GESTION VISTAS*/
 Route::get('/gobiernoregional/documentosdegestion', 'App\Http\Controllers\DocumentosDeGestionController@index')->name('DocumentosDeGestionController.index');
-Route::get('/documentos/download/{document}', 'App\Http\Controllers\DocumentosDeGestionController@download')->name('documentos.download');
+/*Route::get('/documentos/download/{document}', 'App\Http\Controllers\DocumentosDeGestionController@download')->name('documentos.download');*/
 Route::get('/gobiernoregional/comisionregbordecostero', 'App\Http\Controllers\DocumentosDeGestionController@Indexcomisionregbordecostero')->name('comisionregbordecostero.Indexcomisionregbordecostero');
 
 Route::get('/gobiernoregional/controlesssi', 'App\Http\Controllers\DocumentosDeGestionController@Indexcontrolesssi')->name('controlesssi.Indexcontrolesssi');
