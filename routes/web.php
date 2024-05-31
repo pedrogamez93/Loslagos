@@ -394,17 +394,25 @@ Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocume
 
 //FIN RUTAS PARA LAS LANDING DINAMICAS
 
-//RUTAS PARA LOS FONDOSFNDR
-
-// Route::resource('fondosfndr', FondosFndrController::class);
-// Route::get('/fondosfndr/{id}', [FondosFndrController::class, 'show'])->name('fondosfndr.show');
-// Route::get('/fondosfndr', [FondosFndrController::class, 'index'])->name('fondosfndr.index');
 
 
-// Route::put('/fondosfndr/{fondo}', [FondosFndrController::class, 'update'])->name('fondos.update');
+Route::resource('fondosfndr', FondosFndrController::class);
+Route::get('/fondosfndr/{id}', [FondosFndrController::class, 'show'])->name('fondosfndr.show');
+Route::get('/fondosfndr', [FondosFndrController::class, 'index'])->name('fondosfndr.index');
 
-// Route::delete('/documentos/{documento}', 'FondosFndrController@destroyDocumento')->name('documentos.destroy');
 
+Route::put('/fondosfndr/{fondo}', [FondosFndrController::class, 'update'])->name('fondos.update');
+
+//Route::delete('/documentos/{documento}', 'FondosFndrController@destroyDocumento')->name('documentos.destroy');
+
+Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');
+//Route::post('/programas/{programa}/agregar-documento', [ProgramasController::class, 'agregarDocumento'])->name('programas.agregar-documento');
+
+
+Route::post('/fondos/{fondo}/agregar-documento', [FondosFndrController::class, 'agregarDocumento'])->name('fondos.agregar-documento');
+
+
+Route::get('/documento/abrir/{id}', [FondosFndrController::class, 'abrirDocumento'])->name('documento.abrir');
 
 
 
@@ -476,7 +484,7 @@ Route::get('/consejoregional/consejerospalena', 'App\Http\Controllers\Categories
 
 /* DOCUMENTOS DE GESTION VISTAS*/
 Route::get('/gobiernoregional/documentosdegestion', 'App\Http\Controllers\DocumentosDeGestionController@index')->name('DocumentosDeGestionController.index');
-
+Route::get('/documentos/downloadgestion/{document}', 'App\Http\Controllers\DocumentosDeGestionController@downloadgestion')->name('documentos.downloadgestion');
 Route::get('/gobiernoregional/comisionregbordecostero', 'App\Http\Controllers\DocumentosDeGestionController@Indexcomisionregbordecostero')->name('comisionregbordecostero.Indexcomisionregbordecostero');
 
 Route::get('/gobiernoregional/controlesssi', 'App\Http\Controllers\DocumentosDeGestionController@Indexcontrolesssi')->name('controlesssi.Indexcontrolesssi');
