@@ -37,22 +37,37 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.index', ['documentosPorCategoria' => $documentosPorCategoria]);
     }
 
-   public function downloadgestion($id)
-{
-    try {
-        $documento = Documentonew::findOrFail($id);
-        $filePath = $documento->archivo;
-
-        if (Storage::exists($filePath)) {
-            return Storage::download($filePath);
-        } else {
-            return redirect()->back()->with('error', 'Archivo no encontrado.');
+    public function downloadgestion($id)
+    {
+        try {
+            $documento = Documentonew::findOrFail($id);
+        
+            // Log para depuración del documento
+            Log::info("Documento encontrado: " . json_encode($documento));
+        
+            if ($documento) {
+                $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+                
+                // Construir la ruta completa al archivo
+                $rutaArchivo = storage_path('app/' . $rutaCompleta);
+        
+                Log::info("Ruta completa del archivo: " . $rutaArchivo);
+        
+                if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                    return response()->download($rutaArchivo);
+                } else {
+                    Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                    return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
+                }
+            } else {
+                Log::error("Documento no encontrado con id: " . $id);
+                return redirect()->back()->with('error', 'Documento no encontrado.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Error al descargar el archivo:', ['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error al descargar el archivo: ' . $e->getMessage());
         }
-    } catch (\Exception $e) {
-        Log::error('Error al descargar el archivo:', ['error' => $e->getMessage()]);
-        return redirect()->back()->with('error', 'Error al descargar el archivo: ' . $e->getMessage());
     }
-}
 
     public function Indexcomisionregbordecostero()
     {
