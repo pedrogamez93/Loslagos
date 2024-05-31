@@ -99,16 +99,16 @@
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
             <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" value="{{ $funcionario->nombre }}">
                        
-            <select class="form-select mt-4" aria-label="Default select example" name="actividad">
+            <!-- <select class="form-select mt-4" aria-label="Default select example" name="actividad">
                 <option selected>Actividad o Profesión</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
                 <option value="Categoria 3">Categoria 3</option>
-            </select>
+            </select> -->
 
             <label for="region">Tipo de funcionario:</label>
-                <select class="form-select mt-4" id="Tfuncionario" name="Tfuncionario" onchange="cargarProvincias()">
-                    <option value="">Selecciona Tipo de funcionario</option>
+                <select class="form-select mt-4" id="Tfuncionario" name="Tfuncionario">
+                    <option value="{{ $funcionario->Tfuncionario }}">{{ $funcionario->Tfuncionario }}</option>
                     <option value="Gobernador Regional">Gobernador Regional</option>
                     <option value="Senadores">Senadores</option>
                     <option value="Diputados">Diputados</option>
@@ -122,18 +122,18 @@
                 </select>
 
             <select class="form-select mt-4" aria-label="Default select example" name="division" id="division">
-            <option value="" disabled selected>Seleccione División</option>
+            <option value="" disabled selected>{{ $funcionario->division }}</option>
             @foreach ($divisiones as $division)
                 <option value="{{ $division }}">{{ $division }}</option>
                 @endforeach
             </select>
 
             <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
-            <option value="" disabled selected>Seleccione Departamento</option>
+            <option value="" disabled selected>{{ $funcionario->departamento }}</option>
             </select>
 
             <label class="style-label mt-4 required" for="titulo">Cargo:</label>
-            <input class="form-control mt-2" type="text" name="cargo" placeholder="cargo" >
+            <input class="form-control mt-2" type="text" name="cargo" placeholder="{{ $funcionario->cargo }}" >
 
             <label class="style-label mt-4 required" for="titulo">Direccion:</label>
             <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" value="{{ $funcionario->direccion }}">
