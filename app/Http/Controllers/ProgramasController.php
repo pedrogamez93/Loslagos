@@ -128,32 +128,30 @@ try {
 
             if ($seleccion_coleccion == "option1") {
                 $titulo_coleccion = $request->input('titulo_coleccion', []);
-            
+                
                 foreach ($titulo_coleccion ?? [] as $key => $titulo) {
                     $coleccionesid = ProgramasColecciones::create([
                         'titulo_coleccion' => $titulo_coleccion[$key],
                         'programa_id' => $programasid
-                    ]); // Ajusta según tus necesidades
+                    ]);
             
                     $coleccionesid = $coleccionesid->id;
             
                     if ($request->hasFile('ruta')) {
                         // Recorrer cada archivo asociado a la colección actual
                         foreach ($request->file('ruta') ?? [] as $archivo) {
-                            // Realizar alguna operación con cada archivo, como almacenarlo, validar, etc.
                             $nombreArchivo = $archivo->getClientOriginalName();
-                            $ruta = 'public/directorio_destino/' . $nombreArchivo;
-                            $archivo->move(public_path('directorio_destino'), $nombreArchivo);
+                            $ruta = 'imagenes_programas/' . $nombreArchivo;
+                            $archivo->storeAs('imagenes_programas', $nombreArchivo, 'public');
             
                             $fotografiasid = ProgramasFotografias::create([
                                 'ruta' => $ruta,
                                 'coleccion_id' => $coleccionesid
-                            ]); // Ajusta según tus necesidades
+                            ]);
                         }
                     }
                 }
-            }
-            
+            }            
                 return redirect()->route('programas.index')->with('success', 'Programa creado exitosamente.');
     }
     public function mostrarImagen($imagen) {
@@ -396,10 +394,10 @@ public function agregarFotografia(Request $request, $id)
 
                 if ($coleccion) {
                     foreach ($fotografias as $fotografia) {
-                        // Guardar cada fotografía en la carpeta 'public/directorio_destino'
+                        // Guardar cada fotografía en la carpeta 'public/imagenes_programas'
                         $nombreArchivo = $fotografia->getClientOriginalName();
-                        $ruta = 'directorio_destino/' . $nombreArchivo;
-                        $fotografia->move(public_path('directorio_destino'), $nombreArchivo);
+                        $ruta = 'imagenes_programas/' . $nombreArchivo;
+                        $fotografia->storeAs('imagenes_programas', $nombreArchivo, 'public');
 
                         // Agregar la fotografía a la colección existente
                         $coleccion->fotografias()->create([
@@ -422,6 +420,7 @@ public function agregarFotografia(Request $request, $id)
 
     return redirect()->back()->with('error', 'No se encontró el programa.');
 }
+
 
     
 

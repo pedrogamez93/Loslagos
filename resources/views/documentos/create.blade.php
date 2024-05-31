@@ -208,32 +208,33 @@ input:required {
                             <div class="form-group">
                                 <label for="categoria">Categoría:</label>
                                 <select name="categoria" id="categoria" class="form-control">
-                                    <option value="">Seleccione Categoría</option>
-                                    <option value="Documentos de Gestión">Documentos de Gestión</option>
-                                    <option value="Estudios">Estudios</option>
-                                    <option value="Fondos Concursable">Fondos Concursable</option>
-                                    <option value="Leyes">Leyes</option>
-                                    <option value="Gestión">Gestión</option>
-                                    <option value="Comité de integración">Comité de integración</option>
-                                    <option value="Borde costero">Borde costero</option>
-                                    <option value="C.R.U.B.C">C.R.U.B.C</option>
-                                    <option value="Controles SSI">Controles SSI</option>
-                                    <option value="Estado Situacion FNDR">Estado Situacion FNDR</option>
-                                    <option value="Informe Ejecucion PROPIR">Informe Ejecucion PROPIR</option>
-                                    <option value="Informe Gastos Ley 21.516">Informe Gastos Ley 21.516</option>
-                                    <option value="Plan Regulador Comunal">Plan Regulador Comunal</option>
-                                    <option value="Presupuesto">Presupuesto</option>
-                                    <option value="Receptores Fondos Publicos Ley 19.62">Receptores Fondos Publicos Ley 19.62</option>
-                                    <option value="Unidad de Control">Unidad de Control</option>
-                                    <option value="Cuenta Publica Regional">Cuenta Pública Regional</option>
-                                    <option value="Estrategia Regional de Desarrollo 2030">Estrategia Regional de Desarrollo 2030</option>
-                                    <option value="Estado Financieros Gobierno Regional de Los Lagos">Estado Financieros Gobierno Regional de Los Lagos</option>
-                                    <option value="Boletin Informativo">Boletin Informativo</option>
-                                    <option value="Difusion Proyectos FNDR y Normativa Grafica GORE">Difusion Proyectos FNDR y Normativa Grafica GORE</option>
-                                    <option value="Estrategia, Politica y Planes Regionales">Estrategia, Politica y Planes Regionales</option>
-                                    <option value="Convenios Internacionales">Convenios Internacionales</option>
-                                    <option value="Documentos de Consulta GORE LOS LAGOS">Documentos de Consulta GORE LOS LAGOS</option>
-                                </select>
+    <option value="">Seleccione Categoría</option>
+    <option value="Documentos de Gestión">Documentos de Gestión</option>
+    <option value="Estudios">Estudios</option>
+    <option value="Fondos Concursable">Fondos Concursable</option>
+    <option value="Leyes">Leyes</option>
+    <option value="Gestión">Gestión</option>
+    <option value="Comité de integración">Comité de integración</option>
+    <option value="Bode costero">Bode costero</option>
+    <option value="C.R.U.B.C">C.R.U.B.C</option>
+    <option value="Controles SSI">Controles SSI</option>
+    <option value="Estado Situacion FNDR">Estado Situacion FNDR</option>
+    <option value="Informe Ejecucion PROPIR">Informe Ejecucion PROPIR</option>
+    <option value="Informe Gastos Ley 21.516">Informe Gastos Ley 21.516</option>
+    <option value="Plan Regulador Comunal">Plan Regulador Comunal</option>
+    <option value="Presupuesto">Presupuesto</option>
+    <option value="Receptores Fondos Publicos Ley 19.62">Receptores Fondos Publicos Ley 19.62</option>
+    <option value="Unidad de Control">Unidad de Control</option>
+    <option value="Cuenta Pública Regional">Cuenta Pública Regional</option>
+    <option value="Estrategia Regional de Desarrollo 2030">Estrategia Regional de Desarrollo 2030</option>
+    <option value="Estado Financieros Gobierno Regional de Los Lagos">Estado Financieros Gobierno Regional de Los Lagos</option>
+    <option value="Boletin Informativo">Boletin Informativo</option>
+    <option value="Difusion Proyectos FNDR y Normativa Grafica GORE">Difusion Proyectos FNDR y Normativa Grafica GORE</option>
+    <option value="Estrategia, Politica y Planes Regionales">Estrategia, Politica y Planes Regionales</option>
+    <option value="Convenios Internacionales">Convenios Internacionales</option>
+    <option value="Documentos de Consulta GORE LOS LAGOS">Documentos de Consulta GORE LOS LAGOS</option>
+</select>
+
                             </div>
                             <div class="form-group">
                                 <label for="titulo">Título:</label>
