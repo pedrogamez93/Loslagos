@@ -848,12 +848,6 @@ Route::get('/homefndr/{id}/edit', [App\Http\Controllers\HomefndrController::clas
 Route::put('/homefndr/{id}', [App\Http\Controllers\HomefndrController::class, 'update'])->name('homefndr.update')->middleware('auth');
 
 Route::get('/homefndrs', [HomefndrController::class, 'homefndrsindex'])->name('homefndrs.index');
-Route::delete('/documentos/{id}', [FondosFndrController::class, 'destroyDoc'])->name('documentos.destroy');
-//Route::post('/programas/{programa}/agregar-documento', [ProgramasController::class, 'agregarDocumento'])->name('programas.agregar-documento');
-Route::post('/fondos/{fondo}/agregar-documento', [FondosFndrController::class, 'agregarDocumento'])->name('fondos.agregar-documento');
-
-
-Route::get('/documento/abrir/{id}', [FondosFndrController::class, 'abrirDocumento'])->name('documento.abrir');
 
 
 

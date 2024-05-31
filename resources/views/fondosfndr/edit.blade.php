@@ -152,7 +152,7 @@
             <!--<h2>Secciones actuales</h2>-->
                 @foreach($fondo->secciones as $seccion)
                 <div>
-                    <h3>{{ $seccion->titulo_seccion }}</h3>
+                    <h4>{{ $seccion->titulo_seccion }}</h4>
                     <ul>
                         @foreach($seccion->documentos as $documento)
                             <li style="margin: 10px 0;">

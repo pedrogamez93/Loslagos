@@ -89,14 +89,14 @@
     <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
 
     <label class="style-label mb-2" for="bajada">Bajada:</label>
-    <textarea class="form-control mt-2" name="bajada" id="desc" placeholder="Bajada">{{ $programa->bajada }}</textarea>
+    <textarea class="form-control mt-2" name="bajada" id="" placeholder="Bajada">{{ $programa->bajada }}</textarea>
 
     <label class="style-label mb-2 mt-3" for="bajada_programa">Bajada programa:</label>
     <textarea class="form-control mt-2" style="height: 250px" id="nota" name="bajada_programa" placeholder="bajada placeholder">{!! $programa->bajada_programa ?? '' !!}</textarea>
 
     <label class="style-label mt-3" for="imagen">Agregar nueva imagen destacada:</label>
     <input class="form-control mt-2 mb-4" type="file" name="imagen" accept=".png, .jpg, .jpeg">
-
+    <p>imagen actual del programa</p>
     @if ($programa->imagen)
     <img src="{{ asset($programa->imagen) }}" alt="Imagen actual" style="max-width: 200px; margin-top: 10px; display: block; padding-bottom: 20px;">
 @endif
@@ -140,10 +140,10 @@
             </div>
             <div class="col-md-12">
                 <label class="style-label" for="url">Bajada:</label>
-                <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px" id="editor-bajada-acor" name="bajada_descripcion[]"></textarea>
+                <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px" id="desc" name="bajada_descripcion[]"></textarea>
             </div>
         </div>
-        <button type="button" id="agregarMas" class="btn btn-primary">Agregar otra descripción</button>
+        <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripción</button>
     </div>
 
     <!-- Botón de submit para guardar la nueva descripción -->
@@ -156,7 +156,7 @@
 <!--DOCUMENTOS-->
 <form action="{{ route('programas.agregar-documento', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
-                      <div class="documentos-container form-control">
+                      <div class="documentos-container form-control mt-5">
                           <div class="documentos-input">
                               <label class="style-label" for="documentos">¿Deseas agregar nuevos documentos?</label>
                               <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del documento">
@@ -165,7 +165,7 @@
                          <button type="button" class="btn btn-primary agregar-documento" style="display: block;"> Agregar otro documento</button>
                      
 
-                      <button class="btn btn-success mt-3" type="submit">Guardar nuevo documento</button>
+                      <button class="btn btn-success mt-3" type="submit">Guardar documentos</button>
                        </div>
 </form>
 
@@ -242,7 +242,7 @@
 
 
 
-
+<div class="form-control pt-4 pb-4">
 <!-- Mostrar botones -->
 <h3 class="mt-3 mb-2">Botones actuales</h3>   
 
@@ -256,14 +256,16 @@
         </form>
     </div>
 @endforeach
+</div>
 
+<div class="form-control pt-4 pb-4">
 <!-- Mostrar descripciones -->
 <h3 class="mt-3 mb-2">Descripciones actuales</h3>   
 
 @foreach($descripciones as $descripcion)
-    <div class=" container mt-1 mb-1" style="display: flex; gap:15px;">
+    <div class=" container mt-3 mb-4" >
         <h6><strong>{{ $descripcion->titulo_descripcion }}</strong></h6>
-        <p>{{ $descripcion->bajada_descripcion }}</p>
+        <p>{!! $descripcion->bajada_descripcion ?? '' !!}</p>
         <form action="{{ route('programa.descripcion.destroy', $descripcion->id) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -271,7 +273,9 @@
         </form>
     </div>
 @endforeach
+</div>
 
+<div class="form-control pt-4 pb-4">
 <!-- Mostrar documentos -->
 <h3 class="mt-3 mb-2">Documentos actuales</h3>   
 
@@ -285,13 +289,16 @@
         </form>
     </div>
 @endforeach
+</div>
+
+<div class="form-control pt-4 pb-4">
 
 <!-- Mostrar colecciones -->
 <h3 class="mt-3 mb-2">Fotografías actuales</h3>
 
 @foreach($colecciones as $coleccion)
     <div class="container mt-1 mb-1">
-        <h5>{{ $coleccion->titulo_coleccion }}</h5>
+        <h5 class="mt-3">{{ $coleccion->titulo_coleccion }}</h5>
         <!-- Mostrar fotografías de la colección -->
         <div class="row">
             @foreach($coleccion->fotografias as $fotografia)
@@ -311,7 +318,7 @@
         </div>
     </div>
 @endforeach
-
+</div>
                 </div>
             </div>
         </div>
