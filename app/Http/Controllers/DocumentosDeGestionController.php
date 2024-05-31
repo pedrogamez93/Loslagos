@@ -11,7 +11,7 @@ use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Node\Block\Document;
-
+use Illuminate\Support\Facades\Log;
 class DocumentosDeGestionController extends Controller
 {
     public function Index()
