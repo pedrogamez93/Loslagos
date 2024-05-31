@@ -37,6 +37,23 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.index', ['documentosPorCategoria' => $documentosPorCategoria]);
     }
 
+    public function download($id)
+{
+    try {
+        $documento = Documentonew::findOrFail($id);
+        $filePath = $documento->archivo;
+
+        if (Storage::exists($filePath)) {
+            return Storage::download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'Archivo no encontrado.');
+        }
+    } catch (\Exception $e) {
+        Log::error('Error al descargar el archivo:', ['error' => $e->getMessage()]);
+        return redirect()->back()->with('error', 'Error al descargar el archivo: ' . $e->getMessage());
+    }
+}
+
     public function Indexcomisionregbordecostero()
     {
         $categorias = ['Bode costero', 'C.R.U.B.C'];
