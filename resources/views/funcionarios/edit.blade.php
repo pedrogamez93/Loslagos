@@ -188,12 +188,12 @@
     </select>
 
 
-    @if($funcionario->foto)
+    <!-- @if($funcionario->foto)
     <div class="mb-3 mt-4">
         <label class="style-label mt-4" for="current_image">Imagen Actual:</label>
         <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionario', 'imagen' => basename($funcionario->foto)]) }}" class="img-fluid imagen-con-brillo mx-5" alt="{{ $funcionario->titulo }}" id="currentImage" style="max-width: 200px; max-height: 200px;">
     </div>
-@endif
+@endif -->
 
 <!-- Sección para previsualizar y reemplazar la nueva imagen -->
 <!-- <div class="mb-3 mt-4">
