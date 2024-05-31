@@ -123,6 +123,9 @@ class DocumentonewController extends Controller
             ));
             Log::info('Documento creado:', ['documento_id' => $documento->id]);
     
+            // Registrar el valor de tipo_documento
+            Log::info('Valor de tipo_documento:', ['tipo_documento' => $request->tipo_documento]);
+    
             // Dependiendo del tipo de documento, crea el registro correspondiente en la tabla específica
             switch ($request->tipo_documento) {
                 case 'Actas':
@@ -133,7 +136,7 @@ class DocumentonewController extends Controller
                     Log::info('Acta creada:', ['acta_id' => $acta->id]);
                     break;
     
-                case 'Acuerdos':
+                case 'Acuerdo':
                     $lastAcuerdoId = Acuerdo::max('id') + 1;
                     $acuerdo = new Acuerdo(['id' => $lastAcuerdoId, 'documentonew_id' => $documento->id]);
                     $acuerdo->save();
@@ -141,7 +144,7 @@ class DocumentonewController extends Controller
                     Log::info('Acuerdo creado:', ['acuerdo_id' => $acuerdo->id]);
                     break;
     
-                case 'Resumengastos':
+                case 'ResumenGasto':
                     $lastResumengastosId = ResumenGastos::max('id') + 1;
                     $resumengastos = new ResumenGastos([
                         'id' => $lastResumengastosId,
@@ -156,7 +159,7 @@ class DocumentonewController extends Controller
                     Log::info('Resumen de gastos creado:', ['resumengastos_id' => $resumengastos->id]);
                     break;
     
-                case 'Documentogeneral':
+                case 'DocumentoGeneral': // Asegúrate de que este valor coincida exactamente con el valor esperado
                     $lastDocumentogeneralId = DocumentoGeneral::max('id') + 1;
                     $documentogeneral = new DocumentoGeneral([
                         'id' => $lastDocumentogeneralId,
@@ -201,6 +204,7 @@ class DocumentonewController extends Controller
             return redirect()->back()->with('error', 'Error al crear el documento: ' . $e->getMessage());
         }
     }
+    
 
     // Mostrar un documento específico
     public function show($id)

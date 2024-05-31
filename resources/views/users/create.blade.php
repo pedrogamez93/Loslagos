@@ -92,10 +92,10 @@ input:required {
             <label for="apellido">Apellido</label>
             <input type="text" class="form-control" id="apellido" name="apellido" value="{{ isset($user) ? $user->apellido : old('apellido') }}" required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="rut">RUT</label>
             <input type="text" class="form-control" id="rut" name="rut" value="{{ isset($user) ? $user->rut : old('rut') }}" required>
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ isset($user) ? $user->email : old('email') }}" required>

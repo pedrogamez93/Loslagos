@@ -136,17 +136,22 @@ Route::get('/descargar-planilla', function () {
 })->name('descargar.planilla');
 
 
+// Route::get('/funcionarios/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware(['log.route']);
+// Route::get('/funcionarios/edit2/{id}', [FuncionarioController::class, 'edit2'])->name('funcionarios2.edit')->middleware(['log.route']);
+Route::post('/funcionarios/edit2', [FuncionarioController::class, 'edit2'])->name('funcionarios2.edit');
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
     Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);
    
     Route::post('/funcionarios/cargamasiva', [FuncionarioController::class, 'cargamasiva']);
-    Route::get('/funcionarios/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware('auth');
+
 Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update')->middleware('auth');
 Route::get('/funcionarios/ver-funcionarios', [FuncionarioController::class, 'indexTabla'])->name('funcionarios.verfuncionarios')->middleware('auth');
 
 Route::delete('/funcionarios/eliminar/{id}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy')->middleware('auth');
 });
+
+
 
 //Sala de prensa
 Route::get('/saladeprensa', [SalaprensaController::class, 'index'])->name('salaprensa.index');
@@ -389,7 +394,7 @@ Route::delete('/landing-document/{id}', [LandingController::class, 'deleteDocume
 
 //FIN RUTAS PARA LAS LANDING DINAMICAS
 
-//RUTAS PARA LOS FONDOSFNDR
+
 
 Route::resource('fondosfndr', FondosFndrController::class);
 Route::get('/fondosfndr/{id}', [FondosFndrController::class, 'show'])->name('fondosfndr.show');
@@ -408,7 +413,6 @@ Route::post('/fondos/{fondo}/agregar-documento', [FondosFndrController::class, '
 
 
 Route::get('/documento/abrir/{id}', [FondosFndrController::class, 'abrirDocumento'])->name('documento.abrir');
-
 
 
 
@@ -511,7 +515,6 @@ Route::get('/consejoregional/resumendegastos', 'App\Http\Controllers\ConsejoRegi
 
 Route::get('/consejoregional/tablassesionesconsejo', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@Indextablassesionesconsejo')->name('tablassesionesconsejo.Indextablassesionesconsejo');
 Route::get('/consejoregional/tablassesionesconsejo/documentos/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadtablassesionesconsejo')->name('sesiones.download');
-Route::get('actas/download/{id}', 'App\Http\Controllers\ConsejoRegionalDocsViewsController@downloadactas')->name('actas.download');
 /*FIN DOCUMENTOS EN CONSEJO REGIONAL VISTAS*/
 
 /*TABLAS SESIONES DEL CONSEJO*/
@@ -711,7 +714,7 @@ Route::post('/programas/TrabajoParticipativoMetodologia/store', 'App\Http\Contro
 Route::get('/programas/TrabajoParticipativoMetodologia/create', 'App\Http\Controllers\PoliticadeturismoController@createTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.create')->middleware('auth');
 Route::get('/programas/TrabajoParticipativoMetodologia/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.edit')->middleware('auth');
 Route::put('/programas/TrabajoParticipativoMetodologia/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.update')->middleware('auth');
-Route::get('/programas/TrabajoParticipativoMetodologia/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyTrabajoParticipativoMetodologiaItems')->name('TrabajoParticipativoMetodologiaItems.destroy')->middleware('auth');
+
 Route::get('/TrabajoParticipativoMetodologia/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadTrabajoParticipativoMetodologia')->name('TrabajoParticipativoMetodologia.download');
 
 //RUTAS Lanzamiento Política FRONTEND
