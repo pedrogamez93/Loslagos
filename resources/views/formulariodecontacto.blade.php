@@ -776,7 +776,7 @@ button {
         // Agregar validaciones en tiempo real a los campos de texto y teléfono
         document.getElementById('nombre').addEventListener('input', validarTexto);
         document.getElementById('apellido').addEventListener('input', validarTexto);
-        document.getElementById('direccion').addEventListener('input', validarTexto);
+        //document.getElementById('direccion').addEventListener('input', validarTexto);
         document.getElementById('comuna').addEventListener('input', validarTexto);
         document.getElementById('provincia').addEventListener('input', validarTexto);
         document.getElementById('telefono').addEventListener('input', validarTelefono);
@@ -811,10 +811,10 @@ button {
             var soloLetras = /^[a-zA-Z\s]+$/;
             var nombre = document.getElementById('nombre').value;
             var apellido = document.getElementById('apellido').value;
-            var direccion = document.getElementById('direccion').value;
+            //var direccion = document.getElementById('direccion').value;
             var comuna = document.getElementById('comuna').value;
             var provincia = document.getElementById('provincia').value;
-            if (!soloLetras.test(nombre) || !soloLetras.test(apellido) || !soloLetras.test(direccion) ||
+            if (!soloLetras.test(nombre) || !soloLetras.test(apellido)  ||
                 !soloLetras.test(comuna) || !soloLetras.test(provincia)) {
                 alert('Los campos Nombre, Apellido, Dirección, Comuna y Provincia deben contener solo letras.');
                 event.preventDefault();
