@@ -282,19 +282,24 @@
                                                     <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse @if($accordionId == 1) show @endif" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
                                                         <div class="accordion-body">
                                                             <div class="row">
-                                                                @foreach ($documentos as $documento)
-                                                                    <div class="col-md-6">
-                                                                        <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                                                                            <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
-                                                                                <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
-                                                                                <p class="p-doc mt-2 mb-2 ms-3">{{ $documento->titulo }} {{$documento->id}}</p>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                    @if ($loop->iteration % 2 == 0)
-                                                                        <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
-                                                                    @endif
-                                                                @endforeach
+                                                            @foreach ($documentosPorCategoria as $categoria => $documentos)
+    <h3>{{ $categoria }}</h3>
+    <div class="row">
+        @foreach ($documentos as $documento)
+            <div class="col-md-6">
+                <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                    <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                        <p class="p-doc mt-2 mb-2 ms-3">{{ $documento->titulo }} {{ $documento->id }}</p>
+                    </a>
+                </div>
+            </div>
+            @if ($loop->iteration % 2 == 0)
+                <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+            @endif
+        @endforeach
+    </div>
+@endforeach
                                                             </div>
                                                         </div>
                                                     </div>
