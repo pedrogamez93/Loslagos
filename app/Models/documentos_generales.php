@@ -16,6 +16,7 @@ class DocumentoGeneral extends Model
         'descripcion',
         'portada',
         'publicacion',
+        'documentonew_id'
     ];
 
     public function documento()

@@ -165,7 +165,7 @@ Route::delete('/saladeprensa/eliminar/{id}', [SalaprensaController::class, 'dest
 Route::get('/mostrar-imagen/{carpeta}/{imagen}', [SalaprensaController::class, 'mostrarImagen'])->name('mostrar.imagen');
 
 Route::get('/saladeprensa/{id}', [SalaprensaController::class, 'show'])->name('salaprensa.show');
-
+Route::get('/mostrar/video/{carpeta}/{video}', [SalaprensaController::class, 'mostrarVideo'])->name('mostrar.video');
 //Route::resource('/', HomeController::class);
 
 //Sala de prensa

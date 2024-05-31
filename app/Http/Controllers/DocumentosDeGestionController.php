@@ -11,7 +11,7 @@ use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Node\Block\Document;
-
+use Illuminate\Support\Facades\Log;
 class DocumentosDeGestionController extends Controller
 {
     public function Index()
@@ -40,19 +40,23 @@ class DocumentosDeGestionController extends Controller
     public function downloadgestion($id)
     {
         try {
-            $documento = Documentonew::findOrFail($id);
-        
+            // Encuentra el documento general
+            $documentoGeneral = DocumentoGeneral::findOrFail($id);
+    
+            // Utiliza la relación para encontrar el documentonew asociado
+            $documentonew = $documentoGeneral->documentonew;
+    
             // Log para depuración del documento
-            Log::info("Documento encontrado: " . json_encode($documento));
-        
-            if ($documento) {
-                $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
-                
+            Log::info("Documento encontrado: " . json_encode($documentonew));
+    
+            if ($documentonew) {
+                $rutaCompleta = $documentonew->archivo; // Esta es la ruta almacenada en la base de datos
+    
                 // Construir la ruta completa al archivo
                 $rutaArchivo = storage_path('app/' . $rutaCompleta);
-        
+    
                 Log::info("Ruta completa del archivo: " . $rutaArchivo);
-        
+    
                 if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
                     return response()->download($rutaArchivo);
                 } else {
@@ -60,15 +64,15 @@ class DocumentosDeGestionController extends Controller
                     return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
                 }
             } else {
-                Log::error("Documento no encontrado con id: " . $id);
-                return redirect()->back()->with('error', 'Documento no encontrado.');
+                Log::error("Documento asociado no encontrado con id: " . $id);
+                return redirect()->back()->with('error', 'Documento asociado no encontrado.');
             }
         } catch (\Exception $e) {
             Log::error('Error al descargar el archivo:', ['error' => $e->getMessage()]);
             return redirect()->back()->with('error', 'Error al descargar el archivo: ' . $e->getMessage());
         }
     }
-
+    
     public function Indexcomisionregbordecostero()
     {
         $categorias = ['Bode costero', 'C.R.U.B.C'];
