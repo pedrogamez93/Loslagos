@@ -67,16 +67,22 @@
                                 <img src="{{ route('mostrar.imagen', ['carpeta' => 'saladeprensa', 'imagen' => basename($noticia->archivo_path)]) }}" class="card-img-top image-container img-fluid" alt="Imagen de la noticia">
                             @elseif($isVideo)
                                 <div class="video-placeholder image-container">
-                                    <i class="bi bi-camera-video-fill" style="font-size: 4rem; color: white;"></i>
+                                   
                                 </div>
                             @endif
 
                             <div class="card-img-overlay">
-                                <div class="card-body text-white">
-                                    <h5 class="card-title titulonoticia mb-4">{{ $noticia->titulo }}</h5>
-                                    <a href="{{ route('salaprensa.show', ['id' => $noticia->id]) }}" class="btn " style="color:white; padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
+    <div class="card-body text-white">
+        <h5 class="card-title titulonoticia mb-4">
+            @if($isVideo)
+                (Video)-
+            @endif
+            {{ $noticia->titulo }}
+        </h5>
+        <a href="{{ route('salaprensa.show', ['id' => $noticia->id]) }}" class="btn" style="color:white; padding: 6%; position: absolute; bottom: 0; right: 25px;">Ir ahora <i class="bi bi-arrow-right"></i></a>
+    </div>
+</div>
+
                         </div>
                     </div>
                 @endforeach
