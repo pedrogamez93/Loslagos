@@ -135,9 +135,10 @@ Route::get('/descargar-planilla', function () {
     return response()->download($pathToFile);
 })->name('descargar.planilla');
 
-Route::get('/funcionarios/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware(['log.route']);
 
-
+// Route::get('/funcionarios/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionarios.edit')->middleware(['log.route']);
+// Route::get('/funcionarios/edit2/{id}', [FuncionarioController::class, 'edit2'])->name('funcionarios2.edit')->middleware(['log.route']);
+Route::post('/funcionarios/edit2', [FuncionarioController::class, 'edit2'])->name('funcionarios2.edit');
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create')->middleware('auth');
     Route::post('/funcionariossubir', [FuncionarioController::class, 'store']);

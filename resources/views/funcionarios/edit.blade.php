@@ -93,11 +93,11 @@
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form  action="{{ route('funcionarios.update', ['id' => $funcionarios->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('funcionarios.update', ['id' => $funcionario->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <label class="style-label mt-4 required" for="titulo">Nombre:</label>
-            <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" value="{{ $funcionarios->nombre }}">
+            <input class="form-control mt-2" type="text" name="nombre" placeholder="Nombre" value="{{ $funcionario->nombre }}">
                        
             <select class="form-select mt-4" aria-label="Default select example" name="actividad">
                 <option selected>Actividad o Profesión</option>
@@ -136,31 +136,31 @@
             <input class="form-control mt-2" type="text" name="cargo" placeholder="cargo" >
 
             <label class="style-label mt-4 required" for="titulo">Direccion:</label>
-            <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" value="{{ $funcionarios->direccion }}">
+            <input class="form-control mt-2" type="text" name="direccion" placeholder="direccion" value="{{ $funcionario->direccion }}">
 
             <label class="style-label mt-4 required" for="titulo">Telefono:</label>
-            <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" value="{{ $funcionarios->telefono }}">
+            <input class="form-control mt-2" type="text" name="telefono" placeholder="telefono" value="{{ $funcionario->telefono }}">
 
             <label class="style-label mt-4 required" for="titulo">Email:</label>
-            <input class="form-control mt-2" type="text" name="email" placeholder="Email" value="{{ $funcionarios->email }}">
+            <input class="form-control mt-2" type="text" name="email" placeholder="Email" value="{{ $funcionario->email }}">
 
             <label class="style-label mt-4 required" for="titulo">Partido Politico:</label>
-            <input class="form-control mt-2" type="text" name="partido_politico" placeholder="Partido Politico" value="{{ $funcionarios->partido_politico }}">
+            <input class="form-control mt-2" type="text" name="partido_politico" placeholder="Partido Politico" value="{{ $funcionario->partido_politico }}">
 
             <label class="style-label mt-4 required" for="titulo">Biografia:</label>
-            <textarea class="form-control mt-2" type="text" name="biografia" placeholder="{{ $funcionarios->biografia }}" value="{{ $funcionarios->biografia }}"></textarea>
+            <textarea class="form-control mt-2" type="text" name="biografia" placeholder="{{ $funcionario->biografia }}" value="{{ $funcionario->biografia }}"></textarea>
 
             <label class="style-label mt-4 required" for="titulo">Funciones:</label>
-            <textarea class="form-control mt-2" type="text" name="funciones" placeholder="{{ $funcionarios->funciones }}"  value="{{ $funcionarios->funciones }}"></textarea>
+            <textarea class="form-control mt-2" type="text" name="funciones" placeholder="{{ $funcionario->funciones }}"  value="{{ $funcionario->funciones }}"></textarea>
 
 
             <div class="form-group">
                <label for="fecha_nacimiento">Fecha de nacimiento</label>
-               <input type="datetime-local" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ $funcionarios->fecha_nacimiento }}">
+               <input type="datetime-local" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="{{ $funcionario->fecha_nacimiento }}">
              </div>
 
              <label class="style-label mt-4 required" for="lugar_nacimiento">Lugar de nacimiento</label>
-            <input class="form-control mt-2" type="text" name="lugar_nacimiento" placeholder="Lugar de nacimiento" value="{{ $funcionarios->lugar_nacimiento }}">
+            <input class="form-control mt-2" type="text" name="lugar_nacimiento" placeholder="Lugar de nacimiento" value="{{ $funcionario->lugar_nacimiento }}">
 
             <label for="region">Región:</label>
     <select class="form-select mt-4" id="region" name="region" onchange="cargarProvincias()">
@@ -182,24 +182,24 @@
 
     <label for="sexo">Sexo:</label>
     <select  class="form-select mt-4" id="sexo" name="sexo">
-    <option value="Masculino" {{ $funcionarios->sexo == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-        <option value="Femenino" {{ $funcionarios->sexo == 'Femenino' ? 'selected' : '' }}>Femenino</option>
-        <option value="Otros" {{ $funcionarios->sexo == 'Otros' ? 'selected' : '' }}>Otros</option>
+    <option value="Masculino" {{ $funcionario->sexo == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+        <option value="Femenino" {{ $funcionario->sexo == 'Femenino' ? 'selected' : '' }}>Femenino</option>
+        <option value="Otros" {{ $funcionario->sexo == 'Otros' ? 'selected' : '' }}>Otros</option>
     </select>
 
 
-    @if($funcionarios->foto)
+    @if($funcionario->foto)
     <div class="mb-3 mt-4">
         <label class="style-label mt-4" for="current_image">Imagen Actual:</label>
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionarios->foto)]) }}" class="img-fluid imagen-con-brillo mx-5" alt="{{ $funcionarios->titulo }}" id="currentImage" style="max-width: 200px; max-height: 200px;">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionario', 'imagen' => basename($funcionario->foto)]) }}" class="img-fluid imagen-con-brillo mx-5" alt="{{ $funcionario->titulo }}" id="currentImage" style="max-width: 200px; max-height: 200px;">
     </div>
 @endif
 
 <!-- Sección para previsualizar y reemplazar la nueva imagen -->
-<div class="mb-3 mt-4">
+<!-- <div class="mb-3 mt-4">
     <label for="formFile" class="form-label">Suba aquí la foto correspondiente</label>
     <input class="form-control" type="file" name="foto" id="foto" onchange="previewAndReplaceImage(this)">
-</div>
+</div> -->
 
 
             <button class=" mt-5 btn btn-success" type="submit">Guardar</button>

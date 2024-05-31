@@ -253,10 +253,47 @@ public function indexTabla()
     return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
 }
 
+public function edit2(Request $request)
+{
+    $id = $request->input('id');
+    // Registro inicial para verificar que la función se está llamando
+    logger()->info('Entrando a la función edit', ['id' => $id]);
+
+    try {
+        // Verificar si las divisiones y departamentos están definidas
+        if (!isset($this->divisiones) || !isset($this->departamentos)) {
+            throw new \Exception("Divisiones o departamentos no están definidos.");
+        }
+
+        // Obtener divisiones y departamentos
+        $divisiones = $this->divisiones; 
+        $departamentos = $this->departamentos;
+
+        // Registro para verificar divisiones y departamentos
+        logger()->info('Divisiones y departamentos obtenidos', [
+            'divisiones' => $divisiones,
+            'departamentos' => $departamentos,
+        ]);
+
+        // Buscar el funcionario por el ID proporcionado
+        $funcionario = Funcionario::findOrFail($id);
+
+        // Registro para verificar que el funcionario fue encontrado
+        logger()->info('Funcionario encontrado', ['funcionario' => $funcionario]);
+
+        // Pasar los datos a la vista
+        return view('funcionarios.edit', compact('funcionario', 'divisiones', 'departamentos'));
+    } catch (\Exception $e) {
+        // Registrar el error y redirigir con un mensaje de error
+        logger()->error('Error al editar funcionario', ['error' => $e->getMessage()]);
+        return redirect()->back()->with('error', 'Ocurrió un error al cargar la información del funcionario: ' . $e->getMessage());
+    }
+}
+
 
 public function edit($id)
 {
-
+  
     // Registro inicial para verificar que la función se está llamando
     logger()->info('Entrando a la función edit', ['id' => $id]);
 

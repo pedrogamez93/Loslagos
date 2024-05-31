@@ -90,7 +90,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>RUT</th>
+                <!-- <th>RUT</th> -->
                 <th>Email</th>
                 <th>Rol</th>
                 <th>Acciones</th>
@@ -102,7 +102,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->nombre }}</td>
                     <td>{{ $user->apellido }}</td>
-                    <td>{{ $user->rut }}</td>
+                    <!-- <td>{{ $user->rut }}</td> -->
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->rol }}</td>
                     <td>
