@@ -283,14 +283,14 @@
                                                         <div class="accordion-body">
                                                             <div class="row">
                                                             @foreach ($documentosPorCategoria as $categoria => $documentos)
-    <h3>{{ $categoria }}</h3>
+    
     <div class="row">
         @foreach ($documentos as $documento)
             <div class="col-md-6">
                 <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
                     <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
                         <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
-                        <p class="p-doc mt-2 mb-2 ms-3">{{ $documento->titulo }} {{ $documento->id }}</p>
+                        <p class="p-doc mt-2 mb-2 ms-3">{{ $documento->titulo }} </p>
                     </a>
                 </div>
             </div>
