@@ -84,29 +84,37 @@
                             <div class="row">
                                 <div class="col-md-4 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="actividad_profesion" name="actividad_profesion" class="form-control" value="{{ $articulo->actividad_profesion }}"  placeholder="Actividad o profesion" required>
+                                        <input type="text" id="actividad_profesion" name="actividad_profesion" class="form-control" value="{{ $articulo->actividad_profesion }}"  placeholder="Actividad o profesión" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="partido_politico" name="partido_politico" class="form-control" value="{{ $articulo->partido_politico }}" placeholder="Partido o politico" required>
+                                        <input type="text" id="partido_politico" name="partido_politico" class="form-control" value="{{ $articulo->partido_politico }}" placeholder="Partido o político" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 tag-comentario">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="cargo" name="cargo" class="form-control" placeholder="Cargo" value="{{ $articulo->cargo }}" required>
+                                    <select id="cargo" name="cargo" class="form-control">
+                                        <option value="">Seleccione un Cargo</option>
+                                        <option value="Gobernador Regional" {{ $articulo->cargo == 'Gobernador Regional' ? 'selected' : '' }}>Gobernador Regional</option>
+                                        <option value="Diputados" {{ $articulo->cargo == 'Diputados' ? 'selected' : '' }}>Diputados</option>
+                                        <option value="Senador" {{ $articulo->cargo == 'Senador' ? 'selected' : '' }}>Senador</option>
+                                        <option value="Seremis" {{ $articulo->cargo == 'Seremis' ? 'selected' : '' }}>Seremis</option>
+                                        <option value="Servicios" {{ $articulo->cargo == 'Servicios' ? 'selected' : '' }}>Servicios</option>
+                                        <option value="Municipalidades" {{ $articulo->cargo == 'Municipalidades' ? 'selected' : '' }}>Municipalidades</option>
+                                    </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="institucion" name="institucion" class="form-control"  value="{{ $articulo->institucion }}"  placeholder="Institucion" required>
+                                        <input type="text" id="institucion" name="institucion" class="form-control"  value="{{ $articulo->institucion }}"  placeholder="Institución" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="direccion" name="direccion" class="form-control"  value="{{ $articulo->direccion }}" placeholder="Direccion" required>
+                                        <input type="text" id="direccion" name="direccion" class="form-control"  value="{{ $articulo->direccion }}" placeholder="Dirección" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 tag-comentario">
@@ -128,7 +136,7 @@
                                 </div>
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="region" name="region" class="form-control" placeholder="Region"  value="{{ $articulo->region }}"  required>
+                                        <input type="text" id="region" name="region" class="form-control" placeholder="Región"  value="{{ $articulo->region }}"  required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">
@@ -153,7 +161,7 @@
                                     <div class="col-md-6 pb-3">
                                         <div id="text">
                                             <div class="form-floating">
-                                                <textarea name="biografia" class="form-control" placeholder="Biografia" id="biografia" style="height: 250px" required>{{ $articulo->biografia }}</textarea>
+                                                <textarea name="biografia" class="form-control" placeholder="Biografía" id="biografia" style="height: 250px" required>{{ $articulo->biografia }}</textarea>
                                                 <label class="style-label" for="floatingTextarea2 style-label">Biografia</label>
                                             </div>
                                         </div>
@@ -163,7 +171,7 @@
                                             <div class="col-md-12 pb-3">
                                                 <label for="imagen" class="form-label style-label">Imagen Actual:</label>
                                             </div>
-                                                <img src="{{ asset('storage/' . $articulo->foto) }}" alt="Imagen Actual" width="250">
+                                                <img src="{{ asset($articulo->foto) }}" alt="Imagen Actual" width="250">
                                         </div>
                                         <div class="mb-3">
                                         <label for="formFile" class="form-label style-label">Selecciona la foto para cambiarla</label>
@@ -172,10 +180,19 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="form-group">
-                            
+                        <div class="row">
+                            <div class="col-md-6 pt-0 pb-3">
+                                <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                            </div>
+                            <div class="col-md-6 pt-0 pb-3 d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{{ route('AutoridadesRegionLagos.indexAutoridades') }}" class="btn btn-secondary">Volver</a>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                        
+                        
+                        <div class="container mt-3 mb-4">
+                        
+                    </div>
                     </form>
                 </div>
             </div>

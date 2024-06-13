@@ -10,11 +10,13 @@
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/routing": "*",
+        "laravel-lang/lang": "^14.2",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.9",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "league/csv": "^9.15",
         "livewire/livewire": "^2.5"
     },
     "require-dev": {

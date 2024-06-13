@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -6,6 +8,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- Incluye los archivos JS de CKEditor -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 <style>
     h1 , h2 {
         color: #565656;
@@ -73,7 +77,6 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('audienciasdepartes.store') }}" method="POST" enctype="multipart/form-data" id="formulario-edicion">
                         @csrf
                             <!-- Campos del formulario -->
                             <label class="style-label required" for="titulo">Título:</label>
@@ -119,16 +122,14 @@
                                 </div>
                             </div>
                         </div>
-
                         <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar audiencia</button>
-                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->
-                    </form>
+                        <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->       
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+</html>
 <script>
     $(document).ready(function() {
         // Contador para asignar identificadores únicos
@@ -173,12 +174,26 @@
     });
 </script>
 
-<script>
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
-            .create(document.querySelector('#editor'), {
-                allowedContent: true
-            })
+            .create(document.querySelector('#editor'))
             .catch(error => {
                 console.error(error);
             });
+    });
+</script>-->
+<script>
+  tinymce.init({
+    selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+    plugins: 'advlist link image lists',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>

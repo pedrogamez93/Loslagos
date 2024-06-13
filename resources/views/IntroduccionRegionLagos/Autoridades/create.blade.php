@@ -83,29 +83,42 @@
                             <div class="row">
                                 <div class="col-md-4 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="actividad_profesion" name="actividad_profesion" class="form-control" placeholder="Actividad o profesion" required>
+                                        <input type="text" id="actividad_profesion" name="actividad_profesion" class="form-control" placeholder="Actividad o profesión" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="partido_politico" name="partido_politico" class="form-control" placeholder="Partido o politico" required>
+                                        <input type="text" id="partido_politico" name="partido_politico" class="form-control" placeholder="Partido o político" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4 tag-comentario">
+                                <!--<div class="col-md-4 tag-comentario">
                                     <div class="input-group mb-3">
                                         <input type="text" id="cargo" name="cargo" class="form-control" placeholder="Cargo" value="" required>
                                     </div>
+                                    
+                                </div>-->
+                                <div class="col-md-4 tag-comentario">
+                                    <select id="cargo" name="cargo" class="form-control">
+                                        <option value="">Seleccione un Cargo</option>
+                                        <option value="Gobernador Regional">Gobernador Regional</option>
+                                        <option value="Diputados">Diputados</option>
+                                        <option value="Senador">Senador</option>
+                                        <option value="Seremis">Seremis</option>
+                                        <option value="Servicios">Servicios</option>
+                                        <option value="Municipalidades">Municipalidades</option>
+                                        
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="institucion" name="institucion" class="form-control" placeholder="Institucion" required>
+                                        <input type="text" id="institucion" name="institucion" class="form-control" placeholder="Institución" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion" required>
+                                        <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Dirección" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 tag-comentario">
@@ -127,7 +140,7 @@
                                 </div>
                                 <div class="col-md-3 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="region" name="region" class="form-control" placeholder="Region" required>
+                                        <input type="text" id="region" name="region" class="form-control" placeholder="Región" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3 title">
@@ -152,7 +165,7 @@
                                     <div class="col-md-6 pb-3">
                                         <div id="text">
                                             <div class="form-floating">
-                                                <textarea name="biografia" class="form-control" placeholder="Biografia" id="biografia" style="height: 250px" required></textarea>
+                                                <textarea name="biografia" class="form-control" placeholder="Biografía" id="biografia" style="height: 250px" required></textarea>
                                                 <label class="style-label" for="floatingTextarea2 style-label">Biografia</label>
                                             </div>
                                         </div>

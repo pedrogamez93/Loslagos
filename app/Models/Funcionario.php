@@ -11,5 +11,35 @@ class Funcionario extends Model
 
     protected $table = 'funcionarios';
 
-    protected $fillable = ['nombre', 'division', 'departamento','cargo','direccion','telefono','e-mail','region','provincia','comuna','foto'];
+    protected $fillable = [
+        'nombre',
+      
+     'division',
+      'departamento',
+      'cargo',
+      'direccion',
+      'telefono',
+      'e-mail',
+      'region',
+      'provincia',
+      'comuna',
+      'foto',
+      'partido_politico',
+      'biografia', 
+      'funciones',
+      'Tfuncionario',      
+      'fecha_nacimiento',  
+      'lugar_nacimiento',  
+      'sexo',              
+    ];
+
+      protected $appends = ['foto_url'];
+
+      // ...
+  
+      public function getFotoUrlAttribute()
+      {
+          return asset('storage/' . $this->foto);
+      }
+
 }

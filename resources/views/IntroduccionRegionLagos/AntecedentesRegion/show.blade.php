@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Información de los Región</h1>
+                <h1>Listado de Información de Los Región</h1>
                 <a href="{{ route('AntecedentesRegionLagos.createAntecedentes') }}" class="btn btn-primary">Crear</a>
 
                 <table class="table">
@@ -72,7 +72,6 @@
                             <td>{{ $arti->nombreseccion }}</td>
                             <td>{{ $arti->subtitulo }}</td>
                             <td>
-                                <a href="{{ route('AntecedentesRegionLagos.showAntecedentes', $arti->id) }}" class="btn btn-info">Ver</a>
                                 <a href="{{ route('AntecedentesRegionLagos.editAntecedentes', $arti->id) }}" class="btn btn-warning">Editar</a>
                                 
                                 <form method="POST" action="{{ route('AntecedentesRegionLagos.destroyAntecedentes', $arti->id) }}"  style="display: inline;">

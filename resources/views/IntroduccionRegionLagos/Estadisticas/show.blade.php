@@ -86,7 +86,7 @@
                                 {{ $art->p_rural_hombre }} - {{ $art->p_rural_mujeres }}
                             </td>
                             <td>
-                                <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
+                                
                                 <a href="{{ route('EstadisticasRegionLagos.editEstadisticas', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
                                 <form method="POST" action="{{ route('EstadisticasRegionLagos.destroyEstadisticas', $art->id) }}"  style="display: inline;">

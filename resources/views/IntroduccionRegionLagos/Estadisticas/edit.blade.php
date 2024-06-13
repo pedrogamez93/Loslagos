@@ -75,10 +75,10 @@
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="provincia" required>
                                         <option value="" {{ $articulo->provincia == '' ? 'selected' : '' }}>Seleccione una Provincia</option>
                                         
-                                        <option value="PROVINCIA DE OSORNO" {{ $articulo->provincia == 'PROVINCIA DE OSORNO' ? 'selected' : '' }}>PROVINCIA DE OSORNO</option>
-                                        <option value="PROVINCIA DE LLANQUIHUE" {{ $articulo->provincia == 'PROVINCIA DE LLANQUIHUE' ? 'selected' : '' }}>PROVINCIA DE LLANQUIHUE</option>
-                                        <option value="PROVINCIA DE CHILOE" {{ $articulo->provincia == 'PROVINCIA DE CHILOE' ? 'selected' : '' }}>PROVINCIA DE CHILOE</option>
-                                        <option value="PROVINCIA DE PALENA" {{ $articulo->provincia == 'PROVINCIA DE PALENA' ? 'selected' : '' }}>PROVINCIA DE PALENA</option>
+                                        <option value="Provincia de Osorno" {{ $articulo->provincia == 'Provincia de Osorno' ? 'selected' : '' }}>Provincia de Osorno</option>
+                                        <option value="Provincia de Llaquihue" {{ $articulo->provincia == 'Provincia de Llaquihue' ? 'selected' : '' }}>Provincia de Llaquihue</option>
+                                        <option value="Provincia de Chiloe" {{ $articulo->provincia == 'Provincia de Chiloe' ? 'selected' : '' }}>Provincia de Chiloe</option>
+                                        <option value="Provincia de Palena" {{ $articulo->provincia == 'Provincia de Palena' ? 'selected' : '' }}>Provincia de Palena</option>
                                     </select>
                                     </div>
                                 </div>
@@ -92,7 +92,8 @@
                                 <div class="col-md-4 superficie">
                                     <b>&nbsp;</b>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="superficie" name="superficie" class="form-control"  value="{{ $articulo->superficie }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="text" id="superficie" name="superficie_nueva" class="form-control"  value="{{ $articulo->superficie_nueva }}"  placeholder="Superficie" required><b style=" margin-top: 10px; padding-left: 5px; ">Km2</b>
+                                        <input type="hidden" id="superficie1" name="superficie" value="1" class="form-control" placeholder="Superficie" >
                                     </div>
                                 </div>
                                 <div class="col-md-4 purbana">
@@ -126,7 +127,14 @@
                                     </div>
                                 </div>
                             </div>
-                        <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                            <div class="row">
+                                <div class="col-md-6 pt-0 pb-3">
+                                    <button type="submit" class="btn btn-success" id="Enviar" name="Enviar">Guardar</button>
+                                </div>
+                                <div class="col-md-6 pt-0 pb-3 d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="{{ route('EstadisticasRegionLagos.indexEstadisticas') }}" class="btn btn-secondary">Volver</a>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>

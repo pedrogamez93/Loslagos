@@ -16,7 +16,7 @@ class IntroduccionController extends Controller{
             return view('introduccion.index', compact('introducciones'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('introduccion.index')->with('message', 'No se encontraron introducciones');
+            return view('introduccion.create')->with('message', 'No se encontraron introducciones');
         }
     }
         /*$introduccion = Introduccion::latest()->first();
@@ -61,11 +61,15 @@ class IntroduccionController extends Controller{
         }
     }
 
-    public function show($id) {
-    // Recupera el registro específico con el ID proporcionado y muestra una vista para verlo
-    $introduccion = Introduccion::find($id);
-    return view('introduccion.show', compact('introduccion'));
+    public function show($id)
+    {
+        $introduccion = Introduccion::find($id);
+        
+        if (!$introduccion) {
+            return redirect()->route('introduccion.index')->with('error', 'Introducción no encontrada');
+        }
 
+        return view('introduccion.show', compact('introduccion'));
     }
 
     public function edit($id) {
@@ -76,5 +80,9 @@ class IntroduccionController extends Controller{
         }
     
         return view('introduccion.edit', compact('introduccion'));
+    }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
     }
 }

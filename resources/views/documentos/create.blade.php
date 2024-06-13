@@ -69,47 +69,246 @@ input:required {
     margin-right: 4px;
 }
 </style>
+
 <div class="container-fluid body">
     <div class="row">
         <div class="col-md-2 style-col-menu">
             <div class="container menu">
-            @include('layouts.menu')
+                @include('layouts.menu')
             </div>
         </div>
         <div class="col-md-10">
-        <div class="container principal mt-4 mb-4 pt-3 pb-3">
+            <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario subida de documentos</h1>
+                        <h1>Formulario creación de documentos</h1>
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1></h1> 
+                            <h1></h1>
                         </div>
                     </div>
                     <!-- Formulario para la creación de un nuevo trámite -->
-                    <form action="{{ url('/documentos') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                    <form method="POST" action="{{ route('documentos.store') }}" enctype="multipart/form-data">
+                        @csrf
 
-            <label class="style-label required" for="titulo">Título:</label>
-            <input class="form-control mt-2" type="text" name="nombre" placeholder="Título" required>
-                       
-            <select class="form-select mt-4" aria-label="Default select example" name="categoria">
-                <option selected>Seleccione Categoria</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
-            </select>
+                        {{-- Campo para seleccionar el tipo de documento --}}
+                        <div class="form-group">
+                            <label for="tipo_documento">Tipo de Documento:</label>
+                            <select name="tipo_documento" id="tipo_documento" class="form-control" required>
+                                <option value="Acta">Acta</option>
+                                <option value="Acuerdo">Acuerdo</option>
+                                <option value="ResumenGasto">Resumen de Gasto</option>
+                                <option value="DocumentoGeneral">Documento General</option>
+                            </select>
+                        </div>
 
-            <div class="mb-3 mt-4">
-                <label for="formFile" class="form-label">Suba aquí el documento correspondiente</label>
-                <input class="form-control" type="file" name="archivo_path" id="formFile">
-            </div>
+                        {{-- Campos específicos para Acta --}}
+                        <div id="acta-fields" class="document-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="provincia">Provincia:</label>
+                                <select name="provincia" id="provincia" class="form-control">
+                                    <option value="Llanquihue">Llanquihue</option>
+                                    <option value="Osorno">Osorno</option>
+                                    <option value="Chiloé">Chiloé</option>
+                                    <option value="Palena">Palena</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="comuna">Comuna:</label>
+                                <select name="comuna" id="comuna" class="form-control">
+                                    {{-- Opciones para la comuna --}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tema">Tema:</label>
+                                <input type="text" name="tema" id="tema" class="form-control">
+                            </div>
+                            <!-- Agrega los demás campos de Acta según tu especificación -->
 
-            <button class=" mt-5 btn btn-success" type="submit">Guardar</button>
-        </form>
+                            <div class="form-group">
+                                <label for="fecha_hora">Fecha y Hora:</label>
+                                <input type="datetime-local" name="fecha_hora" id="fecha_hora" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lugar">Lugar:</label>
+                                <input type="text" name="lugar" id="lugar" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="numero_sesion">Número de Sesión:</label>
+                                <input type="number" name="numero_sesion" id="numero_sesion" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha_hora_sesion">Fecha y Hora de Sesión:</label>
+                                <input type="datetime-local" name="fecha_hora_sesion" id="fecha_hora_sesion" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="portada">Portada:</label>
+                                <div class="form-check">
+                                    <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input">
+                                    <label for="portada_si" class="form-check-label">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input">
+                                    <label for="portada_no" class="form-check-label">No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publicacion">Publicación:</label>
+                                <div class="form-check">
+                                    <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input">
+                                    <label for="publicacion_si" class="form-check-label">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input">
+                                    <label for="publicacion_no" class="form-check-label">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Campos específicos para Acuerdo --}}
+                        <div id="acuerdo-fields" class="document-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="numero">Número:</label>
+                                <input type="number" name="numero" id="numero" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" name="fecha" id="fecha" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="codigo_bip">Codigo B.I.P:</label>
+                                <textarea name="codigo_bip" id="codigo_bip" class="form-control"></textarea>
+                            </div>
+                            <!-- Agrega los demás campos de Acuerdo según tu especificación -->
+                        </div>
+
+                        {{-- Campos específicos para Resumen de Gasto --}}
+                        <div id="resumengasto-fields" class="document-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control">
+                            </div>
+                            <!-- Agrega los demás campos de Resumen de Gasto según tu especificación -->
+                        </div>
+
+                        {{-- Campos específicos para Documento General --}}
+                        <div id="documentogeneral-fields" class="document-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="categoria">Categoría:</label>
+                                <select name="categoria" id="categoria" class="form-control">
+    <option value="">Seleccione Categoría</option>
+    <option value="Documentos de Gestión">Documentos de Gestión</option>
+    <option value="Estudios">Estudios</option>
+    <option value="Fondos Concursable">Fondos Concursable</option>
+    <option value="Leyes">Leyes</option>
+    <option value="Gestión">Gestión</option>
+    <option value="Comité de integración">Comité de integración</option>
+    <option value="Bode costero">Bode costero</option>
+    <option value="C.R.U.B.C">C.R.U.B.C</option>
+    <option value="Controles SSI">Controles SSI</option>
+    <option value="Estado Situacion FNDR">Estado Situacion FNDR</option>
+    <option value="Informe Ejecucion PROPIR">Informe Ejecucion PROPIR</option>
+    <option value="Informe Gastos Ley 21.516">Informe Gastos Ley 21.516</option>
+    <option value="Plan Regulador Comunal">Plan Regulador Comunal</option>
+    <option value="Presupuesto">Presupuesto</option>
+    <option value="Receptores Fondos Publicos Ley 19.62">Receptores Fondos Publicos Ley 19.62</option>
+    <option value="Unidad de Control">Unidad de Control</option>
+    <option value="Cuenta Pública Regional">Cuenta Pública Regional</option>
+    <option value="Estrategia Regional de Desarrollo 2030">Estrategia Regional de Desarrollo 2030</option>
+    <option value="Estado Financieros Gobierno Regional de Los Lagos">Estado Financieros Gobierno Regional de Los Lagos</option>
+    <option value="Boletin Informativo">Boletin Informativo</option>
+    <option value="Difusion Proyectos FNDR y Normativa Grafica GORE">Difusion Proyectos FNDR y Normativa Grafica GORE</option>
+    <option value="Estrategia, Politica y Planes Regionales">Estrategia, Politica y Planes Regionales</option>
+    <option value="Convenios Internacionales">Convenios Internacionales</option>
+    <option value="Documentos de Consulta GORE LOS LAGOS">Documentos de Consulta GORE LOS LAGOS</option>
+</select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="titulo">Título:</label>
+                                <input type="text" name="titulo" id="titulo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="autor">Autor:</label>
+                                <input type="text" name="autor" id="autor" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="sector">Sector:</label>
+                                <select name="sector" id="sector" class="form-control">
+                                    <option value="">Seleccione Sector</option>
+                                    <option value="Trabajo">Trabajo</option>
+                                    <option value="MOP">MOP</option>
+                                    <option value="Agricultura">Agricultura</option>
+                                    <option value="Planificación">Planificación</option>
+                                    <option value="Economía">Economía</option>
+                                    <option value="Transporte">Transporte</option>
+                                    <option value="Otros">Otros</option>
+                                    <option value="Educación">Educación</option>
+                                    <option value="Vivienda">Vivienda</option>
+                                    <option value="Salud">Salud</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub_sector">Sub-Sector:</label>
+                                <select name="sub_sector" id="sub_sector" class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="financiamiento">Financiamiento:</label>
+                                <input type="text" name="financiamiento" id="financiamiento" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha_hora">Fecha y Hora:</label>
+                                <input type="datetime-local" name="fecha_hora" id="fecha_hora" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="portada">Portada:</label>
+                                <div class="form-check">
+                                    <input type="radio" name="portada" id="portada_si" value="si" class="form-check-input">
+                                    <label for="portada_si" class="form-check-label">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="portada" id="portada_no" value="no" class="form-check-input">
+                                    <label for="portada_no" class="form-check-label">No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publicacion">Publicación:</label>
+                                <div class="form-check">
+                                    <input type="radio" name="publicacion" id="publicacion_si" value="si" class="form-check-input">
+                                    <label for="publicacion_si" class="form-check-label">Sí</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="publicacion" id="publicacion_no" value="no" class="form-check-input">
+                                    <label for="publicacion_no" class="form-check-label">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Campos comunes a todos los tipos de documentos --}}
+                        <div class="form-group mt-3">
+                            <input type="file" name="archivo" id="archivo" class="form-control">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary">Guardar Documento</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -117,48 +316,89 @@ input:required {
 </div>
 
 <script>
-    $(document).ready(function() {
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container");
-            var nuevoDocumentoInput = documentosContainer.find(".documentos-input:first").clone(); // Clona el primer conjunto de campos
+    // Función para mostrar u ocultar campos según el tipo de documento seleccionado
+    function mostrarCamposPorTipoDocumento() {
+        // Obtener el tipo de documento seleccionado
+        var tipoDocumento = document.getElementById('tipo_documento').value;
 
-            // Limpia los valores en los campos clonados
-            nuevoDocumentoInput.find("input[type='file']").val('');
-            nuevoDocumentoInput.find("input[type='text']").val('');
+        // Ocultar todos los campos específicos de documentos
+        var documentFields = document.getElementsByClassName('document-fields');
+        for (var i = 0; i < documentFields.length; i++) {
+            documentFields[i].style.display = 'none';
+        }
 
-            // Genera un nuevo nombre único para cada campo clonado
-            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
-            nuevoDocumentoInput.find("input[type='file']").attr('id', 'ruta_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[]');
-            nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
+        // Mostrar los campos específicos del tipo de documento seleccionado
+        document.getElementById(tipoDocumento.toLowerCase().replace(/\s/g, '-') + '-fields').style.display = 'block';
+    }
 
-            // Agrega los campos clonados al contenedor
-            documentosContainer.append(nuevoDocumentoInput);
-        });
-    });
+    // Asociar la función al evento de cambio del tipo de documento
+    document.getElementById('tipo_documento').addEventListener('change', mostrarCamposPorTipoDocumento);
+
+    // Llamar a la función al cargar la página para manejar el caso cuando la página ya tiene un tipo de documento seleccionado
+    mostrarCamposPorTipoDocumento();
 </script>
 
 <script>
-  $(document).ready(function () {
-    // Ocultar el container add-boton inicialmente
-    $(".documentos-container").hide();
-    // Desactivar la opción "No" cuando se selecciona "Si"
-    $("#inlineCheckbox12").change(function () {
-      if ($(this).prop("checked")) {
-        $("#inlineCheckbox21").prop("checked", false);
-        $(".documentos-container").slideDown(); 
-      } else {
-        $(".documentos-container").slideUp(); 
-      }
+    $(document).ready(function () {
+        // Define las comunas por provincia
+        const comunasPorProvincia = {
+            Llanquihue: ["Puerto Montt", "Calbuco", "Maullín", "Frutillar", "Puerto Varas"],
+            Osorno: ["Osorno", "San Pablo", "Purranque", "Río Negro", "Puerto Octay"],
+            Chiloé: ["Castro", "Ancud", "Dalcahue", "Curaco de Vélez", "Quellón"],
+            Palena: ["Chaitén", "Futaleufú", "Palena"]
+        };
+
+        // Al cambiar la provincia, actualiza las opciones de comuna
+        $("#provincia").change(function () {
+            const selectedProvincia = $(this).val();
+            const comunas = comunasPorProvincia[selectedProvincia] || [];
+
+            // Limpia y actualiza las opciones de comuna
+            $("#comuna").empty();
+            $.each(comunas, function (index, comuna) {
+                $("#comuna").append('<option value="' + comuna + '">' + comuna + '</option>');
+            });
+        });
+
+        // Define los subsectores para cada sector
+        const subsectoresPorSector = {
+            Transporte: ["Administracion transporte", "capacitacion transporte", "intersubsectorial transporte", "transporte aereo", "transporte caminero", "transporte ferroviario", "transporte marítimo, fluvial y lacustre", "transporte urbano, Vialidad peatonal", "Multisectorial"],
+            Vivienda: ["Administracion vivienda", "capacitacion vivienda", "intersubsectorial vivienda", "solucion habitacional parcial o complementaria", "vivienda definitiva", "multisectorial"],
+            Salud: ["Administracion salud", "Alta complejidad (N. Terciario)", "Baja complejidad (N. Primario)", "CAPACITACION SALUD", "INTERSUBSECTORIAL SALUD", "MEDIA COMPLEJIDAD (N. Secundario)", "Multisectorial"]
+        };
+
+        // Al cambiar el sector, actualiza los subsectores correspondientes
+        $("#sector").change(function () {
+            const selectedSector = $(this).val();
+            const subsectores = subsectoresPorSector[selectedSector] || [];
+
+            // Limpia y actualiza las opciones del sub_sector
+            $("#sub_sector").empty();
+            $.each(subsectores, function (index, subsector) {
+                $("#sub_sector").append('<option value="' + subsector + '">' + subsector + '</option>');
+            });
+        });
+
+        // Inicializa la selección de comuna y subsector si ya hay valores en el documento
+        const initialProvincia = "{{ old('provincia') }}";
+        const initialComuna = "{{ old('comuna') }}";
+        const initialSector = "{{ old('sector') }}";
+        const initialSubSector = "{{ old('sub_sector') }}";
+
+        if (initialProvincia) {
+            $("#provincia").val(initialProvincia).trigger('change');
+            setTimeout(() => {
+                $("#comuna").val(initialComuna);
+            }, 100);
+        }
+
+        if (initialSector) {
+            $("#sector").val(initialSector).trigger('change');
+            setTimeout(() => {
+                $("#sub_sector").val(initialSubSector);
+            }, 100);
+        }
     });
-    // Desactivar la opción "Si" cuando se selecciona "No"
-    $("#inlineCheckbox21").change(function () {
-      if ($(this).prop("checked")) {
-        $("#inlineCheckbox12").prop("checked", false);
-        $(".documentos-container").slideUp();    
-      }
-    });
-});
 </script>
+
+

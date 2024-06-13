@@ -16,7 +16,7 @@ class EstrategiasController extends Controller {
             return view('estrategias.index', compact('estrategias'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('estrategias.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('estrategias.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 
@@ -69,5 +69,9 @@ class EstrategiasController extends Controller {
         }
     
         return view('estrategias.edit', compact('estrategias'));
+    }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
     }
 }

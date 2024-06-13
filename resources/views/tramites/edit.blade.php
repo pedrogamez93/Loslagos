@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -10,6 +12,8 @@
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <!-- Incluye los archivos JS de CKEditor -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 <style>
     h1 , h2{
         color: #565656;
@@ -66,7 +70,7 @@
                         <h1>Detalles del Trámite</h1>
                     </div>
                      <!-- Formulario para la edicion del tramite -->
-                     <form action="{{ route('tramites.update', ['tramite' => $tramite->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('tramites.update', ['tramite' => $tramite->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <!-- Campos para el nuevo trámite -->
@@ -95,7 +99,7 @@
                             
                             @if($tramite->icono)
                                 <p>Icono actual:</p>
-                                <img src="{{ $tramite->icono }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
+                                <img src="{{ asset($tramite->icono) }}" alt="Icono actual" style="max-width: 100px; max-height: 100px;">
                             @else
                                 <p>No hay icono actual.</p>
                             @endif
@@ -103,88 +107,187 @@
 
                         <div class="container add-boton mt-4">
                             <div class="row">
+                            <div id="botones-original" class="botones-input" style="display: none;">
                                 <div class="col-md-6">
-                                    <label class="style-label" for="url">Nombre del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn" placeholder="Nombre del botón externo" value="{{ $tramite['nombre_btn'] ?? '' }}">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="style-label" for="url">URL del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del botón externo" value="{{ $tramite['url'] ?? '' }}">
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del boton externo">
+                                    <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del boton externo">
                                 </div>
                             </div>
-                                <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
+                        </div>
+                        <!-- Botón para agregar más BOTONES EXTERNOS -->
+                        <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más Botones externos</button>
+
+                        <div class="documentos-container mt-3">
+                            <div id="documentos-original" class="documentos-input" style="display: none;">
+                                <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
+                                <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple>
+                            </div>
+                        </div>
+                        <!-- Botón para agregar más documentos -->
+                        <button type="button" class="btn btn-primary agregar-documento">Agregar Más Documentos</button>
+
+
+                        @if(!empty($tramite->url_single))
+                            <div class="container open-other-site mt-4">
+                                <div class="row"> 
+                                    <label class="style-label" for="url">URL por si quieres abrir otro sitio:</label>
+                                    <input class="form-control mt-2 mb-4" type="text" name="url_single" placeholder="URL por si quieres abrir otro sitio" value="{{ $tramite->url_single }}">
+                                </div>
+                            </div>
+                        @endif
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class=" mt-5 btn btn-success" type="submit">Actualizar Trámite</button>
+                                </div>
+                            </div>
+                        </div>
+                   </form>
+
+                        <div class="container principal  add-botonexistente mt-4" style="padding: 20px;">
+                            <h2>Botones presentes en el trámite actual</h2>
+                            @foreach ($tramite->btns as $btn)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="style-label" for="url">Nombre del botón externo:</label>
+                                        <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del botón externo" value="{{ $btn->nombre_btn }}" disabled>
+
+                                        <label class="style-label" for="url">URL del botón externo:</label>
+                                        <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del botón externo" value="{{ $btn->url }}" disabled>
+                                    </div>
+                                    <div class="col-md-6" style="align-self: center;">
+                                        <!-- Botón para eliminar la fila (opcional) -->
+                                        <div class="col-md-12 text-right mt-2 mb-2">
+                                            <form action="{{ route('tramites.destroyBtn', $btn->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas borrar este botón externo?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar Botón</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
 
-                        <div class="form-group mt-4">
-                            <label class="style-label mb-2" for="bajada">Documentos</label>
+                        <div class="form-group principal mt-4 mb-4" style="padding: 20px;">
+                            <h2>Documentos presentes en el trámite actual</h2>
                             <div class="container form-control">                            
                                 <div class="row">
                                     @foreach ($tramite->documentos as $documento)
                                         <div class="col-md-6">
                                             <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
                                         </div>
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-danger mt-2">Eliminar</button>
+                                        <div class="col-md-6" style="align-self: center;">
+                                            <form action="{{ route('tramites.destroyDoc', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de borrar este documento?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar Documento</button>
+                                            </form>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
 
-                        <div class="documentos-container mt-3">
-                            <div id="documentos-original" class="documentos-input" style="display: none;">
-                                <label class="style-label" for="documentos">Documentos:</label>
-                                <input class="form-control mt-2 mb-4" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple>
-                                <input class="form-control mt-2 mb-2" type="text" name="nombre_documento[]" placeholder="Nombres de los Documentos" multiple>
-                            </div>
-                        </div>
-
-                        <!-- Botón para agregar más documentos -->
-                        <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
-
-                            <div class="container open-other-site mt-4">
-                                <div class="row"> 
-                                    <label class="style-label" for="url">URL por si quieres abrir otro sitio:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url_single" placeholder="URL por si quieres abrir otro sitio" value="{{ $tramite['url_single'] ?? '' }}">
-                                </div>
-                            </div>
-                        <button class=" mt-5 btn btn-success" type="submit">editar Trámite</button>
-                    </form>
                     <div class="container mt-3 mb-4">
                         <a href="{{ route('tramites.index') }}" class="btn btn-secondary">Volver</a>
                     </div>
                 </div>
             </div>
+            <form action="{{ route('tramites.destroy', $tramite->id) }}" method="POST" onsubmit="return confirmarEliminacion()">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Eliminar Trámite</button>
+            </form>
         </div>
     </div>
 </div>
+</html>
 <script>
     $(document).ready(function() {
-        // Contador para asignar identificadores únicos
-        var contador = 1;
+        var contadorBotones = 1;
 
-        // Agregar más documentos
-        $(".agregar-documento").click(function() {
-            var documentosContainer = $(".documentos-container");
-            var original = documentosContainer.find("#documentos-original");
-            var nuevoDocumentoInput = original.clone(); // Clona el conjunto de campos original
+        $('#agregarMas').click(function() {
+            var botonesContainer = $('.add-boton');
+            var original = botonesContainer.find("#botones-original").clone(); // Clona el conjunto de campos original
+
+            // Hace visible el conjunto de campos clonado
+            original.css('display', '');
+
+            // Limpia los valores en los campos clonados
+            original.find("input[type='text']").val('');
 
             // Asigna un nuevo identificador único a los campos clonados
-            var nuevoId = 'documentos-clonados-' + contador;
-            nuevoDocumentoInput.attr('id', nuevoId);
-            nuevoDocumentoInput.find("input[type='file']").attr('name', 'ruta_documento[' + contador + ']');
-            nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[' + contador + ']');
+            original.find("input[type='text']").each(function(index) {
+                if (index == 0) { // Nombre del botón
+                    $(this).attr('name', 'nombre_btn[' + contadorBotones + ']');
+                } else { // URL del botón
+                    $(this).attr('name', 'url[' + contadorBotones + ']');
+                }
+            });
+
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar',
+                type: 'button',
+                click: function() {
+                    $(this).closest('.botones-input').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            original.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
+            // Inserta los campos clonados justo antes del botón "Agregar Más Botones externos"
+            $('#agregarMas').before(original);
 
             // Incrementa el contador
-            contador++;
-
-            // Muestra los campos clonados con una animación
-            nuevoDocumentoInput.hide().appendTo(documentosContainer).slideDown(300);
-
-            // Puedes ajustar el valor de 300 según tu preferencia para la duración de la animación
+            contadorBotones++;
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        var contadorDocumentos = 1;
+
+        $(".agregar-documento").click(function() {
+            var documentosContainer = $(".documentos-container");
+            var original = documentosContainer.find("#documentos-original").clone(); // Clona el conjunto de campos original
+
+            // Limpia los valores en los campos clonados
+            original.find("input[type='file']").val('');
+            original.find("input[type='text']").val('');
+
+            // Asigna un nuevo identificador único a los campos clonados
+            original.find("input[type='file']").attr('name', 'ruta_documento[' + contadorDocumentos + ']');
+            original.find("input[type='text']").attr('name', 'nombre_documento[' + contadorDocumentos + ']');
+
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text:'Eliminar',
+                class: 'btn btn-danger eliminar-documento',
+                type: 'button',
+                click: function() {
+                $(this).closest('.documentos-input').remove();
+                }
+                });
+            // Agrega el botón de eliminar a la fila clonada
+                    original.append($('<div/>', {
+                        class: 'col-md-12 text-right mt-2 mb-2'
+                    }).append(botonEliminar));
+
+                    // Incrementa el contador
+                    contadorDocumentos++;
+
+                    // Muestra los campos clonados con una animación
+                    original.hide().appendTo(documentosContainer).slideDown(300);
+                });
+            });
+</script>
+
 <script>
   $( function() {
     $("#fecha_apertura_datepicker").datepicker({
@@ -197,10 +300,31 @@
   } );
 </script>
 
-<script>
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
             .create(document.querySelector('#editor'))
             .catch(error => {
                 console.error(error);
             });
+    });
+</script>-->
+<script>
+  tinymce.init({
+    selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+    plugins: 'advlist link image lists',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
+</script>
+<script>
+    function confirmarEliminacion() {
+        return confirm('¿Estás seguro de eliminar el trámite por completo? Esta acción no se puede deshacer.');
+    }
 </script>

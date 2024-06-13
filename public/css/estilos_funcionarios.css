@@ -8,6 +8,20 @@ font-weight: 600;
 line-height: normal;
 }
 
+#banner{
+    background-color: #389144 ; height: 502px; display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.contenido{
+    margin-top: -9vh;
+    background-color: white;
+    border-top-left-radius: 90px;
+}
+
 .tituloform{
     color: #565656;
 font-family: Inter;
@@ -17,6 +31,15 @@ font-weight: 700;
 line-height: normal;
 }
 
+.titulofun {
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    }
+
 .parrafo2{
     color: #565656;
 font-family: Inter;
@@ -24,4 +47,78 @@ font-size: 16px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
+}
+
+
+.tituloresultadobuscador1{
+    width: 105%;
+    color: #565656;
+
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.textoresultadobuscador1{
+    color: #565656;
+
+font-family: 'Inter';
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.textoresultadobuscador2{
+color: #565656;
+font-family: 'Inter';
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.nombredetallado{
+    color: #565656;
+
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.spandetallado{
+    color: #565656;
+
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 30px;
+}
+
+
+
+@media (min-width: 768px) {
+    .seleccionycategoria {
+        padding-right: 10rem !important;
+        padding-left: 10rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .seleccionycategoria {
+        padding-right: 3rem !important;
+        padding-left: 3rem !important;
+    }
+
+    #footerdesktop{
+        display: none;
+    }
+
+    .contenido{
+        margin-top: -10vh !important;
+    }
 }

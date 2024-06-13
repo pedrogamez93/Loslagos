@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $introducciones->titulo }}" disabled>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo sección" value="{{ $introducciones->titulo }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label style-label">Imagen actual:</label>
                                                 @if ($introducciones->img)
-                                                    <img src="{{ asset('storage/' . $introducciones->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
+                                                    <img src="{{ asset($introducciones->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
                                                 @else
                                                     <p>No hay imagen disponible.</p>
                                                 @endif

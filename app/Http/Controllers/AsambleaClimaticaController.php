@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\AsambleaClimatica;
 use App\Models\AsambleaClimaticaDocs;
@@ -17,7 +18,7 @@ class AsambleaClimaticaController extends Controller
             $documentos = $asamblea->documentos;
             return view('asambleaclimatica.index', compact('asamblea', 'documentos'));
         } else {
-            return view('asambleaclimatica.index')->with('message', 'No hay asambleas disponibles.');
+            return view('asambleaclimatica.create')->with('message', 'No hay asambleas disponibles.');
         }
     }
 
@@ -67,26 +68,32 @@ class AsambleaClimaticaController extends Controller
                     'url_btn' => $request->input('url_btn'),
             ]);
 
-            try {
-                // Procesar documentos (individuales y comprimidos)
-                $documentos = $request->file('ruta_documento');
-                $nombresDocumentos = $request->input('nombre_documento') ?? [];
-        
-                foreach ($documentos ?? [] as $key => $documento) {
-                    $nombreDocumento = $nombresDocumentos[$key] ?? 'documento_' . ($key + 1);
-                    $rutaDocumento = $documento->store('documentosasamblea');
-        
-                    // Almacena en la base de datos
-                    AsambleaClimaticaDocs::create([
-                        'asamblea_climaticas_id' => $nuevoAsamblea->id,
-                        'nombre_documento' => $nombreDocumento,
-                        'ruta_documento' => $rutaDocumento,
-                    ]);
+            if ($request->hasFile('ruta_documento')) {
+                foreach ($request->file('ruta_documento') as $key => $documento) {
+                    try {
+                        // Almacenar el archivo en el directorio 'public/documentosasamblea'
+                        $path = $documento->store('public/documentosasamblea');
+                        $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
+            
+                        // Log para verificar la ruta del archivo almacenado
+                        \Log::info('Archivo almacenado en: ' . $path);
+            
+                        // Actualizar o crear nuevos registros de documentos
+                        AsambleaClimaticaDocs::updateOrCreate(
+                            ['asamblea_climaticas_id' => $asamblea->id, 'nombre_documento' => $nombre],
+                            ['ruta_documento' => $path, 'nombre_documento' => $nombre]
+                        );
+            
+                        // Log para verificar la operación de base de datos
+                        \Log::info('Documento actualizado/creado: ' . $nombre);
+                    } catch (\Exception $e) {
+                        // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+                        \Log::error('Error al procesar documentos: ' . $e->getMessage());
+                    }
                 }
-            } catch (\Exception $e) {
-                // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
-                \Log::error('Error al procesar documentos: ' . $e->getMessage());
             }
+            
+            
 
             return redirect()->route('asambleaclimatica.index');
     }
@@ -138,6 +145,7 @@ class AsambleaClimaticaController extends Controller
     
         // Lógica para actualizar los datos en la base de datos
         $asamblea = AsambleaClimatica::findOrFail($id);
+
         $asamblea->update([
             'titulo_one' => $request->input('titulo_one'),
             'descripcion_one' => $request->input('descripcion_one'),
@@ -156,15 +164,65 @@ class AsambleaClimaticaController extends Controller
             'nombre_btn' => $request->input('nombre_btn'),
             'url_btn' => $request->input('url_btn'),
         ]);
-    
+
+        if ($request->hasFile('ruta_documento')) {
+            foreach ($request->file('ruta_documento') as $key => $documento) {
+                try {
+                    // Almacenar el archivo en el directorio 'public/documentosasamblea'
+                    $path = $documento->store('public/documentosasamblea');
+                    $nombre = $request->nombre_documento[$key]; // Obtenemos el nombre correspondiente
+        
+                    // Log para verificar la ruta del archivo almacenado
+                    \Log::info('Archivo almacenado en: ' . $path);
+        
+                    // Actualizar o crear nuevos registros de documentos
+                    AsambleaClimaticaDocs::updateOrCreate(
+                        ['asamblea_climaticas_id' => $asamblea->id, 'nombre_documento' => $nombre],
+                        ['ruta_documento' => $path, 'nombre_documento' => $nombre]
+                    );
+        
+                    // Log para verificar la operación de base de datos
+                    \Log::info('Documento actualizado/creado: ' . $nombre);
+                } catch (\Exception $e) {
+                    // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+                    \Log::error('Error al procesar documentos: ' . $e->getMessage());
+                }
+            }
+        }
+        
+
         // Redirecciona a la vista index
         return redirect()->route('asambleaclimatica.index')->with('success', 'Asamblea actualizada exitosamente');
     }
 
-    public function destroy($id)
+    public function deleteDocumento($asambleaId, $documentoId)
+    {
+        // Encuentra el documento específico y elimínalo
+        $documento = AsambleaClimaticaDocs::find($documentoId);
+        if ($documento) {
+            Storage::delete($documento->ruta); // Asegúrate de que esta ruta sea correcta
+            $documento->delete();
+            return back()->with('success', 'Documento eliminado con éxito.');
+        } else {
+            return back()->with('error', 'Documento no encontrado.');
+        }
+    }
+
+
+    public function destroyasamblea($id)
     {
         $asamblea = AsambleaClimatica::findOrFail($id);
+    
+        // Eliminar o manejar documentos relacionados
+        // Por ejemplo, eliminar todos los documentos asociados con esta asamblea
+        foreach ($asamblea->documentos as $documento) {
+            // Aquí también podrías eliminar los archivos físicos si es necesario
+            $documento->delete();
+        }
+    
+        // Ahora que los documentos relacionados han sido manejados, puedes eliminar la asamblea
         $asamblea->delete();
-        return redirect()->route('asambleaclimatica.index');
+    
+        return redirect()->route('asambleaclimatica.create');
     }
 }

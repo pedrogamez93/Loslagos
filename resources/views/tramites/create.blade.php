@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -10,6 +12,8 @@
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <!-- Incluye los archivos JS de CKEditor -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 <style>
     h1 , h2{
         color: #565656;
@@ -89,6 +93,15 @@ input:required {
                             <h1>Tramites Digitales</h1> 
                         </div>
                     </div>
+                    <!--@if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif-->
                     <!-- Formulario para la creación de un nuevo trámite -->
                     <form action="{{ route('tramites.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -102,7 +115,7 @@ input:required {
                        
                         <label class="style-label mb-2" for="bajada">Bajada o Descripción:</label>
                         <textarea class="form-control mt-2 mt-5" id="editor" name="descripcion" placeholder="Bajada o Descripción"></textarea>
-
+ 
                         <div class="row mt-4">
                                 <div class="col-md-6">
                                 <p class="style-label">Fecha Apertura:<input class="form-control" type="text" name="fecha_apertura" id="fecha_apertura_datepicker"></p>
@@ -135,11 +148,11 @@ input:required {
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">Nombre del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn" placeholder="Nombre del boton externo">
+                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del boton externo">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="style-label" for="url">URL del boton externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url" placeholder="URL del boton externo">
+                                    <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del boton externo">
                                 </div>
                             </div>
                             <button type="button" id="agregarMas" class="btn btn-primary">Agregar Más</button>
@@ -202,6 +215,49 @@ input:required {
         </div>
     </div>
 </div>
+</html>
+<script>
+    $(document).ready(function() {
+        $('#agregarMas').click(function() {
+            var botonesContainer = $('.add-boton');
+            var nuevoBoton = botonesContainer.find('.row:first').clone(); // Clona el primer conjunto de campos
+
+            // Limpia los valores en los campos clonados
+            nuevoBoton.find("input[type='text']").val('');
+
+            // Genera un nuevo nombre único para cada campo clonado
+            var nuevoId = Date.now(); // Utiliza la marca de tiempo actual como identificador único
+            nuevoBoton.find("input[type='text']").each(function() {
+                var name = $(this).attr('name');
+                $(this).attr('id', name + '_' + nuevoId);
+            });
+
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.row').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoBoton.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
+            // Agrega los campos clonados al contenedor
+                botonesContainer.append(nuevoBoton);
+            });
+
+            // Evento para eliminar filas existentes (manejador delegado)
+            $(document).on('click', '.eliminar', function() {
+                $(this).closest('.row').remove();
+            });
+        });
+</script>
 
 <script>
     $(document).ready(function() {
@@ -221,8 +277,29 @@ input:required {
             nuevoDocumentoInput.find("input[type='text']").attr('id', 'nombre_documento_' + nuevoId);
             nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_documento[]');
 
+            // Agrega un botón de eliminar a la fila clonada
+            var botonEliminar = $('<button/>', {
+                text: 'Eliminar',
+                class: 'btn btn-danger eliminar-documento',
+                type: 'button',
+                click: function() {
+                    // Elimina la fila cuando se hace clic en el botón de eliminar
+                    $(this).closest('.documentos-input').remove();
+                }
+            });
+
+            // Agrega el botón de eliminar a la fila clonada
+            nuevoDocumentoInput.append($('<div/>', {
+                class: 'col-md-12 text-right mt-2 mb-2'
+            }).append(botonEliminar));
+
             // Agrega los campos clonados al contenedor
             documentosContainer.append(nuevoDocumentoInput);
+        });
+
+        // Evento para eliminar filas existentes (manejador delegado)
+        $(document).on('click', '.eliminar-documento', function() {
+            $(this).closest('.documentos-input').remove();
         });
     });
 </script>
@@ -238,12 +315,28 @@ input:required {
 
   } );
 </script>
-<script>
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
             .create(document.querySelector('#editor'))
             .catch(error => {
                 console.error(error);
             });
+    });
+</script>-->
+<script>
+  tinymce.init({
+    selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+    plugins: 'advlist link image lists',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>
 
 <script>
@@ -320,11 +413,5 @@ input:required {
       }
     });
 
-    // Botón "Agregar Más" para duplicar los inputs
-    $("#agregarMas").click(function () {
-      // Clonar el primer par de inputs y agregar al final
-      var nuevoBoton = $(".add-boton .row").first().clone();
-      $(".add-boton .row:last").after(nuevoBoton);
-    });
   });
 </script>

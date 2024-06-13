@@ -16,14 +16,26 @@ class TramitesDigitales extends Model
         'fecha_apertura',
         'fecha_cierre',
         'icono',
-        'nombre_btn',
-        'url',
         'url_single',
     ];
 
     public function documentos()
     {
         return $this->hasMany(TramitesDigitalesDocs::class, 'tramite_id');
+    }
+
+    public function btns()
+    {
+        return $this->hasMany(TramitesDigitalesBtns::class, 'tramite_id');
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($tramite) {
+            $tramite->documentos()->delete();
+            $tramite->btns()->delete();
+        });
     }
 
 }

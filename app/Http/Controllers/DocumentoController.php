@@ -15,6 +15,11 @@ class DocumentoController extends Controller
     $documentos['documentos'] = Documento::orderBy('created_at', 'asc')->paginate(2);
     return view('documentos.index', $documentos);
 }
+public function indexTabla()
+{
+    $documentos['documentos'] = Documento::orderBy('created_at', 'asc')->paginate(20);
+    return view('documentos.tabladocumentos', $documentos);
+}
 
     public function create()
     {
@@ -52,12 +57,42 @@ class DocumentoController extends Controller
         $documentos = Documento::where('categoria', $categoria);
 
         if ($nombre) {
-            $documentos = $documentos->orWhere('nombre', 'LIKE', "%$nombre%");
+            $documentos = Documento::where('nombre', 'LIKE', "%$nombre%");
         }
 
         $documentos = $documentos->get();
         
 
         return view('documentos.resultados', compact('documentos'));
+    }
+
+    public function edit($id)
+    {
+        $documento = Documento::findOrFail($id);
+        // Puedes necesitar cargar otras cosas según tus necesidades
+        return view('documentos.edit', compact('documento'));
+    }
+
+     public function update(Request $request, $id)
+    {
+        $documento = Documento::findOrFail($id);
+
+        // Valida y actualiza los campos según tu modelo
+        $request->validate([
+            'nombre' => 'required',
+            // Agrega otras reglas de validación según tus necesidades
+        ]);
+
+        $documento->update($request->all());
+
+        return redirect('/documentos')->with('success', 'Documento actualizado exitosamente');
+    }
+
+    public function destroy($id)
+    {
+        $documento = Documento::findOrFail($id);
+        $documento->delete();
+
+        return redirect()->route('documentos.verdocumentos')->with('success', 'Documento eliminado exitosamente');
     }
 }

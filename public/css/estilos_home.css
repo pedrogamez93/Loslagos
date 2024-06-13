@@ -14,8 +14,9 @@
     src: url('/fonts/Inter-ExtraBold.ttf') format('truetype');
     font-weight: 800; /* Indica que esta es la versión ExtraBold */
   }
-
-
+  nav.navbar{
+    padding: 8px 0px !important;
+  }
   *,
   ::before,
   ::after {
@@ -41,6 +42,9 @@
     
   }
 
+  footer{
+    border-radius: 0px 150px 0px 0px !important;
+  }
  
 #banner {
     background-color: #D9D9D9 !important; /* Color gris */
@@ -77,22 +81,44 @@
     place-content: center;
 }
 
-.colinputbuscador{
+/* .colinputbuscador{
     align-self: center;
 }
-
-#inputbucador{
-    width: 727px;
-    height: 80px;
-    top: 1vh;
-    left: 1vw;
-    border-radius: 100px !important;
-
-
+#inputbucador {
+  width: 68%;
+  height: 80px;
+  top: 1vh;
+  border-radius: 100px !important;
 }
 
+
+@media only screen and (max-width: 767px) {
+  #inputbucador {
+      width: 90%; 
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  #inputbucador {
+      width: 80%; 
+  }
+}
+
+
+@media only screen and (min-width: 1024px) and (max-width: 2500px) {
+  #inputbucador {
+      width: 68%; 
+}
+
+
+@media only screen and (min-width: 2501px) {
+  #inputbucador {
+      width: 68%; /
+  }
+} */
+
 .TitulocarouselTD{
-    /*font-family: Inter;*/
+   
 font-size: 20px;
 font-weight: 700;
 line-height: 24px;
@@ -100,3 +126,467 @@ letter-spacing: 0em;
 text-align: left;
 
 }
+
+.titulohome{
+  color: #FFF;
+
+font-family: Inter;
+font-size: 50px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: start;
+width: 100%;
+}
+
+.descripcionhome{
+  color: #FFF;
+
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-align: start;
+width: 100%;
+}
+
+
+.bannerinferior{
+  color: white;
+
+font-family: Inter;
+font-size: 50px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+width: 65%;
+text-align: -webkit-left;
+
+}
+.contenidobannerinferior{
+  color: white;
+
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.bg-gray-300{
+  background-color: #D9D9D9;
+  width: 299px;
+height: 268px;
+border-color: #d9d9d9;
+}
+
+.bg-body-tertiary{
+  
+}
+
+.bg-body-tertiary {
+  /* height: 413px; */
+  width: 99vw; /* Establece el ancho al 100% del ancho de la ventana del navegador */
+  margin-left: calc(-50vw + 50%); /* Centra el banner en la pantalla */
+  margin-right: calc(-50vw + 50%);
+  border-radius: 0; /* Elimina el borde redondeado que puede tener el banner */
+}
+
+.centrar{
+  margin-left: calc(6vw + 15%);
+}
+
+/* Media query para pantallas pequeñas */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .bannerinferior,
+  .contenidobannerinferior,
+  .btn-outline-primary {
+      margin-left: calc(5vw + 5%);
+      margin-right: calc(5vw + 5%);
+  }
+}
+
+/* Media query para pantallas medianas */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .bannerinferior,
+  .contenidobannerinferior,
+  .btn-outline-primary {
+      margin-left: calc(7.5vw + 7.5%);
+      margin-right: calc(7.5vw + 7.5%);
+  }
+}
+
+/* Media query para pantallas grandes (computadoras) */
+@media only screen and (min-width: 1024px) {
+ 
+}
+
+ /* Agrega estilos para el margen entre los slides */
+ #thumbnail-slider .carousel-item {
+  margin-right: 20px;
+}
+
+/* Corrige el margen del último elemento */
+#thumbnail-slider .carousel-item:last-child {
+  margin-right: 0;
+}
+
+
+.card-title{
+  color: #565656;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.card-text{
+  color: #565656;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.btn-vertodos{
+  
+  border-radius: 20px;
+  background: #F59120;
+  border: none;
+
+}
+
+.titulotramites{
+  color: #565656 ;
+  font-family: Inter !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: normal;
+}
+
+.descripciontramites{
+  color: #565656;
+  font-family: Inter !important;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: normal;
+}
+
+.carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%; /* Ajustar a la altura deseada */
+}
+
+.carousel-item img {
+  max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
+  
+}
+
+#thumbnail-slider .carousel-item:last-child{
+  min-width: 300px !important;
+}
+
+.carousel-caption {
+ 
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.titulotramites {
+  width: 250px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.descripciontramites {
+  font-size: 1rem;
+}
+
+.carousel-item {
+  border-radius: 10px; /* Ajusta el valor según la curvatura deseada */
+  overflow: hidden; /* Asegura que el contenido no se extienda más allá del contenedor redondeado */
+}
+
+.carousel-caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carousel-item {
+  max-height: 300px; /* Establece la altura máxima que desees */
+  overflow: hidden;
+}
+
+.carousel-caption {
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 55%;
+}
+
+.tituloprensa {
+  position: relative !important;
+  overflow: hidden;
+  white-space: break-spaces;
+  /* text-overflow: ellipsis; */
+  color: #FFF;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+
+
+
+.descripcionprensa{
+
+  text-align: center; margin-top: 50%; transform: translateY(-50%);
+  color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: italic;
+font-weight: 600;
+line-height: 1.5;
+overflow-wrap: break-word;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+
+}
+
+h5.footer-col-title {
+  padding-bottom: 20px;
+}
+
+
+
+.irnoticia{
+  
+  text-decoration: none;
+  color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.home-descripcion{
+  color: #565656;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+
+.titleshome{
+  color: #565656;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.imagen-con-brillo {
+  filter: brightness(0.7); /* Ajusta el valor según desees, 0.7 es más oscuro, 1 es normal */
+}
+
+.input-group {
+  display: flex;
+  max-width: 550px; /* Ajusta el ancho máximo según tus necesidades */
+  width: 45rem;
+  margin: 0 auto; /* Centra el grupo de entrada en la pantalla */
+  
+}
+
+.input-group-field {
+  flex-grow: 1;
+  box-sizing: border-box;
+  border-radius: 20px 1px 1px 20px;
+  padding: 10px; /* Ajusta el relleno según tus necesidades */
+}
+
+.button.secondary {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: #F59120;
+  color: white;
+  padding: 12px; 
+}
+
+.input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating){
+  border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+}
+
+
+#fondobanner{
+  height: 25vw;
+}
+/* TELEFONO */
+@media screen and (max-width: 600px) {
+
+  .titulohome{
+    font-family: Inter;
+font-size: 25px;
+font-weight: 700;
+line-height: 25px;
+letter-spacing: 0em;
+text-align: left;
+
+  }
+.descripcionhome{
+
+
+  font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+line-height: 17px;
+letter-spacing: 0em;
+text-align: left;
+}
+
+
+  #minibanners{
+    display: none;
+  }
+
+  #footerdesktop{
+    display: none !important;
+  }
+
+  #containersalaprensa{
+    flex-wrap: wrap;
+  }
+
+  #fondobanner{
+    height: 100vw;
+  }
+
+  .bannerinferior{
+    color: white;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 65%;
+    text-align: -webkit-left;
+  }
+
+  #columnaimg{
+display: none;
+  }
+
+  #btnbuscador{
+    height: 45px;
+    border-radius: 1px 20px 20px 1px;
+  }
+  
+  #formbuscador{
+    position: absolute;
+    margin-top: calc(80vw + 70%);
+    left: -8vw;
+  }
+
+  #header{
+height: 240vw;
+background-color: #389144;
+
+  }
+
+  #divformbuscador{
+    margin-top: 25vw;
+    display: flex !important;
+    max-width: 400px;
+    margin: 0 auto;
+    flex-wrap: nowrap !important;
+  }
+
+  .input-group {
+   
+    flex-direction: row; /* Cambia a columna en pantallas más pequeñas si es necesario */
+  }
+
+  .input-group-field {
+    margin-right: 0; /* Elimina el margen derecho en pantallas más pequeñas */
+    margin-bottom: 10px; /* Agrega margen inferior en pantallas más pequeñas si es necesario */
+  }
+}
+
+/* PC */
+@media screen and (min-width: 800px) {
+
+  #minibanners{
+    display: block;
+  }
+
+  #mibannermobil{
+    display: none;
+  }
+
+  #header{
+    height: 800px;
+    background-color: #389144;
+      }
+
+
+  .input-group {
+    flex-direction: row; /* Mantén la fila en pantallas más grandes */
+  }
+
+  .input-group-field {
+    /* Restaura el margen derecho en pantallas más grandes si es necesario */
+    margin-bottom: 0; /* Elimina el margen inferior en pantallas más grandes */
+  }
+
+  .button.secondary {
+    border-radius: 0px 20px 20px 0px !important;
+  }
+}
+
+#inputbucador::placeholder {
+  text-align: left;
+  padding-left: 25%; /* Adjust the value as needed */
+}
+
+/* Estilo para el div con esquina izquierda superior curva */
+/* Estilo para el div con esquina izquierda superior curva */
+.esquina-curva {
+  position: relative;
+  top: -48px;
+  height: 55px;
+  width: 100%;
+  z-index: 999;
+  background: linear-gradient(to bottom right, #389144 0%, #fff 0%);
+  border-top-left-radius: 100px;
+}
+
+.carousel-indicators button {
+  border-radius: 50%;  /* Esto hace que los dots sean redondos */
+  width: 10px !important;  /* Ajusta el ancho según sea necesario */
+  height: 10px !important;  /* Ajusta la altura según sea necesario */
+  margin-right: 3px;
+  margin-left: 3px;
+  background-color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+}
+
+
+

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -6,6 +8,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- Incluye los archivos JS de CKEditor -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/s8k6nnp5xwio3bml2pkpzbjl7oejngmdeyu8ujwbjzyvwmq4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script> src="https://cdn.tiny.cloud/1/no-origin/tinymce/5.10.9-138/tinymce.min.js" </script>
 <style>
     h1 , h2 {
         color: #565656;
@@ -73,7 +77,7 @@
                         </div>
                     </div>
                     <!-- Mostrar la información de la base de datos -->
-                    <form action="{{ route('audienciasdepartes.update', $audiencia->id) }}" method="POST" id="formulario-edicion">
+                        <form action="{{ route('audienciasdepartes.update', $audiencia->id) }}" method="POST" id="formulario-edicion" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <!-- Campos del formulario -->
@@ -83,10 +87,26 @@
                             <label class="style-label" for="bajada">Bajada o Descripción:</label>
                             <textarea class="form-control mt-2 mb-4" id="editor" name="bajada" disabled>{{ $audiencia->bajada ?? '' }}</textarea>
 
-                            <label class="style-label" for="tituloseccion">Título Sección documentos:</label>
-                            <input class="form-control mt-2 mb-4" type="text" name="titulo_secciontwo" value="{{ $audiencia->titulo_secciontwo ?? '' }}" disabled>
+                            <label class="style-label mt-4" for="tituloseccion">Título Sección documentos:</label>
+                            <input class="form-control mt-2" type="text" name="titulo_secciontwo" value="{{ $audiencia->titulo_secciontwo ?? '' }}" disabled>
 
-                        <div class="container">
+                            <div class="documentos-container">
+                                <div id="documentos-original" class="documentos-input" style="display: none;">
+                                    <label class="style-label" for="documentos">Documentos:</label>
+                                        <input class="form-control mt-2 mb-4" type="file" name="url_doc[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple disabled>
+                                        <input class="form-control mt-2 mb-2" type="text" name="nombre_doc[]" placeholder="Nombres de los Documentos" multiple disabled>
+                                </div>
+                            </div>
+                            <!-- Botón para agregar más documentos -->
+                            <button type="button" class="btn btn-primary agregar-documento mt-4">Agregar Más</button>
+
+                            <div class="col-md-6">
+                                <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar audiencia</button>
+                                <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
+                            </div>
+                        </form>
+
+                        <div class="container mb-4">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mt-4">
@@ -98,37 +118,35 @@
                                                         <p class="form-control mt-2">{{ $documento->nombre_doc }}</p>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button type="button" class="btn btn-danger mt-2">Eliminar</button>
+                                                        <!-- Formulario de eliminación -->
+                                                        <form action="{{ route('eliminar_doc_audiencia', ['audienciaId' => $audiencia->id, 'documentoId' => $documento->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este documento?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
+                                                        </form>
                                                     </div>
                                                 @endforeach   
                                             </div>
-                                            <div class="documentos-container mt-3">
-                                                <div id="documentos-original" class="documentos-input" style="display: none;">
-                                                    <label class="style-label" for="documentos">Documentos:</label>
-                                                    <input class="form-control mt-2 mb-4" type="file" name="url_doc[]" accept=".pdf, .doc, .docx, .zip, .rar" multiple disabled>
-                                                    <input class="form-control mt-2 mb-2" type="text" name="nombre_doc[]" placeholder="Nombres de los Documentos" multiple disabled>
-                                                </div>
-                                            </div>
-                                            <!-- Botón para agregar más documentos -->
-                                            <button type="button" class="btn btn-primary agregar-documento">Agregar Más</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="mt-5 mb-4 btn btn-success" type="button" id="boton-editar">Editar audiencia</button>
-                        <button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>
-                    </form>
+
                 </div>
+                <form action="{{ route('ruta_eliminar_audiencia', $audiencia->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este registro?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm mt-4 mb-4">Eliminar Audiencia</button>
+            </form>
             </div>
         </div>
     </div>
 </div>
-
+</html>
 <script>
 $(document).ready(function() {
-    // Contador para asignar identificadores únicos
-    var contador = 1;
+    var contador = 1; // Contador para asignar identificadores únicos
 
     // Función para clonar el conjunto de campos original
     function clonarDocumentoInput() {
@@ -142,9 +160,16 @@ $(document).ready(function() {
         nuevoDocumentoInput.find("input[type='file']").attr('name', 'url_doc[' + contador + ']');
         nuevoDocumentoInput.find("input[type='text']").attr('name', 'nombre_doc[' + contador + ']');
 
-        // Incrementa el contador
-        contador++;
+        // Añadir botón de eliminar para el campo clonado
+        var deleteButton = $('<button/>', {
+            "type": "button",
+            "class": "btn btn-danger btn-sm eliminar-documento",
+            "text": "Eliminar",
+            "click": function() { $(this).closest('.documentos-input').remove(); }
+        });
+        nuevoDocumentoInput.append(deleteButton);
 
+        contador++; // Incrementa el contador
         return nuevoDocumentoInput;
     }
 
@@ -178,12 +203,26 @@ $(document).ready(function() {
 });
 </script>
 
-<script>
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
-            .create(document.querySelector('#editor'), {
-                allowedContent: true
-            })
+            .create(document.querySelector('#editor'))
             .catch(error => {
                 console.error(error);
             });
+    });
+</script>-->
+<script>
+  tinymce.init({
+    selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+    plugins: 'advlist link image lists',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>

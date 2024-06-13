@@ -55,9 +55,19 @@
         </div>
         <div class="col-md-10">
             <div class="container">
-                <h1>Listado de Autoridades</h1>
-                <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
 
+                <h1>Listado de Autoridades</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ route('AutoridadesRegionLagos.createAutoridades') }}" class="btn btn-primary">Crear Autoridad</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{ route('buscarAutoridades.show') }}" method="GET">
+                            <input type="text" name="query" placeholder="Buscar..." class="form-control" style="float: left;width: auto;">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </form>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -72,7 +82,6 @@
                             <td>{{ $art->nombre }}</td>
                             <td>{{ $art->cargo }}</td>
                             <td>
-                                <a href="{{ route('AutoridadesRegionLagos.showAutoridades', $art->id) }}" class="btn btn-info">Ver</a>
                                 <a href="{{ route('AutoridadesRegionLagos.editAutoridades', $art->id) }}" class="btn btn-warning">Editar</a>
                                 
                                 <form method="POST" action="{{ route('AutoridadesRegionLagos.destroyAutoridades', $art->id) }}"  style="display: inline;">

@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-md-6 title">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo seccion" value="{{ $mision->titulo }}" disabled>
+                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo sección" value="{{ $mision->titulo }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         <div class="mb-3">
                                             <label for="formFile" class="form-label style-label">Imagen actual:</label>
                                                 @if ($mision->img)
-                                                    <img src="{{ asset('storage/' . $mision->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
+                                                    <img src="{{ asset($mision->img) }}" alt="Imagen actual" style="max-width: 200px; max-height: 200px;">
                                                 @else
                                                     <p>No hay imagen disponible.</p>
                                                 @endif
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="col-md-12 enlace">
                                         <div class="input-group mb-3">
-                                            <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace boton" value="{{ $mision->enlace }}" disabled>
+                                            <input type="text" id="enlace" name="enlace" class="form-control" placeholder="Enlace botón" value="{{ $mision->enlace }}" disabled>
                                         </div>
                                     </div>
                                 </div>

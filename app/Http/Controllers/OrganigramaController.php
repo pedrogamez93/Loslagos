@@ -16,7 +16,7 @@ class OrganigramaController extends Controller
             return view('organigrama.index', compact('organigrama'));
         } else {
             // Si no hay registros, puedes manejarlo de alguna manera
-            return view('organigrama.index')->with('message', 'No se encontraron datos de "Cómo funciona"');
+            return view('organigrama.create')->with('message', 'No se encontraron datos de "Cómo funciona"');
         }
     }
 
@@ -45,5 +45,9 @@ class OrganigramaController extends Controller
     
             return redirect('/organigrama');
         }
+    }
+
+    public function mostrarImagen($imagen){
+        return response()->file(storage_path('app/public/images/' . $imagen));
     }
 }
