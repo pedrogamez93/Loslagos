@@ -280,7 +280,7 @@
                                             @foreach ($documentosControlesSSI as $documento)
                                                 <div class="col-md-6">
                                                     <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                                                        <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                        <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
                                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
                                                             <p class="p-doc mt-2 mb-2 ms-3" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; color:#565656;">{{ $documento->titulo }}</p>
                                                         </a>

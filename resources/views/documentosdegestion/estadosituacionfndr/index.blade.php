@@ -291,7 +291,7 @@
                                                                 @foreach ($documentosAgrupados[$anioActual] as $documento)
                                                                     <div class="col-md-6">
                                                                         <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                                                                            <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                            <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
                                                                                 <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
                                                                                 <p class="ms-3">{{ $documento->titulo }}</p>
                                                                             </a>
@@ -326,7 +326,7 @@
                                                                         @foreach($documentosDelAnio as $documento)
                                                                             <div class="col-md-6">
                                                                                 <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                                                                                    <a href="{{ asset('storage/' . $documento->ruta_documento) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                                    <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
                                                                                         <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
                                                                                         <p class="ms-3">{{ $documento->titulo }}</p>
                                                                                     </a>
