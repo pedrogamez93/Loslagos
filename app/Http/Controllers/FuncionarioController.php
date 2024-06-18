@@ -514,7 +514,7 @@ public function update(Request $request, $id)
 
             // Verificar y asignar valores predeterminados
             $nombre = $fila['nombre'] ?? 'No especificado';
-            $apellido = $fila['apellido'] ?? 'No especificado';
+            // $apellido = $fila['apellido'] ?? 'No especificado';
             $actividad = $fila['actividad'] ?? 'No especificado';
             $division = $fila['division'] ?? 'No especificado';
             $departamento = $fila['departamento'] ?? 'No especificado';
@@ -538,7 +538,7 @@ public function update(Request $request, $id)
             // Insertar en la base de datos
             Funcionario::create([
                 'nombre' => $nombre,
-                'apellido' => $apellido,
+                // 'apellido' => $apellido,
                 'actividad' => $actividad,
                 'division' => $division,
                 'departamento' => $departamento,
