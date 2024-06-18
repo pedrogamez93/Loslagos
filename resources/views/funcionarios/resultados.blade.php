@@ -69,7 +69,7 @@
         
        
                 <div class="col-md-4">
-                <a href="{{ route('funcionarios.show', ['id' => $funcionario->id]) }}" style="margin-bottom:15px">
+                <a  style="margin-bottom:15px">
                         <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
                                     
                         <div>
