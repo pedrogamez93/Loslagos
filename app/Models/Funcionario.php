@@ -19,7 +19,7 @@ class Funcionario extends Model
       'cargo',
       'direccion',
       'telefono',
-      'e-mail',
+      'email',
       'region',
       'provincia',
       'comuna',
