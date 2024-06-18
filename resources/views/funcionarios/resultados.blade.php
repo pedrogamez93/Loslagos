@@ -30,7 +30,7 @@
             <p class="parrafo1 p-1 colorB">Infórmate sobre nuestra Región...</p>
                 <h4 class="tituloform colorB">Nuestro Directorio</h4>
                 <p class="parrafo2 p-1 colorB">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>
-                <form action="{{ url('/funcionarios/buscar') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/funcionarios/buscar') }}" method="POST">
                 @csrf
                 <div class="row">
                 <div class="col-md-6">
@@ -84,7 +84,7 @@
                                 <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>
                                 <p class="textoresultadobuscador1 colorB">Cargo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->cargo }}</span></p>
                                 <p class="textoresultadobuscador1 colorB">departamento: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->departamento }}</span></p>   
-                                <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->correo }}</span></p>
+                                <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->email }}</span></p>
                                 <p class="textoresultadobuscador1 colorB">Division: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->division }}</span></p>
                                 <p class="textoresultadobuscador1 colorB">Direccion: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->direccion }}</span></p>
                                
