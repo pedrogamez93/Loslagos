@@ -379,7 +379,7 @@ public function update(Request $request, $id)
     // Validación de los campos
     $request->validate([
         'nombre' => 'nullable',
-        'apellido' => 'nullable',
+        // 'apellido' => 'nullable',
         'actividad' => 'nullable',
         'division' => 'nullable',
         'departamento' => 'nullable',
@@ -403,7 +403,7 @@ public function update(Request $request, $id)
     // Actualizar los campos proporcionados
     $funcionarios->update(array_filter($request->only([
         'nombre',
-        'apellido',
+        // 'apellido',
         'actividad',
         'division',
         'departamento',
