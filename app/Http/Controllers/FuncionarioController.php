@@ -521,7 +521,7 @@ public function update(Request $request, $id)
             $cargo = $fila['cargo'] ?? 'No especificado';
             $direccion = $fila['direccion'] ?? 'No especificado';
             $telefono = $fila['telefono'] ?? '0000';
-            $email = $fila['e-mail'] ?? 'No especificado';
+            $email = $fila['email'] ?? 'No especificado';
             $region = $fila['region'] ?? 'No especificado';
             $provincia = $fila['provincia'] ?? 'No especificado';
             $comuna = $fila['comuna'] ?? 'No especificado';
