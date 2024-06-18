@@ -212,8 +212,8 @@ public function indexTabla()
     public function buscar(Request $request)
     {
         // Verificar que las variables divisiones y departamentos están definidas
-        $divisiones = $this->divisiones ?? [];
-        $departamentos = $this->departamentos ?? [];
+        $divisiones = Funcionario::distinct()->pluck('division');
+        $departamentos = Funcionario::distinct()->pluck('departamento');
     
         // Agregar registros de depuración
         Log::info('Datos recibidos del formulario:', $request->all());

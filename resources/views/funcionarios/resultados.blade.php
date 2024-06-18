@@ -31,34 +31,39 @@
                 <h4 class="tituloform colorB">Nuestro Directorio</h4>
                 <p class="parrafo2 p-1 colorB">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>
                 <form action="{{ url('/funcionarios/buscar') }}" method="POST">
-                @csrf
-                <div class="row">
-                <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
-                    <option value="" disabled selected>Seleccione Departamento</option>
-                    </select>
-                        </div>
-                        <div class="col-md-6">
-                        <select class="form-select mt-4" aria-label="Default select example" id="division" name="division" >
-                            
-                        <option value="" disabled selected>Seleccione División</option>
-                        @foreach ($divisiones as $division)
-                        <option value="{{ $division }}">{{ $division }}</option>
-                        @endforeach
-                        </select>
-                        </div>
-
-                </div>
+            @csrf
+            <div class="row">
+            <div class="col-md-6">
+                    <select class="form-select mt-4" aria-label="Default select example" id="departamento" name="departamento" >
                
-                
-                
-                
-                
-                    <input class="form-control mt-2" name="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
-                    <div class="pt-5" style="direction: rtl;">
-                    <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
+                    <option value="" disabled selected>Seleccione Departamento</option>
+                    @foreach ($departamentos as $departamento)
+                    <option value="{{ $departamento }}">{{ $departamento }}</option>
+                    @endforeach
+                </select>
                     </div>
-                    </form>
+
+                    <div class="col-md-6">
+                    <select class="form-select mt-4" aria-label="Default select example" id="division" name="division" >
+                        
+                    <option value="" disabled selected>Seleccione División</option>
+                    @foreach ($divisiones as $division)
+                    <option value="{{ $division }}">{{ $division }}</option>
+                    @endforeach
+                    </select>
+                    </div>
+
+            </div>
+            
+            
+            
+            
+            
+                <input class="form-control mt-2" name="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
+                <div class="pt-5" style="direction: rtl;">
+                <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
+                </div>
+                </form>
             </div>
             
         </div>
