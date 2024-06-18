@@ -164,19 +164,19 @@
 
             <label for="region">Región:</label>
     <select class="form-select mt-4" id="region" name="region" onchange="cargarProvincias()">
-        <option value="">Selecciona una región</option>
+        <option value="">{{ $funcionario->region}}</option>
         <!-- Aquí puedes agregar opciones para cada región -->
     </select>
 
     <label for="provincia">Provincia:</label>
     <select class="form-select mt-4" id="provincia" name="provincia" onchange="cargarComunas()">
-        <option value="">Selecciona una provincia</option>
+        <option value="">{{ $funcionario->provincia}}</option>
         <!-- Las opciones de provincias se cargarán dinámicamente mediante JavaScript -->
     </select>
 
     <label for="comuna">Comuna:</label>
     <select  class="form-select mt-4" id="comuna" name="comuna">
-        <option value="">Selecciona una comuna</option>
+        <option value="">{{ $funcionario->comuna}}</option>
         <!-- Las opciones de comunas se cargarán dinámicamente mediante JavaScript -->
     </select>
 
@@ -188,18 +188,18 @@
     </select>
 
 
-    <!-- @if($funcionario->foto)
+    @if($funcionario->foto)
     <div class="mb-3 mt-4">
         <label class="style-label mt-4" for="current_image">Imagen Actual:</label>
-        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionario', 'imagen' => basename($funcionario->foto)]) }}" class="img-fluid imagen-con-brillo mx-5" alt="{{ $funcionario->titulo }}" id="currentImage" style="max-width: 200px; max-height: 200px;">
+        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" class="img-fluid imagen-con-brillo mx-5" alt="{{ $funcionario->titulo }}" id="currentImage" style="max-width: 200px; max-height: 200px;">
     </div>
-@endif -->
+@endif 
 
-<!-- Sección para previsualizar y reemplazar la nueva imagen -->
-<!-- <div class="mb-3 mt-4">
+ Sección para previsualizar y reemplazar la nueva imagen 
+ <div class="mb-3 mt-4">
     <label for="formFile" class="form-label">Suba aquí la foto correspondiente</label>
     <input class="form-control" type="file" name="foto" id="foto" onchange="previewAndReplaceImage(this)">
-</div> -->
+</div>
 
 
             <button class=" mt-5 btn btn-success" type="submit">Guardar</button>

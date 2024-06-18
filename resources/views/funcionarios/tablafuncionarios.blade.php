@@ -114,10 +114,9 @@ input:required {
                         <td>
                            
                         <!-- <a href="{{ route('funcionarios2.edit', ['id' => $funcionario->id]) }}" class="btn btn-warning">Editar</a> -->
-                        <form action="{{ route('funcionarios2.edit', ['id' => $funcionario->id]) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="btn btn-warning">editar</button>
-                        </form>
+                      
+                            <a type="submit" class="btn btn-warning" href="{{ route('funcionarios2.edit', ['id' => $funcionario->id]) }}">editar</a>
+                      
                         
 
                             <form action="{{ route('funcionarios.destroy', ['id' => $funcionario->id]) }}" method="POST" style="display: inline;">

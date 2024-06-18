@@ -72,13 +72,13 @@
                 <a href="{{ route('funcionarios.show', ['id' => $funcionario->id]) }}" style="margin-bottom:15px">
                         <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
                                     
-                        <div >
-                       
-<img  src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="" style="max-width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-"> </div>
+                        <div>
+                    @if ($funcionario->foto)
+                        <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="" style="max-width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
+                    @else
+                        <img src="{{ asset('images/Rectangle190.png') }}" alt="Imagen por defecto" style="max-width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
+                    @endif
+                </div>
                                 <div style="padding-left:3%">
                                 <p  class="tituloresultadobuscador1 colorB">{{ $funcionario->nombre }}</p>
                                 <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>

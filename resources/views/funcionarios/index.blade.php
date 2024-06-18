@@ -22,6 +22,15 @@
         <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>
             <h4 class="tituloform">Nuestro Directorio</h4>
             <p class="parrafo2 p-1">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             <form action="{{ url('/funcionarios/buscar') }}" method="POST">
             @csrf
             <div class="row">

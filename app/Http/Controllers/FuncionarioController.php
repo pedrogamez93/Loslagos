@@ -8,6 +8,7 @@ use App\Models\Funcionario;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use League\Csv\Reader;
+use Illuminate\Support\FacadesLog;
 use Illuminate\Support\Facades\Log;
 class FuncionarioController extends Controller
 {
@@ -170,7 +171,7 @@ public function indexTabla()
       
         $request->validate([
             'nombre' => 'nullable',
-            
+            'apellido' => 'required',
             'actividad' => 'nullable',
             'division' => 'nullable',
             'departamento' => 'nullable',
@@ -209,49 +210,88 @@ public function indexTabla()
     }
 
     public function buscar(Request $request)
-{
-    $divisiones = $this->divisiones; 
-    $departamentos = $this->departamentos;
-
-    $request->validate([
-        'nombre' => 'nullable',
-        'sexo'  => 'nullable',
-        'division'  => 'nullable',
-        'departamento' => 'nullable'
-    ]);
-
-    $nombre = $request->input('nombre');
-
+    {
+        // Verificar que las variables divisiones y departamentos están definidas
+        $divisiones = $this->divisiones ?? [];
+        $departamentos = $this->departamentos ?? [];
     
-
-    $division = $request->input('division');
-    $sexo = $request->input('sexo');
-    $departamento = $request->input('departamento');
-
-    $funcionarios = Funcionario::query();
-
-    if ($nombre) {
-        $funcionarios->where('nombre', 'LIKE', "%$nombre%");
-    }
-
+        // Agregar registros de depuración
+        Log::info('Datos recibidos del formulario:', $request->all());
     
-
-    if ($division) {
-        $funcionarios->where('division', $division);
+        try {
+            // Validación de los datos
+            $request->validate([
+                'nombre' => 'nullable|string',
+                'apellido' => 'nullable|string',
+                'sexo'  => 'nullable|string',
+                'division'  => 'nullable|string',
+                'departamento' => 'nullable|string'
+            ]);
+    
+            Log::info('Validación completada');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Errores de validación:', $e->errors());
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
+    
+        // Obtener los valores de los campos del formulario
+        $nombre = $request->input('nombre');
+        $apellido = $request->input('apellido');
+        $division = $request->input('division');
+        $sexo = $request->input('sexo');
+        $departamento = $request->input('departamento');
+    
+        // Agregar registros de depuración para cada campo
+        Log::info('Valor de nombre:', ['nombre' => $nombre]);
+        Log::info('Valor de apellido:', ['apellido' => $apellido]);
+        Log::info('Valor de division:', ['division' => $division]);
+        Log::info('Valor de sexo:', ['sexo' => $sexo]);
+        Log::info('Valor de departamento:', ['departamento' => $departamento]);
+    
+        // Construir la consulta
+        $funcionarios = Funcionario::query();
+    
+        if ($nombre) {
+            $funcionarios->where('nombre', 'LIKE', "%$nombre%");
+            Log::info('Filtro aplicado: nombre');
+        }
+    
+        if ($apellido) {
+            $funcionarios->where('apellido', 'LIKE', "%$apellido%");
+            Log::info('Filtro aplicado: apellido');
+        }
+    
+        if ($division) {
+            $funcionarios->where('division', $division);
+            Log::info('Filtro aplicado: division');
+        }
+    
+        if ($departamento) {
+            $funcionarios->where('departamento', $departamento);
+            Log::info('Filtro aplicado: departamento');
+        }
+    
+        if ($sexo) {
+            $funcionarios->where('sexo', $sexo);
+            Log::info('Filtro aplicado: sexo');
+        }
+    
+        // Obtener los resultados
+        $funcionarios = $funcionarios->get();
+    
+        // Verificar si se encontraron resultados
+        if ($funcionarios->isEmpty()) {
+            Log::info('No se encontraron resultados.');
+        } else {
+            Log::info('Resultados de la búsqueda:', $funcionarios->toArray());
+        }
+    
+        // Devolver la vista con los datos
+        return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
     }
-
-    if ($departamento) {
-        $funcionarios->where('departamento', $departamento);
-    }
-
-    if ($sexo) {
-        $funcionarios->where('sexo', $sexo);
-    }
-
-    $funcionarios = $funcionarios->get();
-
-    return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
-}
+    
+    
+    
 
 public function edit2(Request $request)
 {
@@ -329,15 +369,17 @@ public function edit($id)
 }
 
 
-
- public function update(Request $request, $id)
+public function update(Request $request, $id)
 {
+    logger()->info('Entrando a la función update', ['id' => $id]);
+
+    // Encontrar el funcionario por ID
     $funcionarios = Funcionario::findOrFail($id);
 
-    // Valida y actualiza los campos según tu modelo
+    // Validación de los campos
     $request->validate([
         'nombre' => 'nullable',
-            
+        'apellido' => 'nullable',
         'actividad' => 'nullable',
         'division' => 'nullable',
         'departamento' => 'nullable',
@@ -352,15 +394,16 @@ public function edit($id)
         'Tfuncionario' => 'nullable',
         'fecha_nacimiento' => 'nullable',
         'lugar_nacimiento' => 'nullable',
-        'sexo' => 'nullable'
-        // Agrega otras reglas de validación según tus necesidades
+        'sexo' => 'nullable',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' // Validación para la foto
     ]);
 
-  
+    logger()->info('Validación completada');
 
-    // Actualiza solo los campos que se proporcionan en la solicitud
+    // Actualizar los campos proporcionados
     $funcionarios->update(array_filter($request->only([
         'nombre',
+        'apellido',
         'actividad',
         'division',
         'departamento',
@@ -371,36 +414,32 @@ public function edit($id)
         'region',
         'provincia',
         'comuna',
-        'foto',
         'partido_politico',
         'Tfuncionario',
         'fecha_nacimiento',
         'lugar_nacimiento',
-        'sexo',
+        'sexo'
     ])));
-    
-    // Si se ha enviado un nuevo archivo, maneja la lógica para actualizar 'archivo_path'
+
+    logger()->info('Datos actualizados', ['funcionario' => $funcionarios]);
+
+    // Si se ha subido una nueva foto, manejar la actualización
     if ($request->hasFile('foto')) {
+        logger()->info('Foto subida');
+        // Eliminar la foto anterior si existe
         if ($funcionarios->foto) {
-            // Elimina la foto anterior si existe
             Storage::delete('public/' . $funcionarios->foto);
         }
-        // Sube y guarda la nueva foto
+        // Subir y guardar la nueva foto
         $foto = $request->file('foto')->store('funcionarios', 'public');
         $funcionarios->foto = $foto;
-        $funcionarios->save(); // Guarda nuevamente para actualizar 'archivo_path'
+        $funcionarios->save(); // Guardar nuevamente para actualizar 'foto'
     }
 
-    return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Funcionarios actualizado exitosamente');
+    logger()->info('Actualización completa');
+
+    return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Funcionario actualizado exitosamente');
 }
-
-         public function destroy($id)
-    {
-        $funcionarios = Funcionario::findOrFail($id);
-        $funcionarios->delete();
-
-        return redirect()->route('funcionarios.verfuncionarios')->with('success', 'Documento eliminado exitosamente');
-    }
 
 
 
@@ -475,6 +514,7 @@ public function edit($id)
 
             // Verificar y asignar valores predeterminados
             $nombre = $fila['nombre'] ?? 'No especificado';
+            $apellido = $fila['apellido'] ?? 'No especificado';
             $actividad = $fila['actividad'] ?? 'No especificado';
             $division = $fila['division'] ?? 'No especificado';
             $departamento = $fila['departamento'] ?? 'No especificado';
@@ -498,6 +538,7 @@ public function edit($id)
             // Insertar en la base de datos
             Funcionario::create([
                 'nombre' => $nombre,
+                'apellido' => $apellido,
                 'actividad' => $actividad,
                 'division' => $division,
                 'departamento' => $departamento,

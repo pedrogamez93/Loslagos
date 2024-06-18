@@ -275,9 +275,9 @@
                                     <div id="flush-collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            <!-- <li class="style-li">
+                                        <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('funcionarios.create') }}">Agregar nuevo</a>
-                                            </li> -->
+                                            </li>
                                             <li class="style-li">
                                                 <a class="style-a-menu" href="{{ route('funcionarios.verfuncionarios') }}">Ver Funcionarios</a>
                                             </li>

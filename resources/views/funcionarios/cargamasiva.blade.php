@@ -112,7 +112,7 @@
                 </div>
 
                 <!-- Tabla para mostrar el contenido del archivo CSV -->
-                <div class="container mt-4">
+                <!-- <div class="container mt-4">
                     <div class="row">
                         <div class="col-md-12">
                             <h2>Vista previa del archivo CSV:</h2>
@@ -124,7 +124,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
