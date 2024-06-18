@@ -166,48 +166,59 @@ public function indexTabla()
     }
 
     public function store(Request $request)
-    {
+{
+    // Depuración inicial: Mostrar el contenido de la solicitud
+    Log::debug('Contenido de la solicitud:', $request->all());
 
-      
-        $request->validate([
-            'nombre' => 'nullable',
-            'apellido' => 'required',
-            'actividad' => 'nullable',
-            'division' => 'nullable',
-            'departamento' => 'nullable',
-            'cargo' => 'nullable',
-            'direccion' => 'nullable',
-            'telefono' => 'nullable',
-            'e-mail' => 'nullable',
-            'region' => 'nullable',
-            'provincia' => 'nullable',
-            'comuna' => 'nullable',
-            'partido_politico' => 'nullable',
-            'Tfuncionario' => 'nullable',
-            'fecha_nacimiento' => 'nullable',
-            'lugar_nacimiento' => 'nullable',
-            'sexo' => 'nullable'
-           
-        ]);
+    // Validar los datos de entrada
+    $request->validate([
+        'nombre' => 'nullable',
+        // 'apellido' => 'required',
+        // 'actividad' => 'nullable',
+        'division' => 'nullable',
+        'departamento' => 'nullable',
+        'cargo' => 'nullable',
+        'direccion' => 'nullable',
+        'telefono' => 'nullable',
+        'email' => 'nullable',
+        'region' => 'nullable',
+        'provincia' => 'nullable',
+        'comuna' => 'nullable',
+        'partido_politico' => 'nullable',
+        'Tfuncionario' => 'nullable',
+        'fecha_nacimiento' => 'nullable',
+        'lugar_nacimiento' => 'nullable',
+        'sexo' => 'nullable'
+    ]);
 
-       
-        $datosf = $request->except('_token');
+    // Extraer los datos de la solicitud, excluyendo el token CSRF
+    $datosf = $request->except('_token');
 
-         // Manejo del archivo
-         if ($request->hasFile('foto')) {
-            $archivoPath = $request->file('foto')->store('public/funcionarios');
-            $datosf['foto'] = $archivoPath;
-        }
-        
+    // Depuración: Mostrar los datos extraídos
+    Log::debug('Datos extraídos de la solicitud:', $datosf);
 
+    // Manejo del archivo de la foto, si existe
+    if ($request->hasFile('foto')) {
+        $archivoPath = $request->file('foto')->store('public/funcionarios');
+        $datosf['foto'] = $archivoPath;
 
-        $datosf['created_at'] = now();
-        $datosf['updated_at'] = now();
-
-   
-        Funcionario::insert($datosf);
-        return redirect('/funcionarios/create')->with('success', 'Funcionario guardado exitosamente');
+        // Depuración: Mostrar la ruta del archivo almacenado
+        Log::debug('Ruta del archivo de la foto:', ['foto' => $archivoPath]);
     }
+
+    // Añadir timestamps
+    $datosf['created_at'] = now();
+    $datosf['updated_at'] = now();
+
+    // Depuración: Mostrar los datos finales antes de la inserción
+    Log::debug('Datos finales para insertar en la base de datos:', $datosf);
+
+    // Insertar los datos en la base de datos
+    Funcionario::insert($datosf);
+
+    // Redireccionar con un mensaje de éxito
+    return redirect('/funcionarios/create')->with('success', 'Funcionario guardado exitosamente');
+}
 
     public function buscar(Request $request)
     {
