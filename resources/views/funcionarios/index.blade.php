@@ -18,7 +18,7 @@
 
 <div class="contenido h-800 colorB seleccionycategoria" >
     <div class="container py-3">
-        <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 6%;">
+        <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
         <p class="parrafo1 p-1">Infórmate sobre nuestra Región...</p>
             <h4 class="tituloform">Nuestro Directorio</h4>
             <p class="parrafo2 p-1">El objetivo del Directorio Funcionario Digital es el proveer servicios de información de los funcionarios públicos de la Región De Los Lagos para la institucionalidad pública regional y la comunidad en general.</p>

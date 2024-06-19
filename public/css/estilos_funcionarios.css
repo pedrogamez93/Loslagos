@@ -110,8 +110,8 @@ line-height: 30px;
 
 @media (max-width: 767px) {
     .seleccionycategoria {
-        padding-right: 3rem !important;
-        padding-left: 3rem !important;
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
     }
 
     #footerdesktop{

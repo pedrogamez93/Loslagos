@@ -21,11 +21,9 @@
         </div>
     </div>
 
-    <div class="contenido colorB" style=" margin-top: -6vh;
-    background-color: white;
-    border-top-left-radius: 90px; padding-right: 10rem!important;
-    padding-left: 10rem!important;">
-        <div class="row py-5">
+    <div class="contenido colorB seleccionycategoria" style=" margin-top: -6vh;
+    ">
+        <div class="container py-3">
             <div id="divformulario" class="col-md-8 col-lg-12" style="padding: 4%;">
             <p class="parrafo1 p-1 colorB">Infórmate sobre nuestra Región...</p>
                 <h4 class="tituloform colorB">Nuestro Directorio</h4>
