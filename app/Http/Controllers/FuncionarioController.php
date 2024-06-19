@@ -220,86 +220,87 @@ public function indexTabla()
     return redirect('/funcionarios/create')->with('success', 'Funcionario guardado exitosamente');
 }
 
-    public function buscar(Request $request)
-    {
-        // Verificar que las variables divisiones y departamentos están definidas
-        $divisiones = Funcionario::distinct()->pluck('division');
-        $departamentos = Funcionario::distinct()->pluck('departamento');
-    
-        // Agregar registros de depuración
-        Log::info('Datos recibidos del formulario:', $request->all());
-    
-        try {
-            // Validación de los datos
-            $request->validate([
-                'nombre' => 'nullable|string',
-                'apellido' => 'nullable|string',
-                'sexo'  => 'nullable|string',
-                'division'  => 'nullable|string',
-                'departamento' => 'nullable|string'
-            ]);
-    
-            Log::info('Validación completada');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            Log::error('Errores de validación:', $e->errors());
-            return redirect()->back()->withErrors($e->errors())->withInput();
-        }
-    
-        // Obtener los valores de los campos del formulario
-        $nombre = $request->input('nombre');
-        $apellido = $request->input('apellido');
-        $division = $request->input('division');
-        $sexo = $request->input('sexo');
-        $departamento = $request->input('departamento');
-    
-        // Agregar registros de depuración para cada campo
-        Log::info('Valor de nombre:', ['nombre' => $nombre]);
-        Log::info('Valor de apellido:', ['apellido' => $apellido]);
-        Log::info('Valor de division:', ['division' => $division]);
-        Log::info('Valor de sexo:', ['sexo' => $sexo]);
-        Log::info('Valor de departamento:', ['departamento' => $departamento]);
-    
-        // Construir la consulta
-        $funcionarios = Funcionario::query();
-    
-        if ($nombre) {
-            $funcionarios->where('nombre', 'LIKE', "%$nombre%");
-            Log::info('Filtro aplicado: nombre');
-        }
-    
-        if ($apellido) {
-            $funcionarios->where('apellido', 'LIKE', "%$apellido%");
-            Log::info('Filtro aplicado: apellido');
-        }
-    
-        if ($division) {
-            $funcionarios->where('division', $division);
-            Log::info('Filtro aplicado: division');
-        }
-    
-        if ($departamento) {
-            $funcionarios->where('departamento', $departamento);
-            Log::info('Filtro aplicado: departamento');
-        }
-    
-        if ($sexo) {
-            $funcionarios->where('sexo', $sexo);
-            Log::info('Filtro aplicado: sexo');
-        }
-    
-        // Obtener los resultados
-        $funcionarios = $funcionarios->get();
-    
-        // Verificar si se encontraron resultados
-        if ($funcionarios->isEmpty()) {
-            Log::info('No se encontraron resultados.');
-        } else {
-            Log::info('Resultados de la búsqueda:', $funcionarios->toArray());
-        }
-    
-        // Devolver la vista con los datos
-        return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
+public function buscar(Request $request)
+{
+    // Verificar que las variables divisiones y departamentos están definidas
+    $divisiones = Funcionario::distinct()->pluck('division');
+    $departamentos = Funcionario::distinct()->pluck('departamento');
+
+    // Agregar registros de depuración
+    Log::info('Datos recibidos del formulario:', $request->all());
+
+    try {
+        // Validación de los datos
+        $request->validate([
+            'nombre' => 'nullable|string',
+            'apellido' => 'nullable|string',
+            'sexo'  => 'nullable|string',
+            'division'  => 'nullable|string',
+            'departamento' => 'nullable|string'
+        ]);
+
+        Log::info('Validación completada');
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        Log::error('Errores de validación:', $e->errors());
+        return redirect()->back()->withErrors($e->errors())->withInput();
     }
+
+    // Obtener los valores de los campos del formulario
+    $nombre = $request->input('nombre');
+    $apellido = $request->input('apellido');
+    $division = $request->input('division');
+    $sexo = $request->input('sexo');
+    $departamento = $request->input('departamento');
+
+    // Agregar registros de depuración para cada campo
+    Log::info('Valor de nombre:', ['nombre' => $nombre]);
+    Log::info('Valor de apellido:', ['apellido' => $apellido]);
+    Log::info('Valor de division:', ['division' => $division]);
+    Log::info('Valor de sexo:', ['sexo' => $sexo]);
+    Log::info('Valor de departamento:', ['departamento' => $departamento]);
+
+    // Construir la consulta
+    $funcionarios = Funcionario::query();
+
+    if ($nombre) {
+        $funcionarios->where('nombre', 'LIKE', "%$nombre%");
+        Log::info('Filtro aplicado: nombre');
+    }
+
+    if ($apellido) {
+        $funcionarios->where('apellido', 'LIKE', "%$apellido%");
+        Log::info('Filtro aplicado: apellido');
+    }
+
+    if ($division) {
+        $funcionarios->where('division', $division);
+        Log::info('Filtro aplicado: division');
+    }
+
+    if ($departamento) {
+        $funcionarios->where('departamento', $departamento);
+        Log::info('Filtro aplicado: departamento');
+    }
+
+    if ($sexo) {
+        $funcionarios->where('sexo', $sexo);
+        Log::info('Filtro aplicado: sexo');
+    }
+
+    // Obtener los resultados con paginación
+    $funcionarios = $funcionarios->paginate(10); // 10 resultados por página
+
+    // Verificar si se encontraron resultados
+    if ($funcionarios->isEmpty()) {
+        Log::info('No se encontraron resultados.');
+    } else {
+        Log::info('Resultados de la búsqueda:');
+    }
+
+    // Devolver la vista con los datos
+    return view('funcionarios.resultados', compact('funcionarios', 'divisiones', 'departamentos'));
+}
+
     
     
     

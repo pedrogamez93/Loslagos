@@ -68,40 +68,36 @@
    
   
         <div class="row p-5">
-            @foreach($funcionarios as $funcionario)
-        
-       
-                <div class="col-md-4">
-                <a  style="margin-bottom:15px">
-                        <div class=" divtitulodocsdes"  style="display: inline-flex; padding-bottom: 50px;" >
-                                    
-                        <div>
+        @foreach($funcionarios as $funcionario)
+    <div class="col-md-4">
+        <a style="margin-bottom:15px">
+            <div class="divtitulodocsdes" style="display: inline-flex; padding-bottom: 50px;">
+                <div>
                     @if ($funcionario->foto)
                         <img src="{{ route('mostrar.imagen', ['carpeta' => 'funcionarios', 'imagen' => basename($funcionario->foto)]) }}" alt="" style="max-width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
                     @else
                         <img src="{{ asset('images/Rectangle190.png') }}" alt="Imagen por defecto" style="max-width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
                     @endif
                 </div>
-                                <div style="padding-left:3%">
-                                <p  class="tituloresultadobuscador1 colorB">{{ $funcionario->nombre }}</p>
-                                <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>
-                                <p class="textoresultadobuscador1 colorB">Cargo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->cargo }}</span></p>
-                                <p class="textoresultadobuscador1 colorB">departamento: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->departamento }}</span></p>   
-                                <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->email }}</span></p>
-                                <p class="textoresultadobuscador1 colorB">Division: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->division }}</span></p>
-                                <p class="textoresultadobuscador1 colorB">Direccion: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->direccion }}</span></p>
-                               
-                            </div>
-                            
-                        
-                        </div>
-                        </a>
-                </div> 
+                <div style="padding-left:3%">
+                    <p class="tituloresultadobuscador1 colorB">{{ $funcionario->nombre }}</p>
+                    <p class="textoresultadobuscador1 colorB ">Institucion: <span class="textoresultadobuscador2 colorB">Gobierno Regional de Los Lagos</span></p>
+                    <p class="textoresultadobuscador1 colorB">Cargo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->cargo }}</span></p>
+                    <p class="textoresultadobuscador1 colorB">departamento: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->departamento }}</span></p>
+                    <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->email }}</span></p>
+                    <p class="textoresultadobuscador1 colorB">Division: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->division }}</span></p>
+                    <p class="textoresultadobuscador1 colorB">Direccion: <span class="textoresultadobuscador2 colorB"> {{ $funcionario->direccion }}</span></p>
+                </div>
+            </div>
+        </a>
+    </div>
+@endforeach
 
-            
-        
-                
-            @endforeach
+<!-- Mostrar enlaces de paginación -->
+<div class="pagination">
+    {{ $funcionarios->links() }}
+</div>
+
             </div>
         </div>
     </div>
