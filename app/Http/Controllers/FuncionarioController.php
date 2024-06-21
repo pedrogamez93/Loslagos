@@ -288,7 +288,7 @@ public function buscar(Request $request)
     }
 
     // Obtener los resultados con paginación
-    $funcionarios = $funcionarios->paginate(10); // 10 resultados por página
+    $funcionarios = $funcionarios->paginate(10)->appends($request->all());
 
     // Verificar si se encontraron resultados
     if ($funcionarios->isEmpty()) {

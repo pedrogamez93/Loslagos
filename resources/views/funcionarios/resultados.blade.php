@@ -86,6 +86,7 @@
                     <p class="textoresultadobuscador1 colorB">Departamento: <span class="textoresultadobuscador2 colorB">{{ $funcionario->departamento }}</span></p>
                     <p class="textoresultadobuscador1 colorB">Correo: <span class="textoresultadobuscador2 colorB">{{ $funcionario->email }}</span></p>
                     <p class="textoresultadobuscador1 colorB">División: <span class="textoresultadobuscador2 colorB">{{ $funcionario->division }}</span></p>
+                    <p class="textoresultadobuscador1 colorB">Telefono: <span class="textoresultadobuscador2 colorB">{{ $funcionario->telefono }}</span></p>
                     <p class="textoresultadobuscador1 colorB">Dirección: <span class="textoresultadobuscador2 colorB">{{ $funcionario->direccion }}</span></p>
                 </div>
 
@@ -96,7 +97,7 @@
 
 <!-- Mostrar enlaces de paginación -->
 <div class="pagination">
-    {{ $funcionarios->links() }}
+{{ $funcionarios->appends(request()->except('page'))->links() }}
 </div>
 
             </div>
