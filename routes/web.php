@@ -127,6 +127,7 @@ Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::get('/funcionarios/cargamasiva', [FuncionarioController::class, 'getcargarMasiva'])->name('funcionarios.cargamasiva')->middleware('auth');
 Route::get('/funcionario', [FuncionarioController::class, 'index']);
 Route::post('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
+Route::get('/funcionarios/buscar', [FuncionarioController::class, 'buscar']);
 Route::get('/funcionarios/{id}/detalle', [FuncionarioController::class, 'show'])->name('funcionarios.show');
 Route::get('/funcionarios/{carpeta}/{imagen}', [FuncionarioController::class, 'mostrarImagen'])->name('imagen.mostrar');
 Route::get('/ubicaciones', [FuncionarioController::class, 'obtenerUbicaciones']);
