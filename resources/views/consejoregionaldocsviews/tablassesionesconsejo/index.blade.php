@@ -167,7 +167,13 @@
                                 </div>
                             @endif
                             <div class="col-md-2">
-                            <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}" class="{{ request()->routeIs('sesiones_por_anio') && request()->route('anio') == $anio ? 'active' : '' }}">Tabla Sesión Año {{ $anio }}</a>
+                                @if(!empty($anio))
+                                    <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">
+                                        Tabla Sesión Año {{ $anio }}
+                                    </a>
+                                @else
+                                    <span>Datos no disponibles</span>
+                                @endif
                             </div>
                             @php $counter++; @endphp
                         @endforeach
