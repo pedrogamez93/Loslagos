@@ -180,6 +180,7 @@ public function Indexcertificadosdeacuerdos(Request $request)
 
 public function showFiltroAno($anio)
 {
+    dd('hola');
     // Obtener los años únicos de la tabla documentos_sesiones
     $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
                              ->groupBy('anio')
