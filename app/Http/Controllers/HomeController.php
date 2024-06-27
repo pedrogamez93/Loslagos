@@ -195,13 +195,13 @@ class HomeController extends Controller
 
     public function updateSlider(Request $request)
 {
-    $request->validate([
-        'slider1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider5' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-    ]);
+    // $request->validate([
+    //     'slider1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider5' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    // ]);
 
     $home = Home::where('id', 1)->first();
     $changes = [];
