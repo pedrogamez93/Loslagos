@@ -143,10 +143,10 @@
     <main>
         <div class="container-fluid cat">
             <div class="row">
-                <div class="col-md-12 pt-4 pb-4 p-0">
+                <div class="col-md-12 pt-4 pb-4">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 p-0">
+                            <div class="col-md-12" style="padding-left: 20px;">
                                 <p class="style-tag">Infórmate sobre nuestra Región...</p>
                                 <h1 class="mititulo mt-4 mb-4">Tabla de Sesiones Consejo Regional de Los Lagos</h1>
                             </div>
@@ -159,7 +159,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="container butonano" style="color: black;">
-                        <div class="row">
+                        <div class="row" style="white-space: pre-line;">
                             <div class="col-md-2">
                                 <a href="{{ route('tablassesionesconsejo.Indextablassesionesconsejo') }}" class="{{ request()->routeIs('tablassesionesconsejo.Indextablassesionesconsejo') ? 'active-link' : '' }}">Próxima Sesión</a>
                             </div>
@@ -184,7 +184,7 @@
                             <div class="row">
                                 <h1 class="mititulo" style="text-transform: capitalize"><!--{{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }} --> Sesiones del mes de {{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }}</h1>
                                 @foreach ($sesionesMes as $sesion)
-                                    <div class="container" style="padding:10px;">
+                                    <div class="container" style="padding-left: 25px; padding-top: 10px;">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h2><strong>Nombre de Sesión:</strong> {{ $sesion->nombre }}</h2>

@@ -120,33 +120,32 @@ public function Indexcertificadosdeacuerdos(Request $request)
         return view('consejoregionaldocsviews.resumendegastos.index', ['resumenesGastos' => $resumenesGastos]);
     }
 
-    public function Indextablassesionesconsejo(){
-
-    // Obtener todas las sesiones ordenadas por fecha
-    $sesiones = Sesion::with('documentos')->orderBy('fecha_hora', 'desc')->get();
-
-    // Agrupar las sesiones por año y mes
-    $sesionesAgrupadas = $sesiones->groupBy(function($sesion) {
-        return Carbon::parse($sesion->fecha_hora)->format('Y-m');
-    });
-
-    // Obtener la próxima sesión (la primera sesión en la lista ordenada)
-    $proximaSesion = $sesiones->first();
-
-    // Obtener los años únicos de la tabla documentos_sesiones
-    $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
-        ->groupBy('anio')
-        ->pluck('anio'); // Usar pluck para obtener solo los valores 'anio'
-
-    // Obtener valores únicos y convertirlos en un array
-    $aniosUnique = $anios->unique()->toArray();
-
-    return view('consejoregionaldocsviews.tablassesionesconsejo.index', [
-        'proximaSesion' => $proximaSesion,
-        'sesionesAgrupadas' => $sesionesAgrupadas,
-        'anios' => $aniosUnique 
-    ]);
-
+    public function Indextablassesionesconsejo()
+    {
+        // Obtener todas las sesiones ordenadas por fecha
+        $sesiones = Sesion::with('documentos')->orderBy('fecha_hora', 'desc')->get();
+    
+        // Agrupar las sesiones por año y mes
+        $sesionesAgrupadas = $sesiones->groupBy(function ($sesion) {
+            return Carbon::parse($sesion->fecha_hora)->format('Y-m');
+        });
+    
+        // Obtener la próxima sesión (la primera sesión en la lista ordenada)
+        $proximaSesion = $sesiones->first();
+    
+        // Obtener los años únicos de la tabla documentos_sesiones
+        $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
+            ->groupBy('anio')
+            ->pluck('anio'); // Usar pluck para obtener solo los valores 'anio'
+    
+        // Obtener valores únicos y convertirlos en un array
+        $aniosUnique = $anios->unique()->toArray();
+    
+        return view('consejoregionaldocsviews.tablassesionesconsejo.index', [
+            'proximaSesion' => $proximaSesion,
+            'sesionesAgrupadas' => $sesionesAgrupadas,
+            'anios' => $aniosUnique
+        ]);
     }
 
     public function downloadtablassesionesconsejo($id)
