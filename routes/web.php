@@ -520,9 +520,9 @@ Route::resource('sesiones-consejo', SesionController::class)->names([
     'index'   => 'sesionesConsejo.index',
     'create'  => 'sesionesConsejo.create',
     'store'   => 'sesionesConsejo.store',
-    'show'    => 'sesionesConsejo.show',
-    'edit'    => 'sesionesConsejo.edit',
-    'update'  => 'sesionesConsejo.update',
+   // 'show'    => 'sesionesConsejo.show',
+  //  'edit'    => 'sesionesConsejo.edit',
+  //  'update'  => 'sesionesConsejo.update',
     'destroy' => 'sesionesConsejo.destroy',
 ]);
 
