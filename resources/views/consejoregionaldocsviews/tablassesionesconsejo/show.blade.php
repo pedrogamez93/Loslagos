@@ -101,6 +101,10 @@
                 font-size: 30px !important;
                 padding-bottom: 0px !important;
             }
+
+            .p-doc{
+                width: 215px !important;
+            }
         }
     </style>
 </head>
