@@ -195,13 +195,13 @@ class HomeController extends Controller
 
     public function updateSlider(Request $request)
 {
-    $request->validate([
-        'slider1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'slider5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-    ]);
+    // $request->validate([
+    //     'slider1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider4' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     'slider5' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    // ]);
 
     $home = Home::where('id', 1)->first();
     $changes = [];
@@ -226,6 +226,7 @@ class HomeController extends Controller
 
     return redirect('/home/slider')->with('success', 'Registro actualizado correctamente.');
 }
+
 
 
 
