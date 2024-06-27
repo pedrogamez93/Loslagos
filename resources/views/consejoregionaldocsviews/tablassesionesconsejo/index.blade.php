@@ -167,13 +167,7 @@
                                 </div>
                             @endif
                             <div class="col-md-2">
-                                @if(!empty($anio))
-                                    <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">
-                                        Tabla Sesión Año {{ $anio }}
-                                    </a>
-                                @else
-                                    <span>Datos no disponibles</span>
-                                @endif
+                             <a href="{{ route('sesiones_por_anio', ['anio' => $anio]) }}">Tabla Sesión Año {{ $anio }}</a>
                             </div>
                             @php $counter++; @endphp
                         @endforeach
