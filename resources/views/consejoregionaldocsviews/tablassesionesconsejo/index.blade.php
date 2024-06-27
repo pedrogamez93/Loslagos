@@ -167,8 +167,7 @@
                                 </div>
                             @endif
                             <div class="col-md-2">
-                            {{ $anio }}
-                                 
+                                 <a href="{{ route('sesiones_por_anio', $anio) }}">Tabla Sesión Año {{ $anio }}</a>
                             </div>
                             @php $counter++; @endphp
                         @endforeach
