@@ -230,7 +230,7 @@ class SesionController extends Controller
         $sesion = Sesion::with('documentos')->findOrFail($id);
         $sesion->documentos()->delete();
         $sesion->delete();
-
+    
         return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión eliminada con éxito');
     }
 }
