@@ -179,20 +179,24 @@ public function Indexcertificadosdeacuerdos(Request $request)
     }
 }
 
-    public function showFiltroAno($anio)
-    {
-        // Obtener los años únicos de la tabla documentos_sesiones
-        $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
-                                 ->groupBy('anio')
-                                 ->pluck('anio'); // Usar pluck para obtener solo los valores 'anio'
-    
-        $documentos = Documento_Sesion::select('documentos_sesiones.*', DB::raw('EXTRACT(MONTH FROM fechadoc) as mes'))
-                                      ->whereRaw("EXTRACT(YEAR FROM fechadoc) = ?", [$anio])
-                                      ->orderByRaw("EXTRACT(MONTH FROM fechadoc) DESC")
-                                      ->get()
-                                      ->groupBy('mes'); // Agrupamos los documentos por mes
-    
-        return view('consejoregionaldocsviews.tablassesionesconsejo.show', compact('documentos', 'anios'));
-    }
+public function showFiltroAno($anio)
+{
+    // Obtener los años únicos de la tabla documentos_sesiones
+    $anios = Documento_Sesion::selectRaw('EXTRACT(YEAR FROM fechadoc) AS anio')
+                             ->groupBy('anio')
+                             ->pluck('anio'); // Usar pluck para obtener solo los valores 'anio'
+
+    $sesiones = Sesion::with('documentos')
+                      ->whereYear('fecha_hora', $anio)
+                      ->orderByRaw("EXTRACT(MONTH FROM fecha_hora) DESC")
+                      ->orderBy('fecha_hora', 'desc')
+                      ->get()
+                      ->groupBy(function($date) {
+                          return Carbon::parse($date->fecha_hora)->format('m');
+                      });
+
+    return view('consejoregionaldocsviews.tablassesionesconsejo.show', compact('sesiones', 'anios'));
+}
+
 
 }

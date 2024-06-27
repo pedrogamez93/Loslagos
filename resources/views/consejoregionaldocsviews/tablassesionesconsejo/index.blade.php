@@ -90,7 +90,7 @@
         border: 1px solid #00548F;
         font-weight: 700;
         background-color: #FFFFFF;
-        padding: 6px 4px;
+        padding: 10px 15px;
     }
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
