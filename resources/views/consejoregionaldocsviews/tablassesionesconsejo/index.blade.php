@@ -187,8 +187,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 class="mi-style mt-2 mb-2">Próxima Sesión:</h2>
-                                <p style="color: #565656;"><span style="font-weight: 700;">Nombre sesión:</span> {{ $proximaSesion->nombre }}</p>
-                                <p style="color: #565656; padding: 10px 0px 10px 0px;"><span style="font-weight: 700;">Hora:</span> {{ \Carbon\Carbon::parse($proximaSesion->fecha_hora)->format('H:i') }}</p>
+                                <p class="mt-2 mb-2" style="color: #565656;"><span style="font-weight: 700;">Nombre sesión:</span> {{ $proximaSesion->nombre }}</p>
+                                <p style="color: #565656;"><span style="font-weight: 700;">Fecha:</span> {{ \Carbon\Carbon::parse($proximaSesion->fecha_hora)->translatedFormat('d \d\e F \d\e\l Y') }}</p>
+                                <p class="mt-2 mb-2" style="color: #565656;"><span style="font-weight: 700;">Hora:</span> {{ \Carbon\Carbon::parse($proximaSesion->fecha_hora)->format('H:i') }}</p>
                                 <p style="color: #565656;"><span style="font-weight: 700;">Lugar:</span> {{ $proximaSesion->lugar }}</p>
                             </div>
                         </div>

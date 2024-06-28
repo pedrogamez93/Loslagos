@@ -184,14 +184,15 @@
                     </div>
                     {{-- Mostrar la próxima sesión --}}
                     @foreach ($sesiones as $mes => $sesionesMes)
-                        <div class="container mt-5 mb-5 pt-3 pb-3" style="border: 1px solid #F59120;">
+                        <div class="container mt-5 mb-5" style="border: 1px solid #F59120;">
                             <div class="row">
-                                <h1 class="mititulo" style="text-transform: capitalize"><!--{{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }} --> Sesiones del mes de {{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }}</h1>
+                                <h1 class="mititulo" style="text-transform: capitalize;background-color: #F591201A !important; padding: 10px; border-bottom: 1px solid #F59120;"><!--{{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }} --> Sesiones del mes de {{ \Carbon\Carbon::createFromFormat('m', $mes)->isoFormat('MMMM') }}</h1>
                                 @foreach ($sesionesMes as $sesion)
-                                    <div class="container" style="padding-left: 25px; padding-top: 10px;">
+                                    <div class="container" style="padding: 10px 25px;">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" style="    background-color: #F5F5F5; padding: 5px;">
                                                 <h2><strong>Nombre de Sesión:</strong> {{ $sesion->nombre }}</h2>
+                                                <p><strong>Fecha:</strong> {{ \Carbon\Carbon::parse($sesion->fecha_hora)->translatedFormat('d \d\e F \d\e\l Y') }}</p>
                                                 @foreach ($sesion->documentos as $documento)
                                                     <ul>
                                                         <li class="mt-3 mb-3">
