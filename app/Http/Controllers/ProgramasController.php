@@ -57,7 +57,7 @@ class ProgramasController extends Controller
             'bajada' => 'required',
             'bajada_programa' => 'required',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-          //  'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
+          //  'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048', // Ajusta los formatos y el tamaÃ±o segÃºn tus necesidades
         ]);
 
         
@@ -67,7 +67,7 @@ class ProgramasController extends Controller
         $seleccion_btn = $request->input('si_btn');
         $seleccion_coleccion = $request->input('si_coleccion');
 
-   // Procesar la imagen si está presente
+   // Procesar la imagen si estÃ¡ presente
    if ($request->hasFile('imagen')) {
     $iconoPath = $request->file('imagen')->store('imagenes_programas', 'public');
     $programas->update(['imagen' => $iconoPath]);
@@ -79,10 +79,16 @@ try {
     $urlDocumentos = $request->file('urlDocumento') ?? [];
 
     foreach ($urlDocumentos as $key => $documento) {
-        // Obtener el nombre original del documento
-        $nombreOriginal = $documento->getClientOriginalName();
+        // Obtener el nombre proporcionado por el usuario
+        $nombreIngresado = $nombresDocumentos[$key];
 
-        // Definir la ruta donde se guardará el documento
+        // Obtener la extensiÃ³n original del documento
+        $extension = $documento->getClientOriginalExtension();
+
+        // Generar un nombre Ãºnico para el archivo
+        $nombreUnico = uniqid('documento_', true) . '.' . $extension;
+
+        // Definir la ruta donde se guardarÃ¡ el documento
         $ruta = 'public/documentosdelosprogramas';
 
         // Crear la carpeta si no existe
@@ -90,18 +96,18 @@ try {
             Storage::makeDirectory($ruta);
         }
 
-        // Guardar el documento con su nombre original en la ruta definida
-        $urlDocumento = $documento->storeAs($ruta, $nombreOriginal);
+        // Guardar el documento con el nombre Ãºnico en la ruta definida
+        $urlDocumento = $documento->storeAs($ruta, $nombreUnico);
 
-        // Almacena en la base de datos
+        // Almacenar en la base de datos el nombre proporcionado por el usuario
         ProgramasDocumentos::create([
             'programa_id' => $programas->id,
-            'nombreDocumento' => $nombreOriginal,
+            'nombreDocumento' => $nombreIngresado, // Usar el nombre ingresado por el usuario
             'urlDocumento' => $urlDocumento,
         ]);
     }
 } catch (\Exception $e) {
-    // Manejar la excepción, por ejemplo, registrar un mensaje en los logs
+    // Manejar la excepciÃ³n, por ejemplo, registrar un mensaje en los logs
     \Log::error('Error al procesar documentos: ' . $e->getMessage());
 }
 
@@ -113,7 +119,7 @@ try {
             $bajada_descripcion = $request->input('bajada_descripcion', []);
 
             foreach ($titulo_descripcion ?? [] as $key => $campo) {
-              ProgramasDescripciones::create(['titulo_descripcion' => $titulo_descripcion[$key],'bajada_descripcion' => $bajada_descripcion[$key],'programa_id' => $programasid]); // Ajusta según tus necesidades
+              ProgramasDescripciones::create(['titulo_descripcion' => $titulo_descripcion[$key],'bajada_descripcion' => $bajada_descripcion[$key],'programa_id' => $programasid]); // Ajusta segÃºn tus necesidades
              }
         }
             //botones
@@ -122,7 +128,7 @@ try {
                 $urlbtn = $request->input('urlbtn', []);
 
                 foreach ($nombrebtn ?? [] as $key => $campo) {
-                Programasbtn::create(['nombrebtn' => $nombrebtn[$key],'urlbtn' => $urlbtn[$key],'programa_id' => $programasid]); // Ajusta según tus necesidades
+                Programasbtn::create(['nombrebtn' => $nombrebtn[$key],'urlbtn' => $urlbtn[$key],'programa_id' => $programasid]); // Ajusta segÃºn tus necesidades
                 }
             }
 
@@ -138,7 +144,7 @@ try {
                     $coleccionesid = $coleccionesid->id;
             
                     if ($request->hasFile('ruta')) {
-                        // Recorrer cada archivo asociado a la colección actual
+                        // Recorrer cada archivo asociado a la colecciÃ³n actual
                         foreach ($request->file('ruta') ?? [] as $archivo) {
                             $nombreArchivo = $archivo->getClientOriginalName();
                             $ruta = 'imagenes_programas/' . $nombreArchivo;
@@ -197,7 +203,7 @@ try {
     $documentos = $programa->documentos;
     $colecciones = $programa->colecciones;
 
-    // Obtener las fotografías de cada colección
+    // Obtener las fotografÃ­as de cada colecciÃ³n
     foreach ($colecciones as $coleccion) {
         $coleccion->fotografias;
     }
@@ -232,7 +238,7 @@ try {
     $programa->bajada = $request->input('bajada');
     $programa->bajada_programa = $request->input('bajada_programa');
 
-    // Procesar la imagen si está presente
+    // Procesar la imagen si estÃ¡ presente
     if ($request->hasFile('imagen')) {
         // Eliminar la imagen anterior si existe
         if ($programa->imagen) {
@@ -247,14 +253,14 @@ try {
     // Guardar los cambios
     $programa->save();
 
-    // Redirigir con mensaje de éxito
+    // Redirigir con mensaje de Ã©xito
     return redirect()->route('programas.index')->with('success', 'Programa editado exitosamente.');
 }
 
 
     public function agregarDescripcion(Request $request, $id)
 {
-    // Validación de los datos del formulario si es necesario
+    // ValidaciÃ³n de los datos del formulario si es necesario
 
     // Buscar el programa por ID
     $programa = Programas::find($id);
@@ -262,26 +268,26 @@ try {
 
     // Verificar si el programa existe
     if ($programa) {
-        if ($seleccion == "si") { // Corregir aquí para que coincida con el valor del formulario
+        if ($seleccion == "si") { // Corregir aquÃ­ para que coincida con el valor del formulario
             $titulo_descripcion = $request->input('titulo_descripcion', []);
             $bajada_descripcion = $request->input('bajada_descripcion', []);
 
-            foreach ($titulo_descripcion as $key => $titulo) { // No necesitas el operador de fusión de null aquí
+            foreach ($titulo_descripcion as $key => $titulo) { // No necesitas el operador de fusiÃ³n de null aquÃ­
                 ProgramasDescripciones::create([
                     'titulo_descripcion' => $titulo,
-                    'bajada_descripcion' => $bajada_descripcion[$key], // Accede al mismo índice en el array de bajada_descripcion
+                    'bajada_descripcion' => $bajada_descripcion[$key], // Accede al mismo Ã­ndice en el array de bajada_descripcion
                     'programa_id' => $programa->id
                 ]);
             }
 
             return redirect()->back()->with('success', 'Texto descriptivo agregado correctamente.');
         } else {
-            // No se seleccionó agregar descripción, puedes agregar un mensaje de error si lo deseas
-            return redirect()->back()->with('error', 'No se seleccionó agregar descripción.');
+            // No se seleccionÃ³ agregar descripciÃ³n, puedes agregar un mensaje de error si lo deseas
+            return redirect()->back()->with('error', 'No se seleccionÃ³ agregar descripciÃ³n.');
         }
     }
 
-    return redirect()->back()->with('error', 'No se encontró el programa.');
+    return redirect()->back()->with('error', 'No se encontrÃ³ el programa.');
 }
 
 
@@ -306,7 +312,7 @@ $urls_boton = $request->input('urlbtn', []);
             if (!empty($textos_boton) && !empty($urls_boton)) {
                 // Iterar sobre los botones proporcionados
                 foreach ($textos_boton as $key => $texto) {
-                    // Crear un nuevo botón en la base de datos
+                    // Crear un nuevo botÃ³n en la base de datos
                     Programasbtn::create([
                         'nombrebtn' => $texto,
                         'urlbtn' => $urls_boton[$key],
@@ -318,15 +324,15 @@ $urls_boton = $request->input('urlbtn', []);
                 return redirect()->back()->with('success', 'Botones agregados correctamente.');
             } else {
                 // No se proporcionaron datos para los botones
-                return redirect()->back()->with('error', 'Por favor, proporcione al menos un botón para agregar.');
+                return redirect()->back()->with('error', 'Por favor, proporcione al menos un botÃ³n para agregar.');
             }
         } else {
-            // No se seleccionó agregar botones
-            return redirect()->back()->with('info', 'No se seleccionó agregar botones.');
+            // No se seleccionÃ³ agregar botones
+            return redirect()->back()->with('info', 'No se seleccionÃ³ agregar botones.');
         }
     }
 
-    return redirect()->back()->with('error', 'No se encontró el programa.');
+    return redirect()->back()->with('error', 'No se encontrÃ³ el programa.');
 }
 
 
@@ -340,12 +346,13 @@ public function agregarDocumento(Request $request, $id)
 
     // Verificar si el programa existe
     if ($programa) {
-        // Obtener los archivos cargados
+        // Obtener los nombres de los documentos y los archivos cargados
+        $nombresDocumentos = $request->input('nombreDocumento');
         $documentos = $request->file('urlDocumento');
 
-        // Verificar si se han cargado archivos
-        if ($documentos) {
-            // Definir la ruta donde se guardarán los documentos
+        // Verificar si se han cargado archivos y se han proporcionado nombres
+        if ($documentos && $nombresDocumentos) {
+            // Definir la ruta donde se guardarÃ¡n los documentos
             $ruta = 'public/documentosdelosprogramas';
             
             // Crear la carpeta si no existe
@@ -353,26 +360,33 @@ public function agregarDocumento(Request $request, $id)
                 Storage::makeDirectory($ruta);
             }
 
-            foreach ($documentos as $documento) {
-                // Guardar cada archivo en la carpeta deseada con su nombre original
-                $nombreOriginal = $documento->getClientOriginalName();
-                $documento_path = $documento->storeAs($ruta, $nombreOriginal);
+            foreach ($documentos as $index => $documento) {
+                // Obtener el nombre del documento proporcionado por el usuario
+                $nombreDocumento = $nombresDocumentos[$index];
+                
+                // Generar un nombre Ãºnico para el archivo
+                $extension = $documento->getClientOriginalExtension();
+                $nombreUnicoArchivo = uniqid('documento_', true) . '.' . $extension;
 
-                // Registrar la información en la base de datos
+                // Guardar el archivo con el nombre Ãºnico
+                $documento_path = $documento->storeAs($ruta, $nombreUnicoArchivo);
+
+                // Registrar la informaciÃ³n en la base de datos
                 ProgramasDocumentos::create([
-                    'nombreDocumento' => $nombreOriginal,
+                    'nombreDocumento' => $nombreDocumento,  // Guardar el nombre proporcionado por el usuario
                     'urlDocumento' => $documento_path,
                     'programa_id' => $programa->id
                 ]);
             }
             return redirect()->back()->with('success', 'Documentos agregados correctamente.');
         } else {
-            return redirect()->back()->with('error', 'No se seleccionaron documentos para agregar.');
+            return redirect()->back()->with('error', 'No se seleccionaron documentos o no se proporcionaron nombres para agregar.');
         }
     }
 
-    return redirect()->back()->with('error', 'No se encontró el programa.');
+    return redirect()->back()->with('error', 'No se encontrÃ³ el programa.');
 }
+
 
 
 public function agregarFotografia(Request $request, $id)
@@ -384,41 +398,41 @@ public function agregarFotografia(Request $request, $id)
     // Verificar si el programa existe
     if ($programa) {
         if ($seleccion == "si") {
-            // Obtener las fotografías cargadas
+            // Obtener las fotografÃ­as cargadas
             $fotografias = $request->file('fotografias');
 
-            // Verificar si se han cargado fotografías
+            // Verificar si se han cargado fotografÃ­as
             if ($fotografias) {
-                // Asumiendo que el programa tiene una colección existente
-                $coleccion = $programa->colecciones()->first(); // Obtener la primera colección asociada al programa
+                // Asumiendo que el programa tiene una colecciÃ³n existente
+                $coleccion = $programa->colecciones()->first(); // Obtener la primera colecciÃ³n asociada al programa
 
                 if ($coleccion) {
                     foreach ($fotografias as $fotografia) {
-                        // Guardar cada fotografía en la carpeta 'public/imagenes_programas'
+                        // Guardar cada fotografÃ­a en la carpeta 'public/imagenes_programas'
                         $nombreArchivo = $fotografia->getClientOriginalName();
                         $ruta = 'imagenes_programas/' . $nombreArchivo;
                         $fotografia->storeAs('imagenes_programas', $nombreArchivo, 'public');
 
-                        // Agregar la fotografía a la colección existente
+                        // Agregar la fotografÃ­a a la colecciÃ³n existente
                         $coleccion->fotografias()->create([
                             'nombre' => $nombreArchivo,
                             'ruta' => $ruta,
                         ]);
                     }
-                    return redirect()->back()->with('success', 'Fotografías agregadas correctamente a la colección.');
+                    return redirect()->back()->with('success', 'FotografÃ­as agregadas correctamente a la colecciÃ³n.');
                 } else {
-                    return redirect()->back()->with('error', 'No se encontró una colección asociada al programa.');
+                    return redirect()->back()->with('error', 'No se encontrÃ³ una colecciÃ³n asociada al programa.');
                 }
             } else {
-                return redirect()->back()->with('error', 'No se seleccionaron fotografías para agregar.');
+                return redirect()->back()->with('error', 'No se seleccionaron fotografÃ­as para agregar.');
             }
         } else {
-            // No se seleccionó agregar fotografías
-            return redirect()->back()->with('info', 'No se seleccionó agregar fotografías.');
+            // No se seleccionÃ³ agregar fotografÃ­as
+            return redirect()->back()->with('info', 'No se seleccionÃ³ agregar fotografÃ­as.');
         }
     }
 
-    return redirect()->back()->with('error', 'No se encontró el programa.');
+    return redirect()->back()->with('error', 'No se encontrÃ³ el programa.');
 }
 
 
@@ -450,7 +464,7 @@ public function agregarFotografia(Request $request, $id)
         // Obtener y eliminar colecciones relacionadas
         $colecciones = $programa->colecciones;
         foreach ($colecciones as $coleccion) {
-            // Eliminar fotografías asociadas a la colección
+            // Eliminar fotografÃ­as asociadas a la colecciÃ³n
             $coleccion->fotografias()->delete();
         }
 
@@ -463,7 +477,7 @@ public function agregarFotografia(Request $request, $id)
         return redirect()->route('programas.index')->with('success', 'Programa eliminado exitosamente.');
     }
 
-    return redirect()->route('programas.index')->with('error', 'No se encontró el programa.');
+    return redirect()->route('programas.index')->with('error', 'No se encontrÃ³ el programa.');
 }
 
 public function destroyBoton($id)
@@ -471,21 +485,21 @@ public function destroyBoton($id)
     $boton = Programasbtn::findOrFail($id);
     $boton->delete();
 
-    return redirect()->back()->with('success', 'Botón eliminado correctamente.');
+    return redirect()->back()->with('success', 'BotÃ³n eliminado correctamente.');
 }
 
 
 
-// Método para eliminar una descripción
+// MÃ©todo para eliminar una descripciÃ³n
 public function destroyDescripcion($id)
 {
     $descripcion = ProgramasDescripciones::findOrFail($id);
     $descripcion->delete();
 
-    return redirect()->back()->with('success', 'Descripción eliminada correctamente.');
+    return redirect()->back()->with('success', 'DescripciÃ³n eliminada correctamente.');
 }
 
-// Método para eliminar un documento
+// MÃ©todo para eliminar un documento
 public function destroyDocumento($id)
 {
     $documento = ProgramasDocumentos::findOrFail($id);
@@ -494,13 +508,13 @@ public function destroyDocumento($id)
     return redirect()->back()->with('success', 'Documento eliminado correctamente.');
 }
 
-// Método para eliminar una fotografía
+// MÃ©todo para eliminar una fotografÃ­a
 public function destroyFotografia($id)
 {
     $fotografia = ProgramasFotografias::findOrFail($id);
     $fotografia->delete();
 
-    return redirect()->back()->with('success', 'Fotografía eliminada correctamente.');
+    return redirect()->back()->with('success', 'FotografÃ­a eliminada correctamente.');
 }
 
 
@@ -524,12 +538,19 @@ public function abrirDocumentoPrograma($id)
     Log::info("Ruta completa del archivo: " . $rutaArchivo);
 
     if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-        return response()->download($rutaArchivo, $documento->nombreDocumento);
+        // Obtener la extensiÃ³n del archivo original
+        $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+        
+        // Generar el nombre del archivo incluyendo la extensiÃ³n
+        $nombreConExtension = $documento->nombreDocumento . '.' . $extension;
+
+        return response()->download($rutaArchivo, $nombreConExtension);
     } else {
         Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
         return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
     }
 }
+
 
     
 }
