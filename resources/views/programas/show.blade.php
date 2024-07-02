@@ -382,7 +382,7 @@
             <div class="grid-container">
                 @foreach($coleccion->fotografias as $fotografia)
                     <div class="grid-item">
-                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" alt="FotografÃ­a" style="width: 100%; height: auto;">
+                        <img src="{{ asset('imagenes_programas/' . basename($fotografia->ruta)) }}" alt="FotografÃ­a" style="width: 100%; height: auto;">
                     </div>
                 @endforeach
             </div>
