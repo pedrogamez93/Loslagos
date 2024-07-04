@@ -14,7 +14,7 @@
         height: 450px;
         background-color: #00548F;
         color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
+        padding: 20px; /* AÃ±ade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
         /*position: fixed;*/
         top: 0; /* Lo fija en la parte superior */
@@ -278,7 +278,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    gap: 10px; /* Espacio entre las imágenes */
+    gap: 10px; /* Espacio entre las imÃ¡genes */
 }
 
 .grid-item img {
@@ -320,7 +320,7 @@
         </div>
     </div>
 </div> 
-    <!-- Contenido principal de tu página -->
+    <!-- Contenido principal de tu pÃ¡gina -->
     <main>
     <div class="container-fluid cat">
         <div class="row">
@@ -365,7 +365,8 @@
             @endphp
             @foreach($programaDocumentos as $doc)
                 <div class="col" style="display: flex;">
-                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;">
+                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px; height: 50px !important;
+    place-self: center !important;">
                     <a href="{{ route('documentosprogramas.abrir', ['id' => $doc->id]) }}" style="align-self: center;">{{ $doc->nombreDocumento }}</a>
                 </div>
             @endforeach
@@ -376,16 +377,16 @@
 
 
 
-<!-- FOTOGRAFÍAS -->
+<!-- FOTOGRAFÃAS -->
 <div id="contenidoFotografias" style="display: none;">
-    <h2 class="title-doc-fot">Fotografías</h2>
+    <h2 class="title-doc-fot">FotografÃ­as</h2>
 
     @foreach($programa->colecciones as $coleccion)
         <div class="coleccion-item">
             <div class="grid-container">
                 @foreach($coleccion->fotografias as $fotografia)
                     <div class="grid-item">
-                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" alt="Fotografía" style="width: 100%; height: auto;">
+                        <img src="{{ asset('imagenes_programas/' . basename($fotografia->ruta)) }}" alt="FotografÃ­a" style="width: 100%; height: auto;">
                     </div>
                 @endforeach
             </div>
@@ -403,7 +404,7 @@
                 <h2 class="title-descargas mb-5">Documentos Regionales que puedes descargar:</h2>
                 <a href="#" class="descargables pb-4" id="enlacePrincipal" onclick="mostrarContenido('principal')">{{ $programa->titulo }}</a>
                 <a href="#" id="enlaceDocumentos" class="descargables pb-4" onclick="mostrarContenido('documentos')">Documentos</a>
-                <a href="#" class="descargables pb-4" id="enlaceFotografias" onclick="mostrarContenido('fotografias')">Fotografías</a>
+                <a href="#" class="descargables pb-4" id="enlaceFotografias" onclick="mostrarContenido('fotografias')">FotografÃ­as</a>
                 <div class="btn-single">
                     @foreach($programaBtn as $btn)
                         <a href="{{ $btn->urlbtn }}" target="_blank">{{ $btn->nombrebtn }}</a>   
@@ -418,7 +419,7 @@
         </div>
     </div>
     </main>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <!-- Agrega aquÃ­ tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
 

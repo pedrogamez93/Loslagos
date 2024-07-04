@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <title>Editar fondo</title>
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -172,6 +173,8 @@
 
     </div>
 </div>
+</body>
+
 </html>
 <script>
       

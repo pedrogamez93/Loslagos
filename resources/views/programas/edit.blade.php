@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+
     <title>Editar Programa</title>
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,7 +67,8 @@
         font-weight: 500;
     }
 </style>
-
+</head>
+<body>
 <div class="container-fluid body">
     <div class="row">
         <div class="col-md-2 style-col-menu">
@@ -307,7 +310,7 @@
             @foreach($coleccion->fotografias as $fotografia)
                 <div class="col-md-3 mb-3">
                     <div class="card">
-                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" class="card-img-top" alt="FotografÃ­a">
+                        <img src="{{ asset('imagenes_programas/' . basename($fotografia->ruta)) }}" class="card-img-top" alt="FotografÃ­a">
                         <div class="card-body text-center">
                             <form action="{{ route('programa.fotografia.destroy', $fotografia->id) }}" method="POST">
                                 @csrf
@@ -327,7 +330,7 @@
         </div>
     </div>
 </div>
-
+</body>
 </html>
 
 <script>
