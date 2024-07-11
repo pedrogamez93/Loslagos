@@ -7,7 +7,8 @@ use App\Models\Documentonew;
 use App\Models\Acta;
 use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
-
+use App\Models\Documento_Sesion;
+use League\Csv\Reader;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
 use Illuminate\Support\Facades\Log;
@@ -388,6 +389,140 @@ public function docdestruir($documento)
         }
     }
     
+    public function getcargarMasiva()
+    {
+        // Retorna la vista para seleccionar la tabla
+        return view('documentos.cargamasiva');
+    }
 
 
+
+
+    public function cargamasiva(Request $request)
+    {
+        try {
+            // Validar que se haya enviado un archivo CSV
+            $request->validate([
+                'csv_file' => 'required|mimes:csv,txt',
+                'tabla' => 'required|in:Documentosnew,Actas,Acuerdos,ResumenGastos,DocumentosGenerales,DocumentosSesiones'
+            ]);
+    
+            // Obtener el archivo CSV cargado
+            $archivo = $request->file('csv_file');
+    
+            // Leer el contenido del archivo CSV
+            $reader = Reader::createFromPath($archivo->getPathname(), 'r');
+            $reader->setHeaderOffset(0); // Saltar la primera fila (cabeceras)
+    
+            // Recorrer cada fila del archivo CSV y guardar en la tabla seleccionada
+            foreach ($reader as $fila) {
+                // Convertir los valores de la fila a UTF-8
+                $fila = array_map(function($value) {
+                    return mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1');
+                }, $fila);
+    
+                // Asegurar que los valores de portada y publicacion estén en minúsculas
+                if (isset($fila['portada'])) {
+                    $fila['portada'] = strtolower($fila['portada']);
+                }
+                if (isset($fila['publicacion'])) {
+                    $fila['publicacion'] = strtolower($fila['publicacion']);
+                }
+    
+                // Manejar campos de fecha específicos
+                foreach (['fecha_hora', 'fecha_hora_sesion', 'created_at', 'updated_at'] as $campo_fecha) {
+                    if (isset($fila[$campo_fecha])) {
+                        // Truncar horas, minutos y segundos si existen
+                        $valor_fecha = $fila[$campo_fecha];
+                        if ($this->esFecha($valor_fecha)) {
+                            $fecha_truncada = substr($valor_fecha, 0, strpos($valor_fecha, ' '));
+                            $fecha_formateada = \DateTime::createFromFormat('d/m/Y', $fecha_truncada);
+                            if ($fecha_formateada) {
+                                $fila[$campo_fecha] = $fecha_formateada->format('Y-m-d');
+                            } else {
+                                $fila[$campo_fecha] = null; // Asignar null si no se puede convertir
+                            }
+                        } else {
+                            $fila[$campo_fecha] = null; // Si no es fecha válida, asignar null
+                        }
+                    }
+                }
+    
+                // Establecer valores predeterminados según el tipo de dato
+                foreach ($fila as $campo => &$valor) {
+                    if ($valor === '') { // Si el valor está vacío
+                        switch ($campo) {
+                            case 'portada':
+                            case 'publicacion':
+                                $valor = 'si'; // Asegurar en minúsculas
+                                break;
+                            case 'fecha_hora':
+                            case 'fecha_hora_sesion':
+                            case 'created_at':
+                            case 'updated_at':
+                                $valor = '0000-00-00'; // Formato de fecha incorrecto
+                                break;
+                                case 'provincia':
+                                case 'comuna':
+                                case 'lugar': 
+                                case 'tema':   
+                                        $valor = 'No especificado'; // Asegurar en minúsculas
+                                        break;
+                              case 'numero_sesion': 
+                                $valor = 0;
+                                break;
+                        }
+                    }
+                }
+    
+                // Insertar en la tabla seleccionada
+                switch ($request->input('tabla')) {
+                    case 'Documentosnew':
+                        Documentonew::create($fila);
+                        break;
+                    case 'Actas':
+                        Acta::create($fila);
+                        break;
+                    case 'Acuerdos':
+                        Acuerdo::create($fila);
+                        break;
+                    case 'ResumenGastos':
+                        ResumenGastos::create($fila);
+                        break;
+                    case 'DocumentosGenerales':
+                        DocumentoGeneral::create($fila);
+                        break;
+                    case 'DocumentosSesiones':
+                        Documento_Sesion::create($fila);
+                        break;
+                    default:
+                        throw new \Exception("Tabla no válida.");
+                }
+            }
+    
+            // Redireccionar con un mensaje de éxito
+            return redirect()->back()->with('success', 'Los datos han sido cargados exitosamente.');
+        } catch (\Exception $e) {
+            // Manejar el error y mostrar un mensaje de error
+            Log::error('Error al procesar el archivo CSV: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al procesar el archivo CSV: ' . $e->getMessage());
+        }
+    }
+    
+    
+    
+    /**
+     * Función para verificar si un valor es una fecha en formato d/m/Y H:i:s.
+     *
+     * @param string $valor
+     * @return bool
+     */
+    private function esFecha($valor)
+    {
+        $formato = 'd/m/Y H:i:s';
+        $fecha = \DateTime::createFromFormat($formato, $valor);
+        return $fecha && $fecha->format($formato) === $valor;
+    }
+    
+    
 }
