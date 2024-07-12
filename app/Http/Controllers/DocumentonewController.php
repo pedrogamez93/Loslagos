@@ -218,24 +218,27 @@ class DocumentonewController extends Controller
     public function indexTabla(Request $request)
     {
         $query = Documentonew::query();
-
+    
         if ($request->filled('tipo_documento')) {
             $query->where('tipo_documento', 'like', '%' . $request->tipo_documento . '%');
         }
-
+    
         if ($request->filled('tema')) {
             $query->where('tema', 'like', '%' . $request->tema . '%');
         }
-
+    
         if ($request->filled('lugar')) {
             $query->where('lugar', 'like', '%' . $request->lugar . '%');
         }
-
+    
+        // Ordenar por el campo 'id' de forma ascendente
+        $query->orderBy('id', 'asc');
+    
         $documentos = $query->paginate(10);
-
+    
         return view('documentos.tabladocumentos', compact('documentos'));
-  
     }
+    
     
 
     public function edit($id)
