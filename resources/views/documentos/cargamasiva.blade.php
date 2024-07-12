@@ -95,60 +95,25 @@ input:required {
                             <h1></h1>
                         </div>
                     </div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Carga Masiva</div>
-
-                <div class="card-body">
-                    @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-                    @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    <form action="{{ route('cargamasiva.post') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="form-group">
-                            <label for="tabla">Selecciona la tabla:</label>
-                            <select class="form-control @error('tabla') is-invalid @enderror" id="tabla" name="tabla">
-                                <option value="Documentosnew">Documentosnew</option>
-                                <option value="Actas">Actas</option>
-                                <option value="Acuerdos">Acuerdos</option>
-                                <option value="ResumenGastos">ResumenGastos</option>
-                                <option value="DocumentosGenerales">DocumentosGenerales</option>
-                                <option value="DocumentosSesiones">DocumentosSesiones</option>
-                            </select>
-                            @error('tabla')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="csv_file">Archivo CSV:</label>
-                            <input type="file" class="form-control-file @error('csv_file') is-invalid @enderror" id="csv_file" name="csv_file">
-                            @error('csv_file')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Cargar Datos</button>
-                    </form>
-                </div>
+                    <div class="container">
+        <h2>Insertar Datos</h2>
+        <form method="POST" action="{{ route('cargamasiva.post') }}">
+            @csrf
+            <div class="form-group">
+                <label for="query">Query SQL INSERT:</label>
+                <textarea class="form-control" id="query" name="query" rows="5" required></textarea>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="tabla">Seleccionar Tabla:</label>
+                <select class="form-control" id="tabla" name="tabla" required>
+                    <option value="Documentosnew">Documentosnew</option>
+                    <option value="Actas">Actas</option>
+                    <option value="Acuerdos">Acuerdos</option>
+                    <option value="ResumenGastos">ResumenGastos</option>
+                    <option value="DocumentosGenerales">DocumentosGenerales</option>
+                    <option value="DocumentosSesiones">DocumentosSesiones</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Ejecutar Query</button>
+        </form>
     </div>
-</div>
-
