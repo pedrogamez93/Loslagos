@@ -79,7 +79,7 @@ class ConsejoRegionalDocsViewsController extends Controller
             return response()->download($filePath, basename($documento->archivo));
         } else {
             // Retorna una respuesta JSON con un mensaje de error
-            return response()->json(['error' => 'El archivo no existe.'], 404);
+            return response()->json(['error' => 'El archivo no existe.'. $filePath.''], 404);
         }
     }
     
