@@ -7,7 +7,7 @@
         height: 450px;
         background-color: #00548F;
         color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
+        padding: 20px; /* AÃ±ade relleno si es necesario */
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
         /*position: fixed;*/
         top: 0; /* Lo fija en la parte superior */
@@ -272,7 +272,7 @@
 <head>
     <meta charset="utf-8">
     <title>Fondos concursables</title>
-    <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
+    <!-- Agrega aquÃ­ tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 
 </head>
@@ -306,7 +306,7 @@
         </div>
     </div>
 </div> 
-    <!-- Contenido principal de tu página -->
+    <!-- Contenido principal de tu pÃ¡gina -->
     <main>
     <div class="container-fluid cat">
         <div class="row">
@@ -350,7 +350,7 @@
         </div>
     </div>
     </main>
-    <!-- Agrega aquí tus scripts de JavaScript, si es necesario -->
+    <!-- Agrega aquÃ­ tus scripts de JavaScript, si es necesario -->
 </body>
 </html>
 
@@ -384,10 +384,10 @@
 </script>
 <script>
         function mostrarFotografias(titulo) {
-            // Encuentra las imágenes asociadas al título clicado
+            // Encuentra las imÃ¡genes asociadas al tÃ­tulo clicado
             var fotografias = $(titulo).siblings('img');
 
-            // Muestra u oculta las imágenes al hacer clic en el título
+            // Muestra u oculta las imÃ¡genes al hacer clic en el tÃ­tulo
             fotografias.slideToggle();
         }
     </script>

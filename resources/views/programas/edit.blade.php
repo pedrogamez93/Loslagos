@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+
     <title>Editar Programa</title>
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,7 +67,8 @@
         font-weight: 500;
     }
 </style>
-
+</head>
+<body>
 <div class="container-fluid body">
     <div class="row">
         <div class="col-md-2 style-col-menu">
@@ -85,8 +88,8 @@
     @csrf
     @method('PUT')
 
-    <label class="mt-3 style-label required" for="titulo">Título:</label>
-    <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="Título" required>
+    <label class="mt-3 style-label required" for="titulo">TÃ­tulo:</label>
+    <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="TÃ­tulo" required>
 
     <label class="style-label mb-2" for="bajada">Bajada:</label>
     <textarea class="form-control mt-2" name="bajada" id="" placeholder="Bajada">{{ $programa->bajada }}</textarea>
@@ -117,7 +120,7 @@
     <!-- Resto del formulario -->
 
     <div class="container mt-3">
-        <label class="style-label mb-2">¿Deseas agregar otro texto descriptivo?</label>
+        <label class="style-label mb-2">Â¿Deseas agregar otro texto descriptivo?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -135,19 +138,19 @@
     <div class="container texto-descriptivo mt-4">
         <div class="row">
             <div class="col-md-12">
-                <label class="style-label" for="url">Título:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion[]" placeholder="Agregar título">
+                <label class="style-label" for="url">TÃ­tulo:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion[]" placeholder="Agregar tÃ­tulo">
             </div>
             <div class="col-md-12">
                 <label class="style-label" for="url">Bajada:</label>
-                <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px" id="desc" name="bajada_descripcion[]"></textarea>
+                <textarea class="form-control mt-2" placeholder="Agregar descripciÃ³n" style="height: 250px" id="desc" name="bajada_descripcion[]"></textarea>
             </div>
         </div>
-        <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripción</button>
+        <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripciÃ³n</button>
     </div>
 
-    <!-- Botón de submit para guardar la nueva descripción -->
-    <button class="btn btn-success mt-3" type="submit">Actualizar descripciónes</button>
+    <!-- BotÃ³n de submit para guardar la nueva descripciÃ³n -->
+    <button class="btn btn-success mt-3" type="submit">Actualizar descripciÃ³nes</button>
 </form>
 
 
@@ -156,17 +159,20 @@
 <!--DOCUMENTOS-->
 <form action="{{ route('programas.agregar-documento', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
-                      <div class="documentos-container form-control mt-5">
-                          <div class="documentos-input">
-                              <label class="style-label" for="documentos">¿Deseas agregar nuevos documentos?</label>
-                              <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del documento">
-                              <input class="form-control mt-2 mb-2" type="file" name="urlDocumento[]" accept=".pdf, .doc, .docx, .zip, .rar">
-                          </div>
-                         <button type="button" class="btn btn-primary agregar-documento" style="display: block;"> Agregar otro documento</button>
-                     
+    <div class="documentos-container form-control mt-5">
+        <div class="documentos-input">
+            <label class="style-label" for="documentos">Â¿Deseas agregar nuevos documentos?</label>
+            <div id="documentos-wrapper">
+                <div class="documento-item">
+                    <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del documento">
+                    <input class="form-control mt-2 mb-2" type="file" name="urlDocumento[]" accept=".pdf, .doc, .docx, .zip, .rar">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary agregar-documento" onclick="agregarDocumento()">Agregar otro documento</button>
+        </div>
 
-                      <button class="btn btn-success mt-3" type="submit">Guardar documentos</button>
-                       </div>
+        <button class="btn btn-success mt-3" type="submit">Guardar documentos</button>
+    </div>
 </form>
 
 <!--BOTONES-->
@@ -175,7 +181,7 @@
 <form action="{{ route('programas.agregar-boton', ['programa' => $programa->id]) }}" method="POST">
     @csrf
     <div class="container">
-        <label class="style-label mb-2 mt-5">¿Deseas agregar nuevos botones?</label>
+        <label class="style-label mb-2 mt-5">Â¿Deseas agregar nuevos botones?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -193,15 +199,15 @@
     <div class="container botton-direccionar mt-4">
         <div class="row">
             <div class="col-md-6">
-                <label class="style-label" for="url">Nombre del botón:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="nombrebtn[]" placeholder="Nombre del botón">
+                <label class="style-label" for="url">Nombre del botÃ³n:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="nombrebtn[]" placeholder="Nombre del botÃ³n">
             </div>
             <div class="col-md-6">
-                <label class="style-label" for="url">URL del botón:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="urlbtn[]" placeholder="URL del botón">
+                <label class="style-label" for="url">URL del botÃ³n:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="urlbtn[]" placeholder="URL del botÃ³n">
             </div>
         </div>
-        <button type="button" id="agregarMas2" class="btn btn-primary">Agregar Más</button>
+        <button type="button" id="agregarMas2" class="btn btn-primary">Agregar MÃ¡s</button>
     </div>
     <button class="btn btn-success mt-3" type="submit">Actualizar botones</button>
 </form>
@@ -215,7 +221,7 @@
 <form action="{{ route('programas.agregar-fotografia', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="container pregunta-doc mt-4">
-        <label class="style-label mb-2 mt-3">¿Deseas agregar nuevas fotografías?</label>
+        <label class="style-label mb-2 mt-3">Â¿Deseas agregar nuevas fotografÃ­as?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -232,11 +238,11 @@
 
     <div class="colecciones-container mt-3">
         <div class="colecciones-input">
-            <label class="style-label" for="colecciones">Fotografías:</label>
+            <label class="style-label" for="colecciones">FotografÃ­as:</label>
             <input class="form-control mt-2 mb-4" type="file" name="fotografias[]" accept=".png, .jpg, .jpeg" multiple>
         </div>
     </div>
-    <button class="btn btn-success mt-3 mb-5" type="submit">Actualizar fotografías</button>
+    <button class="btn btn-success mt-3 mb-5" type="submit">Actualizar fotografÃ­as</button>
 </form>
 
 
@@ -294,17 +300,17 @@
 <div class="form-control pt-4 pb-4">
 
 <!-- Mostrar colecciones -->
-<h3 class="mt-3 mb-2">Fotografías actuales</h3>
+<h3 class="mt-3 mb-2">FotografÃ­as actuales</h3>
 
 @foreach($colecciones as $coleccion)
     <div class="container mt-1 mb-1">
         <h5 class="mt-3">{{ $coleccion->titulo_coleccion }}</h5>
-        <!-- Mostrar fotografías de la colección -->
+        <!-- Mostrar fotografÃ­as de la colecciÃ³n -->
         <div class="row">
             @foreach($coleccion->fotografias as $fotografia)
                 <div class="col-md-3 mb-3">
                     <div class="card">
-                        <img src="{{ asset('directorio_destino/' . basename($fotografia->ruta)) }}" class="card-img-top" alt="Fotografía">
+                        <img src="{{ asset('imagenes_programas/' . basename($fotografia->ruta)) }}" class="card-img-top" alt="FotografÃ­a">
                         <div class="card-body text-center">
                             <form action="{{ route('programa.fotografia.destroy', $fotografia->id) }}" method="POST">
                                 @csrf
@@ -324,12 +330,12 @@
         </div>
     </div>
 </div>
-
+</body>
 </html>
 
 <script>
       tinymce.init({
-            selector: '#desc', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            selector: '#desc', // Ajustado para apuntar especÃ­ficamente al textarea con el ID 'editor'
             plugins: 'advlist link image lists',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -342,7 +348,7 @@
         });
 
         tinymce.init({
-            selector: '#nota', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            selector: '#nota', // Ajustado para apuntar especÃ­ficamente al textarea con el ID 'editor'
             plugins: 'advlist link image lists',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -363,7 +369,7 @@
     $(".documentos-container-comprimido").hide();
     $(".open-other-site").hide();
     
-    // Desactivar la opción "No" cuando se selecciona "Si"
+    // Desactivar la opciÃ³n "No" cuando se selecciona "Si"
     $("#inlineCheckbox1").change(function () {
       if ($(this).prop("checked")) {
         $("#inlineCheckbox2").prop("checked", false);
@@ -402,7 +408,7 @@
 
 
 
-    // Desactivar la opción "Si" cuando se selecciona "No"
+    // Desactivar la opciÃ³n "Si" cuando se selecciona "No"
     $("#inlineCheckbox2").change(function () {
       if ($(this).prop("checked")) {
         $("#inlineCheckbox1").prop("checked", false);
@@ -433,7 +439,7 @@
 
  
 
-    // Botón "Agregar Más" para duplicar los inputs
+    // BotÃ³n "Agregar MÃ¡s" para duplicar los inputs
     $("#agregarMas").click(function () {
       // Clonar el primer par de inputs y agregar al final
       var nuevoBoton = $(".texto-descriptivo .row").first().clone();
@@ -453,7 +459,7 @@
 
 
 tinymce.init({
-            selector: '#editor', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            selector: '#editor', // Ajustado para apuntar especÃ­ficamente al textarea con el ID 'editor'
             plugins: 'advlist link image lists',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -466,7 +472,7 @@ tinymce.init({
         });
 
         tinymce.init({
-            selector: '#editor2', // Ajustado para apuntar específicamente al textarea con el ID 'editor'
+            selector: '#editor2', // Ajustado para apuntar especÃ­ficamente al textarea con el ID 'editor'
             plugins: 'advlist link image lists',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -479,16 +485,16 @@ tinymce.init({
         });
 
 $(document).ready(function() {
-    // Contador para IDs únicos
+    // Contador para IDs Ãºnicos
     var contador = 1;
 
-    // Función para duplicar campos de documento
+    // FunciÃ³n para duplicar campos de documento
     $(".agregar-documento").click(function() {
         var clone = $(".documentos-input:first").clone(true); // Clonar el primer campo de documento
-        clone.find(".titulo_documento").val(""); // Limpiar el valor del campo de título
+        clone.find(".titulo_documento").val(""); // Limpiar el valor del campo de tÃ­tulo
         clone.find(".ruta_documento").val(""); // Limpiar el valor del campo de ruta
-        clone.find(".titulo_documento").attr("id", "titulo_documento_" + contador); // Crear un ID único para el campo de título
-        clone.find(".ruta_documento").attr("id", "ruta_documento_" + contador); // Crear un ID único para el campo de ruta
+        clone.find(".titulo_documento").attr("id", "titulo_documento_" + contador); // Crear un ID Ãºnico para el campo de tÃ­tulo
+        clone.find(".ruta_documento").attr("id", "ruta_documento_" + contador); // Crear un ID Ãºnico para el campo de ruta
         contador++; // Incrementar el contador
         $(".documentos-container").append(clone); // Agregar el campo clonado al contenedor
     });

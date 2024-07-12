@@ -109,7 +109,8 @@ Route::match(['get', 'post'], '/documentos/buscar', [DocumentonewController::cla
 
 Route::get('/documentos/download/{id}', [DocumentonewController::class, 'download'])->name('documentos.download');
 Route::get('/documentos/descargar/{archivo}', [DocumentonewController::class, 'descargarArchivo'])->name('descargar.archivo');
-
+Route::get('/cargamasivadoc', [DocumentonewController::class, 'getcargarMasiva'])->name('cargamasiva.get');
+Route::post('/cargamasivadoc', [DocumentonewController::class, 'cargamasiva'])->name('cargamasiva.post');
 //RUTA SOLO PARA ADMIN Y EDITOR
 Route::middleware(['auth', 'role:admin,editor'])->group(function () {
     Route::get('/documentos/{id}/edit', [DocumentonewController::class, 'edit'])->name('documentos.edit')->middleware('auth');

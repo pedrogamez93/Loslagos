@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 
 class FondosFndrController extends Controller
 {
-    // Ejemplo de función para mostrar un listado de fondos
+    // Ejemplo de funciÃ³n para mostrar un listado de fondos
     public function index()
     {
         $fondos = FondosFndr::all(); // Obtiene todos los fondos
@@ -37,15 +37,15 @@ class FondosFndrController extends Controller
     {
         //dd($request->all());
 
-       // Validación de los datos del formulario
+       // ValidaciÃ³n de los datos del formulario
     $request->validate([
         'titulo' => 'nullable|string',
         'bajada' => 'nullable|string',
         'descripcion' => 'nullable|string',
         'nota' => 'nullable|string',
-        'titulo_seccion.*' => 'nullable|string', // Validación para al menos un título de sección
-        'titulo_documento..' => 'nullable|string', // Validación para al menos un título de documento
-        'ruta_documento..' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400', // Validación para al menos un archivo adjunto
+        'titulo_seccion.*' => 'nullable|string', // ValidaciÃ³n para al menos un tÃ­tulo de secciÃ³n
+        'titulo_documento..' => 'nullable|string', // ValidaciÃ³n para al menos un tÃ­tulo de documento
+        'ruta_documento..' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400', // ValidaciÃ³n para al menos un archivo adjunto
     ]);
     
         // Crear el fondo
@@ -83,7 +83,7 @@ class FondosFndrController extends Controller
 
         
     
-        // Redireccionar a la vista deseada con un mensaje de éxito
+        // Redireccionar a la vista deseada con un mensaje de Ã©xito
         return redirect()->route('fondosfndr.index')->with('success', 'Fondo FNDR creado exitosamente.');
     }
 
@@ -112,7 +112,7 @@ class FondosFndrController extends Controller
         $fondo->descripcion = $request->descripcion;
         $fondo->nota = $request->nota;
 
-        // Actualiza otros campos según sea necesario
+        // Actualiza otros campos segÃºn sea necesario
 
         $fondo->save();
 
@@ -134,7 +134,7 @@ class FondosFndrController extends Controller
         // Encuentra el documento por su ID y verifica si realmente existe
         $documento = DocsSeccionesFndr::findOrFail($id);
         
-        // Obtén el fondo asociado al documento, asegurándote que cada relación existe
+        // ObtÃ©n el fondo asociado al documento, asegurÃ¡ndote que cada relaciÃ³n existe
         $fondoId = optional(optional($documento->seccion)->fondo)->id;
         if (is_null($fondoId)) {
             return back()->withErrors('El fondo asociado no se encuentra disponible.');
@@ -143,10 +143,10 @@ class FondosFndrController extends Controller
         // Elimina el documento
         $documento->delete();
         
-        // Redirige de vuelta a la página de edición del fondo con un mensaje de éxito
+        // Redirige de vuelta a la pÃ¡gina de ediciÃ³n del fondo con un mensaje de Ã©xito
         return redirect()->route('fondosfndr.edit', $fondoId)->with('success', 'Documento eliminado correctamente');
     } catch (\Exception $e) {
-        // En caso de cualquier excepción, redirige de vuelta con un mensaje de error
+        // En caso de cualquier excepciÃ³n, redirige de vuelta con un mensaje de error
         return back()->withErrors('Error al eliminar el documento: ' . $e->getMessage());
     }
 }
@@ -155,44 +155,38 @@ class FondosFndrController extends Controller
 
 public function agregarDocumento(Request $request, $fondo_id)
 {
-    // Buscar el fondo por su ID
     $fondo = FondosFndr::findOrFail($fondo_id);
 
-    // Verificar si el fondo existe
     if ($fondo) {
-        // Obtener la sección del fondo (asumiendo que solo hay una sección)
-        $seccion = $fondo->secciones->first(); // Suponiendo que cada fondo tiene solo una sección
+        $seccion = $fondo->secciones->first();
 
-        // Verificar si la sección existe
         if ($seccion) {
-            // Obtener los archivos cargados
-
-            // Verificar si se han cargado archivos
             $documentos = $request->file('ruta_documento');
+            $titulos = $request->input('titulo_documento');
 
-// Verificar si se han cargado archivos
-if ($documentos) {
-    foreach ($documentos as $documento) {
-        // Guardar cada archivo en la carpeta deseada y registrar la información en la base de datos
-        $documento_path = $documento->store('documentos', 'public');;
-        DocsSeccionesFndr::create([
-            'titulo_documento' => $documento->getClientOriginalName(), // Usando el nombre original como título
-            'ruta_documento' => $documento_path,
-            'seccion_fndr_id' => $seccion->id
-        ]);
-    }
-    return redirect()->back()->with('success', 'Documentos agregados correctamente.');
-} else {
-    return redirect()->back()->with('error', 'No se seleccionaron documentos para agregar.');
-}
+            if ($documentos && $titulos) {
+                foreach ($documentos as $index => $documento) {
+                    $nombre_documento = Str::uuid() . '.' . $documento->getClientOriginalExtension();
+                    $documento_path = $documento->storeAs('documentos', $nombre_documento, 'public');
 
+                    DocsSeccionesFndr::create([
+                        'titulo_documento' => $titulos[$index], // Usando el tÃ­tulo ingresado por el usuario
+                        'ruta_documento' => $documento_path,
+                        'seccion_fndr_id' => $seccion->id
+                    ]);
+                }
+                return redirect()->back()->with('success', 'Documentos agregados correctamente.');
+            } else {
+                return redirect()->back()->with('error', 'No se seleccionaron documentos para agregar o falta el tÃ­tulo.');
+            }
         } else {
-            return redirect()->back()->with('error', 'No se encontró la sección en este fondo.');
+            return redirect()->back()->with('error', 'No se encontrÃ³ la secciÃ³n en este fondo.');
         }
     }
 
-    return redirect()->back()->with('error', 'No se encontró el fondo.');
+    return redirect()->back()->with('error', 'No se encontrÃ³ el fondo.');
 }
+
 
 //funcion abrir documentos
 
@@ -215,10 +209,10 @@ public function abrirDocumento($id)
     Log::info("Ruta completa del archivo: " . $rutaArchivo);
 
     if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-        // Obtener la extensión del archivo
+        // Obtener la extensiÃ³n del archivo
         $extension = pathinfo($rutaCompleta, PATHINFO_EXTENSION);
 
-        // Verificar si la extensión es .docx y agregarla si es necesario
+        // Verificar si la extensiÃ³n es .docx y agregarla si es necesario
         $nombreArchivoConExtension = $documento->titulo_documento;
         if (strcasecmp($extension, 'docx') == 0) {
             $nombreArchivoConExtension .= '.docx';
@@ -226,7 +220,7 @@ public function abrirDocumento($id)
             $nombreArchivoConExtension .= '.' . $extension;
         }
 
-        // Descargar el archivo con su nombre original y extensión
+        // Descargar el archivo con su nombre original y extensiÃ³n
         return response()->download($rutaArchivo, $nombreArchivoConExtension);
     } else {
         Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);

@@ -147,7 +147,7 @@
                         @foreach ($actas as $acta)
                             <div class="col-md-3 mb-4">
                                 <div class="mi-documento d-flex align-items-center" style="border: 1px solid #F59120; padding: 5px;">
-                                    <a href="{{ route('actas.download', $acta->id) }}" target="_blank" class="d-flex align-items-center">
+                                    <a href="{{ route('actas.download', $acta->id) }}"  class="d-flex align-items-center">
                                         <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Acta" style="margin-right: 10px;">
                                         <div>
                                             <p class="p-doc-tit">{{ $acta->tema }}</p>

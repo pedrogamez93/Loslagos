@@ -7,7 +7,8 @@ use App\Models\Documentonew;
 use App\Models\Acta;
 use App\Models\Acuerdo;
 use App\Models\ResumenGastos;
-
+use App\Models\Documento_Sesion;
+use League\Csv\Reader;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DocumentoGeneral;
 use Illuminate\Support\Facades\Log;
@@ -110,12 +111,14 @@ class DocumentonewController extends Controller
             $archivoPath = null; // Inicializa la variable $archivoPath
     
             if ($request->hasFile('archivo')) {
-                $archivoPath = $request->file('archivo')->store('public/documentos');
+                $archivo = $request->file('archivo');
+                $nombreArchivoOriginal = $archivo->getClientOriginalName();
+                $archivoPath = $archivo->storeAs('public/documentos', $nombreArchivoOriginal);
                 Log::info('Archivo subido:', ['path' => $archivoPath]);
             } else {
                 Log::info('No se subió ningún archivo.');
             }
-    
+            
             // Crear el objeto $documento después de asignar la ruta relativa
             $documento = Documentonew::create(array_merge(
                 $request->except(['_token']),
@@ -217,24 +220,27 @@ class DocumentonewController extends Controller
     public function indexTabla(Request $request)
     {
         $query = Documentonew::query();
-
+    
         if ($request->filled('tipo_documento')) {
             $query->where('tipo_documento', 'like', '%' . $request->tipo_documento . '%');
         }
-
+    
         if ($request->filled('tema')) {
             $query->where('tema', 'like', '%' . $request->tema . '%');
         }
-
+    
         if ($request->filled('lugar')) {
             $query->where('lugar', 'like', '%' . $request->lugar . '%');
         }
-
-        $documentos = $query->paginate(10);
-
+    
+        // Ordenar por el campo 'id' de forma ascendente
+        $query->orderBy('id', 'asc');
+    
+        $documentos = $query->paginate(35);
+    
         return view('documentos.tabladocumentos', compact('documentos'));
-  
     }
+    
     
 
     public function edit($id)
@@ -251,14 +257,21 @@ class DocumentonewController extends Controller
 {
     // Validación de datos
     // Puedes agregar aquí las reglas de validación según tus necesidades
-    
-    $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
-                      ->findOrFail($id);
 
-    // Update Documentonew with the provided data in the request
-    $documento->fill($request->except(['_token'])); // Set the new values without saving
+    $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->findOrFail($id);
 
-    // Check each field for changes and save only if there are changes
+
+    $documento->fill($request->except(['_token', 'archivo'])); // Set the new values without saving
+
+    // Manejar la subida del archivo
+    if ($request->hasFile('archivo')) {
+        $archivo = $request->file('archivo');
+        $filePath = 'public/documentos/' . $archivo->getClientOriginalName();
+        $archivo->storeAs('documentos', $archivo->getClientOriginalName(), 'public');
+        $documento->archivo = $filePath;
+    }
+
+  
     if ($documento->isDirty()) {
         $documento->save();
     }
@@ -388,6 +401,38 @@ public function docdestruir($documento)
         }
     }
     
+    public function getcargarMasiva()
+    {
+        // Retorna la vista para seleccionar la tabla
+        return view('documentos.cargamasiva');
+    }
 
 
+
+
+    public function cargamasiva(Request $request)
+    {
+        try {
+            $query = $request->input('query');
+    
+            // Validar que el query sea un INSERT
+            if (stripos(trim($query), 'insert') !== 0) {
+                throw new \Exception('El query debe ser un INSERT válido.');
+            }
+    
+            // Reemplazar \N por NULL en campos de tipo timestamp
+            $query = str_replace('\N', 'NULL', $query);
+    
+            // Ejecutar el query directamente
+            DB::statement($query);
+    
+            return redirect()->back()->with('success', 'Query ejecutado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al ejecutar el query: ' . $e->getMessage());
+        }
+    }
+    
+    
+     
+    
 }

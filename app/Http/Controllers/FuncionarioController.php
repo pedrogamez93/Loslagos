@@ -303,7 +303,29 @@ public function buscar(Request $request)
 
     
     
-    
+public function destroy($id)
+{
+    try {
+        // Buscar el funcionario por su ID
+        $funcionario = Funcionario::findOrFail($id);
+
+        // Eliminar la foto asociada si existe
+        if ($funcionario->foto) {
+            Storage::delete('public/' . $funcionario->foto);
+        }
+
+        // Eliminar el funcionario de la base de datos
+        $funcionario->delete();
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('funcionarios.index')->with('success', 'Funcionario eliminado exitosamente.');
+    } catch (\Exception $e) {
+        // Manejar el error y redirigir con un mensaje de error
+        Log::error('Error al eliminar el funcionario: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Error al eliminar el funcionario: ' . $e->getMessage());
+    }
+}
+
 
 public function edit2(Request $request)
 {

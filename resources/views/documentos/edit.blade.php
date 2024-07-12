@@ -101,15 +101,15 @@ input:required {
                         <div class="form-group">
                             <label for="tipo_documento">Tipo de Documento:</label>
                             <select name="tipo_documento" id="tipo_documento" class="form-control" required>
-                                <option value="Actas" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
-                                <option value="Acuerdos" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
-                                <option value="Resumengastos" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
+                                <option value="Acta" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
+                                <option value="Acuerdo" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
+                                <option value="Resumengasto" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
                                 <option value="Documentogeneral" {{ $documento->tipo_documento == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
                             </select>
                         </div>
 
                         <!-- Campos específicos para cada tipo de documento -->
-                        <div id="actas-fields" class="document-fields" style="display: none;">
+                        <div id="acta-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="provincia">Provincia:</label>
                                 <select name="provincia" id="provincia" class="form-control">
@@ -169,7 +169,7 @@ input:required {
                             </div>
                         </div>
 
-                        <div id="acuerdos-fields" class="document-fields" style="display: none;">
+                        <div id="acuerdo-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="numero">Número:</label>
                                 <input type="number" name="numero" id="numero" class="form-control" value="{{ $documento->numero }}">
@@ -188,7 +188,7 @@ input:required {
                             </div>
                         </div>
 
-                        <div id="resumengastos-fields" class="document-fields" style="display: none;">
+                        <div id="resumengasto-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $documento->nombre }}">
@@ -277,7 +277,7 @@ input:required {
                         </div>
 
                         <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary">Guardar Documento</button>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                     </form>
                 </div>
