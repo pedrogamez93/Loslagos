@@ -234,7 +234,7 @@ class DocumentonewController extends Controller
         // Ordenar por el campo 'id' de forma ascendente
         $query->orderBy('id', 'asc');
     
-        $documentos = $query->paginate(10);
+        $documentos = $query->paginate(35);
     
         return view('documentos.tabladocumentos', compact('documentos'));
     }
