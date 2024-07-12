@@ -255,12 +255,19 @@ class DocumentonewController extends Controller
 {
     // Validación de datos
     // Puedes agregar aquí las reglas de validación según tus necesidades
-    
-    $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])
-                      ->findOrFail($id);
+
+    $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->findOrFail($id);
 
     // Update Documentonew with the provided data in the request
-    $documento->fill($request->except(['_token'])); // Set the new values without saving
+    $documento->fill($request->except(['_token', 'archivo'])); // Set the new values without saving
+
+    // Manejar la subida del archivo
+    if ($request->hasFile('archivo')) {
+        $archivo = $request->file('archivo');
+        $filePath = 'public/documentos/' . $archivo->getClientOriginalName();
+        $archivo->storeAs('documentos', $archivo->getClientOriginalName(), 'public');
+        $documento->archivo = $filePath;
+    }
 
     // Check each field for changes and save only if there are changes
     if ($documento->isDirty()) {
