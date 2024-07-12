@@ -109,7 +109,7 @@ input:required {
                         </div>
 
                         <!-- Campos específicos para cada tipo de documento -->
-                        <div id="actas-fields" class="document-fields" style="display: none;">
+                        <div id="acta-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="provincia">Provincia:</label>
                                 <select name="provincia" id="provincia" class="form-control">
@@ -169,7 +169,7 @@ input:required {
                             </div>
                         </div>
 
-                        <div id="acuerdos-fields" class="document-fields" style="display: none;">
+                        <div id="acuerdo-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="numero">Número:</label>
                                 <input type="number" name="numero" id="numero" class="form-control" value="{{ $documento->numero }}">
@@ -188,7 +188,7 @@ input:required {
                             </div>
                         </div>
 
-                        <div id="resumengastos-fields" class="document-fields" style="display: none;">
+                        <div id="resumengasto-fields" class="document-fields" style="display: none;">
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $documento->nombre }}">
