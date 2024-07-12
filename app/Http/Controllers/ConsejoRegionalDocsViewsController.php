@@ -19,13 +19,14 @@ class ConsejoRegionalDocsViewsController extends Controller
 {
     public function Indexactas()
     {
-        // Obtener los documentos de tipo "Acta"
+        // Obtener los documentos de tipo "Acta" y ordenarlos por el campo 'id'
         $documentosActas = Documentonew::where('tipo_documento', 'Acta')
-            ->orderBy('fecha_hora_sesion', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate(8);
     
         return view('consejoregionaldocsviews.actas.index', ['actas' => $documentosActas]);
     }
+    
 
     public function showActa($id)
     {

@@ -258,7 +258,7 @@ class DocumentonewController extends Controller
 
     $documento = Documentonew::with(['acta', 'acuerdo', 'resumenGastos', 'documentoGeneral'])->findOrFail($id);
 
-    // Update Documentonew with the provided data in the request
+
     $documento->fill($request->except(['_token', 'archivo'])); // Set the new values without saving
 
     // Manejar la subida del archivo
@@ -269,7 +269,7 @@ class DocumentonewController extends Controller
         $documento->archivo = $filePath;
     }
 
-    // Check each field for changes and save only if there are changes
+  
     if ($documento->isDirty()) {
         $documento->save();
     }
