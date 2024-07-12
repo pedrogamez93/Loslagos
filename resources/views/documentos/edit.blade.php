@@ -101,9 +101,9 @@ input:required {
                         <div class="form-group">
                             <label for="tipo_documento">Tipo de Documento:</label>
                             <select name="tipo_documento" id="tipo_documento" class="form-control" required>
-                                <option value="Actas" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
-                                <option value="Acuerdos" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
-                                <option value="Resumengastos" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
+                                <option value="Acta" {{ $documento->tipo_documento == 'Actas' ? 'selected' : '' }}>Actas</option>
+                                <option value="Acuerdo" {{ $documento->tipo_documento == 'Acuerdos' ? 'selected' : '' }}>Acuerdos</option>
+                                <option value="Resumengasto" {{ $documento->tipo_documento == 'Resumengastos' ? 'selected' : '' }}>Resumen de Gastos</option>
                                 <option value="Documentogeneral" {{ $documento->tipo_documento == 'Documentogeneral' ? 'selected' : '' }}>Documento General</option>
                             </select>
                         </div>
