@@ -73,13 +73,22 @@ class ConsejoRegionalDocsViewsController extends Controller
         // Obtiene la ruta completa del archivo en el almacenamiento
         $filePath = storage_path('app/documentos/' . $documento->archivo);
     
+        // Log para depurar la ruta del archivo
+        Log::info('Ruta del archivo: ' . $filePath);
+    
         // Verifica si el archivo existe
         if (file_exists($filePath)) {
+            // Log para depurar la existencia del archivo
+            Log::info('El archivo existe: ' . $filePath);
+    
             // Retorna la respuesta de descarga
             return response()->download($filePath, basename($documento->archivo));
         } else {
+            // Log para depurar la no existencia del archivo
+            Log::error('El archivo no existe: ' . $filePath);
+    
             // Retorna una respuesta JSON con un mensaje de error
-            return response()->json(['error' => 'El archivo no existe.'. $filePath.''], 404);
+            return response()->json(['error' => 'El archivo no existe. Ruta verificada: ' . $filePath], 404);
         }
     }
     
