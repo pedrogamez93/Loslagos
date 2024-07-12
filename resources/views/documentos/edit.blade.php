@@ -277,7 +277,7 @@ input:required {
                         </div>
 
                         <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary">Guardar Documento</button>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                     </form>
                 </div>
