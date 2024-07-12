@@ -67,40 +67,39 @@ class ConsejoRegionalDocsViewsController extends Controller
 
     
     public function download($id)
-    {
-        try {
-            // Busca el documento por su ID
-            $documento = Documentonew::findOrFail($id);
-        
-            // Verifica el contenido de $documento->archivo
-            Log::info('Nombre del archivo: ' . $documento->archivo);
+{
+    try {
+        // Busca el documento por su ID
+        $documento = Documentonew::findOrFail($id);
     
-            // Si el nombre del archivo ya contiene 'public/documentos/', eliminamos esta parte
-            $relativePath = str_replace('public/documentos/', '', $documento->archivo);
+        // Verifica el contenido de $documento->archivo
+        Log::info('Nombre del archivo: ' . $documento->archivo);
+
+        // Si el nombre del archivo ya contiene 'public/documentos/', eliminamos esta parte
+        $relativePath = str_replace('public/documentos/', '', $documento->archivo);
+
+        // Obtiene la ruta completa del archivo en el almacenamiento público
+        $filePath = storage_path('app/public/documentos/' . $relativePath);
     
-            // Obtiene la ruta completa del archivo en el almacenamiento
-            $filePath = storage_path('app/documentos/' . $relativePath);
-        
-            // Verifica la ruta del archivo
-            Log::info('Ruta completa del archivo: ' . $filePath);
-    
-            // Verifica si el archivo existe
-            if (file_exists($filePath)) {
-                // Retorna la respuesta de descarga
-                return response()->download($filePath, basename($relativePath));
-            } else {
-                // Registra en el log y retorna una respuesta JSON con un mensaje de error
-                Log::error('El archivo no existe: ' .$relativePath);
-                return response()->json(['error' => 'El archivo no existe.'.$relativePath], 404);
-            }
-        } catch (\Exception $e) {
-            // Registra en el log cualquier excepción y retorna una respuesta JSON con un mensaje de error
-            Log::error('Error al intentar descargar el archivo: ' . $e->getMessage());
-            return response()->json(['error' => 'Hubo un error al intentar descargar el archivo.'.$relativePath], 500);
+        // Verifica la ruta del archivo
+        Log::info('Ruta completa del archivo: ' . $filePath);
+
+        // Verifica si el archivo existe
+        if (file_exists($filePath)) {
+            // Retorna la respuesta de descarga
+            return response()->download($filePath, basename($relativePath));
+        } else {
+            // Registra en el log y retorna una respuesta JSON con un mensaje de error
+            Log::error('El archivo no existe: ' . $filePath);
+            return response()->json(['error' => 'El archivo no existe. ' . $filePath], 404);
         }
+    } catch (\Exception $e) {
+        // Registra en el log cualquier excepción y retorna una respuesta JSON con un mensaje de error
+        Log::error('Error al intentar descargar el archivo: ' . $e->getMessage());
+        return response()->json(['error' => 'Hubo un error al intentar descargar el archivo. ' . $filePath], 500);
     }
-    
-    
+}
+
 
 public function Indexcertificadosdeacuerdos(Request $request)
 {
