@@ -111,12 +111,14 @@ class DocumentonewController extends Controller
             $archivoPath = null; // Inicializa la variable $archivoPath
     
             if ($request->hasFile('archivo')) {
-                $archivoPath = $request->file('archivo')->store('public/documentos');
+                $archivo = $request->file('archivo');
+                $nombreArchivoOriginal = $archivo->getClientOriginalName();
+                $archivoPath = $archivo->storeAs('public/documentos', $nombreArchivoOriginal);
                 Log::info('Archivo subido:', ['path' => $archivoPath]);
             } else {
                 Log::info('No se subió ningún archivo.');
             }
-    
+            
             // Crear el objeto $documento después de asignar la ruta relativa
             $documento = Documentonew::create(array_merge(
                 $request->except(['_token']),
