@@ -90,12 +90,12 @@ class ConsejoRegionalDocsViewsController extends Controller
             } else {
                 // Registra en el log y retorna una respuesta JSON con un mensaje de error
                 Log::error('El archivo no existe: ' . $filePath);
-                return response()->json(['error' => 'El archivo no existe.'], 404);
+                return response()->json(['error' => 'El archivo no existe.'.$filePath], 404);
             }
         } catch (\Exception $e) {
             // Registra en el log cualquier excepción y retorna una respuesta JSON con un mensaje de error
             Log::error('Error al intentar descargar el archivo: ' . $e->getMessage());
-            return response()->json(['error' => 'Hubo un error al intentar descargar el archivo.'], 500);
+            return response()->json(['error' => 'Hubo un error al intentar descargar el archivo.'.$filePath], 500);
         }
     }
     
