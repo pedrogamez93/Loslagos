@@ -112,28 +112,32 @@ class DocumentosDeGestionController extends Controller
         return view('documentosdegestion.controlesssi.index', ['documentosControlesSSI' => $documentosControlesSSI]);
     }
 
-        public function Indexestadosituacionfndr()
-        {
-            $anioActual = Carbon::now()->year;
-            $documentos = DocumentoGeneral::with('documentonew')
-                ->where('categoria', 'Estado Situacion FNDR')
-                ->get();
+    public function Indexestadosituacionfndr()
+    {
+        $anioActual = Carbon::now()->year;
+        $documentos = DocumentoGeneral::with('documentonew')
+            ->where('categoria', 'Estado Situacion FNDR')
+            ->get();
+    
+        $documentosAgrupados = $documentos->groupBy(function($documento) {
+            // Verificar si el documento tiene una fecha asociada válida
+            return ($documento->documentonew && $documento->documentonew->fecha_hora) ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
+        });
+    
+        // Filtrar grupos vacíos (sin año)
+        $documentosAgrupados = $documentosAgrupados->filter(function($group) {
+            return $group->isNotEmpty();
+        });
+    
+        // Ordenar los documentos agrupados por año de manera descendente
+        $documentosAgrupados = $documentosAgrupados->sortKeysDesc();
+    
+        return view('documentosdegestion.estadosituacionfndr.index', [
+            'documentosAgrupados' => $documentosAgrupados,
+            'anioActual' => $anioActual
+        ]);
+    }
 
-            $documentosAgrupados = $documentos->groupBy(function($documento) {
-                // Verificar si el documento tiene una fecha asociada válida
-                return ($documento->documentonew && $documento->documentonew->fecha_hora) ? Carbon::parse($documento->documentonew->fecha_hora)->year : null;
-            });
-
-            // Filtrar grupos vacíos (sin año)
-            $documentosAgrupados = $documentosAgrupados->filter(function($group) {
-                return $group->isNotEmpty();
-            });
-
-            return view('documentosdegestion.estadosituacionfndr.index', [
-                'documentosAgrupados' => $documentosAgrupados,
-                'anioActual' => $anioActual
-            ]);
-        }
         public function Indexinformeejecucion()
         {
             $anioActual = Carbon::now()->year;

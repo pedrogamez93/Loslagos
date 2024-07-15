@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <style>
     .second{
-       /* width: 100%;*/
         height: 450px;
-        color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
-        margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
-        /*position: fixed;*/
-        top: 0; /* Lo fija en la parte superior */
-        left: 0; /* Lo fija en la parte izquierda */
+        color: #fff; 
+        padding: 20px; 
+        margin: 0; 
+        top: 0; 
+        left: 0; 
         z-index: 1000;
     }
     .top-bar{
@@ -97,11 +95,11 @@
         color: #565656;
     }
     .accordion-item {
-    		border: none !important;
-		}
-		button.accordion-button {
-    		background-color: rgba(0, 0, 0, 0) !important;
-		}
+            border: none !important;
+        }
+        button.accordion-button {
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
         .accordion-button:focus, .accordion-button:not(.collapsed) {
             border: none !important;
             box-shadow: none !important;
@@ -111,26 +109,26 @@
         }
 
     p.title-acord-one{
-		font-family: 'Inter';
-		font-Weight: 700;
-		font-Size: 30px;
-		color: #565656;0
-	}
+        font-family: 'Inter';
+        font-Weight: 700;
+        font-Size: 30px;
+        color: #565656;0
+    }
 
     p.title-acord{
-			font-family: 'Inter';
-			font-Weight: 700;
-			font-Size: 20px;
-			color: #565656;0
-		}
-	.bajada-acord{
-			font-family: 'Inter';
-			font-Weight: 500;
-			font-Size: 16px;
-			Line-height: 19.36px;
-			color: #565656;
-			text-align: justify;
-	}
+            font-family: 'Inter';
+            font-Weight: 700;
+            font-Size: 20px;
+            color: #565656;0
+        }
+    .bajada-acord{
+            font-family: 'Inter';
+            font-Weight: 500;
+            font-Size: 16px;
+            Line-height: 19.36px;
+            color: #565656;
+            text-align: justify;
+    }
 
     p.title-categ{
         font-family: 'Inter';
@@ -252,23 +250,23 @@
         </div> 
         <main>
             <div class="container-fluid cat">
-                    <div class="row">
-                        <div class="col-md-12 pt-4 pb-4">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12 p-0">
+                <div class="row">
+                    <div class="col-md-12 pt-4 pb-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 p-0">
                                     <p class="title-cat">Selecciona una Categoría</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 p-0">
                         <div class="container set pb-4 p-0">
-                        @include('layouts.listacategorias')
+                            @include('layouts.listacategorias')
                         </div>
                         <div class="container content mt-5 mb-5">
                             <div class="row">
@@ -310,41 +308,39 @@
                                         @endif
 
                                         <!-- Acordeón para años anteriores -->
-                                        @if($documentosAgrupados->filter(function ($value, $key) use ($anioActual) { return $key < $anioActual; })->isNotEmpty())
-                                            <div class="accordion" id="accordion{{ $accordionId }}">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="heading{{ $accordionId }}">
-                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="false" aria-controls="collapse{{ $accordionId }}">
-                                                            <p class="title-acord-one">Estados de Situación F.N.D.R. Años Anteriores</p>
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
-                                                        <div class="accordion-body">
-                                                            <div class="row">
-                                                                @foreach($documentosAgrupados as $anio => $documentosDelAnio)
-                                                                    @if($anio < $anioActual)
-                                                                        @foreach($documentosDelAnio as $documento)
-                                                                            <div class="col-md-6">
-                                                                                <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
-                                                                                    <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
-                                                                                        <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
-                                                                                        <p class="ms-3">{{ $documento->titulo }}</p>
-                                                                                    </a>
-                                                                                </div>
+                                        @foreach($documentosAgrupados as $anio => $documentosDelAnio)
+                                            @if($anio < $anioActual)
+                                                <div class="accordion" id="accordion{{ $accordionId }}">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="heading{{ $accordionId }}">
+                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $accordionId }}" aria-expanded="false" aria-controls="collapse{{ $accordionId }}">
+                                                                <p class="title-acord-one">Estado situación F.N.D.R {{ $anio }}</p>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapse{{ $accordionId }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $accordionId }}" data-bs-parent="#accordion{{ $accordionId }}">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    @foreach ($documentosDelAnio as $documento)
+                                                                        <div class="col-md-6">
+                                                                            <div class="mi-documento mt-3 mb-3 d-flex align-items-center">
+                                                                                <a href="{{ route('documentos.downloadgestion', $documento->id) }}" target="_blank" class="d-flex align-items-center text-decoration-none">
+                                                                                    <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen">
+                                                                                    <p class="ms-3">{{ $documento->titulo }}</p>
+                                                                                </a>
                                                                             </div>
-                                                                            @if ($loop->iteration % 2 == 0)
-                                                                                <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
-                                                                            @endif
-                                                                        @endforeach
-                                                                    @endif
-                                                                @endforeach
+                                                                        </div>
+                                                                        @if ($loop->iteration % 2 == 0)
+                                                                            <div class="w-100"></div> <!-- Añade un salto de fila cada 2 documentos -->
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @php $accordionId++; @endphp
-                                        @endif
+                                                @php $accordionId++; @endphp
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="border-left: 2px solid #F59120;">
