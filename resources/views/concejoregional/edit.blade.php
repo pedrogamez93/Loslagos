@@ -117,7 +117,7 @@
                                 <div class="col-md-12 pt-3 pb-3">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label style-label">Imagen actual</label>
-                                        <img src="{{ asset($consejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
+                                        <img src="{{ asset($concejo->img) }}" style="width: 150px; height: 150px;" alt="Imagen del Consejo Regional">
                                     </div>
                                 </div>
                             </div>
