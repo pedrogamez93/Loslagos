@@ -217,18 +217,23 @@
             <div class="container second content-breadc pt-5 pb-5">
                 <div class="row" style="padding: 10px 0px 20px 55px;">
                     <div class="col-md-12" style="padding: 0;">
-                        <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/consejoregional/introduccion"><span> Consejo Regional</span></a> / <span style="font-Weight: 700;">Introduccion</span></p>
+                        <p class="style-bread">
+                            <a href="http://127.0.0.1:8000/">Home</a> /
+                            <a href="/consejoregional/introduccion"><span>Consejo Regional</span></a> /
+                            <span style="font-weight: 700;">Introduccion</span>
+                        </p>
                     </div>
                 </div>
-                    
                 <div class="container content-prin pt-4">
                     <div class="row" style="padding: 10px 0px 0px 25px;">
                         <div class="col-md-12">
                             <p class="one-title pb-5">Consejo Regional</p>
                         </div>
+                    
                         <div class="col-md-6">
-                            <p>Tiene por finalidad hacer efectiva la participación de la comunidad regional y está investido de facultades normativas, resolutivas y fiscalizadoras.</p>
+                        <p style="color: #FFFFFF;">Infórmate sobre nuestra Región..</p>
                         </div>
+                       
                     </div>
                 </div>   
             </div>
@@ -242,7 +247,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12" style="padding: 0 0 0 2.9rem;">
-                        <p class="style-tag">Infórmate sobre nuestra Región..</p>
+                        @if(isset($consejo))
+                            <p class="style-tag">{{ $consejo->tag_comentario }}</p>
+                        @else
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -257,53 +265,51 @@
                 </div>
                 <div class="container titulo">
                     <div class="row">
-                        <div class="col-md-12" style="padding: 0 0 0 2rem;">
-                            <h1 class="mititulo mt-2 mb-2">Introducción</h1>
+                    @if(isset($consejo))
+                        <div class="col-md-6" style="font-family: 'Inter'; padding-left: 30px; color: #565656; font-Weight: 700;">
+                            <p style="font-size:30px;">{{ $consejo->titulo }}</p>
                         </div>
+                    @endif
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 mb-4">
-                            {{-- Asegúrate de que existe un objeto consejo --}}
-                                @if(isset($consejo))
-                                    {{-- Mostrar información del consejo --}}
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6"  style="padding: 0 0 0 1.5rem;">
-                                                <p class="style-down">{{ $consejo->bajada }}</p>
-
-                                                {{-- Acordeón para las secciones --}}
-                                                    @foreach ($consejo->secciones as $seccion)
-                                                        <div class="accordion mt-4 mb-4" id="consejoAccordion{{ $seccion->id }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" id="heading{{ $seccion->id }}">
-                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $seccion->id }}" aria-expanded="false" aria-controls="collapse{{ $seccion->id }}">
-                                                                        <img style="width: 30px; height: 29px;" src="{{ asset('storage/images/check2.png') }}" alt="Descripción de la imagen">
-                                                                        <p class="title-acord" style="padding-left: 0.5rem"> {{ $seccion->titulo_seccion }}</p>
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="collapse{{ $seccion->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $seccion->id }}" data-bs-parent="#consejoAccordion{{ $seccion->id }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="bajada-acord">
-                                                                        {{ trim($seccion->bajada_seccion) }}
-                                                                        </div>
-                                                                    </div>
+                            @if(isset($consejo))
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding: 0 0 0 1.5rem;">
+                                            <p class="style-down">{{ $consejo->bajada }}</p>
+                                            @foreach ($consejo->secciones as $seccion)
+                                                <div class="accordion mt-4 mb-4" id="consejoAccordion{{ $seccion->id }}">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="heading{{ $seccion->id }}">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $seccion->id }}" aria-expanded="false" aria-controls="collapse{{ $seccion->id }}">
+                                                                <img style="width: 30px; height: 29px;" src="{{ asset('storage/images/check2.png') }}" alt="Descripción de la imagen">
+                                                                <p class="title-acord" style="padding-left: 0.5rem"> {{ $seccion->titulo_seccion }}</p>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapse{{ $seccion->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $seccion->id }}" data-bs-parent="#consejoAccordion{{ $seccion->id }}">
+                                                            <div class="accordion-body">
+                                                                <div class="bajada-acord">
+                                                                    {{ trim($seccion->bajada_seccion) }}
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                @else
-                                                    <p>Información del Consejo Regional no disponible.</p>
-                                                @endif
-                                            </div>
-                                            <div class="col-md-6">
-                                                @if($consejo->img)
-                                                    <img src="{{ asset($consejo->img) }}" alt="Imagen del Consejo Regional">
-                                                @endif
-                                            </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if($consejo->img)
+                                                <img src="{{ asset('storage/' . $consejo->img) }}" alt="Imagen del Consejo Regional">
+                                            @endif
                                         </div>
                                     </div>
+                                </div>
+                            @else
+                                <p>Información del Consejo Regional no disponible.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

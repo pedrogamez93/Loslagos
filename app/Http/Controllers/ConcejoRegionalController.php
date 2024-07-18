@@ -35,7 +35,7 @@ class ConcejoRegionalController extends Controller{
         // Validación
         $request->validate([
             'tag_comentario' => 'nullable|string',
-            'titulo' => 'required|string|max:255',
+            'titulo' => 'string|max:255',
             'bajada' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'titulo_seccion.*' => 'nullable|string|max:255',
@@ -92,7 +92,6 @@ class ConcejoRegionalController extends Controller{
             'titulo' => 'required|string|max:255',
             'bajada' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // Otras reglas de validación específicas para ConsejoRegional
         ]);
     
         // Actualizar los datos principales del Consejo Regional
@@ -102,12 +101,25 @@ class ConcejoRegionalController extends Controller{
             abort(404, 'Consejo Regional no encontrado');
         }
         
+        // Si hay una nueva imagen, eliminar la antigua y almacenar la nueva
+        if ($request->hasFile('img')) {
+            // Eliminar la imagen antigua si existe
+            if ($consejoRegional->img) {
+                Storage::delete('public/' . $consejoRegional->img);
+            }
+            // Guardar la nueva imagen
+            $consejoRegional->img = $request->file('img')->store('imagesConcejo', 'public');
+        }
+    
+        // Actualizar los demás campos
         $consejoRegional->update([
             'tag_comentario' => $request->input('tag_comentario'),
             'titulo' => $request->input('titulo'),
             'bajada' => $request->input('bajada'),
-            'img' => $request->file('img') ? $request->file('img')->store('imagesConcejo', 'public') : $consejoRegional->img,
         ]);
+    
+        // Guardar los cambios en la base de datos
+        $consejoRegional->save();
     
         return redirect()->route('concejoregional.index')->with('success', 'Consejo Regional actualizado exitosamente.');
     }
@@ -123,22 +135,26 @@ class ConcejoRegionalController extends Controller{
     
         // Buscar la sección y actualizarla
         $seccion = Seccion::findOrFail($seccionId);
+        
+        // Si hay una nueva imagen, eliminar la antigua y almacenar la nueva
+        if ($request->hasFile('img_seccion')) {
+            // Eliminar la imagen antigua si existe
+            if ($seccion->img_seccion) {
+                Storage::delete('public/' . $seccion->img_seccion);
+            }
+            // Guardar la nueva imagen
+            $seccion->img_seccion = $request->file('img_seccion')->store('seccion_images', 'public');
+        }
+    
+        // Actualizar los demás campos
         $seccion->update([
             'titulo_seccion' => $request->input('titulo_seccion'),
             'bajada_seccion' => $request->input('bajada_seccion'),
-            'img_seccion' => $request->file('img_seccion') ? $request->file('img_seccion')->store('seccion_images', 'public') : $seccion->img_seccion,
         ]);
-
-        if ($request->hasFile('img_seccion')) {
-            // Eliminar la imagen antigua si existe
-            Storage::delete($seccion->img_seccion);
-        
-            // Guardar la nueva imagen
-            $seccion->img_seccion = $request->file('img_seccion')->store('seccion_images', 'public');
-            $seccion->save(); // Guardar los cambios en la base de datos
-        }
     
-        // Redireccionar con un mensaje de éxito
+        // Guardar los cambios en la base de datos
+        $seccion->save();
+    
         return redirect()->route('concejoregional.index')->with('success', 'Sección actualizada exitosamente.');
     }
 
