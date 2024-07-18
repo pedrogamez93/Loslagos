@@ -302,7 +302,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             @if($consejo->img)
-                                                <img src="{{ asset('storage/' . $consejo->img) }}" alt="Imagen del Consejo Regional">
+                                                <img src="{{ asset($consejo->img) }}" alt="Imagen del Consejo Regional">
                                             @endif
                                         </div>
                                     </div>
