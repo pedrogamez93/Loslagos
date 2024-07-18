@@ -73,14 +73,14 @@
             <div class="container principal mt-4 mb-4 pt-3 pb-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Formulario de Edicion Concejo Regional</h1>
+                        <h1>Formulario de Edición Consejo Regional</h1>
                     </div>
                 </div>
                 <div class="container first-form pt-2 pb-2">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Concejo Regional </h1>
-                            <h2>Introduccion</h2>
+                            <h1>Consejo Regional </h1>
+                            <h2>Introducción</h2>
                         </div>
                     </div>
                     <form action="{{ route('concejoregional.update', $concejo->id) }}" method="POST" enctype="multipart/form-data">
