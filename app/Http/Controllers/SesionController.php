@@ -68,14 +68,14 @@ class SesionController extends Controller
         $fecha_hora_convertida = $validatedData['fecha_hora'] ? date('Y-m-d H:i:s', strtotime($validatedData['fecha_hora'])) : null;
     
         // Depuración para verificar los datos antes de crear la sesión
-        \Log::info('Datos validados:', $validatedData);
-        \Log::info('Fecha Hora Convertida:', [$fecha_hora_convertida]);
+        Log::info('Datos validados:', $validatedData);
+        Log::info('Fecha Hora Convertida:', [$fecha_hora_convertida]);
     
         // Verificación adicional antes de la creación
         if (is_null($fecha_hora_convertida)) {
-            \Log::error('Fecha Hora Convertida es nula');
+            Log::error('Fecha Hora Convertida es nula');
         } else {
-            \Log::info('Fecha Hora no es nula, se procede a la creación de la sesión');
+            Log::info('Fecha Hora no es nula, se procede a la creación de la sesión');
         }
     
         // Crear una nueva sesión con los datos validados y fecha_hora convertida
@@ -86,9 +86,9 @@ class SesionController extends Controller
             $sesion->lugar = $validatedData['lugar'];
             $sesion->save();
     
-            \Log::info('Sesión creada con éxito:', ['id' => $sesion->id]);
+            Log::info('Sesión creada con éxito:', ['id' => $sesion->id]);
         } catch (\Exception $e) {
-            \Log::error('Error al crear la sesión:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            Log::error('Error al crear la sesión:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             dd('Error al crear la sesión:', $e->getMessage(), $e->getTraceAsString());
         }
     
