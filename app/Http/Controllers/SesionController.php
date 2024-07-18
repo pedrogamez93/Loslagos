@@ -54,43 +54,46 @@ class SesionController extends Controller
      */
     public function store(Request $request)
     {
-        // Validar los datos recibidos del formulario
-        $validatedData = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'fecha_hora' => 'required|date',
-            'lugar' => 'required|string|max:255',
-            'nombredoc.*' => 'string|max:255',
-            'url.*' => 'file|mimes:pdf|max:10240',
-            'fechadoc.*' => 'nullable|date',
-        ]);
-    
-        // Convertir fecha_hora al formato correcto, si no es nula
-        $fecha_hora_convertida = $validatedData['fecha_hora'] ? date('Y-m-d H:i:s', strtotime($validatedData['fecha_hora'])) : null;
-    
-        // Depuración para verificar los datos antes de crear la sesión
-        \Log::info('Datos validados:', $validatedData);
-        \Log::info('Fecha Hora Convertida:', [$fecha_hora_convertida]);
-    
-        // Verificación adicional antes de la creación
-        if (is_null($fecha_hora_convertida)) {
-            \Log::error('Fecha Hora Convertida es nula');
-        } else {
-            \Log::info('Fecha Hora no es nula, se procede a la creación de la sesión');
-        }
-    
-        // Crear una nueva sesión con los datos validados y fecha_hora convertida
         try {
+            // Validar los datos recibidos del formulario
+            $validatedData = $request->validate([
+                'nombre' => 'required|string|max:255',
+                'fecha_hora' => 'required|date',
+                'lugar' => 'required|string|max:255',
+                'nombredoc.*' => 'string|max:255',
+                'url.*' => 'file|mimes:pdf|max:10240',
+                'fechadoc.*' => 'nullable|date',
+            ]);
+    
+            // Convertir fecha_hora al formato correcto, si no es nula
+            $fecha_hora_convertida = $validatedData['fecha_hora'] ? date('Y-m-d H:i:s', strtotime($validatedData['fecha_hora'])) : null;
+    
+            // Crear una nueva sesión con los datos validados y fecha_hora convertida
             $sesion = new Sesion();
             $sesion->nombre = $validatedData['nombre'];
             $sesion->fecha_hora = $fecha_hora_convertida;
             $sesion->lugar = $validatedData['lugar'];
+    
+            // Obtener el último ID registrado y asignar el siguiente
+            $ultimoId = Sesion::max('id'); // Obtener el máximo valor de id en la tabla sesiones
+            $sesion->id = $ultimoId + 1; // Asignar el siguiente ID disponible
+    
             $sesion->save();
     
-            \Log::info('Sesión creada con éxito:', ['id' => $sesion->id]);
+            // Log de información
+            Log::info('Sesión creada con éxito:', ['id' => $sesion->id]);
+    
+            // Procesar y guardar los documentos subidos
+            // Código para procesar documentos...
+    
+            // Redirigir con un mensaje de éxito
+            return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión creada con éxito');
         } catch (\Exception $e) {
-            \Log::error('Error al crear la sesión:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
-            dd('Error al crear la sesión:', $e->getMessage(), $e->getTraceAsString());
+            // Capturar y manejar errores
+            Log::error('Error al crear la sesión:', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            return redirect()->back()->with('error', 'Error al crear la sesión: ' . $e->getMessage());
         }
+ 
     
         $nombresDocumentos = $request->input('nombredoc');
     
