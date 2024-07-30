@@ -342,7 +342,7 @@
             </li>
             <li class="nav-item mb-2"><a href="{{ url('/gobiernoregional/acerca') }}" class="nav-link p-0 text-muted">Consejo Regional</a></li>
             <li class="nav-item mb-2"><a href="{{ url('/regionlagos/introduccion') }}" class="nav-link p-0 text-muted">Región de los Lagos</a></li>
-            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de Funciones</a></li>
+            <li class="nav-item mb-2"><a href="{{ url('/funcionario') }}" class="nav-link p-0 text-muted">Directorio de Funcionarios</a></li>
         </ul>
     </div>
 
