@@ -1,5 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
 
-<title>Editar Programa</title>
+    <title>Editar Programa</title>
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Bootstrap CSS y JS -->
@@ -61,6 +67,7 @@
         font-weight: 500;
     }
 </style>
+</head>
 <body>
 <div class="container-fluid body">
     <div class="row">
@@ -81,7 +88,7 @@
     @csrf
     @method('PUT')
 
-    <label class="mt-3 style-label required" for="titulo">TÃ­tulo:</label>
+    <label class="mt-3 style-label required" for="titulo">Tí­tulo:</label>
     <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $programa->titulo }}" placeholder="TÃ­tulo" required>
 
     <label class="style-label mb-2" for="bajada">Bajada:</label>
@@ -113,7 +120,7 @@
     <!-- Resto del formulario -->
 
     <div class="container mt-3">
-        <label class="style-label mb-2">Â¿Deseas agregar otro texto descriptivo?</label>
+        <label class="style-label mb-2">¿Deseas agregar otro texto descriptivo?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -131,19 +138,19 @@
     <div class="container texto-descriptivo mt-4">
         <div class="row">
             <div class="col-md-12">
-                <label class="style-label" for="url">TÃ­tulo:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion[]" placeholder="Agregar tÃ­tulo">
+                <label class="style-label" for="url">Tí­tulo:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="titulo_descripcion[]" placeholder="Agregar tí­tulo">
             </div>
             <div class="col-md-12">
                 <label class="style-label" for="url">Bajada:</label>
-                <textarea class="form-control mt-2" placeholder="Agregar descripciÃ³n" style="height: 250px" id="desc" name="bajada_descripcion[]"></textarea>
+                <textarea class="form-control mt-2" placeholder="Agregar descripción" style="height: 250px" id="desc" name="bajada_descripcion[]"></textarea>
             </div>
         </div>
-        <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripciÃ³n</button>
+        <button type="button" id="agregarMas" class="btn btn-primary mt-3">Agregar otra descripción</button>
     </div>
 
     <!-- BotÃ³n de submit para guardar la nueva descripciÃ³n -->
-    <button class="btn btn-success mt-3" type="submit">Actualizar descripciÃ³nes</button>
+    <button class="btn btn-success mt-3" type="submit">Actualizar descripciones</button>
 </form>
 
 
@@ -154,7 +161,7 @@
     @csrf
     <div class="documentos-container form-control mt-5">
         <div class="documentos-input">
-            <label class="style-label" for="documentos">Â¿Deseas agregar nuevos documentos?</label>
+            <label class="style-label" for="documentos">¿Deseas agregar nuevos documentos?</label>
             <div id="documentos-wrapper">
                 <div class="documento-item">
                     <input class="form-control mt-2 mb-2" type="text" name="nombreDocumento[]" placeholder="Nombre del documento">
@@ -174,7 +181,7 @@
 <form action="{{ route('programas.agregar-boton', ['programa' => $programa->id]) }}" method="POST">
     @csrf
     <div class="container">
-        <label class="style-label mb-2 mt-5">Â¿Deseas agregar nuevos botones?</label>
+        <label class="style-label mb-2 mt-5">¿Deseas agregar nuevos botones?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -192,15 +199,15 @@
     <div class="container botton-direccionar mt-4">
         <div class="row">
             <div class="col-md-6">
-                <label class="style-label" for="url">Nombre del botÃ³n:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="nombrebtn[]" placeholder="Nombre del botÃ³n">
+                <label class="style-label" for="url">Nombre del botón:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="nombrebtn[]" placeholder="Nombre del botón">
             </div>
             <div class="col-md-6">
-                <label class="style-label" for="url">URL del botÃ³n:</label>
-                <input class="form-control mt-2 mb-4" type="text" name="urlbtn[]" placeholder="URL del botÃ³n">
+                <label class="style-label" for="url">URL del botón:</label>
+                <input class="form-control mt-2 mb-4" type="text" name="urlbtn[]" placeholder="URL del botón">
             </div>
         </div>
-        <button type="button" id="agregarMas2" class="btn btn-primary">Agregar MÃ¡s</button>
+        <button type="button" id="agregarMas2" class="btn btn-primary">Agregar más</button>
     </div>
     <button class="btn btn-success mt-3" type="submit">Actualizar botones</button>
 </form>
@@ -214,7 +221,7 @@
 <form action="{{ route('programas.agregar-fotografia', ['programa' => $programa->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="container pregunta-doc mt-4">
-        <label class="style-label mb-2 mt-3">Â¿Deseas agregar nuevas fotografÃ­as?</label>
+        <label class="style-label mb-2 mt-3">¿Deseas agregar nuevas fotografí­as?</label>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-check form-check-inline">
@@ -231,11 +238,11 @@
 
     <div class="colecciones-container mt-3">
         <div class="colecciones-input">
-            <label class="style-label" for="colecciones">FotografÃ­as:</label>
+            <label class="style-label" for="colecciones">Fotografi­as:</label>
             <input class="form-control mt-2 mb-4" type="file" name="fotografias[]" accept=".png, .jpg, .jpeg" multiple>
         </div>
     </div>
-    <button class="btn btn-success mt-3 mb-5" type="submit">Actualizar fotografÃ­as</button>
+    <button class="btn btn-success mt-3 mb-5" type="submit">Actualizar fotografías</button>
 </form>
 
 
@@ -293,7 +300,7 @@
 <div class="form-control pt-4 pb-4">
 
 <!-- Mostrar colecciones -->
-<h3 class="mt-3 mb-2">FotografÃ­as actuales</h3>
+<h3 class="mt-3 mb-2">Fotografí­as actuales</h3>
 
 @foreach($colecciones as $coleccion)
     <div class="container mt-1 mb-1">
@@ -324,6 +331,7 @@
     </div>
 </div>
 </body>
+</html>
 
 <script>
       tinymce.init({
