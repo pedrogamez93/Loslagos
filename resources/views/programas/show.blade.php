@@ -379,7 +379,7 @@
 
 <!-- FOTOGRAFÃAS -->
 <div id="contenidoFotografias" style="display: none;">
-    <h2 class="title-doc-fot">FotografÃ­as</h2>
+    <h2 class="title-doc-fot">Fotografías</h2>
 
     @foreach($programa->colecciones as $coleccion)
         <div class="coleccion-item">
