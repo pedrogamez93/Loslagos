@@ -274,7 +274,7 @@ button {
                                     <div class="container int p-0">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p class="title-cat">Galerias</p>
+                                                <p class="title-cat">Galerías</p>
                                             </div>
                                         </div>
                                     </div>
