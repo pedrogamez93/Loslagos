@@ -366,7 +366,7 @@ Route::get('/presentaciones/download/{id}', 'App\Http\Controllers\CategoriesCont
 //RUTAS PARA IMAGENREGION
 
 Route::resource('imagenregion', ImagenRegionController::class);
-
+Route::get('/imagenregion/download/{id}', [ImagenRegionDocsController::class, 'download'])->name('imagenregion.download');
 Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
 
 Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
