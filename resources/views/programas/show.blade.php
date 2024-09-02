@@ -404,7 +404,7 @@
                 <h2 class="title-descargas mb-5">Documentos Regionales que puedes descargar:</h2>
                 <a href="#" class="descargables pb-4" id="enlacePrincipal" onclick="mostrarContenido('principal')">{{ $programa->titulo }}</a>
                 <a href="#" id="enlaceDocumentos" class="descargables pb-4" onclick="mostrarContenido('documentos')">Documentos</a>
-                <a href="#" class="descargables pb-4" id="enlaceFotografias" onclick="mostrarContenido('fotografias')">FotografÃ­as</a>
+                <a href="#" class="descargables pb-4" id="enlaceFotografias" onclick="mostrarContenido('fotografias')">Fotografía</a>
                 <div class="btn-single">
                     @foreach($programaBtn as $btn)
                         <a href="{{ $btn->urlbtn }}" target="_blank">{{ $btn->nombrebtn }}</a>   

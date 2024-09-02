@@ -208,7 +208,7 @@
             <div class="container pt-5 pb-5">
                 <div class="row" >
                     <div class="col-md-12" >
-                    <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="#">{{$primerArticulo->titulo }}</a></span></p>                    </div>
+                    <p class="style-bread"><a href="/">Home </a>/<a href="/gobiernoregional/acerca"> Gobierno Regional</a> / <span style="font-Weight: 700;"><a href="#">Lanzamiento Politica Turismo</a></span></p>                    </div>
                     </div>
                     <div class="col-md-12 pt-5 pb-5">
                         <p class="one-title pb-4">Formulación Política de Turismo</p>
@@ -242,12 +242,16 @@
                             <div class="container int">
                                 <div class="row">
                                     <div class="col-md-12">
+                                    @if($primerArticulo)
                                         <h2 class="title-cat mb-4">{{$primerArticulo->titulo }}</h2>
                                         <p>{!! $primerArticulo->descripcion ?? '' !!}</p>
                                         <img class="imagenes-d pt-4" width="43" src="{{ asset('storage/images/pdf.png') }}" alt="Logo Gore Blanco">
                                         <p style="margin-top: 34px;margin-left: 53px;">
                                         <a href="{{ route('lanzamientopolitica.download', ['id' => $primerArticulo->id]) }}">{{$primerArticulo->nombreA}}</a>
                                         </p>
+                                    @endif
+                                        
+
                                     </div>
                                 </div>
                             </div>

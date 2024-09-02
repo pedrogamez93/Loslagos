@@ -355,8 +355,8 @@ class PoliticadeturismoController extends Controller
     }
     public function indexLanzamientoPoliticaWeb()
     {
-        $mostrarpolitica = LamzamientoPoliticaTurismo::all();
-        $primerArticulo = $mostrarpolitica->first();
+        $primerArticulo = LamzamientoPoliticaTurismo::first();
+        
         return view('politicadeturismo.lanzamientopoliticaturismo.lanzamientopoliticaturismo', compact('primerArticulo'));
         
 
