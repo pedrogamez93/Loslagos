@@ -26,72 +26,109 @@ class DifusionController extends Controller {
     }
 
     public function store(Request $request) {
-
-    $request->validate([
-        'titulo' => 'required|max:255',
-        'bajada' => 'nullable',
-        'nombredoc.*' => 'required_with:urldoc.*|max:255',
-        'urldoc.*' => 'nullable|file|mimes:pdf,doc,docx'
-    ]);
-
-    $difusion = Difusion::create([
-        'titulo' => $request->titulo,
-        'bajada' => $request->bajada
-    ]);
-
-    if ($request->has('nombredoc')) {
-        foreach ($request->nombredoc as $key => $nombredoc) {
-            if ($request->hasFile('urldoc')) {
-                $file = $request->urldoc[$key];
-                $urldoc = $file->store('public/documentos');
-
-                DifusionDocs::create([
-                    'nombredoc' => $nombredoc,
-                    'urldoc' => $urldoc,
-                    'difusion_id' => $difusion->id
-                ]);
+        // Validar la solicitud
+        $request->validate([
+            'titulo' => 'required|max:255',
+            'bajada' => 'nullable',
+            'nombredoc.*' => 'required_with:urldoc.*|max:255',
+            'urldoc.*' => 'nullable|file|mimes:pdf,doc,docx'
+        ]);
+    
+        // Crear el registro de Difusion
+        $difusion = Difusion::create([
+            'titulo' => $request->titulo,
+            'bajada' => $request->bajada
+        ]);
+    
+        // Verificar si existen documentos
+        if ($request->has('nombredoc')) {
+            foreach ($request->nombredoc as $key => $nombredoc) {
+                if ($request->hasFile('urldoc') && isset($request->urldoc[$key])) {
+                    $file = $request->file('urldoc')[$key]; // Obtener el archivo correspondiente
+    
+                    // Obtener el nombre original del archivo
+                    $originalName = $file->getClientOriginalName();
+    
+                    // Generar un nombre único si el archivo ya existe
+                    $uniqueFileName = $this->getUniqueFileName($originalName, 'public/documentos');
+    
+                    // Almacenar el archivo con su nombre único generado
+                    $urldoc = $file->storeAs('public/documentos', $uniqueFileName);
+    
+                    // Crear el registro en la base de datos con el nombre original y la ruta
+                    DifusionDocs::create([
+                        'nombredoc' => $nombredoc,
+                        'urldoc' => $urldoc,
+                        'difusion_id' => $difusion->id
+                    ]);
+                }
             }
         }
-    }
-
-    return redirect()->route('difusion.index');
-
+    
+        return redirect()->route('difusion.index');
     }
 
     public function update(Request $request, $id) {
-
-    $request->validate([
-        'titulo' => 'required|max:255',
-        'bajada' => 'nullable',
-        'nombredoc.*' => 'required_with:urldoc.*|max:255',
-        'urldoc.*' => 'nullable|file|mimes:pdf,doc,docx'
-    ]);
-
-    $difusion = Difusion::findOrFail($id);
-    $difusion->update([
-        'titulo' => $request->titulo,
-        'bajada' => $request->bajada
-    ]);
-
-    // Solo agregar nuevos documentos
-    if ($request->has('nombredoc')) {
-        foreach ($request->nombredoc as $key => $nombredoc) {
-            if ($request->hasFile('urldoc')) {
-                $file = $request->urldoc[$key];
-                $urldoc = $file->store('public/documentos');
-
-                DifusionDocs::create([
-                    'nombredoc' => $nombredoc,
-                    'urldoc' => $urldoc,
-                    'difusion_id' => $difusion->id
-                ]);
+        // Validar la solicitud
+        $request->validate([
+            'titulo' => 'required|max:255',
+            'bajada' => 'nullable',
+            'nombredoc.*' => 'required_with:urldoc.*|max:255',
+            'urldoc.*' => 'nullable|file|mimes:pdf,doc,docx'
+        ]);
+    
+        // Buscar la difusión existente por su ID
+        $difusion = Difusion::findOrFail($id);
+        $difusion->update([
+            'titulo' => $request->titulo,
+            'bajada' => $request->bajada
+        ]);
+    
+        // Solo agregar nuevos documentos
+        if ($request->has('nombredoc')) {
+            foreach ($request->nombredoc as $key => $nombredoc) {
+                if ($request->hasFile('urldoc') && isset($request->urldoc[$key])) {
+                    $file = $request->file('urldoc')[$key]; // Obtener el archivo correspondiente
+    
+                    // Obtener el nombre original del archivo
+                    $originalName = $file->getClientOriginalName();
+    
+                    // Generar un nombre único si el archivo ya existe
+                    $uniqueFileName = $this->getUniqueFileName($originalName, 'public/documentos');
+    
+                    // Almacenar el archivo con su nombre único generado
+                    $urldoc = $file->storeAs('public/documentos', $uniqueFileName);
+    
+                    // Crear el registro en la base de datos con el nombre original y la ruta
+                    DifusionDocs::create([
+                        'nombredoc' => $nombredoc,
+                        'urldoc' => $urldoc,
+                        'difusion_id' => $difusion->id
+                    ]);
+                }
             }
         }
+    
+        return redirect()->route('difusion.index');
     }
 
-    return redirect()->route('difusion.index');
+    private function getUniqueFileName($fileName, $directory)
+{
+    $filePath = storage_path('app/' . $directory . '/' . $fileName);
+    $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
 
+    $counter = 1;
+
+    // Mientras el archivo exista, agregar un número al final del nombre
+    while (file_exists($filePath)) {
+        $fileName = $fileNameWithoutExt . "($counter)." . $extension;
+        $filePath = storage_path('app/' . $directory . '/' . $fileName);
+        $counter++;
     }
+
+    return $fileName;
+}
 
     public function edit($id) {
 

@@ -98,21 +98,33 @@ class BibliotecaController extends Controller
     }
 
     public function download($id)
-{
-    $biblioteca = Biblioteca::findOrFail($id);
-    $files = json_decode($biblioteca->urldocs, true);
-
-    if (!$files) {
-        return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
-    }
-
-    foreach ($files as $file) {
-        $path = storage_path('app/' . $file['path']);
-        if (file_exists($path)) {
-            return response()->download($path, $file['name']);
+    {
+        // Buscar el registro en la base de datos
+        $biblioteca = Biblioteca::findOrFail($id);
+    
+        // Decodificar los archivos almacenados en JSON
+        $files = json_decode($biblioteca->urldocs, true);
+    
+        // Verificar si existen archivos
+        if (!$files) {
+            return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
         }
+    
+        // Iterar sobre los archivos y verificar su existencia
+        foreach ($files as $file) {
+            $path = storage_path('app/' . $file['path']); // Ruta completa del archivo
+            
+            // Verificar si el archivo existe y no es un directorio
+            if (file_exists($path) && !is_dir($path)) {
+                // Descargar el archivo con su nombre original
+                return response()->download($path, $file['name']);
+            } else {
+                // Agregar un mensaje de registro para el archivo no encontrado
+                \Log::error('Archivo no encontrado o es un directorio: ' . $path);
+            }
+        }
+    
+        // Redireccionar con un mensaje de error si no se encuentra ningún archivo
+        return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
     }
-
-    return redirect()->back()->with('error', 'El archivo no existe.');
-}
 }
