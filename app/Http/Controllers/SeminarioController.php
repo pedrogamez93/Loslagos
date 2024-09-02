@@ -36,7 +36,6 @@ class SeminarioController extends Controller {
     }
 
     public function store(Request $request) {
-       
         $request->validate([
             'titulo' => 'required|string',
             'bajada' => 'nullable|string',
@@ -46,7 +45,7 @@ class SeminarioController extends Controller {
             'nombre_imagen.*.*' => 'nullable|string',
             'archivo.*.*' => 'nullable|image',
         ]);
-
+    
         // Crear o actualizar el seminario
         $seminario = new Seminario();
         $seminario->titulo = $request->titulo;
@@ -56,7 +55,11 @@ class SeminarioController extends Controller {
         // Procesar los documentos
         foreach ($request->file('url_doc') as $index => $file) {
             $nombreDoc = $request->nombre_doc[$index];
-            $urlDoc = $file->store('documentos', 'public');
+            $originalName = $file->getClientOriginalName();
+            $uniqueFileName = $this->getUniqueFileName($originalName, 'documentos');
+            
+            // Almacenar el archivo con el nombre único generado
+            $urlDoc = $file->storeAs('documentos', $uniqueFileName, 'public');
     
             $documento = new DocumentoSeminario([
                 'nombre_doc' => $nombreDoc,
@@ -64,37 +67,58 @@ class SeminarioController extends Controller {
             ]);
             $seminario->documentos()->save($documento);
         }
-
+    
         foreach ($request->nombre_galeria as $indexGaleria => $nombreGaleria) {
             $galeria = new GaleriaSeminario();
             $galeria->nombre_galeria = $nombreGaleria;
             $galeria->seminario_id = $seminario->id; // Asignar el ID del seminario a la galería
             $galeria->save();
-     
+    
             if (isset($request->archivo[$indexGaleria]) && is_array($request->archivo[$indexGaleria])) {
                 foreach ($request->archivo[$indexGaleria] as $indexImagen => $imagen) {
-
                     if ($imagen->isValid()) {
-                        $path = $imagen->store('imagenes_galerias', 'public');
-                 
+                        $originalImageName = $imagen->getClientOriginalName();
+                        $uniqueImageName = $this->getUniqueFileName($originalImageName, 'imagenes_galerias');
+                        
+                        $path = $imagen->storeAs('imagenes_galerias', $uniqueImageName, 'public');
+    
                         $nuevaImagen = new ImagenSeminario();
                         $nuevaImagen->galeria_seminario_id = $galeria->id;
-                        $nuevaImagen->nombre_imagen = $request->nombre_imagen[$indexGaleria][$indexImagen] ?? $imagen->getClientOriginalName();
+                        $nuevaImagen->nombre_imagen = $request->nombre_imagen[$indexGaleria][$indexImagen] ?? $originalImageName;
                         $nuevaImagen->archivo = $path;
                         $nuevaImagen->save();
-        
-                       // Log::info('Imagen guardada:', ['imagen_id' => $nuevaImagen->id, 'galeria_id' => $galeria->id]);
-                    } else {
-                       // Log::info('Archivo de imagen no válido o no encontrado:', ['indexGaleria' => $indexGaleria, 'indexImagen' => $indexImagen]);
                     }
                 }
-            } else {
-               // Log::info('No se encontraron imágenes para la galería:', ['galeria_id' => $galeria->id]);
             }
         }
     
         // Redirigir a una ruta específica o realizar otra acción después de guardar los datos
         return redirect()->route('seminarios.index');
+    }
+    
+    /**
+     * Genera un nombre de archivo único si ya existe un archivo con el mismo nombre.
+     *
+     * @param string $fileName El nombre original del archivo
+     * @param string $directory El directorio donde se almacenará el archivo
+     * @return string El nombre único generado
+     */
+    private function getUniqueFileName($fileName, $directory)
+    {
+        $filePath = storage_path('app/public/' . $directory . '/' . $fileName);
+        $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    
+        $counter = 1;
+    
+        // Mientras el archivo exista, agregar un número al final del nombre
+        while (file_exists($filePath)) {
+            $fileName = $fileNameWithoutExt . "($counter)." . $extension;
+            $filePath = storage_path('app/public/' . $directory . '/' . $fileName);
+            $counter++;
+        }
+    
+        return $fileName;
     }
 
     public function update(Request $request, $id) {
@@ -122,17 +146,20 @@ class SeminarioController extends Controller {
         $seminario->save();
     
         // Procesar los documentos
-
         if ($request->hasFile('url_doc')) {
             foreach ($request->file('url_doc') as $index => $file) {
-            $nombreDoc = $request->nombre_doc[$index];
-            $urlDoc = $file->store('documentos', 'public');
+                $nombreDoc = $request->nombre_doc[$index];
+                $originalName = $file->getClientOriginalName();
+                $uniqueFileName = $this->getUniqueFileName($originalName, 'documentos');
+                
+                // Almacenar el archivo con el nombre único generado
+                $urlDoc = $file->storeAs('documentos', $uniqueFileName, 'public');
     
-            $documento = new DocumentoSeminario([
-                'nombre_doc' => $nombreDoc,
-                'url_doc' => $urlDoc,
-            ]);
-            $seminario->documentos()->save($documento);
+                $documento = new DocumentoSeminario([
+                    'nombre_doc' => $nombreDoc,
+                    'url_doc' => $urlDoc,
+                ]);
+                $seminario->documentos()->save($documento);
             }
         }
     
@@ -146,11 +173,14 @@ class SeminarioController extends Controller {
             if (isset($request->archivo[$indexGaleria]) && is_array($request->archivo[$indexGaleria])) {
                 foreach ($request->archivo[$indexGaleria] as $indexImagen => $imagen) {
                     if ($imagen->isValid()) {
-                        $path = $imagen->store('imagenes_galerias', 'public');
+                        $originalImageName = $imagen->getClientOriginalName();
+                        $uniqueImageName = $this->getUniqueFileName($originalImageName, 'imagenes_galerias');
+                        
+                        $path = $imagen->storeAs('imagenes_galerias', $uniqueImageName, 'public');
     
                         $nuevaImagen = new ImagenSeminario([
                             'galeria_seminario_id' => $galeria->id,
-                            'nombre_imagen' => $request->nombre_imagen[$indexGaleria][$indexImagen] ?? $imagen->getClientOriginalName(),
+                            'nombre_imagen' => $request->nombre_imagen[$indexGaleria][$indexImagen] ?? $originalImageName,
                             'archivo' => $path,
                         ]);
                         $nuevaImagen->save();

@@ -239,8 +239,13 @@
                             <div class="container int">
                                 <div class="row">
                                     <div class="col-md-12">
+                                    @if($primerArticulo)
+                                        {{ $primerArticulo->titulo }}
                                         <h2 class="title-cat mb-4">{{$primerArticulo->subtitulo }}</h2>
                                         <p>{!! $primerArticulo->descripcion ?? '' !!}</p>
+                                    @else
+                                        <p>No hay artículo disponible</p>
+                                    @endif                                
                                     </div>
                                 </div>
                             </div>

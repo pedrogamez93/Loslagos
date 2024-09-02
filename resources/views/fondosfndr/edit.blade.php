@@ -89,13 +89,13 @@
                         <form action="{{ route('fondosfndr.update', $fondo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                            <label class="mt-3 style-label required" for="titulo">TÃ­tulo:</label>
+                            <label class="mt-3 style-label required" for="titulo">Tí­tulo:</label>
                             <input class="form-control mt-2 mb-4" type="text" name="titulo" value="{{ $fondo->titulo }}">
 
                             <label class="mt-3 style-label required" for="titulo">Bajada:</label>
                             <input class="form-control mt-2 mb-4" type="text" name="bajada" value="{{ $fondo->bajada }}">
                             
-                            <label class="mt-3 style-label required pb-2" for="titulo">DescripciÃ³n:</label>
+                            <label class="mt-3 style-label required pb-2" for="titulo">Descripción:</label>
                             <input class="form-control mt-2 mb-4" type="text" id="desc" name="descripcion" value="{{ $fondo->descripcion }}">
 
                             <label class="mt-3 style-label required pb-2" for="titulo">Nota:</label>
@@ -114,12 +114,12 @@
     @csrf
     <div class="documentos-container form-control">
         <div class="documentos-input">
-            <label class="style-label" for="titulo_documento">Â¿Deseas agregar nuevos documentos?</label>
+            <label class="style-label" for="titulo_documento">¿Deseas agregar nuevos documentos?</label>
             <input class="form-control mt-2 mb-2 titulo_documento" type="text" name="titulo_documento[]" placeholder="Nombre del documento">
             <input class="form-control mt-2 mb-2 ruta_documento" type="file" name="ruta_documento[]" accept=".pdf, .doc, .docx, .zip, .rar">
         </div>
-        <button type="button" class="btn btn-primary agregar-documento" style="display: block;">Agregar mÃ¡s</button>
-        <button class="btn btn-success mt-3" type="submit">AÃ±adir documentos</button>
+        <button type="button" class="btn btn-primary agregar-documento" style="display: block;">Agregar más</button>
+        <button class="btn btn-success mt-3" type="submit">Añadir documentos</button>
     </div>
 </form>
 
@@ -156,7 +156,7 @@
                                 <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Â¿EstÃ¡s seguro de que deseas eliminar este documento?')">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿estás seguro de que deseas eliminar este documento?')">Eliminar</button>
                                 </form>
 
                             </li>

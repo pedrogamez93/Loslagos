@@ -315,7 +315,7 @@ Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendainde
 //RUTAS PARA LA BIBLIOTECA
 
 Route::resource('biblioteca', BibliotecaController::class);
-
+Route::get('/biblioteca/download/{id}', [BibliotecaController::class, 'download'])->name('biblioteca.download');
 Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
 Route::get('/download/biblioteca/{id}', 'App\Http\Controllers\CategoriesController@downloadbiblioteca')->name('download.biblioteca');
 //RUTAS PARA GALERIA
@@ -366,7 +366,7 @@ Route::get('/presentaciones/download/{id}', 'App\Http\Controllers\CategoriesCont
 //RUTAS PARA IMAGENREGION
 
 Route::resource('imagenregion', ImagenRegionController::class);
-
+Route::get('/imagenregion/download/{id}', [ImagenRegionDocsController::class, 'download'])->name('imagenregion.download');
 Route::delete('/imagenregion-docs/{id}', [ImagenRegionController::class, 'destroyDocs'])->name('imagenregion-docs.destroy');
 
 Route::get('/politica-turismo/imagenregion', 'App\Http\Controllers\CategoriesController@imagenregionindex');
