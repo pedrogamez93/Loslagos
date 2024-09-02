@@ -382,7 +382,7 @@ class PoliticadeturismoController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'nombreA' => 'required',
-            'archivo' => 'nullable|mimes:pdf,doc,docx,zip,rar|max:86400',
+            'archivo' => 'nullable|max:86400',
 
         ]);
     
