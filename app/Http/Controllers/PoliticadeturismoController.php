@@ -395,31 +395,43 @@ class PoliticadeturismoController extends Controller
     }
 
     public function downloadLanzamientoPolitica($id)
-{
-    $documento = LamzamientoPoliticaTurismo::findOrFail($id);
-
-    // Log para depuración del documento
-    \Log::info("Documento encontrado: " . json_encode($documento));
-
-    if ($documento) {
-        $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
-
-        // Construir la ruta completa al archivo
-        $rutaArchivo = storage_path('app/' . $rutaCompleta);
-
-        \Log::info("Ruta completa del archivo: " . $rutaArchivo);
-
-        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-            return response()->download($rutaArchivo);
+    {
+        // Buscar el documento por ID
+        $documento = LamzamientoPoliticaTurismo::findOrFail($id);
+    
+        // Log para depuración del documento
+        \Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            // Obtener la ruta almacenada en la base de datos
+            $rutaCompleta = $documento->archivo;
+    
+            // Construir la ruta completa al archivo en el almacenamiento
+            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+    
+            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            // Verificar si el archivo existe y es un archivo válido
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                // Obtener la extensión del archivo
+                $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+    
+                // Obtener el nombre con el que se debe descargar el archivo y añadir la extensión
+                $nombreDescarga = $documento->nombreA . '.' . $extension;
+    
+                // Descargar el archivo con el nombre especificado
+                return response()->download($rutaArchivo, $nombreDescarga);
+            } else {
+                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
         } else {
-            \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
-            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            \Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
-    } else {
-        \Log::error("Documento no encontrado con id: " . $id);
-        return response()->json(['error' => 'Documento no encontrado.'], 404);
     }
-}
+    
+    
 
     /**
      * Display the specified resource.
@@ -759,21 +771,31 @@ class PoliticadeturismoController extends Controller
     }
     public function downloadTrabajoParticipativoMetodologia($id)
     {
+        // Buscar el documento por ID
         $documento = TrabajoParticipativoMetodologiaI::findOrFail($id);
     
         // Log para depuración del documento
         \Log::info("Documento encontrado: " . json_encode($documento));
     
         if ($documento) {
-            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+            // Obtener la ruta almacenada en la base de datos
+            $rutaCompleta = $documento->archivo;
     
-            // Construir la ruta completa al archivo
+            // Construir la ruta completa al archivo en el almacenamiento
             $rutaArchivo = storage_path('app/' . $rutaCompleta);
     
             \Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
+            // Verificar si el archivo existe y es un archivo válido
             if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+                // Obtener la extensión del archivo
+                $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+    
+                // Obtener el nombre con el que se debe descargar el archivo y añadir la extensión
+                $nombreDescarga = $documento->nombreA . '.' . $extension;
+    
+                // Descargar el archivo con el nombre especificado
+                return response()->download($rutaArchivo, $nombreDescarga);
             } else {
                 \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
@@ -783,6 +805,7 @@ class PoliticadeturismoController extends Controller
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -805,31 +828,37 @@ class PoliticadeturismoController extends Controller
         }
     }
     public function downloadTrabajoParticipativoTalleresProvinciales($id)
-    {
-        $documento = TrabajoParticipativoTalleresProvincialesI::findOrFail($id);
-    
-        // Log para depuración del documento
-        \Log::info("Documento encontrado: " . json_encode($documento));
-    
-        if ($documento) {
-            $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
-    
-            // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/' . $rutaCompleta);
-    
-            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
-    
-            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
-            } else {
-                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
-                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
-            }
+{
+    $documento = TrabajoParticipativoTalleresProvincialesI::findOrFail($id);
+
+    // Log para depuración del documento
+    \Log::info("Documento encontrado: " . json_encode($documento));
+
+    if ($documento) {
+        $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+        $nombreArchivo = $documento->nombreA; // Nombre del archivo basado en el campo nombreA
+        
+        // Construir la ruta completa al archivo
+        $rutaArchivo = storage_path('app/' . $rutaCompleta);
+
+        \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+
+        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            // Obtener la extensión del archivo desde la ruta
+            $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+
+            // Descargar el archivo con el nombre y extensión correcta
+            return response()->download($rutaArchivo, $nombreArchivo . '.' . $extension);
         } else {
-            \Log::error("Documento no encontrado con id: " . $id);
-            return response()->json(['error' => 'Documento no encontrado.'], 404);
+            \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
         }
+    } else {
+        \Log::error("Documento no encontrado con id: " . $id);
+        return response()->json(['error' => 'Documento no encontrado.'], 404);
     }
+}
+
     public function indexTrabajoParticipativoTalleresProvinciales ()
     {
         $articulo = TrabajoParticipativoTalleresProvinciales::all();
@@ -1006,6 +1035,7 @@ class PoliticadeturismoController extends Controller
     
         if ($documento) {
             $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+            $nombreArchivo = $documento->nombreA; // Nombre del archivo basado en el campo nombreA
     
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/' . $rutaCompleta);
@@ -1013,7 +1043,11 @@ class PoliticadeturismoController extends Controller
             \Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
             if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+                // Obtener la extensión del archivo desde la ruta
+                $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+    
+                // Descargar el archivo con el nombre y extensión correcta
+                return response()->download($rutaArchivo, $nombreArchivo . '.' . $extension);
             } else {
                 \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
@@ -1023,6 +1057,7 @@ class PoliticadeturismoController extends Controller
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
     public function indexMesaPublicoPrivadaWeb()
     {
         $datosPrincipales  = MesaPublicoPrivada::with('MesaPublicoPrivadaI')->get();
@@ -1153,6 +1188,7 @@ class PoliticadeturismoController extends Controller
     
         if ($documento) {
             $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+            $nombreArchivo = $documento->nombreA; // Nombre del archivo basado en el campo nombreA
     
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/' . $rutaCompleta);
@@ -1160,7 +1196,11 @@ class PoliticadeturismoController extends Controller
             \Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
             if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+                // Obtener la extensión del archivo desde la ruta
+                $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+    
+                // Descargar el archivo con el nombre y extensión correcta
+                return response()->download($rutaArchivo, $nombreArchivo . '.' . $extension);
             } else {
                 \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
@@ -1170,6 +1210,7 @@ class PoliticadeturismoController extends Controller
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
     public function indexComiteTecnicodeGestion()
     {
         $articulo = ComiteTecnicodeGestion::all();
@@ -1320,6 +1361,7 @@ class PoliticadeturismoController extends Controller
     
         if ($documento) {
             $rutaCompleta = $documento->archivo; // Esta es la ruta almacenada en la base de datos
+            $nombreArchivo = $documento->nombreA; // Nombre del archivo basado en el campo nombreA
     
             // Construir la ruta completa al archivo
             $rutaArchivo = storage_path('app/' . $rutaCompleta);
@@ -1327,7 +1369,11 @@ class PoliticadeturismoController extends Controller
             \Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
             if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+                // Obtener la extensión del archivo desde la ruta
+                $extension = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
+    
+                // Descargar el archivo con el nombre y extensión correcta
+                return response()->download($rutaArchivo, $nombreArchivo . '.' . $extension);
             } else {
                 \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
@@ -1337,6 +1383,7 @@ class PoliticadeturismoController extends Controller
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
     public function indexSubcomisiones()
     {
         $articulo = Subcomisiones::all();
