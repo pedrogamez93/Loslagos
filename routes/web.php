@@ -359,7 +359,7 @@ Route::get('/difusion/download/{id}', 'App\Http\Controllers\CategoriesController
 //RUTAS PARA PRESENTACIONES
 
 Route::resource('presentaciones', PresentacionesController::class);
-
+Route::get('presentaciones/download/{id}', [PresentacionesController::class, 'download'])->name('presentaciones.download');
 Route::get('/politica-turismo/presentaciones', 'App\Http\Controllers\CategoriesController@presentacionIndex');
 Route::get('/presentaciones/download/{id}', 'App\Http\Controllers\CategoriesController@downloadpresentaciones')->name('presentaciones.download');
 

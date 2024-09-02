@@ -131,4 +131,32 @@ class PresentacionesController extends Controller {
             return redirect()->route('presentaciones.index')->with('error', 'Artículo no encontrado');
         }
     }
+
+    public function download($id)
+{
+    $presentacion = Presentaciones::find($id);
+
+    if (!$presentacion || !$presentacion->urldocs) {
+        return redirect()->back()->with('error', 'Artículo o archivo no encontrado.');
+    }
+
+    // Decodificar el JSON para obtener el array de archivos
+    $fileData = json_decode($presentacion->urldocs, true);
+
+    if (empty($fileData)) {
+        return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
+    }
+
+    // Descargar todos los archivos (si tienes más de uno, puede descargar el primero o manejarlo como quieras)
+    foreach ($fileData as $file) {
+        $filePath = 'public/' . $file['path']; // Ajustar a la ruta de almacenamiento pública
+
+        // Verificar si el archivo existe en el almacenamiento
+        if (Storage::exists($filePath)) {
+            return Storage::download($filePath, $file['name']);
+        }
+    }
+
+    return redirect()->back()->with('error', 'El archivo no existe en el almacenamiento.');
+    }
 }
