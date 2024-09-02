@@ -97,12 +97,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="nombreA" class="form-control" placeholder="Nombre del archivo" required>
+                                                    <input type="text" id="titulo" name="nombreA" class="form-control" placeholder="Nombre del archivo" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="file" id="hombres" name="archivo" class="form-control" placeholder="Cargar archivo" required>
+                                                    <input type="file" id="hombres" name="archivo" class="form-control" placeholder="Cargar archivo" >
                                                 </div>
                                             </div>
                                         </div>

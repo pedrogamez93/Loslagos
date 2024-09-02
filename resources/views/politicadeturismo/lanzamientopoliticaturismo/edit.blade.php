@@ -98,7 +98,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="nombreA" class="form-control"  value="{{ $articulo->nombreA }}" placeholder="Nombre del archivo" required>
+                                                    <input type="text" id="titulo" name="nombreA" class="form-control"  value="{{ $articulo->nombreA }}" placeholder="Nombre del archivo" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
