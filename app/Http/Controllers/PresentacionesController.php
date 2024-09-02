@@ -112,7 +112,14 @@ class PresentacionesController extends Controller {
         $presentacion = Presentaciones::find($id);
     
         if ($presentacion) {
+            // Verificar si el archivo existe y eliminarlo del almacenamiento
+            if ($presentacion->urldocs && Storage::exists($presentacion->urldocs)) {
+                Storage::delete($presentacion->urldocs);
+            }
+    
+            // Eliminar el registro de la base de datos
             $presentacion->delete();
+            
             return redirect()->route('presentaciones.index')->with('success', 'Artículo eliminado con éxito');
         } else {
             return redirect()->route('presentaciones.index')->with('error', 'Artículo no encontrado');
