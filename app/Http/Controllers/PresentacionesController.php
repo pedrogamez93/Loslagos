@@ -39,8 +39,8 @@ class PresentacionesController extends Controller {
             'urldocs.*' => 'file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
         ]);
     
-        // Inicializar variable para la ruta del documento
-        $filePath = '';
+        // Inicializar variable para almacenar múltiples rutas de documentos
+        $fileData = [];
     
         // Verificar si hay archivos y procesarlos
         if ($request->hasFile('urldocs')) {
@@ -59,10 +59,16 @@ class PresentacionesController extends Controller {
                     return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
                 }
     
-                // Guardar la ruta del archivo en la base de datos
-                $data['urldocs'] = $filePath;
+                // Guardar la ruta del archivo y el nombre original en el array
+                $fileData[] = [
+                    'path' => $filePath,
+                    'name' => $originalName
+                ];
             }
         }
+    
+        // Convertir el array de archivos a JSON para almacenarlo en la base de datos
+        $data['urldocs'] = json_encode($fileData);
     
         // Almacenar los datos en la base de datos
         try {
