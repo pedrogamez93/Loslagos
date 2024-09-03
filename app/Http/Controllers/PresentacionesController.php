@@ -147,23 +147,17 @@ class PresentacionesController extends Controller {
     public function download($id)
     {
         $presentacion = Presentaciones::findOrFail($id);
-        $fileData = json_decode($presentacion->urldocs, true);
-
-        Log::info('Iniciando descarga de archivo', ['id' => $id, 'fileData' => $fileData]);
-
-        if (empty($fileData)) {
-            Log::error('No se encontraron archivos para descargar', ['id' => $id]);
-            return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
-        }
-
-        $filePath = 'public/' . $fileData[0]['path'];
-
-        // Verificar si el archivo existe en el almacenamiento
-        if (Storage::exists($filePath)) {
+    
+        // Obtener la ruta del archivo guardada en la base de datos
+        $filePath = $presentacion->urldocs;  // Asegúrate de que aquí se obtiene la ruta correcta desde la base de datos
+    
+        // Verificar si el archivo existe en el almacenamiento público
+        if (Storage::disk('public')->exists($filePath)) {
             Log::info('Archivo encontrado en el almacenamiento, iniciando descarga', ['ruta' => $filePath]);
-            return Storage::download($filePath, $fileData[0]['name']);
+            // Descargar el archivo
+            return Storage::disk('public')->download($filePath);
         }
-
+    
         Log::error('El archivo no existe o es un directorio', ['ruta' => $filePath]);
         return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
     }
