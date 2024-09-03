@@ -149,13 +149,17 @@ class PresentacionesController extends Controller {
         $presentacion = Presentaciones::findOrFail($id);
     
         // Obtener la ruta del archivo guardada en la base de datos
-        $filePath = $presentacion->urldocs;  // Asegúrate de que aquí se obtiene la ruta correcta desde la base de datos
+        $filePath = $presentacion->urldocs;  // Esta es la ruta relativa dentro del almacenamiento público.
     
         // Verificar si el archivo existe en el almacenamiento público
         if (Storage::disk('public')->exists($filePath)) {
             Log::info('Archivo encontrado en el almacenamiento, iniciando descarga', ['ruta' => $filePath]);
-            // Descargar el archivo
-            return Storage::disk('public')->download($filePath);
+            
+            // Generar una URL pública para el archivo almacenado
+            $publicUrl = Storage::url($filePath);
+            
+            // Redirigir a la URL pública para descargar el archivo
+            return redirect($publicUrl);
         }
     
         Log::error('El archivo no existe o es un directorio', ['ruta' => $filePath]);
