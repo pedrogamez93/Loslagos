@@ -146,24 +146,21 @@ class PresentacionesController extends Controller {
 
     public function download($id)
     {
-    $presentacion = Presentaciones::findOrFail($id);
-
-    // Obtener la ruta del archivo guardada en la base de datos
-    $filePath = $presentacion->urldocs;  // Ruta relativa en el almacenamiento público (e.g., 'documentospresentacion/pruebas(8).pdf')
-
-    // Verificar si el archivo existe en el almacenamiento público
-    if (Storage::disk('public')->exists($filePath)) {
-        Log::info('Archivo encontrado en el almacenamiento, iniciando descarga', ['ruta' => $filePath]);
-        
-        // Generar la URL pública
-        $publicUrl = asset('storage/' . $filePath); // Usar asset para generar la URL pública correcta
-        
-        // Redirigir a la URL pública para descargar el archivo
-        return redirect($publicUrl);
-    }
-
-    Log::error('El archivo no existe o es un directorio', ['ruta' => Storage::disk('public')->path($filePath)]);
-    return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
+        $presentacion = Presentaciones::findOrFail($id);
+    
+        // Obtener la ruta del archivo guardada en la base de datos
+        $filePath = $presentacion->urldocs;  // Ruta relativa en el almacenamiento público (e.g., 'documentospresentacion/pruebas(8).pdf')
+    
+        // Verificar si el archivo existe en el almacenamiento público
+        if (Storage::disk('public')->exists($filePath)) {
+            Log::info('Archivo encontrado en el almacenamiento, iniciando descarga', ['ruta' => Storage::disk('public')->path($filePath)]);
+            
+            // Descargar el archivo directamente desde el almacenamiento público
+            return Storage::disk('public')->download($filePath);
+        }
+    
+        Log::error('El archivo no existe o es un directorio', ['ruta' => Storage::disk('public')->path($filePath)]);
+        return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
     }
 
 }
