@@ -149,7 +149,7 @@ class PresentacionesController extends Controller {
         $presentacion = Presentaciones::findOrFail($id);
     
         // Obtener la ruta del archivo guardada en la base de datos
-        $filePath = $presentacion->urldocs;  // Ruta relativa en el almacenamiento público (e.g., 'documentospresentacion/pruebas(7).pdf')
+        $filePath = $presentacion->urldocs;  // Ruta relativa en el almacenamiento público (e.g., 'documentospresentacion/pruebas(8).pdf')
     
         // Verificar si el archivo existe en el almacenamiento público
         if (Storage::disk('public')->exists($filePath)) {
@@ -162,7 +162,7 @@ class PresentacionesController extends Controller {
             return redirect($publicUrl);
         }
     
-        Log::error('El archivo no existe o es un directorio', ['ruta' => $filePath]);
+        Log::error('El archivo no existe o es un directorio', ['ruta' => Storage::disk('public')->path($filePath)]);
         return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
     }
 
