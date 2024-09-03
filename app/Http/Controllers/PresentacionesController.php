@@ -36,59 +36,36 @@ class PresentacionesController extends Controller {
         // Validación de los datos recibidos
         $data = $request->validate([
             'titulo' => 'required|string|max:255',
-            'urldocs.*' => 'file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
+            'urldoc' => 'required|file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
         ]);
     
-        \Log::info('Archivos recibidos: ' . json_encode($request->file('urldocs'))); // Verificar los archivos recibidos
+        // Verificar si hay un archivo y procesarlo
+        if ($request->hasFile('urldoc')) {
+            $file = $request->file('urldoc');
     
-        // Inicializar variable para almacenar múltiples rutas de documentos
-        $fileData = [];
+            // Obtener el nombre original del archivo
+            $originalName = $file->getClientOriginalName();
     
-        // Verificar si hay archivos y procesarlos
-        if ($request->hasFile('urldocs')) {
-            foreach ($request->file('urldocs') as $file) {
-                // Obtener el nombre original del archivo
-                $originalName = $file->getClientOriginalName();
-                \Log::info('Procesando archivo: ' . $originalName); // Log para verificar
+            // Generar un nombre único si el archivo ya existe
+            $uniqueFileName = $this->getUniqueFileName($originalName, 'documentospresentacion');
     
-                // Generar un nombre único si el archivo ya existe
-                $uniqueFileName = $this->getUniqueFileName($originalName, 'documentospresentacion');
+            // Almacenar el archivo con su nombre único generado
+            $filePath = $file->storeAs('documentospresentacion', $uniqueFileName, 'public');
     
-                // Almacenar el archivo con su nombre único generado
-                $filePath = $file->storeAs('documentospresentacion', $uniqueFileName, 'public');
-    
-                \Log::info('Archivo almacenado en: ' . $filePath); // Verificar ruta de almacenamiento
-    
-                // Verificar si el archivo se almacenó correctamente
-                if ($filePath) {
-                    // Guardar la ruta del archivo y el nombre original en el array
-                    $fileData[] = [
-                        'path' => $filePath,
-                        'name' => $originalName
-                    ];
-                } else {
-                    // Manejar el error si el archivo no se pudo almacenar
-                    return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
-                }
+            // Verificar si el archivo se almacenó correctamente
+            if (!$filePath) {
+                return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
             }
+    
+            // Guardar la ruta del archivo en la base de datos
+            $data['urldoc'] = $filePath;
         }
-    
-        // Comprobar si hay datos de archivos antes de guardar
-        if (empty($fileData)) {
-            return redirect()->back()->with('error', 'No se han subido archivos.');
-        }
-    
-        // Convertir el array de archivos a JSON para almacenarlo en la base de datos
-        $data['urldocs'] = json_encode($fileData);
-    
-        \Log::info('Datos almacenados: ' . json_encode($data)); // Verificar los datos antes de guardar
     
         // Almacenar los datos en la base de datos
         try {
             Presentaciones::create($data);
         } catch (\Exception $e) {
             // Manejar errores de almacenamiento en la base de datos
-            \Log::error('Error al crear el artículo: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Error al crear el artículo: ' . $e->getMessage());
         }
     
@@ -150,16 +127,22 @@ class PresentacionesController extends Controller {
     public function download($id) {
         $presentacion = Presentaciones::findOrFail($id);
     
-        // Obtener la ruta completa del archivo
-        $filePath = storage_path('app/public/' . $presentacion->urldoc);
+        // Decodificar el JSON para obtener el array de archivos
+        $fileData = json_decode($presentacion->urldocs, true);
     
-        // Verificar si el archivo existe
-        if (file_exists($filePath)) {
-            // Descargar el archivo con el nombre original
-            return response()->download($filePath, basename($presentacion->urldoc));
+        if (empty($fileData)) {
+            return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
         }
     
-        return redirect()->back()->with('error', 'El archivo no existe.');
+        // Descargar el primer archivo de la lista
+        $filePath = 'public/' . $fileData[0]['path']; // Ajustar a la ruta de almacenamiento pública
+    
+        // Verificar si el archivo existe en el almacenamiento
+        if (Storage::exists($filePath)) {
+            return Storage::download($filePath, $fileData[0]['name']);
+        }
+    
+        return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
     }
 
 }
