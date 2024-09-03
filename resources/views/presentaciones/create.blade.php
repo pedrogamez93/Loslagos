@@ -63,20 +63,22 @@
                 <div class="container first-form pt-2 pb-2">
 
                 <form action="{{ route('presentaciones.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf 
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6 title">
-                                        <label for="formFile" class="form-label style-label">Nombre archivo</label>
-                                        <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" required>
-                                </div>
-                                <div class="col-md-6 title">
-                                    <label for="formFile" class="form-label style-label">Carga archivo</label>
-                                    <input class="form-control" type="file" name="urldocs" id="file" accept="pdf">
-                                </div>
+                    @csrf 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 title">
+                                <label for="formFile" class="form-label style-label">Nombre archivo</label>
+                                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Titulo" required>
                             </div>
+                            <div class="col-md-6 title">
+                                <label for="formFile" class="form-label style-label">Carga archivo</label>
+                                <input class="form-control" type="file" name="urldocs[]" id="file" accept=".pdf,.doc,.docx" multiple>
+                                <!-- Cambié 'accept' para aceptar PDF, DOC, DOCX y añadí 'multiple' -->
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-success mt-4" id="Enviar" name="Enviar">Guardar</button>
-                    </form>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>
