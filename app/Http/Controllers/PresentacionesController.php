@@ -39,32 +39,44 @@ class PresentacionesController extends Controller {
             'titulo' => 'required|string|max:255',
             'urldoc' => 'required|file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
         ]);
-
+    
         Log::info('Datos validados para almacenar presentación', ['data' => $data]);
-
+    
         // Verificar si hay un archivo y procesarlo
         if ($request->hasFile('urldoc')) {
             $file = $request->file('urldoc');
             $originalName = $file->getClientOriginalName();
             $uniqueFileName = $this->getUniqueFileName($originalName, 'documentospresentacion');
-
+    
             Log::info('Procesando archivo para almacenamiento', ['nombre_original' => $originalName, 'nombre_unico' => $uniqueFileName]);
-
-            // Almacenar el archivo con su nombre único generado
-            $filePath = $file->storeAs('documentospresentacion', $uniqueFileName, 'public');
-
-            // Verificar si el archivo se almacenó correctamente
-            if (!$filePath) {
-                Log::error('Error al almacenar el archivo', ['nombre' => $originalName]);
-                return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
+    
+            try {
+                // Almacenar el archivo con su nombre único generado
+                $filePath = $file->storeAs('documentospresentacion', $uniqueFileName, 'public');
+    
+                // Verificar si el archivo se almacenó correctamente
+                if (!$filePath) {
+                    Log::error('Error al almacenar el archivo (storeAs devolvió false)', ['nombre' => $originalName]);
+                    return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
+                }
+    
+                Log::info('Archivo almacenado correctamente', ['ruta' => $filePath]);
+    
+                // Guardar la ruta del archivo en la base de datos
+                $data['urldocs'] = $filePath;  // CORREGIDO: Ahora usamos 'urldocs' para coincidir con el nombre del campo en la base de datos.
+    
+            } catch (\Exception $e) {
+                Log::error('Excepción al almacenar el archivo', ['error' => $e->getMessage()]);
+                return redirect()->back()->with('error', 'Excepción al almacenar el archivo: ' . $e->getMessage());
             }
-
-            Log::info('Archivo almacenado correctamente', ['ruta' => $filePath]);
-
-            // Guardar la ruta del archivo en la base de datos
-            $data['urldoc'] = $filePath;
+        } else {
+            Log::warning('No se encontró un archivo válido para almacenar.');
+            return redirect()->back()->with('error', 'No se encontró un archivo válido para almacenar.');
         }
-
+    
+        // Verificar que el dato de 'urldocs' esté correctamente asignado antes de guardar en la base de datos
+        Log::info('Datos a guardar en la base de datos', ['data' => $data]);
+    
         // Almacenar los datos en la base de datos
         try {
             Presentaciones::create($data);
@@ -73,10 +85,11 @@ class PresentacionesController extends Controller {
             Log::error('Error al almacenar la presentación en la base de datos', ['error' => $e->getMessage()]);
             return redirect()->back()->with('error', 'Error al crear el artículo: ' . $e->getMessage());
         }
-
+    
         // Redireccionar con mensaje de éxito
         return redirect(route('presentaciones.index'))->with('success', 'Artículo creado con éxito');
     }
+    
     
     
     /**
