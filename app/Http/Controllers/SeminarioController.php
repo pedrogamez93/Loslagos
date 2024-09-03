@@ -222,22 +222,30 @@ class SeminarioController extends Controller {
 
 
     public function destroyDocumento($id) {
+        dd('Llega al método destroyDocumento con ID: ' . $id); // Verifica que la solicitud llegue aquí.
+        \Log::info('Llega al método destroyDocumento con ID: ' . $id);
+    
         $documento = DocumentoSeminario::find($id);
     
         if (!$documento) {
-            // Manejar el caso en que el documento no existe
+            Log::error('Documento no encontrado con ID: ' . $id);
             return redirect()->back()->with('error', 'El documento no existe.');
         }
     
-        // Eliminar el archivo del almacenamiento
-        Storage::disk('public')->delete($documento->url_doc);
+        // Eliminar el documento
+        if (Storage::disk('public')->exists($documento->url_doc)) {
+            Storage::disk('public')->delete($documento->url_doc);
+            Log::info('Archivo eliminado: ' . $documento->url_doc);
+        } else {
+            Log::error('Archivo no encontrado en el almacenamiento: ' . $documento->url_doc);
+            return redirect()->back()->with('error', 'El archivo no se encontró en el almacenamiento.');
+        }
     
-        // Eliminar el registro de la base de datos
         $documento->delete();
+        Log::info('Documento eliminado de la base de datos: ' . $documento->id);
     
         return redirect()->back()->with('success', 'El documento ha sido eliminado correctamente.');
     }
-
 
     public function show($id){
         // Obtén la galería y sus imágenes relacionadas

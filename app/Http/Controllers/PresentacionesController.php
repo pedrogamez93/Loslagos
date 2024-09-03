@@ -132,31 +132,30 @@ class PresentacionesController extends Controller {
         }
     }
 
-    public function download($id)
-{
-    $presentacion = Presentaciones::find($id);
-
-    if (!$presentacion || !$presentacion->urldocs) {
-        return redirect()->back()->with('error', 'Artículo o archivo no encontrado.');
-    }
-
-    // Decodificar el JSON para obtener el array de archivos
-    $fileData = json_decode($presentacion->urldocs, true);
-
-    if (empty($fileData)) {
-        return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
-    }
-
-    // Descargar todos los archivos (si tienes más de uno, puede descargar el primero o manejarlo como quieras)
-    foreach ($fileData as $file) {
-        $filePath = 'public/' . $file['path']; // Ajustar a la ruta de almacenamiento pública
-
-        // Verificar si el archivo existe en el almacenamiento
-        if (Storage::exists($filePath)) {
-            return Storage::download($filePath, $file['name']);
+    public function download($id) {
+        $presentacion = Presentaciones::find($id);
+    
+        if (!$presentacion || !$presentacion->urldocs) {
+            return redirect()->back()->with('error', 'Artículo o archivo no encontrado.');
         }
-    }
-
-    return redirect()->back()->with('error', 'El archivo no existe en el almacenamiento.');
+    
+        // Decodificar el JSON para obtener el array de archivos
+        $fileData = json_decode($presentacion->urldocs, true);
+    
+        if (empty($fileData)) {
+            return redirect()->back()->with('error', 'No se encontraron archivos para descargar.');
+        }
+    
+        // Descargar el primer archivo (puedes ajustar esto para manejar varios archivos si es necesario)
+        $file = $fileData[0]; // Tomar el primer archivo del array
+        $filePath = storage_path('app/public/' . $file['path']); // Obtener la ruta completa del archivo
+    
+        // Verificar si el archivo existe
+        if (file_exists($filePath)) {
+            // Descargar el archivo con el nombre original
+            return response()->download($filePath, $file['name']);
+        }
+    
+        return redirect()->back()->with('error', 'El archivo no existe.');
     }
 }
