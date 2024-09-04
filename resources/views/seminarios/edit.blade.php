@@ -263,11 +263,11 @@
                                 </div>
                             </div>
                             <div class="col-md-6" style="align-self: center;">
-                                <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este documento?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                            <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este documento?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -308,6 +308,13 @@
     </div>
 </div>
 </html>
+<script>
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(event) {
+        console.log('Formulario enviado: ', form.action, form.method);
+    });
+});
+</script>
 <script>
 $(document).ready(function() {
     // Contador global de galerías
