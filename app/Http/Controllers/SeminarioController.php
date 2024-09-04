@@ -222,28 +222,45 @@ class SeminarioController extends Controller {
 
 
     public function destroyDocumento($id) {
-        dd('Llega al método destroyDocumento con ID: ' . $id); // Verifica que la solicitud llegue aquí.
+        // Verificar que la solicitud llegue aquí.
         \Log::info('Llega al método destroyDocumento con ID: ' . $id);
-    
+        
+        // Buscar el documento por su ID
         $documento = DocumentoSeminario::find($id);
-    
+        
         if (!$documento) {
             Log::error('Documento no encontrado con ID: ' . $id);
             return redirect()->back()->with('error', 'El documento no existe.');
         }
+        
+        // Verificar que la ruta del documento no sea nula o vacía
+        if (empty($documento->url_doc)) {
+            Log::error('Ruta del documento vacía para el documento con ID: ' . $id);
+            return redirect()->back()->with('error', 'La ruta del archivo es inválida o está vacía.');
+        }
     
-        // Eliminar el documento
+        // Eliminar el archivo del almacenamiento público
         if (Storage::disk('public')->exists($documento->url_doc)) {
-            Storage::disk('public')->delete($documento->url_doc);
-            Log::info('Archivo eliminado: ' . $documento->url_doc);
+            if (Storage::disk('public')->delete($documento->url_doc)) {
+                Log::info('Archivo eliminado: ' . $documento->url_doc);
+            } else {
+                Log::error('Error al intentar eliminar el archivo: ' . $documento->url_doc);
+                return redirect()->back()->with('error', 'Error al intentar eliminar el archivo del almacenamiento.');
+            }
         } else {
             Log::error('Archivo no encontrado en el almacenamiento: ' . $documento->url_doc);
             return redirect()->back()->with('error', 'El archivo no se encontró en el almacenamiento.');
         }
     
-        $documento->delete();
-        Log::info('Documento eliminado de la base de datos: ' . $documento->id);
-    
+        // Eliminar el registro del documento en la base de datos
+        try {
+            $documento->delete();
+            Log::info('Documento eliminado de la base de datos: ' . $documento->id);
+        } catch (\Exception $e) {
+            Log::error('Error al eliminar el documento de la base de datos: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al eliminar el documento de la base de datos.');
+        }
+        
         return redirect()->back()->with('success', 'El documento ha sido eliminado correctamente.');
     }
 
