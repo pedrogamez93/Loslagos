@@ -47,8 +47,11 @@ class BibliotecaController extends Controller
                 // Obtener el nombre original del archivo
                 $originalName = $file->getClientOriginalName();
     
-                // Almacenar el archivo con el nombre original
-                $urlPath = $file->storeAs('documentosbiblioteca', $originalName);
+                // Generar un nombre único para evitar conflictos
+                $uniqueName = time() . '_' . $originalName;
+    
+                // Almacenar el archivo con el nombre único generado en el almacenamiento público
+                $urlPath = $file->storeAs('documentosbiblioteca', $uniqueName, 'public');
     
                 // Verificar si el archivo se almacenó correctamente
                 if ($urlPath) {

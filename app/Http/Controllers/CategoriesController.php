@@ -566,26 +566,31 @@ class CategoriesController extends Controller{
         Log::info("Documento encontrado: " . json_encode($documento));
     
         if ($documento) {
-            // Ruta almacenada en la base de datos (relativa al almacenamiento público)
-            $rutaRelativa = $documento->urldocs; // e.g., 'documentospresentacion/pruebas(8).pdf'
+            // Ruta almacenada en la base de datos (formato JSON que contiene un array de archivos)
+            $rutaRelativa = json_decode($documento->urldocs, true); // Decodificar el JSON para obtener el array de archivos
     
             // Validar que la ruta no esté vacía o no sea un array vacío
-            if (empty($rutaRelativa) || $rutaRelativa == "[]" || !is_string($rutaRelativa)) {
-                Log::error("La ruta del archivo es inválida o está vacía: " . $rutaRelativa);
+            if (empty($rutaRelativa) || !is_array($rutaRelativa) || count($rutaRelativa) === 0) {
+                Log::error("La ruta del archivo es inválida o está vacía: " . json_encode($rutaRelativa));
                 return response()->json(['error' => 'La ruta del archivo es inválida o está vacía.'], 400);
             }
     
+            // Asumimos que queremos descargar el primer archivo de la lista
+            $archivo = $rutaRelativa[0]; // Obtener el primer archivo del array
+    
+            // Verificar que el archivo tenga 'path' y 'name'
+            if (!isset($archivo['path']) || !isset($archivo['name'])) {
+                Log::error("Datos del archivo faltantes o inválidos: " . json_encode($archivo));
+                return response()->json(['error' => 'Datos del archivo faltantes o inválidos.'], 400);
+            }
+    
             // Verificar si el archivo existe en el almacenamiento público
-            if (Storage::disk('public')->exists($rutaRelativa)) {
-                // Obtener el nombre original del archivo para la descarga
-                $nombreOriginal = basename($rutaRelativa);
-    
-                Log::info("Iniciando descarga del archivo: " . Storage::disk('public')->path($rutaRelativa));
-    
+            if (Storage::disk('public')->exists($archivo['path'])) {
                 // Descargar el archivo con su nombre original desde el almacenamiento público
-                return Storage::disk('public')->download($rutaRelativa, $nombreOriginal);
+                Log::info("Iniciando descarga del archivo: " . Storage::disk('public')->path($archivo['path']));
+                return Storage::disk('public')->download($archivo['path'], $archivo['name']);
             } else {
-                $rutaCompleta = Storage::disk('public')->path($rutaRelativa);
+                $rutaCompleta = Storage::disk('public')->path($archivo['path']);
                 Log::error("El archivo no existe o es un directorio: " . $rutaCompleta);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
