@@ -559,23 +559,28 @@ class CategoriesController extends Controller{
 
     public function downloadbiblioteca($id)
     {
+        // Buscar el documento por su ID
         $documento = Biblioteca::findOrFail($id);
     
         // Log para depuración del documento
         Log::info("Documento encontrado: " . json_encode($documento));
     
         if ($documento) {
-            $rutaCompleta = $documento->urldocs; // Esta es la ruta almacenada en la base de datos
+            // Ruta almacenada en la base de datos (relativa al almacenamiento público)
+            $rutaRelativa = $documento->urldocs; // e.g., 'documentospresentacion/pruebas(8).pdf'
     
-            // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/' . $rutaCompleta);
+            // Verificar si el archivo existe en el almacenamiento público
+            if (Storage::disk('public')->exists($rutaRelativa)) {
+                // Obtener el nombre original del archivo para la descarga
+                $nombreOriginal = basename($rutaRelativa);
     
-            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+                Log::info("Iniciando descarga del archivo: " . Storage::disk('public')->path($rutaRelativa));
     
-            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-                return response()->download($rutaArchivo);
+                // Descargar el archivo con su nombre original desde el almacenamiento público
+                return Storage::disk('public')->download($rutaRelativa, $nombreOriginal);
             } else {
-                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                $rutaCompleta = Storage::disk('public')->path($rutaRelativa);
+                Log::error("El archivo no existe o es un directorio: " . $rutaCompleta);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
@@ -583,6 +588,7 @@ class CategoriesController extends Controller{
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
+    
 
     public function galeriaIndex() {
         $galerias = Galeria::all();
