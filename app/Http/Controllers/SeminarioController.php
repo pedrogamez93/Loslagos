@@ -239,10 +239,13 @@ class SeminarioController extends Controller {
             return redirect()->back()->with('error', 'La ruta del archivo es inválida o está vacía.');
         }
     
+        // Registrar la ruta del archivo antes de intentar eliminar
+        Log::info('Intentando eliminar archivo: ' . $documento->url_doc);
+        
         // Eliminar el archivo del almacenamiento público
         if (Storage::disk('public')->exists($documento->url_doc)) {
             if (Storage::disk('public')->delete($documento->url_doc)) {
-                Log::info('Archivo eliminado: ' . $documento->url_doc);
+                Log::info('Archivo eliminado correctamente: ' . $documento->url_doc);
             } else {
                 Log::error('Error al intentar eliminar el archivo: ' . $documento->url_doc);
                 return redirect()->back()->with('error', 'Error al intentar eliminar el archivo del almacenamiento.');
