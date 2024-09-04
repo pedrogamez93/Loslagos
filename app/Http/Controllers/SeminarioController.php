@@ -194,17 +194,39 @@ class SeminarioController extends Controller {
     }
 
     public function eliminarGaleria(GaleriaSeminario $galeria)
-{
-    try {
-        // Elimina la galería y sus imágenes relacionadas
-        $galeria->imagenes()->delete();
-        $galeria->delete();
-
-        return redirect()->back()->with('success', 'La galería se eliminó correctamente.');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Hubo un error al eliminar la galería.');
+    {
+        try {
+            // Registrar la eliminación de la galería y sus imágenes
+            Log::info('Intentando eliminar la galería con ID: ' . $galeria->id);
+    
+            // Eliminar las imágenes relacionadas con la galería
+            foreach ($galeria->imagenes as $imagen) {
+                Log::info('Intentando eliminar archivo de imagen: ' . $imagen->archivo);
+                if (Storage::disk('public')->exists($imagen->archivo)) {
+                    if (Storage::disk('public')->delete($imagen->archivo)) {
+                        Log::info('Imagen eliminada correctamente: ' . $imagen->archivo);
+                    } else {
+                        Log::error('Error al intentar eliminar la imagen: ' . $imagen->archivo);
+                    }
+                } else {
+                    Log::error('Imagen no encontrada en el almacenamiento: ' . $imagen->archivo);
+                }
+            }
+    
+            // Eliminar las imágenes relacionadas de la base de datos
+            $galeria->imagenes()->delete();
+            Log::info('Todas las imágenes relacionadas han sido eliminadas de la base de datos.');
+    
+            // Eliminar la galería misma
+            $galeria->delete();
+            Log::info('Galería eliminada correctamente con ID: ' . $galeria->id);
+    
+            return redirect()->back()->with('success', 'La galería se eliminó correctamente.');
+        } catch (\Exception $e) {
+            Log::error('Hubo un error al eliminar la galería: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Hubo un error al eliminar la galería.');
+        }
     }
-}
 
     public function edit($id)
     {
@@ -243,16 +265,21 @@ class SeminarioController extends Controller {
         Log::info('Intentando eliminar archivo: ' . $documento->url_doc);
         
         // Eliminar el archivo del almacenamiento público
-        if (Storage::disk('public')->exists($documento->url_doc)) {
-            if (Storage::disk('public')->delete($documento->url_doc)) {
-                Log::info('Archivo eliminado correctamente: ' . $documento->url_doc);
+        try {
+            if (Storage::disk('public')->exists($documento->url_doc)) {
+                if (Storage::disk('public')->delete($documento->url_doc)) {
+                    Log::info('Archivo eliminado correctamente: ' . $documento->url_doc);
+                } else {
+                    Log::error('Error al intentar eliminar el archivo: ' . $documento->url_doc);
+                    return redirect()->back()->with('error', 'Error al intentar eliminar el archivo del almacenamiento.');
+                }
             } else {
-                Log::error('Error al intentar eliminar el archivo: ' . $documento->url_doc);
-                return redirect()->back()->with('error', 'Error al intentar eliminar el archivo del almacenamiento.');
+                Log::error('Archivo no encontrado en el almacenamiento: ' . $documento->url_doc);
+                return redirect()->back()->with('error', 'El archivo no se encontró en el almacenamiento.');
             }
-        } else {
-            Log::error('Archivo no encontrado en el almacenamiento: ' . $documento->url_doc);
-            return redirect()->back()->with('error', 'El archivo no se encontró en el almacenamiento.');
+        } catch (\Exception $e) {
+            Log::error('Error al eliminar el archivo del almacenamiento: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al eliminar el archivo del almacenamiento.');
         }
     
         // Eliminar el registro del documento en la base de datos
