@@ -35,51 +35,57 @@ class BibliotecaController extends Controller
         // Validación de los datos recibidos
         $data = $request->validate([
             'titulo' => 'required|string|max:255',
-            'urldocs.*' => 'file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
+            'urldocs' => 'required|file|mimes:pdf,doc,docx|max:10240', // Límite de tamaño de archivo de 10 MB
         ]);
     
-        // Inicializar array 'urldocs' en caso de que no haya archivos
-        $fileData = [];
+        Log::info('Datos validados para almacenar documento en Biblioteca', ['data' => $data]);
     
-        // Verificar si hay archivos y procesarlos
+        // Verificar si hay un archivo y procesarlo
         if ($request->hasFile('urldocs')) {
-            foreach ($request->file('urldocs') as $file) {
-                // Obtener el nombre original del archivo
-                $originalName = $file->getClientOriginalName();
+            $file = $request->file('urldocs');
+            $originalName = $file->getClientOriginalName();
+            $uniqueFileName = time() . '_' . $originalName; // Generar un nombre único para evitar conflictos
     
-                // Generar un nombre único para evitar conflictos
-                $uniqueName = time() . '_' . $originalName;
+            Log::info('Procesando archivo para almacenamiento', ['nombre_original' => $originalName, 'nombre_unico' => $uniqueFileName]);
     
-                // Almacenar el archivo con el nombre único generado en el almacenamiento público
-                $urlPath = $file->storeAs('documentosbiblioteca', $uniqueName, 'public');
+            try {
+                // Almacenar el archivo con su nombre único generado en el almacenamiento público
+                $filePath = $file->storeAs('documentosbiblioteca', $uniqueFileName, 'public');
     
                 // Verificar si el archivo se almacenó correctamente
-                if ($urlPath) {
-                    // Guardar la ruta y el nombre original del archivo
-                    $fileData[] = [
-                        'path' => $urlPath,
-                        'name' => $originalName
-                    ];
-                } else {
-                    // Manejar el error de almacenamiento de archivos
+                if (!$filePath) {
+                    Log::error('Error al almacenar el archivo (storeAs devolvió false)', ['nombre' => $originalName]);
                     return redirect()->back()->with('error', 'Error al almacenar el archivo: ' . $originalName);
                 }
+    
+                Log::info('Archivo almacenado correctamente', ['ruta' => $filePath]);
+    
+                // Guardar la ruta del archivo en la base de datos
+                $data['urldocs'] = $filePath;  // Guardar la ruta como una cadena, no como un JSON
+    
+            } catch (\Exception $e) {
+                Log::error('Excepción al almacenar el archivo', ['error' => $e->getMessage()]);
+                return redirect()->back()->with('error', 'Excepción al almacenar el archivo: ' . $e->getMessage());
             }
+        } else {
+            Log::warning('No se encontró un archivo válido para almacenar.');
+            return redirect()->back()->with('error', 'No se encontró un archivo válido para almacenar.');
         }
     
-        // Convertir el array de archivos a JSON para almacenarlo en la base de datos
-        $data['urldocs'] = json_encode($fileData);
+        // Verificar que el dato de 'urldocs' esté correctamente asignado antes de guardar en la base de datos
+        Log::info('Datos a guardar en la base de datos', ['data' => $data]);
     
         // Almacenar los datos en la base de datos
         try {
             Biblioteca::create($data);
+            Log::info('Documento almacenado en la base de datos', ['data' => $data]);
         } catch (\Exception $e) {
-            // Manejar errores de almacenamiento en la base de datos
-            return redirect()->back()->with('error', 'Error al crear el artículo: ' . $e->getMessage());
+            Log::error('Error al almacenar el documento en la base de datos', ['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error al crear el documento: ' . $e->getMessage());
         }
     
         // Redireccionar con mensaje de éxito
-        return redirect(route('biblioteca.index'))->with('success', 'Artículo creado con éxito');
+        return redirect(route('biblioteca.index'))->with('success', 'Documento creado con éxito');
     }
 
     public function show(Biblioteca $biblioteca)

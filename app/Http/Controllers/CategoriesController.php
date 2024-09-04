@@ -563,45 +563,44 @@ class CategoriesController extends Controller{
         $documento = Biblioteca::findOrFail($id);
     
         // Log para depuración del documento
-        Log::info("Documento encontrado: " . json_encode($documento));
+        Log::info("Documento encontrado: ", ['documento' => $documento]);
     
         if ($documento) {
             // Ruta almacenada en la base de datos (formato JSON que contiene un array de archivos)
-            $rutaRelativa = json_decode($documento->urldocs, true); // Decodificar el JSON para obtener el array de archivos
+            $rutasArchivos = json_decode($documento->urldocs, true); // Decodificar el JSON para obtener el array de archivos
     
             // Validar que la ruta no esté vacía o no sea un array vacío
-            if (empty($rutaRelativa) || !is_array($rutaRelativa) || count($rutaRelativa) === 0) {
-                Log::error("La ruta del archivo es inválida o está vacía: " . json_encode($rutaRelativa));
+            if (empty($rutasArchivos) || !is_array($rutasArchivos) || count($rutasArchivos) === 0) {
+                Log::error("La ruta del archivo es inválida o está vacía: ", ['rutasArchivos' => $rutasArchivos]);
                 return response()->json(['error' => 'La ruta del archivo es inválida o está vacía.'], 400);
             }
     
             // Asumimos que queremos descargar el primer archivo de la lista
-            $archivo = $rutaRelativa[0]; // Obtener el primer archivo del array
+            $archivo = $rutasArchivos[0]; // Obtener el primer archivo del array
     
             // Verificar que el archivo tenga 'path' y 'name'
             if (!isset($archivo['path']) || !isset($archivo['name'])) {
-                Log::error("Datos del archivo faltantes o inválidos: " . json_encode($archivo));
+                Log::error("Datos del archivo faltantes o inválidos: ", ['archivo' => $archivo]);
                 return response()->json(['error' => 'Datos del archivo faltantes o inválidos.'], 400);
             }
     
             // Verificar si el archivo existe en el almacenamiento público
             if (Storage::disk('public')->exists($archivo['path'])) {
+                Log::info("Iniciando descarga del archivo: ", ['ruta' => Storage::disk('public')->path($archivo['path'])]);
+    
                 // Descargar el archivo con su nombre original desde el almacenamiento público
-                Log::info("Iniciando descarga del archivo: " . Storage::disk('public')->path($archivo['path']));
                 return Storage::disk('public')->download($archivo['path'], $archivo['name']);
             } else {
-                $rutaCompleta = Storage::disk('public')->path($archivo['path']);
-                Log::error("El archivo no existe o es un directorio: " . $rutaCompleta);
+                Log::error("El archivo no existe o es un directorio: ", ['ruta' => Storage::disk('public')->path($archivo['path'])]);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
-            Log::error("Documento no encontrado con id: " . $id);
+            Log::error("Documento no encontrado con id: ", ['id' => $id]);
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
     
-
-    public function galeriaIndex() {
+     public function galeriaIndex() {
         $galerias = Galeria::all();
         
         return view('galerias', ['galerias' => $galerias]);
