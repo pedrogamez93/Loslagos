@@ -315,9 +315,9 @@ Route::get('/politica-turismo/agenda', [CategoriesController::class, 'agendainde
 //RUTAS PARA LA BIBLIOTECA
 
 Route::resource('biblioteca', BibliotecaController::class);
-Route::get('/biblioteca/download/{id}', [BibliotecaController::class, 'download'])->name('biblioteca.download');
+Route::get('/biblioteca/download/{id}', [BibliotecaController::class, 'downloadbiblio'])->name('biblioteca.download');
 Route::get('/politica-turismo/biblioteca', 'App\Http\Controllers\CategoriesController@bibliotecaIndex');
-Route::get('/download/biblioteca/{id}', 'App\Http\Controllers\CategoriesController@downloadbiblioteca')->name('download.biblioteca');
+//Route::get('/download/biblioteca/{id}', 'App\Http\Controllers\CategoriesController@downloadbiblioteca')->name('download.biblioteca');
 //RUTAS PARA GALERIA
 
 Route::resource('galerias', GaleriaController::class);

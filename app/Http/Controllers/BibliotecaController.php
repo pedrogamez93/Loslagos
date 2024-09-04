@@ -97,7 +97,7 @@ class BibliotecaController extends Controller
         }
     }
 
-    public function download($id)
+    public function downloadbiblio($id)
     {
         // Buscar el registro en la base de datos
         $biblioteca = Biblioteca::findOrFail($id);
