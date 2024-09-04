@@ -144,7 +144,7 @@ class PresentacionesController extends Controller {
         }
     }
 
-    public function download($id)
+    public function downloadpresen($id)
     {
         $presentacion = Presentaciones::findOrFail($id);
     
