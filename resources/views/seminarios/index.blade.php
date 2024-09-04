@@ -243,13 +243,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6" style="align-self: center;">
+                        <!--<div class="col-md-6" style="align-self: center;">
                                 <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este documento?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     @empty
