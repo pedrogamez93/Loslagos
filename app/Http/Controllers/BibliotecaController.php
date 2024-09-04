@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Biblioteca;
+use Illuminate\Support\Facades\Log;
 
 class BibliotecaController extends Controller
 {
