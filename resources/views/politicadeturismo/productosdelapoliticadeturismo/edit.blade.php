@@ -87,12 +87,12 @@
                                         <div class="row">
                                             <div class="col-md-12 title">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="titulo[]"  value="{{ $item->titulo }}" class="form-control"  placeholder="Titulo seccion" required>
+                                                    <input type="hidden" id="titulo" name="titulo[]"  value="hidden" class="form-control"  placeholder="Titulo seccion" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="nombreA" name="nombreA[]"  value="{{ $item->nombre }}" class="form-control" placeholder="Nombre del archivo" required>
+                                                    <input type="text" id="nombreA" name="nombreA[]"  value="{{ $item->nombre }}" class="form-control" placeholder="Nombre del archivo" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -125,7 +125,7 @@
                                         <div class="row">
                                             <div class="col-md-12 title">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="titulo[]" class="form-control"  placeholder="Titulo seccion" >
+                                                    <input type="hidden" id="titulo" name="titulo[]" class="form-control" value="hidden"  placeholder="Titulo seccion" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

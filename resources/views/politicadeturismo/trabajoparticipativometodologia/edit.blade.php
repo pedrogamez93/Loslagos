@@ -99,7 +99,7 @@
                                 @foreach ($items as $item)
                                         <div class="col-md-6">
                                             <div class="input-group mb-3">
-                                                <input type="text" id="titulo" name="nombreA[]" value="{{ $item->nombreA }}" class="form-control" placeholder="Nombre del archivo" required>
+                                                <input type="text" id="titulo" name="nombreA[]" value="{{ $item->nombreA }}" class="form-control" placeholder="Nombre del archivo" disabled>
                                                 
                                             </div>
                                         </div>

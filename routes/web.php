@@ -736,6 +736,7 @@ Route::post('/programas/MesaPublicoPrivada/store', 'App\Http\Controllers\Politic
 Route::get('/programas/MesaPublicoPrivada/create', 'App\Http\Controllers\PoliticadeturismoController@createMesaPublicoPrivada')->name('MesaPublicoPrivada.create')->middleware('auth');
 Route::get('/programas/MesaPublicoPrivada/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editMesaPublicoPrivada')->name('MesaPublicoPrivada.edit')->middleware('auth');
 Route::put('/programas/MesaPublicoPrivada/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateMesaPublicoPrivada')->name('MesaPublicoPrivada.update')->middleware('auth');
+Route::get('/programas/MesaPublicoPrivada/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyMesaPublicoPrivada')->name('MesaPublicoPrivada.destroy')->middleware('auth');
 
 Route::get('/MesaPublicoPrivada/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadMesaPublicoPrivada')->name('MesaPublicoPrivada.download');
 
@@ -747,7 +748,7 @@ Route::post('/programas/ComiteTecnicodeGestion/store', 'App\Http\Controllers\Pol
 Route::get('/programas/ComiteTecnicodeGestion/create', 'App\Http\Controllers\PoliticadeturismoController@createComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.create')->middleware('auth');
 Route::get('/programas/ComiteTecnicodeGestion/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.edit')->middleware('auth');
 Route::put('/programas/ComiteTecnicodeGestion/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.update')->middleware('auth');
-
+Route::get('/programas/ComiteTecnicodeGestion/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroyComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.destroy')->middleware('auth');
 Route::get('/ComiteTecnicodeGestion/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadComiteTecnicodeGestion')->name('ComiteTecnicodeGestion.download');
 
 //RUTAS Lanzamiento Política FRONTEND
@@ -758,7 +759,7 @@ Route::post('/programas/Subcomisiones/store', 'App\Http\Controllers\Politicadetu
 Route::get('/programas/Subcomisiones/create', 'App\Http\Controllers\PoliticadeturismoController@createSubcomisiones')->name('Subcomisiones.create')->middleware('auth');
 Route::get('/programas/Subcomisiones/edit/{id}', 'App\Http\Controllers\PoliticadeturismoController@editSubcomisiones')->name('Subcomisiones.edit')->middleware('auth');
 Route::put('/programas/Subcomisiones/{id}', 'App\Http\Controllers\PoliticadeturismoController@updateSubcomisiones')->name('Subcomisiones.update')->middleware('auth');
-
+Route::get('/programas/Subcomisiones/items/delete/{id}', 'App\Http\Controllers\PoliticadeturismoController@destroySubcomisiones')->name('Subcomisiones.destroy')->middleware('auth');
 Route::get('/Subcomisiones/download/{id}', 'App\Http\Controllers\PoliticadeturismoController@downloadSubcomisiones')->name('Subcomisiones.download');
 
 //RUTAS Lanzamiento Política FRONTEND

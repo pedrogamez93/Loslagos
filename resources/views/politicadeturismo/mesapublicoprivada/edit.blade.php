@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-md-12 tag-comentario">
                                     <div class="input-group mb-3">
-                                        <input type="text" id="tag_comentario" name="subtitulo" class="form-control" placeholder="Subtítulo" value="{{ $articulo->subtitulo }}" required>
+                                        <input type="text" id="tag_comentario" name="nombre" class="form-control" placeholder="Subtítulo" value="{{ $articulo->nombre }}" required>
                                     </div>
                                 </div>
                                 
@@ -98,7 +98,7 @@
                                         @foreach ($items as $item)
                                                 <div class="col-md-6">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" id="titulo" name="nombreA[]" value="{{ $item->nombreA }}" class="form-control" placeholder="Nombre del archivo" required>
+                                                        <input type="text" id="titulo" name="nombreA[]" value="{{ $item->nombreA }}" class="form-control" placeholder="Nombre del archivo"  disabled>
                                                         
                                                     </div>
                                                 </div>
@@ -108,7 +108,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 pt-3 pb-3" style="text-align: end;">
-                                                    <a href="{{ route('TrabajoParticipativoTalleresProvincialesItems.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
+                                                    <a href="{{ route('MesaPublicoPrivada.destroy', $item->id) }}" class="btn btn-danger agregar-documento" id="agregarCampo">Eliminar</a>
                                                 </div>
                                         @endforeach
                                         </div>
@@ -120,12 +120,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" required>
+                                                    <input type="text" id="titulo" name="nombreA[]" class="form-control" placeholder="Nombre del archivo" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
-                                                    <input type="file" id="hombres" name="archivo[]" class="form-control" placeholder="Cargar archivo" required>
+                                                    <input type="file" id="hombres" name="archivo[]" class="form-control" placeholder="Cargar archivo" >
                                                 </div>
                                             </div>
                                         </div>
