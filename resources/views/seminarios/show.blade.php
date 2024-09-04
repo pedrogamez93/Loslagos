@@ -216,7 +216,7 @@ button {
                     <div class="container pt-5 pb-5">
                         <div class="row" >
                             <div class="col-md-12" >
-                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="/agenda">Galeria</a></span></p>
+                            <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a>/<a href=""></a><span style="font-Weight: 700;"><a href="/agenda">Galería</a></span></p>
                             </div>
                             <div class="col-md-12 pt-5 pb-5">
                                 <p class="one-title pb-4">Formulación Política de Turismo</p>
@@ -244,7 +244,7 @@ button {
                                     <div class="container int p-0">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h1 class="titles">Galerias</h1>
+                                                <h1 class="titles">Galerías</h1>
                                             </div>
                                         </div>
                                     </div>
