@@ -97,7 +97,7 @@ class BibliotecaController extends Controller
         }
     }
 
-    public function downloadbiblio($id)
+   /* public function downloadbiblio($id)
     {
         // Buscar el registro en la base de datos
         $biblioteca = Biblioteca::findOrFail($id);
@@ -126,5 +126,5 @@ class BibliotecaController extends Controller
     
         // Redireccionar con un mensaje de error si no se encuentra ningún archivo
         return redirect()->back()->with('error', 'El archivo no existe o es un directorio.');
-    }
+    }*/
 }

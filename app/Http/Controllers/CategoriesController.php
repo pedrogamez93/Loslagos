@@ -569,6 +569,12 @@ class CategoriesController extends Controller{
             // Ruta almacenada en la base de datos (relativa al almacenamiento público)
             $rutaRelativa = $documento->urldocs; // e.g., 'documentospresentacion/pruebas(8).pdf'
     
+            // Validar que la ruta no esté vacía o no sea un array vacío
+            if (empty($rutaRelativa) || $rutaRelativa == "[]" || !is_string($rutaRelativa)) {
+                Log::error("La ruta del archivo es inválida o está vacía: " . $rutaRelativa);
+                return response()->json(['error' => 'La ruta del archivo es inválida o está vacía.'], 400);
+            }
+    
             // Verificar si el archivo existe en el almacenamiento público
             if (Storage::disk('public')->exists($rutaRelativa)) {
                 // Obtener el nombre original del archivo para la descarga
