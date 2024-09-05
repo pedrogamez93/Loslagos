@@ -253,11 +253,7 @@
             </li>
 
             <div class="botonloginescritorio">
-    @if(Auth::check())
-        <a href="{{ route('dashboard') }}" class="btn btn-outline-light mt-3" style="border-radius: 100px; margin-left: 3rem;">Escritorio</a>
-    @else
-        <a href="{{ route('login') }}" class="btn btn-outline-light mt-3" style="border-radius: 100px; margin-left: 3rem; ">Iniciar sesión</a>
-    @endif
+   
 </div>
             
     </ul>
