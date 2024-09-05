@@ -52,7 +52,7 @@
             @if($contador < 5)
                 @php
                     // Obtener solo el nombre del archivo después de 'documentos/'
-                    $archivo_mostrado = str_replace('documentos/', '', $documento->archivo);
+                    $archivo_mostrado = str_replace('public/documentos/', '', $documento->archivo);
                 @endphp
 
                 <li class="mt-3">
