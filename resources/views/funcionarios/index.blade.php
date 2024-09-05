@@ -1,5 +1,3 @@
-<!-- resources/views/documentos/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -57,16 +55,12 @@
             </div>
             
             
-            
-            
-            
-                <input class="form-control mt-2" name="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
+                <input class="form-control mt-2" name="nombre" id="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
                 <div class="pt-5" style="direction: rtl;">
                 <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
                 </div>
-                </form>
+            </form>
         </div>
-        
     </div>
 </div>
 
@@ -85,35 +79,6 @@
             this.value = capitalizeWords(this.value);
         });
     });
-</script>
-
-<script>
-    // En tu script JavaScript
-   /* document.addEventListener('DOMContentLoaded', function () {
-        var divisionSelect = document.getElementById('division');
-        var departamentoSelect = document.getElementById('departamento');
-
-        divisionSelect.addEventListener('change', function () {
-            var selectedDivision = this.value;
-            var departamentos = <?php //echo json_encode($departamentos); ?>;
-
-            // Limpiar opciones anteriores
-            departamentoSelect.innerHTML = '<option value="" disabled selected>Seleccione Departamento</option>';
-
-            // Agregar nuevas opciones
-            if (departamentos[selectedDivision]) {
-                departamentos[selectedDivision].forEach(function (departamento) {
-                    var option = document.createElement('option');
-                    option.value = departamento;
-                    option.text = departamento;
-                    departamentoSelect.add(option);
-                });
-                departamentoSelect.disabled = false; // Habilitar el segundo select
-            } else {
-                departamentoSelect.disabled = true; // Deshabilitar si no hay departamentos
-            }
-        });
-    }); */
 </script>
 
 @endsection
