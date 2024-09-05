@@ -279,13 +279,7 @@
 
 </nav>
 
-<div class="botonloginmovil">
-    @if(Auth::check())
-        <a href="{{ route('dashboard') }}" class="btn btn-outline-light" style="border-radius: 100px; margin-left: 3rem; position: absolute; top: 2rem; right: 2rem;">Escritorio</a>
-    @else
-        <a href="{{ route('login') }}" class="btn btn-outline-light" style="border-radius: 100px; margin-left: 3rem; position: absolute; top: 2rem; right: 2rem;">Iniciar sesión</a>
-    @endif
-</div>
+
 
 </div>
 
