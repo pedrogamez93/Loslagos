@@ -44,20 +44,31 @@
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-  
-    @foreach ($ultimosDocumentos as $documento)
-   
-        <li class="mt-3">
-            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
-                <div class="row divtitulodocsdes">
-                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                    <p>{{ $documento->archivo }}</p>
-                </div>
-            </a>
-        </li>
- 
+    <ul class="list-unstyled">
+    @php $contador = 0; @endphp
+    @foreach($documentos as $documento)
+        @if($documento->portada == 'si')
+            @if($contador < 5)
+                @php
+                    // Obtener solo el nombre del archivo después de 'documentos/'
+                    $archivo_mostrado = str_replace('documentos/', '', $documento->archivo);
+                @endphp
 
-        @endforeach
+                <li class="mt-3">
+                    <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+                        <div class="row divtitulodocsdes">
+                            <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                            <p>{{ $archivo_mostrado }}</p>
+                        </div>
+                    </a>
+                </li>
+                @php $contador++; @endphp
+            @else
+                @break
+            @endif
+        @endif
+    @endforeach
+</ul>
 
 
             
