@@ -44,9 +44,25 @@
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
     <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
 
-    <ul class="list-unstyled">
+  
+    @foreach ($ultimosDocumentos as $documento)
+   
+        <li class="mt-3">
+            <a href="{{ route('descargar.archivo', ['archivo' => str_replace('public/documentos/', '', $documento->archivo)]) }}">
+                <div class="row divtitulodocsdes">
+                    <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                    <p>{{ $documento->archivo }}</p>
+                </div>
+            </a>
+        </li>
+ 
+
+        @endforeach
+
+
+        <ul class="list-unstyled">
     @php $contador = 0; @endphp
-    @foreach($documentos as $documento)
+    @foreach($ultimosDocumentos as $documento)
         @if($documento->portada == 'si')
             @if($contador < 5)
                 @php
@@ -69,6 +85,8 @@
         @endif
     @endforeach
 </ul>
+ 
+
 
 
             
