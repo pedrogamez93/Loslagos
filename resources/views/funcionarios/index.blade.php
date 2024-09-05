@@ -70,7 +70,22 @@
     </div>
 </div>
 
+<script>
+    // Función para capitalizar la primera letra de cada palabra
+    function capitalizeWords(str) {
+        return str.replace(/\b\w/g, function(char) {
+            return char.toUpperCase();
+        });
+    }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        var nombreInput = document.getElementById('nombre');
+
+        nombreInput.addEventListener('input', function () {
+            this.value = capitalizeWords(this.value);
+        });
+    });
+</script>
 
 <script>
     // En tu script JavaScript
