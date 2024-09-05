@@ -12,7 +12,7 @@
     <div class="container">
         <h5>Home / Documentos</h5>
         <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
-        <p>Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
+       
     </div>
 </div>
 
@@ -40,27 +40,31 @@
         <h4 class="titulodocsdes mb-3">Documentos Regionales que puedes decargar:</h4>
 
         <ul class="list-unstyled">
-        @php $contador = 0; @endphp
-@foreach($documentos as $documento)
-    @if($documento->portada == 'si')
-        @if($contador < 5)
-        
-            <li class="mt-3">
-                <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
-                    <div class="row divtitulodocsdes">
-                        <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
-                        <p>{{ $documento->archivo }}</p>
-                    </div>
-                </a>
-            </li>
-            @php $contador++; @endphp
-        @else
-            @break
-        @endif
-    @endif
-@endforeach
+    @php $contador = 0; @endphp
+    @foreach($documentos as $documento)
+        @if($documento->portada == 'si')
+            @if($contador < 5)
+                @php
+                    // Obtener solo el nombre del archivo después de 'documentos/'
+                    $archivo_mostrado = str_replace('documentos/', '', $documento->archivo);
+                @endphp
 
-        </ul>
+                <li class="mt-3">
+                    <a href="{{ url('storage/' . $documento->archivo_path) }}" download>
+                        <div class="row divtitulodocsdes">
+                            <img src="{{ asset('storage/img/iconodocpdf.png') }}" style="width: 65px;">
+                            <p>{{ $archivo_mostrado }}</p>
+                        </div>
+                    </a>
+                </li>
+                @php $contador++; @endphp
+            @else
+                @break
+            @endif
+        @endif
+    @endforeach
+</ul>
+
 
 
 
