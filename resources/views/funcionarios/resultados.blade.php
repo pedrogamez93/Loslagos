@@ -57,7 +57,7 @@
             
             
             
-                <input class="form-control mt-2" name="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
+            <input class="form-control mt-2" name="nombre" id="nombre" placeholder="Ingrese Nombre y/o Apellido de Funcionario">
                 <div class="pt-5" style="direction: rtl;">
                 <button class="btn text-light" style="background-color: #F59120;">Buscar Ahora</button>
                 </div>
@@ -128,6 +128,23 @@
             } else {
                 departamentoSelect.disabled = true; // Deshabilitar si no hay departamentos
             }
+        });
+    });
+</script>
+
+<script>
+    // Función para capitalizar la primera letra de cada palabra
+    function capitalizeWords(str) {
+        return str.replace(/\b\w/g, function(char) {
+            return char.toUpperCase();
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var nombreInput = document.getElementById('nombre');
+
+        nombreInput.addEventListener('input', function () {
+            this.value = capitalizeWords(this.value);
         });
     });
 </script>
