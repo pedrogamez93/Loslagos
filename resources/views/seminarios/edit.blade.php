@@ -255,7 +255,7 @@
                             <div class="col-md-6">
                                 <div class="item-doc-form">
                                     <div class="mi-documento mt-3 mb-3">
-                                        <a href="{{ $documento['url_doc'] }}" target="_blank" title="Ver documento: {{ $documento['nombre_doc'] }}">
+                                        <a href="javascript:void(0)" title="Ver documento: {{ $documento['nombre_doc'] }}">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_doc'] }}</p>
                                         </a>
@@ -263,11 +263,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6" style="align-self: center;">
-                            <form action="{{ route('documentos.destroy', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de querer eliminar este documento?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                            <a href="{{ route('documentos.destroy', $documento->id) }}" class="btn btn-danger">Eliminar</a>
                             </div>
                         </div>
                     </div>
@@ -281,22 +277,25 @@
                                 @forelse($seminario->galerias as $galeria)
                                     @php
                                         $imagenPrimera = $galeria->imagenes->first();
+                                        $cantidadImagenes = $galeria->imagenes->count();
                                     @endphp
-                                    <div class="galeria-container">
-                                        <a href="{{ route('galerias.edit', $galeria->id) }}" class="galeria-link">
-                                            <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? route('seminario.imagen.mostrar', ['filename' => basename($imagenPrimera->archivo)]) : asset('storage/images/default.jpg') }}');">
-                                                <div class="galeria-info">
-                                                    <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
-                                                    <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
+                                    @if($cantidadImagenes > 0)
+                                        <div class="galeria-container">
+                                            <a href="{{ route('galerias.edit', $galeria->id) }}" class="galeria-link">
+                                                <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? route('seminario.imagen.mostrar', ['filename' => basename($imagenPrimera->archivo)]) : asset('storage/images/default.jpg') }}');">
+                                                    <div class="galeria-info">
+                                                        <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
+                                                        <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                        <form method="POST" action="{{ route('galerias.eliminar', $galeria->id) }}" class="eliminar-form">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-eliminar" onclick="return confirm('¿Estás seguro que deseas eliminar esta galería?')">Eliminar Galería</button>
-                                        </form>
-                                    </div>
+                                            </a>
+                                            <form method="POST" action="{{ route('galerias.eliminar', $galeria->id) }}" class="eliminar-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-eliminar" onclick="return confirm('¿Estás seguro que deseas eliminar esta galería?')">Eliminar Galería</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

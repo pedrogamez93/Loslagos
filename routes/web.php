@@ -337,7 +337,7 @@ Route::resource('seminarios', SeminarioController::class);
 
 Route::get('/seminarios/edit/{id}', [SeminarioController::class, 'edit'])->name('seminarios.edit');
 //Route::get('/test-delete/{id}', [SeminarioController::class, 'destroyDocumento']);
-Route::delete('/documentos/{id}', [SeminarioController::class, 'destroyDocumento'])->name('documentos.destroy');
+Route::get('/documentos/{id}', [SeminarioController::class, 'destroyDocumento'])->name('documentos.destroy');
 
 Route::delete('/galerias/{galeria}', [SeminarioController::class, 'eliminarGaleria'])->name('galerias.eliminar');
 

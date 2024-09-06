@@ -236,7 +236,7 @@
                             <div class="col-md-6">
                                 <div class="item-doc-form">
                                     <div class="mi-documento mt-3 mb-3">
-                                        <a href="{{ $documento['url_doc'] }}" target="_blank" title="Ver documento: {{ $documento['nombre_doc'] }}">
+                                        <a href="javascript:void(0)" title="Ver documento: {{ $documento['nombre_doc'] }}">
                                             <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
                                             <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento['nombre_doc'] }}</p>
                                         </a>
@@ -262,17 +262,20 @@
                         @forelse($seminario->galerias as $galeria)
                                 @php
                                     $imagenPrimera = $galeria->imagenes->first();
+                                    $cantidadImagenes = $galeria->imagenes->count();
                                 @endphp
-                                {{-- Enlace a la vista de edición de la galería --}}
-                                <a href="{{ route('galerias.edit', $galeria->id) }}" class="galeria-link">
-                                    <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
-                                        <div class="galeria-info">
-                                            <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
-                                            <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
+                                @if($cantidadImagenes > 0)
+                                    {{-- Enlace a la vista de edición de la galería --}}
+                                    <a href="{{ route('galerias.edit', $galeria->id) }}" class="galeria-link">
+                                        <div class="galeria-item" style="background-image: url('{{ $imagenPrimera ? asset('storage/' . $imagenPrimera->archivo) : asset('storage/images/default.jpg') }}');">
+                                            <div class="galeria-info">
+                                                <span class="imagenes-count">{{ $galeria->imagenes->count() }} imágenes</span>
+                                                <h2 class="titulo-galeria">{{ $galeria->nombre_galeria }}</h2>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            @endforeach
+                                    </a>
+                                @endif
+                        @endforeach
                         </div>
                     </div>
                     <!--<button class="mt-4 btn btn btn-primary" type="submit" disabled>Guardar</button>-->

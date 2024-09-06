@@ -228,6 +228,20 @@ class SeminarioController extends Controller {
         }
     }
 
+    public function destroyDocumento($id)
+    {
+        // Buscar el documento por su ID
+        $documento = DocumentoSeminario::find($id);
+    
+        if ($documento) {
+            // Eliminar el documento si existe
+            $documento->delete();
+        }
+    
+        // Redirigir de todos modos, ya sea que se haya encontrado y eliminado el documento o no
+        return redirect()->route('seminarios.index')->with('success', 'Archivo Eliminado');
+    }
+
     public function edit($id)
     {
         // Lógica para obtener los datos del seminario con el ID proporcionado
@@ -240,58 +254,6 @@ class SeminarioController extends Controller {
         } else {
             return view('seminarios.edit')->with('message', 'No hay seminarios disponibles.');
         }
-    }
-
-
-    public function destroyDocumento($id) {
-        // Verificar que la solicitud llegue aquí.
-        \Log::info('Llega al método destroyDocumento con ID: ' . $id);
-        
-        // Buscar el documento por su ID
-        $documento = DocumentoSeminario::find($id);
-        
-        if (!$documento) {
-            Log::error('Documento no encontrado con ID: ' . $id);
-            return redirect()->back()->with('error', 'El documento no existe.');
-        }
-        
-        // Verificar que la ruta del documento no sea nula o vacía
-        if (empty($documento->url_doc)) {
-            Log::error('Ruta del documento vacía para el documento con ID: ' . $id);
-            return redirect()->back()->with('error', 'La ruta del archivo es inválida o está vacía.');
-        }
-    
-        // Registrar la ruta del archivo antes de intentar eliminar
-        Log::info('Intentando eliminar archivo: ' . $documento->url_doc);
-        
-        // Eliminar el archivo del almacenamiento público
-        try {
-            if (Storage::disk('public')->exists($documento->url_doc)) {
-                if (Storage::disk('public')->delete($documento->url_doc)) {
-                    Log::info('Archivo eliminado correctamente: ' . $documento->url_doc);
-                } else {
-                    Log::error('Error al intentar eliminar el archivo: ' . $documento->url_doc);
-                    return redirect()->back()->with('error', 'Error al intentar eliminar el archivo del almacenamiento.');
-                }
-            } else {
-                Log::error('Archivo no encontrado en el almacenamiento: ' . $documento->url_doc);
-                return redirect()->back()->with('error', 'El archivo no se encontró en el almacenamiento.');
-            }
-        } catch (\Exception $e) {
-            Log::error('Error al eliminar el archivo del almacenamiento: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Error al eliminar el archivo del almacenamiento.');
-        }
-    
-        // Eliminar el registro del documento en la base de datos
-        try {
-            $documento->delete();
-            Log::info('Documento eliminado de la base de datos: ' . $documento->id);
-        } catch (\Exception $e) {
-            Log::error('Error al eliminar el documento de la base de datos: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Error al eliminar el documento de la base de datos.');
-        }
-        
-        return redirect()->back()->with('success', 'El documento ha sido eliminado correctamente.');
     }
 
     public function show($id){
