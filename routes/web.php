@@ -239,19 +239,19 @@ Route::delete('/eliminar-documento/{documentoId}', [ComiteCienciasController::cl
 Route::resource('concursospublicos', ConcursosPublicosController::class)->middleware('auth');
 Route::delete('/eliminar-documento/{documentoId}', [ConcursosPublicosController::class, 'eliminarDocumento'])->middleware('auth');
 
-Route::resource('presidenteconcejo', PresidenteConcejoController::class)->middleware('auth');
+Route::resource('presidenteconcejo', PresidenteConcejoController::class);
 
 Route::resource('consejerosllanquihue', ConsejerosLlanquihueController::class)->middleware('auth');
-Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show')->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosLlanquihueController::class, 'show'])->name('consejeros.show');
 
 Route::resource('consejeroschiloe', ConsejerosChiloeController::class)->middleware('auth');
-Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show')->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosChiloeController::class, 'show'])->name('consejeros.show');
 
 Route::resource('consejerososorno', ConsejerosOsornoController::class);
 Route::get('/consejeros/{id}', [ConsejerosOsornoController::class, 'show'])->name('consejeros.show');
 
 Route::resource('consejerospalena', ConsejerosPalenaController::class)->middleware('auth');
-Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show')->middleware('auth');
+Route::get('/consejeros/{id}', [ConsejerosPalenaController::class, 'show'])->name('consejeros.show');
 
 Route::resource('concejoregional', ConcejoRegionalController::class)->middleware('auth');
 Route::get('/imagesConcejo/{img}', [ConcejoRegionalController::class, 'mostrarImagen'])->name('img.mostrar')->middleware('auth');
