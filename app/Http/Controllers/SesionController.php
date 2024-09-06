@@ -98,14 +98,21 @@ class SesionController extends Controller
         if ($request->hasFile('url')) {
             foreach ($request->file('url') as $key => $documento) {
                 if ($documento->isValid()) {
-                    $path = $documento->store('public/documentos_sesiones');
-    
+                    // Obtener el nombre original del archivo
+                    $nombreOriginal = $documento->getClientOriginalName();
+                    
+                    // Generar un nombre único para evitar conflictos de nombres duplicados
+                    $uniqueName = $this->getUniqueFileName($nombreOriginal, 'public/documentos_sesiones');
+                    
+                    // Almacenar el archivo con su nombre único en el almacenamiento público
+                    $path = $documento->storeAs('public/documentos_sesiones', $uniqueName);
+                    
                     // Obtener el nombre del documento correspondiente
                     $nombreDocumento = isset($nombresDocumentos[$key]) ? $nombresDocumentos[$key] : '';
-    
+        
                     // Obtener el valor de fechadoc
                     $fechadoc = isset($validatedData['fechadoc'][$key]) ? $validatedData['fechadoc'][$key] : null;
-    
+        
                     // Crear un nuevo Documento_Sesion
                     $doc = new Documento_Sesion([
                         'sesion_id' => $sesion->id,
@@ -121,19 +128,24 @@ class SesionController extends Controller
         // Redirigir con un mensaje de éxito
         return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión creada con éxito');
     }
-    
-    
-    
-    
-    
-    
+        
+    private function getUniqueFileName($fileName, $directory)
+{
+    $filePath = storage_path('app/' . $directory . '/' . $fileName);
+    $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    $counter = 1;
+
+    // Mientras el archivo exista, agregar un número al final del nombre
+    while (Storage::disk('public')->exists($directory . '/' . $fileName)) {
+        $fileName = $fileNameWithoutExt . "($counter)." . $extension;
+        $counter++;
+    }
+
+    return $fileName;
+}
+    
     public function show($id)
     {
         $sesion = Sesion::with('documentos')->findOrFail($id);
@@ -141,34 +153,41 @@ class SesionController extends Controller
     }
 
     public function downloadshowtablassesionesconsejo($id)
-{
-    $documento = Documento_Sesion::find($id);
-
-    // Log para depuración del documento
-    Log::info("Documento encontrado: " . json_encode($documento));
-
-    if ($documento) {
-        $rutaCompleta = $documento->url; // Esta es la ruta almacenada en la base de datos
-        
-        // Eliminar el prefijo 'public/' de la ruta si existe
-        $rutaRelativa = str_replace('public/', '', $rutaCompleta);
-        
-        // Construir la ruta completa al archivo
-        $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
-
-        Log::info("Ruta completa del archivo: " . $rutaArchivo);
-
-        if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
-            return response()->download($rutaArchivo);
+    {
+        $documento = Documento_Sesion::find($id);
+    
+        // Log para depuración del documento
+        Log::info("Documento encontrado: " . json_encode($documento));
+    
+        if ($documento) {
+            $rutaCompleta = $documento->url; // Esta es la ruta almacenada en la base de datos
+            
+            // Verificar que la ruta no esté vacía
+            if (empty($rutaCompleta)) {
+                Log::error("La ruta del archivo está vacía para el documento con ID: " . $id);
+                return response()->json(['error' => 'La ruta del archivo está vacía.'], 400);
+            }
+    
+            // Eliminar el prefijo 'public/' de la ruta si existe
+            $rutaRelativa = str_replace('public/', '', $rutaCompleta);
+            
+            // Construir la ruta completa al archivo
+            $rutaArchivo = storage_path('app/public/' . $rutaRelativa);
+    
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
+    
+            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+                Log::info("Archivo encontrado, iniciando descarga: " . $rutaArchivo);
+                return response()->download($rutaArchivo);
+            } else {
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            }
         } else {
-            Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
-            return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
+            Log::error("Documento no encontrado con id: " . $id);
+            return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
-    } else {
-        Log::error("Documento no encontrado con id: " . $id);
-        return response()->json(['error' => 'Documento no encontrado.'], 404);
     }
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -190,31 +209,47 @@ class SesionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
+        // Validar los datos recibidos del formulario
         $validatedData = $request->validate([
             'nombre' => 'required|string|max:255',
             'fecha_hora' => 'required|date',
             'lugar' => 'required|string|max:255',
         ]);
-
+    
+        // Buscar la sesión por ID y actualizar con los datos validados
         $sesion = Sesion::findOrFail($id);
         $sesion->update($validatedData);
-
+    
+        // Eliminar los documentos seleccionados
         if ($request->has('documentos_eliminados')) {
             Documento_Sesion::destroy($request->documentos_eliminados);
         }
-
+    
+        // Procesar y guardar los nuevos documentos subidos
         if ($request->hasFile('nuevos_documentos')) {
             foreach ($request->file('nuevos_documentos') as $documento) {
-                $path = $documento->store('public/documentos_sesiones');
-                $sesion->documentos()->create([
-                    'nombre' => $documento->getClientOriginalName(),
-                    'url' => $path
-                ]);
+                if ($documento->isValid()) {
+                    // Obtener el nombre original del archivo
+                    $nombreOriginal = $documento->getClientOriginalName();
+                    
+                    // Generar un nombre único para evitar conflictos de nombres duplicados
+                    $uniqueName = $this->getUniqueFileName($nombreOriginal, 'public/documentos_sesiones');
+                    
+                    // Almacenar el archivo con su nombre único en el almacenamiento público
+                    $path = $documento->storeAs('public/documentos_sesiones', $uniqueName);
+                    
+                    // Crear un nuevo registro de Documento_Sesion con el nombre original
+                    $sesion->documentos()->create([
+                        'nombre' => $nombreOriginal,
+                        'url' => $path
+                    ]);
+                }
             }
         }
-
+    
         return redirect()->route('sesionesConsejo.index')->with('success', 'Sesión actualizada con éxito');
     }
 
