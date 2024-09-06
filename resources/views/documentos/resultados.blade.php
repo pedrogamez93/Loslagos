@@ -42,17 +42,24 @@
             </form>
     </div>
     <div id="Docsparadesc" class="col-md-4 col-lg-3" style="border-left: 3px solid #F59120;padding: 3% 0% 0% 1%;">
-    <h4 class="titulodocsdes">Documentos Regionales que puedes decargar:</h4>
+    <h4 class="titulodocsdes">Documentos Regionales que puedes descargar:</h4>
 
 
-        <ul class="list-unstyled">
+  
+ 
+<ul class="list-unstyled">
     @php $contador = 0; @endphp
     @foreach($ultimosDocumentos as $documento)
         @if($documento->portada == 'si')
             @if($contador < 5)
                 @php
                     // Obtener solo el nombre del archivo después de 'documentos/'
-                    $archivo_mostrado = str_replace('public/documentos/', '', $documento->archivo);
+                    $archivo_mostrado = str_replace('documentos/', '', $documento->archivo);
+
+                    // Truncar si el nombre del archivo tiene más de 25 caracteres
+                    if (strlen($archivo_mostrado) > 25) {
+                        $archivo_mostrado = substr($archivo_mostrado, 0, 22) . '...';
+                    }
                 @endphp
 
                 <li class="mt-3">
@@ -70,7 +77,7 @@
         @endif
     @endforeach
 </ul>
- 
+
 
 
 
