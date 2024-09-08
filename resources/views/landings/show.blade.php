@@ -200,6 +200,59 @@
     nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
     background-color: #00548f;
     }
+
+    .botones-container {
+    display: flex; /* Usamos Flexbox */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una sola línea */
+    gap: 10px; /* Espacio entre botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+}
+
+.btn-landing {
+    display: inline-block; /* Ajusta el tamaño del botón al contenido */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #f08c00; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border-radius: 20px; /* Bordes redondeados */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    text-align: center; /* Centra el texto en el botón */
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Oculta el texto que se sale del área del botón */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+    max-width: 200px; /* Ancho máximo del botón */
+}
+
+.btn-landing:hover {
+    background-color: #d97700; /* Cambia el color al pasar el ratón */
+}
+
+    .d-flex {
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro */
+    flex-wrap: wrap; /* Permite que el texto se ajuste y no genere scroll */
+    max-width: 100%; /* Asegura que no se desborde del contenedor */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+}
+
+.pdf-icon {
+    display: inline-block;
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    vertical-align: middle;
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+
+.p-doc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    color: #565656;
+    margin: 0; /* Eliminamos los márgenes para alinear mejor */
+    white-space: nowrap; /* Evita el ajuste de línea en textos largos */
+    overflow: hidden; /* Oculta el desbordamiento del texto */
+    text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el texto es demasiado largo */
+    max-width: calc(100% - 53px); /* Ajusta el ancho máximo del texto para que no se desborde */
+}
     @media only screen and (max-width: 600px) {
     /* Estilos para pantallas móviles aquí */
     p.one-title{
@@ -255,7 +308,7 @@ p.text-sm.text-gray-700.leading-5 {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Tu Título Aquí</title>
+    <title>{{ $landing->titulo }}</title>
     <!-- Incluir jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -339,10 +392,10 @@ p.text-sm.text-gray-700.leading-5 {
 
                             @if($landing->btns->isNotEmpty())
                                 <p class="finalp mb-4">Ir a las siguientes secciones</p>
-                                <div class="botones-container mb-4">
+                                <div class="botones-container mb-5">
                                     @foreach($landing->btns as $btn)
                                         @if($btn->url && $btn->nombre_btn) <!-- Verifica que el botón tenga URL y nombre -->
-                                            <a class="mifinal-a mt-4" href="{{ $btn->url }}" class="btn-landing">{{ $btn->nombre_btn }}</a>
+                                            <a class="mifinal-a btn-landing mt-4" href="{{ $btn->url }}">{{ $btn->nombre_btn }}</a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -352,9 +405,9 @@ p.text-sm.text-gray-700.leading-5 {
                                 <p class="finalp mb-4 mt-5">Documentos</p>
                                 @foreach($landing->documentos as $documento)
                                     <div class="mi-documento mb-3">
-                                        <a href="{{ route('downloaddocslanding', $documento->id) }}" target="_blank">
-                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" style="display: inline-block; vertical-align: middle;">
-                                            <p class="p-doc mt-2 mb-2" style="font-family: 'Inter'; font-weight: 500; font-size: 16px; line-height: 19.36px; display: inline-block; vertical-align: middle; color:#565656;">{{ $documento->nombre_documento }}</p>
+                                        <a href="{{ route('downloaddocslanding', $documento->id) }}" target="_blank" class="d-flex align-items-center">
+                                            <img width="43px" height="44px" src="{{ asset('storage/images/pdf.png') }}" alt="Descripción de la imagen" class="pdf-icon">
+                                            <p class="p-doc mt-2 mb-2">{{ $documento->nombre_documento }}</p>
                                         </a>
                                     </div>
                                 @endforeach

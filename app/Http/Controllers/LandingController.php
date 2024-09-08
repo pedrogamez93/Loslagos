@@ -94,11 +94,16 @@ class LandingController extends Controller{
     // Procesar y almacenar documentos
     if ($request->hasFile('ruta_documento')) {
         foreach ($request->file('ruta_documento') as $index => $file) {
-            $path = $file->store('public/landing_documents');
+            // Obtén el nombre original del archivo
+            $originalName = $file->getClientOriginalName();
+            
+            // Almacena el archivo con su nombre original en 'public/landing_documents'
+            $path = $file->storeAs('public/landing_documents', $originalName);
             $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+            
             LandingDocs::create([
                 'landing_id' => $landing->id,
-                'nombre_documento' => $request->nombre_documento[$index] ?? $file->getClientOriginalName(),
+                'nombre_documento' => $request->nombre_documento[$index] ?? $originalName,
                 'ruta_documento' => $path,
             ]);
         }
@@ -169,11 +174,13 @@ class LandingController extends Controller{
         // Actualizar documentos
         if ($request->hasFile('ruta_documento')) {
             foreach ($request->file('ruta_documento') as $index => $file) {
-                $path = $file->store('public/landing_documents');
+                $originalName = $file->getClientOriginalName(); // Nombre original del documento
+                $path = $file->storeAs('public/landing_documents', $originalName); // Almacena con su nombre original
                 $path = str_replace('public/', '', $path); // Remover el prefijo 'public/'
+
                 LandingDocs::create([
                     'landing_id' => $landing->id,
-                    'nombre_documento' => $request->nombre_documento[$index] ?? $file->getClientOriginalName(),
+                    'nombre_documento' => $request->nombre_documento[$index] ?? $originalName,
                     'ruta_documento' => $path,
                 ]);
             }
@@ -247,29 +254,31 @@ class LandingController extends Controller{
 
     public function downloaddocslanding($id)
     {
-        // Encuentra el documento por su ID
-        $documento = LandingDocs::findOrFail($id);
+        try {
+            // Encuentra el documento por su ID o lanza una excepción si no se encuentra
+            $documento = LandingDocs::findOrFail($id);
     
-        // Log para depuración del documento
-        Log::info("Documento encontrado: " . json_encode($documento));
+            // Log para depuración del documento
+            Log::info("Documento encontrado: " . json_encode($documento));
     
-        if ($documento) {
-            $rutaCompleta = $documento->ruta_documento; // Esta es la ruta almacenada en la base de datos
+            // Ruta almacenada en la base de datos
+            $rutaRelativa = $documento->ruta_documento;
     
-            // Construir la ruta completa al archivo
-            $rutaArchivo = storage_path('app/public/' . $rutaCompleta);
+            // Obtener la ruta completa del archivo usando Storage
+            $rutaArchivo = Storage::path('public/' . $rutaRelativa);
     
             Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
-            if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
+            // Verificar si el archivo existe
+            if (Storage::exists('public/' . $rutaRelativa)) {
                 return response()->download($rutaArchivo);
             } else {
                 Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
-        } else {
-            Log::error("Documento no encontrado con id: " . $id);
-            return response()->json(['error' => 'Documento no encontrado.'], 404);
+        } catch (\Exception $e) {
+            Log::error("Error al intentar descargar el documento con ID " . $id . ": " . $e->getMessage());
+            return response()->json(['error' => 'Documento no encontrado o error al descargar.'], 404);
         }
     }
     
@@ -279,6 +288,18 @@ class LandingController extends Controller{
         $landings = Landing::where('habilitado', true)->get();
         dd($landings); // Depuración
         return view('app', compact('landings'));
+    }
+
+    public function destroy($id)
+    {
+        // Encuentra el registro con el ID proporcionado
+        $landing = Landing::findOrFail($id);
+
+        // Elimina el registro
+        $landing->delete();
+
+        // Redirige o devuelve una respuesta
+        return redirect()->route('landings.index')->with('success', 'El registro ha sido eliminado correctamente.');
     }
 
 }
