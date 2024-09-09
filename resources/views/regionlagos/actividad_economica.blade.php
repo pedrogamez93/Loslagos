@@ -388,6 +388,7 @@
 <head>
     <meta charset="utf-8">
     <title>Región de Los Lagos</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 </head>
