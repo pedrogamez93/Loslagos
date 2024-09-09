@@ -142,24 +142,29 @@
 
                     <div class="container principal add-botonexistente mt-4" style="padding: 20px;">
                         <h2>Botones presentes en la Landing Page</h2>
-                        @foreach ($landing->btns as $btn)
-                            <div class="row">
-                                <div class="col-md-6">
-                                <label class="style-label" for="url">Nombre del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del botón externo" value="{{ $btn->nombre_btn }}" disabled>
+                        
+                        @if ($landing->btns->isNotEmpty()) <!-- Verificar si hay botones -->
+                            @foreach ($landing->btns as $btn)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="style-label" for="url">Nombre del botón externo:</label>
+                                        <input class="form-control mt-2 mb-4" type="text" name="nombre_btn[]" placeholder="Nombre del botón externo" value="{{ $btn->nombre_btn }}" disabled>
 
-                                    <label class="style-label" for="url">URL del botón externo:</label>
-                                    <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del botón externo" value="{{ $btn->url }}" disabled>
+                                        <label class="style-label" for="url">URL del botón externo:</label>
+                                        <input class="form-control mt-2 mb-4" type="text" name="url[]" placeholder="URL del botón externo" value="{{ $btn->url }}" disabled>
+                                    </div>
+                                    <div class="col-md-6" style="align-self: center;">
+                                        <form action="{{ route('landing-button.destroy', $btn->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas borrar este botón externo?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Eliminar Botón</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-md-6" style="align-self: center;">
-                                    <form action="{{ route('landing-button.destroy', $btn->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas borrar este botón externo?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar Botón</button>
-                                    </form>
-                                </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @else <!-- Mensaje alternativo cuando no hay botones -->
+                            <p>No hay botones externos presentes en la Landing Page.</p>
+                        @endif
                     </div>
 
                     <!-- Mostrar documentos actuales -->
@@ -169,7 +174,9 @@
                             @foreach ($landing->documentos as $documento)
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p class="form-control mt-2">{{ $documento->nombre_documento }}</p>
+                                        <p class="form-control mt-2" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                            {{ $documento->nombre_documento }}
+                                        </p>
                                     </div>
                                     <div class="col-md-6" style="align-self: center;">
                                         <form action="{{ route('landing-document.destroy', $documento->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de borrar este documento?')">

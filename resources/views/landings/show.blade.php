@@ -203,14 +203,16 @@
 
     .botones-container {
     display: flex; /* Usamos Flexbox */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una sola línea */
+    flex-direction: column; /* Coloca los botones en columna */
+    align-items: center; /* Centra los botones horizontalmente */
     gap: 10px; /* Espacio entre botones */
-    justify-content: center; /* Centra los botones horizontalmente */
 }
 
 .btn-landing {
-    display: inline-block; /* Ajusta el tamaño del botón al contenido */
-    padding: 10px 20px; /* Espaciado interno del botón */
+    display: block; /* Cambia a bloque para ocupar el ancho completo */
+    width: 100%; /* Ocupar el 100% del ancho disponible */
+    max-width: 300px; /* Ancho máximo del botón */
+    padding: 15px 20px; /* Aumenta el espaciado interno del botón */
     background-color: #f08c00; /* Color de fondo del botón */
     color: white; /* Color del texto */
     border-radius: 20px; /* Bordes redondeados */
@@ -219,7 +221,6 @@
     white-space: nowrap; /* Evita el salto de línea */
     overflow: hidden; /* Oculta el texto que se sale del área del botón */
     text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
-    max-width: 200px; /* Ancho máximo del botón */
 }
 
 .btn-landing:hover {
@@ -395,7 +396,7 @@ p.text-sm.text-gray-700.leading-5 {
                                 <div class="botones-container mb-5">
                                     @foreach($landing->btns as $btn)
                                         @if($btn->url && $btn->nombre_btn) <!-- Verifica que el botón tenga URL y nombre -->
-                                            <a class="mifinal-a btn-landing mt-4" href="{{ $btn->url }}">{{ $btn->nombre_btn }}</a>
+                                            <a class="mifinal-a btn-landing mt-4" target="_blank" href="{{ $btn->url }}">{{ $btn->nombre_btn }}</a>
                                         @endif
                                     @endforeach
                                 </div>
