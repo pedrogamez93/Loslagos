@@ -7,6 +7,7 @@
    
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <title>Programas</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 
 <style>
     header{

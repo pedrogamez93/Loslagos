@@ -272,6 +272,7 @@
 <head>
     <meta charset="utf-8">
     <title>Fondos concursables</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
     <!-- Agrega aquÃ­ tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
 
