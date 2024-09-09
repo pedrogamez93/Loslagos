@@ -277,20 +277,41 @@
         border-radius: 5px; /* Bordes redondeados */
     }
     .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    display: grid; /* Utiliza CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Distribuye las imágenes en columnas responsivas */
+    gap: 15px; /* Espacio entre elementos */
+    justify-items: center; /* Centra las imágenes */
 }
 
 .grid-item {
-    /* Estilos para cada ítem, si necesitas */
+    width: 100%; /* Ancho total del contenedor */
+    max-width: 200px; /* Ancho máximo de cada imagen */
 }
 
-img.mi-img-landing {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
+.mi-img-landing {
+    width: 100%; /* Ancho completo para que la imagen se adapte al contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 8px; /* Añade un poco de radio para bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un mejor efecto visual */
 }
+
+/* Media Query para Pantallas Pequeñas */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Ajusta las columnas para pantallas más pequeñas */
+    }
+
+    .grid-item {
+        max-width: 150px; /* Reduce el ancho máximo de las imágenes en pantallas pequeñas */
+    }
+}
+
+.pagi {
+    display: flex; /* Usa flex para la paginación */
+    justify-content: center; /* Centra la paginación */
+    margin-top: 20px; /* Margen superior */
+}
+
 a.mifinal-a{
     padding: 10px 20px;
     border-radius: 100px;
@@ -419,8 +440,8 @@ p.text-sm.text-gray-700.leading-5 {
                                 <div class="grid-container mt-4 mb-5">
                                     @foreach ($images as $image)
                                         <div class="grid-item">
-                                            <a href="{{ asset($image->ruta_imagen) }}"  data-fancybox="gallery1">
-                                                <img class="mi-img-landing" src="{{ asset($image->ruta_imagen) }}"  alt="{{ $image->nombre }}">
+                                            <a href="{{ asset($image->ruta_imagen) }}" data-fancybox="gallery1">
+                                                <img class="mi-img-landing" src="{{ asset($image->ruta_imagen) }}" alt="{{ $image->nombre }}">
                                             </a>
                                         </div>
                                     @endforeach
