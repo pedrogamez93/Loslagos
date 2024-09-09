@@ -176,7 +176,7 @@
         font-Weight: 700;
     }
     a.mifinal-a{
-        width: 146px;
+        /* width: 146px;*/
         height: 40px;
         padding: 10px 20px;
         border-radius: 100px;
