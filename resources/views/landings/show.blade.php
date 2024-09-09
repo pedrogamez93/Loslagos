@@ -343,7 +343,7 @@ p.text-sm.text-gray-700.leading-5 {
 
 <!-- Fancybox CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+<link rel="shortcut icon" type="image/png" href="http://127.0.0.1:8000/storage/img/Favicon.png">
 <!-- Fancybox JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </head>
@@ -361,7 +361,7 @@ p.text-sm.text-gray-700.leading-5 {
                     <div class="container second content-breadc pt-5 pb-5">
                         <div class="row">
                             <div class="col-md-12" style="padding: 0;">
-                                <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a> / <span><a href="">Landing Pages</a></span> / <span style="font-Weight: 700;"><a href="">{{ $landing->titulo }}</a></span></p>
+                                <p class="style-bread">a< href="http://127.0.0.1:8000/">Home </a> / <span><a href="">Landing Pages</a></span> / <span style="font-Weight: 700;"><a href="">{{ $landing->titulo }}</a></span></p>
                             </div>
                         </div>
                             
