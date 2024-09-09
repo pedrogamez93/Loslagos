@@ -165,6 +165,7 @@
 <head>
     <meta charset="utf-8">
     <title>Concursos Publicos</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 </head>
 <body>
 @extends('layouts.app')

@@ -107,6 +107,7 @@
             }
         }
     </style>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 </head>
 <body>
 @extends('layouts.app')

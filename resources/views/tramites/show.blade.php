@@ -209,6 +209,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
     <!-- Incluye los archivos JS de CKEditor -->
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 </head>
 <body>
 @extends('layouts.app')

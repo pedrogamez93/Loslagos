@@ -201,7 +201,7 @@ button {
 
 <!-- Fancybox JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
+<link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
     </head>
     <body>
         @extends('layouts.app')

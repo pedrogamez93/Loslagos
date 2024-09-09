@@ -221,6 +221,7 @@ ul li {
 <head>
     <meta charset="utf-8">
     <title>Gobierno Regional</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>

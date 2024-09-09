@@ -343,7 +343,7 @@ p.text-sm.text-gray-700.leading-5 {
 
 <!-- Fancybox CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-<link rel="shortcut icon" type="image/png" href="http://127.0.0.1:8000/storage/img/Favicon.png">
+<link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 <!-- Fancybox JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </head>

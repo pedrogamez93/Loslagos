@@ -176,6 +176,7 @@ h5.card-title{
     <title>Consejo Regional</title>
     <!-- Agrega aquí tus enlaces a hojas de estilo CSS, si es necesario -->
     <!-- Jquery -->
+    <link rel="shortcut icon" type="image/png" href="{{ asset('storage/img/Favicon.png') }}">
 </head>
 <body>
 @extends('layouts.app')
