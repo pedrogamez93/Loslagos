@@ -3,7 +3,7 @@
        /* width: 100%;*/
         height: 450px;
         color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
+       
         margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
         /*position: fixed;*/
         top: 0; /* Lo fija en la parte superior */
@@ -359,15 +359,15 @@ p.text-sm.text-gray-700.leading-5 {
             <div class="row">
                 <div class="col-md-12">
                     <div class="container second content-breadc pt-5 pb-5">
-                        <div class="row" style="padding: 10px 0px 20px 55px;">
+                        <div class="row">
                             <div class="col-md-12" style="padding: 0;">
                                 <p class="style-bread"><a href="http://127.0.0.1:8000/">Home </a> / <span><a href="">Landing Pages</a></span> / <span style="font-Weight: 700;"><a href="">{{ $landing->titulo }}</a></span></p>
                             </div>
                         </div>
                             
-                        <div class="container content-prin pt-4">
-                            <div class="row" style="padding: 10px 0px 0px 25px;">
-                                <div class="col-md-12">
+                        <div class="container content-prin pt-4" style="padding:0px;">
+                            <div class="row">
+                                <div class="col-md-12" style="padding:0px;">
                                     <p class="one-title pb-5">{{ $landing->titulo }}</p>
                                 </div>
                                 <div class="col-md-6">
