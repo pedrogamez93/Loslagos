@@ -361,7 +361,7 @@ p.text-sm.text-gray-700.leading-5 {
                     <div class="container second content-breadc pt-5 pb-5">
                         <div class="row">
                             <div class="col-md-12" style="padding: 0;">
-                                <p class="style-bread"><a>Home</a> / <span><a href="">Landing Pages</a></span> / <span style="font-Weight: 700;"><a href="">{{ $landing->titulo }}</a></span></p>
+                                <p class="style-bread"><a>Home</a> / <span style="font-Weight: 700;"><a href="">{{ $landing->titulo }}</a></span></p>
                             </div>
                         </div>
                             
