@@ -15,7 +15,7 @@
     <div class="container">
         <h5>Home / Documentos</h5>
         <h1 class="titulodoc" style="text-align: left;">Documentos </h1>
-        <p >Bases de Postulacion al Fondo de Fomento y Desarrollo / Resumen Gastos Año 2011</p>
+  
     </div>
 </div>
 
@@ -31,7 +31,7 @@
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                     <option value="">Seleccione Categoria</option>
                     <option value="Acta">Actas</option>
-                    <option value="Acuerdo">Acuerdos</option>
+                    <option value="Acuerdo">Certificados Acuerdos</option>
                     <option value="Resumen Gastos">Resumen de Gastos</option>
                     <option value="Documento General">Documentos Generales</option>
                 </select>

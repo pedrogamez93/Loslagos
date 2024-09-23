@@ -25,7 +25,7 @@
                 <select class="form-select mt-4" aria-label="Default select example" name="tipo_documento">
                 <option value="">Seleccione Categoria</option>
                                     <option value="Acta">Actas</option>
-                                    <option value="Acuerdo">Acuerdos</option>
+                                    <option value="Acuerdo">Certificados Acuerdos</option>
                                     <option value="Resumen Gastos">Resumen de Gastos</option>
                                     <option value="Documento General">Documentos Generales</option>
                 </select>
