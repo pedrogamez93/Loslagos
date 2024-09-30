@@ -1,129 +1,61 @@
 <!DOCTYPE html>
 <style>
-    .second{
-        height: 450px;
-        color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
-        margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
-        top: 0; /* Lo fija en la parte superior */
-        left: 0; /* Lo fija en la parte izquierda */
-        z-index: 1000;
-    }
-    p.style-bread{
-        font-family:'Inter';
-        font-Weight: 500;
-        font-Size: 16px;
-        Line-height: 19.36px;
-        color: #FFFFFF;
-    }
-    p.style-tag{
-        font-family: 'Inter';
-        font-Weight: 600;
-        font-Style: italic;
-        font-Size: 16px;
-        color: #00548F;
-    }
-    p.title-cat{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        Line-height: 36.31px;
+    h1 , h2{
         color: #565656;
     }
-    p.one-title{
-        font-family:'Inter';
-        font-Weight: 700;
-        font-Size: 50px;
-        line-height: 60.51px;
-        color: #FFFFFF;
+    .principal{
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;       
     }
-    .cat{
-        margin-top: -5rem;
-        background-color: #FFFFFF;
-        border-radius: 100px 0 0 0;
+    .first-form{
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;
     }
-    h1.mititulo{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        color: #565656;
+    input.form-control{
+    color: #565656;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
     }
-    h2.mi-style{
-        font-family: 'Inter';
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 24.2px;
-        color: #F59120;
+    .style-label, p.style-label{
+    color: #565656;
+    font-size: 16px;
+    font-weight: 700;
     }
-    p.p-doc-tit{
-        font-family: 'Inter';
-        font-weight: 700;
-        font-size: 20px;
-        color: #565656;
+    .style-col-menu{
+        background-color: #0c1e35;
     }
-    p.p-doc-baj{
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        color: #565656;  
+    button.btn.btn-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: unset;
+    font-weight: 700;
     }
-    .container-fluid.color{
-            background-color:#00548F;
+    li.style-li{
+        list-style: none;
+        padding-bottom: 10px;
     }
-    .nav-head {
-        background-color: #00548f !important;
+    a.style-a-menu{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;   
     }
-    .container-fluid.nav-head {
-    background-color: #00548f;
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred {
+    height: 350px;
     }
-    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
-    background-color: #00548f;
-    }
-    @media only screen and (max-width: 600px) {
-    /* Estilos para pantallas móviles aquí */
-    p.one-title{
-        font-size:30px !important;
-        padding-bottom: 0px!important;
-        }
-    }
-
-    .form-control.filtro {
-    border-radius: 100px;
-    color: #00548F; 
-    border: 1px solid #00548F;
-    }
-    /* Cambiar el color del placeholder */
-.form-control.filtro::placeholder {
-    color: #00548F; 
+    p.ck-placeholder {
+    height: 350px;
 }
 
-/* Compatibilidad con diferentes navegadores */
-
-/* Internet Explorer 10-11 */
-.form-control.filtro:-ms-input-placeholder {
-    color: #00548F; 
+input:required {
+    border: 1px solid red; /* Borde rojo para indicar campo obligatorio */
 }
 
-/* Microsoft Edge */
-.form-control.filtro::-ms-input-placeholder {
-    color: #00548F; 
-}
-
-/* Mozilla Firefox 19+ */
-.form-control.filtro::-moz-placeholder {
-    color: #00548F; 
-    opacity: 1; /* Por defecto Firefox reduce la opacidad del placeholder */
-}
-
-/* Google Chrome, Safari y Opera */
-.form-control.filtro::-webkit-input-placeholder {
-    color: #00548F; 
-}
-
-button.btn.btn-primary {
-    border-radius: 100px;
-    background-color: #F59120;
-    border: 1px solid #F59120;
+/* Estilo para el asterisco */
+.required::before {
+    content: '*';
+    color: red;
+    margin-right: 4px;
 }
 </style>
 <html>
