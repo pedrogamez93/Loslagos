@@ -182,37 +182,37 @@
                         </div>
                         <div class="container filtros">
                         <form action="{{ route('certificadosdeacuerdos.Indexcertificadosdeacuerdos') }}" method="GET" class="row">
-                                <div class="col-md-2 mb-3">
-                                    <select name="fecha_dia" id="fecha_dia" class="form-control filtro">
-                                        <option value="">Día</option>
-                                        @for ($i = 1; $i <= 31; $i++)
-                                            <option value="{{ $i }}" {{ request('fecha_dia') == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                    <select name="fecha_mes" id="fecha_mes" class="form-control filtro">
-                                        <option value="">Mes</option>
-                                        @foreach (['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] as $index => $mes)
-                                            <option value="{{ $index + 1 }}" {{ request('fecha_mes') == $index + 1 ? 'selected' : '' }}>{{ $mes }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                    <select name="fecha_ano" id="fecha_ano" class="form-control filtro">
-                                        <option value="">Año</option>
-                                        @for ($i = 2010; $i <= date('Y'); $i++)
-                                            <option value="{{ $i }}" {{ request('fecha_ano') == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                    <input type="text" placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
-                                </div>
-                                <div class="col-md-2 mb-3">
-                                    <button type="submit" class="btn btn-primary">Buscar</button>
-                                </div>
-                            </form>
+    <div class="col-md-2 mb-3">
+        <select name="fecha_dia" id="fecha_dia" class="form-control filtro">
+            <option value="">Día</option>
+            @for ($i = 1; $i <= 31; $i++)
+                <option value="{{ $i }}" {{ request('fecha_dia') == $i ? 'selected' : '' }}>{{ $i }}</option>
+            @endfor
+        </select>
+    </div>
+    <div class="col-md-2 mb-3">
+        <select name="fecha_mes" id="fecha_mes" class="form-control filtro">
+            <option value="">Mes</option>
+            @foreach (['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] as $index => $mes)
+                <option value="{{ $index + 1 }}" {{ request('fecha_mes') == $index + 1 ? 'selected' : '' }}>{{ $mes }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-2 mb-3">
+        <select name="fecha_ano" id="fecha_ano" class="form-control filtro">
+            <option value="">Año</option>
+            @for ($i = 2010; $i <= date('Y'); $i++)
+                <option value="{{ $i }}" {{ request('fecha_ano') == $i ? 'selected' : '' }}>{{ $i }}</option>
+            @endfor
+        </select>
+    </div>
+    <div class="col-md-2 mb-3">
+        <input type="text" placeholder="Código BIP" name="codigo_bip" id="codigo_bip" class="form-control filtro" value="{{ request('codigo_bip') }}">
+    </div>
+    <div class="col-md-2 mb-3">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
                         </div>
                         <div class="container">
                             <div class="row">
@@ -239,7 +239,8 @@
 
                         <!-- Enlaces de paginación -->
                         <div class="d-flex justify-content-center">
-                            {{ $acuerdos->links('pagination::bootstrap-4') }}
+                           <!-- Enlaces de paginación con los filtros añadidos -->
+{{ $acuerdos->appends(request()->input())->links() }}
                         </div>
                     </div>
                 </div>

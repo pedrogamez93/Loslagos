@@ -42,7 +42,7 @@ class ConsejoRegionalDocsViewsController extends Controller
         $documento = Documentonew::findOrFail($id);
     
         // Log para depuración del documento
-        \Log::info("Documento encontrado: " . json_encode($documento));
+        Log::info("Documento encontrado: " . json_encode($documento));
     
         if ($documento) {
             // Ajuste de la ruta eliminando el prefijo duplicado 'public/public/' y reemplazando '\' por '/'
@@ -50,16 +50,16 @@ class ConsejoRegionalDocsViewsController extends Controller
             $rutaCompleta = str_replace('\\', '/', $rutaCompleta);
             $rutaArchivo = storage_path('app/' . $rutaCompleta);
     
-            \Log::info("Ruta completa del archivo: " . $rutaArchivo);
+            Log::info("Ruta completa del archivo: " . $rutaArchivo);
     
             if (file_exists($rutaArchivo) && is_file($rutaArchivo)) {
                 return response()->download($rutaArchivo);
             } else {
-                \Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
+                Log::error("El archivo no existe o es un directorio: " . $rutaArchivo);
                 return response()->json(['error' => 'El archivo no existe o es un directorio.'], 404);
             }
         } else {
-            \Log::error("Documento no encontrado con id: " . $id);
+            Log::error("Documento no encontrado con id: " . $id);
             return response()->json(['error' => 'Documento no encontrado.'], 404);
         }
     }
@@ -96,7 +96,7 @@ class ConsejoRegionalDocsViewsController extends Controller
     } catch (\Exception $e) {
         // Registra en el log cualquier excepción y retorna una respuesta JSON con un mensaje de error
         Log::error('Error al intentar descargar el archivo: ' . $e->getMessage());
-        return response()->json(['error' => 'Hubo un error al intentar descargar el archivo. ' . $filePath], 500);
+        return response()->json(['error' => 'Hubo un error al intentar descargar el archivo. ' ], 500);
     }
 }
 
