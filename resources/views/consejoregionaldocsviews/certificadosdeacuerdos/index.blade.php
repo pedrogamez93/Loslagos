@@ -225,7 +225,9 @@
                                                     <div>
                                                         <p class="p-doc-tit">Número: {{ $acuerdo->numero }}</p>
                                                         <p class="p-doc-baj">Fecha: {{ $acuerdo->fecha }}</p>
-                                                        <p class="p-doc-baj">Descripción: {{ $acuerdo->descripcion }}</p>
+                                                        <p class="card-text flex-grow-1 descripcion-text">
+                                                        <strong>Descripción:</strong> {{ \Illuminate\Support\Str::limit($acuerdo->descripcion, 100) }}
+                                                        </p>
                                                     </div>
                                                 </a>
                                             </div>
