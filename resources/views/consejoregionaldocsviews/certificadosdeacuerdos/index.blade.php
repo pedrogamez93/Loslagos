@@ -1,131 +1,137 @@
 <!DOCTYPE html>
 <style>
-    .second{
-        height: 450px;
-        color: #fff; /* Cambia esto al color de texto que desees */
-        padding: 20px; /* Añade relleno si es necesario */
-        margin: 0; /* Elimina el margen para que ocupe toda la pantalla hacia los lados */
-        top: 0; /* Lo fija en la parte superior */
-        left: 0; /* Lo fija en la parte izquierda */
-        z-index: 1000;
-    }
-    p.style-bread{
-        font-family:'Inter';
-        font-Weight: 500;
-        font-Size: 16px;
-        Line-height: 19.36px;
-        color: #FFFFFF;
-    }
-    p.style-tag{
-        font-family: 'Inter';
-        font-Weight: 600;
-        font-Style: italic;
-        font-Size: 16px;
-        color: #00548F;
-    }
-    p.title-cat{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        Line-height: 36.31px;
-        color: #565656;
-    }
-    p.one-title{
-        font-family:'Inter';
-        font-Weight: 700;
-        font-Size: 50px;
-        line-height: 60.51px;
-        color: #FFFFFF;
-    }
-    .cat{
-        margin-top: -5rem;
-        background-color: #FFFFFF;
-        border-radius: 100px 0 0 0;
-    }
-    h1.mititulo{
-        font-family: 'Inter';
-        font-Weight: 700;
-        font-Size: 30px;
-        color: #565656;
-    }
-    h2.mi-style{
-        font-family: 'Inter';
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 24.2px;
-        color: #F59120;
-    }
-    p.p-doc-tit{
-        font-family: 'Inter';
-        font-weight: 700;
-        font-size: 20px;
-        color: #565656;
-    }
-    p.p-doc-baj{
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        color: #565656;  
-    }
-    .container-fluid.color{
-            background-color:#00548F;
-    }
-    .nav-head {
-        background-color: #00548f !important;
-    }
-    .container-fluid.nav-head {
-    background-color: #00548f;
-    }
-    nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
-    background-color: #00548f;
-    }
-    @media only screen and (max-width: 600px) {
-    /* Estilos para pantallas móviles aquí */
-    p.one-title{
-        font-size:30px !important;
-        padding-bottom: 0px!important;
-        }
+            .second {
+                height: 450px;
+                color: #fff;
+                padding: 20px;
+                margin: 0;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+            }
+            p.style-bread {
+                font-family: 'Inter';
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19.36px;
+                color: #FFFFFF;
+            }
+            p.style-tag {
+                font-family: 'Inter';
+                font-weight: 600;
+                font-style: italic;
+                font-size: 16px;
+                color: #00548F;
+            }
+            p.title-cat {
+                font-family: 'Inter';
+                font-weight: 700;
+                font-size: 30px;
+                line-height: 36.31px;
+                color: #565656;
+            }
+            p.one-title {
+                font-family: 'Inter';
+                font-weight: 700;
+                font-size: 50px;
+                line-height: 60.51px;
+                color: #FFFFFF;
+            }
+            .cat {
+                margin-top: -5rem;
+                background-color: #FFFFFF;
+                border-radius: 100px 0 0 0;
+            }
+            h1.mititulo {
+                font-family: 'Inter';
+                font-weight: 700;
+                font-size: 30px;
+                color: #565656;
+            }
+            h2.mi-style {
+                font-family: 'Inter';
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24.2px;
+                color: #F59120;
+            }
+            p.p-doc-tit {
+                font-family: 'Inter';
+                font-weight: 700;
+                font-size: 20px;
+                color: #565656;
+            }
+            p.p-doc-baj {
+                font-family: 'Inter';
+                font-weight: 400;
+                font-size: 16px;
+                color: #565656;
+            }
+            .container-fluid.color {
+                background-color: #00548F;
+            }
+            .nav-head {
+                background-color: #00548f !important;
+            }
+            .container-fluid.nav-head {
+                background-color: #00548f;
+            }
+            nav.navbar.navbar-expand-lg.px-5.backgroundB.container {
+                background-color: #00548f;
+            }
+            @media only screen and (max-width: 600px) {
+                p.one-title {
+                    font-size: 30px !important;
+                    padding-bottom: 0px !important;
+                }
+            }
+            .form-control.filtro {
+                border-radius: 100px;
+                color: #00548F;
+                border: 1px solid #00548F;
+            }
+            .form-control.filtro::placeholder {
+                color: #00548F;
+            }
+            button.btn.btn-primary {
+                border-radius: 100px;
+                background-color: #F59120;
+                border: 1px solid #F59120;
+            }
+            .mi-documento {
+                border: 1px solid #F59120;
+                padding: 10px;
+                border-radius: 8px;
+                background-color: #f8f9fa;
+                transition: box-shadow 0.3s ease-in-out;
+            }
+            .mi-documento:hover {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            }
+            .descripcion-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Número de líneas que se muestran */
+        -webkit-box-orient: vertical;
+        height: 75px; /* Ajustar la altura según las líneas */
     }
 
-    .form-control.filtro {
-    border-radius: 100px;
-    color: #00548F; 
-    border: 1px solid #00548F;
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #F59120;
     }
-    /* Cambiar el color del placeholder */
-.form-control.filtro::placeholder {
-    color: #00548F; 
-}
 
-/* Compatibilidad con diferentes navegadores */
+    .card {
+        height: 100%; /* Asegurar que todas las tarjetas tienen la misma altura */
+    }
 
-/* Internet Explorer 10-11 */
-.form-control.filtro:-ms-input-placeholder {
-    color: #00548F; 
-}
-
-/* Microsoft Edge */
-.form-control.filtro::-ms-input-placeholder {
-    color: #00548F; 
-}
-
-/* Mozilla Firefox 19+ */
-.form-control.filtro::-moz-placeholder {
-    color: #00548F; 
-    opacity: 1; /* Por defecto Firefox reduce la opacidad del placeholder */
-}
-
-/* Google Chrome, Safari y Opera */
-.form-control.filtro::-webkit-input-placeholder {
-    color: #00548F; 
-}
-
-button.btn.btn-primary {
-    border-radius: 100px;
-    background-color: #F59120;
-    border: 1px solid #F59120;
-}
-</style>
+    .btn {
+        border-radius: 8px; /* Personaliza el estilo del botón */
+    }
+        </style>
 <html>
 <head>
     <meta charset="utf-8">
